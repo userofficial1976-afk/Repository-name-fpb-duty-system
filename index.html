@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -225,11 +226,7 @@
 
     <h2>Key In Duty</h2>
 
-
     <div class="form-grid">
-
-
-        <!-- TARIKH -->
 
         <div class="form-group">
 
@@ -245,15 +242,10 @@
 
         </div>
 
-
-        <!-- ANGGOTA -->
-
         <div class="form-group">
 
             <label for="anggota">
-
                 Anggota
-
             </label>
 
             <select
@@ -269,15 +261,10 @@
 
         </div>
 
-
-        <!-- KOD DUTY -->
-
         <div class="form-group full">
 
             <label for="kodDuty">
-
                 Kod Duty
-
             </label>
 
             <select
@@ -294,13 +281,7 @@
 
         </div>
 
-
     </div>
-
-
-    <!-- =========================
-         MAKLUMAT AUTO
-    ========================== -->
 
     <div class="duty-info">
 
@@ -308,103 +289,77 @@
             Maklumat Duty
         </h3>
 
-
         <div class="duty-info-grid">
-
 
             <div class="info-box">
 
                 <div class="info-title">
-
                     Waktu Tugasan
-
                 </div>
 
                 <div
                     class="info-value"
                     id="paparWaktu"
                 >
-
                     -
-
                 </div>
 
             </div>
 
-
             <div class="info-box">
 
                 <div class="info-title">
-
                     Jam Bertugas
-
                 </div>
 
                 <div
                     class="info-value"
                     id="paparJamKerja"
                 >
-
                     -
-
                 </div>
 
             </div>
 
-
             <div class="info-box">
 
                 <div class="info-title">
-
                     Jam KLM
-
                 </div>
 
                 <div
                     class="info-value"
                     id="paparJamKLM"
                 >
-
                     -
-
                 </div>
 
             </div>
-
 
         </div>
 
     </div>
 
-
     <br>
-
 
     <button
         class="btn-save"
         onclick="simpanDuty()"
     >
-
         Simpan Duty
-
     </button>
-
 
     <button
         class="btn-reset"
         onclick="resetBorang()"
     >
-
         Reset
-
     </button>
-
 
     <div
         id="statusMessage"
         class="status"
     ></div>
-
 
 </div>
 
@@ -418,7 +373,6 @@
     <h2>
         Senarai Duty
     </h2>
-
 
     <div class="table-container">
 
@@ -456,7 +410,6 @@
 
             </thead>
 
-
             <tbody
                 id="senaraiDuty"
             >
@@ -466,9 +419,7 @@
                     <td
                         colspan="6"
                     >
-
                         Tiada data
-
                     </td>
 
                 </tr>
@@ -485,7 +436,6 @@
 </div>
 
 <script>
-
 
 /*
 ====================================================
@@ -534,9 +484,6 @@ document.addEventListener(
 
     function() {
 
-
-        // Tarikh hari ini
-
         document.getElementById(
             "tarikh"
         ).value =
@@ -546,20 +493,13 @@ document.addEventListener(
         .split("T")[0];
 
 
-        // Load Kod Duty
-
         loadKodDuty();
 
-
-        // Load Anggota
 
         loadAnggota();
 
 
-        // Load Duty
-
         loadSenaraiDuty();
-
 
     }
 
@@ -568,13 +508,12 @@ document.addEventListener(
 
 /*
 ====================================================
-4. LOAD KOD DUTY DARI SUPABASE
+4. LOAD KOD DUTY
 TABLE: kod_duty
 ====================================================
 */
 
 async function loadKodDuty() {
-
 
     const {
 
@@ -587,54 +526,34 @@ async function loadKodDuty() {
         .from("kod_duty")
 
         .select(
-
             "kod, waktu_tugasan, jam_kerja, jam_klm, status"
-
         )
 
         .eq(
-
             "status",
-
             "Aktif"
-
         )
 
         .order(
-
             "kod",
-
             {
-
                 ascending: true
-
             }
-
         );
 
 
     if (error) {
 
-
         console.error(
-
             "Ralat Kod Duty:",
-
             error
-
         );
-
 
         paparStatus(
-
             "Gagal mengambil data Kod Duty: " +
-
             error.message,
-
             "error"
-
         );
-
 
         return;
 
@@ -645,16 +564,12 @@ async function loadKodDuty() {
 
 
     const selectKodDuty =
-
         document.getElementById(
-
             "kodDuty"
-
         );
 
 
     selectKodDuty.innerHTML =
-
         '<option value="">-- Pilih Kod Duty --</option>';
 
 
@@ -662,74 +577,54 @@ async function loadKodDuty() {
 
         function(duty) {
 
-
             const option =
-
                 document.createElement(
-
                     "option"
-
                 );
 
 
             option.value =
-
                 duty.kod;
 
 
             option.textContent =
-
                 duty.kod +
-
                 " - " +
-
                 duty.waktu_tugasan;
 
 
             selectKodDuty.appendChild(
-
                 option
-
             );
-
 
         }
 
     );
-
 
 }
 
 
 /*
 ====================================================
-5. PAPAR MAKLUMAT DUTY AUTO
+5. PAPAR MAKLUMAT DUTY
 ====================================================
 */
 
 function paparMaklumatDuty() {
 
-
     const kodDipilih =
-
         document.getElementById(
-
             "kodDuty"
-
         ).value;
 
 
     const duty =
-
         senaraiKodDuty.find(
 
             function(item) {
 
-
                 return item.kod ===
-
                     kodDipilih;
-
 
             }
 
@@ -738,59 +633,40 @@ function paparMaklumatDuty() {
 
     if (duty) {
 
-
         document.getElementById(
-
             "paparWaktu"
-
         ).textContent =
-
             duty.waktu_tugasan || "-";
 
 
         document.getElementById(
-
             "paparJamKerja"
-
         ).textContent =
-
             duty.jam_kerja ?? "-";
 
 
         document.getElementById(
-
             "paparJamKLM"
-
         ).textContent =
-
             duty.jam_klm ?? "-";
-
 
     }
 
     else {
 
-
         document.getElementById(
-
             "paparWaktu"
-
         ).textContent = "-";
 
 
         document.getElementById(
-
             "paparJamKerja"
-
         ).textContent = "-";
 
 
         document.getElementById(
-
             "paparJamKLM"
-
         ).textContent = "-";
-
 
     }
 
@@ -806,7 +682,6 @@ TABLE: anggota
 
 async function loadAnggota() {
 
-
     const {
 
         data,
@@ -820,40 +695,25 @@ async function loadAnggota() {
         .select("*")
 
         .order(
-
             "nama",
-
             {
-
                 ascending: true
-
             }
-
         );
 
 
     if (error) {
 
-
         console.error(
-
             "Ralat Anggota:",
-
             error
-
         );
-
 
         paparStatus(
-
             "Gagal mengambil data anggota: " +
-
             error.message,
-
             "error"
-
         );
-
 
         return;
 
@@ -864,16 +724,12 @@ async function loadAnggota() {
 
 
     const selectAnggota =
-
         document.getElementById(
-
             "anggota"
-
         );
 
 
     selectAnggota.innerHTML =
-
         '<option value="">-- Pilih Anggota --</option>';
 
 
@@ -881,37 +737,27 @@ async function loadAnggota() {
 
         function(anggota) {
 
-
             const option =
-
                 document.createElement(
-
                     "option"
-
                 );
 
 
             option.value =
-
                 anggota.id;
 
 
             option.textContent =
-
                 anggota.nama;
 
 
             selectAnggota.appendChild(
-
                 option
-
             );
-
 
         }
 
     );
-
 
 }
 
@@ -925,31 +771,21 @@ TABLE: jadual_duty
 
 async function simpanDuty() {
 
-
     const tarikh =
-
         document.getElementById(
-
             "tarikh"
-
         ).value;
 
 
     const anggotaId =
-
         document.getElementById(
-
             "anggota"
-
         ).value;
 
 
     const kodDuty =
-
         document.getElementById(
-
             "kodDuty"
-
         ).value;
 
 
@@ -963,15 +799,10 @@ async function simpanDuty() {
 
     ) {
 
-
         paparStatus(
-
             "Sila lengkapkan Tarikh, Anggota dan Kod Duty.",
-
             "error"
-
         );
-
 
         return;
 
@@ -979,16 +810,12 @@ async function simpanDuty() {
 
 
     const duty =
-
         senaraiKodDuty.find(
 
             function(item) {
 
-
                 return item.kod ===
-
                     kodDuty;
-
 
             }
 
@@ -997,15 +824,10 @@ async function simpanDuty() {
 
     if (!duty) {
 
-
         paparStatus(
-
             "Maklumat Kod Duty tidak dijumpai.",
-
             "error"
-
         );
-
 
         return;
 
@@ -1024,36 +846,23 @@ async function simpanDuty() {
 
             {
 
-
                 tarikh:
-
                     tarikh,
 
-
                 anggota_id:
-
                     anggotaId,
 
-
                 kod_duty:
-
                     duty.kod,
 
-
                 waktu_tugasan:
-
                     duty.waktu_tugasan,
 
-
                 jam_kerja:
-
                     duty.jam_kerja,
 
-
                 jam_klm:
-
                     duty.jam_klm
-
 
             }
 
@@ -1062,26 +871,16 @@ async function simpanDuty() {
 
     if (error) {
 
-
         console.error(
-
             "Ralat Simpan:",
-
             error
-
         );
-
 
         paparStatus(
-
             "Gagal simpan duty: " +
-
             error.message,
-
             "error"
-
         );
-
 
         return;
 
@@ -1089,11 +888,8 @@ async function simpanDuty() {
 
 
     paparStatus(
-
         "Duty berjaya disimpan.",
-
         "success"
-
     );
 
 
@@ -1101,7 +897,6 @@ async function simpanDuty() {
 
 
     loadSenaraiDuty();
-
 
 }
 
@@ -1114,7 +909,6 @@ async function simpanDuty() {
 
 async function loadSenaraiDuty() {
 
-
     const {
 
         data,
@@ -1125,7 +919,29 @@ async function loadSenaraiDuty() {
 
         .from("jadual_duty")
 
-        .select("*")
+        .select(`
+
+            id,
+
+            tarikh,
+
+            anggota_id,
+
+            kod_duty,
+
+            waktu_tugasan,
+
+            jam_kerja,
+
+            jam_klm,
+
+            anggota (
+
+                nama
+
+            )
+
+        `)
 
         .order(
 
@@ -1142,15 +958,10 @@ async function loadSenaraiDuty() {
 
     if (error) {
 
-
         console.error(
-
             "Ralat Senarai Duty:",
-
             error
-
         );
-
 
         return;
 
@@ -1158,11 +969,8 @@ async function loadSenaraiDuty() {
 
 
     const tbody =
-
         document.getElementById(
-
             "senaraiDuty"
-
         );
 
 
@@ -1177,23 +985,19 @@ async function loadSenaraiDuty() {
 
     ) {
 
+        tbody.innerHTML = `
 
-        tbody.innerHTML =
+            <tr>
 
-        `
+                <td colspan="6">
 
-        <tr>
+                    Tiada data
 
-            <td colspan="6">
+                </td>
 
-                Tiada data
-
-            </td>
-
-        </tr>
+            </tr>
 
         `;
-
 
         return;
 
@@ -1204,75 +1008,52 @@ async function loadSenaraiDuty() {
 
         function(duty) {
 
-
             const row =
-
                 document.createElement(
-
                     "tr"
-
                 );
 
 
-            row.innerHTML =
+            row.innerHTML = `
 
-            `
+                <td>
+                    ${duty.tarikh || ""}
+                </td>
 
-            <td>
+                <td>
+                    ${
+                        duty.anggota
+                        ? duty.anggota.nama
+                        : duty.anggota_id
+                    }
+                </td>
 
-                ${duty.tarikh || ""}
+                <td>
+                    ${duty.kod_duty || ""}
+                </td>
 
-            </td>
+                <td>
+                    ${duty.waktu_tugasan || ""}
+                </td>
 
+                <td>
+                    ${duty.jam_kerja ?? ""}
+                </td>
 
-            <td>
-
-                ${duty.anggota_id || ""}
-
-            </td>
-
-
-            <td>
-
-                ${duty.kod_duty || ""}
-
-            </td>
-
-
-            <td>
-
-                ${duty.waktu_tugasan || ""}
-
-            </td>
-
-
-            <td>
-
-                ${duty.jam_kerja ?? ""}
-
-            </td>
-
-
-            <td>
-
-                ${duty.jam_klm ?? ""}
-
-            </td>
+                <td>
+                    ${duty.jam_klm ?? ""}
+                </td>
 
             `;
 
 
             tbody.appendChild(
-
                 row
-
             );
-
 
         }
 
     );
-
 
 }
 
@@ -1285,41 +1066,29 @@ async function loadSenaraiDuty() {
 
 function resetBorang() {
 
-
     document.getElementById(
-
         "anggota"
-
     ).value = "";
 
 
     document.getElementById(
-
         "kodDuty"
-
     ).value = "";
 
 
     document.getElementById(
-
         "paparWaktu"
-
     ).textContent = "-";
 
 
     document.getElementById(
-
         "paparJamKerja"
-
     ).textContent = "-";
 
 
     document.getElementById(
-
         "paparJamKLM"
-
     ).textContent = "-";
-
 
 }
 
@@ -1338,25 +1107,18 @@ function paparStatus(
 
 ) {
 
-
     const status =
-
         document.getElementById(
-
             "statusMessage"
-
         );
 
 
     status.textContent =
-
         mesej;
 
 
     status.className =
-
         "status " +
-
         jenis;
 
 
@@ -1364,11 +1126,8 @@ function paparStatus(
 
         function() {
 
-
             status.className =
-
                 "status";
-
 
         },
 
@@ -1376,9 +1135,7 @@ function paparStatus(
 
     );
 
-
 }
-
 
 </script>
 
