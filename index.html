@@ -3,12 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FPB Duty System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 240px;
+            height: 100vh;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            padding: 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .menu li:hover,
+        .menu li.active {
+            background: #2563eb;
+        }
+
+        .main {
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>FPB Duty System</h1>
-    <p>Website berjaya dibina.</p>
+    <div class="sidebar">
+
+        <h2>🚔 FPB DUTY</h2>
+
+        <ul class="menu">
+            <li class="active">🏠 Dashboard</li>
+            <li>👥 Senarai Anggota</li>
+            <li>📅 Jadual Duty</li>
+            <li>🏷️ Kod Duty</li>
+            <li>📊 Laporan</li>
+            <li>⚙️ Tetapan</li>
+        </ul>
+
+    </div>
+
+
+    <div class="main">
+
+        <div class="header">
+
+            <h1>Dashboard</h1>
+
+            <p>Selamat datang ke FPB Duty System</p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Jumlah Anggota</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Duty Hari Ini</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Kod Duty</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Laporan</h3>
+                <p>0</p>
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
