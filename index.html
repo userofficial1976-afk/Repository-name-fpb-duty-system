@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="ms">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,7 +21,6 @@
 body {
     margin: 0;
     background: #f1f5f9;
-    color: #1e293b;
 }
 
 .sidebar {
@@ -56,8 +56,8 @@ body {
 }
 
 .header,
-.content,
-.card {
+.card,
+.content {
     background: white;
     border-radius: 12px;
     padding: 20px;
@@ -85,32 +85,6 @@ h1 {
     font-weight: bold;
 }
 
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-weight: bold;
-}
-
-input,
-select {
-    width: 280px;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #cbd5e1;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
 button {
     background: #2563eb;
     color: white;
@@ -125,6 +99,42 @@ button:hover {
     background: #1d4ed8;
 }
 
+.delete {
+    background: #dc2626;
+}
+
+.delete:hover {
+    background: #b91c1c;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 220px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -136,61 +146,48 @@ td {
     border-bottom: 1px solid #e2e8f0;
     padding: 12px;
     text-align: left;
-    white-space: nowrap;
 }
 
 th {
     background: #f8fafc;
 }
 
-.duty-info {
-    background: #eff6ff;
-    padding: 15px;
-    border-left: 5px solid #2563eb;
-    border-radius: 6px;
-    margin-top: 15px;
-}
-
-.duty-info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.table-container {
+    overflow-x: auto;
 }
 
 .info-box {
-    background: white;
-    padding: 15px;
-    border-radius: 7px;
-}
-
-.info-title {
-    font-size: 13px;
-    color: #64748b;
-}
-
-.info-value {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.error {
-    background: #fee2e2;
-    color: #991b1b;
+    background: #eff6ff;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .success {
     background: #dcfce7;
     color: #166534;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 6px;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 6px;
 }
 
 @media (max-width: 900px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main {
+        margin-left: 200px;
+    }
 
     .cards {
         grid-template-columns: repeat(2, 1fr);
@@ -198,7 +195,7 @@ th {
 
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
     .sidebar {
         position: relative;
@@ -215,10 +212,6 @@ th {
         grid-template-columns: 1fr;
     }
 
-    .duty-info-grid {
-        grid-template-columns: 1fr;
-    }
-
 }
 
 </style>
@@ -226,6 +219,8 @@ th {
 </head>
 
 <body>
+
+<!-- SIDEBAR -->
 
 <div class="sidebar">
 
@@ -253,17 +248,23 @@ th {
      onclick="paparJadualDuty()">
     🗓️ Jadual Duty
 </div>
+
+<div class="menu"
+     onclick="paparKodDuty()">
+    🏷️ Kod Duty
+</div>
 ```
 
 </div>
+
+<!-- MAIN -->
 
 <div class="main" id="main"></div>
 
 <script>
 
-
 /* =====================================================
-   SAMBUNGAN SUPABASE
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -280,24 +281,26 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   NAMA TABLE
+   DATA GLOBAL
 ===================================================== */
 
-const TABLE_ANGGOTA = "Data_Anggota";
+let dataAnggota = [];
 
-const TABLE_KOD_DUTY = "kod_duty";
+let dataKodDuty = [];
 
-const TABLE_JADUAL_DUTY = "jadual_duty";
+let dataJadualDuty = [];
 
 
 /* =====================================================
-   MULA
+   PAGE LOAD
 ===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
+
         paparDashboard();
+
     }
 );
 
@@ -308,19 +311,23 @@ document.addEventListener(
 
 async function paparDashboard() {
 
+    aktifkanMenu(0);
+
     const anggota =
         await supabaseClient
-        .from(TABLE_ANGGOTA)
-        .select("no_skb");
+        .from("data_anggota")
+        .select("no_skb")
+        .eq("status", "Aktif");
 
     const kod =
         await supabaseClient
-        .from(TABLE_KOD_DUTY)
-        .select("kod");
+        .from("kod_duty")
+        .select("kod")
+        .eq("status", "Aktif");
 
     const duty =
         await supabaseClient
-        .from(TABLE_JADUAL_DUTY)
+        .from("jadual_duty")
         .select("tarikh");
 
     const hariIni =
@@ -329,11 +336,13 @@ async function paparDashboard() {
         .split("T")[0];
 
     const dutyHariIni =
-        (duty.data || [])
-        .filter(function(d) {
-            return d.tarikh === hariIni;
-        });
-
+        duty.data
+        ?
+        duty.data.filter(
+            x => x.tarikh === hariIni
+        ).length
+        :
+        0;
 
     document.getElementById("main").innerHTML = `
 
@@ -347,48 +356,44 @@ async function paparDashboard() {
 
         </div>
 
-
         <div class="cards">
 
             <div class="card">
 
-                <h3>Jumlah Anggota</h3>
+                <h3>Jumlah Anggota Aktif</h3>
 
                 <div class="number">
-                    ${(anggota.data || []).length}
+                    ${anggota.data ? anggota.data.length : 0}
                 </div>
 
             </div>
-
 
             <div class="card">
 
                 <h3>Duty Hari Ini</h3>
 
                 <div class="number">
-                    ${dutyHariIni.length}
+                    ${dutyHariIni}
                 </div>
 
             </div>
 
-
             <div class="card">
 
-                <h3>Kod Duty</h3>
+                <h3>Kod Duty Aktif</h3>
 
                 <div class="number">
-                    ${(kod.data || []).length}
+                    ${kod.data ? kod.data.length : 0}
                 </div>
 
             </div>
 
-
             <div class="card">
 
-                <h3>Jumlah Duty</h3>
+                <h3>Jumlah Rekod Duty</h3>
 
                 <div class="number">
-                    ${(duty.data || []).length}
+                    ${duty.data ? duty.data.length : 0}
                 </div>
 
             </div>
@@ -396,6 +401,107 @@ async function paparDashboard() {
         </div>
 
     `;
+
+}
+
+
+/* =====================================================
+   LOAD ANGGOTA
+   TABLE: data_anggota
+===================================================== */
+
+async function loadDataAnggota() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("data_anggota")
+
+        .select(
+            "no_skb, wilayah, kawasan, pangkat, no_anggota, nama, pos, unit, jawatan, ketua_pos, ketua_unit, status"
+        )
+
+        .eq(
+            "status",
+            "Aktif"
+        )
+
+        .order(
+            "nama",
+            {
+                ascending: true
+            }
+        );
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Gagal load data anggota: " +
+            error.message
+        );
+
+        return [];
+
+    }
+
+    dataAnggota = data || [];
+
+    return dataAnggota;
+
+}
+
+
+/* =====================================================
+   LOAD KOD DUTY
+   TABLE: kod_duty
+===================================================== */
+
+async function loadDataKodDuty() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("kod_duty")
+
+        .select(
+            "kod, waktu_tugasan, jam_kerja, jam_klm, status"
+        )
+
+        .eq(
+            "status",
+            "Aktif"
+        )
+
+        .order(
+            "kod",
+            {
+                ascending: true
+            }
+        );
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Gagal load kod duty: " +
+            error.message
+        );
+
+        return [];
+
+    }
+
+    dataKodDuty = data || [];
+
+    return dataKodDuty;
+
 }
 
 
@@ -405,113 +511,61 @@ async function paparDashboard() {
 
 async function paparKeyInDuty() {
 
+    aktifkanMenu(1);
 
-    /* AMBIL SEMUA ANGGOTA */
+    dataAnggota =
+        await loadDataAnggota();
 
-    const anggotaResult =
-        await supabaseClient
-        .from(TABLE_ANGGOTA)
-        .select(
-            "no_skb,no_anggota,nama,pangkat,pos,status"
-        )
-        .order(
-            "nama",
-            {
-                ascending: true
-            }
-        );
-
-
-    /* AMBIL SEMUA KOD DUTY */
-
-    const kodResult =
-        await supabaseClient
-        .from(TABLE_KOD_DUTY)
-        .select(
-            "kod,waktu_tugasan,jam_kerja,jam_klm,status"
-        )
-        .order(
-            "kod",
-            {
-                ascending: true
-            }
-        );
-
-
-    if (anggotaResult.error) {
-
-        paparRalat(
-            "Data_Anggota: " +
-            anggotaResult.error.message
-        );
-
-        return;
-
-    }
-
-
-    if (kodResult.error) {
-
-        paparRalat(
-            "kod_duty: " +
-            kodResult.error.message
-        );
-
-        return;
-
-    }
-
+    dataKodDuty =
+        await loadDataKodDuty();
 
     let pilihanAnggota = "";
 
+    dataAnggota.forEach(
+        function(a) {
 
-    (anggotaResult.data || [])
-    .forEach(function(a) {
+            pilihanAnggota += `
 
-        pilihanAnggota += `
+                <option value="${a.no_skb}">
 
-            <option value="${a.no_skb}">
+                    ${a.no_skb} -
+                    ${a.nama}
 
-                ${a.no_skb}
-                -
-                ${a.nama}
-                -
-                ${a.no_anggota}
+                </option>
 
-            </option>
+            `;
 
-        `;
-
-    });
+        }
+    );
 
 
     let pilihanKod = "";
 
+    dataKodDuty.forEach(
+        function(k) {
 
-    (kodResult.data || [])
-    .forEach(function(k) {
+            pilihanKod += `
 
-        pilihanKod += `
+                <option value="${k.kod}">
 
-            <option value="${k.kod}">
+                    ${k.kod} -
+                    ${k.waktu_tugasan}
 
-                ${k.kod}
-                -
-                ${k.waktu_tugasan}
+                </option>
 
-            </option>
+            `;
 
-        `;
-
-    });
+        }
+    );
 
 
     document.getElementById("main").innerHTML = `
 
-
         <div class="header">
 
-            <h1>Key In Duty</h1>
+            <h1>
+                Key In Duty
+            </h1>
 
             <p>
                 Masukkan rekod duty anggota
@@ -522,11 +576,12 @@ async function paparKeyInDuty() {
 
         <div class="content">
 
-            <h2>Tambah Duty</h2>
+            <h2>
+                Tambah Duty
+            </h2>
 
 
             <div class="form-row">
-
 
                 <div class="form-group">
 
@@ -536,7 +591,8 @@ async function paparKeyInDuty() {
 
                     <input
                         type="date"
-                        id="tarikh">
+                        id="tarikh"
+                    >
 
                 </div>
 
@@ -544,16 +600,15 @@ async function paparKeyInDuty() {
                 <div class="form-group">
 
                     <label>
-                        No SKB / Anggota
+                        No. SKB
                     </label>
 
                     <select
-                        id="anggotaDuty">
+                        id="no_skb"
+                    >
 
                         <option value="">
-
-                            -- Pilih Anggota --
-
+                            -- Pilih No. SKB --
                         </option>
 
                         ${pilihanAnggota}
@@ -570,13 +625,12 @@ async function paparKeyInDuty() {
                     </label>
 
                     <select
-                        id="kodDuty"
-                        onchange="paparInfoKodDuty()">
+                        id="kod_duty"
+                        onchange="paparMaklumatKodDuty()"
+                    >
 
                         <option value="">
-
                             -- Pilih Kod Duty --
-
                         </option>
 
                         ${pilihanKod}
@@ -585,86 +639,100 @@ async function paparKeyInDuty() {
 
                 </div>
 
-
             </div>
 
 
-            <div class="duty-info">
-
-                <h3>
-                    Maklumat Duty
-                </h3>
-
-
-                <div class="duty-info-grid">
-
-
-                    <div class="info-box">
-
-                        <div class="info-title">
-                            Waktu Tugasan
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="paparWaktu">
-
-                            -
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                        <div class="info-title">
-                            Jam Kerja
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="paparJamKerja">
-
-                            -
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                        <div class="info-title">
-                            Jam KLM
-                        </div>
-
-                        <div
-                            class="info-value"
-                            id="paparJamKLM">
-
-                            -
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
+            <div id="maklumatDuty"></div>
 
 
             <br>
 
 
             <button
-                onclick="simpanDuty()">
+                onclick="simpanDuty()"
+            >
 
                 💾 Simpan Duty
 
             </button>
 
+
+            <div
+                id="status"
+            ></div>
+
+        </div>
+
+
+        <div class="content">
+
+            <h2>
+                Senarai Duty
+            </h2>
+
+            <div
+                class="table-container"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Tarikh
+                            </th>
+
+                            <th>
+                                No. SKB
+                            </th>
+
+                            <th>
+                                Nama
+                            </th>
+
+                            <th>
+                                Kod Duty
+                            </th>
+
+                            <th>
+                                Waktu
+                            </th>
+
+                            <th>
+                                Jam Kerja
+                            </th>
+
+                            <th>
+                                Jam KLM
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="senaraiDuty"
+                    >
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                            >
+
+                                Loading...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
@@ -672,113 +740,99 @@ async function paparKeyInDuty() {
 
 
     document.getElementById("tarikh").value =
-
         new Date()
         .toISOString()
         .split("T")[0];
+
+
+    loadSenaraiDuty();
 
 }
 
 
 /* =====================================================
-   AUTO PAPAR KOD DUTY
+   PAPAR MAKLUMAT KOD DUTY
 ===================================================== */
 
-async function paparInfoKodDuty() {
-
+function paparMaklumatKodDuty() {
 
     const kod =
         document
-        .getElementById("kodDuty")
+        .getElementById("kod_duty")
         .value;
 
-
-    if (!kod) {
-
-        return;
-
-    }
-
-
-    const result =
-        await supabaseClient
-        .from(TABLE_KOD_DUTY)
-        .select(
-            "waktu_tugasan,jam_kerja,jam_klm"
-        )
-        .eq(
-            "kod",
-            kod
-        )
-        .single();
-
-
-    if (result.error) {
-
-        alert(
-            result.error.message
+    const duty =
+        dataKodDuty.find(
+            x => x.kod === kod
         );
 
+    if (!duty) {
+
+        document
+        .getElementById("maklumatDuty")
+        .innerHTML = "";
+
         return;
 
     }
 
-
     document
-    .getElementById("paparWaktu")
-    .textContent =
-        result.data.waktu_tugasan || "-";
+    .getElementById("maklumatDuty")
+    .innerHTML = `
 
+        <div class="info-box">
 
-    document
-    .getElementById("paparJamKerja")
-    .textContent =
-        result.data.jam_kerja ?? "-";
+            <b>Waktu Tugasan:</b>
+            ${duty.waktu_tugasan || "-"}
 
+            <br><br>
 
-    document
-    .getElementById("paparJamKLM")
-    .textContent =
-        result.data.jam_klm ?? "-";
+            <b>Jam Kerja:</b>
+            ${duty.jam_kerja || 0}
+
+            <br><br>
+
+            <b>Jam KLM:</b>
+            ${duty.jam_klm || 0}
+
+        </div>
+
+    `;
 
 }
 
 
 /* =====================================================
    SIMPAN DUTY
+   TABLE: jadual_duty
 ===================================================== */
 
 async function simpanDuty() {
-
 
     const tarikh =
         document
         .getElementById("tarikh")
         .value;
 
-
-    const noSkb =
-        Number(
-            document
-            .getElementById("anggotaDuty")
-            .value
-        );
-
-
-    const kod =
+    const noSKB =
         document
-        .getElementById("kodDuty")
+        .getElementById("no_skb")
+        .value;
+
+    const kodDuty =
+        document
+        .getElementById("kod_duty")
         .value;
 
 
     if (
         !tarikh ||
-        !noSkb ||
-        !kod
+        !noSKB ||
+        !kodDuty
     ) {
 
         alert(
-            "Sila lengkapkan semua maklumat."
+            "Sila lengkapkan Tarikh, No. SKB dan Kod Duty"
         );
 
         return;
@@ -786,35 +840,28 @@ async function simpanDuty() {
     }
 
 
-    const anggotaResult =
-        await supabaseClient
-        .from(TABLE_ANGGOTA)
-        .select(
-            "no_skb,pos"
-        )
-        .eq(
-            "no_skb",
-            noSkb
-        )
-        .single();
+    const anggota =
+        dataAnggota.find(
+            x =>
+            String(x.no_skb)
+            ===
+            String(noSKB)
+        );
 
 
-    const kodResult =
-        await supabaseClient
-        .from(TABLE_KOD_DUTY)
-        .select("*")
-        .eq(
-            "kod",
-            kod
-        )
-        .single();
+    const duty =
+        dataKodDuty.find(
+            x =>
+            x.kod
+            ===
+            kodDuty
+        );
 
 
-    if (anggotaResult.error) {
+    if (!anggota) {
 
         alert(
-            "Anggota tidak dijumpai: " +
-            anggotaResult.error.message
+            "Data No. SKB tidak dijumpai"
         );
 
         return;
@@ -822,11 +869,10 @@ async function simpanDuty() {
     }
 
 
-    if (kodResult.error) {
+    if (!duty) {
 
         alert(
-            "Kod Duty tidak dijumpai: " +
-            kodResult.error.message
+            "Data Kod Duty tidak dijumpai"
         );
 
         return;
@@ -848,52 +894,62 @@ async function simpanDuty() {
         tarikhObj.getFullYear();
 
 
-    const result =
-        await supabaseClient
-        .from(TABLE_JADUAL_DUTY)
+    const {
+        error
+    } = await supabaseClient
+
+        .from("jadual_duty")
+
         .insert([
 
             {
 
-                tarikh: tarikh,
+                tarikh:
+                    tarikh,
 
-                bulan: bulan,
+                bulan:
+                    bulan,
 
-                tahun: tahun,
+                tahun:
+                    tahun,
 
-                no_skb: noSkb,
+                no_skb:
+                    Number(noSKB),
 
                 kod_duty:
-                    kodResult.data.kod,
+                    duty.kod,
 
                 waktu_tugasan:
-                    kodResult.data.waktu_tugasan,
+                    duty.waktu_tugasan,
 
                 jam_kerja:
-                    kodResult.data.jam_kerja,
+                    duty.jam_kerja,
 
                 jam_klm:
-                    kodResult.data.jam_klm,
+                    duty.jam_klm,
 
                 pos:
-                    anggotaResult.data.pos,
+                    anggota.pos,
 
                 dikemaskini_oleh:
-                    "Sistem",
+                    anggota.nama,
 
                 dikemaskini_pada:
-                    new Date().toISOString()
+                    new Date()
+                    .toISOString()
 
             }
 
         ]);
 
 
-    if (result.error) {
+    if (error) {
+
+        console.error(error);
 
         alert(
             "Gagal simpan duty: " +
-            result.error.message
+            error.message
         );
 
         return;
@@ -902,11 +958,153 @@ async function simpanDuty() {
 
 
     alert(
-        "Duty berjaya disimpan."
+        "Duty berjaya disimpan"
     );
 
 
     paparKeyInDuty();
+
+}
+
+
+/* =====================================================
+   LOAD SENARAI DUTY
+===================================================== */
+
+async function loadSenaraiDuty() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("jadual_duty")
+
+        .select("*")
+
+        .order(
+            "tarikh",
+            {
+                ascending: false
+            }
+        );
+
+
+    const tbody =
+        document
+        .getElementById("senaraiDuty");
+
+
+    if (!tbody)
+        return;
+
+
+    if (error) {
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    Gagal load data
+
+                </td>
+
+            </tr>
+
+        `;
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    Tiada rekod duty
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    tbody.innerHTML = "";
+
+
+    data.forEach(
+        function(d) {
+
+            const anggota =
+                dataAnggota.find(
+                    x =>
+                    String(x.no_skb)
+                    ===
+                    String(d.no_skb)
+                );
+
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${d.tarikh || ""}
+                    </td>
+
+                    <td>
+                        ${d.no_skb || ""}
+                    </td>
+
+                    <td>
+                        ${anggota
+                            ?
+                            anggota.nama
+                            :
+                            "-"
+                        }
+                    </td>
+
+                    <td>
+                        ${d.kod_duty || ""}
+                    </td>
+
+                    <td>
+                        ${d.waktu_tugasan || ""}
+                    </td>
+
+                    <td>
+                        ${d.jam_kerja ?? ""}
+                    </td>
+
+                    <td>
+                        ${d.jam_klm ?? ""}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
 
 }
 
@@ -917,86 +1115,64 @@ async function simpanDuty() {
 
 async function paparAnggota() {
 
+    aktifkanMenu(2);
 
-    const result =
-        await supabaseClient
-        .from(TABLE_ANGGOTA)
-        .select("*")
-        .order(
-            "nama",
-            {
-                ascending: true
-            }
-        );
-
-
-    if (result.error) {
-
-        paparRalat(
-            result.error.message
-        );
-
-        return;
-
-    }
+    dataAnggota =
+        await loadDataAnggota();
 
 
     let rows = "";
 
 
-    (result.data || [])
-    .forEach(function(a, index) {
+    dataAnggota.forEach(
+        function(a, index) {
 
+            rows += `
 
-        rows += `
+                <tr>
 
-            <tr>
+                    <td>
+                        ${index + 1}
+                    </td>
 
-                <td>
-                    ${index + 1}
-                </td>
+                    <td>
+                        ${a.no_skb}
+                    </td>
 
-                <td>
-                    ${a.no_skb || ""}
-                </td>
+                    <td>
+                        ${a.nama}
+                    </td>
 
-                <td>
-                    ${a.no_anggota || ""}
-                </td>
+                    <td>
+                        ${a.no_anggota}
+                    </td>
 
-                <td>
-                    ${a.nama || ""}
-                </td>
+                    <td>
+                        ${a.pangkat}
+                    </td>
 
-                <td>
-                    ${a.pangkat || ""}
-                </td>
+                    <td>
+                        ${a.pos}
+                    </td>
 
-                <td>
-                    ${a.pos || ""}
-                </td>
+                    <td>
+                        ${a.jawatan}
+                    </td>
 
-                <td>
-                    ${a.unit || ""}
-                </td>
+                    <td>
+                        ${a.status}
+                    </td>
 
-                <td>
-                    ${a.jawatan || ""}
-                </td>
+                </tr>
 
-                <td>
-                    ${a.status || ""}
-                </td>
+            `;
 
-            </tr>
+        }
 
-        `;
-
-    });
+    );
 
 
     document.getElementById("main").innerHTML = `
-
 
         <div class="header">
 
@@ -1005,7 +1181,7 @@ async function paparAnggota() {
             </h1>
 
             <p>
-                Data daripada Data_Anggota
+                Data anggota daripada Supabase
             </p>
 
         </div>
@@ -1013,12 +1189,9 @@ async function paparAnggota() {
 
         <div class="content">
 
-            <h2>
-                Senarai Anggota
-            </h2>
-
-
-            <div style="overflow-x:auto">
+            <div
+                class="table-container"
+            >
 
                 <table>
 
@@ -1026,28 +1199,41 @@ async function paparAnggota() {
 
                         <tr>
 
-                            <th>Bil</th>
+                            <th>
+                                Bil
+                            </th>
 
-                            <th>No SKB</th>
+                            <th>
+                                No. SKB
+                            </th>
 
-                            <th>No Anggota</th>
+                            <th>
+                                Nama
+                            </th>
 
-                            <th>Nama</th>
+                            <th>
+                                No. Anggota
+                            </th>
 
-                            <th>Pangkat</th>
+                            <th>
+                                Pangkat
+                            </th>
 
-                            <th>Pos</th>
+                            <th>
+                                Pos
+                            </th>
 
-                            <th>Unit</th>
+                            <th>
+                                Jawatan
+                            </th>
 
-                            <th>Jawatan</th>
-
-                            <th>Status</th>
+                            <th>
+                                Status
+                            </th>
 
                         </tr>
 
                     </thead>
-
 
                     <tbody>
 
@@ -1072,11 +1258,17 @@ async function paparAnggota() {
 
 async function paparJadualDuty() {
 
+    aktifkanMenu(3);
 
-    const result =
-        await supabaseClient
-        .from(TABLE_JADUAL_DUTY)
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("jadual_duty")
+
         .select("*")
+
         .order(
             "tarikh",
             {
@@ -1085,81 +1277,58 @@ async function paparJadualDuty() {
         );
 
 
-    if (result.error) {
+    let rows = "";
 
-        paparRalat(
-            result.error.message
+
+    if (data) {
+
+        data.forEach(
+            function(d) {
+
+                rows += `
+
+                    <tr>
+
+                        <td>
+                            ${d.tarikh || ""}
+                        </td>
+
+                        <td>
+                            ${d.no_skb || ""}
+                        </td>
+
+                        <td>
+                            ${d.kod_duty || ""}
+                        </td>
+
+                        <td>
+                            ${d.waktu_tugasan || ""}
+                        </td>
+
+                        <td>
+                            ${d.jam_kerja ?? ""}
+                        </td>
+
+                        <td>
+                            ${d.jam_klm ?? ""}
+                        </td>
+
+                        <td>
+                            ${d.pos || ""}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+
         );
-
-        return;
 
     }
 
 
-    let rows = "";
-
-
-    (result.data || [])
-    .forEach(function(d, index) {
-
-
-        rows += `
-
-            <tr>
-
-                <td>
-                    ${index + 1}
-                </td>
-
-                <td>
-                    ${d.tarikh || ""}
-                </td>
-
-                <td>
-                    ${d.bulan || ""}
-                </td>
-
-                <td>
-                    ${d.tahun || ""}
-                </td>
-
-                <td>
-                    ${d.no_skb || ""}
-                </td>
-
-                <td>
-                    ${d.kod_duty || ""}
-                </td>
-
-                <td>
-                    ${d.waktu_tugasan || ""}
-                </td>
-
-                <td>
-                    ${d.jam_kerja ?? ""}
-                </td>
-
-                <td>
-                    ${d.jam_klm ?? ""}
-                </td>
-
-                <td>
-                    ${d.pos || ""}
-                </td>
-
-                <td>
-                    ${d.dikemaskini_oleh || ""}
-                </td>
-
-            </tr>
-
-        `;
-
-    });
-
-
     document.getElementById("main").innerHTML = `
-
 
         <div class="header">
 
@@ -1167,16 +1336,14 @@ async function paparJadualDuty() {
                 Jadual Duty
             </h1>
 
-            <p>
-                Senarai rekod duty
-            </p>
-
         </div>
 
 
         <div class="content">
 
-            <div style="overflow-x:auto">
+            <div
+                class="table-container"
+            >
 
                 <table>
 
@@ -1184,32 +1351,37 @@ async function paparJadualDuty() {
 
                         <tr>
 
-                            <th>Bil</th>
+                            <th>
+                                Tarikh
+                            </th>
 
-                            <th>Tarikh</th>
+                            <th>
+                                No. SKB
+                            </th>
 
-                            <th>Bulan</th>
+                            <th>
+                                Kod Duty
+                            </th>
 
-                            <th>Tahun</th>
+                            <th>
+                                Waktu
+                            </th>
 
-                            <th>No SKB</th>
+                            <th>
+                                Jam Kerja
+                            </th>
 
-                            <th>Kod Duty</th>
+                            <th>
+                                Jam KLM
+                            </th>
 
-                            <th>Waktu Tugasan</th>
-
-                            <th>Jam Kerja</th>
-
-                            <th>Jam KLM</th>
-
-                            <th>Pos</th>
-
-                            <th>Dikemaskini Oleh</th>
+                            <th>
+                                Pos
+                            </th>
 
                         </tr>
 
                     </thead>
-
 
                     <tbody>
 
@@ -1229,22 +1401,112 @@ async function paparJadualDuty() {
 
 
 /* =====================================================
-   PAPAR RALAT
+   KOD DUTY
 ===================================================== */
 
-function paparRalat(mesej) {
+async function paparKodDuty() {
+
+    aktifkanMenu(4);
+
+    dataKodDuty =
+        await loadDataKodDuty();
+
+
+    let rows = "";
+
+
+    dataKodDuty.forEach(
+        function(k) {
+
+            rows += `
+
+                <tr>
+
+                    <td>
+                        ${k.kod}
+                    </td>
+
+                    <td>
+                        ${k.waktu_tugasan}
+                    </td>
+
+                    <td>
+                        ${k.jam_kerja}
+                    </td>
+
+                    <td>
+                        ${k.jam_klm}
+                    </td>
+
+                    <td>
+                        ${k.status}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
 
     document.getElementById("main").innerHTML = `
 
-        <div class="error">
+        <div class="header">
 
-            <strong>
-                Ralat Supabase:
-            </strong>
+            <h1>
+                Kod Duty
+            </h1>
 
-            <br><br>
+        </div>
 
-            ${mesej}
+
+        <div class="content">
+
+            <div
+                class="table-container"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Kod
+                            </th>
+
+                            <th>
+                                Waktu Tugasan
+                            </th>
+
+                            <th>
+                                Jam Kerja
+                            </th>
+
+                            <th>
+                                Jam KLM
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${rows}
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
@@ -1252,6 +1514,29 @@ function paparRalat(mesej) {
 
 }
 
+
+/* =====================================================
+   MENU AKTIF
+===================================================== */
+
+function aktifkanMenu(index) {
+
+    const menu =
+        document.querySelectorAll(".menu");
+
+    menu.forEach(
+        function(m, i) {
+
+            m.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
+
+    );
+
+}
 
 </script>
 
