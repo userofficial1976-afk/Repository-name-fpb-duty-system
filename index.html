@@ -97,12 +97,10 @@ button {
     border: none;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.2s;
 }
 
 button:hover {
     background: #1d4ed8;
-    transform: translateY(-1px);
 }
 
 .btn-danger {
@@ -236,11 +234,11 @@ tr:hover {
 
 <div class="container">
 
-<!-- ============================== -->
+<!-- ================================================= -->
 
 <!-- BORANG MASUKKAN DUTY -->
 
-<!-- ============================== -->
+<!-- ================================================= -->
 
 <div class="card">
 
@@ -269,7 +267,9 @@ id="tarikh"
 <select id="anggota">
 
 <option value="">
+
 -- Pilih Anggota --
+
 </option>
 
 </select>
@@ -283,7 +283,9 @@ id="tarikh"
 <select id="kodDuty">
 
 <option value="">
+
 -- Pilih Kod Duty --
+
 </option>
 
 </select>
@@ -307,7 +309,11 @@ placeholder="Nama Ketua Pos"
 
 <br>
 
+<!-- ================================================= -->
+
 <!-- MAKLUMAT ANGGOTA -->
+
+<!-- ================================================= -->
 
 <div
 class="info-box"
@@ -323,7 +329,11 @@ style="display:none;"
 
 <small>No. Anggota</small>
 
-<strong id="infoNoAnggota">-</strong>
+<strong id="infoNoAnggota">
+
+*
+
+</strong>
 
 </div>
 
@@ -331,7 +341,11 @@ style="display:none;"
 
 <small>Nama</small>
 
-<strong id="infoNama">-</strong>
+<strong id="infoNama">
+
+*
+
+</strong>
 
 </div>
 
@@ -339,7 +353,11 @@ style="display:none;"
 
 <small>Pangkat</small>
 
-<strong id="infoPangkat">-</strong>
+<strong id="infoPangkat">
+
+*
+
+</strong>
 
 </div>
 
@@ -347,7 +365,11 @@ style="display:none;"
 
 <small>Pos</small>
 
-<strong id="infoPos">-</strong>
+<strong id="infoPos">
+
+*
+
+</strong>
 
 </div>
 
@@ -355,7 +377,11 @@ style="display:none;"
 
 <small>Unit</small>
 
-<strong id="infoUnit">-</strong>
+<strong id="infoUnit">
+
+*
+
+</strong>
 
 </div>
 
@@ -365,7 +391,11 @@ style="display:none;"
 
 <br>
 
+<!-- ================================================= -->
+
 <!-- MAKLUMAT DUTY -->
+
+<!-- ================================================= -->
 
 <div
 class="info-box"
@@ -381,7 +411,11 @@ style="display:none;"
 
 <small>Waktu Tugasan</small>
 
-<strong id="infoWaktu">-</strong>
+<strong id="infoWaktu">
+
+*
+
+</strong>
 
 </div>
 
@@ -389,7 +423,11 @@ style="display:none;"
 
 <small>Jam Kerja</small>
 
-<strong id="infoJamKerja">-</strong>
+<strong id="infoJamKerja">
+
+*
+
+</strong>
 
 </div>
 
@@ -397,7 +435,11 @@ style="display:none;"
 
 <small>Jam KLM</small>
 
-<strong id="infoJamKlm">-</strong>
+<strong id="infoJamKlm">
+
+*
+
+</strong>
 
 </div>
 
@@ -415,11 +457,11 @@ style="display:none;"
 
 </div>
 
-<!-- ============================== -->
+<!-- ================================================= -->
 
 <!-- SENARAI DUTY -->
 
-<!-- ============================== -->
+<!-- ================================================= -->
 
 <div class="card">
 
@@ -451,7 +493,9 @@ onchange="paparDuty()"
 >
 
 <option value="">
+
 Semua Pos
+
 </option>
 
 </select>
@@ -516,7 +560,7 @@ onkeyup="paparDuty()"
 
 <div class="loading">
 
-Memuatkan data...
+⏳ Memuatkan data...
 
 </div>
 
@@ -538,7 +582,7 @@ Memuatkan data...
 
 
 // =====================================================
-// SAMBUNG SUPABASE
+// SAMBUNG KE SUPABASE
 // =====================================================
 
 
@@ -611,6 +655,7 @@ await paparDuty();
 
 // =====================================================
 // AMBIL DATA ANGGOTA
+// TABLE: Data_Anggota
 // =====================================================
 
 
@@ -633,7 +678,7 @@ if (hasil.error) {
 
 
 console.error(
-"RALAT ANGGOTA:",
+"RALAT DATA ANGGOTA:",
 hasil.error
 );
 
@@ -656,7 +701,8 @@ hasil.data || [];
 
 
 const select =
-document.getElementById(
+document
+.getElementById(
 "anggota"
 );
 
@@ -690,15 +736,31 @@ anggota.no_skb
 
 option.textContent =
 
-(anggota.no_anggota || "")
+(
+anggota.no_anggota
+||
+""
+)
+
 +
 " - "
+
 +
-(anggota.nama || "")
+(
+anggota.nama
+||
+""
+)
+
 +
 " - "
+
 +
-(anggota.pos || "");
+(
+anggota.pos
+||
+""
+);
 
 
 select.appendChild(
@@ -719,6 +781,7 @@ semuaAnggota.length
 
 // =====================================================
 // AMBIL KOD DUTY
+// TABLE: kod_duty
 // =====================================================
 
 
@@ -728,7 +791,7 @@ async function muatKodDuty() {
 const hasil =
 await supabaseClient
 
-.from("Kod_duty")
+.from("kod_duty")
 
 .select("*")
 
@@ -747,7 +810,7 @@ hasil.error
 
 
 paparMesej(
-"Gagal ambil Kod_duty: "
+"Gagal ambil kod_duty: "
 +
 hasil.error.message,
 "error"
@@ -764,7 +827,8 @@ hasil.data || [];
 
 
 const select =
-document.getElementById(
+document
+.getElementById(
 "kodDuty"
 );
 
@@ -797,20 +861,28 @@ kod.kod;
 option.textContent =
 
 kod.kod
+
 +
 " - "
+
 +
 kod.waktu_tugasan
+
 +
 " | "
+
 +
 kod.jam_kerja
+
 +
 " jam kerja"
+
 +
 " | "
+
 +
 kod.jam_klm
+
 +
 " jam KLM";
 
@@ -838,7 +910,9 @@ semuaKodDuty.length
 
 document
 
-.getElementById("anggota")
+.getElementById(
+"anggota"
+)
 
 .addEventListener(
 "change",
@@ -952,7 +1026,9 @@ anggota.unit
 
 document
 
-.getElementById("kodDuty")
+.getElementById(
+"kodDuty"
+)
 
 .addEventListener(
 "change",
@@ -1045,6 +1121,7 @@ duty.jam_klm
 
 // =====================================================
 // SIMPAN DUTY
+// TABLE: jadual_duty
 // =====================================================
 
 
@@ -1139,7 +1216,7 @@ if (!anggota) {
 
 
 paparMesej(
-"Data anggota tidak dijumpai.",
+"Anggota tidak dijumpai.",
 "error"
 );
 
@@ -1153,7 +1230,7 @@ if (!duty) {
 
 
 paparMesej(
-"Data kod duty tidak dijumpai.",
+"Kod duty tidak dijumpai.",
 "error"
 );
 
@@ -1163,8 +1240,7 @@ return;
 }
 
 
-// SEMAK DUPLIKASI
-// ANGGOTA SAMA PADA TARIKH SAMA
+// SEMAK DUTY BERGANDA
 
 
 const semak =
@@ -1174,9 +1250,15 @@ await supabaseClient
 
 .select("no_skb")
 
-.eq("tarikh", tarikh)
+.eq(
+"tarikh",
+tarikh
+)
 
-.eq("no_skb", noSkb);
+.eq(
+"no_skb",
+noSkb
+);
 
 
 if (semak.error) {
@@ -1215,7 +1297,13 @@ return;
 }
 
 
-// SIMPAN DATA
+// SIMPAN DUTY
+
+
+const tarikhObj =
+new Date(
+tarikh
+);
 
 
 const hasil =
@@ -1225,21 +1313,16 @@ await supabaseClient
 
 .insert({
 
-tarikh: tarikh,
+tarikh:
+tarikh,
 
 bulan:
-new Date(
-tarikh
-)
-.getMonth()
+tarikhObj.getMonth()
 +
 1,
 
 tahun:
-new Date(
-tarikh
-)
-.getFullYear(),
+tarikhObj.getFullYear(),
 
 no_skb:
 noSkb,
@@ -1269,6 +1352,7 @@ if (hasil.error) {
 
 
 console.error(
+"RALAT SIMPAN:",
 hasil.error
 );
 
@@ -1290,9 +1374,6 @@ paparMesej(
 "Duty berjaya disimpan.",
 "success"
 );
-
-
-// KOSONGKAN PILIHAN ANGGOTA DAN KOD
 
 
 document
@@ -1327,16 +1408,13 @@ document
 "none";
 
 
-// PAPAR SEMULA
-
-
 await paparDuty();
 
 }
 
 
 // =====================================================
-// SENARAI POS
+// AMBIL SENARAI POS
 // =====================================================
 
 
@@ -1350,13 +1428,17 @@ await supabaseClient
 
 .select("pos")
 
-.eq("status", "Aktif");
+.eq(
+"status",
+"Aktif"
+);
 
 
 if (hasil.error) {
 
 
 console.error(
+"RALAT POS:",
 hasil.error
 );
 
@@ -1368,15 +1450,22 @@ return;
 
 const posUnik =
 [
+
 ...
 new Set(
 
-(hasil.data || [])
+(
+hasil.data
+||
+[]
+)
 
 .map(
 function(x) {
 
+
 return x.pos;
+
 
 }
 )
@@ -1384,18 +1473,22 @@ return x.pos;
 .filter(
 function(x) {
 
+
 return x;
+
 
 }
 )
 
 )
+
 ]
 .sort();
 
 
 const select =
-document.getElementById(
+document
+.getElementById(
 "filterPos"
 );
 
@@ -1498,9 +1591,6 @@ tbody.innerHTML = `
 `;
 
 
-// AMBIL JADUAL DUTY
-
-
 let query =
 supabaseClient
 
@@ -1511,7 +1601,8 @@ supabaseClient
 .order(
 "no_skb",
 {
-ascending: true
+ascending:
+true
 }
 );
 
@@ -1559,7 +1650,9 @@ tbody.innerHTML = `
 
 <td colspan="10">
 
-❌ Ralat ambil data duty:
+❌ Gagal ambil jadual_duty:
+
+<br>
 
 ${hasil.error.message}
 
@@ -1576,10 +1669,9 @@ return;
 
 
 const semuaDuty =
-hasil.data || [];
-
-
-// PADANKAN DENGAN DATA ANGGOTA
+hasil.data
+||
+[];
 
 
 const filtered =
@@ -1631,7 +1723,8 @@ cari
 );
 
 
-tbody.innerHTML = "";
+tbody.innerHTML =
+"";
 
 
 if (
@@ -1863,7 +1956,7 @@ await paparDuty();
 
 
 // =====================================================
-// MESEJ
+// PAPAR MESEJ
 // =====================================================
 
 
