@@ -1,1525 +1,1386 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FPB Duty System</title>
+```
+<title>FPB Duty System</title>
 
-    <style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+<style>
+
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: #f1f5f9;
+        color: #1e293b;
+    }
+
+    header {
+        background: #0f172a;
+        color: white;
+        padding: 18px 25px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #0f172a;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .full {
+        grid-column: span 2;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    input,
+    select {
+        padding: 11px;
+        border: 1px solid #cbd5e1;
+        border-radius: 7px;
+        font-size: 15px;
+        background: white;
+    }
+
+    .duty-info {
+        margin-top: 20px;
+        padding: 15px;
+        background: #eff6ff;
+        border-left: 5px solid #2563eb;
+        border-radius: 6px;
+    }
+
+    .duty-info h3 {
+        margin-top: 0;
+    }
+
+    .duty-info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .info-box {
+        background: white;
+        padding: 15px;
+        border-radius: 7px;
+        border: 1px solid #dbeafe;
+    }
+
+    .info-title {
+        font-size: 13px;
+        color: #64748b;
+    }
+
+    .info-value {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 6px;
+    }
+
+    button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .btn-save {
+        background: #16a34a;
+        color: white;
+    }
+
+    .btn-save:hover {
+        background: #15803d;
+    }
+
+    .btn-reset {
+        background: #64748b;
+        color: white;
+        margin-left: 8px;
+    }
+
+    .status {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 6px;
+        display: none;
+    }
+
+    .success {
+        background: #dcfce7;
+        color: #166534;
+        display: block;
+    }
+
+    .error {
+        background: #fee2e2;
+        color: #991b1b;
+        display: block;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+    }
+
+    th {
+        background: #0f172a;
+        color: white;
+    }
+
+    tr:hover {
+        background: #f8fafc;
+    }
+
+    @media (max-width: 700px) {
+
+        .form-grid {
+            grid-template-columns: 1fr;
         }
 
-        body {
-            margin: 0;
-            background: #f1f5f9;
+        .full {
+            grid-column: span 1;
         }
 
-        .sidebar {
-
-            position: fixed;
-
-            width: 244px;
-
-            height: 100vh;
-
-            background: #0f172a;
-
-            color: white;
-
-            padding: 25px 18px;
-
+        .duty-info-grid {
+            grid-template-columns: 1fr;
         }
 
-        .logo {
+    }
 
-            font-size: 24px;
-
-            font-weight: bold;
-
-            margin-bottom: 30px;
-
-        }
-
-        .menu {
-
-            padding: 15px;
-
-            margin: 8px 0;
-
-            cursor: pointer;
-
-            border-radius: 8px;
-
-        }
-
-        .menu:hover,
-
-        .menu.active {
-
-            background: #2563eb;
-
-        }
-
-        .main {
-
-            margin-left: 244px;
-
-            padding: 0 30px 30px 30px;
-
-        }
-
-        .header,
-
-        .card,
-
-        .content {
-
-            background: white;
-
-            border-radius: 12px;
-
-            padding: 20px;
-
-            margin-bottom: 24px;
-
-        }
-
-        h1 {
-
-            margin-top: 0;
-
-            color: #1e3a5f;
-
-        }
-
-        .cards {
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 18px;
-
-        }
-
-        .card h3 {
-
-            color: #64748b;
-
-        }
-
-        .number {
-
-            font-size: 32px;
-
-            color: #2563eb;
-
-            font-weight: bold;
-
-        }
-
-        button {
-
-            background: #2563eb;
-
-            color: white;
-
-            border: none;
-
-            padding: 10px 18px;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-
-        }
-
-        button:hover {
-
-            background: #1d4ed8;
-
-        }
-
-        input,
-
-        select {
-
-            width: 190px;
-
-            padding: 10px;
-
-            margin-top: 6px;
-
-            border: 1px solid #cbd5e1;
-
-            border-radius: 5px;
-
-            font-size: 14px;
-
-        }
-
-        table {
-
-            width: 100%;
-
-            border-collapse: collapse;
-
-            margin-top: 20px;
-
-        }
-
-        th,
-
-        td {
-
-            border-bottom: 1px solid #e2e8f0;
-
-            padding: 12px;
-
-            text-align: left;
-
-        }
-
-        th {
-
-            background: #f8fafc;
-
-        }
-
-        .delete {
-
-            background: #dc2626;
-
-        }
-
-        .delete:hover {
-
-            background: #b91c1c;
-
-        }
-
-        .form-row {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 15px;
-
-            margin-bottom: 15px;
-
-        }
-
-        .form-group {
-
-            display: flex;
-
-            flex-direction: column;
-
-        }
-
-        .form-group label {
-
-            font-weight: bold;
-
-        }
-
-        @media (max-width: 900px) {
-
-            .cards {
-
-                grid-template-columns: repeat(2, 1fr);
-
-            }
-
-        }
-
-    </style>
+</style>
+```
 
 </head>
 
 <body>
 
+<header>
+    <h1>FPB Duty System</h1>
+</header>
 
-    <!-- SIDEBAR -->
+<div class="container">
 
-    <div class="sidebar">
+```
+<!-- =========================
+     BORANG KEY IN DUTY
+========================== -->
 
-        <div class="logo">
+<div class="card">
 
-            🚓 FPB DUTY
-
-        </div>
-
-
-        <div class="menu active"
-
-             onclick="paparDashboard()">
-
-            🏠 Dashboard
-
-        </div>
+    <h2>Key In Duty</h2>
 
 
-        <div class="menu"
-
-             onclick="paparKeyInDuty()">
-
-            📝 Key In Duty
-
-        </div>
+    <div class="form-grid">
 
 
-        <div class="menu"
+        <!-- TARIKH -->
 
-             onclick="paparAnggota()">
+        <div class="form-group">
 
-            👥 Senarai Anggota
+            <label for="tarikh">
+                Tarikh
+            </label>
+
+            <input
+                type="date"
+                id="tarikh"
+                required
+            >
 
         </div>
 
 
-        <div class="menu">
+        <!-- ANGGOTA -->
 
-            🗓️ Jadual Duty
+        <div class="form-group">
+
+            <label for="anggota">
+
+                Anggota
+
+            </label>
+
+            <select
+                id="anggota"
+                required
+            >
+
+                <option value="">
+                    -- Pilih Anggota --
+                </option>
+
+            </select>
 
         </div>
 
 
-        <div class="menu">
+        <!-- KOD DUTY -->
 
-            🏷️ Kod Duty
+        <div class="form-group full">
+
+            <label for="kodDuty">
+
+                Kod Duty
+
+            </label>
+
+            <select
+                id="kodDuty"
+                onchange="paparMaklumatDuty()"
+                required
+            >
+
+                <option value="">
+                    -- Pilih Kod Duty --
+                </option>
+
+            </select>
 
         </div>
 
 
-        <div class="menu">
-
-            📊 Laporan
-
-        </div>
+    </div>
 
 
-        <div class="menu">
+    <!-- =========================
+         MAKLUMAT AUTO
+    ========================== -->
 
-            ⚙️ Tetapan
+    <div class="duty-info">
+
+        <h3>
+            Maklumat Duty
+        </h3>
+
+
+        <div class="duty-info-grid">
+
+
+            <div class="info-box">
+
+                <div class="info-title">
+
+                    Waktu Tugasan
+
+                </div>
+
+                <div
+                    class="info-value"
+                    id="paparWaktu"
+                >
+
+                    -
+
+                </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-title">
+
+                    Jam Bertugas
+
+                </div>
+
+                <div
+                    class="info-value"
+                    id="paparJamKerja"
+                >
+
+                    -
+
+                </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-title">
+
+                    Jam KLM
+
+                </div>
+
+                <div
+                    class="info-value"
+                    id="paparJamKLM"
+                >
+
+                    -
+
+                </div>
+
+            </div>
+
 
         </div>
 
     </div>
 
 
-
-    <!-- MAIN -->
-
-    <div class="main" id="main">
-
-        <div class="header">
-
-            <h1>Dashboard</h1>
-
-            <p>
-
-                Selamat datang ke FPB Duty System
-
-            </p>
-
-        </div>
+    <br>
 
 
-        <div class="cards">
+    <button
+        class="btn-save"
+        onclick="simpanDuty()"
+    >
 
-            <div class="card">
+        Simpan Duty
 
-                <h3>Jumlah Anggota</h3>
-
-                <div class="number">
-
-                    0
-
-                </div>
-
-            </div>
+    </button>
 
 
-            <div class="card">
+    <button
+        class="btn-reset"
+        onclick="resetBorang()"
+    >
 
-                <h3>Duty Hari Ini</h3>
+        Reset
 
-                <div class="number">
-
-                    0
-
-                </div>
-
-            </div>
+    </button>
 
 
-            <div class="card">
-
-                <h3>Kod Duty</h3>
-
-                <div class="number">
-
-                    0
-
-                </div>
-
-            </div>
+    <div
+        id="statusMessage"
+        class="status"
+    ></div>
 
 
-            <div class="card">
+</div>
 
-                <h3>Laporan</h3>
 
-                <div class="number">
+<!-- =========================
+     SENARAI DUTY
+========================== -->
 
-                    0
+<div class="card">
 
-                </div>
+    <h2>
+        Senarai Duty
+    </h2>
 
-            </div>
 
-        </div>
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Tarikh
+                    </th>
+
+                    <th>
+                        Anggota
+                    </th>
+
+                    <th>
+                        Kod Duty
+                    </th>
+
+                    <th>
+                        Waktu Tugasan
+                    </th>
+
+                    <th>
+                        Jam Kerja
+                    </th>
+
+                    <th>
+                        Jam KLM
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="senaraiDuty"
+            >
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                    >
+
+                        Tiada data
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
 
     </div>
 
+</div>
+```
+
+</div>
+
+<script>
 
 
-    <script>
+/*
+====================================================
+1. SAMBUNGAN SUPABASE
+====================================================
+*/
+
+const SUPABASE_URL =
+"https://nlwrrrwkjpktrifxeymw.supabase.co";
 
 
-        // DATA ANGGOTA
-
-        let anggota =
-
-            JSON.parse(
-
-                localStorage.getItem("anggota")
-
-            ) || [];
+const SUPABASE_ANON_KEY =
+"sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
 
 
+const supabaseClient =
+window.supabase.createClient(
 
-        // DATA DUTY
+    SUPABASE_URL,
 
-        let duty =
+    SUPABASE_ANON_KEY
 
-            JSON.parse(
-
-                localStorage.getItem("duty")
-
-            ) || [];
+);
 
 
+/*
+====================================================
+2. PEMBOLEH UBAH
+====================================================
+*/
 
-        // KOD DUTY
+let senaraiKodDuty = [];
 
-        let kodDuty = [
+let senaraiAnggota = [];
+
+
+/*
+====================================================
+3. APABILA PAGE DIBUKA
+====================================================
+*/
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function() {
+
+
+        // Tarikh hari ini
+
+        document.getElementById(
+            "tarikh"
+        ).value =
+
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+        // Load Kod Duty
+
+        loadKodDuty();
+
+
+        // Load Anggota
+
+        loadAnggota();
+
+
+        // Load Duty
+
+        loadSenaraiDuty();
+
+
+    }
+
+);
+
+
+/*
+====================================================
+4. LOAD KOD DUTY DARI SUPABASE
+TABLE: kod_duty
+====================================================
+*/
+
+async function loadKodDuty() {
+
+
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from("kod_duty")
+
+        .select(
+
+            "kod, waktu_tugasan, jam_kerja, jam_klm, status"
+
+        )
+
+        .eq(
+
+            "status",
+
+            "Aktif"
+
+        )
+
+        .order(
+
+            "kod",
 
             {
 
-                kod: "D01",
+                ascending: true
 
-                nama: "Duty Operasi"
+            }
 
-            },
+        );
+
+
+    if (error) {
+
+
+        console.error(
+
+            "Ralat Kod Duty:",
+
+            error
+
+        );
+
+
+        paparStatus(
+
+            "Gagal mengambil data Kod Duty: " +
+
+            error.message,
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    senaraiKodDuty = data;
+
+
+    const selectKodDuty =
+
+        document.getElementById(
+
+            "kodDuty"
+
+        );
+
+
+    selectKodDuty.innerHTML =
+
+        '<option value="">-- Pilih Kod Duty --</option>';
+
+
+    data.forEach(
+
+        function(duty) {
+
+
+            const option =
+
+                document.createElement(
+
+                    "option"
+
+                );
+
+
+            option.value =
+
+                duty.kod;
+
+
+            option.textContent =
+
+                duty.kod +
+
+                " - " +
+
+                duty.waktu_tugasan;
+
+
+            selectKodDuty.appendChild(
+
+                option
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+/*
+====================================================
+5. PAPAR MAKLUMAT DUTY AUTO
+====================================================
+*/
+
+function paparMaklumatDuty() {
+
+
+    const kodDipilih =
+
+        document.getElementById(
+
+            "kodDuty"
+
+        ).value;
+
+
+    const duty =
+
+        senaraiKodDuty.find(
+
+            function(item) {
+
+
+                return item.kod ===
+
+                    kodDipilih;
+
+
+            }
+
+        );
+
+
+    if (duty) {
+
+
+        document.getElementById(
+
+            "paparWaktu"
+
+        ).textContent =
+
+            duty.waktu_tugasan || "-";
+
+
+        document.getElementById(
+
+            "paparJamKerja"
+
+        ).textContent =
+
+            duty.jam_kerja ?? "-";
+
+
+        document.getElementById(
+
+            "paparJamKLM"
+
+        ).textContent =
+
+            duty.jam_klm ?? "-";
+
+
+    }
+
+    else {
+
+
+        document.getElementById(
+
+            "paparWaktu"
+
+        ).textContent = "-";
+
+
+        document.getElementById(
+
+            "paparJamKerja"
+
+        ).textContent = "-";
+
+
+        document.getElementById(
+
+            "paparJamKLM"
+
+        ).textContent = "-";
+
+
+    }
+
+}
+
+
+/*
+====================================================
+6. LOAD ANGGOTA
+TABLE: anggota
+====================================================
+*/
+
+async function loadAnggota() {
+
+
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from("anggota")
+
+        .select("*")
+
+        .order(
+
+            "nama",
 
             {
 
-                kod: "D02",
+                ascending: true
 
-                nama: "Duty Kawalan"
+            }
 
-            },
+        );
+
+
+    if (error) {
+
+
+        console.error(
+
+            "Ralat Anggota:",
+
+            error
+
+        );
+
+
+        paparStatus(
+
+            "Gagal mengambil data anggota: " +
+
+            error.message,
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    senaraiAnggota = data;
+
+
+    const selectAnggota =
+
+        document.getElementById(
+
+            "anggota"
+
+        );
+
+
+    selectAnggota.innerHTML =
+
+        '<option value="">-- Pilih Anggota --</option>';
+
+
+    data.forEach(
+
+        function(anggota) {
+
+
+            const option =
+
+                document.createElement(
+
+                    "option"
+
+                );
+
+
+            option.value =
+
+                anggota.id;
+
+
+            option.textContent =
+
+                anggota.nama;
+
+
+            selectAnggota.appendChild(
+
+                option
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+/*
+====================================================
+7. SIMPAN DUTY
+TABLE: jadual_duty
+====================================================
+*/
+
+async function simpanDuty() {
+
+
+    const tarikh =
+
+        document.getElementById(
+
+            "tarikh"
+
+        ).value;
+
+
+    const anggotaId =
+
+        document.getElementById(
+
+            "anggota"
+
+        ).value;
+
+
+    const kodDuty =
+
+        document.getElementById(
+
+            "kodDuty"
+
+        ).value;
+
+
+    if (
+
+        !tarikh ||
+
+        !anggotaId ||
+
+        !kodDuty
+
+    ) {
+
+
+        paparStatus(
+
+            "Sila lengkapkan Tarikh, Anggota dan Kod Duty.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    const duty =
+
+        senaraiKodDuty.find(
+
+            function(item) {
+
+
+                return item.kod ===
+
+                    kodDuty;
+
+
+            }
+
+        );
+
+
+    if (!duty) {
+
+
+        paparStatus(
+
+            "Maklumat Kod Duty tidak dijumpai.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .from("jadual_duty")
+
+        .insert([
 
             {
 
-                kod: "D03",
 
-                nama: "Duty Rondaan"
+                tarikh:
+
+                    tarikh,
+
+
+                anggota_id:
+
+                    anggotaId,
+
+
+                kod_duty:
+
+                    duty.kod,
+
+
+                waktu_tugasan:
+
+                    duty.waktu_tugasan,
+
+
+                jam_kerja:
+
+                    duty.jam_kerja,
+
+
+                jam_klm:
+
+                    duty.jam_klm
+
 
             }
 
-        ];
+        ]);
 
 
-
-        // DASHBOARD
-
-        function paparDashboard() {
+    if (error) {
 
 
-            document.getElementById("main").innerHTML = `
+        console.error(
+
+            "Ralat Simpan:",
+
+            error
+
+        );
 
 
-                <div class="header">
+        paparStatus(
 
-                    <h1>Dashboard</h1>
+            "Gagal simpan duty: " +
 
-                    <p>
+            error.message,
 
-                        Selamat datang ke FPB Duty System
+            "error"
 
-                    </p>
-
-                </div>
+        );
 
 
-                <div class="cards">
+        return;
+
+    }
 
 
-                    <div class="card">
+    paparStatus(
 
-                        <h3>Jumlah Anggota</h3>
+        "Duty berjaya disimpan.",
 
-                        <div class="number">
+        "success"
 
-                            ${anggota.length}
-
-                        </div>
-
-                    </div>
+    );
 
 
-                    <div class="card">
-
-                        <h3>Duty Hari Ini</h3>
-
-                        <div class="number">
-
-                            ${duty.length}
-
-                        </div>
-
-                    </div>
+    resetBorang();
 
 
-                    <div class="card">
-
-                        <h3>Kod Duty</h3>
-
-                        <div class="number">
-
-                            ${kodDuty.length}
-
-                        </div>
-
-                    </div>
+    loadSenaraiDuty();
 
 
-                    <div class="card">
-
-                        <h3>Laporan</h3>
-
-                        <div class="number">
-
-                            0
-
-                        </div>
-
-                    </div>
+}
 
 
-                </div>
+/*
+====================================================
+8. LOAD SENARAI DUTY
+====================================================
+*/
+
+async function loadSenaraiDuty() {
+
+
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from("jadual_duty")
+
+        .select("*")
+
+        .order(
+
+            "tarikh",
+
+            {
+
+                ascending: false
+
+            }
+
+        );
+
+
+    if (error) {
+
+
+        console.error(
+
+            "Ralat Senarai Duty:",
+
+            error
+
+        );
+
+
+        return;
+
+    }
+
+
+    const tbody =
+
+        document.getElementById(
+
+            "senaraiDuty"
+
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    if (
+
+        !data ||
+
+        data.length === 0
+
+    ) {
+
+
+        tbody.innerHTML =
+
+        `
+
+        <tr>
+
+            <td colspan="6">
+
+                Tiada data
+
+            </td>
+
+        </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    data.forEach(
+
+        function(duty) {
+
+
+            const row =
+
+                document.createElement(
+
+                    "tr"
+
+                );
+
+
+            row.innerHTML =
+
+            `
+
+            <td>
+
+                ${duty.tarikh || ""}
+
+            </td>
+
+
+            <td>
+
+                ${duty.anggota_id || ""}
+
+            </td>
+
+
+            <td>
+
+                ${duty.kod_duty || ""}
+
+            </td>
+
+
+            <td>
+
+                ${duty.waktu_tugasan || ""}
+
+            </td>
+
+
+            <td>
+
+                ${duty.jam_kerja ?? ""}
+
+            </td>
+
+
+            <td>
+
+                ${duty.jam_klm ?? ""}
+
+            </td>
 
             `;
 
-        }
 
+            tbody.appendChild(
 
-
-        // HALAMAN KEY IN DUTY
-
-        function paparKeyInDuty() {
-
-
-            let pilihanAnggota = "";
-
-
-            anggota.forEach(
-
-                (a, index) => {
-
-
-                    pilihanAnggota += `
-
-                        <option value="${index}">
-
-                            ${a.nama} - ${a.noBadan}
-
-                        </option>
-
-                    `;
-
-                }
+                row
 
             );
 
 
-
-            let pilihanKod = "";
-
-
-            kodDuty.forEach(
-
-                (k) => {
-
-
-                    pilihanKod += `
-
-                        <option value="${k.kod}">
-
-                            ${k.kod} - ${k.nama}
-
-                        </option>
-
-                    `;
-
-                }
-
-            );
-
-
-
-            let rows = "";
-
-
-            duty.forEach(
-
-                (d, index) => {
-
-
-                    rows += `
-
-
-                        <tr>
-
-
-                            <td>
-
-                                ${index + 1}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.tarikh}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.pos}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.anggota}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.kodDuty}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.jamTugas}
-
-                            </td>
-
-
-                            <td>
-
-                                ${d.jamKLM}
-
-                            </td>
-
-
-                            <td>
-
-
-                                <button
-
-                                    class="delete"
-
-                                    onclick="padamDuty(${index})">
-
-                                    Padam
-
-                                </button>
-
-
-                            </td>
-
-
-                        </tr>
-
-
-                    `;
-
-                }
-
-            );
-
-
-
-            document.getElementById("main").innerHTML = `
-
-
-                <div class="header">
-
-
-                    <h1>
-
-                        Key In Duty
-
-                    </h1>
-
-
-                    <p>
-
-                        Masukkan rekod duty anggota
-
-                    </p>
-
-
-                </div>
-
-
-
-                <div class="content">
-
-
-                    <h2>
-
-                        Tambah Duty
-
-                    </h2>
-
-
-
-                    <div class="form-row">
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Tarikh
-
-                            </label>
-
-
-                            <input
-
-                                type="date"
-
-                                id="tarikh">
-
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Pos
-
-                            </label>
-
-
-                            <input
-
-                                type="text"
-
-                                id="pos"
-
-                                placeholder="Contoh: Pos A">
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="form-row">
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Anggota
-
-                            </label>
-
-
-                            <select
-
-                                id="anggotaDuty">
-
-
-                                <option value="">
-
-                                    Pilih Anggota
-
-                                </option>
-
-
-                                ${pilihanAnggota}
-
-
-                            </select>
-
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Kod Duty
-
-                            </label>
-
-
-                            <select
-
-                                id="kodDuty">
-
-
-                                <option value="">
-
-                                    Pilih Kod Duty
-
-                                </option>
-
-
-                                ${pilihanKod}
-
-
-                            </select>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="form-row">
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Jam Tugas
-
-                            </label>
-
-
-                            <input
-
-                                type="number"
-
-                                id="jamTugas"
-
-                                min="0"
-
-                                step="0.5"
-
-                                placeholder="Contoh: 8">
-
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-
-                            <label>
-
-                                Jam KLM
-
-                            </label>
-
-
-                            <input
-
-                                type="number"
-
-                                id="jamKLM"
-
-                                min="0"
-
-                                step="0.5"
-
-                                placeholder="Contoh: 4">
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <button
-
-                        onclick="simpanDuty()">
-
-
-                        💾 Simpan Duty
-
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="content">
-
-
-                    <h2>
-
-
-                        Senarai Duty (${duty.length})
-
-
-                    </h2>
-
-
-
-                    <table>
-
-
-                        <thead>
-
-
-                            <tr>
-
-
-                                <th>Bil</th>
-
-                                <th>Tarikh</th>
-
-                                <th>Pos</th>
-
-                                <th>Anggota</th>
-
-                                <th>Kod Duty</th>
-
-                                <th>Jam Tugas</th>
-
-                                <th>Jam KLM</th>
-
-                                <th>Tindakan</th>
-
-
-                            </tr>
-
-
-                        </thead>
-
-
-
-                        <tbody>
-
-
-                            ${rows}
-
-
-                        </tbody>
-
-
-                    </table>
-
-
-                </div>
-
-
-            `;
-
         }
 
+    );
 
 
-        // SIMPAN DUTY
+}
 
-        function simpanDuty() {
 
+/*
+====================================================
+9. RESET BORANG
+====================================================
+*/
 
-            let tarikh =
+function resetBorang() {
 
-                document
 
-                    .getElementById("tarikh")
+    document.getElementById(
 
-                    .value;
+        "anggota"
 
+    ).value = "";
 
-            let pos =
 
-                document
+    document.getElementById(
 
-                    .getElementById("pos")
+        "kodDuty"
 
-                    .value;
+    ).value = "";
 
 
-            let anggotaIndex =
+    document.getElementById(
 
-                document
+        "paparWaktu"
 
-                    .getElementById("anggotaDuty")
+    ).textContent = "-";
 
-                    .value;
 
+    document.getElementById(
 
-            let kod =
+        "paparJamKerja"
 
-                document
+    ).textContent = "-";
 
-                    .getElementById("kodDuty")
 
-                    .value;
+    document.getElementById(
 
+        "paparJamKLM"
 
-            let jamTugas =
+    ).textContent = "-";
 
-                document
 
-                    .getElementById("jamTugas")
+}
 
-                    .value;
 
+/*
+====================================================
+10. PAPAR STATUS
+====================================================
+*/
 
-            let jamKLM =
+function paparStatus(
 
-                document
+    mesej,
 
-                    .getElementById("jamKLM")
+    jenis
 
-                    .value;
+) {
 
 
+    const status =
 
-            if (
+        document.getElementById(
 
+            "statusMessage"
 
-                tarikh === "" ||
+        );
 
-                pos === "" ||
 
-                anggotaIndex === "" ||
+    status.textContent =
 
-                kod === "" ||
+        mesej;
 
-                jamTugas === "" ||
 
-                jamKLM === ""
+    status.className =
 
+        "status " +
 
-            ) {
+        jenis;
 
 
-                alert(
+    setTimeout(
 
-                    "Sila lengkapkan semua maklumat"
+        function() {
 
-                );
 
+            status.className =
 
-                return;
+                "status";
 
-            }
 
+        },
 
+        5000
 
-            let anggotaDipilih =
+    );
 
-                anggota[anggotaIndex];
 
+}
 
 
-            duty.push({
-
-
-                tarikh: tarikh,
-
-
-                pos: pos,
-
-
-                anggota:
-
-                    anggotaDipilih.nama +
-
-                    " - " +
-
-                    anggotaDipilih.noBadan,
-
-
-                kodDuty: kod,
-
-
-                jamTugas: jamTugas,
-
-
-                jamKLM: jamKLM
-
-
-            });
-
-
-
-            localStorage.setItem(
-
-                "duty",
-
-                JSON.stringify(duty)
-
-            );
-
-
-
-            alert(
-
-                "Duty berjaya disimpan"
-
-            );
-
-
-
-            paparKeyInDuty();
-
-        }
-
-
-
-        // PADAM DUTY
-
-        function padamDuty(index) {
-
-
-            if (
-
-
-                confirm(
-
-                    "Padam rekod duty ini?"
-
-                )
-
-
-            ) {
-
-
-                duty.splice(
-
-                    index,
-
-                    1
-
-                );
-
-
-                localStorage.setItem(
-
-                    "duty",
-
-                    JSON.stringify(duty)
-
-                );
-
-
-                paparKeyInDuty();
-
-            }
-
-        }
-
-
-
-        // SENARAI ANGGOTA
-
-        function paparAnggota() {
-
-
-            let rows = "";
-
-
-
-            anggota.forEach(
-
-                (a, index) => {
-
-
-                    rows += `
-
-
-                        <tr>
-
-
-                            <td>
-
-                                ${index + 1}
-
-                            </td>
-
-
-                            <td>
-
-                                ${a.nama}
-
-                            </td>
-
-
-                            <td>
-
-                                ${a.noBadan}
-
-                            </td>
-
-
-                            <td>
-
-                                ${a.pangkat}
-
-                            </td>
-
-
-                            <td>
-
-
-                                <button
-
-                                    class="delete"
-
-                                    onclick="padamAnggota(${index})">
-
-
-                                    Padam
-
-                                </button>
-
-
-                            </td>
-
-
-                        </tr>
-
-
-                    `;
-
-                }
-
-            );
-
-
-
-            document.getElementById("main").innerHTML = `
-
-
-                <div class="header">
-
-
-                    <h1>
-
-                        Senarai Anggota
-
-                    </h1>
-
-
-                    <p>
-
-                        Pengurusan data anggota FPB
-
-                    </p>
-
-
-                </div>
-
-
-
-                <div class="content">
-
-
-                    <h2>
-
-                        Tambah Anggota
-
-                    </h2>
-
-
-
-                    <input
-
-                        id="nama"
-
-                        placeholder="Nama Anggota">
-
-
-
-                    <input
-
-                        id="noBadan"
-
-                        placeholder="No. Badan">
-
-
-
-                    <input
-
-                        id="pangkat"
-
-                        placeholder="Pangkat">
-
-
-
-                    <button
-
-                        onclick="tambahAnggota()">
-
-
-                        + Tambah Anggota
-
-
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="content">
-
-
-                    <h2>
-
-
-                        Senarai Anggota
-
-                        (${anggota.length})
-
-
-                    </h2>
-
-
-
-                    <table>
-
-
-                        <thead>
-
-
-                            <tr>
-
-
-                                <th>Bil</th>
-
-                                <th>Nama</th>
-
-                                <th>No. Badan</th>
-
-                                <th>Pangkat</th>
-
-                                <th>Tindakan</th>
-
-
-                            </tr>
-
-
-                        </thead>
-
-
-
-                        <tbody>
-
-
-                            ${rows}
-
-
-                        </tbody>
-
-
-                    </table>
-
-
-                </div>
-
-
-            `;
-
-        }
-
-
-
-        // TAMBAH ANGGOTA
-
-        function tambahAnggota() {
-
-
-            let nama =
-
-                document
-
-                    .getElementById("nama")
-
-                    .value;
-
-
-            let noBadan =
-
-                document
-
-                    .getElementById("noBadan")
-
-                    .value;
-
-
-            let pangkat =
-
-                document
-
-                    .getElementById("pangkat")
-
-                    .value;
-
-
-
-            if (
-
-
-                nama === "" ||
-
-                noBadan === ""
-
-
-            ) {
-
-
-                alert(
-
-                    "Sila isi Nama dan No. Badan"
-
-                );
-
-
-                return;
-
-            }
-
-
-
-            anggota.push({
-
-
-                nama: nama,
-
-
-                noBadan: noBadan,
-
-
-                pangkat: pangkat
-
-
-            });
-
-
-
-            localStorage.setItem(
-
-                "anggota",
-
-                JSON.stringify(anggota)
-
-            );
-
-
-
-            paparAnggota();
-
-        }
-
-
-
-        // PADAM ANGGOTA
-
-        function padamAnggota(index) {
-
-
-            if (
-
-
-                confirm(
-
-                    "Padam anggota ini?"
-
-                )
-
-
-            ) {
-
-
-                anggota.splice(
-
-                    index,
-
-                    1
-
-                );
-
-
-
-                localStorage.setItem(
-
-                    "anggota",
-
-                    JSON.stringify(anggota)
-
-                );
-
-
-
-                paparAnggota();
-
-            }
-
-        }
-
-
-    </script>
+</script>
 
 </body>
 
