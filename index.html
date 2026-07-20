@@ -23,6 +23,7 @@ font-family: Arial, sans-serif;
 body {
 margin: 0;
 background: #f1f5f9;
+color: #1e293b;
 }
 
 .sidebar {
@@ -94,6 +95,7 @@ border: none;
 padding: 10px 18px;
 border-radius: 6px;
 cursor: pointer;
+font-weight: bold;
 }
 
 button:hover {
@@ -121,18 +123,11 @@ td {
 border-bottom: 1px solid #e2e8f0;
 padding: 12px;
 text-align: left;
+white-space: nowrap;
 }
 
 th {
 background: #f8fafc;
-}
-
-.delete {
-background: #dc2626;
-}
-
-.delete:hover {
-background: #b91c1c;
 }
 
 .form-row {
@@ -198,6 +193,11 @@ border-radius: 8px;
 margin-bottom: 20px;
 }
 
+.search-box {
+width: 300px;
+margin-bottom: 10px;
+}
+
 @media (max-width: 900px) {
 
 .cards {
@@ -234,6 +234,8 @@ grid-template-columns: 1fr;
 </head>
 
 <body>
+
+<!-- SIDEBAR -->
 
 <div class="sidebar">
 
@@ -291,6 +293,8 @@ onclick="paparJadualDuty()">
 
 </div>
 
+<!-- MAIN -->
+
 <div class="main"
 id="main">
 
@@ -299,20 +303,23 @@ id="main">
 <script>
 
 
-/* ==========================================
-   SUPABASE
-========================================== */
+/* =====================================================
+   SAMBUNGAN SUPABASE
+===================================================== */
 
 
 const SUPABASE_URL =
+
 "https://nlwrrrwkjpktrifxeymw.supabase.co";
 
 
 const SUPABASE_ANON_KEY =
+
 "sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
 
 
 const supabaseClient =
+
 window.supabase.createClient(
 
 SUPABASE_URL,
@@ -322,26 +329,29 @@ SUPABASE_ANON_KEY
 );
 
 
-/* ==========================================
-   NAMA TABLE
-========================================== */
+/* =====================================================
+   NAMA JADUAL
+===================================================== */
 
 
 const TABLE_ANGGOTA =
+
 "Data_Anggota";
 
 
 const TABLE_KOD_DUTY =
+
 "kod_duty";
 
 
 const TABLE_JADUAL_DUTY =
+
 "jadual_duty";
 
 
-/* ==========================================
-   MULA
-========================================== */
+/* =====================================================
+   MULA SISTEM
+===================================================== */
 
 
 document.addEventListener(
@@ -357,36 +367,39 @@ paparDashboard();
 );
 
 
-/* ==========================================
+/* =====================================================
    DASHBOARD
-========================================== */
+===================================================== */
 
 
 async function paparDashboard() {
 
 
-const anggota =
+const anggotaResult =
+
 await supabaseClient
 
 .from(TABLE_ANGGOTA)
 
-.select("*");
+.select("no_skb");
 
 
-const duty =
+const dutyResult =
+
 await supabaseClient
 
 .from(TABLE_JADUAL_DUTY)
 
-.select("*");
+.select("tarikh");
 
 
-const kod =
+const kodResult =
+
 await supabaseClient
 
 .from(TABLE_KOD_DUTY)
 
-.select("*");
+.select("kod");
 
 
 const hariIni =
@@ -400,11 +413,15 @@ new Date()
 
 const dutyHariIni =
 
-(duty.data || [])
+(dutyResult.data || [])
 
 .filter(
 
-d => d.tarikh === hariIni
+function(item) {
+
+return item.tarikh === hariIni;
+
+}
 
 );
 
@@ -442,7 +459,7 @@ Jumlah Anggota
 
 <div class="number">
 
-${(anggota.data || []).length}
+${(anggotaResult.data || []).length}
 
 </div>
 
@@ -476,7 +493,7 @@ Kod Duty
 
 <div class="number">
 
-${(kod.data || []).length}
+${(kodResult.data || []).length}
 
 </div>
 
@@ -493,7 +510,7 @@ Jumlah Duty
 
 <div class="number">
 
-${(duty.data || []).length}
+${(dutyResult.data || []).length}
 
 </div>
 
@@ -507,9 +524,9 @@ ${(duty.data || []).length}
 }
 
 
-/* ==========================================
+/* =====================================================
    KEY IN DUTY
-========================================== */
+===================================================== */
 
 
 async function paparKeyInDuty() {
@@ -521,7 +538,11 @@ await supabaseClient
 
 .from(TABLE_ANGGOTA)
 
-.select("*")
+.select(
+
+"no_skb,no_anggota,nama,pangkat,pos,status"
+
+)
 
 .eq(
 
@@ -550,7 +571,11 @@ await supabaseClient
 
 .from(TABLE_KOD_DUTY)
 
-.select("*")
+.select(
+
+"kod,waktu_tugasan,jam_kerja,jam_klm,status"
+
+)
 
 .eq(
 
@@ -640,7 +665,8 @@ let pilihanAnggota = "";
 
 .forEach(
 
-a => {
+function(a) {
+
 
 pilihanAnggota += `
 
@@ -672,7 +698,8 @@ let pilihanKod = "";
 
 .forEach(
 
-k => {
+function(k) {
+
 
 pilihanKod += `
 
@@ -700,7 +727,8 @@ let rows = "";
 
 .forEach(
 
-(d, index) => {
+function(d, index) {
+
 
 rows += `
 
@@ -715,6 +743,18 @@ ${index + 1}
 <td>
 
 ${d.tarikh || ""}
+
+</td>
+
+<td>
+
+${d.bulan || ""}
+
+</td>
+
+<td>
+
+${d.tahun || ""}
 
 </td>
 
@@ -823,9 +863,7 @@ Anggota
 
 <select
 
-id="anggotaDuty"
-
-onchange="paparMaklumatAnggota()">
+id="anggotaDuty">
 
 
 <option value="">
@@ -949,6 +987,7 @@ id="paparJamKLM">
 
 </div>
 
+
 </div>
 
 </div>
@@ -983,6 +1022,7 @@ Senarai Duty
 
 <div style="overflow-x:auto">
 
+
 <table>
 
 
@@ -993,6 +1033,10 @@ Senarai Duty
 <th>Bil</th>
 
 <th>Tarikh</th>
+
+<th>Bulan</th>
+
+<th>Tahun</th>
 
 <th>No SKB</th>
 
@@ -1020,6 +1064,7 @@ ${rows}
 
 </table>
 
+
 </div>
 
 </div>
@@ -1038,9 +1083,9 @@ new Date()
 }
 
 
-/* ==========================================
+/* =====================================================
    PAPAR MAKLUMAT KOD DUTY
-========================================== */
+===================================================== */
 
 
 async function paparInfoKodDuty() {
@@ -1057,11 +1102,13 @@ document
 
 if (!kod) {
 
+
 document.getElementById(
 
 "paparWaktu"
 
 ).textContent = "-";
+
 
 document.getElementById(
 
@@ -1069,11 +1116,13 @@ document.getElementById(
 
 ).textContent = "-";
 
+
 document.getElementById(
 
 "paparJamKLM"
 
 ).textContent = "-";
+
 
 return;
 
@@ -1105,7 +1154,10 @@ kod
 
 if (result.error) {
 
+
 alert(
+
+"Gagal mengambil maklumat Kod Duty: " +
 
 result.error.message
 
@@ -1145,9 +1197,9 @@ result.data.jam_klm ?? "-";
 }
 
 
-/* ==========================================
+/* =====================================================
    SIMPAN DUTY
-========================================== */
+===================================================== */
 
 
 async function simpanDuty() {
@@ -1171,9 +1223,11 @@ document
 
 const noSkb =
 
-anggotaSelect
+Number(
 
-.value;
+anggotaSelect.value
+
+);
 
 
 const kod =
@@ -1194,6 +1248,7 @@ if (
 !kod
 
 ) {
+
 
 alert(
 
@@ -1250,6 +1305,7 @@ kod
 
 if (anggotaResult.error) {
 
+
 alert(
 
 "Anggota tidak dijumpai: " +
@@ -1265,9 +1321,10 @@ return;
 
 if (kodResult.error) {
 
+
 alert(
 
-"Kod duty tidak dijumpai: " +
+"Kod Duty tidak dijumpai: " +
 
 kodResult.error.message
 
@@ -1307,45 +1364,56 @@ await supabaseClient
 
 {
 
+
 tarikh:
 
 tarikh,
+
 
 bulan:
 
 bulan,
 
+
 tahun:
 
 tahun,
+
 
 no_skb:
 
 noSkb,
 
+
 kod_duty:
 
 kodResult.data.kod,
+
 
 waktu_tugasan:
 
 kodResult.data.waktu_tugasan,
 
+
 jam_kerja:
 
 kodResult.data.jam_kerja,
+
 
 jam_klm:
 
 kodResult.data.jam_klm,
 
+
 pos:
 
 anggotaResult.data.pos,
 
+
 dikemaskini_oleh:
 
 "Sistem",
+
 
 dikemaskini_pada:
 
@@ -1359,6 +1427,7 @@ new Date().toISOString()
 
 
 if (result.error) {
+
 
 alert(
 
@@ -1385,9 +1454,9 @@ paparKeyInDuty();
 }
 
 
-/* ==========================================
+/* =====================================================
    SENARAI ANGGOTA
-========================================== */
+===================================================== */
 
 
 async function paparAnggota() {
@@ -1399,7 +1468,11 @@ await supabaseClient
 
 .from(TABLE_ANGGOTA)
 
-.select("*")
+.select(
+
+"no_skb,no_anggota,nama,pangkat,pos,unit,jawatan,status"
+
+)
 
 .order(
 
@@ -1415,6 +1488,7 @@ ascending: true
 
 
 if (result.error) {
+
 
 paparRalat(
 
@@ -1434,7 +1508,8 @@ let rows = "";
 
 .forEach(
 
-(a, index) => {
+function(a, index) {
+
 
 rows += `
 
@@ -1473,6 +1548,12 @@ ${a.pos || ""}
 <td>
 
 ${a.unit || ""}
+
+</td>
+
+<td>
+
+${a.jawatan || ""}
 
 </td>
 
@@ -1525,6 +1606,7 @@ Senarai Anggota
 
 <div style="overflow-x:auto">
 
+
 <table>
 
 
@@ -1544,6 +1626,8 @@ Senarai Anggota
 
 <th>Unit</th>
 
+<th>Jawatan</th>
+
 <th>Status</th>
 
 </tr>
@@ -1560,6 +1644,7 @@ ${rows}
 
 </table>
 
+
 </div>
 
 </div>
@@ -1569,9 +1654,9 @@ ${rows}
 }
 
 
-/* ==========================================
+/* =====================================================
    JADUAL DUTY
-========================================== */
+===================================================== */
 
 
 async function paparJadualDuty() {
@@ -1600,6 +1685,7 @@ ascending: false
 
 if (result.error) {
 
+
 paparRalat(
 
 result.error.message
@@ -1618,7 +1704,8 @@ let rows = "";
 
 .forEach(
 
-(d, index) => {
+function(d, index) {
+
 
 rows += `
 
@@ -1684,6 +1771,12 @@ ${d.pos || ""}
 
 </td>
 
+<td>
+
+${d.dikemaskini_oleh || ""}
+
+</td>
+
 </tr>
 
 `;
@@ -1718,6 +1811,7 @@ Senarai semua rekod duty
 
 <div style="overflow-x:auto">
 
+
 <table>
 
 
@@ -1745,6 +1839,8 @@ Senarai semua rekod duty
 
 <th>Pos</th>
 
+<th>Dikemaskini Oleh</th>
+
 </tr>
 
 </thead>
@@ -1759,6 +1855,7 @@ ${rows}
 
 </table>
 
+
 </div>
 
 </div>
@@ -1768,9 +1865,9 @@ ${rows}
 }
 
 
-/* ==========================================
-   PAPAR MAKLUMAT RALAT
-========================================== */
+/* =====================================================
+   PAPAR RALAT
+===================================================== */
 
 
 function paparRalat(mesej) {
@@ -1781,15 +1878,19 @@ document.getElementById("main").innerHTML = `
 
 <div class="error">
 
+
 <strong>
 
 Ralat Supabase:
 
 </strong>
 
+
 <br><br>
 
+
 ${mesej}
+
 
 </div>
 
