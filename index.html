@@ -1,692 +1,1462 @@
 <!DOCTYPE html>
-
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FPB Duty System</title>
 
-```
-<style>
-    * {
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+    <style>
 
-    body {
-        margin: 0;
-        background: #f1f5f9;
-    }
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    .sidebar {
-        position: fixed;
-        width: 244px;
-        height: 100vh;
-        background: #0f172a;
-        color: white;
-        padding: 25px 24px;
-    }
+        body {
+            margin: 0;
+            background: #f1f5f9;
+        }
 
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 30px;
-    }
+        .sidebar {
 
-    .menu {
-        padding: 15px;
-        margin: 8px 0;
-        cursor: pointer;
-        border-radius: 8px;
-    }
+            position: fixed;
 
-    .menu:hover,
-    .menu.active {
-        background: #2563eb;
-    }
+            width: 244px;
 
-    .main {
-        margin-left: 244px;
-        padding: 30px;
-    }
+            height: 100vh;
 
-    .header,
-    .card,
-    .content {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 24px;
-    }
+            background: #0f172a;
 
-    h1 {
-        margin-top: 0;
-        color: #1e3a5f;
-    }
+            color: white;
 
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-    }
+            padding: 25px 18px;
 
-    .card h3 {
-        color: #64748b;
-    }
+        }
 
-    .number {
-        font-size: 32px;
-        color: #2563eb;
-        font-weight: bold;
-    }
+        .logo {
 
-    button {
-        background: #2563eb;
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 6px;
-        cursor: pointer;
-    }
+            font-size: 24px;
 
-    button:hover {
-        background: #1d4ed8;
-    }
+            font-weight: bold;
 
-    input,
-    select {
-        padding: 10px;
-        margin: 5px;
-        border: 1px solid #cbd5e1;
-        border-radius: 5px;
-    }
+            margin-bottom: 30px;
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+        }
 
-    th,
-    td {
-        border-bottom: 1px solid #e2e8f0;
-        padding: 12px;
-        text-align: left;
-    }
+        .menu {
 
-    th {
-        background: #f8fafc;
-    }
+            padding: 15px;
 
-    .delete {
-        background: #dc2626;
-    }
+            margin: 8px 0;
 
-    .delete:hover {
-        background: #b91c1c;
-    }
+            cursor: pointer;
 
-    .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 15px;
-    }
+            border-radius: 8px;
 
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        min-width: 200px;
-    }
+        }
 
-    .form-group label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+        .menu:hover,
 
-</style>
-```
+        .menu.active {
+
+            background: #2563eb;
+
+        }
+
+        .main {
+
+            margin-left: 244px;
+
+            padding: 0 30px 30px 30px;
+
+        }
+
+        .header,
+
+        .card,
+
+        .content {
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 24px;
+
+        }
+
+        h1 {
+
+            margin-top: 0;
+
+            color: #1e3a5f;
+
+        }
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+
+        }
+
+        .card h3 {
+
+            color: #64748b;
+
+        }
+
+        .number {
+
+            font-size: 32px;
+
+            color: #2563eb;
+
+            font-weight: bold;
+
+        }
+
+        button {
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+        input,
+
+        select {
+
+            width: 190px;
+
+            padding: 10px;
+
+            margin-top: 6px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+
+        }
+
+        th,
+
+        td {
+
+            border-bottom: 1px solid #e2e8f0;
+
+            padding: 12px;
+
+            text-align: left;
+
+        }
+
+        th {
+
+            background: #f8fafc;
+
+        }
+
+        .delete {
+
+            background: #dc2626;
+
+        }
+
+        .delete:hover {
+
+            background: #b91c1c;
+
+        }
+
+        .form-row {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .form-group label {
+
+            font-weight: bold;
+
+        }
+
+        @media (max-width: 900px) {
+
+            .cards {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-```
-<div class="sidebar">
 
-    <div class="logo">🚓 FPB DUTY</div>
+    <!-- SIDEBAR -->
 
-    <div class="menu active" onclick="paparDashboard()">🏠 Dashboard</div>
+    <div class="sidebar">
 
-    <div class="menu" onclick="paparKeyInDuty()">
-        📝 Key In Duty
-    </div>
+        <div class="logo">
 
-    <div class="menu" onclick="paparAnggota()">
-        👥 Senarai Anggota
-    </div>
+            🚓 FPB DUTY
 
-    <div class="menu">🗓️ Jadual Duty</div>
-    <div class="menu">🏷️ Kod Duty</div>
-    <div class="menu">📊 Laporan</div>
-    <div class="menu">⚙️ Tetapan</div>
-
-</div>
-
-<div class="main" id="main">
-
-    <div class="header">
-        <h1>Dashboard</h1>
-        <p>Selamat datang ke FPB Duty System</p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Jumlah Anggota</h3>
-            <div class="number" id="jumlahAnggota">0</div>
         </div>
 
-        <div class="card">
-            <h3>Duty Hari Ini</h3>
-            <div class="number">0</div>
+
+        <div class="menu active"
+
+             onclick="paparDashboard()">
+
+            🏠 Dashboard
+
         </div>
 
-        <div class="card">
-            <h3>Kod Duty</h3>
-            <div class="number">0</div>
+
+        <div class="menu"
+
+             onclick="paparKeyInDuty()">
+
+            📝 Key In Duty
+
         </div>
 
-        <div class="card">
-            <h3>Laporan</h3>
-            <div class="number">0</div>
+
+        <div class="menu"
+
+             onclick="paparAnggota()">
+
+            👥 Senarai Anggota
+
+        </div>
+
+
+        <div class="menu">
+
+            🗓️ Jadual Duty
+
+        </div>
+
+
+        <div class="menu">
+
+            🏷️ Kod Duty
+
+        </div>
+
+
+        <div class="menu">
+
+            📊 Laporan
+
+        </div>
+
+
+        <div class="menu">
+
+            ⚙️ Tetapan
+
         </div>
 
     </div>
 
-</div>
 
-<script>
 
-    let anggota =
-        JSON.parse(localStorage.getItem("anggota")) || [];
+    <!-- MAIN -->
 
-    let duty =
-        JSON.parse(localStorage.getItem("duty")) || [];
+    <div class="main" id="main">
 
-    let kodDuty = [
-        {
-            kod: "D01",
-            nama: "Duty Operasi"
-        },
-        {
-            kod: "D02",
-            nama: "Duty Kawalan"
-        },
-        {
-            kod: "D03",
-            nama: "Duty Rondaan"
+        <div class="header">
+
+            <h1>Dashboard</h1>
+
+            <p>
+
+                Selamat datang ke FPB Duty System
+
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Jumlah Anggota</h3>
+
+                <div class="number">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Duty Hari Ini</h3>
+
+                <div class="number">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Kod Duty</h3>
+
+                <div class="number">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Laporan</h3>
+
+                <div class="number">
+
+                    0
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        // DATA ANGGOTA
+
+        let anggota =
+
+            JSON.parse(
+
+                localStorage.getItem("anggota")
+
+            ) || [];
+
+
+
+        // DATA DUTY
+
+        let duty =
+
+            JSON.parse(
+
+                localStorage.getItem("duty")
+
+            ) || [];
+
+
+
+        // KOD DUTY
+
+        let kodDuty = [
+
+            {
+
+                kod: "D01",
+
+                nama: "Duty Operasi"
+
+            },
+
+            {
+
+                kod: "D02",
+
+                nama: "Duty Kawalan"
+
+            },
+
+            {
+
+                kod: "D03",
+
+                nama: "Duty Rondaan"
+
+            }
+
+        ];
+
+
+
+        // DASHBOARD
+
+        function paparDashboard() {
+
+
+            document.getElementById("main").innerHTML = `
+
+
+                <div class="header">
+
+                    <h1>Dashboard</h1>
+
+                    <p>
+
+                        Selamat datang ke FPB Duty System
+
+                    </p>
+
+                </div>
+
+
+                <div class="cards">
+
+
+                    <div class="card">
+
+                        <h3>Jumlah Anggota</h3>
+
+                        <div class="number">
+
+                            ${anggota.length}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>Duty Hari Ini</h3>
+
+                        <div class="number">
+
+                            ${duty.length}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>Kod Duty</h3>
+
+                        <div class="number">
+
+                            ${kodDuty.length}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>Laporan</h3>
+
+                        <div class="number">
+
+                            0
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            `;
+
         }
-    ];
 
-    function paparDashboard() {
 
-        document.getElementById("main").innerHTML = `
 
-            <div class="header">
-                <h1>Dashboard</h1>
-                <p>Selamat datang ke FPB Duty System</p>
-            </div>
+        // HALAMAN KEY IN DUTY
 
-            <div class="cards">
+        function paparKeyInDuty() {
 
-                <div class="card">
-                    <h3>Jumlah Anggota</h3>
-                    <div class="number">
-                        ${anggota.length}
-                    </div>
-                </div>
 
-                <div class="card">
-                    <h3>Duty Hari Ini</h3>
-                    <div class="number">
-                        ${duty.length}
-                    </div>
-                </div>
+            let pilihanAnggota = "";
 
-                <div class="card">
-                    <h3>Kod Duty</h3>
-                    <div class="number">
-                        ${kodDuty.length}
-                    </div>
-                </div>
 
-                <div class="card">
-                    <h3>Laporan</h3>
-                    <div class="number">
-                        0
-                    </div>
-                </div>
+            anggota.forEach(
 
-            </div>
-        `;
-    }
+                (a, index) => {
 
-    function paparKeyInDuty() {
 
-        let pilihanAnggota = "";
+                    pilihanAnggota += `
 
-        anggota.forEach((a, index) => {
+                        <option value="${index}">
 
-            pilihanAnggota += `
-                <option value="${index}">
-                    ${a.nama} - ${a.noBadan}
-                </option>
-            `;
+                            ${a.nama} - ${a.noBadan}
 
-        });
+                        </option>
 
-        let pilihanKod = "";
+                    `;
 
-        kodDuty.forEach(k => {
+                }
 
-            pilihanKod += `
-                <option value="${k.kod}">
-                    ${k.kod} - ${k.nama}
-                </option>
-            `;
+            );
 
-        });
 
-        let rows = "";
 
-        duty.forEach((d, index) => {
+            let pilihanKod = "";
 
-            rows += `
 
-                <tr>
+            kodDuty.forEach(
 
-                    <td>${index + 1}</td>
+                (k) => {
 
-                    <td>${d.tarikh}</td>
 
-                    <td>${d.pos}</td>
+                    pilihanKod += `
 
-                    <td>${d.anggota}</td>
+                        <option value="${k.kod}">
 
-                    <td>${d.kodDuty}</td>
+                            ${k.kod} - ${k.nama}
 
-                    <td>
+                        </option>
 
-                        <button
-                            class="delete"
-                            onclick="padamDuty(${index})">
+                    `;
 
-                            Padam
+                }
 
-                        </button>
+            );
 
-                    </td>
 
-                </tr>
 
-            `;
+            let rows = "";
 
-        });
 
-        document.getElementById("main").innerHTML = `
+            duty.forEach(
 
-            <div class="header">
+                (d, index) => {
 
-                <h1>Key In Duty</h1>
 
-                <p>
-                    Masukkan rekod duty anggota
-                </p>
+                    rows += `
 
-            </div>
-
-            <div class="content">
-
-                <h2>Tambah Duty</h2>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label>Tarikh</label>
-
-                        <input
-                            type="date"
-                            id="tarikh">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Pos</label>
-
-                        <input
-                            type="text"
-                            id="pos"
-                            placeholder="Contoh: Pos A">
-
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label>Anggota</label>
-
-                        <select id="anggotaDuty">
-
-                            <option value="">
-                                Pilih Anggota
-                            </option>
-
-                            ${pilihanAnggota}
-
-                        </select>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Kod Duty</label>
-
-                        <select id="kodDuty">
-
-                            <option value="">
-                                Pilih Kod Duty
-                            </option>
-
-                            ${pilihanKod}
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <button onclick="simpanDuty()">
-
-                    💾 Simpan Duty
-
-                </button>
-
-            </div>
-
-            <div class="content">
-
-                <h2>Senarai Duty (${duty.length})</h2>
-
-                <table>
-
-                    <thead>
 
                         <tr>
 
-                            <th>Bil</th>
-                            <th>Tarikh</th>
-                            <th>Pos</th>
-                            <th>Anggota</th>
-                            <th>Kod Duty</th>
-                            <th>Tindakan</th>
+
+                            <td>
+
+                                ${index + 1}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.tarikh}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.pos}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.anggota}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.kodDuty}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.jamTugas}
+
+                            </td>
+
+
+                            <td>
+
+                                ${d.jamKLM}
+
+                            </td>
+
+
+                            <td>
+
+
+                                <button
+
+                                    class="delete"
+
+                                    onclick="padamDuty(${index})">
+
+                                    Padam
+
+                                </button>
+
+
+                            </td>
+
 
                         </tr>
 
-                    </thead>
 
-                    <tbody>
+                    `;
 
-                        ${rows}
+                }
 
-                    </tbody>
+            );
 
-                </table>
 
-            </div>
 
-        `;
+            document.getElementById("main").innerHTML = `
 
-    }
 
-    function simpanDuty() {
+                <div class="header">
 
-        let tarikh =
-            document.getElementById("tarikh").value;
 
-        let pos =
-            document.getElementById("pos").value;
+                    <h1>
 
-        let anggotaIndex =
-            document.getElementById("anggotaDuty").value;
+                        Key In Duty
 
-        let kod =
-            document.getElementById("kodDuty").value;
+                    </h1>
 
-        if (
-            tarikh === "" ||
-            pos === "" ||
-            anggotaIndex === "" ||
-            kod === ""
-        ) {
 
-            alert("Sila lengkapkan semua maklumat");
+                    <p>
 
-            return;
+                        Masukkan rekod duty anggota
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="content">
+
+
+                    <h2>
+
+                        Tambah Duty
+
+                    </h2>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Tarikh
+
+                            </label>
+
+
+                            <input
+
+                                type="date"
+
+                                id="tarikh">
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Pos
+
+                            </label>
+
+
+                            <input
+
+                                type="text"
+
+                                id="pos"
+
+                                placeholder="Contoh: Pos A">
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Anggota
+
+                            </label>
+
+
+                            <select
+
+                                id="anggotaDuty">
+
+
+                                <option value="">
+
+                                    Pilih Anggota
+
+                                </option>
+
+
+                                ${pilihanAnggota}
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Kod Duty
+
+                            </label>
+
+
+                            <select
+
+                                id="kodDuty">
+
+
+                                <option value="">
+
+                                    Pilih Kod Duty
+
+                                </option>
+
+
+                                ${pilihanKod}
+
+
+                            </select>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Jam Tugas
+
+                            </label>
+
+
+                            <input
+
+                                type="number"
+
+                                id="jamTugas"
+
+                                min="0"
+
+                                step="0.5"
+
+                                placeholder="Contoh: 8">
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+
+                            <label>
+
+                                Jam KLM
+
+                            </label>
+
+
+                            <input
+
+                                type="number"
+
+                                id="jamKLM"
+
+                                min="0"
+
+                                step="0.5"
+
+                                placeholder="Contoh: 4">
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button
+
+                        onclick="simpanDuty()">
+
+
+                        💾 Simpan Duty
+
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="content">
+
+
+                    <h2>
+
+
+                        Senarai Duty (${duty.length})
+
+
+                    </h2>
+
+
+
+                    <table>
+
+
+                        <thead>
+
+
+                            <tr>
+
+
+                                <th>Bil</th>
+
+                                <th>Tarikh</th>
+
+                                <th>Pos</th>
+
+                                <th>Anggota</th>
+
+                                <th>Kod Duty</th>
+
+                                <th>Jam Tugas</th>
+
+                                <th>Jam KLM</th>
+
+                                <th>Tindakan</th>
+
+
+                            </tr>
+
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                            ${rows}
+
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            `;
 
         }
 
-        let anggotaDipilih =
-            anggota[anggotaIndex];
 
-        duty.push({
 
-            tarikh: tarikh,
+        // SIMPAN DUTY
 
-            pos: pos,
+        function simpanDuty() {
 
-            anggota:
-                anggotaDipilih.nama +
-                " - " +
-                anggotaDipilih.noBadan,
 
-            kodDuty: kod
+            let tarikh =
 
-        });
+                document
 
-        localStorage.setItem(
-            "duty",
-            JSON.stringify(duty)
-        );
+                    .getElementById("tarikh")
 
-        alert("Duty berjaya disimpan");
+                    .value;
 
-        paparKeyInDuty();
 
-    }
+            let pos =
 
-    function padamDuty(index) {
+                document
 
-        if (confirm("Padam rekod duty ini?")) {
+                    .getElementById("pos")
 
-            duty.splice(index, 1);
+                    .value;
+
+
+            let anggotaIndex =
+
+                document
+
+                    .getElementById("anggotaDuty")
+
+                    .value;
+
+
+            let kod =
+
+                document
+
+                    .getElementById("kodDuty")
+
+                    .value;
+
+
+            let jamTugas =
+
+                document
+
+                    .getElementById("jamTugas")
+
+                    .value;
+
+
+            let jamKLM =
+
+                document
+
+                    .getElementById("jamKLM")
+
+                    .value;
+
+
+
+            if (
+
+
+                tarikh === "" ||
+
+                pos === "" ||
+
+                anggotaIndex === "" ||
+
+                kod === "" ||
+
+                jamTugas === "" ||
+
+                jamKLM === ""
+
+
+            ) {
+
+
+                alert(
+
+                    "Sila lengkapkan semua maklumat"
+
+                );
+
+
+                return;
+
+            }
+
+
+
+            let anggotaDipilih =
+
+                anggota[anggotaIndex];
+
+
+
+            duty.push({
+
+
+                tarikh: tarikh,
+
+
+                pos: pos,
+
+
+                anggota:
+
+                    anggotaDipilih.nama +
+
+                    " - " +
+
+                    anggotaDipilih.noBadan,
+
+
+                kodDuty: kod,
+
+
+                jamTugas: jamTugas,
+
+
+                jamKLM: jamKLM
+
+
+            });
+
+
 
             localStorage.setItem(
+
                 "duty",
+
                 JSON.stringify(duty)
+
             );
+
+
+
+            alert(
+
+                "Duty berjaya disimpan"
+
+            );
+
+
 
             paparKeyInDuty();
 
         }
 
-    }
 
-    function paparAnggota() {
 
-        let rows = "";
+        // PADAM DUTY
 
-        anggota.forEach((a, index) => {
+        function padamDuty(index) {
 
-            rows += `
 
-                <tr>
+            if (
 
-                    <td>${index + 1}</td>
-                    <td>${a.nama}</td>
-                    <td>${a.noBadan}</td>
-                    <td>${a.pangkat}</td>
 
-                    <td>
+                confirm(
 
-                        <button
-                            class="delete"
-                            onclick="padamAnggota(${index})">
+                    "Padam rekod duty ini?"
 
-                            Padam
+                )
 
-                        </button>
 
-                    </td>
+            ) {
 
-                </tr>
 
-            `;
+                duty.splice(
 
-        });
+                    index,
 
-        document.getElementById("main").innerHTML = `
+                    1
 
-            <div class="header">
+                );
 
-                <h1>Senarai Anggota</h1>
 
-                <p>
-                    Pengurusan data anggota FPB
-                </p>
+                localStorage.setItem(
 
-            </div>
+                    "duty",
 
-            <div class="content">
+                    JSON.stringify(duty)
 
-                <h2>Tambah Anggota</h2>
+                );
 
-                <input
-                    id="nama"
-                    placeholder="Nama Anggota">
 
-                <input
-                    id="noBadan"
-                    placeholder="No. Badan">
+                paparKeyInDuty();
 
-                <input
-                    id="pangkat"
-                    placeholder="Pangkat">
-
-                <button onclick="tambahAnggota()">
-
-                    + Tambah Anggota
-
-                </button>
-
-            </div>
-
-            <div class="content">
-
-                <h2>
-                    Senarai Anggota (${anggota.length})
-                </h2>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Bil</th>
-                            <th>Nama</th>
-                            <th>No. Badan</th>
-                            <th>Pangkat</th>
-                            <th>Tindakan</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        ${rows}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        `;
-
-    }
-
-    function tambahAnggota() {
-
-        let nama =
-            document.getElementById("nama").value;
-
-        let noBadan =
-            document.getElementById("noBadan").value;
-
-        let pangkat =
-            document.getElementById("pangkat").value;
-
-        if (
-            nama === "" ||
-            noBadan === ""
-        ) {
-
-            alert(
-                "Sila isi Nama dan No. Badan"
-            );
-
-            return;
+            }
 
         }
 
-        anggota.push({
 
-            nama: nama,
 
-            noBadan: noBadan,
+        // SENARAI ANGGOTA
 
-            pangkat: pangkat
+        function paparAnggota() {
 
-        });
 
-        localStorage.setItem(
+            let rows = "";
 
-            "anggota",
 
-            JSON.stringify(anggota)
 
-        );
+            anggota.forEach(
 
-        paparAnggota();
+                (a, index) => {
 
-    }
 
-    function padamAnggota(index) {
+                    rows += `
 
-        if (
-            confirm(
-                "Padam anggota ini?"
-            )
-        ) {
 
-            anggota.splice(index, 1);
+                        <tr>
+
+
+                            <td>
+
+                                ${index + 1}
+
+                            </td>
+
+
+                            <td>
+
+                                ${a.nama}
+
+                            </td>
+
+
+                            <td>
+
+                                ${a.noBadan}
+
+                            </td>
+
+
+                            <td>
+
+                                ${a.pangkat}
+
+                            </td>
+
+
+                            <td>
+
+
+                                <button
+
+                                    class="delete"
+
+                                    onclick="padamAnggota(${index})">
+
+
+                                    Padam
+
+                                </button>
+
+
+                            </td>
+
+
+                        </tr>
+
+
+                    `;
+
+                }
+
+            );
+
+
+
+            document.getElementById("main").innerHTML = `
+
+
+                <div class="header">
+
+
+                    <h1>
+
+                        Senarai Anggota
+
+                    </h1>
+
+
+                    <p>
+
+                        Pengurusan data anggota FPB
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="content">
+
+
+                    <h2>
+
+                        Tambah Anggota
+
+                    </h2>
+
+
+
+                    <input
+
+                        id="nama"
+
+                        placeholder="Nama Anggota">
+
+
+
+                    <input
+
+                        id="noBadan"
+
+                        placeholder="No. Badan">
+
+
+
+                    <input
+
+                        id="pangkat"
+
+                        placeholder="Pangkat">
+
+
+
+                    <button
+
+                        onclick="tambahAnggota()">
+
+
+                        + Tambah Anggota
+
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="content">
+
+
+                    <h2>
+
+
+                        Senarai Anggota
+
+                        (${anggota.length})
+
+
+                    </h2>
+
+
+
+                    <table>
+
+
+                        <thead>
+
+
+                            <tr>
+
+
+                                <th>Bil</th>
+
+                                <th>Nama</th>
+
+                                <th>No. Badan</th>
+
+                                <th>Pangkat</th>
+
+                                <th>Tindakan</th>
+
+
+                            </tr>
+
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                            ${rows}
+
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            `;
+
+        }
+
+
+
+        // TAMBAH ANGGOTA
+
+        function tambahAnggota() {
+
+
+            let nama =
+
+                document
+
+                    .getElementById("nama")
+
+                    .value;
+
+
+            let noBadan =
+
+                document
+
+                    .getElementById("noBadan")
+
+                    .value;
+
+
+            let pangkat =
+
+                document
+
+                    .getElementById("pangkat")
+
+                    .value;
+
+
+
+            if (
+
+
+                nama === "" ||
+
+                noBadan === ""
+
+
+            ) {
+
+
+                alert(
+
+                    "Sila isi Nama dan No. Badan"
+
+                );
+
+
+                return;
+
+            }
+
+
+
+            anggota.push({
+
+
+                nama: nama,
+
+
+                noBadan: noBadan,
+
+
+                pangkat: pangkat
+
+
+            });
+
+
 
             localStorage.setItem(
 
@@ -696,14 +1466,61 @@
 
             );
 
+
+
             paparAnggota();
 
         }
 
-    }
 
-</script>
-```
+
+        // PADAM ANGGOTA
+
+        function padamAnggota(index) {
+
+
+            if (
+
+
+                confirm(
+
+                    "Padam anggota ini?"
+
+                )
+
+
+            ) {
+
+
+                anggota.splice(
+
+                    index,
+
+                    1
+
+                );
+
+
+
+                localStorage.setItem(
+
+                    "anggota",
+
+                    JSON.stringify(anggota)
+
+                );
+
+
+
+                paparAnggota();
+
+            }
+
+        }
+
+
+    </script>
 
 </body>
+
 </html>
