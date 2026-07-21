@@ -14,15 +14,16 @@ let semuaKodDuty = [];
 
 
 // =====================================================
-// APABILA HALAMAN SIAP
+// APABILA HALAMAN DIBUKA
 // =====================================================
 
 document.addEventListener(
     "DOMContentLoaded",
     async function () {
 
+
         console.log(
-            "JADUAL DUTY JS BERJAYA DIMUATKAN"
+            "JADUAL DUTY BERJAYA DIBUKA"
         );
 
 
@@ -32,6 +33,7 @@ document.addEventListener(
             document.getElementById(
                 "tarikh"
             );
+
 
         const filterTarikh =
             document.getElementById(
@@ -55,13 +57,13 @@ document.addEventListener(
         }
 
 
-        // Muat data
+        // Muat semua data
 
         await muatAnggota();
 
         await muatKodDuty();
 
-        await muatPos();
+        await muatSenaraiPos();
 
         await paparDuty();
 
@@ -78,7 +80,7 @@ async function muatAnggota() {
 
 
     console.log(
-        "Sedang muat Data_Anggota..."
+        "MULA MUAT ANGGOTA"
     );
 
 
@@ -90,12 +92,7 @@ async function muatAnggota() {
         )
 
         .select(
-            "no_skb,no_anggota,nama,pangkat,pos,unit,status"
-        )
-
-        .eq(
-            "status",
-            "Aktif"
+            "*"
         )
 
         .order(
@@ -106,17 +103,25 @@ async function muatAnggota() {
         );
 
 
-    if (result.error) {
+    console.log(
+        "DATA ANGGOTA:",
+        result.data
+    );
 
 
-        console.error(
-            "RALAT ANGGOTA:",
-            result.error
-        );
+    console.log(
+        "RALAT ANGGOTA:",
+        result.error
+    );
+
+
+    if (
+        result.error
+    ) {
 
 
         paparMesej(
-            "Gagal muat anggota: "
+            "Gagal ambil anggota: "
             + result.error.message,
             "error"
         );
@@ -128,13 +133,8 @@ async function muatAnggota() {
 
 
     semuaAnggota =
-        result.data || [];
-
-
-    console.log(
-        "Jumlah anggota:",
-        semuaAnggota.length
-    );
+        result.data
+        || [];
 
 
     const select =
@@ -143,7 +143,9 @@ async function muatAnggota() {
         );
 
 
-    if (!select) {
+    if (
+        !select
+    ) {
 
 
         console.error(
@@ -180,6 +182,7 @@ async function muatAnggota() {
             option.value =
                 String(
                     anggota.no_skb
+                    || ""
                 );
 
 
@@ -214,6 +217,12 @@ async function muatAnggota() {
     );
 
 
+    console.log(
+        "JUMLAH ANGGOTA:",
+        semuaAnggota.length
+    );
+
+
 }
 
 
@@ -225,7 +234,7 @@ async function muatKodDuty() {
 
 
     console.log(
-        "Sedang muat kod duty..."
+        "MULA MUAT KOD DUTY"
     );
 
 
@@ -237,12 +246,7 @@ async function muatKodDuty() {
         )
 
         .select(
-            "kod,waktu_tugasan,jam_kerja,jam_klm,status"
-        )
-
-        .eq(
-            "status",
-            "Aktif"
+            "*"
         )
 
         .order(
@@ -253,17 +257,25 @@ async function muatKodDuty() {
         );
 
 
-    if (result.error) {
+    console.log(
+        "DATA KOD DUTY:",
+        result.data
+    );
 
 
-        console.error(
-            "RALAT KOD DUTY:",
-            result.error
-        );
+    console.log(
+        "RALAT KOD DUTY:",
+        result.error
+    );
+
+
+    if (
+        result.error
+    ) {
 
 
         paparMesej(
-            "Gagal muat kod duty: "
+            "Gagal ambil kod duty: "
             + result.error.message,
             "error"
         );
@@ -275,13 +287,8 @@ async function muatKodDuty() {
 
 
     semuaKodDuty =
-        result.data || [];
-
-
-    console.log(
-        "Jumlah kod duty:",
-        semuaKodDuty.length
-    );
+        result.data
+        || [];
 
 
     const select =
@@ -290,7 +297,9 @@ async function muatKodDuty() {
         );
 
 
-    if (!select) {
+    if (
+        !select
+    ) {
 
 
         console.error(
@@ -327,6 +336,7 @@ async function muatKodDuty() {
             option.value =
                 String(
                     duty.kod
+                    || ""
                 );
 
 
@@ -369,6 +379,12 @@ async function muatKodDuty() {
 
 
         }
+    );
+
+
+    console.log(
+        "JUMLAH KOD DUTY:",
+        semuaKodDuty.length
     );
 
 
@@ -420,7 +436,9 @@ document.addEventListener(
             );
 
 
-        if (!anggota) {
+        if (
+            !anggota
+        ) {
 
 
             document
@@ -547,7 +565,9 @@ document.addEventListener(
             );
 
 
-        if (!duty) {
+        if (
+            !duty
+        ) {
 
 
             document
@@ -823,7 +843,7 @@ async function simpanDuty() {
 // MUAT SENARAI POS
 // =====================================================
 
-async function muatPos() {
+async function muatSenaraiPos() {
 
 
     const result =
@@ -835,11 +855,6 @@ async function muatPos() {
 
         .select(
             "pos"
-        )
-
-        .eq(
-            "status",
-            "Aktif"
         );
 
 
@@ -895,7 +910,9 @@ async function muatPos() {
         );
 
 
-    if (!select) {
+    if (
+        !select
+    ) {
 
 
         return;
@@ -961,12 +978,21 @@ async function paparDuty() {
         );
 
 
+    const tbody =
+        document
+        .getElementById(
+            "senaraiDuty"
+        );
+
+
     if (
         !filterTarikh
         ||
         !filterPos
         ||
         !cariNama
+        ||
+        !tbody
     ) {
 
 
@@ -1057,26 +1083,17 @@ async function paparDuty() {
     }
 
 
-    const tbody =
-        document
-        .getElementById(
-            "senaraiDuty"
-        );
-
-
     tbody.innerHTML =
         "";
 
 
+    const data =
+        result.data
+        || [];
+
+
     const filtered =
-        (
-
-            result.data
-            || []
-
-        )
-
-        .filter(
+        data.filter(
             function (row) {
 
 
@@ -1102,12 +1119,9 @@ async function paparDuty() {
 
                 const nama =
                     (
-
                         anggota?.nama
                         || ""
-
                     )
-
                     .toLowerCase();
 
 
@@ -1187,13 +1201,11 @@ async function paparDuty() {
 
                 </td>
 
-
                 <td>
 
                     ${row.no_skb || ""}
 
                 </td>
-
 
                 <td>
 
@@ -1201,13 +1213,11 @@ async function paparDuty() {
 
                 </td>
 
-
                 <td>
 
                     ${anggota?.nama || ""}
 
                 </td>
-
 
                 <td>
 
@@ -1215,13 +1225,11 @@ async function paparDuty() {
 
                 </td>
 
-
                 <td>
 
                     ${row.pos || ""}
 
                 </td>
-
 
                 <td>
 
@@ -1233,13 +1241,11 @@ async function paparDuty() {
 
                 </td>
 
-
                 <td>
 
                     ${row.waktu_tugasan || ""}
 
                 </td>
-
 
                 <td>
 
@@ -1247,13 +1253,11 @@ async function paparDuty() {
 
                 </td>
 
-
                 <td>
 
                     ${row.jam_klm || 0}
 
                 </td>
-
 
                 <td>
 
@@ -1425,7 +1429,7 @@ async function padamDuty(
 
 
 // =====================================================
-// PAPAR MESEJ
+// MESEJ
 // =====================================================
 
 function paparMesej(
