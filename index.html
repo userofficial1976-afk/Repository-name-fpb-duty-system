@@ -1,141 +1,305 @@
 <!DOCTYPE html>
-
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sistem Pengurusan Duty Anggaran</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>FPB Duty System</title>
+
 
 <style>
-.logo {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    vertical-align: middle;
-    margin-right: 10px;
 
-    border: 2px solid white;
-    border-radius: 8px;
-    padding: 3px;
-}
 * {
+
     box-sizing: border-box;
+
     font-family: Arial, sans-serif;
+
 }
+
 
 body {
+
     margin: 0;
+
     background: #f1f5f9;
+
     color: #1e293b;
+
 }
 
-.header {
+
+header {
+
     background: #0f172a;
+
     color: white;
-    padding: 25px;
+
+    padding: 20px 25px;
+
 }
 
-.header h1 {
+
+.header-content {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.logo {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: contain;
+
+    border: 2px solid white;
+
+    border-radius: 8px;
+
+    padding: 3px;
+
+}
+
+
+header h1 {
+
     margin: 0;
-    font-size: 28px;
+
+    font-size: 26px;
+
 }
 
-.header p {
-    margin: 6px 0 0;
+
+header p {
+
+    margin: 5px 0 0;
+
     color: #cbd5e1;
+
 }
+
 
 .container {
+
     max-width: 1400px;
+
     margin: auto;
+
     padding: 25px;
+
 }
 
-.menu-grid {
+
+.menu {
+
     display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
 
-    gap: 20px;
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
 }
 
-.menu-card {
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.08);
 
-    text-decoration: none;
-    color: #1e293b;
-
-    transition:
-        0.2s;
+.menu a {
 
     display: block;
-}
 
-.menu-card:hover {
+    text-decoration: none;
 
-    transform: translateY(-5px);
+    background: white;
+
+    color: #1e293b;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-weight: bold;
 
     box-shadow:
-        0 8px 20px
-        rgba(0,0,0,0.15);
+        0 3px 10px
+        rgba(0,0,0,0.08);
+
+    transition: 0.2s;
 
 }
 
-.menu-icon {
-    font-size: 40px;
-    margin-bottom: 15px;
+
+.menu a:hover {
+
+    transform: translateY(-3px);
+
+    background: #eff6ff;
+
 }
 
-.menu-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
 
-.menu-description {
-    color: #64748b;
-    font-size: 14px;
-}
+.card {
 
-.dashboard-title {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
 
     margin-bottom: 20px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,0.08);
+
+}
+
+
+.card h2 {
+
+    margin-top: 0;
 
     color: #0f172a;
 
 }
 
-.footer {
 
-    text-align: center;
+.stats {
 
-    padding: 25px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 20px;
+
+}
+
+
+.stat-card {
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    border-left: 5px solid #2563eb;
+
+}
+
+
+.stat-card h3 {
+
+    margin: 0;
+
+    font-size: 15px;
 
     color: #64748b;
 
-    font-size: 13px;
+}
+
+
+.stat-card strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    margin-top: 10px;
+
+    color: #0f172a;
 
 }
+
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+th,
+
+td {
+
+    padding: 12px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    text-align: left;
+
+}
+
+
+th {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+tr:hover {
+
+    background: #f8fafc;
+
+}
+
 
 @media(max-width:600px) {
 
     .container {
 
-        padding: 15px;
+        padding: 12px;
 
     }
 
-    .header h1 {
 
-        font-size: 22px;
+    header h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .logo {
+
+        width: 45px;
+
+        height: 45px;
 
     }
 
@@ -145,189 +309,240 @@ body {
 
 </head>
 
+
 <body>
 
-<div class="header">
 
-<h1>  <img src="logo.png" class="logo"> Sistem Pengurusan Duty Anggaran</h1>
+<header>
+
+<div class="header-content">
+
+<img
+src="logo.png"
+class="logo"
+alt="Logo FPB"
+>
+
+
+<div>
+
+<h1>
+FPB DUTY SYSTEM
+</h1>
 
 <p>
-    FGVSSSB Wilayah Terengganu
+Sistem Pengurusan Jadual Duty Anggota
 </p>
 
 </div>
 
+</div>
+
+</header>
+
+
 <div class="container">
 
-<h2 class="dashboard-title">
 
-    🏠 Dashboard
+<!-- MENU UTAMA -->
 
+<div class="menu">
+
+<a href="index.html">
+
+🏠<br>
+
+Dashboard
+
+</a>
+
+
+<a href="anggota.html">
+
+👥<br>
+
+Senarai Anggota
+
+</a>
+
+
+<a href="jadual-duty.html">
+
+📅<br>
+
+Jadual Duty
+
+</a>
+
+
+<a href="kod-duty.html">
+
+🏷️<br>
+
+Kod Duty
+
+</a>
+
+
+<a href="#">
+
+📊<br>
+
+Laporan
+
+</a>
+
+
+<a href="#">
+
+⚙️<br>
+
+Tetapan
+
+</a>
+
+</div>
+
+
+<!-- STATISTIK -->
+
+<div class="card">
+
+<h2>
+📊 Statistik Sistem
 </h2>
 
 
-<div class="menu-grid">
+<div class="stats">
 
 
-    <!-- ANGGOTA -->
+<div class="stat-card">
 
-    <a
-        href="anggota.html"
-        class="menu-card"
-    >
+<h3>
+Jumlah Anggota Aktif
+</h3>
 
-        <div class="menu-icon">
+<strong
+id="jumlahAnggota"
+>
+0
+</strong>
 
-            👥
+</div>
 
-        </div>
 
+<div class="stat-card">
 
-        <div class="menu-title">
+<h3>
+Jumlah Duty Hari Ini
+</h3>
 
-            Senarai Anggota
+<strong
+id="jumlahDutyHariIni"
+>
+0
+</strong>
 
-        </div>
+</div>
 
 
-        <div class="menu-description">
+<div class="stat-card">
 
-            Lihat senarai dan maklumat anggota.
+<h3>
+Jumlah Jam Kerja Hari Ini
+</h3>
 
-        </div>
+<strong
+id="jumlahJamKerja"
+>
+0
+</strong>
 
-    </a>
+</div>
 
 
-    <!-- JADUAL DUTY -->
+<div class="stat-card">
 
-    <a
-        href="jadual-duty.html"
-        class="menu-card"
-    >
+<h3>
+Jumlah Jam KLM Hari Ini
+</h3>
 
-        <div class="menu-icon">
+<strong
+id="jumlahJamKlm"
+>
+0
+</strong>
 
-            📅
-
-        </div>
-
-
-        <div class="menu-title">
-
-            Jadual Duty
-
-        </div>
-
-
-        <div class="menu-description">
-
-            Masukkan dan lihat jadual duty anggota.
-
-        </div>
-
-    </a>
-
-
-    <!-- KOD DUTY -->
-
-    <a
-        href="kod-duty.html"
-        class="menu-card"
-    >
-
-        <div class="menu-icon">
-
-            🏷️
-
-        </div>
-
-
-        <div class="menu-title">
-
-            Kod Duty
-
-        </div>
-
-
-        <div class="menu-description">
-
-            Lihat senarai kod duty dan waktu tugasan.
-
-        </div>
-
-    </a>
-
-
-    <!-- LAPORAN -->
-
-    <a
-        href="laporan.html"
-        class="menu-card"
-    >
-
-        <div class="menu-icon">
-
-            📊
-
-        </div>
-
-
-        <div class="menu-title">
-
-            Laporan
-
-        </div>
-
-
-        <div class="menu-description">
-
-            Analisis dan laporan duty anggota.
-
-        </div>
-
-    </a>
-
-
-    <!-- TETAPAN -->
-
-    <a
-        href="tetapan.html"
-        class="menu-card"
-    >
-
-        <div class="menu-icon">
-
-            ⚙️
-
-        </div>
-
-
-        <div class="menu-title">
-
-            Tetapan
-
-        </div>
-
-
-        <div class="menu-description">
-
-            Tetapan sistem FPB Duty.
-
-        </div>
-
-    </a>
+</div>
 
 
 </div>
 
 </div>
 
-<div class="footer">
 
-FPB Duty System © 2026
+<!-- DUTY MENGIKUT POS -->
+
+<div class="card">
+
+<h2>
+📍 Duty Mengikut Pos
+</h2>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Pos
+</th>
+
+<th>
+Jumlah Duty
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="senaraiPos"
+>
+
+<tr>
+
+<td colspan="2">
+
+Memuatkan data...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
+
+</div>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="js/dashboard.js"></script>
+
 
 </body>
 
