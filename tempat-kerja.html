@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kod Tempat Kerja - FPB Duty System</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+header {
+    background: #0f172a;
+    color: white;
+    padding: 20px 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.btn-dashboard {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+h2 {
+    margin-top: 0;
+    color: #0f172a;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 11px;
+    border-radius: 7px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.btn-danger {
+    background: #dc2626;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-edit {
+    background: #f59e0b;
+    margin-bottom: 5px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #0f172a;
+    color: white;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-weight: bold;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+@media(max-width:600px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏢 KOD TEMPAT KERJA</h1>
+
+<p>Pengurusan Kod dan Tempat Kerja</p>
+
+<a
+href="index.html"
+class="btn-dashboard"
+>
+🏠 Kembali ke Dashboard
+</a>
+
+</header>
+
+<div class="container">
+
+<!-- ============================= -->
+<!-- BORANG TAMBAH -->
+<!-- ============================= -->
+
+<div class="card">
+
+<h2>➕ Tambah Kod Tempat Kerja</h2>
+
+<div id="mesej"></div>
+
+<div class="grid">
+
+<div>
+
+<label>Kod Tempat Kerja</label>
+
+<input
+type="text"
+id="kodTempatKerja"
+placeholder="Contoh: W"
+maxlength="20"
+>
+
+</div>
+
+<div>
+
+<label>Nama Tempat Kerja</label>
+
+<input
+type="text"
+id="namaTempatKerja"
+placeholder="Contoh: F102-01(SS)Kilang Sawit Jerangau"
+>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="simpanTempatKerja()">
+
+💾 SIMPAN
+
+</button>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- SENARAI -->
+<!-- ============================= -->
+
+<div class="card">
+
+<h2>📋 Senarai Kod Tempat Kerja</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Bil.</th>
+
+<th>Kod</th>
+
+<th>Tempat Kerja</th>
+
+<th>Status</th>
+
+<th>Dicipta</th>
+
+<th>Tindakan</th>
+
+</tr>
+
+</thead>
+
+<tbody id="senaraiTempatKerja">
+
+<tr>
+
+<td colspan="6">
+
+Memuatkan data...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="js/tempat-kerja.js"></script>
+
+</body>
+
+</html>
