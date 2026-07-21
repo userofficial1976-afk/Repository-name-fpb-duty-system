@@ -1,8 +1,3 @@
-```javascript
-// ==========================================
-// SUPABASE CONNECTION
-// ==========================================
-
 const SUPABASE_URL =
 "https://nlwrrrwkjpktrifxeymw.supabase.co";
 
@@ -14,4 +9,3 @@ supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-```
