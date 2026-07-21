@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ms">
 
@@ -43,24 +44,15 @@ header p {
     padding: 20px;
 }
 
-.top-menu {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.top-menu a {
-    text-decoration: none;
-    background: #334155;
+.btn-dashboard {
+    display: inline-block;
+    background: #2563eb;
     color: white;
-    padding: 11px 18px;
+    text-decoration: none;
+    padding: 10px 16px;
     border-radius: 7px;
     font-weight: bold;
-}
-
-.top-menu a:hover {
-    background: #1e293b;
+    margin-top: 15px;
 }
 
 .card {
@@ -116,8 +108,6 @@ button:hover {
 
 .btn-danger {
     background: #dc2626;
-    width: auto;
-    padding: 8px 12px;
 }
 
 .btn-danger:hover {
@@ -205,11 +195,6 @@ tr:hover {
     font-weight: bold;
 }
 
-.loading {
-    text-align: center;
-    padding: 20px;
-}
-
 @media(max-width:600px) {
 
     header h1 {
@@ -230,34 +215,20 @@ tr:hover {
 
 <header>
 
-<h1>FPB DUTY SYSTEM</h1>
+<h1>📅 JADUAL DUTY</h1>
 
-<p>Jadual Duty Anggota</p>
+<p>Sistem Pengurusan Jadual Duty Anggota</p>
+
+<a
+href="index.html"
+class="btn-dashboard"
+>
+🏠 Kembali ke Dashboard
+</a>
 
 </header>
 
 <div class="container">
-
-<div class="top-menu">
-
-<a href="index.html">
-🏠 Dashboard
-</a>
-
-<a href="anggota.html">
-👥 Senarai Anggota
-</a>
-
-<a href="kod-duty.html">
-🏷️ Kod Duty
-</a>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- MASUKAN DUTY -->
-<!-- ========================= -->
 
 <div class="card">
 
@@ -278,7 +249,6 @@ id="tarikh"
 
 </div>
 
-
 <div>
 
 <label>Anggota</label>
@@ -286,15 +256,12 @@ id="tarikh"
 <select id="anggota">
 
 <option value="">
-
--- Memuatkan anggota... --
-
+-- Pilih Anggota --
 </option>
 
 </select>
 
 </div>
-
 
 <div>
 
@@ -303,15 +270,12 @@ id="tarikh"
 <select id="kodDuty">
 
 <option value="">
-
--- Memuatkan kod duty... --
-
+-- Pilih Kod Duty --
 </option>
 
 </select>
 
 </div>
-
 
 <div>
 
@@ -327,11 +291,7 @@ placeholder="Nama Ketua Pos"
 
 </div>
 
-
 <br>
-
-
-<!-- INFO ANGGOTA -->
 
 <div
 class="info-box"
@@ -344,62 +304,40 @@ style="display:none;"
 <div class="info-grid">
 
 <div class="info-item">
-
 <small>No. SKB</small>
-
 <strong id="infoNoSkb">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>No. Anggota</small>
-
 <strong id="infoNoAnggota">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Nama</small>
-
 <strong id="infoNama">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Pangkat</small>
-
 <strong id="infoPangkat">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Pos</small>
-
 <strong id="infoPos">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Unit</small>
-
 <strong id="infoUnit">-</strong>
-
 </div>
 
 </div>
 
 </div>
-
 
 <br>
-
-
-<!-- INFO DUTY -->
 
 <div
 class="info-box"
@@ -412,57 +350,38 @@ style="display:none;"
 <div class="info-grid">
 
 <div class="info-item">
-
 <small>Kod Duty</small>
-
 <strong id="infoKod">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Waktu Tugasan</small>
-
 <strong id="infoWaktu">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Jam Kerja</small>
-
 <strong id="infoJamKerja">-</strong>
-
 </div>
 
 <div class="info-item">
-
 <small>Jam KLM</small>
-
 <strong id="infoJamKlm">-</strong>
-
 </div>
 
 </div>
 
 </div>
-
 
 <br>
 
-
-<button onclick="simpanDuty()">
-
+<button
+onclick="simpanDuty()"
+>
 💾 SIMPAN DUTY
-
 </button>
 
 </div>
-
-
-<!-- ========================= -->
-<!-- SENARAI DUTY -->
-<!-- ========================= -->
 
 <div class="card">
 
@@ -477,27 +396,27 @@ style="display:none;"
 <input
 type="date"
 id="filterTarikh"
+onchange="paparDuty()"
 >
 
 </div>
-
 
 <div>
 
 <label>Pilih Pos</label>
 
-<select id="filterPos">
+<select
+id="filterPos"
+onchange="paparDuty()"
+>
 
 <option value="">
-
 Semua Pos
-
 </option>
 
 </select>
 
 </div>
-
 
 <div>
 
@@ -507,15 +426,14 @@ Semua Pos
 type="text"
 id="cariNama"
 placeholder="Cari nama anggota..."
+onkeyup="paparDuty()"
 >
 
 </div>
 
 </div>
 
-
 <br>
-
 
 <div class="table-wrapper">
 
@@ -526,27 +444,15 @@ placeholder="Cari nama anggota..."
 <tr>
 
 <th>Tarikh</th>
-
 <th>No. SKB</th>
-
 <th>No. Anggota</th>
-
 <th>Nama</th>
-
 <th>Pangkat</th>
-
 <th>Pos</th>
-
 <th>Kod Duty</th>
-
 <th>Waktu</th>
-
 <th>Jam Kerja</th>
-
 <th>Jam KLM</th>
-
-<th>Dikemaskini Oleh</th>
-
 <th>Tindakan</th>
 
 </tr>
@@ -557,13 +463,9 @@ placeholder="Cari nama anggota..."
 
 <tr>
 
-<td colspan="12">
+<td colspan="11">
 
-<div class="loading">
-
-Memuatkan data...
-
-</div>
+Sila pilih tarikh
 
 </td>
 
@@ -579,9 +481,6 @@ Memuatkan data...
 
 </div>
 
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase.js"></script>
@@ -591,3 +490,4 @@ Memuatkan data...
 </body>
 
 </html>
+```
