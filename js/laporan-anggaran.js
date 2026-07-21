@@ -1,9 +1,8 @@
 // =====================================================
-// DATA
+// LAPORAN ANGGARAN DUTY
 // =====================================================
 
 let semuaAnggota = [];
-
 let semuaDuty = [];
 
 
@@ -11,37 +10,34 @@ let semuaDuty = [];
 // APABILA HALAMAN DIBUKA
 // =====================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
+document.addEventListener("DOMContentLoaded", async function () {
 
-        console.log(
-            "LAPORAN ANGGARAN BERJAYA DIMUAT"
-        );
+    console.log("LAPORAN ANGGARAN BERJAYA DIMUAT");
 
-        isiTahun();
+    isiTahun();
 
-        setBulanSemasa();
+    setBulanSemasa();
 
-        await muatAnggota();
+    await muatAnggota();
 
-        await muatPos();
+    await muatPos();
 
-    }
-);
+});
 
 
 // =====================================================
-// ISI TAHUN
+// ISI SENARAI TAHUN
 // =====================================================
 
 function isiTahun() {
 
-    const select =
+    const selectTahun =
         document.getElementById("tahun");
 
     const tahunSemasa =
         new Date().getFullYear();
+
+    selectTahun.innerHTML = "";
 
     for (
         let tahun = tahunSemasa - 2;
@@ -67,7 +63,7 @@ function isiTahun() {
 
         }
 
-        select.appendChild(option);
+        selectTahun.appendChild(option);
 
     }
 
@@ -91,7 +87,7 @@ function setBulanSemasa() {
 
 
 // =====================================================
-// MUAT ANGGOTA
+// MUAT DATA ANGGOTA
 // =====================================================
 
 async function muatAnggota() {
@@ -109,19 +105,23 @@ async function muatAnggota() {
             pos,
             unit,
             kawasan,
-            nama_ketua_unit,
+            ketua_unit,
             ketua_pos,
             status
         `)
         .eq("status", "Aktif")
-        .order("nama", {
-            ascending: true
-        });
+        .order(
+            "nama",
+            {
+                ascending: true
+            }
+        );
+
 
     if (error) {
 
         console.error(
-            "RALAT ANGGOTA:",
+            "RALAT DATA ANGGOTA:",
             error
         );
 
@@ -133,6 +133,7 @@ async function muatAnggota() {
         return;
 
     }
+
 
     semuaAnggota =
         data || [];
@@ -163,18 +164,25 @@ async function muatPos() {
             )
         ];
 
+
     posUnik.sort();
 
-    const select =
-        document.getElementById("pos");
 
-    select.innerHTML = `
+    const selectPos =
+        document
+            .getElementById("pos");
+
+
+    selectPos.innerHTML = `
 
         <option value="">
+
             -- Pilih Pos --
+
         </option>
 
     `;
+
 
     posUnik.forEach(
         function (pos) {
@@ -188,7 +196,7 @@ async function muatPos() {
             option.textContent =
                 pos;
 
-            select.appendChild(option);
+            selectPos.appendChild(option);
 
         }
     );
@@ -209,6 +217,7 @@ async function janaLaporan() {
                 .value
         );
 
+
     const tahun =
         Number(
             document
@@ -216,10 +225,12 @@ async function janaLaporan() {
                 .value
         );
 
+
     const pos =
         document
             .getElementById("pos")
             .value;
+
 
     if (!pos) {
 
@@ -232,18 +243,52 @@ async function janaLaporan() {
     }
 
 
+    const tarikhMula =
+
+        tahun
+        + "-"
+        + String(bulan).padStart(2, "0")
+        + "-01";
+
+
+    const tarikhAkhir =
+
+        tahun
+        + "-"
+        + String(bulan).padStart(2, "0")
+        + "-"
+        + new Date(
+            tahun,
+            bulan,
+            0
+        ).getDate();
+
+
     const {
         data,
         error
     } = await supabaseClient
         .from("jadual_duty")
         .select("*")
-        .eq("bulan", bulan)
-        .eq("tahun", tahun)
-        .eq("nama_pos_asal", pos)
-        .order("tarikh", {
-            ascending: true
-        });
+        .gte(
+            "tarikh",
+            tarikhMula
+        )
+        .lte(
+            "tarikh",
+            tarikhAkhir
+        )
+        .eq(
+            "pos",
+            pos
+        )
+        .order(
+            "tarikh",
+            {
+                ascending: true
+            }
+        );
+
 
     if (error) {
 
@@ -260,6 +305,7 @@ async function janaLaporan() {
         return;
 
     }
+
 
     semuaDuty =
         data || [];
@@ -295,11 +341,17 @@ async function janaLaporan() {
 
 
     paparLaporan(
+
         bulan,
+
         tahun,
+
         pos,
+
         anggotaPos,
+
         semuaDuty
+
     );
 
 }
@@ -312,9 +364,13 @@ async function janaLaporan() {
 function paparLaporan(
 
     bulan,
+
     tahun,
+
     pos,
+
     anggotaPos,
+
     semuaDuty
 
 ) {
@@ -324,17 +380,29 @@ function paparLaporan(
         [
 
             "",
+
             "JANUARI",
+
             "FEBRUARI",
+
             "MAC",
+
             "APRIL",
+
             "MEI",
+
             "JUN",
+
             "JULAI",
+
             "OGOS",
+
             "SEPTEMBER",
+
             "OKTOBER",
+
             "NOVEMBER",
+
             "DISEMBER"
 
         ][bulan];
@@ -355,7 +423,7 @@ function paparLaporan(
 
 
     const ketuaUnit =
-        anggotaPertama.nama_ketua_unit
+        anggotaPertama.ketua_unit
         || "-";
 
 
@@ -368,11 +436,12 @@ function paparLaporan(
 
         <div class="info-header">
 
+
             <h2>
 
                 ANGGARAN DUTY
 
-                ${pos}
+                ${escapeHTML(pos)}
 
                 BULAN
 
@@ -385,14 +454,20 @@ function paparLaporan(
 
             <table>
 
+
                 <tr>
 
                     <td>
+
                         KAWASAN
+
                     </td>
 
+
                     <td>
-                        ${kawasan}
+
+                        ${escapeHTML(kawasan)}
+
                     </td>
 
                 </tr>
@@ -401,24 +476,16 @@ function paparLaporan(
                 <tr>
 
                     <td>
+
                         UNIT
+
                     </td>
 
-                    <td>
-                        ${unit}
-                    </td>
-
-                </tr>
-
-
-                <tr>
 
                     <td>
-                        NAMA POS
-                    </td>
 
-                    <td>
-                        ${pos}
+                        ${escapeHTML(unit)}
+
                     </td>
 
                 </tr>
@@ -427,11 +494,34 @@ function paparLaporan(
                 <tr>
 
                     <td>
+
+                        NAMA POS ASAL
+
+                    </td>
+
+
+                    <td>
+
+                        ${escapeHTML(pos)}
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+
                         NAMA KETUA UNIT
+
                     </td>
 
+
                     <td>
-                        ${ketuaUnit}
+
+                        ${escapeHTML(ketuaUnit)}
+
                     </td>
 
                 </tr>
@@ -440,40 +530,47 @@ function paparLaporan(
                 <tr>
 
                     <td>
+
                         NAMA KETUA POS
+
                     </td>
 
+
                     <td>
-                        ${ketuaPos}
+
+                        ${escapeHTML(ketuaPos)}
+
                     </td>
 
                 </tr>
+
 
             </table>
+
 
         </div>
 
 
         <div class="table-wrapper">
 
+
         <table class="jadual-bulanan">
+
 
             <thead>
 
+
                 <tr>
 
-                    <th
-                        rowspan="2"
-                    >
+
+                    <th rowspan="2">
 
                         TARIKH
 
                     </th>
 
 
-                    <th
-                        rowspan="2"
-                    >
+                    <th rowspan="2">
 
                         HARI
 
@@ -483,124 +580,220 @@ function paparLaporan(
 
 
     anggotaPos.forEach(
+
         function (anggota) {
+
 
             html += `
 
+
                 <th
-                    colspan="4"
+
+                    colspan="5"
+
                     class="nama-anggota"
+
                 >
 
-                    ${anggota.nama}
+
+                    ${escapeHTML(
+
+                        anggota.nama
+
+                    )}
+
 
                     <br>
 
+
                     <small>
 
-                        ${anggota.no_anggota}
+
+                        ${escapeHTML(
+
+                            anggota.no_anggota
+
+                        )}
+
 
                     </small>
 
+
                 </th>
+
 
             `;
 
         }
+
     );
 
 
     html += `
+
 
                 </tr>
 
 
                 <tr>
 
+
     `;
 
 
     anggotaPos.forEach(
+
         function () {
+
 
             html += `
 
-                <th>
-                    KOD
-                </th>
 
                 <th>
-                    JAM
+
+                    KOD WAKTU
+
                 </th>
 
-                <th>
-                    TEMPAT
-                </th>
 
                 <th>
-                    KLM
+
+                    JAM KERJA
+
                 </th>
+
+
+                <th>
+
+                    KOD TEMPAT
+
+                </th>
+
+
+                <th>
+
+                    JAM KLM
+
+                </th>
+
+
+                <th>
+
+                    OFF / AM
+
+                </th>
+
 
             `;
 
         }
+
     );
 
 
     html += `
 
+
                 </tr>
+
 
             </thead>
 
+
             <tbody>
+
 
     `;
 
 
     const jumlahHari =
+
         new Date(
+
             tahun,
+
             bulan,
+
             0
+
         ).getDate();
 
 
     for (
+
         let hari = 1;
+
         hari <= jumlahHari;
+
         hari++
+
     ) {
 
 
         const tarikh =
 
             tahun
+
             + "-"
-            + String(bulan).padStart(2, "0")
+
+            + String(
+
+                bulan
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            )
+
             + "-"
-            + String(hari).padStart(2, "0");
+
+            + String(
+
+                hari
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            );
 
 
         const date =
+
             new Date(
+
                 tarikh
+
                 + "T00:00:00"
+
             );
 
 
         const namaHari =
+
             date.toLocaleDateString(
+
                 "ms-MY",
+
                 {
+
                     weekday: "long"
+
                 }
+
             );
 
 
         html += `
 
+
             <tr>
+
 
                 <td class="tarikh">
 
@@ -615,130 +808,309 @@ function paparLaporan(
 
                 </td>
 
+
         `;
 
 
         anggotaPos.forEach(
+
             function (anggota) {
 
 
                 const duty =
+
                     semuaDuty.find(
+
                         function (row) {
+
 
                             return (
 
                                 String(
+
                                     row.no_skb
+
                                 )
+
                                 ===
+
                                 String(
+
                                     anggota.no_skb
+
                                 )
+
 
                                 &&
 
+
                                 row.tarikh
+
                                 ===
+
                                 tarikh
 
                             );
 
                         }
+
                     );
 
 
                 if (duty) {
 
 
-                    const kod =
+                    const kodWaktu =
+
                         duty.kod_waktu_kerja
-                        || "-";
+
+                        ||
+
+                        duty.kod_dutyy
+
+                        ||
+
+                        "-";
 
 
-                    const jam =
-                        duty.jam_offday_bertugas
-                        || duty.jam_cutiam_bertugas
-                        || 0;
+                    const jamKerja =
+
+                        duty.jam_kerja
+
+                        ||
+
+                        0;
 
 
-                    const tempat =
+                    const kodTempat =
+
                         duty.kod_tempat_kerja
-                        || "-";
+
+                        ||
+
+                        "-";
 
 
-                    const klm =
+                    const jamKLM =
+
                         duty.jam_klm
-                        || 0;
+
+                        ||
+
+                        0;
+
+
+                    const jamOff =
+
+                        duty.jam_offday_bertugas
+
+                        ||
+
+                        0;
+
+
+                    const jamAM =
+
+                        duty.jam_cutiam_bertugas
+
+                        ||
+
+                        0;
+
+
+                    let offAM = "";
+
+
+                    if (
+
+                        Number(
+
+                            jamOff
+
+                        )
+
+                        > 0
+
+                    ) {
+
+
+                        offAM =
+
+                            "OFF "
+
+                            + jamOff;
+
+                    }
+
+
+                    if (
+
+                        Number(
+
+                            jamAM
+
+                        )
+
+                        > 0
+
+                    ) {
+
+
+                        offAM +=
+
+
+                            (
+
+                                offAM
+
+                                ?
+
+                                " / "
+
+                                :
+
+                                ""
+
+                            )
+
+
+                            + "AM "
+
+                            + jamAM;
+
+                    }
+
+
+                    if (
+
+                        !offAM
+
+                    ) {
+
+
+                        offAM =
+
+                            "-";
+
+                    }
 
 
                     html += `
 
-                        <td
-                            class="kod"
-                        >
 
-                            ${kod}
+                        <td class="kod">
+
+
+                            ${escapeHTML(
+
+                                kodWaktu
+
+                            )}
+
 
                         </td>
 
 
                         <td>
 
-                            ${jam}
+
+                            ${jamKerja}
+
 
                         </td>
 
 
                         <td>
 
-                            ${tempat}
+
+                            ${escapeHTML(
+
+                                kodTempat
+
+                            )}
+
 
                         </td>
 
 
                         <td>
 
-                            ${klm}
+
+                            ${jamKLM}
+
 
                         </td>
+
+
+                        <td>
+
+
+                            ${offAM}
+
+
+                        </td>
+
 
                     `;
 
                 }
+
 
                 else {
 
 
                     html += `
 
+
                         <td>
+
                             -
+
                         </td>
 
+
                         <td>
+
                             0
+
                         </td>
 
+
                         <td>
+
                             -
+
                         </td>
 
+
                         <td>
+
                             0
+
                         </td>
+
+
+                        <td>
+
+                            -
+
+                        </td>
+
 
                     `;
 
                 }
 
             }
+
         );
 
 
         html += `
 
+
             </tr>
+
 
         `;
 
@@ -747,11 +1119,15 @@ function paparLaporan(
 
     html += `
 
+
             </tbody>
+
 
         </table>
 
+
         </div>
+
 
     `;
 
@@ -762,6 +1138,7 @@ function paparLaporan(
 
 
     html += `
+
 
         <br>
 
@@ -775,123 +1152,216 @@ function paparLaporan(
 
         <div class="table-wrapper">
 
-        <table>
+
+        <table class="summary-table">
+
 
             <thead>
 
+
                 <tr>
 
+
                     <th>
+
                         BIL
+
                     </th>
 
+
                     <th>
+
+                        NO. SKB
+
+                    </th>
+
+
+                    <th>
+
                         NO. ANGGOTA
+
                     </th>
 
+
                     <th>
+
                         NAMA
+
                     </th>
 
+
                     <th>
+
                         JUMLAH DUTY
+
                     </th>
 
+
                     <th>
+
+                        JUMLAH JAM KERJA
+
+                    </th>
+
+
+                    <th>
+
                         JUMLAH JAM KLM
+
                     </th>
 
+
                     <th>
+
                         JUMLAH OFFDAY
+
                     </th>
 
+
                     <th>
+
                         JUMLAH CUTI AM
+
                     </th>
+
 
                 </tr>
 
+
             </thead>
 
+
             <tbody>
+
 
     `;
 
 
     anggotaPos.forEach(
-        function (anggota, index) {
+
+        function (
+
+            anggota,
+
+            index
+
+        ) {
 
 
             const rekodAnggota =
+
                 semuaDuty.filter(
+
                     function (row) {
+
 
                         return (
 
                             String(
+
                                 row.no_skb
+
                             )
+
                             ===
+
                             String(
+
                                 anggota.no_skb
+
                             )
 
                         );
 
                     }
+
                 );
 
 
-            let jumlahDuty =
-                0;
+            let jumlahDuty = 0;
 
 
-            let jumlahKlm =
-                0;
+            let jumlahJamKerja = 0;
 
 
-            let jumlahOff =
-                0;
+            let jumlahKLM = 0;
 
 
-            let jumlahAm =
-                0;
+            let jumlahOff = 0;
+
+
+            let jumlahAM = 0;
 
 
             rekodAnggota.forEach(
+
                 function (row) {
 
 
                     jumlahDuty++;
 
 
-                    jumlahKlm +=
+                    jumlahJamKerja +=
+
                         Number(
+
+                            row.jam_kerja
+
+                            ||
+
+                            0
+
+                        );
+
+
+                    jumlahKLM +=
+
+                        Number(
+
                             row.jam_klm
-                            || 0
+
+                            ||
+
+                            0
+
                         );
 
 
                     jumlahOff +=
+
                         Number(
+
                             row.jam_offday_bertugas
-                            || 0
+
+                            ||
+
+                            0
+
                         );
 
 
-                    jumlahAm +=
+                    jumlahAM +=
+
                         Number(
+
                             row.jam_cutiam_bertugas
-                            || 0
+
+                            ||
+
+                            0
+
                         );
 
                 }
+
             );
 
 
             html += `
 
+
                 <tr>
+
 
                     <td>
 
@@ -902,14 +1372,33 @@ function paparLaporan(
 
                     <td>
 
-                        ${anggota.no_anggota}
+                        ${escapeHTML(
+
+                            anggota.no_skb
+
+                        )}
 
                     </td>
 
 
                     <td>
 
-                        ${anggota.nama}
+                        ${escapeHTML(
+
+                            anggota.no_anggota
+
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${escapeHTML(
+
+                            anggota.nama
+
+                        )}
 
                     </td>
 
@@ -923,7 +1412,14 @@ function paparLaporan(
 
                     <td>
 
-                        ${jumlahKlm}
+                        ${jumlahJamKerja}
+
+                    </td>
+
+
+                    <td>
+
+                        ${jumlahKLM}
 
                     </td>
 
@@ -937,31 +1433,114 @@ function paparLaporan(
 
                     <td>
 
-                        ${jumlahAm}
+                        ${jumlahAM}
 
                     </td>
 
+
                 </tr>
+
 
             `;
 
         }
+
     );
 
 
     html += `
 
+
             </tbody>
+
 
         </table>
 
+
         </div>
+
 
     `;
 
 
     document
-        .getElementById("laporan")
-        .innerHTML = html;
+
+        .getElementById(
+
+            "laporan"
+
+        )
+
+        .innerHTML =
+
+        html;
+
+}
+
+
+// =====================================================
+// ESCAPE HTML
+// =====================================================
+
+function escapeHTML(value) {
+
+
+    if (
+
+        value === null
+
+        ||
+
+        value === undefined
+
+    ) {
+
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+
+            /&/g,
+
+            "&amp;"
+
+        )
+
+        .replace(
+
+            /</g,
+
+            "&lt;"
+
+        )
+
+        .replace(
+
+            />/g,
+
+            "&gt;"
+
+        )
+
+        .replace(
+
+            /"/g,
+
+            "&quot;"
+
+        )
+
+        .replace(
+
+            /'/g,
+
+            "&#039;"
+
+        );
 
 }
