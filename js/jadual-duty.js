@@ -44,6 +44,7 @@ async function muatAnggota() {
             pangkat,
             pos,
             unit,
+            ketua_pos,
             status
         `)
         .eq("status", "Aktif")
@@ -217,6 +218,12 @@ document
                 .getElementById("infoAnggota")
                 .style.display = "none";
 
+
+            document
+                .getElementById("dikemaskiniOleh")
+                .value = "";
+
+
             return;
         }
 
@@ -260,6 +267,14 @@ document
             .getElementById("infoUnit")
             .textContent =
             anggota.unit || "-";
+
+
+        // AUTO ISI NAMA KETUA POS
+
+        document
+            .getElementById("dikemaskiniOleh")
+            .value =
+            anggota.ketua_pos || "";
 
     });
 
@@ -354,12 +369,6 @@ async function simpanDuty() {
             .value;
 
 
-    const dikemaskiniOleh =
-        document
-            .getElementById("dikemaskiniOleh")
-            .value;
-
-
     if (
         !tarikh
         ||
@@ -446,7 +455,10 @@ async function simpanDuty() {
                     anggota.pos,
 
                 dikemaskini_oleh:
-                    dikemaskiniOleh
+                    anggota.ketua_pos,
+
+                Ketua_Pos:
+                    anggota.ketua_pos
 
             });
 
