@@ -157,6 +157,27 @@ button:hover {
     border-radius: 8px;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px;
+    border-radius: 7px;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.checkbox-container span {
+    font-weight: bold;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
@@ -204,6 +225,24 @@ tr:hover {
     display: inline-block;
     background: #dbeafe;
     color: #1d4ed8;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.badge-ya {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.badge-tidak {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #64748b;
     padding: 5px 8px;
     border-radius: 5px;
     font-weight: bold;
@@ -471,21 +510,37 @@ readonly
 <br>
 
 
+<!-- =====================================================
+     OFFDAY
+===================================================== -->
+
 <div class="offday-box">
 
 <h3>🟠 Offday Bertugas</h3>
 
 <div class="grid">
 
+
 <div>
 
 <label>Hari Offday Bertugas</label>
 
-<input
-type="text"
-id="hariOffday"
-placeholder="Bilangan Hari"
+<label
+class="checkbox-container"
 >
+
+<input
+type="checkbox"
+id="hariOffday"
+>
+
+<span>
+
+Ya, bertugas pada Offday
+
+</span>
+
+</label>
 
 </div>
 
@@ -504,6 +559,7 @@ value="0"
 
 </div>
 
+
 </div>
 
 </div>
@@ -512,22 +568,37 @@ value="0"
 <br>
 
 
+<!-- =====================================================
+     CUTI AM
+===================================================== -->
+
 <div class="offday-box">
 
 <h3>🔴 Cuti Am Bertugas</h3>
 
 <div class="grid">
 
+
 <div>
 
 <label>Hari Cuti Am Bertugas</label>
 
-<input
-type="text"
-id="hariCutiam"
-placeholder="Bilangan Hari"
-
+<label
+class="checkbox-container"
 >
+
+<input
+type="checkbox"
+id="hariCutiam"
+>
+
+<span>
+
+Ya, bertugas pada Cuti Am
+
+</span>
+
+</label>
 
 </div>
 
@@ -545,6 +616,7 @@ value="0"
 >
 
 </div>
+
 
 </div>
 
