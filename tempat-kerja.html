@@ -29,11 +29,9 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 25px;
 }
 
 header p {
-    margin: 6px 0 0;
     color: #cbd5e1;
 }
 
@@ -43,33 +41,17 @@ header p {
     padding: 20px;
 }
 
-.btn-dashboard {
-    display: inline-block;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 7px;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
 .card {
     background: white;
-    border-radius: 12px;
     padding: 20px;
+    border-radius: 12px;
     margin-bottom: 20px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.08);
 }
 
-h2 {
-    margin-top: 0;
-    color: #0f172a;
-}
-
 .grid {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 15px;
 }
 
@@ -86,7 +68,6 @@ button {
     padding: 11px;
     border-radius: 7px;
     border: 1px solid #cbd5e1;
-    font-size: 14px;
 }
 
 button {
@@ -97,21 +78,36 @@ button {
     font-weight: bold;
 }
 
-button:hover {
-    background: #1d4ed8;
+.btn-dashboard {
+    display: inline-block;
+    width: auto;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    margin-top: 10px;
 }
 
 .btn-danger {
     background: #dc2626;
 }
 
-.btn-danger:hover {
-    background: #b91c1c;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.btn-edit {
-    background: #f59e0b;
-    margin-bottom: 5px;
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background: #0f172a;
+    color: white;
 }
 
 .success {
@@ -130,43 +126,16 @@ button:hover {
     margin-bottom: 15px;
 }
 
-.table-wrapper {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    border-bottom: 1px solid #e2e8f0;
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background: #0f172a;
-    color: white;
-}
-
-tr:hover {
-    background: #f8fafc;
-}
-
 .badge {
-    display: inline-block;
-    padding: 5px 9px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 5px 8px;
     border-radius: 5px;
     font-weight: bold;
-    background: #dcfce7;
-    color: #166534;
 }
 
-.badge-inactive {
-    background: #fee2e2;
-    color: #991b1b;
+.table-wrapper {
+    overflow-x: auto;
 }
 
 @media(max-width:600px) {
@@ -187,7 +156,7 @@ tr:hover {
 
 <h1>🏢 KOD TEMPAT KERJA</h1>
 
-<p>Pengurusan Kod dan Tempat Kerja</p>
+<p>Pengurusan Kod Tempat Kerja</p>
 
 <a
 href="index.html"
@@ -198,11 +167,9 @@ class="btn-dashboard"
 
 </header>
 
+
 <div class="container">
 
-<!-- ============================= -->
-<!-- BORANG TAMBAH -->
-<!-- ============================= -->
 
 <div class="card">
 
@@ -210,53 +177,68 @@ class="btn-dashboard"
 
 <div id="mesej"></div>
 
+
 <div class="grid">
+
 
 <div>
 
-<label>Kod Tempat Kerja</label>
+<label>
+Kod Tempat Kerja
+</label>
 
 <input
 type="text"
 id="kodTempatKerja"
 placeholder="Contoh: W"
-maxlength="20"
 >
 
+
 </div>
+
 
 <div>
 
-<label>Nama Tempat Kerja</label>
+<label>
+Nama Tempat Kerja
+</label>
 
-<input
-type="text"
+<select
 id="namaTempatKerja"
-placeholder="Contoh: F102-01(SS)Kilang Sawit Jerangau"
 >
 
-</div>
+<option value="">
+
+-- Pilih Tempat Kerja --
+
+</option>
+
+</select>
 
 </div>
+
+
+</div>
+
 
 <br>
 
-<button onclick="simpanTempatKerja()">
 
-💾 SIMPAN
+<button
+onclick="simpanTempatKerja()"
+>
+
+💾 SIMPAN KOD TEMPAT KERJA
 
 </button>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- SENARAI -->
-<!-- ============================= -->
-
 <div class="card">
 
 <h2>📋 Senarai Kod Tempat Kerja</h2>
+
 
 <div class="table-wrapper">
 
@@ -266,15 +248,13 @@ placeholder="Contoh: F102-01(SS)Kilang Sawit Jerangau"
 
 <tr>
 
-<th>Bil.</th>
+<th>Bil</th>
 
-<th>Kod</th>
+<th>Kod Tempat Kerja</th>
 
-<th>Tempat Kerja</th>
+<th>Nama Tempat Kerja</th>
 
 <th>Status</th>
-
-<th>Dicipta</th>
 
 <th>Tindakan</th>
 
@@ -282,13 +262,18 @@ placeholder="Contoh: F102-01(SS)Kilang Sawit Jerangau"
 
 </thead>
 
-<tbody id="senaraiTempatKerja">
+
+<tbody
+id="senaraiTempatKerja"
+>
 
 <tr>
 
-<td colspan="6">
+<td
+colspan="5"
+>
 
-Memuatkan data...
+Sedang memuatkan...
 
 </td>
 
@@ -305,13 +290,19 @@ Memuatkan data...
 </div>
 
 
-<!-- SUPABASE -->
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="supabase.js"></script>
+<script
+src="supabase.js"
+></script>
 
-<script src="js/tempat-kerja.js"></script>
+
+<script
+src="js/tempat-kerja.js"
+></script>
 
 </body>
 
