@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anggaran Duty Bulanan</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+header {
+    background: #0f172a;
+    color: white;
+    padding: 20px 25px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 1600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+select,
+button {
+    width: 100%;
+    padding: 11px;
+    border-radius: 7px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.btn-dashboard {
+    display: inline-block;
+    width: auto;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    margin-top: 10px;
+}
+
+.btn-print {
+    background: #16a34a;
+}
+
+.info-header {
+    border: 2px solid #0f172a;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-header table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-header td {
+    padding: 7px;
+    border: 1px solid #cbd5e1;
+}
+
+.info-header td:first-child {
+    font-weight: bold;
+    background: #e2e8f0;
+    width: 180px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 1200px;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #64748b;
+    padding: 6px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+thead th {
+    background: #0f172a;
+    color: white;
+}
+
+.nama-anggota {
+    min-width: 150px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    height: 150px;
+}
+
+.tarikh {
+    background: #e2e8f0;
+    font-weight: bold;
+}
+
+.hari {
+    background: #f8fafc;
+}
+
+.kode {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.off {
+    background: #fef08a;
+}
+
+.jumlah {
+    background: #e2e8f0;
+    font-weight: bold;
+}
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    header,
+    .filter-card,
+    .btn-print,
+    .btn-dashboard {
+        display: none;
+    }
+
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+
+    .card {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    table {
+        font-size: 9px;
+    }
+
+    .nama-anggota {
+        height: 120px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1>📊 ANGGARAN DUTY BULANAN</h1>
+
+<p>FPB Duty System</p>
+
+<a
+href="index.html"
+class="btn-dashboard"
+>
+🏠 Kembali ke Dashboard
+</a>
+
+</header>
+
+
+<div class="container">
+
+
+<div class="card filter-card">
+
+<h2>🔍 Pilih Laporan</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>Bulan</label>
+
+<select id="bulan">
+
+<option value="1">Januari</option>
+<option value="2">Februari</option>
+<option value="3">Mac</option>
+<option value="4">April</option>
+<option value="5">Mei</option>
+<option value="6">Jun</option>
+<option value="7">Julai</option>
+<option value="8">Ogos</option>
+<option value="9">September</option>
+<option value="10">Oktober</option>
+<option value="11">November</option>
+<option value="12">Disember</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Tahun</label>
+
+<select id="tahun"></select>
+
+</div>
+
+
+<div>
+
+<label>Pos</label>
+
+<select id="pos">
+
+<option value="">
+
+-- Pilih Pos --
+
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>&nbsp;</label>
+
+<button
+onclick="janaLaporan()"
+>
+📊 JANA LAPORAN
+</button>
+
+</div>
+
+
+<div>
+
+<label>&nbsp;</label>
+
+<button
+class="btn-print"
+onclick="window.print()"
+>
+🖨️ CETAK LAPORAN
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div
+id="laporan"
+class="card"
+>
+
+<p>
+Sila pilih Bulan, Tahun dan Pos kemudian klik
+<b>JANA LAPORAN</b>.
+</p>
+
+</div>
+
+
+</div>
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+
+<script
+src="supabase.js"
+></script>
+
+
+<script
+src="js/laporan-anggaran.js"
+></script>
+
+
+</body>
+
+</html>
