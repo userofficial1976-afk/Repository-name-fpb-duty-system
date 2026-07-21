@@ -1,387 +1,204 @@
 ```html
 <!DOCTYPE html>
-
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Jadual Duty - FPB Duty System</title>
 
-
 <style>
 
-
 * {
-
     box-sizing: border-box;
-
     font-family: Arial, sans-serif;
-
 }
-
 
 body {
-
     margin: 0;
-
     background: #f1f5f9;
-
     color: #1e293b;
-
 }
-
 
 header {
-
     background: #0f172a;
-
     color: white;
-
     padding: 20px 25px;
-
 }
-
 
 header h1 {
-
     margin: 0;
-
     font-size: 25px;
-
 }
-
 
 header p {
-
     margin: 6px 0 0;
-
     color: #cbd5e1;
-
 }
-
 
 .container {
-
     max-width: 1400px;
-
     margin: auto;
-
     padding: 20px;
-
 }
-
 
 .card {
-
     background: white;
-
     border-radius: 12px;
-
     padding: 20px;
-
     margin-bottom: 20px;
-
     box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
 }
-
 
 h2 {
-
     margin-top: 0;
-
     color: #0f172a;
-
 }
-
 
 .grid {
-
     display: grid;
-
     grid-template-columns:
-
-        repeat(
-
-            auto-fit,
-
-            minmax(
-
-                220px,
-
-                1fr
-
-            )
-
-        );
-
+        repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
-
 }
-
 
 label {
-
     display: block;
-
     font-weight: bold;
-
     margin-bottom: 6px;
-
 }
-
 
 input,
-
 select,
-
 button {
-
     width: 100%;
-
     padding: 11px;
-
     border-radius: 7px;
-
     border: 1px solid #cbd5e1;
-
     font-size: 14px;
-
 }
-
 
 select {
-
     background: white;
-
 }
-
 
 button {
-
     background: #2563eb;
-
     color: white;
-
     border: none;
-
     cursor: pointer;
-
     font-weight: bold;
-
 }
-
 
 button:hover {
-
     background: #1d4ed8;
-
 }
-
 
 .btn-danger {
-
     background: #dc2626;
-
 }
-
 
 .btn-danger:hover {
-
     background: #b91c1c;
-
 }
-
 
 .info-box {
-
     background: #eff6ff;
-
     border: 1px solid #bfdbfe;
-
     padding: 15px;
-
     border-radius: 8px;
-
 }
-
 
 .info-grid {
-
     display: grid;
-
     grid-template-columns:
-
-        repeat(
-
-            auto-fit,
-
-            minmax(
-
-                180px,
-
-                1fr
-
-            )
-
-        );
-
+        repeat(auto-fit, minmax(180px, 1fr));
     gap: 10px;
-
 }
-
 
 .info-item {
-
     background: white;
-
     padding: 10px;
-
     border-radius: 6px;
-
 }
-
 
 .info-item small {
-
     color: #64748b;
-
     display: block;
-
 }
-
 
 .info-item strong {
-
     display: block;
-
     margin-top: 4px;
-
 }
-
 
 .table-wrapper {
-
     overflow-x: auto;
-
 }
-
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
-
     min-width: 1100px;
-
 }
-
 
 th,
-
 td {
-
     border-bottom: 1px solid #e2e8f0;
-
     padding: 10px;
-
     text-align: left;
-
     white-space: nowrap;
-
 }
-
 
 th {
-
     background: #0f172a;
-
     color: white;
-
 }
-
 
 tr:hover {
-
     background: #f8fafc;
-
 }
-
 
 .success {
-
     background: #dcfce7;
-
     color: #166534;
-
     padding: 10px;
-
     border-radius: 6px;
-
     margin-bottom: 15px;
-
 }
-
 
 .error {
-
     background: #fee2e2;
-
     color: #991b1b;
-
     padding: 10px;
-
     border-radius: 6px;
-
     margin-bottom: 15px;
-
 }
-
 
 .badge {
-
     display: inline-block;
-
     background: #dbeafe;
-
     color: #1d4ed8;
-
     padding: 5px 8px;
-
     border-radius: 5px;
-
     font-weight: bold;
-
 }
-
 
 @media(max-width:600px) {
 
-
     header h1 {
-
         font-size: 20px;
-
     }
-
 
     .container {
-
         padding: 10px;
-
     }
 
-
 }
-
 
 </style>
 
@@ -393,18 +210,9 @@ tr:hover {
 
 <header>
 
-<h1>
+<h1>📅 JADUAL DUTY</h1>
 
-📅 JADUAL DUTY
-
-</h1>
-
-
-<p>
-
-Sistem Pengurusan Jadual Duty Anggota
-
-</p>
+<p>Sistem Pengurusan Jadual Duty Anggota</p>
 
 </header>
 
@@ -418,13 +226,7 @@ Sistem Pengurusan Jadual Duty Anggota
 
 <div class="card">
 
-
-<h2>
-
-➕ Masukkan Duty
-
-</h2>
-
+<h2>➕ Masukkan Duty</h2>
 
 <div id="mesej"></div>
 
@@ -432,48 +234,23 @@ Sistem Pengurusan Jadual Duty Anggota
 <div class="grid">
 
 
-<!-- TARIKH -->
-
 <div>
 
-
-<label>
-
-Tarikh Duty
-
-</label>
-
+<label>Tarikh Duty</label>
 
 <input
-
 type="date"
-
 id="tarikh"
-
 >
-
 
 </div>
 
 
-<!-- ANGGOTA -->
-
 <div>
 
+<label>Anggota</label>
 
-<label>
-
-Anggota
-
-</label>
-
-
-<select
-
-id="anggota"
-
->
-
+<select id="anggota">
 
 <option value="">
 
@@ -481,31 +258,16 @@ id="anggota"
 
 </option>
 
-
 </select>
-
 
 </div>
 
 
-<!-- KOD DUTY -->
-
 <div>
 
+<label>Kod Duty</label>
 
-<label>
-
-Kod Duty
-
-</label>
-
-
-<select
-
-id="kodDuty"
-
->
-
+<select id="kodDuty">
 
 <option value="">
 
@@ -513,35 +275,20 @@ id="kodDuty"
 
 </option>
 
-
 </select>
-
 
 </div>
 
-
-<!-- DIKEMASKINI OLEH -->
 
 <div>
 
-
-<label>
-
-Dikemaskini Oleh
-
-</label>
-
+<label>Dikemaskini Oleh</label>
 
 <input
-
 type="text"
-
 id="dikemaskiniOleh"
-
 placeholder="Nama Ketua Pos"
-
 >
-
 
 </div>
 
@@ -552,26 +299,15 @@ placeholder="Nama Ketua Pos"
 <br>
 
 
-<!-- ================================================= -->
 <!-- MAKLUMAT ANGGOTA -->
-<!-- ================================================= -->
 
 <div
-
 class="info-box"
-
 id="infoAnggota"
-
 style="display:none;"
-
 >
 
-
-<h3>
-
-Maklumat Anggota
-
-</h3>
+<h3>Maklumat Anggota</h3>
 
 
 <div class="info-grid">
@@ -579,150 +315,59 @@ Maklumat Anggota
 
 <div class="info-item">
 
+<small>No. SKB</small>
 
-<small>
-
-No. SKB
-
-</small>
-
-
-<strong
-
-id="infoNoSkb"
-
->
-
--
-
-</strong>
-
+<strong id="infoNoSkb">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>No. Anggota</small>
 
-<small>
-
-No. Anggota
-
-</small>
-
-
-<strong
-
-id="infoNoAnggota"
-
->
-
--
-
-</strong>
-
+<strong id="infoNoAnggota">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Nama</small>
 
-<small>
-
-Nama
-
-</small>
-
-
-<strong
-
-id="infoNama"
-
->
-
--
-
-</strong>
-
+<strong id="infoNama">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Pangkat</small>
 
-<small>
-
-Pangkat
-
-</small>
-
-
-<strong
-
-id="infoPangkat"
-
->
-
--
-
-</strong>
-
+<strong id="infoPangkat">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Pos</small>
 
-<small>
-
-Pos
-
-</small>
-
-
-<strong
-
-id="infoPos"
-
->
-
--
-
-</strong>
-
+<strong id="infoPos">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Unit</small>
 
-<small>
-
-Unit
-
-</small>
-
-
-<strong
-
-id="infoUnit"
-
->
-
--
-
-</strong>
-
+<strong id="infoUnit">-</strong>
 
 </div>
 
 
 </div>
-
 
 </div>
 
@@ -730,26 +375,15 @@ id="infoUnit"
 <br>
 
 
-<!-- ================================================= -->
 <!-- MAKLUMAT DUTY -->
-<!-- ================================================= -->
 
 <div
-
 class="info-box"
-
 id="infoDuty"
-
 style="display:none;"
-
 >
 
-
-<h3>
-
-Maklumat Duty
-
-</h3>
+<h3>Maklumat Duty</h3>
 
 
 <div class="info-grid">
@@ -757,102 +391,41 @@ Maklumat Duty
 
 <div class="info-item">
 
+<small>Kod Duty</small>
 
-<small>
-
-Kod Duty
-
-</small>
-
-
-<strong
-
-id="infoKod"
-
->
-
--
-
-</strong>
-
+<strong id="infoKod">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Waktu Tugasan</small>
 
-<small>
-
-Waktu Tugasan
-
-</small>
-
-
-<strong
-
-id="infoWaktu"
-
->
-
--
-
-</strong>
-
+<strong id="infoWaktu">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Jam Kerja</small>
 
-<small>
-
-Jam Kerja
-
-</small>
-
-
-<strong
-
-id="infoJamKerja"
-
->
-
--
-
-</strong>
-
+<strong id="infoJamKerja">-</strong>
 
 </div>
 
 
 <div class="info-item">
 
+<small>Jam KLM</small>
 
-<small>
-
-Jam KLM
-
-</small>
-
-
-<strong
-
-id="infoJamKlm"
-
->
-
--
-
-</strong>
-
+<strong id="infoJamKlm">-</strong>
 
 </div>
 
 
 </div>
-
 
 </div>
 
@@ -860,11 +433,7 @@ id="infoJamKlm"
 <br>
 
 
-<button
-
-onclick="simpanDuty()"
-
->
+<button onclick="simpanDuty()">
 
 💾 SIMPAN DUTY
 
@@ -881,11 +450,7 @@ onclick="simpanDuty()"
 <div class="card">
 
 
-<h2>
-
-📋 Senarai Duty
-
-</h2>
+<h2>📋 Senarai Duty</h2>
 
 
 <div class="grid">
@@ -893,42 +458,21 @@ onclick="simpanDuty()"
 
 <div>
 
-
-<label>
-
-Pilih Tarikh
-
-</label>
-
+<label>Pilih Tarikh</label>
 
 <input
-
 type="date"
-
 id="filterTarikh"
-
 >
-
 
 </div>
 
 
 <div>
 
+<label>Pilih Pos</label>
 
-<label>
-
-Pilih Pos
-
-</label>
-
-
-<select
-
-id="filterPos"
-
->
-
+<select id="filterPos">
 
 <option value="">
 
@@ -936,33 +480,20 @@ Semua Pos
 
 </option>
 
-
 </select>
-
 
 </div>
 
 
 <div>
 
-
-<label>
-
-Cari Nama
-
-</label>
-
+<label>Cari Nama</label>
 
 <input
-
 type="text"
-
 id="cariNama"
-
 placeholder="Cari nama anggota..."
-
 >
-
 
 </div>
 
@@ -981,116 +512,46 @@ placeholder="Cari nama anggota..."
 
 <thead>
 
-
 <tr>
 
+<th>Tarikh</th>
 
-<th>
+<th>No. SKB</th>
 
-Tarikh
+<th>No. Anggota</th>
 
-</th>
+<th>Nama</th>
 
+<th>Pangkat</th>
 
-<th>
+<th>Pos</th>
 
-No. SKB
+<th>Kod Duty</th>
 
-</th>
+<th>Waktu</th>
 
+<th>Jam Kerja</th>
 
-<th>
+<th>Jam KLM</th>
 
-No. Anggota
-
-</th>
-
-
-<th>
-
-Nama
-
-</th>
-
-
-<th>
-
-Pangkat
-
-</th>
-
-
-<th>
-
-Pos
-
-</th>
-
-
-<th>
-
-Kod Duty
-
-</th>
-
-
-<th>
-
-Waktu
-
-</th>
-
-
-<th>
-
-Jam Kerja
-
-</th>
-
-
-<th>
-
-Jam KLM
-
-</th>
-
-
-<th>
-
-Tindakan
-
-</th>
-
+<th>Tindakan</th>
 
 </tr>
-
 
 </thead>
 
 
-<tbody
-
-id="senaraiDuty"
-
->
-
+<tbody id="senaraiDuty">
 
 <tr>
 
-
-<td
-
-colspan="11"
-
->
+<td colspan="11">
 
 Sila pilih tarikh
 
 </td>
 
-
 </tr>
-
 
 </tbody>
 
@@ -1108,46 +569,18 @@ Sila pilih tarikh
 
 
 <!-- ================================================= -->
-<!-- SUPABASE -->
+<!-- JAVASCRIPT -->
 <!-- ================================================= -->
 
-<script
 
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
->
+<script src="./supabase.js"></script>
 
-</script>
-
-
-<!-- ================================================= -->
-<!-- SAMBUNGAN SUPABASE -->
-<!-- ================================================= -->
-
-<script
-
-src="./supabase.js"
-
->
-
-</script>
-
-
-<!-- ================================================= -->
-<!-- JAVASCRIPT JADUAL DUTY -->
-<!-- ================================================= -->
-
-<script
-
-src="./js/jadual-duty.js"
-
->
-
-</script>
+<script src="./js/jadual-duty.js"></script>
 
 
 </body>
-
 
 </html>
 ```
