@@ -24,7 +24,7 @@ document.addEventListener(
         await muatSenaraiPos();
 
 
-        await muatSenaraiKodTempatKerja();
+        await muatSenaraiTempatKerja();
 
 
         await muatSenaraiKodDuty();
@@ -82,7 +82,7 @@ async function muatAnggota() {
 
 
 // =====================================================
-// MUAT SENARAI POS
+// MUAT SENARAI POS ASAL
 // =====================================================
 
 async function muatSenaraiPos() {
@@ -122,11 +122,23 @@ async function muatSenaraiPos() {
                 (data || [])
 
                     .map(
-                        x => x.pos
+
+                        function (x) {
+
+                            return x.pos;
+
+                        }
+
                     )
 
                     .filter(
-                        Boolean
+
+                        function (pos) {
+
+                            return pos;
+
+                        }
+
                     )
 
             )
@@ -190,10 +202,10 @@ async function muatSenaraiPos() {
 
 
 // =====================================================
-// MUAT KOD TEMPAT KERJA
+// MUAT SENARAI TEMPAT BERTUGAS
 // =====================================================
 
-async function muatSenaraiKodTempatKerja() {
+async function muatSenaraiTempatKerja() {
 
 
     const { data, error } =
@@ -205,14 +217,14 @@ async function muatSenaraiKodTempatKerja() {
             )
 
             .select(
-                "kod_tempat_kerja"
+                "tempat_kerja"
             );
 
 
     if (error) {
 
         console.error(
-            "RALAT KOD TEMPAT KERJA:",
+            "RALAT TEMPAT BERTUGAS:",
             error
         );
 
@@ -221,7 +233,7 @@ async function muatSenaraiKodTempatKerja() {
     }
 
 
-    const kodUnik =
+    const tempatUnik =
 
         [
 
@@ -230,11 +242,23 @@ async function muatSenaraiKodTempatKerja() {
                 (data || [])
 
                     .map(
-                        x => x.kod_tempat_kerja
+
+                        function (x) {
+
+                            return x.tempat_kerja;
+
+                        }
+
                     )
 
                     .filter(
-                        Boolean
+
+                        function (tempat) {
+
+                            return tempat;
+
+                        }
+
                     )
 
             )
@@ -242,31 +266,42 @@ async function muatSenaraiKodTempatKerja() {
         ];
 
 
-    kodUnik.sort();
+    tempatUnik.sort();
 
 
     const select =
 
         document
             .getElementById(
-                "filterKodTempatKerja"
+                "filterTempatKerja"
             );
+
+
+    if (!select) {
+
+        console.error(
+            "ID filterTempatKerja tidak dijumpai."
+        );
+
+        return;
+
+    }
 
 
     select.innerHTML = `
 
         <option value="">
 
-            Semua Kod Tempat Kerja
+            Semua Tempat Bertugas
 
         </option>
 
     `;
 
 
-    kodUnik.forEach(
+    tempatUnik.forEach(
 
-        function (kod) {
+        function (tempat) {
 
 
             const option =
@@ -278,11 +313,11 @@ async function muatSenaraiKodTempatKerja() {
 
 
             option.value =
-                kod;
+                tempat;
 
 
             option.textContent =
-                kod;
+                tempat;
 
 
             select
@@ -298,7 +333,7 @@ async function muatSenaraiKodTempatKerja() {
 
 
 // =====================================================
-// MUAT KOD DUTY
+// MUAT SENARAI KOD DUTY
 // =====================================================
 
 async function muatSenaraiKodDuty() {
@@ -338,11 +373,23 @@ async function muatSenaraiKodDuty() {
                 (data || [])
 
                     .map(
-                        x => x.kod_dutyy
+
+                        function (x) {
+
+                            return x.kod_dutyy;
+
+                        }
+
                     )
 
                     .filter(
-                        Boolean
+
+                        function (kod) {
+
+                            return kod;
+
+                        }
+
                     )
 
             )
@@ -439,11 +486,11 @@ async function paparLaporan() {
             .value;
 
 
-    const filterKodTempatKerja =
+    const filterTempatKerja =
 
         document
             .getElementById(
-                "filterKodTempatKerja"
+                "filterTempatKerja"
             )
             .value;
 
@@ -478,11 +525,16 @@ async function paparLaporan() {
             .select("*")
 
             .order(
+
                 "tarikh",
+
                 {
+
                     ascending:
                         true
+
                 }
+
             );
 
 
@@ -491,8 +543,11 @@ async function paparLaporan() {
         query =
 
             query.gte(
+
                 "tarikh",
+
                 tarikhMula
+
             );
 
     }
@@ -503,8 +558,11 @@ async function paparLaporan() {
         query =
 
             query.lte(
+
                 "tarikh",
+
                 tarikhAkhir
+
             );
 
     }
@@ -515,20 +573,26 @@ async function paparLaporan() {
         query =
 
             query.eq(
+
                 "pos",
+
                 filterPos
+
             );
 
     }
 
 
-    if (filterKodTempatKerja) {
+    if (filterTempatKerja) {
 
         query =
 
             query.eq(
-                "kod_tempat_kerja",
-                filterKodTempatKerja
+
+                "tempat_kerja",
+
+                filterTempatKerja
+
             );
 
     }
@@ -539,8 +603,11 @@ async function paparLaporan() {
         query =
 
             query.eq(
+
                 "kod_dutyy",
+
                 filterKodDuty
+
             );
 
     }
@@ -554,8 +621,11 @@ async function paparLaporan() {
     if (error) {
 
         console.error(
+
             "RALAT LAPORAN:",
+
             error
+
         );
 
         return;
@@ -578,14 +648,19 @@ async function paparLaporan() {
 
                             function (x) {
 
+
                                 return String(
+
                                     x.no_skb
+
                                 )
 
                                 ===
 
                                 String(
+
                                     row.no_skb
+
                                 );
 
                             }
@@ -604,6 +679,7 @@ async function paparLaporan() {
                             ?
 
                         anggota.nama
+
                             .toLowerCase()
 
                             :
@@ -612,8 +688,11 @@ async function paparLaporan() {
 
 
                     return nama
+
                         .includes(
+
                             cariNama
+
                         );
 
                 }
@@ -622,31 +701,40 @@ async function paparLaporan() {
 
 
     paparJadual(
+
         filtered
+
     );
 
 
     kiraJumlah(
+
         filtered
+
     );
 
 }
 
 
 // =====================================================
-// PAPAR JADUAL
+// PAPAR JADUAL LAPORAN
 // =====================================================
 
 function paparJadual(
+
     data
+
 ) {
 
 
     const tbody =
 
         document
+
             .getElementById(
+
                 "senaraiLaporan"
+
             );
 
 
@@ -657,7 +745,9 @@ function paparJadual(
     if (
 
         data.length
+
         ===
+
         0
 
     ) {
@@ -685,7 +775,13 @@ function paparJadual(
 
     data.forEach(
 
-        function (row, index) {
+        function (
+
+            row,
+
+            index
+
+        ) {
 
 
             const anggota =
@@ -694,14 +790,19 @@ function paparJadual(
 
                     function (x) {
 
+
                         return String(
+
                             x.no_skb
+
                         )
 
                         ===
 
                         String(
+
                             row.no_skb
+
                         );
 
                     }
@@ -712,8 +813,11 @@ function paparJadual(
             const tr =
 
                 document
+
                     .createElement(
+
                         "tr"
+
                     );
 
 
@@ -721,23 +825,11 @@ function paparJadual(
 
                 <td>
 
-                    ${index + 1}
+                    ${
 
-                </td>
+                        index + 1
 
-
-                <td>
-
-                    ${formatTarikh(
-                        row.tarikh
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${row.no_skb || ""}
+                    }
 
                 </td>
 
@@ -745,12 +837,51 @@ function paparJadual(
                 <td>
 
                     ${
+
+                        formatTarikh(
+
+                            row.tarikh
+
+                        )
+
+                    }
+
+                </td>
+
+
+                <td>
+
+                    ${
+
+                        row.no_skb
+
+                        ||
+
+                        ""
+
+                    }
+
+                </td>
+
+
+                <td>
+
+                    ${
+
                         (
+
                             anggota
+
                             &&
+
                             anggota.no_anggota
+
                         )
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -759,12 +890,21 @@ function paparJadual(
                 <td>
 
                     ${
+
                         (
+
                             anggota
+
                             &&
+
                             anggota.nama
+
                         )
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -773,12 +913,21 @@ function paparJadual(
                 <td>
 
                     ${
+
                         (
+
                             anggota
+
                             &&
+
                             anggota.pangkat
+
                         )
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -786,7 +935,15 @@ function paparJadual(
 
                 <td>
 
-                    ${row.pos || ""}
+                    ${
+
+                        row.pos
+
+                        ||
+
+                        ""
+
+                    }
 
                 </td>
 
@@ -796,8 +953,13 @@ function paparJadual(
                     <span class="badge">
 
                         ${
+
                             row.kod_tempat_kerja
-                            || ""
+
+                            ||
+
+                            ""
+
                         }
 
                     </span>
@@ -808,8 +970,13 @@ function paparJadual(
                 <td>
 
                     ${
+
                         row.tempat_kerja
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -820,8 +987,13 @@ function paparJadual(
                     <span class="badge">
 
                         ${
+
                             row.kod_dutyy
-                            || ""
+
+                            ||
+
+                            ""
+
                         }
 
                     </span>
@@ -832,8 +1004,13 @@ function paparJadual(
                 <td>
 
                     ${
+
                         row.waktu_tugasan
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -842,8 +1019,13 @@ function paparJadual(
                 <td>
 
                     ${
+
                         row.jam_kerja
-                        || 0
+
+                        ||
+
+                        0
+
                     }
 
                 </td>
@@ -852,8 +1034,13 @@ function paparJadual(
                 <td>
 
                     ${
+
                         row.jam_klm
-                        || 0
+
+                        ||
+
+                        0
+
                     }
 
                 </td>
@@ -862,8 +1049,13 @@ function paparJadual(
                 <td>
 
                     ${
+
                         row.ketua_pos
-                        || ""
+
+                        ||
+
+                        ""
+
                     }
 
                 </td>
@@ -872,8 +1064,11 @@ function paparJadual(
 
 
             tbody
+
                 .appendChild(
+
                     tr
+
                 );
 
         }
@@ -888,14 +1083,20 @@ function paparJadual(
 // =====================================================
 
 function kiraJumlah(
+
     data
+
 ) {
 
 
     document
+
         .getElementById(
+
             "jumlahDuty"
+
         )
+
         .textContent =
 
         data.length;
@@ -906,15 +1107,31 @@ function kiraJumlah(
         data.reduce(
 
             function (
+
                 jumlah,
+
                 row
+
             ) {
 
-                return jumlah
-                    + Number(
+
+                return (
+
+                    jumlah
+
+                    +
+
+                    Number(
+
                         row.jam_kerja
-                    || 0
-                    );
+
+                        ||
+
+                        0
+
+                    )
+
+                );
 
             },
 
@@ -928,15 +1145,31 @@ function kiraJumlah(
         data.reduce(
 
             function (
+
                 jumlah,
+
                 row
+
             ) {
 
-                return jumlah
-                    + Number(
+
+                return (
+
+                    jumlah
+
+                    +
+
+                    Number(
+
                         row.jam_klm
-                    || 0
-                    );
+
+                        ||
+
+                        0
+
+                    )
+
+                );
 
             },
 
@@ -946,18 +1179,26 @@ function kiraJumlah(
 
 
     document
+
         .getElementById(
+
             "jumlahJamKerja"
+
         )
+
         .textContent =
 
         jumlahJamKerja;
 
 
     document
+
         .getElementById(
+
             "jumlahJamKlm"
+
         )
+
         .textContent =
 
         jumlahJamKlm;
@@ -970,11 +1211,17 @@ function kiraJumlah(
 // =====================================================
 
 function formatTarikh(
+
     tarikh
+
 ) {
 
 
-    if (!tarikh) {
+    if (
+
+        !tarikh
+
+    ) {
 
         return "";
 
@@ -987,13 +1234,17 @@ function formatTarikh(
 
             tarikh
 
-            + "T00:00:00"
+            +
+
+            "T00:00:00"
 
         );
 
 
     return date.toLocaleDateString(
+
         "ms-MY"
+
     );
 
 }
