@@ -67,9 +67,13 @@ h2 {
     color: #0f172a;
 }
 
+h3 {
+    margin-top: 0;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 15px;
 }
 
@@ -87,6 +91,10 @@ button {
     border-radius: 7px;
     border: 1px solid #cbd5e1;
     font-size: 14px;
+}
+
+input[readonly] {
+    background: #f1f5f9;
 }
 
 select {
@@ -142,6 +150,13 @@ button:hover {
     margin-top: 4px;
 }
 
+.offday-box {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
@@ -149,7 +164,7 @@ button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 1300px;
+    min-width: 1500px;
 }
 
 th,
@@ -227,7 +242,13 @@ class="btn-dashboard"
 
 </header>
 
+
 <div class="container">
+
+
+<!-- =====================================================
+     BORANG MASUKKAN DUTY
+===================================================== -->
 
 <div class="card">
 
@@ -235,11 +256,13 @@ class="btn-dashboard"
 
 <div id="mesej"></div>
 
+
 <div class="grid">
+
 
 <div>
 
-<label>Tarikh Duty</label>
+<label>Tarikh</label>
 
 <input
 type="date"
@@ -251,12 +274,161 @@ id="tarikh"
 
 <div>
 
-<label>Anggota</label>
+<label>Bulan</label>
+
+<input
+type="text"
+id="bulan"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Tahun</label>
+
+<input
+type="text"
+id="tahun"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Hari</label>
+
+<input
+type="text"
+id="hari"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Nama Anggota</label>
 
 <select id="anggota">
 
 <option value="">
--- Pilih Anggota --
+
+-- Pilih Nama Anggota --
+
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>No. SKB</label>
+
+<input
+type="text"
+id="noSkb"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>No. Anggota</label>
+
+<input
+type="text"
+id="noAnggota"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Kawasan</label>
+
+<input
+type="text"
+id="kawasan"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Unit</label>
+
+<input
+type="text"
+id="unit"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Ketua Unit</label>
+
+<input
+type="text"
+id="ketuaUnit"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Ketua Pos</label>
+
+<input
+type="text"
+id="ketuaPos"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Pos Asal</label>
+
+<input
+type="text"
+id="namaPosAsal"
+readonly
+>
+
+</div>
+
+
+<div>
+
+<label>Kod Waktu Kerja</label>
+
+<select id="kodDuty">
+
+<option value="">
+
+-- Pilih Kod Waktu Kerja --
+
 </option>
 
 </select>
@@ -271,153 +443,65 @@ id="tarikh"
 <select id="kodTempatKerja">
 
 <option value="">
+
 -- Pilih Kod Tempat Kerja --
+
 </option>
 
 </select>
 
 </div>
+
 
 <div>
 
-<label>Tempat Kerja Semasa</label>
+<label>Jam KLM</label>
 
-<select id="tempatKerja">
-
-<option value="">
-
--- Pilih Tempat Kerja --
-
-</option>
-
-</select>
+<input
+type="number"
+id="jamKlm"
+readonly
+>
 
 </div>
+
+</div>
+
+
+<br>
+
+
+<div class="offday-box">
+
+<h3>🟠 Offday Bertugas</h3>
+
+<div class="grid">
+
 <div>
 
-<label>Kod Duty</label>
+<label>Hari Offday Bertugas</label>
 
-<select id="kodDuty">
-
-<option value="">
--- Pilih Kod Duty --
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<br>
-
-
-<div
-class="info-box"
-id="infoAnggota"
-style="display:none;"
+<input
+type="text"
+id="hariOffday"
+placeholder="Contoh: Isnin"
 >
 
-<h3>👤 Maklumat Anggota</h3>
-
-<div class="info-grid">
-
-<div class="info-item">
-
-<small>No. SKB</small>
-
-<strong id="infoNoSkb">-</strong>
-
 </div>
 
 
-<div class="info-item">
+<div>
 
-<small>No. Anggota</small>
+<label>Jam Offday Bertugas</label>
 
-<strong id="infoNoAnggota">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Nama</small>
-
-<strong id="infoNama">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Pangkat</small>
-
-<strong id="infoPangkat">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Pos Asal</small>
-
-<strong id="infoPos">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Unit</small>
-
-<strong id="infoUnit">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Ketua Pos</small>
-
-<strong id="infoKetuaPos">-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-
-<br>
-
-
-<div
-class="info-box"
-id="infoTempatKerja"
-style="display:none;"
+<input
+type="number"
+id="jamOffday"
+min="0"
+step="0.5"
+value="0"
 >
 
-<h3>🏢 Maklumat Tempat Kerja</h3>
-
-<div class="info-grid">
-
-<div class="info-item">
-
-<small>Kod Tempat Kerja</small>
-
-<strong id="infoKodTempatKerja">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Tempat Kerja</small>
-
-<strong id="infoNamaTempatKerja">-</strong>
-
 </div>
 
 </div>
@@ -428,48 +512,37 @@ style="display:none;"
 <br>
 
 
-<div
-class="info-box"
-id="infoDuty"
-style="display:none;"
+<div class="offday-box">
+
+<h3>🔴 Cuti Am Bertugas</h3>
+
+<div class="grid">
+
+<div>
+
+<label>Hari Cuti Am Bertugas</label>
+
+<input
+type="text"
+id="hariCutiam"
+placeholder="Contoh: Hari Raya"
+
 >
 
-<h3>🏷️ Maklumat Duty</h3>
-
-<div class="info-grid">
-
-<div class="info-item">
-
-<small>Kod Duty</small>
-
-<strong id="infoKod">-</strong>
-
 </div>
 
 
-<div class="info-item">
+<div>
 
-<small>Waktu Tugasan</small>
+<label>Jam Cuti Am Bertugas</label>
 
-<strong id="infoWaktu">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Jam Kerja</small>
-
-<strong id="infoJamKerja">-</strong>
-
-</div>
-
-
-<div class="info-item">
-
-<small>Jam KLM</small>
-
-<strong id="infoJamKlm">-</strong>
+<input
+type="number"
+id="jamCutiam"
+min="0"
+step="0.5"
+value="0"
+>
 
 </div>
 
@@ -481,7 +554,9 @@ style="display:none;"
 <br>
 
 
-<button onclick="simpanDuty()">
+<button
+onclick="simpanDuty()"
+>
 
 💾 SIMPAN DUTY
 
@@ -490,11 +565,17 @@ style="display:none;"
 </div>
 
 
+<!-- =====================================================
+     SENARAI DUTY
+===================================================== -->
+
 <div class="card">
 
 <h2>📋 Senarai Duty</h2>
 
+
 <div class="grid">
+
 
 <div>
 
@@ -519,7 +600,9 @@ onchange="paparDuty()"
 >
 
 <option value="">
+
 Semua Pos
+
 </option>
 
 </select>
@@ -555,31 +638,22 @@ onkeyup="paparDuty()"
 <tr>
 
 <th>Tarikh</th>
-
+<th>Hari</th>
 <th>No. SKB</th>
-
 <th>No. Anggota</th>
-
 <th>Nama</th>
-
-<th>Pangkat</th>
-
-<th>Pos Asal</th>
-
-<th>Kod Tempat Kerja</th>
-
-<th>Tempat Kerja</th>
-
-<th>Kod Duty</th>
-
-<th>Waktu</th>
-
-<th>Jam Kerja</th>
-
-<th>Jam KLM</th>
-
+<th>Kawasan</th>
+<th>Unit</th>
+<th>Ketua Unit</th>
 <th>Ketua Pos</th>
-
+<th>Pos Asal</th>
+<th>Kod Waktu Kerja</th>
+<th>Kod Tempat Kerja</th>
+<th>Jam KLM</th>
+<th>Offday</th>
+<th>Jam Offday</th>
+<th>Cuti Am</th>
+<th>Jam Cuti Am</th>
 <th>Tindakan</th>
 
 </tr>
@@ -591,7 +665,7 @@ onkeyup="paparDuty()"
 
 <tr>
 
-<td colspan="14">
+<td colspan="18">
 
 Sila pilih tarikh
 
@@ -606,6 +680,7 @@ Sila pilih tarikh
 </div>
 
 </div>
+
 
 </div>
 
