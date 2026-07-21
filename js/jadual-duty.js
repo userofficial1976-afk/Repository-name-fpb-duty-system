@@ -1,12 +1,10 @@
 ```javascript
 // =====================================================
-// JADUAL DUTY.JS
+// JADUAL DUTY
 // =====================================================
 
 
-// =====================================================
-// PEMBOLEHUBAH
-// =====================================================
+// DATA MEMORY
 
 let semuaAnggota = [];
 
@@ -22,48 +20,30 @@ document.addEventListener(
     async function () {
 
 
-        console.log(
-            "JADUAL DUTY BERJAYA DIBUKA"
-        );
+        document
+        .getElementById(
+            "tarikh"
+        )
+        .valueAsDate =
+            new Date();
 
 
-        // Tarikh hari ini
+        document
+        .getElementById(
+            "filterTarikh"
+        )
+        .valueAsDate =
+            new Date();
 
-        const tarikh =
-            document.getElementById(
-                "tarikh"
-            );
-
-
-        const filterTarikh =
-            document.getElementById(
-                "filterTarikh"
-            );
-
-
-        if (tarikh) {
-
-            tarikh.valueAsDate =
-                new Date();
-
-        }
-
-
-        if (filterTarikh) {
-
-            filterTarikh.valueAsDate =
-                new Date();
-
-        }
-
-
-        // Muat semua data
 
         await muatAnggota();
 
+
         await muatKodDuty();
 
+
         await muatSenaraiPos();
+
 
         await paparDuty();
 
@@ -73,15 +53,10 @@ document.addEventListener(
 
 
 // =====================================================
-// MUAT DATA ANGGOTA
+// MUAT ANGGOTA
 // =====================================================
 
 async function muatAnggota() {
-
-
-    console.log(
-        "MULA MUAT ANGGOTA"
-    );
 
 
     const result =
@@ -92,7 +67,7 @@ async function muatAnggota() {
         )
 
         .select(
-            "*"
+            "no_skb,no_anggota,nama,pangkat,pos,unit,status"
         )
 
         .order(
@@ -103,26 +78,19 @@ async function muatAnggota() {
         );
 
 
-    console.log(
-        "DATA ANGGOTA:",
-        result.data
-    );
-
-
-    console.log(
-        "RALAT ANGGOTA:",
-        result.error
-    );
-
-
     if (
         result.error
     ) {
 
 
+        console.error(
+            "RALAT ANGGOTA:",
+            result.error
+        );
+
+
         paparMesej(
-            "Gagal ambil anggota: "
-            + result.error.message,
+            result.error.message,
             "error"
         );
 
@@ -138,24 +106,10 @@ async function muatAnggota() {
 
 
     const select =
-        document.getElementById(
+        document
+        .getElementById(
             "anggota"
         );
-
-
-    if (
-        !select
-    ) {
-
-
-        console.error(
-            "ID anggota tidak dijumpai"
-        );
-
-
-        return;
-
-    }
 
 
     select.innerHTML = `
@@ -182,27 +136,23 @@ async function muatAnggota() {
             option.value =
                 String(
                     anggota.no_skb
-                    || ""
                 );
 
 
             option.textContent =
 
-                String(
-                    anggota.no_skb
-                    || ""
-                )
+                anggota.no_skb
 
                 + " | "
 
-                + String(
+                + (
                     anggota.no_anggota
                     || ""
                 )
 
                 + " | "
 
-                + String(
+                + (
                     anggota.nama
                     || ""
                 );
@@ -217,12 +167,6 @@ async function muatAnggota() {
     );
 
 
-    console.log(
-        "JUMLAH ANGGOTA:",
-        semuaAnggota.length
-    );
-
-
 }
 
 
@@ -233,11 +177,6 @@ async function muatAnggota() {
 async function muatKodDuty() {
 
 
-    console.log(
-        "MULA MUAT KOD DUTY"
-    );
-
-
     const result =
         await supabaseClient
 
@@ -246,7 +185,7 @@ async function muatKodDuty() {
         )
 
         .select(
-            "*"
+            "kod,waktu_tugasan,jam_kerja,jam_klm,status"
         )
 
         .order(
@@ -257,26 +196,19 @@ async function muatKodDuty() {
         );
 
 
-    console.log(
-        "DATA KOD DUTY:",
-        result.data
-    );
-
-
-    console.log(
-        "RALAT KOD DUTY:",
-        result.error
-    );
-
-
     if (
         result.error
     ) {
 
 
+        console.error(
+            "RALAT KOD DUTY:",
+            result.error
+        );
+
+
         paparMesej(
-            "Gagal ambil kod duty: "
-            + result.error.message,
+            result.error.message,
             "error"
         );
 
@@ -292,24 +224,10 @@ async function muatKodDuty() {
 
 
     const select =
-        document.getElementById(
+        document
+        .getElementById(
             "kodDuty"
         );
-
-
-    if (
-        !select
-    ) {
-
-
-        console.error(
-            "ID kodDuty tidak dijumpai"
-        );
-
-
-        return;
-
-    }
 
 
     select.innerHTML = `
@@ -336,39 +254,26 @@ async function muatKodDuty() {
             option.value =
                 String(
                     duty.kod
-                    || ""
                 );
 
 
             option.textContent =
 
-                String(
-                    duty.kod
-                    || ""
-                )
+                duty.kod
 
                 + " | "
 
-                + String(
-                    duty.waktu_tugasan
-                    || ""
-                )
+                + duty.waktu_tugasan
 
                 + " | "
 
-                + String(
-                    duty.jam_kerja
-                    || 0
-                )
+                + duty.jam_kerja
 
                 + " jam kerja"
 
                 + " | "
 
-                + String(
-                    duty.jam_klm
-                    || 0
-                )
+                + duty.jam_klm
 
                 + " jam KLM";
 
@@ -382,12 +287,6 @@ async function muatKodDuty() {
     );
 
 
-    console.log(
-        "JUMLAH KOD DUTY:",
-        semuaKodDuty.length
-    );
-
-
 }
 
 
@@ -395,25 +294,17 @@ async function muatKodDuty() {
 // PILIH ANGGOTA
 // =====================================================
 
-document.addEventListener(
+document
+.getElementById(
+    "anggota"
+)
+.addEventListener(
     "change",
-    function (event) {
-
-
-        if (
-            event.target.id
-            !==
-            "anggota"
-        ) {
-
-
-            return;
-
-        }
+    function () {
 
 
         const noSkb =
-            event.target.value;
+            this.value;
 
 
         const anggota =
@@ -524,25 +415,17 @@ document.addEventListener(
 // PILIH KOD DUTY
 // =====================================================
 
-document.addEventListener(
+document
+.getElementById(
+    "kodDuty"
+)
+.addEventListener(
     "change",
-    function (event) {
-
-
-        if (
-            event.target.id
-            !==
-            "kodDuty"
-        ) {
-
-
-            return;
-
-        }
+    function () {
 
 
         const kod =
-            event.target.value;
+            this.value;
 
 
         const duty =
@@ -596,8 +479,7 @@ document.addEventListener(
             "infoKod"
         )
         .textContent =
-            duty.kod
-            || "-";
+            duty.kod;
 
 
         document
@@ -605,8 +487,7 @@ document.addEventListener(
             "infoWaktu"
         )
         .textContent =
-            duty.waktu_tugasan
-            || "-";
+            duty.waktu_tugasan;
 
 
         document
@@ -614,10 +495,7 @@ document.addEventListener(
             "infoJamKerja"
         )
         .textContent =
-            (
-                duty.jam_kerja
-                || 0
-            )
+            duty.jam_kerja
             + " jam";
 
 
@@ -626,10 +504,7 @@ document.addEventListener(
             "infoJamKlm"
         )
         .textContent =
-            (
-                duty.jam_klm
-                || 0
-            )
+            duty.jam_klm
             + " jam";
 
 
@@ -736,24 +611,6 @@ async function simpanDuty() {
         );
 
 
-    if (
-        !anggota
-        ||
-        !duty
-    ) {
-
-
-        paparMesej(
-            "Data anggota atau kod duty tidak dijumpai.",
-            "error"
-        );
-
-
-        return;
-
-    }
-
-
     const tarikhObj =
         new Date(
             tarikh
@@ -809,12 +666,6 @@ async function simpanDuty() {
     ) {
 
 
-        console.error(
-            "RALAT SIMPAN:",
-            result.error
-        );
-
-
         paparMesej(
             "Gagal simpan: "
             + result.error.message,
@@ -833,14 +684,14 @@ async function simpanDuty() {
     );
 
 
-    await paparDuty();
+    paparDuty();
 
 
 }
 
 
 // =====================================================
-// MUAT SENARAI POS
+// MUAT POS
 // =====================================================
 
 async function muatSenaraiPos() {
@@ -861,12 +712,6 @@ async function muatSenaraiPos() {
     if (
         result.error
     ) {
-
-
-        console.error(
-            "RALAT POS:",
-            result.error
-        );
 
 
         return;
@@ -910,16 +755,6 @@ async function muatSenaraiPos() {
         );
 
 
-    if (
-        !select
-    ) {
-
-
-        return;
-
-    }
-
-
     posUnik.forEach(
         function (pos) {
 
@@ -957,60 +792,28 @@ async function muatSenaraiPos() {
 async function paparDuty() {
 
 
-    const filterTarikh =
+    const tarikh =
         document
         .getElementById(
             "filterTarikh"
-        );
-
-
-    const filterPos =
-        document
-        .getElementById(
-            "filterPos"
-        );
-
-
-    const cariNama =
-        document
-        .getElementById(
-            "cariNama"
-        );
-
-
-    const tbody =
-        document
-        .getElementById(
-            "senaraiDuty"
-        );
-
-
-    if (
-        !filterTarikh
-        ||
-        !filterPos
-        ||
-        !cariNama
-        ||
-        !tbody
-    ) {
-
-
-        return;
-
-    }
-
-
-    const tarikh =
-        filterTarikh.value;
+        )
+        .value;
 
 
     const pos =
-        filterPos.value;
+        document
+        .getElementById(
+            "filterPos"
+        )
+        .value;
 
 
     const cari =
-        cariNama.value
+        document
+        .getElementById(
+            "cariNama"
+        )
+        .value
         .toLowerCase();
 
 
@@ -1072,28 +875,24 @@ async function paparDuty() {
     ) {
 
 
-        console.error(
-            "RALAT JADUAL:",
-            result.error
-        );
-
-
         return;
 
     }
+
+
+    const tbody =
+        document
+        .getElementById(
+            "senaraiDuty"
+        );
 
 
     tbody.innerHTML =
         "";
 
 
-    const data =
-        result.data
-        || [];
-
-
     const filtered =
-        data.filter(
+        result.data.filter(
             function (row) {
 
 
@@ -1117,15 +916,14 @@ async function paparDuty() {
                     );
 
 
-                const nama =
-                    (
-                        anggota?.nama
-                        || ""
-                    )
-                    .toLowerCase();
+                return (
 
+                    anggota?.nama
+                    || ""
 
-                return nama.includes(
+                )
+                .toLowerCase()
+                .includes(
                     cari
                 );
 
@@ -1194,41 +992,27 @@ async function paparDuty() {
             tr.innerHTML = `
 
                 <td>
-
-                    ${formatTarikh(
-                        row.tarikh
-                    )}
-
+                    ${formatTarikh(row.tarikh)}
                 </td>
 
                 <td>
-
                     ${row.no_skb || ""}
-
                 </td>
 
                 <td>
-
                     ${anggota?.no_anggota || ""}
-
                 </td>
 
                 <td>
-
                     ${anggota?.nama || ""}
-
                 </td>
 
                 <td>
-
                     ${anggota?.pangkat || ""}
-
                 </td>
 
                 <td>
-
                     ${row.pos || ""}
-
                 </td>
 
                 <td>
@@ -1242,36 +1026,30 @@ async function paparDuty() {
                 </td>
 
                 <td>
-
                     ${row.waktu_tugasan || ""}
-
                 </td>
 
                 <td>
-
                     ${row.jam_kerja || 0}
-
                 </td>
 
                 <td>
-
                     ${row.jam_klm || 0}
-
                 </td>
 
                 <td>
 
                     <button
 
-                        class="btn-danger"
+                    class="btn-danger"
 
-                        onclick="padamDuty(
+                    onclick="padamDuty(
 
-                            '${row.no_skb}',
+                        '${row.no_skb}',
 
-                            '${row.tarikh}'
+                        '${row.tarikh}'
 
-                        )"
+                    )"
 
                     >
 
@@ -1297,63 +1075,36 @@ async function paparDuty() {
 
 
 // =====================================================
-// EVENT FILTER
+// FILTER
 // =====================================================
 
-document.addEventListener(
+document
+.getElementById(
+    "filterTarikh"
+)
+.addEventListener(
     "change",
-    function (event) {
-
-
-        if (
-            event.target.id
-            ===
-            "filterTarikh"
-        ) {
-
-
-            paparDuty();
-
-
-        }
-
-
-        if (
-            event.target.id
-            ===
-            "filterPos"
-        ) {
-
-
-            paparDuty();
-
-
-        }
-
-
-    }
+    paparDuty
 );
 
 
-document.addEventListener(
+document
+.getElementById(
+    "filterPos"
+)
+.addEventListener(
+    "change",
+    paparDuty
+);
+
+
+document
+.getElementById(
+    "cariNama"
+)
+.addEventListener(
     "keyup",
-    function (event) {
-
-
-        if (
-            event.target.id
-            ===
-            "cariNama"
-        ) {
-
-
-            paparDuty();
-
-
-        }
-
-
-    }
+    paparDuty
 );
 
 
@@ -1405,8 +1156,7 @@ async function padamDuty(
 
 
         paparMesej(
-            "Gagal padam: "
-            + result.error.message,
+            result.error.message,
             "error"
         );
 
@@ -1422,7 +1172,7 @@ async function padamDuty(
     );
 
 
-    await paparDuty();
+    paparDuty();
 
 
 }
@@ -1443,21 +1193,6 @@ function paparMesej(
         .getElementById(
             "mesej"
         );
-
-
-    if (
-        !div
-    ) {
-
-
-        alert(
-            mesej
-        );
-
-
-        return;
-
-    }
 
 
     div.className =
