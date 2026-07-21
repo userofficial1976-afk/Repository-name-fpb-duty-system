@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ms">
 
@@ -6,196 +5,474 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jadual Duty - FPB Duty System</title>
 
 <style>
 
+/* ============================= */
+/* RESET */
+/* ============================= */
+
 * {
+
     box-sizing: border-box;
+
     font-family: Arial, sans-serif;
+
 }
+
+
+/* ============================= */
+/* BODY */
+/* ============================= */
 
 body {
+
     margin: 0;
+
     background: #f1f5f9;
+
     color: #1e293b;
+
 }
+
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
 
 header {
+
     background: #0f172a;
+
     color: white;
+
     padding: 20px 25px;
+
 }
+
+
+.header-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
 
 header h1 {
+
     margin: 0;
+
     font-size: 25px;
+
 }
+
 
 header p {
+
     margin: 6px 0 0;
+
     color: #cbd5e1;
+
 }
+
+
+/* ============================= */
+/* BUTTON DASHBOARD */
+/* ============================= */
+
+.btn-back {
+
+    width: auto;
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+}
+
+
+.btn-back:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
 
 .container {
+
     max-width: 1400px;
+
     margin: auto;
+
     padding: 20px;
+
 }
+
+
+/* ============================= */
+/* CARD */
+/* ============================= */
 
 .card {
+
     background: white;
+
     border-radius: 12px;
+
     padding: 20px;
+
     margin-bottom: 20px;
+
     box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
 }
+
 
 h2 {
+
     margin-top: 0;
+
     color: #0f172a;
+
 }
+
+
+/* ============================= */
+/* GRID */
+/* ============================= */
 
 .grid {
+
     display: grid;
+
     grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
+
+    repeat(
+
+        auto-fit,
+
+        minmax(220px, 1fr)
+
+    );
+
     gap: 15px;
+
 }
+
+
+/* ============================= */
+/* FORM */
+/* ============================= */
 
 label {
+
     display: block;
+
     font-weight: bold;
+
     margin-bottom: 6px;
+
 }
+
 
 input,
+
 select,
+
 button {
+
     width: 100%;
+
     padding: 11px;
+
     border-radius: 7px;
+
     border: 1px solid #cbd5e1;
+
     font-size: 14px;
+
 }
+
 
 select {
+
     background: white;
+
 }
+
 
 button {
+
     background: #2563eb;
+
     color: white;
+
     border: none;
+
     cursor: pointer;
+
     font-weight: bold;
+
 }
+
 
 button:hover {
+
     background: #1d4ed8;
+
 }
+
+
+/* ============================= */
+/* DANGER BUTTON */
+/* ============================= */
 
 .btn-danger {
+
     background: #dc2626;
+
 }
+
 
 .btn-danger:hover {
+
     background: #b91c1c;
+
 }
+
+
+/* ============================= */
+/* INFO BOX */
+/* ============================= */
 
 .info-box {
+
     background: #eff6ff;
+
     border: 1px solid #bfdbfe;
+
     padding: 15px;
+
     border-radius: 8px;
+
 }
+
 
 .info-grid {
+
     display: grid;
+
     grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
+
+    repeat(
+
+        auto-fit,
+
+        minmax(180px, 1fr)
+
+    );
+
     gap: 10px;
+
 }
+
 
 .info-item {
+
     background: white;
+
     padding: 10px;
+
     border-radius: 6px;
+
 }
+
 
 .info-item small {
+
     color: #64748b;
+
     display: block;
+
 }
+
 
 .info-item strong {
+
     display: block;
+
     margin-top: 4px;
+
 }
+
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
 
 .table-wrapper {
+
     overflow-x: auto;
+
 }
+
 
 table {
+
     width: 100%;
+
     border-collapse: collapse;
+
     min-width: 1100px;
+
 }
+
 
 th,
+
 td {
+
     border-bottom: 1px solid #e2e8f0;
+
     padding: 10px;
+
     text-align: left;
+
     white-space: nowrap;
+
 }
+
 
 th {
+
     background: #0f172a;
+
     color: white;
+
 }
+
 
 tr:hover {
+
     background: #f8fafc;
+
 }
+
+
+/* ============================= */
+/* MESSAGE */
+/* ============================= */
 
 .success {
+
     background: #dcfce7;
+
     color: #166534;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
+
 
 .error {
+
     background: #fee2e2;
+
     color: #991b1b;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
 
+
+/* ============================= */
+/* BADGE */
+/* ============================= */
+
 .badge {
+
     display: inline-block;
+
     background: #dbeafe;
+
     color: #1d4ed8;
+
     padding: 5px 8px;
+
     border-radius: 5px;
+
     font-weight: bold;
+
 }
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
 
 @media(max-width:600px) {
 
+
     header h1 {
+
         font-size: 20px;
+
     }
 
+
     .container {
+
         padding: 10px;
+
+    }
+
+
+    .header-top {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .btn-back {
+
+        width: 100%;
+
     }
 
 }
@@ -208,25 +485,68 @@ tr:hover {
 <body>
 
 
+<!-- ============================= -->
+<!-- HEADER -->
+<!-- ============================= -->
+
 <header>
 
-<h1>📅 JADUAL DUTY</h1>
+    <div class="header-top">
 
-<p>Sistem Pengurusan Jadual Duty Anggota</p>
+        <div>
+
+            <h1>
+
+                📅 JADUAL DUTY
+
+            </h1>
+
+            <p>
+
+                Pengurusan Jadual Duty Anggota
+
+            </p>
+
+        </div>
+
+
+        <button
+
+            class="btn-back"
+
+            onclick="window.location.href='index.html'"
+
+        >
+
+            🏠 Dashboard
+
+        </button>
+
+    </div>
 
 </header>
 
 
+<!-- ============================= -->
+<!-- CONTAINER -->
+<!-- ============================= -->
+
 <div class="container">
 
 
-<!-- ================================================= -->
-<!-- MASUKKAN DUTY -->
-<!-- ================================================= -->
+<!-- ============================= -->
+<!-- BORANG DUTY -->
+<!-- ============================= -->
 
 <div class="card">
 
-<h2>➕ Masukkan Duty</h2>
+
+<h2>
+
+    ➕ Masukkan Duty
+
+</h2>
+
 
 <div id="mesej"></div>
 
@@ -234,60 +554,106 @@ tr:hover {
 <div class="grid">
 
 
+<!-- TARIKH -->
+
 <div>
 
-<label>Tarikh Duty</label>
+<label>
+
+    Tarikh Duty
+
+</label>
+
 
 <input
-type="date"
-id="tarikh"
+
+    type="date"
+
+    id="tarikh"
+
 >
 
+
 </div>
 
 
+<!-- ANGGOTA -->
+
 <div>
 
-<label>Anggota</label>
+<label>
 
-<select id="anggota">
+    Anggota
+
+</label>
+
+
+<select
+
+    id="anggota"
+
+>
 
 <option value="">
 
--- Pilih Anggota --
+    -- Pilih Anggota --
 
 </option>
+
 
 </select>
 
 </div>
 
 
+<!-- KOD DUTY -->
+
 <div>
 
-<label>Kod Duty</label>
+<label>
 
-<select id="kodDuty">
+    Kod Duty
+
+</label>
+
+
+<select
+
+    id="kodDuty"
+
+>
 
 <option value="">
 
--- Pilih Kod Duty --
+    -- Pilih Kod Duty --
 
 </option>
+
 
 </select>
 
 </div>
 
 
+<!-- DIKEMASKINI OLEH -->
+
 <div>
 
-<label>Dikemaskini Oleh</label>
+<label>
+
+    Dikemaskini Oleh
+
+</label>
+
 
 <input
-type="text"
-id="dikemaskiniOleh"
-placeholder="Nama Ketua Pos"
+
+    type="text"
+
+    id="dikemaskiniOleh"
+
+    placeholder="Nama Ketua Pos"
+
 >
 
 </div>
@@ -299,15 +665,26 @@ placeholder="Nama Ketua Pos"
 <br>
 
 
-<!-- MAKLUMAT ANGGOTA -->
+<!-- ============================= -->
+<!-- INFO ANGGOTA -->
+<!-- ============================= -->
 
 <div
-class="info-box"
-id="infoAnggota"
-style="display:none;"
+
+    class="info-box"
+
+    id="infoAnggota"
+
+    style="display:none;"
+
 >
 
-<h3>Maklumat Anggota</h3>
+
+<h3>
+
+    Maklumat Anggota
+
+</h3>
 
 
 <div class="info-grid">
@@ -315,54 +692,114 @@ style="display:none;"
 
 <div class="info-item">
 
-<small>No. SKB</small>
+<small>
 
-<strong id="infoNoSkb">-</strong>
+    No. SKB
+
+</small>
+
+
+<strong id="infoNoSkb">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>No. Anggota</small>
+<small>
 
-<strong id="infoNoAnggota">-</strong>
+    No. Anggota
+
+</small>
+
+
+<strong id="infoNoAnggota">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Nama</small>
+<small>
 
-<strong id="infoNama">-</strong>
+    Nama
+
+</small>
+
+
+<strong id="infoNama">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Pangkat</small>
+<small>
 
-<strong id="infoPangkat">-</strong>
+    Pangkat
+
+</small>
+
+
+<strong id="infoPangkat">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Pos</small>
+<small>
 
-<strong id="infoPos">-</strong>
+    Pos
+
+</small>
+
+
+<strong id="infoPos">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Unit</small>
+<small>
 
-<strong id="infoUnit">-</strong>
+    Unit
+
+</small>
+
+
+<strong id="infoUnit">
+
+    -
+
+</strong>
+
 
 </div>
 
@@ -375,15 +812,26 @@ style="display:none;"
 <br>
 
 
-<!-- MAKLUMAT DUTY -->
+<!-- ============================= -->
+<!-- INFO DUTY -->
+<!-- ============================= -->
 
 <div
-class="info-box"
-id="infoDuty"
-style="display:none;"
+
+    class="info-box"
+
+    id="infoDuty"
+
+    style="display:none;"
+
 >
 
-<h3>Maklumat Duty</h3>
+
+<h3>
+
+    Maklumat Duty
+
+</h3>
 
 
 <div class="info-grid">
@@ -391,36 +839,76 @@ style="display:none;"
 
 <div class="info-item">
 
-<small>Kod Duty</small>
+<small>
 
-<strong id="infoKod">-</strong>
+    Kod Duty
+
+</small>
+
+
+<strong id="infoKod">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Waktu Tugasan</small>
+<small>
 
-<strong id="infoWaktu">-</strong>
+    Waktu Tugasan
+
+</small>
+
+
+<strong id="infoWaktu">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Jam Kerja</small>
+<small>
 
-<strong id="infoJamKerja">-</strong>
+    Jam Kerja
+
+</small>
+
+
+<strong id="infoJamKerja">
+
+    -
+
+</strong>
+
 
 </div>
 
 
 <div class="info-item">
 
-<small>Jam KLM</small>
+<small>
 
-<strong id="infoJamKlm">-</strong>
+    Jam KLM
+
+</small>
+
+
+<strong id="infoJamKlm">
+
+    -
+
+</strong>
+
 
 </div>
 
@@ -433,9 +921,13 @@ style="display:none;"
 <br>
 
 
-<button onclick="simpanDuty()">
+<button
 
-💾 SIMPAN DUTY
+    onclick="simpanDuty()"
+
+>
+
+    💾 SIMPAN DUTY
 
 </button>
 
@@ -443,56 +935,100 @@ style="display:none;"
 </div>
 
 
-<!-- ================================================= -->
+<!-- ============================= -->
 <!-- SENARAI DUTY -->
-<!-- ================================================= -->
+<!-- ============================= -->
 
 <div class="card">
 
 
-<h2>📋 Senarai Duty</h2>
+<h2>
+
+    📋 Senarai Duty
+
+</h2>
 
 
 <div class="grid">
 
 
+<!-- FILTER TARIKH -->
+
 <div>
 
-<label>Pilih Tarikh</label>
+<label>
+
+    Pilih Tarikh
+
+</label>
+
 
 <input
-type="date"
-id="filterTarikh"
+
+    type="date"
+
+    id="filterTarikh"
+
+    onchange="paparDuty()"
+
 >
 
 </div>
 
 
+<!-- FILTER POS -->
+
 <div>
 
-<label>Pilih Pos</label>
+<label>
 
-<select id="filterPos">
+    Pilih Pos
+
+</label>
+
+
+<select
+
+    id="filterPos"
+
+    onchange="paparDuty()"
+
+>
+
 
 <option value="">
 
-Semua Pos
+    Semua Pos
 
 </option>
+
 
 </select>
 
 </div>
 
 
+<!-- CARI NAMA -->
+
 <div>
 
-<label>Cari Nama</label>
+<label>
+
+    Cari Nama
+
+</label>
+
 
 <input
-type="text"
-id="cariNama"
-placeholder="Cari nama anggota..."
+
+    type="text"
+
+    id="cariNama"
+
+    placeholder="Cari nama anggota..."
+
+    onkeyup="paparDuty()"
+
 >
 
 </div>
@@ -512,46 +1048,104 @@ placeholder="Cari nama anggota..."
 
 <thead>
 
+
 <tr>
 
-<th>Tarikh</th>
+<th>
 
-<th>No. SKB</th>
+    Tarikh
 
-<th>No. Anggota</th>
+</th>
 
-<th>Nama</th>
 
-<th>Pangkat</th>
+<th>
 
-<th>Pos</th>
+    No. SKB
 
-<th>Kod Duty</th>
+</th>
 
-<th>Waktu</th>
 
-<th>Jam Kerja</th>
+<th>
 
-<th>Jam KLM</th>
+    No. Anggota
 
-<th>Tindakan</th>
+</th>
+
+
+<th>
+
+    Nama
+
+</th>
+
+
+<th>
+
+    Pangkat
+
+</th>
+
+
+<th>
+
+    Pos
+
+</th>
+
+
+<th>
+
+    Kod Duty
+
+</th>
+
+
+<th>
+
+    Waktu
+
+</th>
+
+
+<th>
+
+    Jam Kerja
+
+</th>
+
+
+<th>
+
+    Jam KLM
+
+</th>
+
+
+<th>
+
+    Tindakan
+
+</th>
 
 </tr>
+
 
 </thead>
 
 
 <tbody id="senaraiDuty">
 
+
 <tr>
 
 <td colspan="11">
 
-Sila pilih tarikh
+    Sila pilih tarikh
 
 </td>
 
 </tr>
+
 
 </tbody>
 
@@ -568,19 +1162,15 @@ Sila pilih tarikh
 </div>
 
 
-<!-- ================================================= -->
+<!-- ============================= -->
 <!-- JAVASCRIPT -->
-<!-- ================================================= -->
+<!-- ============================= -->
 
+<script src="supabase.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="./supabase.js"></script>
-
-<script src="./js/jadual-duty.js"></script>
+<script src="js/jadual-duty.js"></script>
 
 
 </body>
 
 </html>
-```
