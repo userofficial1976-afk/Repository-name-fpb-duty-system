@@ -1,11 +1,3 @@
-```javascript
-// =====================================================
-// DATA MEMORY
-// =====================================================
-
-let semuaTempatKerja = [];
-
-
 // =====================================================
 // APABILA HALAMAN DIBUKA
 // =====================================================
@@ -15,10 +7,12 @@ document.addEventListener(
     async function () {
 
         console.log(
-            "TEMPAT KERJA JS BERJAYA DIMUAT"
+            "TEMPAT KERJA JS BERJAYA"
         );
 
-        await muatSenaraiTempatKerja();
+
+        await muatSenaraiPos();
+
 
         await paparSenaraiTempatKerja();
 
@@ -27,14 +21,13 @@ document.addEventListener(
 
 
 // =====================================================
-// MUAT SENARAI TEMPAT KERJA
-// DARIPADA Data_Anggota.pos
+// MUAT POS DARIPADA Data_Anggota
 // =====================================================
 
-async function muatSenaraiTempatKerja() {
+async function muatSenaraiPos() {
 
 
-    const { data, error } =
+    const result =
 
         await supabaseClient
 
@@ -52,16 +45,23 @@ async function muatSenaraiTempatKerja() {
             );
 
 
+    const data =
+        result.data;
+
+
+    const error =
+        result.error;
+
+
     if (error) {
 
         console.error(
-            "RALAT AMBIL POS:",
+            "RALAT DATA ANGGOTA:",
             error
         );
 
         paparMesej(
-            "Gagal ambil senarai pos: "
-            + error.message,
+            error.message,
             "error"
         );
 
@@ -70,46 +70,41 @@ async function muatSenaraiTempatKerja() {
     }
 
 
-    const senaraiPos =
+    const senaraiPos = [];
 
-        [
 
-            ...new Set(
+    (data || []).forEach(
 
-                (data || [])
+        function (item) {
 
-                    .map(
 
-                        function (x) {
+            if (
 
-                            return x.pos;
+                item.pos
 
-                        }
+                &&
 
-                    )
+                !senaraiPos.includes(
+                    item.pos
+                )
 
-                    .filter(
+            ) {
 
-                        function (pos) {
+                senaraiPos.push(
+                    item.pos
+                );
 
-                            return pos
-                            &&
-                            pos.trim()
-                            !== "";
+            }
 
-                        }
+        }
 
-                    )
-
-            )
-
-        ];
+    );
 
 
     senaraiPos.sort();
 
 
-    const select =
+    const dropdown =
 
         document
             .getElementById(
@@ -117,18 +112,7 @@ async function muatSenaraiTempatKerja() {
             );
 
 
-    if (!select) {
-
-        console.error(
-            "ID namaTempatKerja tidak dijumpai"
-        );
-
-        return;
-
-    }
-
-
-    select.innerHTML = `
+    dropdown.innerHTML = `
 
         <option value="">
 
@@ -160,7 +144,7 @@ async function muatSenaraiTempatKerja() {
                 pos;
 
 
-            select
+            dropdown
                 .appendChild(
                     option
                 );
@@ -171,7 +155,7 @@ async function muatSenaraiTempatKerja() {
 
 
     console.log(
-        "Jumlah tempat kerja:",
+        "Jumlah POS:",
         senaraiPos.length
     );
 
@@ -179,7 +163,7 @@ async function muatSenaraiTempatKerja() {
 
 
 // =====================================================
-// SIMPAN KOD TEMPAT KERJA
+// SIMPAN
 // =====================================================
 
 async function simpanTempatKerja() {
@@ -201,21 +185,22 @@ async function simpanTempatKerja() {
             .getElementById(
                 "namaTempatKerja"
             )
-            .value
-            .trim();
+            .value;
 
 
     if (
 
-        !kod
+        kod === ""
+
         ||
-        !nama
+
+        nama === ""
 
     ) {
 
         paparMesej(
 
-            "Sila lengkapkan Kod Tempat Kerja dan Nama Tempat Kerja.",
+            "Sila isi Kod dan pilih Nama Tempat Kerja.",
 
             "error"
 
@@ -226,7 +211,7 @@ async function simpanTempatKerja() {
     }
 
 
-    const { error } =
+    const result =
 
         await supabaseClient
 
@@ -248,18 +233,21 @@ async function simpanTempatKerja() {
             });
 
 
-    if (error) {
+    if (result.error) {
 
         console.error(
             "RALAT SIMPAN:",
-            error
+            result.error
         );
 
 
         paparMesej(
 
             "Gagal simpan: "
-            + error.message,
+
+            +
+
+            result.error.message,
 
             "error"
 
@@ -272,7 +260,7 @@ async function simpanTempatKerja() {
 
     paparMesej(
 
-        "Kod tempat kerja berjaya disimpan.",
+        "Kod Tempat Kerja berjaya disimpan.",
 
         "success"
 
@@ -301,13 +289,13 @@ async function simpanTempatKerja() {
 
 
 // =====================================================
-// PAPAR SENARAI KOD TEMPAT KERJA
+// PAPAR SENARAI
 // =====================================================
 
 async function paparSenaraiTempatKerja() {
 
 
-    const { data, error } =
+    const result =
 
         await supabaseClient
 
@@ -333,21 +321,11 @@ async function paparSenaraiTempatKerja() {
             );
 
 
-    if (error) {
+    if (result.error) {
 
         console.error(
-            "RALAT SENARAI:",
-            error
-        );
-
-
-        paparMesej(
-
-            "Gagal ambil senarai: "
-            + error.message,
-
-            "error"
-
+            "RALAT PAPAR:",
+            result.error
         );
 
         return;
@@ -355,8 +333,8 @@ async function paparSenaraiTempatKerja() {
     }
 
 
-    semuaTempatKerja =
-        data || [];
+    const data =
+        result.data;
 
 
     const tbody =
@@ -367,26 +345,17 @@ async function paparSenaraiTempatKerja() {
             );
 
 
-    if (!tbody) {
-
-        console.error(
-            "ID senaraiTempatKerja tidak dijumpai"
-        );
-
-        return;
-
-    }
-
-
     tbody.innerHTML =
         "";
 
 
     if (
 
-        semuaTempatKerja.length
-        ===
-        0
+        !data
+
+        ||
+
+        data.length === 0
 
     ) {
 
@@ -394,9 +363,9 @@ async function paparSenaraiTempatKerja() {
 
             <tr>
 
-                <td colspan="4">
+                <td colspan="5">
 
-                    Tiada kod tempat kerja.
+                    Tiada data.
 
                 </td>
 
@@ -409,10 +378,10 @@ async function paparSenaraiTempatKerja() {
     }
 
 
-    semuaTempatKerja.forEach(
+    data.forEach(
 
         function (
-            tempat,
+            row,
             index
         ) {
 
@@ -441,9 +410,8 @@ async function paparSenaraiTempatKerja() {
                     <span class="badge">
 
                         ${
-                            tempat
+                            row
                                 .kod_tempat_kerja
-                            || ""
 
                         }
 
@@ -455,9 +423,8 @@ async function paparSenaraiTempatKerja() {
                 <td>
 
                     ${
-                        tempat
+                        row
                             .nama_tempat_kerja
-                        || ""
 
                     }
 
@@ -467,8 +434,7 @@ async function paparSenaraiTempatKerja() {
                 <td>
 
                     ${
-                        tempat.status
-                        || ""
+                        row.status
 
                     }
 
@@ -487,7 +453,7 @@ async function paparSenaraiTempatKerja() {
 
                                 '${
 
-                                    tempat
+                                    row
                                         .kod_tempat_kerja
 
                                 }'
@@ -520,7 +486,7 @@ async function paparSenaraiTempatKerja() {
 
 
 // =====================================================
-// PADAM KOD TEMPAT KERJA
+// PADAM
 // =====================================================
 
 async function padamTempatKerja(
@@ -531,9 +497,7 @@ async function padamTempatKerja(
     if (
 
         !confirm(
-
             "Padam kod tempat kerja ini?"
-
         )
 
     ) {
@@ -543,7 +507,7 @@ async function padamTempatKerja(
     }
 
 
-    const { error } =
+    const result =
 
         await supabaseClient
 
@@ -562,18 +526,15 @@ async function padamTempatKerja(
             );
 
 
-    if (error) {
-
-        console.error(
-            "RALAT PADAM:",
-            error
-        );
-
+    if (result.error) {
 
         paparMesej(
 
             "Gagal padam: "
-            + error.message,
+
+            +
+
+            result.error.message,
 
             "error"
 
@@ -599,7 +560,7 @@ async function padamTempatKerja(
 
 
 // =====================================================
-// PAPAR MESEJ
+// MESEJ
 // =====================================================
 
 function paparMesej(
@@ -614,17 +575,6 @@ function paparMesej(
             .getElementById(
                 "mesej"
             );
-
-
-    if (!div) {
-
-        alert(
-            mesej
-        );
-
-        return;
-
-    }
 
 
     div.className =
@@ -652,4 +602,3 @@ function paparMesej(
     );
 
 }
-```
