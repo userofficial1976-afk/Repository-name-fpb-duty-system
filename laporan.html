@@ -4,382 +4,204 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>Laporan - FPB Duty System</title>
-
+<title>Laporan Duty - FPB Duty System</title>
 
 <style>
 
 * {
-
     box-sizing: border-box;
-
     font-family: Arial, sans-serif;
-
 }
-
 
 body {
-
     margin: 0;
-
     background: #f1f5f9;
-
     color: #1e293b;
-
 }
-
 
 header {
-
     background: #0f172a;
-
     color: white;
-
     padding: 20px 25px;
-
 }
-
-
-.header-content {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-}
-
-
-.logo {
-
-    width: 55px;
-
-    height: 55px;
-
-    object-fit: contain;
-
-    border: 2px solid white;
-
-    border-radius: 8px;
-
-    padding: 3px;
-
-}
-
 
 header h1 {
-
     margin: 0;
-
-    font-size: 26px;
-
+    font-size: 25px;
 }
-
 
 header p {
-
-    margin: 5px 0 0;
-
+    margin: 6px 0 0;
     color: #cbd5e1;
-
 }
-
-
-.btn-dashboard {
-
-    display: inline-block;
-
-    margin-top: 15px;
-
-    background: #2563eb;
-
-    color: white;
-
-    text-decoration: none;
-
-    padding: 10px 16px;
-
-    border-radius: 7px;
-
-    font-weight: bold;
-
-}
-
 
 .container {
-
-    max-width: 1500px;
-
+    max-width: 1700px;
     margin: auto;
-
-    padding: 25px;
-
+    padding: 20px;
 }
 
+.btn-dashboard {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
 .card {
-
     background: white;
-
-    padding: 20px;
-
     border-radius: 12px;
-
+    padding: 20px;
     margin-bottom: 20px;
-
-    box-shadow:
-        0 3px 12px
-        rgba(0,0,0,0.08);
-
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
 }
 
-
-.card h2 {
-
+h2 {
     margin-top: 0;
-
     color: #0f172a;
-
 }
-
 
 .grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(200px, 1fr)
-        );
-
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-
 }
-
 
 label {
-
     display: block;
-
     font-weight: bold;
-
     margin-bottom: 6px;
-
 }
-
 
 input,
-
 select,
-
 button {
-
     width: 100%;
-
     padding: 11px;
-
     border-radius: 7px;
-
     border: 1px solid #cbd5e1;
-
     font-size: 14px;
-
 }
-
 
 button {
-
     background: #2563eb;
-
     color: white;
-
     border: none;
-
     cursor: pointer;
-
     font-weight: bold;
-
 }
-
 
 button:hover {
-
     background: #1d4ed8;
-
 }
-
 
 .btn-print {
-
     background: #16a34a;
-
 }
-
 
 .btn-print:hover {
-
     background: #15803d;
-
 }
-
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(220px, 1fr)
-        );
-
-    gap: 15px;
-
-}
-
-
-.stat-card {
-
-    background: #f8fafc;
-
-    border-left: 5px solid #2563eb;
-
-    padding: 20px;
-
-    border-radius: 8px;
-
-}
-
-
-.stat-card h3 {
-
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 15px;
-
-}
-
-
-.stat-card strong {
-
-    display: block;
-
-    margin-top: 10px;
-
-    font-size: 30px;
-
-    color: #0f172a;
-
-}
-
 
 .table-wrapper {
-
     overflow-x: auto;
-
 }
-
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
-
-    min-width: 1200px;
-
+    min-width: 1600px;
 }
-
 
 th,
-
 td {
-
-    padding: 10px;
-
     border-bottom: 1px solid #e2e8f0;
-
+    padding: 10px;
     text-align: left;
-
     white-space: nowrap;
-
 }
-
 
 th {
-
     background: #0f172a;
-
     color: white;
-
 }
-
 
 tr:hover {
-
     background: #f8fafc;
-
 }
-
 
 .badge {
-
+    display: inline-block;
     background: #dbeafe;
-
     color: #1d4ed8;
-
     padding: 5px 8px;
-
     border-radius: 5px;
-
     font-weight: bold;
-
 }
 
+.summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-box {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.summary-box small {
+    display: block;
+    color: #64748b;
+}
+
+.summary-box strong {
+    display: block;
+    font-size: 25px;
+    margin-top: 5px;
+    color: #1d4ed8;
+}
 
 @media print {
 
     header,
-
     .filter-card,
-
+    .btn-dashboard,
     .btn-print {
-
-        display: none;
-
+        display: none !important;
     }
-
 
     body {
-
         background: white;
-
     }
-
 
     .container {
-
-        padding: 0;
-
         max-width: none;
-
+        padding: 0;
     }
 
-
     .card {
-
         box-shadow: none;
+        padding: 0;
+    }
 
+    table {
+        min-width: 0;
+        font-size: 10px;
+    }
+
+    th,
+    td {
+        padding: 5px;
     }
 
 }
@@ -388,43 +210,19 @@ tr:hover {
 
 </head>
 
-
 <body>
-
 
 <header>
 
-<div class="header-content">
+<h1>📊 LAPORAN DUTY</h1>
 
-<img
-src="logo.png"
-class="logo"
-alt="Logo FPB"
->
-
-
-<div>
-
-<h1>
-📊 LAPORAN DUTY
-</h1>
-
-<p>
-Laporan Pengurusan Jadual Duty Anggota
-</p>
-
-</div>
-
-</div>
-
+<p>Laporan Pengurusan Jadual Duty Anggota</p>
 
 <a
 href="index.html"
 class="btn-dashboard"
 >
-
 🏠 Kembali ke Dashboard
-
 </a>
 
 </header>
@@ -433,119 +231,42 @@ class="btn-dashboard"
 <div class="container">
 
 
-<!-- FILTER -->
-
 <div class="card filter-card">
 
-<h2>
-🔎 Tapis Laporan
-</h2>
-
+<h2>🔍 Tapisan Laporan</h2>
 
 <div class="grid">
 
 
 <div>
 
-<label>
-Bulan
-</label>
+<label>Tarikh Mula</label>
 
-
-<select
-id="filterBulan"
-onchange="paparLaporan()"
+<input
+type="date"
+id="tarikhMula"
 >
-
-<option value="">
-Semua Bulan
-</option>
-
-<option value="1">
-Januari
-</option>
-
-<option value="2">
-Februari
-</option>
-
-<option value="3">
-Mac
-</option>
-
-<option value="4">
-April
-</option>
-
-<option value="5">
-Mei
-</option>
-
-<option value="6">
-Jun
-</option>
-
-<option value="7">
-Julai
-</option>
-
-<option value="8">
-Ogos
-</option>
-
-<option value="9">
-September
-</option>
-
-<option value="10">
-Oktober
-</option>
-
-<option value="11">
-November
-</option>
-
-<option value="12">
-Disember
-</option>
-
-</select>
 
 </div>
 
 
 <div>
 
-<label>
-Tahun
-</label>
+<label>Tarikh Akhir</label>
 
-
-<select
-id="filterTahun"
-onchange="paparLaporan()"
+<input
+type="date"
+id="tarikhAkhir"
 >
-
-<option value="">
-Semua Tahun
-</option>
-
-</select>
 
 </div>
 
 
 <div>
 
-<label>
-Pos
-</label>
+<label>Pos Asal</label>
 
-
-<select
-id="filterPos"
-onchange="paparLaporan()"
->
+<select id="filterPos">
 
 <option value="">
 Semua Pos
@@ -558,20 +279,45 @@ Semua Pos
 
 <div>
 
-<label>
-Cari Nama Anggota
-</label>
+<label>Kod Tempat Kerja</label>
 
+<select id="filterKodTempatKerja">
+
+<option value="">
+Semua Kod Tempat Kerja
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Kod Duty</label>
+
+<select id="filterKodDuty">
+
+<option value="">
+Semua Kod Duty
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Cari Nama</label>
 
 <input
 type="text"
 id="cariNama"
-placeholder="Taip nama anggota..."
-onkeyup="paparLaporan()"
+placeholder="Cari nama anggota..."
 >
 
 </div>
-
 
 </div>
 
@@ -579,87 +325,69 @@ onkeyup="paparLaporan()"
 <br>
 
 
+<div class="grid">
+
+<div>
+
 <button
-class="btn-print"
-onclick="window.print()"
+onclick="paparLaporan()"
 >
-
-🖨️ CETAK LAPORAN
-
+🔍 CARI LAPORAN
 </button>
 
 </div>
 
 
-<!-- STATISTIK -->
+<div>
+
+<button
+class="btn-print"
+onclick="window.print()"
+>
+🖨️ CETAK LAPORAN
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="summary">
+
+<div class="summary-box">
+
+<small>Jumlah Duty</small>
+
+<strong id="jumlahDuty">0</strong>
+
+</div>
+
+
+<div class="summary-box">
+
+<small>Jumlah Jam Kerja</small>
+
+<strong id="jumlahJamKerja">0</strong>
+
+</div>
+
+
+<div class="summary-box">
+
+<small>Jumlah Jam KLM</small>
+
+<strong id="jumlahJamKlm">0</strong>
+
+</div>
+
+</div>
+
 
 <div class="card">
 
-<h2>
-📈 Ringkasan Laporan
-</h2>
-
-
-<div class="stats">
-
-
-<div class="stat-card">
-
-<h3>
-Jumlah Rekod Duty
-</h3>
-
-<strong
-id="jumlahDuty"
->
-0
-</strong>
-
-</div>
-
-
-<div class="stat-card">
-
-<h3>
-Jumlah Jam Kerja
-</h3>
-
-<strong
-id="jumlahJamKerja"
->
-0
-</strong>
-
-</div>
-
-
-<div class="stat-card">
-
-<h3>
-Jumlah Jam KLM
-</h3>
-
-<strong
-id="jumlahJamKlm"
->
-0
-</strong>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- SENARAI LAPORAN -->
-
-<div class="card">
-
-<h2>
-📋 Senarai Laporan Duty
-</h2>
+<h2>📋 Senarai Laporan Duty</h2>
 
 
 <div class="table-wrapper">
@@ -670,70 +398,46 @@ id="jumlahJamKlm"
 
 <tr>
 
-<th>
-Bil
-</th>
+<th>Bil</th>
 
-<th>
-Tarikh
-</th>
+<th>Tarikh</th>
 
-<th>
-No. SKB
-</th>
+<th>No. SKB</th>
 
-<th>
-No. Anggota
-</th>
+<th>No. Anggota</th>
 
-<th>
-Nama
-</th>
+<th>Nama</th>
 
-<th>
-Pangkat
-</th>
+<th>Pangkat</th>
 
-<th>
-Pos
-</th>
+<th>Pos Asal</th>
 
-<th>
-Kod Duty
-</th>
+<th>Kod Tempat Kerja</th>
 
-<th>
-Waktu Tugasan
-</th>
+<th>Tempat Bertugas</th>
 
-<th>
-Jam Kerja
-</th>
+<th>Kod Duty</th>
 
-<th>
-Jam KLM
-</th>
+<th>Waktu Tugasan</th>
 
-<th>
-Ketua Pos
-</th>
+<th>Jam Kerja</th>
+
+<th>Jam KLM</th>
+
+<th>Ketua Pos</th>
 
 </tr>
 
 </thead>
 
 
-<tbody
-id="senaraiLaporan"
->
+<tbody id="senaraiLaporan">
 
 <tr>
 
-<td
-colspan="12"
->
+<td colspan="14">
 
-Memuatkan data...
+Sila buat carian laporan.
 
 </td>
 
@@ -747,24 +451,14 @@ Memuatkan data...
 
 </div>
 
-
 </div>
 
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="supabase.js"></script>
 
-<script
-src="supabase.js"
-></script>
-
-
-<script
-src="js/laporan.js"
-></script>
-
+<script src="js/laporan.js"></script>
 
 </body>
 
