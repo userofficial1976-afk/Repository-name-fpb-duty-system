@@ -117,7 +117,7 @@ nav a.active {
 
 .container {
 
-    max-width: 1400px;
+    max-width: 1500px;
 
     margin: auto;
 
@@ -205,6 +205,15 @@ button {
     border: 1px solid #cbd5e1;
 
     font-size: 14px;
+
+}
+
+
+input[readonly] {
+
+    background: #f1f5f9;
+
+    color: #475569;
 
 }
 
@@ -302,7 +311,7 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 1000px;
+    min-width: 1400px;
 
 }
 
@@ -406,15 +415,15 @@ tr:hover {
 
     background: white;
 
-    width: 90%;
+    width: 95%;
 
-    max-width: 800px;
+    max-width: 1000px;
 
-    max-height: 90vh;
+    max-height: 92vh;
 
     overflow-y: auto;
 
-    margin: 3% auto;
+    margin: 2% auto;
 
     padding: 25px;
 
@@ -427,7 +436,7 @@ tr:hover {
 
     float: right;
 
-    font-size: 25px;
+    font-size: 28px;
 
     cursor: pointer;
 
@@ -461,6 +470,23 @@ tr:hover {
 }
 
 
+.section-title {
+
+    grid-column: 1 / -1;
+
+    background: #f1f5f9;
+
+    padding: 10px 12px;
+
+    border-left: 4px solid #2563eb;
+
+    font-weight: bold;
+
+    color: #0f172a;
+
+}
+
+
 @media(max-width:600px) {
 
 
@@ -487,9 +513,11 @@ tr:hover {
 
     .modal-content {
 
-        margin: 5% auto;
+        margin: 3% auto;
 
-        width: 95%;
+        width: 96%;
+
+        padding: 18px;
 
     }
 
@@ -593,10 +621,6 @@ href="tetapan.html"
 
 <div class="container">
 
-<!-- =====================================================
-     FILTER
-===================================================== -->
-
 <div class="card">
 
 <h2>
@@ -661,6 +685,32 @@ Semua Pos
 
 <label>
 
+Filter Kawasan
+
+</label>
+
+<select
+
+id="filterKawasan"
+
+onchange="paparAnggota()"
+
+>
+
+<option value="">
+
+Semua Kawasan
+
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
 Status
 
 </label>
@@ -711,10 +761,6 @@ onclick="bukaTambah()"
 
 </div>
 
-<!-- =====================================================
-     TABLE
-===================================================== -->
-
 <div class="card">
 
 <div class="table-wrapper">
@@ -751,6 +797,18 @@ Pangkat
 
 <th>
 
+Wilayah
+
+</th>
+
+<th>
+
+Kawasan
+
+</th>
+
+<th>
+
 Pos
 
 </th>
@@ -758,6 +816,24 @@ Pos
 <th>
 
 Unit
+
+</th>
+
+<th>
+
+Jawatan
+
+</th>
+
+<th>
+
+Ketua Pos
+
+</th>
+
+<th>
+
+Ketua Unit
 
 </th>
 
@@ -787,7 +863,7 @@ id="senaraiAnggota"
 
 <td
 
-colspan="8"
+colspan="13"
 
 >
 
@@ -808,7 +884,7 @@ Memuatkan data...
 </div>
 
 <!-- =====================================================
-     MODAL TAMBAH / EDIT ANGGOTA
+     MODAL
 ===================================================== -->
 
 <div
@@ -857,7 +933,11 @@ id="editNoSkb"
 
 <div class="grid">
 
-<!-- NO SKB -->
+<div class="section-title">
+
+📌 MAKLUMAT ANGGOTA
+
+</div>
 
 <div>
 
@@ -877,8 +957,6 @@ id="noSkb"
 
 </div>
 
-<!-- NO ANGGOTA -->
-
 <div>
 
 <label>
@@ -897,8 +975,6 @@ id="noAnggota"
 
 </div>
 
-<!-- NAMA -->
-
 <div>
 
 <label>
@@ -916,8 +992,6 @@ id="nama"
 >
 
 </div>
-
-<!-- PANGKAT DROPDOWN -->
 
 <div>
 
@@ -943,7 +1017,63 @@ id="pangkat"
 
 </div>
 
-<!-- POS DROPDOWN -->
+<div>
+
+<label>
+
+Wilayah
+
+</label>
+
+<input
+
+type="text"
+
+id="wilayah"
+
+value="Terengganu"
+
+readonly
+
+>
+
+</div>
+
+<div>
+
+<label>
+
+Kawasan
+
+</label>
+
+<select
+
+id="kawasan"
+
+>
+
+<option value="">
+
+-- Pilih Kawasan --
+
+</option>
+
+<option value="F102-Jerangau">
+
+F102-Jerangau
+
+</option>
+
+<option value="F105-Chalok">
+
+F105-Chalok
+
+</option>
+
+</select>
+
+</div>
 
 <div>
 
@@ -957,6 +1087,8 @@ Pos
 
 id="pos"
 
+onchange="paparKetua"
+
 >
 
 <option value="">
@@ -968,8 +1100,6 @@ id="pos"
 </select>
 
 </div>
-
-<!-- UNIT DROPDOWN -->
 
 <div>
 
@@ -983,6 +1113,8 @@ Unit
 
 id="unit"
 
+onchange="paparKetuaUnit()"
+
 >
 
 <option value="">
@@ -995,7 +1127,109 @@ id="unit"
 
 </div>
 
-<!-- STATUS -->
+<div>
+
+<label>
+
+Jawatan
+
+</label>
+
+<select
+
+id="jawatan"
+
+>
+
+<option value="">
+
+-- Pilih Jawatan --
+
+</option>
+
+<option value="Anggota Pos">
+
+Anggota Pos
+
+</option>
+
+<option value="Ketua Pos">
+
+Ketua Pos
+
+</option>
+
+<option value="Ketua Unit">
+
+Ketua Unit
+
+</option>
+
+<option value="PTW">
+
+PTW
+
+</option>
+
+<option value="PPOW">
+
+PPOW
+
+</option>
+
+<option value="POW">
+
+POW
+
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+Ketua Pos
+
+</label>
+
+<input
+
+type="text"
+
+id="ketuaPos"
+
+readonly
+
+placeholder="Auto papar selepas pilih Pos"
+
+>
+
+</div>
+
+<div>
+
+<label>
+
+Ketua Unit
+
+</label>
+
+<input
+
+type="text"
+
+id="ketuaUnit"
+
+readonly
+
+placeholder="Auto papar selepas pilih Unit"
+
+>
+
+</div>
 
 <div>
 
@@ -1120,6 +1354,70 @@ document.addEventListener(
         muatDropdownUnit();
 
 
+        muatFilterPos();
+
+
+        muatFilterKawasan();
+
+
+        document
+
+            .getElementById(
+
+                "pos"
+
+            )
+
+            .addEventListener(
+
+                "change",
+
+                paparKetua
+
+            );
+
+
+        document
+
+            .getElementById(
+
+                "unit"
+
+            )
+
+            .addEventListener(
+
+                "change",
+
+                paparKetuaUnit
+
+            );
+
+
+        document
+
+            .getElementById(
+
+                "kawasan"
+
+            )
+
+            .addEventListener(
+
+                "change",
+
+                function () {
+
+
+                    paparKetua();
+
+
+                    paparKetuaUnit();
+
+                }
+
+            );
+
     }
 
 );
@@ -1145,7 +1443,7 @@ async function muatAnggota() {
 
             .select(
 
-                "no_skb,no_anggota,nama,pangkat,pos,unit,status"
+                "no_skb,no_anggota,nama,pangkat,wilayah,kawasan,pos,unit,jawatan,ketua_pos,ketua_unit,status"
 
             )
 
@@ -1194,10 +1492,6 @@ async function muatAnggota() {
 
     paparAnggota();
 
-
-    muatFilterPos();
-
-
 }
 
 
@@ -1228,6 +1522,7 @@ function senaraiUnik(
                         item
 
                     ) {
+
 
                         return item[
 
@@ -1282,6 +1577,7 @@ function senaraiUnik(
 
                     ) {
 
+
                         return String(
 
                             nilai
@@ -1323,11 +1619,19 @@ function senaraiUnik(
 
 
 // =====================================================
-// DROPDOWN PANGKAT
+// DROPDOWN UMUM
 // =====================================================
 
 
-function muatDropdownPangkat() {
+function isiDropdown(
+
+    id,
+
+    namaKolum,
+
+    teksDefault
+
+) {
 
 
     const select =
@@ -1336,16 +1640,34 @@ function muatDropdownPangkat() {
 
             .getElementById(
 
-                "pangkat"
+                id
 
             );
+
+
+    const nilaiLama =
+
+        select.value;
+
+
+    select.innerHTML =
+
+        `
+
+        <option value="">
+
+            ${teksDefault}
+
+        </option>
+
+        `;
 
 
     const data =
 
         senaraiUnik(
 
-            "pangkat"
+            namaKolum
 
         );
 
@@ -1354,7 +1676,7 @@ function muatDropdownPangkat() {
 
         function (
 
-            pangkat
+            nilai
 
         ) {
 
@@ -1372,12 +1694,12 @@ function muatDropdownPangkat() {
 
             option.value =
 
-                pangkat;
+                nilai;
 
 
             option.textContent =
 
-                pangkat;
+                nilai;
 
 
             select.appendChild(
@@ -1387,6 +1709,45 @@ function muatDropdownPangkat() {
             );
 
         }
+
+    );
+
+
+    if (
+
+        data.includes(
+
+            nilaiLama
+
+        )
+
+    ) {
+
+
+        select.value =
+
+            nilaiLama;
+
+    }
+
+}
+
+
+// =====================================================
+// DROPDOWN PANGKAT
+// =====================================================
+
+
+function muatDropdownPangkat() {
+
+
+    isiDropdown(
+
+        "pangkat",
+
+        "pangkat",
+
+        "-- Pilih Pangkat --"
 
     );
 
@@ -1401,63 +1762,13 @@ function muatDropdownPangkat() {
 function muatDropdownPos() {
 
 
-    const select =
+    isiDropdown(
 
-        document
+        "pos",
 
-            .getElementById(
+        "pos",
 
-                "pos"
-
-            );
-
-
-    const data =
-
-        senaraiUnik(
-
-            "pos"
-
-        );
-
-
-    data.forEach(
-
-        function (
-
-            pos
-
-        ) {
-
-
-            const option =
-
-                document
-
-                    .createElement(
-
-                        "option"
-
-                    );
-
-
-            option.value =
-
-                pos;
-
-
-            option.textContent =
-
-                pos;
-
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
+        "-- Pilih Pos --"
 
     );
 
@@ -1472,63 +1783,13 @@ function muatDropdownPos() {
 function muatDropdownUnit() {
 
 
-    const select =
+    isiDropdown(
 
-        document
+        "unit",
 
-            .getElementById(
+        "unit",
 
-                "unit"
-
-            );
-
-
-    const data =
-
-        senaraiUnik(
-
-            "unit"
-
-        );
-
-
-    data.forEach(
-
-        function (
-
-            unit
-
-        ) {
-
-
-            const option =
-
-                document
-
-                    .createElement(
-
-                        "option"
-
-                    );
-
-
-            option.value =
-
-                unit;
-
-
-            option.textContent =
-
-                unit;
-
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
+        "-- Pilih Unit --"
 
     );
 
@@ -1543,13 +1804,34 @@ function muatDropdownUnit() {
 function muatFilterPos() {
 
 
+    isiDropdown(
+
+        "filterPos",
+
+        "pos",
+
+        "Semua Pos"
+
+    );
+
+}
+
+
+// =====================================================
+// FILTER KAWASAN
+// =====================================================
+
+
+function muatFilterKawasan() {
+
+
     const select =
 
         document
 
             .getElementById(
 
-                "filterPos"
+                "filterKawasan"
 
             );
 
@@ -1558,61 +1840,253 @@ function muatFilterPos() {
 
         <option value="">
 
-            Semua Pos
+            Semua Kawasan
+
+        </option>
+
+        <option value="F102-Jerangau">
+
+            F102-Jerangau
+
+        </option>
+
+        <option value="F105-Chalok">
+
+            F105-Chalok
 
         </option>
 
     `;
 
+}
 
-    const data =
 
-        senaraiUnik(
+// =====================================================
+// AUTO KETUA POS
+// =====================================================
 
-            "pos"
+
+function paparKetua() {
+
+
+    const kawasan =
+
+        document
+
+            .getElementById(
+
+                "kawasan"
+
+            )
+
+            .value;
+
+
+    const pos =
+
+        document
+
+            .getElementById(
+
+                "pos"
+
+            )
+
+            .value;
+
+
+    const input =
+
+        document
+
+            .getElementById(
+
+                "ketuaPos"
+
+            );
+
+
+    if (
+
+        !kawasan
+
+        ||
+
+        !pos
+
+    ) {
+
+
+        input.value =
+
+            "";
+
+
+        return;
+
+    }
+
+
+    const ketua =
+
+        semuaAnggota.find(
+
+            function (
+
+                anggota
+
+            ) {
+
+
+                return (
+
+                    anggota.kawasan === kawasan
+
+                    &&
+
+                    anggota.pos === pos
+
+                    &&
+
+                    anggota.jawatan === "Ketua Pos"
+
+                    &&
+
+                    anggota.status === "Aktif"
+
+                );
+
+            }
 
         );
 
 
-    data.forEach(
+    input.value =
 
-        function (
+        ketua
 
-            pos
+        ?
 
-        ) {
+        ketua.nama
 
+        :
 
-            const option =
+        "";
 
-                document
-
-                    .createElement(
-
-                        "option"
-
-                    );
+}
 
 
-            option.value =
-
-                pos;
-
-
-            option.textContent =
-
-                pos;
+// =====================================================
+// AUTO KETUA UNIT
+// =====================================================
 
 
-            select.appendChild(
+function paparKetuaUnit() {
 
-                option
+
+    const kawasan =
+
+        document
+
+            .getElementById(
+
+                "kawasan"
+
+            )
+
+            .value;
+
+
+    const unit =
+
+        document
+
+            .getElementById(
+
+                "unit"
+
+            )
+
+            .value;
+
+
+    const input =
+
+        document
+
+            .getElementById(
+
+                "ketuaUnit"
 
             );
 
-        }
 
-    );
+    if (
+
+        !kawasan
+
+        ||
+
+        !unit
+
+    ) {
+
+
+        input.value =
+
+            "";
+
+
+        return;
+
+    }
+
+
+    const ketua =
+
+        semuaAnggota.find(
+
+            function (
+
+                anggota
+
+            ) {
+
+
+                return (
+
+                    anggota.kawasan === kawasan
+
+                    &&
+
+                    anggota.unit === unit
+
+                    &&
+
+                    anggota.jawatan === "Ketua Unit"
+
+                    &&
+
+                    anggota.status === "Aktif"
+
+                );
+
+            }
+
+        );
+
+
+    input.value =
+
+        ketua
+
+        ?
+
+        ketua.nama
+
+        :
+
+        "";
 
 }
 
@@ -1647,6 +2121,19 @@ function paparAnggota() {
             .getElementById(
 
                 "filterPos"
+
+            )
+
+            .value;
+
+
+    const filterKawasan =
+
+        document
+
+            .getElementById(
+
+                "filterKawasan"
 
             )
 
@@ -1697,11 +2184,31 @@ function paparAnggota() {
 
                         + " "
 
+                        + x.wilayah
+
+                        + " "
+
+                        + x.kawasan
+
+                        + " "
+
                         + x.pos
 
                         + " "
 
                         + x.unit
+
+                        + " "
+
+                        + x.jawatan
+
+                        + " "
+
+                        + x.ketua_pos
+
+                        + " "
+
+                        + x.ketua_unit
 
                     )
 
@@ -1727,6 +2234,20 @@ function paparAnggota() {
                         ||
 
                         x.pos === filterPos
+
+                    )
+
+
+                    &&
+
+
+                    (
+
+                        !filterKawasan
+
+                        ||
+
+                        x.kawasan === filterKawasan
 
                     )
 
@@ -1776,7 +2297,7 @@ function paparAnggota() {
 
             <tr>
 
-                <td colspan="8">
+                <td colspan="13">
 
                     Tiada rekod anggota.
 
@@ -1875,6 +2396,28 @@ function paparAnggota() {
 
                     ${escapeHTML(
 
+                        anggota.wilayah
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.kawasan
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
                         anggota.pos
 
                     )}
@@ -1887,6 +2430,39 @@ function paparAnggota() {
                     ${escapeHTML(
 
                         anggota.unit
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.jawatan
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.ketua_pos
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.ketua_unit
 
                     )}
 
@@ -1925,9 +2501,15 @@ function paparAnggota() {
 
                         onclick=
 
-                        "editAnggota('${escapeHTML(
+                        "editAnggota('${String(
 
                             anggota.no_skb
+
+                        ).replace(
+
+                            /'/g,
+
+                            "\\'"
 
                         )}')"
 
@@ -2046,6 +2628,32 @@ function bukaTambah() {
 
         .getElementById(
 
+            "wilayah"
+
+        )
+
+        .value =
+
+        "Terengganu";
+
+
+    document
+
+        .getElementById(
+
+            "kawasan"
+
+        )
+
+        .value =
+
+        "";
+
+
+    document
+
+        .getElementById(
+
             "pos"
 
         )
@@ -2060,6 +2668,45 @@ function bukaTambah() {
         .getElementById(
 
             "unit"
+
+        )
+
+        .value =
+
+        "";
+
+
+    document
+
+        .getElementById(
+
+            "jawatan"
+
+        )
+
+        .value =
+
+        "";
+
+
+    document
+
+        .getElementById(
+
+            "ketuaPos"
+
+        )
+
+        .value =
+
+        "";
+
+
+    document
+
+        .getElementById(
+
+            "ketuaUnit"
 
         )
 
@@ -2151,7 +2798,12 @@ function editAnggota(
         );
 
 
-    if (!anggota) {
+    if (
+
+        !anggota
+
+    ) {
+
 
         return;
 
@@ -2253,6 +2905,32 @@ function editAnggota(
 
         .getElementById(
 
+            "wilayah"
+
+        )
+
+        .value =
+
+        anggota.wilayah || "Terengganu";
+
+
+    document
+
+        .getElementById(
+
+            "kawasan"
+
+        )
+
+        .value =
+
+        anggota.kawasan || "";
+
+
+    document
+
+        .getElementById(
+
             "pos"
 
         )
@@ -2273,6 +2951,45 @@ function editAnggota(
         .value =
 
         anggota.unit || "";
+
+
+    document
+
+        .getElementById(
+
+            "jawatan"
+
+        )
+
+        .value =
+
+        anggota.jawatan || "";
+
+
+    document
+
+        .getElementById(
+
+            "ketuaPos"
+
+        )
+
+        .value =
+
+        anggota.ketua_pos || "";
+
+
+    document
+
+        .getElementById(
+
+            "ketuaUnit"
+
+        )
+
+        .value =
+
+        anggota.ketua_unit || "";
 
 
     document
@@ -2304,7 +3021,7 @@ function editAnggota(
 
 
 // =====================================================
-// SIMPAN ANGGOTA
+// SIMPAN
 // =====================================================
 
 
@@ -2369,6 +3086,32 @@ async function simpanAnggota() {
             .value;
 
 
+    const wilayah =
+
+        document
+
+            .getElementById(
+
+                "wilayah"
+
+            )
+
+            .value;
+
+
+    const kawasan =
+
+        document
+
+            .getElementById(
+
+                "kawasan"
+
+            )
+
+            .value;
+
+
     const pos =
 
         document
@@ -2389,6 +3132,45 @@ async function simpanAnggota() {
             .getElementById(
 
                 "unit"
+
+            )
+
+            .value;
+
+
+    const jawatan =
+
+        document
+
+            .getElementById(
+
+                "jawatan"
+
+            )
+
+            .value;
+
+
+    const ketuaPos =
+
+        document
+
+            .getElementById(
+
+                "ketuaPos"
+
+            )
+
+            .value;
+
+
+    const ketuaUnit =
+
+        document
+
+            .getElementById(
+
+                "ketuaUnit"
 
             )
 
@@ -2429,12 +3211,28 @@ async function simpanAnggota() {
 
         !nama
 
+        ||
+
+        !kawasan
+
+        ||
+
+        !pos
+
+        ||
+
+        !unit
+
+        ||
+
+        !jawatan
+
     ) {
 
 
         alert(
 
-            "No. SKB dan Nama wajib diisi."
+            "Sila lengkapkan No. SKB, Nama, Kawasan, Pos, Unit dan Jawatan."
 
         );
 
@@ -2442,6 +3240,66 @@ async function simpanAnggota() {
         return;
 
     }
+
+
+    const data = {
+
+
+        no_anggota:
+
+            noAnggota,
+
+
+        nama:
+
+            nama,
+
+
+        pangkat:
+
+            pangkat,
+
+
+        wilayah:
+
+            wilayah,
+
+
+        kawasan:
+
+            kawasan,
+
+
+        pos:
+
+            pos,
+
+
+        unit:
+
+            unit,
+
+
+        jawatan:
+
+            jawatan,
+
+
+        ketua_pos:
+
+            ketuaPos,
+
+
+        ketua_unit:
+
+            ketuaUnit,
+
+
+        status:
+
+            status
+
+    };
 
 
     let result;
@@ -2466,39 +3324,7 @@ async function simpanAnggota() {
 
                 .update(
 
-                    {
-
-
-                        no_anggota:
-
-                            noAnggota,
-
-
-                        nama:
-
-                            nama,
-
-
-                        pangkat:
-
-                            pangkat,
-
-
-                        pos:
-
-                            pos,
-
-
-                        unit:
-
-                            unit,
-
-
-                        status:
-
-                            status
-
-                    }
+                    data
 
                 )
 
@@ -2535,35 +3361,7 @@ async function simpanAnggota() {
 
                             noSkb,
 
-
-                        no_anggota:
-
-                            noAnggota,
-
-
-                        nama:
-
-                            nama,
-
-
-                        pangkat:
-
-                            pangkat,
-
-
-                        pos:
-
-                            pos,
-
-
-                        unit:
-
-                            unit,
-
-
-                        status:
-
-                            status
+                        ...data
 
                     }
 
@@ -2617,6 +3415,12 @@ async function simpanAnggota() {
 
 
     muatDropdownUnit();
+
+
+    muatFilterPos();
+
+
+    muatFilterKawasan();
 
 }
 
