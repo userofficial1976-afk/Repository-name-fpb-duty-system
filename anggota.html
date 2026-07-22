@@ -1,250 +1,507 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Senarai Anggota - FPB Duty System</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+>
+
+<title>
+
+Senarai Anggota - FPB Duty System
+
+</title>
+
+<script
+
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
+></script>
 
 <style>
 
+
 * {
+
     box-sizing: border-box;
+
     font-family: Arial, sans-serif;
+
 }
+
 
 body {
+
     margin: 0;
+
     background: #f1f5f9;
+
     color: #1e293b;
+
 }
+
 
 header {
+
     background: #0f172a;
+
     color: white;
+
     padding: 20px 25px;
+
 }
+
 
 header h1 {
+
     margin: 0;
+
     font-size: 25px;
+
 }
+
 
 header p {
+
     margin: 6px 0 0;
+
     color: #cbd5e1;
+
 }
+
 
 nav {
+
     background: #1e293b;
+
     padding: 10px 20px;
+
     display: flex;
+
     gap: 10px;
+
     flex-wrap: wrap;
+
 }
+
 
 nav a {
+
     color: white;
+
     text-decoration: none;
+
     padding: 9px 14px;
+
     border-radius: 6px;
+
     font-size: 14px;
+
 }
+
 
 nav a:hover,
+
 nav a.active {
+
     background: #2563eb;
+
 }
+
 
 .container {
+
     max-width: 1400px;
+
     margin: auto;
+
     padding: 20px;
+
 }
+
 
 .card {
+
     background: white;
+
     border-radius: 12px;
+
     padding: 20px;
+
     margin-bottom: 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    box-shadow:
+
+        0 3px 12px
+
+        rgba(0,0,0,0.08);
+
 }
+
 
 h2 {
+
     margin-top: 0;
+
     color: #0f172a;
+
 }
+
 
 .grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    grid-template-columns:
+
+        repeat(
+
+            auto-fit,
+
+            minmax(
+
+                220px,
+
+                1fr
+
+            )
+
+        );
+
     gap: 15px;
+
 }
+
 
 label {
+
     display: block;
+
     font-weight: bold;
+
     margin-bottom: 6px;
+
 }
+
 
 input,
+
 select,
-button {
-    width: 100%;
-    padding: 11px;
-    border-radius: 7px;
-    border: 1px solid #cbd5e1;
-    font-size: 14px;
-}
 
 button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
+
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    border: 1px solid #cbd5e1;
+
+    font-size: 14px;
+
 }
+
+
+button {
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
 
 button:hover {
+
     background: #1d4ed8;
+
 }
+
 
 .btn-danger {
+
     background: #dc2626;
+
 }
+
 
 .btn-danger:hover {
+
     background: #b91c1c;
+
 }
+
 
 .btn-warning {
+
     background: #f59e0b;
+
 }
+
 
 .btn-warning:hover {
+
     background: #d97706;
+
 }
+
 
 .success {
+
     background: #dcfce7;
+
     color: #166534;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
+
 
 .error {
+
     background: #fee2e2;
+
     color: #991b1b;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
+
 
 .table-wrapper {
+
     overflow-x: auto;
+
 }
+
 
 table {
+
     width: 100%;
+
     border-collapse: collapse;
+
     min-width: 1000px;
+
 }
+
 
 th,
+
 td {
+
     border-bottom: 1px solid #e2e8f0;
+
     padding: 10px;
+
     text-align: left;
+
     white-space: nowrap;
+
 }
+
 
 th {
+
     background: #0f172a;
+
     color: white;
+
 }
+
 
 tr:hover {
+
     background: #f8fafc;
+
 }
+
 
 .badge {
+
     display: inline-block;
+
     padding: 5px 9px;
+
     border-radius: 5px;
+
     font-weight: bold;
+
 }
+
 
 .badge-aktif {
+
     background: #dcfce7;
+
     color: #166534;
+
 }
+
 
 .badge-tidak {
+
     background: #fee2e2;
+
     color: #991b1b;
+
 }
+
 
 .modal {
+
     display: none;
+
     position: fixed;
+
     z-index: 1000;
+
     left: 0;
+
     top: 0;
+
     width: 100%;
+
     height: 100%;
-    background: rgba(0,0,0,0.5);
+
+    background:
+
+        rgba(
+
+            0,
+
+            0,
+
+            0,
+
+            0.5
+
+        );
+
 }
+
 
 .modal-content {
+
     background: white;
+
     width: 90%;
-    max-width: 700px;
-    margin: 5% auto;
+
+    max-width: 800px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    margin: 3% auto;
+
     padding: 25px;
+
     border-radius: 12px;
+
 }
+
 
 .close {
+
     float: right;
+
     font-size: 25px;
+
     cursor: pointer;
+
     color: #64748b;
+
 }
+
 
 .close:hover {
+
     color: red;
+
 }
+
 
 .modal-buttons {
+
     display: flex;
+
     gap: 10px;
+
     margin-top: 20px;
+
 }
 
+
 .modal-buttons button {
+
     flex: 1;
+
 }
+
 
 @media(max-width:600px) {
 
+
     header h1 {
+
         font-size: 20px;
+
     }
+
 
     .container {
+
         padding: 10px;
+
     }
 
+
     nav {
+
         padding: 8px;
+
+    }
+
+
+    .modal-content {
+
+        margin: 5% auto;
+
+        width: 95%;
+
+    }
+
+
+    .modal-buttons {
+
+        flex-direction: column;
+
     }
 
 }
+
 
 </style>
 
@@ -254,43 +511,99 @@ tr:hover {
 
 <header>
 
-<h1>FPB DUTY SYSTEM</h1>
+<h1>
 
-<p>Senarai Anggota</p>
+FPB DUTY SYSTEM
+
+</h1>
+
+<p>
+
+Senarai Anggota
+
+</p>
 
 </header>
 
 <nav>
 
-<a href="index.html">🏠 Dashboard</a>
+<a
 
-<a href="anggota.html" class="active">
+href="index.html"
+
+>
+
+🏠 Dashboard
+
+</a>
+
+<a
+
+href="anggota.html"
+
+class="active"
+
+>
+
 👥 Senarai Anggota
+
 </a>
 
-<a href="jadual-duty.html">
+<a
+
+href="jadual-duty.html"
+
+>
+
 📅 Jadual Duty
+
 </a>
 
-<a href="kod-duty.html">
+<a
+
+href="kod-duty.html"
+
+>
+
 🏷️ Kod Duty
+
 </a>
 
-<a href="laporan.html">
+<a
+
+href="laporan.html"
+
+>
+
 📊 Laporan
+
 </a>
 
-<a href="tetapan.html">
+<a
+
+href="tetapan.html"
+
+>
+
 ⚙️ Tetapan
+
 </a>
 
 </nav>
 
 <div class="container">
 
+<!-- =====================================================
+     FILTER
+===================================================== -->
+
 <div class="card">
 
-<h2>👥 Senarai Anggota</h2>
+<h2>
+
+👥 Senarai Anggota
+
+</h2>
 
 <div id="mesej"></div>
 
@@ -298,28 +611,46 @@ tr:hover {
 
 <div>
 
-<label>Cari Anggota</label>
+<label>
+
+Cari Anggota
+
+</label>
 
 <input
+
 type="text"
+
 id="cari"
+
 placeholder="Cari nama, no anggota atau no SKB..."
+
 onkeyup="paparAnggota()"
+
 >
 
 </div>
 
 <div>
 
-<label>Filter Pos</label>
+<label>
+
+Filter Pos
+
+</label>
 
 <select
+
 id="filterPos"
+
 onchange="paparAnggota()"
+
 >
 
 <option value="">
+
 Semua Pos
+
 </option>
 
 </select>
@@ -328,23 +659,36 @@ Semua Pos
 
 <div>
 
-<label>Status</label>
+<label>
+
+Status
+
+</label>
 
 <select
+
 id="filterStatus"
+
 onchange="paparAnggota()"
+
 >
 
 <option value="">
+
 Semua Status
+
 </option>
 
 <option value="Aktif">
+
 Aktif
+
 </option>
 
 <option value="Tidak Aktif">
+
 Tidak Aktif
+
 </option>
 
 </select>
@@ -355,7 +699,11 @@ Tidak Aktif
 
 <br>
 
-<button onclick="bukaTambah()">
+<button
+
+onclick="bukaTambah()"
+
+>
 
 ➕ TAMBAH ANGGOTA
 
@@ -363,6 +711,9 @@ Tidak Aktif
 
 </div>
 
+<!-- =====================================================
+     TABLE
+===================================================== -->
 
 <div class="card">
 
@@ -374,31 +725,71 @@ Tidak Aktif
 
 <tr>
 
-<th>No. SKB</th>
+<th>
 
-<th>No. Anggota</th>
+No. SKB
 
-<th>Nama</th>
+</th>
 
-<th>Pangkat</th>
+<th>
 
-<th>Pos</th>
+No. Anggota
 
-<th>Unit</th>
+</th>
 
-<th>Status</th>
+<th>
 
-<th>Tindakan</th>
+Nama
+
+</th>
+
+<th>
+
+Pangkat
+
+</th>
+
+<th>
+
+Pos
+
+</th>
+
+<th>
+
+Unit
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Tindakan
+
+</th>
 
 </tr>
 
 </thead>
 
-<tbody id="senaraiAnggota">
+<tbody
+
+id="senaraiAnggota"
+
+>
 
 <tr>
 
-<td colspan="8">
+<td
+
+colspan="8"
+
+>
 
 Memuatkan data...
 
@@ -416,114 +807,220 @@ Memuatkan data...
 
 </div>
 
-
-<!-- MODAL -->
+<!-- =====================================================
+     MODAL TAMBAH / EDIT ANGGOTA
+===================================================== -->
 
 <div
+
 id="modalAnggota"
+
 class="modal"
+
 >
 
-<div class="modal-content">
+<div
+
+class="modal-content"
+
+>
 
 <span
+
 class="close"
+
 onclick="tutupModal()"
+
 >
-&times;
+
+×
+
 </span>
 
-<h2 id="tajukModal">
+<h2
+
+id="tajukModal"
+
+>
 
 Tambah Anggota
 
 </h2>
 
 <input
+
 type="hidden"
+
 id="editNoSkb"
+
 >
 
 <div class="grid">
 
+<!-- NO SKB -->
+
 <div>
 
-<label>No. SKB</label>
+<label>
+
+No. SKB
+
+</label>
 
 <input
+
 type="text"
+
 id="noSkb"
+
 >
 
 </div>
 
+<!-- NO ANGGOTA -->
+
 <div>
 
-<label>No. Anggota</label>
+<label>
+
+No. Anggota
+
+</label>
 
 <input
+
 type="text"
+
 id="noAnggota"
+
 >
 
 </div>
 
+<!-- NAMA -->
+
 <div>
 
-<label>Nama</label>
+<label>
+
+Nama
+
+</label>
 
 <input
+
 type="text"
+
 id="nama"
+
 >
 
 </div>
 
+<!-- PANGKAT DROPDOWN -->
+
 <div>
 
-<label>Pangkat</label>
+<label>
 
-<input
-type="text"
+Pangkat
+
+</label>
+
+<select
+
 id="pangkat"
+
 >
+
+<option value="">
+
+-- Pilih Pangkat --
+
+</option>
+
+</select>
 
 </div>
 
+<!-- POS DROPDOWN -->
+
 <div>
 
-<label>Pos</label>
+<label>
 
-<input
-type="text"
+Pos
+
+</label>
+
+<select
+
 id="pos"
+
 >
+
+<option value="">
+
+-- Pilih Pos --
+
+</option>
+
+</select>
 
 </div>
 
+<!-- UNIT DROPDOWN -->
+
 <div>
 
-<label>Unit</label>
+<label>
 
-<input
-type="text"
+Unit
+
+</label>
+
+<select
+
 id="unit"
+
 >
+
+<option value="">
+
+-- Pilih Unit --
+
+</option>
+
+</select>
 
 </div>
 
+<!-- STATUS -->
+
 <div>
 
-<label>Status</label>
+<label>
 
-<select id="status">
+Status
+
+</label>
+
+<select
+
+id="status"
+
+>
 
 <option value="Aktif">
+
 Aktif
+
 </option>
 
 <option value="Tidak Aktif">
+
 Tidak Aktif
+
 </option>
 
 </select>
@@ -534,15 +1031,22 @@ Tidak Aktif
 
 <div class="modal-buttons">
 
-<button onclick="simpanAnggota()">
+<button
+
+onclick="simpanAnggota()"
+
+>
 
 💾 SIMPAN
 
 </button>
 
 <button
+
 class="btn-danger"
+
 onclick="tutupModal()"
+
 >
 
 BATAL
@@ -555,397 +1059,1097 @@ BATAL
 
 </div>
 
-
 <script>
 
-// ===============================
+
+// =====================================================
 // SUPABASE
-// ===============================
+// =====================================================
+
 
 const SUPABASE_URL =
+
 "https://nlwrrrwkjpktrifxeymw.supabase.co";
 
+
 const SUPABASE_KEY =
+
 "sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
 
+
 const supabaseClient =
+
 supabase.createClient(
+
     SUPABASE_URL,
+
     SUPABASE_KEY
+
 );
 
 
-// ===============================
+// =====================================================
 // DATA
-// ===============================
+// =====================================================
+
 
 let semuaAnggota = [];
 
 
-// ===============================
+// =====================================================
 // MULA
-// ===============================
+// =====================================================
+
 
 document.addEventListener(
-"DOMContentLoaded",
-async function() {
 
-    await muatAnggota();
+    "DOMContentLoaded",
 
-    muatPos();
-
-});
+    async function () {
 
 
-// ===============================
+        await muatAnggota();
+
+
+        muatDropdownPangkat();
+
+
+        muatDropdownPos();
+
+
+        muatDropdownUnit();
+
+
+    }
+
+);
+
+
+// =====================================================
 // MUAT ANGGOTA
-// ===============================
+// =====================================================
+
 
 async function muatAnggota() {
 
-    const result =
-    await supabaseClient
-    .from("Data_Anggota")
-    .select(
-        "no_skb,no_anggota,nama,pangkat,pos,unit,status"
-    )
-    .order(
-        "nama",
-        {
-            ascending: true
-        }
-    );
 
-    if (result.error) {
+    const result =
+
+        await supabaseClient
+
+            .from(
+
+                "Data_Anggota"
+
+            )
+
+            .select(
+
+                "no_skb,no_anggota,nama,pangkat,pos,unit,status"
+
+            )
+
+            .order(
+
+                "nama",
+
+                {
+
+                    ascending:
+
+                        true
+
+                }
+
+            );
+
+
+    if (
+
+        result.error
+
+    ) {
+
 
         paparMesej(
+
             "Gagal ambil data: "
+
             + result.error.message,
+
             "error"
+
         );
+
 
         return;
 
     }
 
+
     semuaAnggota =
-    result.data || [];
+
+        result.data || [];
+
 
     paparAnggota();
 
+
+    muatFilterPos();
+
+
 }
 
 
-// ===============================
-// MUAT POS
-// ===============================
+// =====================================================
+// SENARAI UNIK
+// =====================================================
 
-function muatPos() {
 
-    const posUnik =
-    [
-        ...new Set(
+function senaraiUnik(
+
+    namaKolum
+
+) {
+
+
+    return [
+
+        ...
+
+        new Set(
+
             semuaAnggota
-            .map(x => x.pos)
-            .filter(Boolean)
+
+                .map(
+
+                    function (
+
+                        item
+
+                    ) {
+
+                        return item[
+
+                            namaKolum
+
+                        ];
+
+                    }
+
+                )
+
+                .filter(
+
+                    function (
+
+                        nilai
+
+                    ) {
+
+
+                        return (
+
+                            nilai !== null
+
+                            &&
+
+                            nilai !== undefined
+
+                            &&
+
+                            String(
+
+                                nilai
+
+                            )
+
+                            .trim()
+
+                            !== ""
+
+                        );
+
+                    }
+
+                )
+
+                .map(
+
+                    function (
+
+                        nilai
+
+                    ) {
+
+                        return String(
+
+                            nilai
+
+                        )
+
+                        .trim();
+
+                    }
+
+                )
+
         )
-    ];
 
-    posUnik.sort();
+    ]
 
-    const select =
-    document.getElementById(
-        "filterPos"
+    .sort(
+
+        function (
+
+            a,
+
+            b
+
+        ) {
+
+
+            return a.localeCompare(
+
+                b
+
+            );
+
+        }
+
     );
 
-    posUnik.forEach(
-    function(pos) {
+}
 
-        const option =
-        document.createElement(
-            "option"
+
+// =====================================================
+// DROPDOWN PANGKAT
+// =====================================================
+
+
+function muatDropdownPangkat() {
+
+
+    const select =
+
+        document
+
+            .getElementById(
+
+                "pangkat"
+
+            );
+
+
+    const data =
+
+        senaraiUnik(
+
+            "pangkat"
+
         );
 
-        option.value =
-        pos;
 
-        option.textContent =
-        pos;
+    data.forEach(
 
-        select.appendChild(
-            option
-        );
+        function (
 
-    });
+            pangkat
+
+        ) {
+
+
+            const option =
+
+                document
+
+                    .createElement(
+
+                        "option"
+
+                    );
+
+
+            option.value =
+
+                pangkat;
+
+
+            option.textContent =
+
+                pangkat;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
 
 }
 
 
-// ===============================
+// =====================================================
+// DROPDOWN POS
+// =====================================================
+
+
+function muatDropdownPos() {
+
+
+    const select =
+
+        document
+
+            .getElementById(
+
+                "pos"
+
+            );
+
+
+    const data =
+
+        senaraiUnik(
+
+            "pos"
+
+        );
+
+
+    data.forEach(
+
+        function (
+
+            pos
+
+        ) {
+
+
+            const option =
+
+                document
+
+                    .createElement(
+
+                        "option"
+
+                    );
+
+
+            option.value =
+
+                pos;
+
+
+            option.textContent =
+
+                pos;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
+
+}
+
+
+// =====================================================
+// DROPDOWN UNIT
+// =====================================================
+
+
+function muatDropdownUnit() {
+
+
+    const select =
+
+        document
+
+            .getElementById(
+
+                "unit"
+
+            );
+
+
+    const data =
+
+        senaraiUnik(
+
+            "unit"
+
+        );
+
+
+    data.forEach(
+
+        function (
+
+            unit
+
+        ) {
+
+
+            const option =
+
+                document
+
+                    .createElement(
+
+                        "option"
+
+                    );
+
+
+            option.value =
+
+                unit;
+
+
+            option.textContent =
+
+                unit;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
+
+}
+
+
+// =====================================================
+// FILTER POS
+// =====================================================
+
+
+function muatFilterPos() {
+
+
+    const select =
+
+        document
+
+            .getElementById(
+
+                "filterPos"
+
+            );
+
+
+    select.innerHTML = `
+
+        <option value="">
+
+            Semua Pos
+
+        </option>
+
+    `;
+
+
+    const data =
+
+        senaraiUnik(
+
+            "pos"
+
+        );
+
+
+    data.forEach(
+
+        function (
+
+            pos
+
+        ) {
+
+
+            const option =
+
+                document
+
+                    .createElement(
+
+                        "option"
+
+                    );
+
+
+            option.value =
+
+                pos;
+
+
+            option.textContent =
+
+                pos;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
+
+}
+
+
+// =====================================================
 // PAPAR ANGGOTA
-// ===============================
+// =====================================================
+
 
 function paparAnggota() {
 
+
     const cari =
-    document
-    .getElementById("cari")
-    .value
-    .toLowerCase();
+
+        document
+
+            .getElementById(
+
+                "cari"
+
+            )
+
+            .value
+
+            .toLowerCase();
+
 
     const filterPos =
-    document
-    .getElementById("filterPos")
-    .value;
+
+        document
+
+            .getElementById(
+
+                "filterPos"
+
+            )
+
+            .value;
+
 
     const filterStatus =
-    document
-    .getElementById("filterStatus")
-    .value;
+
+        document
+
+            .getElementById(
+
+                "filterStatus"
+
+            )
+
+            .value;
+
 
     const data =
-    semuaAnggota.filter(
-    function(x) {
 
-        const teks =
-        (
-            x.no_skb
-            + " "
-            + x.no_anggota
-            + " "
-            + x.nama
-            + " "
-            + x.pangkat
-            + " "
-            + x.pos
-            + " "
-            + x.unit
-        )
-        .toLowerCase();
+        semuaAnggota.filter(
 
-        return (
+            function (
 
-            teks.includes(cari)
+                x
 
-            &&
+            ) {
 
-            (
-                !filterPos
-                ||
-                x.pos === filterPos
-            )
 
-            &&
+                const teks =
 
-            (
-                !filterStatus
-                ||
-                x.status === filterStatus
-            )
+                    (
+
+                        x.no_skb
+
+                        + " "
+
+                        + x.no_anggota
+
+                        + " "
+
+                        + x.nama
+
+                        + " "
+
+                        + x.pangkat
+
+                        + " "
+
+                        + x.pos
+
+                        + " "
+
+                        + x.unit
+
+                    )
+
+                    .toLowerCase();
+
+
+                return (
+
+                    teks.includes(
+
+                        cari
+
+                    )
+
+
+                    &&
+
+
+                    (
+
+                        !filterPos
+
+                        ||
+
+                        x.pos === filterPos
+
+                    )
+
+
+                    &&
+
+
+                    (
+
+                        !filterStatus
+
+                        ||
+
+                        x.status === filterStatus
+
+                    )
+
+                );
+
+            }
 
         );
 
-    });
 
     const tbody =
-    document.getElementById(
-        "senaraiAnggota"
-    );
+
+        document
+
+            .getElementById(
+
+                "senaraiAnggota"
+
+            );
+
 
     tbody.innerHTML = "";
 
-    if (data.length === 0) {
+
+    if (
+
+        data.length === 0
+
+    ) {
+
 
         tbody.innerHTML = `
 
-        <tr>
+            <tr>
 
-            <td colspan="8">
+                <td colspan="8">
 
-                Tiada rekod anggota.
+                    Tiada rekod anggota.
 
-            </td>
+                </td>
 
-        </tr>
+            </tr>
 
         `;
+
 
         return;
 
     }
 
+
     data.forEach(
-    function(anggota) {
 
-        const tr =
-        document.createElement(
-            "tr"
-        );
+        function (
 
-        const statusClass =
-        anggota.status === "Aktif"
-        ? "badge-aktif"
-        : "badge-tidak";
+            anggota
 
-        tr.innerHTML = `
+        ) {
 
-        <td>
-            ${anggota.no_skb || ""}
-        </td>
 
-        <td>
-            ${anggota.no_anggota || ""}
-        </td>
+            const tr =
 
-        <td>
-            ${anggota.nama || ""}
-        </td>
+                document
 
-        <td>
-            ${anggota.pangkat || ""}
-        </td>
+                    .createElement(
 
-        <td>
-            ${anggota.pos || ""}
-        </td>
+                        "tr"
 
-        <td>
-            ${anggota.unit || ""}
-        </td>
+                    );
 
-        <td>
 
-            <span
-            class="badge ${statusClass}"
-            >
+            const statusClass =
 
-                ${anggota.status || ""}
+                anggota.status === "Aktif"
 
-            </span>
+                ?
 
-        </td>
+                "badge-aktif"
 
-        <td>
+                :
 
-            <button
-            class="btn-warning"
-            onclick="editAnggota('${anggota.no_skb}')"
-            >
+                "badge-tidak";
 
-                ✏️ Edit
 
-            </button>
+            tr.innerHTML = `
 
-        </td>
+                <td>
 
-        `;
+                    ${escapeHTML(
 
-        tbody.appendChild(tr);
+                        anggota.no_skb
 
-    });
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.no_anggota
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.nama
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.pangkat
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.pos
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.unit
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+
+                    <span
+
+                        class="badge
+
+                        ${statusClass}"
+
+                    >
+
+                        ${escapeHTML(
+
+                            anggota.status
+
+                        )}
+
+                    </span>
+
+
+                </td>
+
+
+                <td>
+
+
+                    <button
+
+                        class="btn-warning"
+
+                        onclick=
+
+                        "editAnggota('${escapeHTML(
+
+                            anggota.no_skb
+
+                        )}')"
+
+                    >
+
+                        ✏️ Edit
+
+                    </button>
+
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+
+                tr
+
+            );
+
+        }
+
+    );
 
 }
 
 
-// ===============================
+// =====================================================
 // BUKA TAMBAH
-// ===============================
+// =====================================================
+
 
 function bukaTambah() {
 
-    document
-    .getElementById(
-        "tajukModal"
-    )
-    .textContent =
-    "Tambah Anggota";
 
     document
-    .getElementById(
-        "editNoSkb"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "tajukModal"
+
+        )
+
+        .textContent =
+
+        "Tambah Anggota";
+
 
     document
-    .getElementById(
-        "noSkb"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "editNoSkb"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "noAnggota"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "noSkb"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "nama"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "noAnggota"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "pangkat"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "nama"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "pos"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "pangkat"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "unit"
-    )
-    .value =
-    "";
+
+        .getElementById(
+
+            "pos"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "status"
-    )
-    .value =
-    "Aktif";
+
+        .getElementById(
+
+            "unit"
+
+        )
+
+        .value =
+
+        "";
+
 
     document
-    .getElementById(
-        "noSkb"
-    )
-    .disabled =
-    false;
+
+        .getElementById(
+
+            "status"
+
+        )
+
+        .value =
+
+        "Aktif";
+
 
     document
-    .getElementById(
-        "modalAnggota"
-    )
-    .style.display =
-    "block";
+
+        .getElementById(
+
+            "noSkb"
+
+        )
+
+        .disabled =
+
+        false;
+
+
+    document
+
+        .getElementById(
+
+            "modalAnggota"
+
+        )
+
+        .style.display =
+
+        "block";
 
 }
 
 
-// ===============================
+// =====================================================
 // EDIT ANGGOTA
-// ===============================
+// =====================================================
 
-function editAnggota(noSkb) {
+
+function editAnggota(
+
+    noSkb
+
+) {
+
 
     const anggota =
-    semuaAnggota.find(
-        x =>
-        String(x.no_skb)
-        ===
-        String(noSkb)
-    );
+
+        semuaAnggota.find(
+
+            function (
+
+                x
+
+            ) {
+
+
+                return String(
+
+                    x.no_skb
+
+                )
+
+                ===
+
+                String(
+
+                    noSkb
+
+                );
+
+            }
+
+        );
+
 
     if (!anggota) {
 
@@ -953,292 +2157,628 @@ function editAnggota(noSkb) {
 
     }
 
-    document
-    .getElementById(
-        "tajukModal"
-    )
-    .textContent =
-    "Edit Anggota";
 
     document
-    .getElementById(
-        "editNoSkb"
-    )
-    .value =
-    anggota.no_skb;
+
+        .getElementById(
+
+            "tajukModal"
+
+        )
+
+        .textContent =
+
+        "Edit Anggota";
+
 
     document
-    .getElementById(
-        "noSkb"
-    )
-    .value =
-    anggota.no_skb;
+
+        .getElementById(
+
+            "editNoSkb"
+
+        )
+
+        .value =
+
+        anggota.no_skb;
+
 
     document
-    .getElementById(
-        "noSkb"
-    )
-    .disabled =
-    true;
+
+        .getElementById(
+
+            "noSkb"
+
+        )
+
+        .value =
+
+        anggota.no_skb;
+
 
     document
-    .getElementById(
-        "noAnggota"
-    )
-    .value =
-    anggota.no_anggota || "";
+
+        .getElementById(
+
+            "noSkb"
+
+        )
+
+        .disabled =
+
+        true;
+
 
     document
-    .getElementById(
-        "nama"
-    )
-    .value =
-    anggota.nama || "";
+
+        .getElementById(
+
+            "noAnggota"
+
+        )
+
+        .value =
+
+        anggota.no_anggota || "";
+
 
     document
-    .getElementById(
-        "pangkat"
-    )
-    .value =
-    anggota.pangkat || "";
+
+        .getElementById(
+
+            "nama"
+
+        )
+
+        .value =
+
+        anggota.nama || "";
+
 
     document
-    .getElementById(
-        "pos"
-    )
-    .value =
-    anggota.pos || "";
+
+        .getElementById(
+
+            "pangkat"
+
+        )
+
+        .value =
+
+        anggota.pangkat || "";
+
 
     document
-    .getElementById(
-        "unit"
-    )
-    .value =
-    anggota.unit || "";
+
+        .getElementById(
+
+            "pos"
+
+        )
+
+        .value =
+
+        anggota.pos || "";
+
 
     document
-    .getElementById(
-        "status"
-    )
-    .value =
-    anggota.status || "Aktif";
+
+        .getElementById(
+
+            "unit"
+
+        )
+
+        .value =
+
+        anggota.unit || "";
+
 
     document
-    .getElementById(
-        "modalAnggota"
-    )
-    .style.display =
-    "block";
+
+        .getElementById(
+
+            "status"
+
+        )
+
+        .value =
+
+        anggota.status || "Aktif";
+
+
+    document
+
+        .getElementById(
+
+            "modalAnggota"
+
+        )
+
+        .style.display =
+
+        "block";
 
 }
 
 
-// ===============================
+// =====================================================
 // SIMPAN ANGGOTA
-// ===============================
+// =====================================================
+
 
 async function simpanAnggota() {
 
+
     const noSkb =
-    document
-    .getElementById("noSkb")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "noSkb"
+
+            )
+
+            .value
+
+            .trim();
+
 
     const noAnggota =
-    document
-    .getElementById("noAnggota")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "noAnggota"
+
+            )
+
+            .value
+
+            .trim();
+
 
     const nama =
-    document
-    .getElementById("nama")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "nama"
+
+            )
+
+            .value
+
+            .trim();
+
 
     const pangkat =
-    document
-    .getElementById("pangkat")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "pangkat"
+
+            )
+
+            .value;
+
 
     const pos =
-    document
-    .getElementById("pos")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "pos"
+
+            )
+
+            .value;
+
 
     const unit =
-    document
-    .getElementById("unit")
-    .value
-    .trim();
+
+        document
+
+            .getElementById(
+
+                "unit"
+
+            )
+
+            .value;
+
 
     const status =
-    document
-    .getElementById("status")
-    .value;
+
+        document
+
+            .getElementById(
+
+                "status"
+
+            )
+
+            .value;
+
 
     const editNoSkb =
-    document
-    .getElementById("editNoSkb")
-    .value;
+
+        document
+
+            .getElementById(
+
+                "editNoSkb"
+
+            )
+
+            .value;
+
 
     if (
+
         !noSkb
+
         ||
+
         !nama
+
     ) {
 
+
         alert(
+
             "No. SKB dan Nama wajib diisi."
+
         );
+
 
         return;
 
     }
+
 
     let result;
 
-    if (editNoSkb) {
+
+    if (
+
+        editNoSkb
+
+    ) {
+
 
         result =
-        await supabaseClient
-        .from("Data_Anggota")
-        .update({
 
-            no_anggota:
-            noAnggota,
+            await supabaseClient
 
-            nama:
-            nama,
+                .from(
 
-            pangkat:
-            pangkat,
+                    "Data_Anggota"
 
-            pos:
-            pos,
+                )
 
-            unit:
-            unit,
+                .update(
 
-            status:
-            status
+                    {
 
-        })
-        .eq(
-            "no_skb",
-            editNoSkb
-        );
 
-    } else {
+                        no_anggota:
 
-        result =
-        await supabaseClient
-        .from("Data_Anggota")
-        .insert({
+                            noAnggota,
 
-            no_skb:
-            noSkb,
 
-            no_anggota:
-            noAnggota,
+                        nama:
 
-            nama:
-            nama,
+                            nama,
 
-            pangkat:
-            pangkat,
 
-            pos:
-            pos,
+                        pangkat:
 
-            unit:
-            unit,
+                            pangkat,
 
-            status:
-            status
 
-        });
+                        pos:
+
+                            pos,
+
+
+                        unit:
+
+                            unit,
+
+
+                        status:
+
+                            status
+
+                    }
+
+                )
+
+                .eq(
+
+                    "no_skb",
+
+                    editNoSkb
+
+                );
 
     }
 
-    if (result.error) {
+
+    else {
+
+
+        result =
+
+            await supabaseClient
+
+                .from(
+
+                    "Data_Anggota"
+
+                )
+
+                .insert(
+
+                    {
+
+
+                        no_skb:
+
+                            noSkb,
+
+
+                        no_anggota:
+
+                            noAnggota,
+
+
+                        nama:
+
+                            nama,
+
+
+                        pangkat:
+
+                            pangkat,
+
+
+                        pos:
+
+                            pos,
+
+
+                        unit:
+
+                            unit,
+
+
+                        status:
+
+                            status
+
+                    }
+
+                );
+
+    }
+
+
+    if (
+
+        result.error
+
+    ) {
+
 
         paparMesej(
+
             "Gagal simpan: "
+
             + result.error.message,
+
             "error"
+
         );
+
 
         return;
 
     }
 
+
     tutupModal();
 
+
     paparMesej(
+
         "Data anggota berjaya disimpan.",
+
         "success"
+
     );
+
 
     await muatAnggota();
 
+
+    muatDropdownPangkat();
+
+
+    muatDropdownPos();
+
+
+    muatDropdownUnit();
+
 }
 
 
-// ===============================
+// =====================================================
 // TUTUP MODAL
-// ===============================
+// =====================================================
+
 
 function tutupModal() {
 
+
     document
-    .getElementById(
-        "modalAnggota"
-    )
-    .style.display =
-    "none";
+
+        .getElementById(
+
+            "modalAnggota"
+
+        )
+
+        .style.display =
+
+        "none";
 
 }
 
 
-// ===============================
+// =====================================================
 // MESEJ
-// ===============================
+// =====================================================
+
 
 function paparMesej(
+
     mesej,
+
     jenis
+
 ) {
 
+
     const div =
-    document
-    .getElementById(
-        "mesej"
-    );
+
+        document
+
+            .getElementById(
+
+                "mesej"
+
+            );
+
 
     div.className =
-    jenis;
+
+        jenis;
+
 
     div.textContent =
-    mesej;
+
+        mesej;
+
 
     setTimeout(
-    function() {
 
-        div.textContent =
-        "";
+        function () {
 
-        div.className =
-        "";
 
-    },
-    5000
+            div.textContent =
+
+                "";
+
+
+            div.className =
+
+                "";
+
+
+        },
+
+        5000
+
     );
 
 }
+
+
+// =====================================================
+// ESCAPE HTML
+// =====================================================
+
+
+function escapeHTML(
+
+    value
+
+) {
+
+
+    if (
+
+        value === null
+
+        ||
+
+        value === undefined
+
+    ) {
+
+
+        return "";
+
+    }
+
+
+    return String(
+
+        value
+
+    )
+
+        .replace(
+
+            /&/g,
+
+            "&amp;"
+
+        )
+
+        .replace(
+
+            /</g,
+
+            "&lt;"
+
+        )
+
+        .replace(
+
+            />/g,
+
+            "&gt;"
+
+        )
+
+        .replace(
+
+            /"/g,
+
+            "&quot;"
+
+        )
+
+        .replace(
+
+            /'/g,
+
+            "&#039;"
+
+        );
+
+}
+
 
 </script>
 
