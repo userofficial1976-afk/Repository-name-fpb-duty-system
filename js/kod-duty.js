@@ -5,16 +5,39 @@
 
 
 // =====================================================
-// PEMBOLEHUBAH
+// SENARAI 6 UNIT
 // =====================================================
 
-let semuaKodDuty = [];
+const SENARAI_UNIT = [
 
-let idEdit = null;
+    "Jerangau",
+
+    "Chador",
+
+    "Terengganu",
+
+    "Setiu",
+
+    "Rantau Abang",
+
+    "Kerteh"
+
+];
 
 
 // =====================================================
-// APABILA HALAMAN DIBUKA
+// PEMBOLEH UBAH EDIT
+// =====================================================
+
+let unitLama = "";
+
+let kodLama = "";
+
+let sedangEdit = false;
+
+
+// =====================================================
+// APABILA HALAMAN SIAP
 // =====================================================
 
 document.addEventListener(
@@ -23,7 +46,11 @@ document.addEventListener(
 
     function () {
 
+
+        // PAPAR SENARAI KOD DUTY
+
         paparKodDuty();
+
 
     }
 
@@ -31,128 +58,218 @@ document.addEventListener(
 
 
 // =====================================================
-// SIMPAN / UPDATE KOD DUTY
+// FUNGSI PAPAR MESEJ
+// =====================================================
+
+function paparMesej(
+
+    mesej,
+
+    jenis = "success"
+
+) {
+
+
+    const ruangMesej =
+
+        document.getElementById(
+
+            "mesej"
+
+        );
+
+
+    if (!ruangMesej) {
+
+        alert(mesej);
+
+        return;
+
+    }
+
+
+    ruangMesej.innerHTML = `
+
+        <div class="${jenis}">
+
+            ${mesej}
+
+        </div>
+
+    `;
+
+
+    setTimeout(
+
+        function () {
+
+            ruangMesej.innerHTML = "";
+
+        },
+
+        5000
+
+    );
+
+}
+
+
+// =====================================================
+// FUNGSI SEMAK UNIT
+// =====================================================
+
+function semakUnit(unit) {
+
+
+    if (!unit) {
+
+        paparMesej(
+
+            "❌ Sila pilih Unit",
+
+            "error"
+
+        );
+
+        return false;
+
+    }
+
+
+    if (
+
+        !SENARAI_UNIT.includes(unit)
+
+    ) {
+
+        paparMesej(
+
+            "❌ Unit tidak sah",
+
+            "error"
+
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+// =====================================================
+// FUNGSI SIMPAN KOD DUTY
 // =====================================================
 
 async function simpanKodDuty() {
 
 
-    const unit =
+    // -----------------------------------------
+    // AMBIL NILAI BORANG
+    // -----------------------------------------
 
-        document
+    const unit = document
 
-            .getElementById(
+        .getElementById(
 
-                "unit"
-
-            )
-
-            .value;
-
-
-    const kod =
-
-        document
-
-            .getElementById(
-
-                "kod"
-
-            )
-
-            .value
-
-            .trim()
-
-            .toUpperCase();
-
-
-    const waktuTugasan =
-
-        document
-
-            .getElementById(
-
-                "waktuTugasan"
-
-            )
-
-            .value
-
-            .trim();
-
-
-    const jamKerja =
-
-        Number(
-
-            document
-
-                .getElementById(
-
-                    "jamKerja"
-
-                )
-
-                .value
+            "unit"
 
         )
 
-        || 0;
+        .value
+
+        .trim();
 
 
-    const jamKlm =
+    const kod = document
 
-        Number(
+        .getElementById(
 
-            document
-
-                .getElementById(
-
-                    "jamKlm"
-
-                )
-
-                .value
+            "kod"
 
         )
 
-        || 0;
+        .value
+
+        .trim()
+
+        .toUpperCase();
 
 
-    const status =
+    const waktuTugasan = document
 
-        document
+        .getElementById(
 
-            .getElementById(
+            "waktuTugasan"
 
-                "status"
+        )
 
-            )
+        .value
 
-            .value;
+        .trim();
 
 
-    // SEMAK MAKLUMAT
+    const jamKerja = document
+
+        .getElementById(
+
+            "jamKerja"
+
+        )
+
+        .value;
+
+
+    const jamKlm = document
+
+        .getElementById(
+
+            "jamKlm"
+
+        )
+
+        .value;
+
+
+    const status = document
+
+        .getElementById(
+
+            "status"
+
+        )
+
+        .value;
+
+
+    // -----------------------------------------
+    // SEMAK UNIT
+    // -----------------------------------------
 
     if (
 
-        !unit
-
-        ||
-
-        !kod
-
-        ||
-
-        !waktuTugasan
+        !semakUnit(unit)
 
     ) {
+
+        return;
+
+    }
+
+
+    // -----------------------------------------
+    // SEMAK KOD
+    // -----------------------------------------
+
+    if (!kod) {
 
 
         paparMesej(
 
-            "Sila lengkapkan Unit, Kod Duty dan Waktu Tugasan.",
+            "❌ Sila masukkan Kod Duty",
 
             "error"
 
@@ -164,17 +281,67 @@ async function simpanKodDuty() {
     }
 
 
-    const dataSimpan = {
+    // -----------------------------------------
+    // SEMAK WAKTU
+    // -----------------------------------------
+
+    if (!waktuTugasan) {
 
 
-        unit:
+        paparMesej(
 
-            unit,
+            "❌ Sila masukkan Waktu Tugasan",
+
+            "error"
+
+        );
 
 
-        kod:
+        return;
 
-            kod,
+    }
+
+
+    // -----------------------------------------
+    // SEMAK JAM KERJA
+    // -----------------------------------------
+
+    if (
+
+        jamKerja === ""
+
+        ||
+
+        jamKerja === null
+
+    ) {
+
+
+        paparMesej(
+
+            "❌ Sila masukkan Jam Kerja",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    // -----------------------------------------
+    // DATA YANG AKAN DISIMPAN
+    // -----------------------------------------
+
+    const data = {
+
+
+        unit: unit,
+
+
+        kod: kod,
 
 
         waktu_tugasan:
@@ -184,17 +351,18 @@ async function simpanKodDuty() {
 
         jam_kerja:
 
-            jamKerja,
+            Number(jamKerja),
 
 
         jam_klm:
 
-            jamKlm,
+            Number(jamKlm || 0),
 
 
         status:
 
             status
+
 
     };
 
@@ -203,68 +371,61 @@ async function simpanKodDuty() {
 
 
     // =================================================
-    // UPDATE
+    // MODE EDIT
     // =================================================
 
-    if (
-
-        idEdit
-
-    ) {
+    if (sedangEdit) {
 
 
-        result =
+        result = await supabaseClient
 
-            await supabaseClient
+            .from("kod_duty")
 
-                .from(
+            .update(data)
 
-                    "kod_duty"
+            .eq(
 
-                )
+                "unit",
 
-                .update(
+                unitLama
 
-                    dataSimpan
+            )
 
-                )
+            .eq(
 
-                .eq(
+                "kod",
 
-                    "id",
+                kodLama
 
-                    idEdit
+            );
 
-                );
 
     }
 
 
     // =================================================
-    // INSERT
+    // MODE TAMBAH
     // =================================================
 
     else {
 
 
-        result =
+        result = await supabaseClient
 
-            await supabaseClient
+            .from("kod_duty")
 
-                .from(
+            .insert([
 
-                    "kod_duty"
+                data
 
-                )
-
-                .insert(
-
-                    dataSimpan
-
-                );
+            ]);
 
     }
 
+
+    // =================================================
+    // SEMAK RALAT
+    // =================================================
 
     if (
 
@@ -280,17 +441,67 @@ async function simpanKodDuty() {
         );
 
 
-        paparMesej(
+        // ---------------------------------------------
+        // DUPLICATE KEY
+        // ---------------------------------------------
 
-            "Gagal simpan: "
+        if (
 
-            +
 
-            result.error.message,
+            result.error.code ===
 
-            "error"
+            "23505"
 
-        );
+
+            ||
+
+
+            result.error.message.includes(
+
+                "duplicate key value violates unique constraint"
+
+            )
+
+
+        ) {
+
+
+            paparMesej(
+
+
+                `⚠️ Kod Duty ${kod} untuk Unit ${unit} Telah Di Gunakan`,
+
+
+                "error"
+
+
+            );
+
+
+        }
+
+
+        // ---------------------------------------------
+        // RALAT LAIN
+        // ---------------------------------------------
+
+        else {
+
+
+            paparMesej(
+
+
+                "❌ Gagal simpan: " +
+
+                result.error.message,
+
+
+                "error"
+
+
+            );
+
+        }
 
 
         return;
@@ -298,25 +509,32 @@ async function simpanKodDuty() {
     }
 
 
+    // =================================================
+    // BERJAYA
+    // =================================================
+
     paparMesej(
 
-        idEdit
 
-        ?
+        sedangEdit
 
-        "Kod Duty berjaya dikemaskini."
+            ? "✅ Kod Duty berjaya dikemaskini"
 
-        :
+            : "✅ Kod Duty berjaya disimpan",
 
-        "Kod Duty berjaya disimpan.",
 
         "success"
+
 
     );
 
 
+    // KOSONGKAN BORANG
+
     kosongkanBorang();
 
+
+    // PAPAR DATA TERKINI
 
     paparKodDuty();
 
@@ -324,115 +542,46 @@ async function simpanKodDuty() {
 
 
 // =====================================================
-// PAPAR SENARAI KOD DUTY
+// FUNGSI PAPAR SENARAI KOD DUTY
 // =====================================================
 
 async function paparKodDuty() {
 
 
-    const tbody =
+    const ruangSenarai =
 
-        document
+        document.getElementById(
 
-            .getElementById(
+            "senaraiKodDuty"
 
-                "senaraiKodDuty"
-
-            );
+        );
 
 
-    if (
-
-        !tbody
-
-    ) {
+    if (!ruangSenarai) {
 
         return;
 
     }
 
 
-    const filterUnit =
+    ruangSenarai.innerHTML = `
 
-        document
+        <tr>
 
-            .getElementById(
+            <td colspan="8">
 
-                "filterUnit"
+                ⏳ Memuatkan data...
 
-            )
+            </td>
 
-            .value;
+        </tr>
 
-
-    const cariKod =
-
-        document
-
-            .getElementById(
-
-                "cariKod"
-
-            )
-
-            .value
-
-            .toLowerCase();
+    `;
 
 
-    let query =
-
-        supabaseClient
-
-
-            .from(
-
-                "kod_duty"
-
-            )
-
-
-            .select(
-
-                "*"
-
-            )
-
-
-            .order(
-
-                "unit",
-
-                {
-
-                    ascending:
-
-                        true
-
-                }
-
-            );
-
-
-    if (
-
-        filterUnit
-
-    ) {
-
-
-        query =
-
-            query.eq(
-
-                "unit",
-
-                filterUnit
-
-            );
-
-    }
-
+    // -----------------------------------------
+    // AMBIL DATA
+    // -----------------------------------------
 
     const {
 
@@ -440,30 +589,54 @@ async function paparKodDuty() {
 
         error
 
-    } = await query;
+    } = await supabaseClient
 
+        .from("kod_duty")
 
-    if (
+        .select("*")
 
-        error
+        .order(
 
-    ) {
+            "unit",
 
+            {
 
-        console.error(
+                ascending: true
 
-            error
+            }
+
+        )
+
+        .order(
+
+            "kod",
+
+            {
+
+                ascending: true
+
+            }
 
         );
 
 
-        tbody.innerHTML = `
+    // -----------------------------------------
+    // SEMAK RALAT
+    // -----------------------------------------
+
+    if (error) {
+
+
+        console.error(error);
+
+
+        ruangSenarai.innerHTML = `
 
             <tr>
 
                 <td colspan="8">
 
-                    Gagal ambil data:
+                    ❌ Gagal ambil data:
 
                     ${error.message}
 
@@ -479,31 +652,94 @@ async function paparKodDuty() {
     }
 
 
-    semuaKodDuty =
+    // -----------------------------------------
+    // AMBIL FILTER UNIT
+    // -----------------------------------------
 
-        data
+    const filterUnitElement =
 
-        ||
+        document.getElementById(
 
-        [];
+            "filterUnit"
+
+        );
 
 
-    const senarai =
+    const filterUnit =
 
-        semuaKodDuty.filter(
+        filterUnitElement
 
-            function (
+            ? filterUnitElement.value
 
-                item
+            : "";
 
-            ) {
+
+    // -----------------------------------------
+    // AMBIL CARI KOD
+    // -----------------------------------------
+
+    const cariKodElement =
+
+        document.getElementById(
+
+            "cariKod"
+
+        );
+
+
+    const cariKod =
+
+        cariKodElement
+
+            ? cariKodElement.value
+
+                .trim()
+
+                .toUpperCase()
+
+            : "";
+
+
+    // -----------------------------------------
+    // TAPIS DATA
+    // -----------------------------------------
+
+    let senarai = data || [];
+
+
+    if (filterUnit) {
+
+
+        senarai = senarai.filter(
+
+            function (item) {
 
 
                 return (
 
-                    !cariKod
+                    item.unit ===
 
-                    ||
+                    filterUnit
+
+                );
+
+
+            }
+
+        );
+
+    }
+
+
+    if (cariKod) {
+
+
+        senarai = senarai.filter(
+
+            function (item) {
+
+
+                return (
 
                     String(
 
@@ -511,7 +747,7 @@ async function paparKodDuty() {
 
                     )
 
-                    .toLowerCase()
+                    .toUpperCase()
 
                     .includes(
 
@@ -521,32 +757,32 @@ async function paparKodDuty() {
 
                 );
 
+
             }
 
         );
 
+    }
 
-    tbody.innerHTML = "";
 
+    // -----------------------------------------
+    // TIADA DATA
+    // -----------------------------------------
 
     if (
 
-        senarai.length
-
-        ===
-
-        0
+        senarai.length === 0
 
     ) {
 
 
-        tbody.innerHTML = `
+        ruangSenarai.innerHTML = `
 
             <tr>
 
                 <td colspan="8">
 
-                    Tiada data Kod Duty.
+                    Tiada Kod Duty dijumpai
 
                 </td>
 
@@ -560,6 +796,13 @@ async function paparKodDuty() {
     }
 
 
+    // -----------------------------------------
+    // PAPAR DATA
+    // -----------------------------------------
+
+    ruangSenarai.innerHTML = "";
+
+
     senarai.forEach(
 
         function (
@@ -571,59 +814,31 @@ async function paparKodDuty() {
         ) {
 
 
+            const status =
+
+                item.status || "";
+
+
+            const statusClass =
+
+                status === "Aktif"
+
+                    ? "badge-aktif"
+
+                    : "badge-tidak-aktif";
+
+
             const tr =
 
-                document
+                document.createElement(
 
-                    .createElement(
+                    "tr"
 
-                        "tr"
-
-                    );
-
-
-            const statusBadge =
-
-                item.status
-
-                ===
-
-                "Aktif"
-
-                ?
-
-                `
-
-                    <span
-
-                        class="badge badge-aktif"
-
-                    >
-
-                        Aktif
-
-                    </span>
-
-                `
-
-                :
-
-                `
-
-                    <span
-
-                        class="badge badge-tidak-aktif"
-
-                    >
-
-                        Tidak Aktif
-
-                    </span>
-
-                `;
+                );
 
 
             tr.innerHTML = `
+
 
                 <td>
 
@@ -634,7 +849,11 @@ async function paparKodDuty() {
 
                 <td>
 
-                    ${item.unit || ""}
+                    <strong>
+
+                        ${item.unit || ""}
+
+                    </strong>
 
                 </td>
 
@@ -659,21 +878,29 @@ async function paparKodDuty() {
 
                 <td>
 
-                    ${item.jam_kerja || 0}
+                    ${item.jam_kerja ?? 0}
 
                 </td>
 
 
                 <td>
 
-                    ${item.jam_klm || 0}
+                    ${item.jam_klm ?? 0}
 
                 </td>
 
 
                 <td>
 
-                    ${statusBadge}
+                    <span
+
+                        class="badge ${statusClass}"
+
+                    >
+
+                        ${status}
+
+                    </span>
 
                 </td>
 
@@ -685,11 +912,11 @@ async function paparKodDuty() {
 
                         class="btn-edit"
 
-                        onclick="editKodDuty(
+                        onclick='editKodDuty(
 
-                            '${item.id}'
+                            ${JSON.stringify(item)}
 
-                        )"
+                        )'
 
                     >
 
@@ -708,11 +935,11 @@ async function paparKodDuty() {
 
                         class="btn-danger"
 
-                        onclick="padamKodDuty(
+                        onclick='padamKodDuty(
 
-                            '${item.id}'
+                            ${JSON.stringify(item)}
 
-                        )"
+                        )'
 
                     >
 
@@ -723,14 +950,16 @@ async function paparKodDuty() {
 
                 </td>
 
+
             `;
 
 
-            tbody.appendChild(
+            ruangSenarai.appendChild(
 
                 tr
 
             );
+
 
         }
 
@@ -740,61 +969,19 @@ async function paparKodDuty() {
 
 
 // =====================================================
-// EDIT KOD DUTY
+// FUNGSI EDIT KOD DUTY
 // =====================================================
 
-function editKodDuty(
-
-    id
-
-) {
+function editKodDuty(item) {
 
 
-    const item =
-
-        semuaKodDuty.find(
-
-            function (
-
-                row
-
-            ) {
+    sedangEdit = true;
 
 
-                return String(
-
-                    row.id
-
-                )
-
-                ===
-
-                String(
-
-                    id
-
-                );
-
-            }
-
-        );
+    unitLama = item.unit;
 
 
-    if (
-
-        !item
-
-    ) {
-
-
-        return;
-
-    }
-
-
-    idEdit =
-
-        id;
+    kodLama = item.kod;
 
 
     document
@@ -807,11 +994,7 @@ function editKodDuty(
 
         .value =
 
-        item.unit
-
-        ||
-
-        "";
+        item.unit || "";
 
 
     document
@@ -824,11 +1007,7 @@ function editKodDuty(
 
         .value =
 
-        item.kod
-
-        ||
-
-        "";
+        item.kod || "";
 
 
     document
@@ -841,11 +1020,7 @@ function editKodDuty(
 
         .value =
 
-        item.waktu_tugasan
-
-        ||
-
-        "";
+        item.waktu_tugasan || "";
 
 
     document
@@ -858,11 +1033,7 @@ function editKodDuty(
 
         .value =
 
-        item.jam_kerja
-
-        ||
-
-        0;
+        item.jam_kerja ?? "";
 
 
     document
@@ -875,11 +1046,7 @@ function editKodDuty(
 
         .value =
 
-        item.jam_klm
-
-        ||
-
-        0;
+        item.jam_klm ?? 0;
 
 
     document
@@ -892,52 +1059,56 @@ function editKodDuty(
 
         .value =
 
-        item.status
-
-        ||
-
-        "Aktif";
+        item.status || "Aktif";
 
 
-    document
+    const tajuk =
 
-        .getElementById(
+        document.getElementById(
 
             "tajukBorang"
 
-        )
-
-        .textContent =
-
-        "✏️ Edit Kod Duty";
+        );
 
 
-    document
+    if (tajuk) {
 
-        .getElementById(
+
+        tajuk.innerHTML =
+
+            "✏️ Edit Kod Duty";
+
+
+    }
+
+
+    const btnBatal =
+
+        document.getElementById(
 
             "btnBatal"
 
-        )
+        );
 
-        .style
 
-        .display =
+    if (btnBatal) {
 
-        "block";
+
+        btnBatal.style.display =
+
+            "block";
+
+
+    }
 
 
     window.scrollTo(
 
         {
 
-            top:
+            top: 0,
 
-                0,
-
-            behavior:
-
-                "smooth"
+            behavior: "smooth"
 
         }
 
@@ -947,7 +1118,7 @@ function editKodDuty(
 
 
 // =====================================================
-// BATAL EDIT
+// FUNGSI BATAL EDIT
 // =====================================================
 
 function batalEdit() {
@@ -959,15 +1130,19 @@ function batalEdit() {
 
 
 // =====================================================
-// KOSONGKAN BORANG
+// FUNGSI KOSONGKAN BORANG
 // =====================================================
 
 function kosongkanBorang() {
 
 
-    idEdit =
+    sedangEdit = false;
 
-        null;
+
+    unitLama = "";
+
+
+    kodLama = "";
 
 
     document
@@ -978,9 +1153,7 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "";
+        .value = "";
 
 
     document
@@ -991,9 +1164,7 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "";
+        .value = "";
 
 
     document
@@ -1004,9 +1175,7 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "";
+        .value = "";
 
 
     document
@@ -1017,9 +1186,7 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "";
+        .value = "";
 
 
     document
@@ -1030,9 +1197,7 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "0";
+        .value = "0";
 
 
     document
@@ -1043,66 +1208,68 @@ function kosongkanBorang() {
 
         )
 
-        .value =
-
-        "Aktif";
+        .value = "Aktif";
 
 
-    document
+    const tajuk =
 
-        .getElementById(
+        document.getElementById(
 
             "tajukBorang"
 
-        )
-
-        .textContent =
-
-        "➕ Tambah Kod Duty";
+        );
 
 
-    document
+    if (tajuk) {
 
-        .getElementById(
+
+        tajuk.innerHTML =
+
+            "➕ Tambah Kod Duty";
+
+
+    }
+
+
+    const btnBatal =
+
+        document.getElementById(
 
             "btnBatal"
 
-        )
+        );
 
-        .style
 
-        .display =
+    if (btnBatal) {
 
-        "none";
+
+        btnBatal.style.display =
+
+            "none";
+
+
+    }
 
 }
 
 
 // =====================================================
-// PADAM KOD DUTY
+// FUNGSI PADAM KOD DUTY
 // =====================================================
 
-async function padamKodDuty(
-
-    id
-
-) {
+async function padamKodDuty(item) {
 
 
-    const sahkan =
-
-        confirm(
-
-            "Adakah anda pasti mahu padam Kod Duty ini?"
-
-        );
+    const sahkan = confirm(
 
 
-    if (
+        `Adakah anda pasti mahu padam Kod Duty ${item.kod} untuk Unit ${item.unit}?`
 
-        !sahkan
 
-    ) {
+    );
+
+
+    if (!sahkan) {
 
 
         return;
@@ -1114,46 +1281,45 @@ async function padamKodDuty(
 
         error
 
-    } =
+    } = await supabaseClient
 
-        await supabaseClient
+        .from("kod_duty")
+
+        .delete()
+
+        .eq(
+
+            "unit",
+
+            item.unit
+
+        )
+
+        .eq(
+
+            "kod",
+
+            item.kod
+
+        );
 
 
-            .from(
-
-                "kod_duty"
-
-            )
+    if (error) {
 
 
-            .delete()
-
-
-            .eq(
-
-                "id",
-
-                id
-
-            );
-
-
-    if (
-
-        error
-
-    ) {
+        console.error(error);
 
 
         paparMesej(
 
-            "Gagal padam: "
 
-            +
+            "❌ Gagal padam: " +
 
             error.message,
 
+
             "error"
+
 
         );
 
@@ -1165,70 +1331,16 @@ async function padamKodDuty(
 
     paparMesej(
 
-        "Kod Duty berjaya dipadam.",
+
+        "✅ Kod Duty berjaya dipadam",
+
 
         "success"
+
 
     );
 
 
     paparKodDuty();
-
-}
-
-
-// =====================================================
-// PAPAR MESEJ
-// =====================================================
-
-function paparMesej(
-
-    mesej,
-
-    jenis
-
-) {
-
-
-    const div =
-
-        document
-
-            .getElementById(
-
-                "mesej"
-
-            );
-
-
-    div.className =
-
-        jenis;
-
-
-    div.textContent =
-
-        mesej;
-
-
-    setTimeout(
-
-        function () {
-
-
-            div.textContent =
-
-                "";
-
-
-            div.className =
-
-                "";
-
-        },
-
-        5000
-
-    );
 
 }
