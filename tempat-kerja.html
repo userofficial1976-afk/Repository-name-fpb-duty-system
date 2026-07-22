@@ -223,6 +223,7 @@ header p {
     display: grid;
 
     grid-template-columns:
+
         repeat(3, 1fr);
 
     gap: 20px;
@@ -253,6 +254,7 @@ label {
 
 
 input,
+
 select {
 
     width: 100%;
@@ -271,6 +273,7 @@ select {
 
 
 input:focus,
+
 select:focus {
 
     outline: none;
@@ -280,6 +283,7 @@ select:focus {
     box-shadow:
 
         0 0 0 3px
+
         rgba(0,0,0,0.08);
 
 }
@@ -332,12 +336,13 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 900px;
+    min-width: 800px;
 
 }
 
 
 th,
+
 td {
 
     padding: 14px 13px;
@@ -441,6 +446,13 @@ tr:hover {
 }
 
 
+.btn-danger:hover {
+
+    background: #333;
+
+}
+
+
 .footer {
 
     text-align: center;
@@ -459,6 +471,7 @@ tr:hover {
     .grid {
 
         grid-template-columns:
+
             repeat(2, 1fr);
 
     }
@@ -559,7 +572,9 @@ class="btn-dashboard"
 
 <div class="container">
 
-<!-- TAMBAH DATA -->
+<!-- =================================================
+     TAMBAH KOD TEMPAT KERJA
+================================================= -->
 
 <div class="card">
 
@@ -579,11 +594,15 @@ Tambah Kod Tempat Kerja
 
 </div>
 
-<div id="mesej"></div>
+<div
+
+id="mesej"
+
+> </div>
 
 <div class="grid">
 
-<!-- UNIT TETAP -->
+<!-- UNIT -->
 
 <div class="form-group">
 
@@ -645,13 +664,37 @@ Rantau Abang
 
 </div>
 
-<!-- POS DARIPADA DATA ANGGOTA -->
+<!-- KOD TK -->
 
 <div class="form-group">
 
 <label>
 
-Pos
+Kod TK
+
+</label>
+
+<input
+
+type="text"
+
+id="kodTempatKerja"
+
+placeholder="Contoh: W"
+
+maxlength="10"
+
+>
+
+</div>
+
+<!-- POS TEMPAT KERJA -->
+
+<div class="form-group">
+
+<label>
+
+Pos (Tempat Kerja)
 
 </label>
 
@@ -668,50 +711,6 @@ id="pos"
 </option>
 
 </select>
-
-</div>
-
-<!-- KOD -->
-
-<div class="form-group">
-
-<label>
-
-Kod Tempat Kerja
-
-</label>
-
-<input
-
-type="text"
-
-id="kodTempatKerja"
-
-placeholder="Contoh: W"
-
->
-
-</div>
-
-<!-- NAMA TEMPAT KERJA -->
-
-<div class="form-group">
-
-<label>
-
-Nama Tempat Kerja
-
-</label>
-
-<input
-
-type="text"
-
-id="namaTempatKerja"
-
-placeholder="Contoh: Balai Polis Jerangau"
-
->
 
 </div>
 
@@ -733,7 +732,9 @@ onclick="simpanTempatKerja()"
 
 </div>
 
-<!-- SENARAI -->
+<!-- =================================================
+     SENARAI KOD TEMPAT KERJA
+================================================= -->
 
 <div class="card">
 
@@ -761,19 +762,41 @@ Senarai Kod Tempat Kerja
 
 <tr>
 
-<th>Bil</th>
+<th>
 
-<th>Unit</th>
+Bil
 
-<th>Pos</th>
+</th>
 
-<th>Kod Tempat Kerja</th>
+<th>
 
-<th>Nama Tempat Kerja</th>
+Unit
 
-<th>Status</th>
+</th>
 
-<th>Tindakan</th>
+<th>
+
+Kod TK
+
+</th>
+
+<th>
+
+Pos (Tempat Kerja)
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Tindakan
+
+</th>
 
 </tr>
 
@@ -787,7 +810,11 @@ id="senaraiTempatKerja"
 
 <tr>
 
-<td colspan="7">
+<td
+
+colspan="6"
+
+>
 
 Sedang memuatkan...
 
@@ -805,7 +832,11 @@ Sedang memuatkan...
 
 </div>
 
-<div class="footer">
+<footer
+
+class="footer"
+
+>
 
 FPB DUTY SYSTEM — WILAYAH TERENGGANU
 
@@ -813,7 +844,7 @@ FPB DUTY SYSTEM — WILAYAH TERENGGANU
 
 © 2026 | Operational Duty Management System
 
-</div>
+</footer>
 
 <script
 
