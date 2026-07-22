@@ -1,7 +1,7 @@
 // =====================================================
 // JADUAL DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI AKHIR
+// VERSI TERAKHIR
 // =====================================================
 
 
@@ -12,10 +12,15 @@
 const SENARAI_UNIT = [
 
     "Jerangau",
+
     "Chador",
+
     "Terengganu",
+
     "Setiu",
+
     "Rantau Abang",
+
     "Kerteh"
 
 ];
@@ -27,11 +32,11 @@ const SENARAI_UNIT = [
 
 let semuaAnggota = [];
 
+let semuaKodDuty = [];
+
+let semuaKodTempatKerja = [];
+
 let semuaDuty = [];
-
-window.semuaKodDuty = [];
-
-window.semuaKodTempatKerja = [];
 
 
 // =====================================================
@@ -44,31 +49,39 @@ document.addEventListener(
 
     async function () {
 
+
         isiSenaraiUnit();
+
 
         pasangEventTarikh();
 
+
         pasangEventUnit();
+
 
         pasangEventPos();
 
+
         pasangEventAnggota();
+
 
         pasangEventKodDuty();
 
+
         pasangEventKodTempatKerja();
 
-        pasangEventOffday();
-
-        pasangEventCutiAm();
 
         await muatAnggota();
 
+
         await muatKodDuty();
+
 
         await muatKodTempatKerja();
 
-        await muatSenaraiPos();
+
+        isiSenaraiKetuaUnit();
+
 
     }
 
@@ -76,21 +89,48 @@ document.addEventListener(
 
 
 // =====================================================
-// PAPAR POPUP TENGAH SCREEN
+// POPUP
 // =====================================================
 
 function paparPopup(
 
     mesej,
 
-    jenis = "info",
+    jenis = "success",
 
     tajuk = "Makluman"
 
 ) {
 
 
-    const popupLama =
+    const overlay =
+
+        document.getElementById(
+
+            "popupOverlay"
+
+        );
+
+
+    const icon =
+
+        document.getElementById(
+
+            "popupIcon"
+
+        );
+
+
+    const title =
+
+        document.getElementById(
+
+            "popupTitle"
+
+        );
+
+
+    const message =
 
         document.getElementById(
 
@@ -99,264 +139,99 @@ function paparPopup(
         );
 
 
-    if (popupLama)
+    if (!overlay)
 
-        popupLama.remove();
-
-
-    let ikon = "ℹ️";
-
-    let warna = "#2563eb";
+        return;
 
 
     if (jenis === "success") {
 
-        ikon = "✅";
+        icon.textContent = "✅";
 
-        warna = "#16a34a";
+    }
+
+    else if (jenis === "error") {
+
+        icon.textContent = "❌";
+
+    }
+
+    else if (jenis === "warning") {
+
+        icon.textContent = "⚠️";
+
+    }
+
+    else {
+
+        icon.textContent = "ℹ️";
 
     }
 
 
-    if (jenis === "error") {
-
-        ikon = "❌";
-
-        warna = "#dc2626";
-
-    }
+    title.textContent = tajuk;
 
 
-    if (jenis === "warning") {
-
-        ikon = "⚠️";
-
-        warna = "#ea580c";
-
-    }
+    message.textContent = mesej;
 
 
-    const popup =
-
-        document.createElement(
-
-            "div"
-
-        );
-
-
-    popup.id = "popupMessage";
-
-
-    popup.innerHTML = `
-
-        <div class="popup-overlay">
-
-            <div class="popup-box">
-
-                <div class="popup-icon"
-
-                     style="color:${warna}">
-
-                    ${ikon}
-
-                </div>
-
-                <h3>${tajuk}</h3>
-
-                <p>${mesej}</p>
-
-                <button
-
-                    onclick="tutupPopup()"
-
-                    style="background:${warna}"
-
-                >
-
-                    OK
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.body.appendChild(
-
-        popup
-
-    );
+    overlay.style.display = "flex";
 
 }
 
-
-// =====================================================
-// TUTUP POPUP
-// =====================================================
 
 function tutupPopup() {
 
 
-    const popup =
+    const overlay =
 
         document.getElementById(
 
-            "popupMessage"
+            "popupOverlay"
 
         );
 
 
-    if (popup)
+    if (overlay)
 
-        popup.remove();
+        overlay.style.display = "none";
 
 }
 
 
-// =====================================================
-// CSS POPUP
-// =====================================================
+document.addEventListener(
 
-(function tambahCSSPopup() {
+    "click",
 
-
-    const style =
-
-        document.createElement(
-
-            "style"
-
-        );
+    function (event) {
 
 
-    style.innerHTML = `
+        const overlay =
 
-        .popup-overlay {
+            document.getElementById(
 
-            position: fixed;
+                "popupOverlay"
 
-            inset: 0;
+            );
 
-            background: rgba(15,23,42,0.55);
 
-            display: flex;
+        if (
 
-            align-items: center;
+            event.target === overlay
 
-            justify-content: center;
+        ) {
 
-            z-index: 99999;
-
-            padding: 20px;
+            tutupPopup();
 
         }
 
+    }
 
-        .popup-box {
-
-            width: min(430px, 100%);
-
-            background: white;
-
-            border-radius: 16px;
-
-            padding: 28px;
-
-            text-align: center;
-
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-
-            animation: popupMasuk .2s ease-out;
-
-        }
-
-
-        .popup-icon {
-
-            font-size: 48px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .popup-box h3 {
-
-            margin: 0 0 10px;
-
-            color: #0f172a;
-
-        }
-
-
-        .popup-box p {
-
-            margin: 0 0 22px;
-
-            color: #475569;
-
-            line-height: 1.5;
-
-        }
-
-
-        .popup-box button {
-
-            border: none;
-
-            color: white;
-
-            padding: 11px 30px;
-
-            border-radius: 8px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            font-size: 14px;
-
-        }
-
-
-        @keyframes popupMasuk {
-
-            from {
-
-                opacity: 0;
-
-                transform: scale(.85);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform: scale(1);
-
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(
-
-        style
-
-    );
-
-})();
+);
 
 
 // =====================================================
-// ISI SENARAI UNIT
+// SENARAI UNIT
 // =====================================================
 
 function isiSenaraiUnit() {
@@ -403,6 +278,7 @@ function isiSenaraiUnit() {
 
             option.value = unit;
 
+
             option.textContent = unit;
 
 
@@ -420,7 +296,7 @@ function isiSenaraiUnit() {
 
 
 // =====================================================
-// EVENT TARIKH
+// TARIKH
 // =====================================================
 
 function pasangEventTarikh() {
@@ -515,15 +391,11 @@ function pasangEventTarikh() {
             ];
 
 
-            document
+            document.getElementById(
 
-                .getElementById(
+                "bulan"
 
-                    "bulan"
-
-                )
-
-                .value =
+            ).value =
 
                 bulan[
 
@@ -532,28 +404,20 @@ function pasangEventTarikh() {
                 ];
 
 
-            document
+            document.getElementById(
 
-                .getElementById(
+                "tahun"
 
-                    "tahun"
-
-                )
-
-                .value =
+            ).value =
 
                 date.getFullYear();
 
 
-            document
+            document.getElementById(
 
-                .getElementById(
+                "hari"
 
-                    "hari"
-
-                )
-
-                .value =
+            ).value =
 
                 hari[
 
@@ -568,56 +432,40 @@ function pasangEventTarikh() {
 }
 
 
-// =====================================================
-// KOSONGKAN TARIKH
-// =====================================================
-
 function kosongkanTarikh() {
 
 
-    [
+    document.getElementById(
 
-        "bulan",
+        "bulan"
 
-        "tahun",
+    ).value = "";
+
+
+    document.getElementById(
+
+        "tahun"
+
+    ).value = "";
+
+
+    document.getElementById(
 
         "hari"
 
-    ]
-
-    .forEach(
-
-        function (id) {
-
-
-            const element =
-
-                document.getElementById(
-
-                    id
-
-                );
-
-
-            if (element)
-
-                element.value = "";
-
-        }
-
-    );
+    ).value = "";
 
 }
 
 
 // =====================================================
-// EVENT UNIT
+// UNIT
 // =====================================================
 
 function pasangEventUnit() {
 
 
-    const unitSelect =
+    const select =
 
         document.getElementById(
 
@@ -626,12 +474,12 @@ function pasangEventUnit() {
         );
 
 
-    if (!unitSelect)
+    if (!select)
 
         return;
 
 
-    unitSelect.addEventListener(
+    select.addEventListener(
 
         "change",
 
@@ -643,11 +491,15 @@ function pasangEventUnit() {
 
             kosongkanPos();
 
+
             kosongkanAnggota();
+
 
             kosongkanMaklumatAnggota();
 
+
             kosongkanKodDuty();
+
 
             kosongkanKodTempatKerja();
 
@@ -657,126 +509,77 @@ function pasangEventUnit() {
                 return;
 
 
-            isiPosIkutUnit(
+            const posList = [
 
-                unit
+                ...new Set(
 
-            );
+                    semuaAnggota
 
+                        .filter(
 
-            isiKodDutyIkutUnit(
+                            a =>
 
-                unit
+                                a.unit === unit
 
-            );
+                        )
 
+                        .map(
 
-            isiKodTempatKerjaIkutUnit(
+                            a => a.pos
 
-                unit
+                        )
 
-            );
-
-        }
-
-    );
-
-}
-
-
-// =====================================================
-// ISI POS IKUT UNIT
-// =====================================================
-
-function isiPosIkutUnit(
-
-    unit
-
-) {
-
-
-    const posSelect =
-
-        document.getElementById(
-
-            "posAsal"
-
-        );
-
-
-    if (!posSelect)
-
-        return;
-
-
-    const posList = [
-
-        ...new Set(
-
-            semuaAnggota
-
-                .filter(
-
-                    a =>
-
-                        a.unit === unit
+                        .filter(Boolean)
 
                 )
 
-                .map(
-
-                    a => a.pos
-
-                )
-
-                .filter(
-
-                    Boolean
-
-                )
-
-        )
-
-    ]
-
-    .sort();
+            ].sort();
 
 
-    posSelect.innerHTML = `
+            const posSelect =
 
-        <option value="">
+                document.getElementById(
 
-            -- Pilih Pos Asal --
-
-        </option>
-
-    `;
-
-
-    posList.forEach(
-
-        function (pos) {
-
-
-            const option =
-
-                document.createElement(
-
-                    "option"
+                    "posAsal"
 
                 );
 
 
-            option.value = pos;
+            posList.forEach(
 
-            option.textContent = pos;
+                function (pos) {
 
 
-            posSelect.appendChild(
+                    const option =
 
-                option
+                        document.createElement(
+
+                            "option"
+
+                        );
+
+
+                    option.value = pos;
+
+
+                    option.textContent = pos;
+
+
+                    posSelect.appendChild(
+
+                        option
+
+                    );
+
+                }
 
             );
+
+
+            isiKodDutyIkutUnit(unit);
+
+
+            isiKodTempatKerjaIkutUnit(unit);
 
         }
 
@@ -786,7 +589,7 @@ function isiPosIkutUnit(
 
 
 // =====================================================
-// EVENT POS
+// POS
 // =====================================================
 
 function pasangEventPos() {
@@ -815,21 +618,18 @@ function pasangEventPos() {
 
             const unit =
 
-                document
+                document.getElementById(
 
-                    .getElementById(
+                    "unitPilihan"
 
-                        "unitPilihan"
-
-                    )
-
-                    .value;
+                ).value;
 
 
             const pos = this.value;
 
 
             kosongkanAnggota();
+
 
             kosongkanMaklumatAnggota();
 
@@ -839,7 +639,7 @@ function pasangEventPos() {
                 return;
 
 
-            const anggotaList =
+            const list =
 
                 semuaAnggota
 
@@ -855,21 +655,13 @@ function pasangEventPos() {
 
                     .sort(
 
-                        (
-
-                            a,
-
-                            b
-
-                        ) =>
+                        (a, b) =>
 
                             (
 
                                 a.nama || ""
 
-                            )
-
-                            .localeCompare(
+                            ).localeCompare(
 
                                 b.nama || ""
 
@@ -887,7 +679,7 @@ function pasangEventPos() {
                 );
 
 
-            anggotaList.forEach(
+            list.forEach(
 
                 function (anggota) {
 
@@ -938,7 +730,7 @@ function pasangEventPos() {
 
 
 // =====================================================
-// EVENT ANGGOTA
+// ANGGOTA
 // =====================================================
 
 function pasangEventAnggota() {
@@ -989,13 +781,18 @@ function pasangEventAnggota() {
             }
 
 
-            isiMaklumatAnggota(
+            const anggota =
 
                 JSON.parse(
 
                     option.dataset.data
 
-                )
+                );
+
+
+            isiMaklumatAnggota(
+
+                anggota
 
             );
 
@@ -1017,55 +814,76 @@ function isiMaklumatAnggota(
 ) {
 
 
-    const map = {
+    document.getElementById(
+
+        "noSkb"
+
+    ).value =
+
+        anggota.no_skb || "";
 
 
-        noSkb: anggota.no_skb,
+    document.getElementById(
 
-        noAnggota: anggota.no_anggota,
+        "noAnggota"
 
-        kawasan: anggota.kawasan,
+    ).value =
 
-        unit: anggota.unit,
-
-        ketuaUnit: anggota.ketua_unit,
-
-        ketuaPos: anggota.ketua_pos,
-
-        namaPosAsal: anggota.pos
-
-    };
+        anggota.no_anggota || "";
 
 
-    Object.keys(
+    document.getElementById(
 
-        map
+        "kawasan"
 
-    )
+    ).value =
 
-    .forEach(
-
-        function (id) {
+        anggota.kawasan || "";
 
 
-            const element =
+    document.getElementById(
 
-                document.getElementById(
+        "unit"
 
-                    id
+    ).value =
 
-                );
+        anggota.unit || "";
 
 
-            if (element)
+    document.getElementById(
 
-                element.value =
+        "ketuaUnit"
 
-                    map[id] || "";
+    ).value =
 
-        }
+        anggota.ketua_unit || "";
 
-    );
+
+    document.getElementById(
+
+        "ketuaPos"
+
+    ).value =
+
+        anggota.ketua_pos || "";
+
+
+    document.getElementById(
+
+        "namaKetuaPos"
+
+    ).value =
+
+        anggota.nama_ketua_pos || "";
+
+
+    document.getElementById(
+
+        "namaPosAsal"
+
+    ).value =
+
+        anggota.pos || "";
 
 }
 
@@ -1077,70 +895,62 @@ function isiMaklumatAnggota(
 async function muatAnggota() {
 
 
-    try {
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from(
+
+            "Data_Anggota"
+
+        )
+
+        .select(
+
+            `
+
+            no_skb,
+
+            no_anggota,
+
+            nama,
+
+            kawasan,
+
+            unit,
+
+            pos,
+
+            ketua_unit,
+
+            ketua_pos,
+
+            nama_ketua_pos,
+
+            status
+
+            `
+
+        )
+
+        .order(
+
+            "nama",
+
+            {
+
+                ascending: true
+
+            }
+
+        );
 
 
-        const {
-
-            data,
-
-            error
-
-        } = await supabaseClient
-
-            .from(
-
-                "Data_Anggota"
-
-            )
-
-            .select(`
-
-                no_skb,
-
-                nama,
-
-                no_anggota,
-
-                kawasan,
-
-                unit,
-
-                pos,
-
-                ketua_unit,
-
-                ketua_pos,
-
-                status
-
-            `)
-
-            .order(
-
-                "nama",
-
-                {
-
-                    ascending: true
-
-                }
-
-            );
-
-
-        if (error)
-
-            throw error;
-
-
-        semuaAnggota = data || [];
-
-
-    }
-
-    catch (error) {
-
+    if (error) {
 
         paparPopup(
 
@@ -1148,11 +958,89 @@ async function muatAnggota() {
 
             "error",
 
-            "Gagal Ambil Data Anggota"
+            "Gagal Ambil Anggota"
 
         );
 
+        return;
+
     }
+
+
+    semuaAnggota = data || [];
+
+}
+
+
+// =====================================================
+// SENARAI KETUA UNIT
+// =====================================================
+
+function isiSenaraiKetuaUnit() {
+
+
+    const select =
+
+        document.getElementById(
+
+            "filterKetuaUnit"
+
+        );
+
+
+    if (!select)
+
+        return;
+
+
+    const list = [
+
+        ...new Set(
+
+            semuaAnggota
+
+                .map(
+
+                    a => a.ketua_unit
+
+                )
+
+                .filter(Boolean)
+
+        )
+
+    ].sort();
+
+
+    list.forEach(
+
+        function (ketua) {
+
+
+            const option =
+
+                document.createElement(
+
+                    "option"
+
+                );
+
+
+            option.value = ketua;
+
+
+            option.textContent = ketua;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
 
 }
 
@@ -1164,74 +1052,56 @@ async function muatAnggota() {
 async function muatKodDuty() {
 
 
-    try {
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from(
+
+            "kod_duty"
+
+        )
+
+        .select(
+
+            `
+
+            unit,
+
+            kod,
+
+            waktu_tugasan,
+
+            jam_kerja,
+
+            jam_klm,
+
+            status
+
+            `
+
+        )
+
+        .eq(
+
+            "status",
+
+            "Aktif"
+
+        )
+
+        .order(
+
+            "kod"
+
+        );
 
 
-        const {
-
-            data,
-
-            error
-
-        } = await supabaseClient
-
-            .from(
-
-                "kod_duty"
-
-            )
-
-            .select(`
-
-                unit,
-
-                kod,
-
-                waktu_tugasan,
-
-                jam_kerja,
-
-                jam_klm,
-
-                status
-
-            `)
-
-            .eq(
-
-                "status",
-
-                "Aktif"
-
-            )
-
-            .order(
-
-                "kod",
-
-                {
-
-                    ascending: true
-
-                }
-
-            );
-
-
-        if (error)
-
-            throw error;
-
-
-        window.semuaKodDuty =
-
-            data || [];
-
-
-    }
-
-    catch (error) {
-
+    if (error) {
 
         paparPopup(
 
@@ -1243,7 +1113,91 @@ async function muatKodDuty() {
 
         );
 
+        return;
+
     }
+
+
+    semuaKodDuty = data || [];
+
+}
+
+
+// =====================================================
+// KOD DUTY
+// =====================================================
+
+function isiKodDutyIkutUnit(
+
+    unit
+
+) {
+
+
+    const select =
+
+        document.getElementById(
+
+            "kodDuty"
+
+        );
+
+
+    const list =
+
+        semuaKodDuty.filter(
+
+            item =>
+
+                item.unit === unit
+
+        );
+
+
+    list.forEach(
+
+        function (item) {
+
+
+            const option =
+
+                document.createElement(
+
+                    "option"
+
+                );
+
+
+            option.value = item.kod;
+
+
+            option.textContent =
+
+                item.kod +
+
+                " - " +
+
+                item.waktu_tugasan;
+
+
+            option.dataset.data =
+
+                JSON.stringify(
+
+                    item
+
+                );
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
 
 }
 
@@ -1276,53 +1230,60 @@ function pasangEventKodDuty() {
         function () {
 
 
-            const unit =
+            const option =
 
-                document
+                this.options[
 
-                    .getElementById(
+                    this.selectedIndex
 
-                        "unitPilihan"
-
-                    )
-
-                    .value;
+                ];
 
 
-            const kod = this.value;
+            if (
+
+                !option ||
+
+                !option.dataset.data
+
+            )
+
+                return;
 
 
             const data =
 
-                window.semuaKodDuty.find(
+                JSON.parse(
 
-                    item =>
-
-                        item.unit === unit &&
-
-                        item.kod === kod
+                    option.dataset.data
 
                 );
 
 
-            const jamKlm =
+            document.getElementById(
 
-                document.getElementById(
+                "waktuTugasan"
 
-                    "jamKlm"
+            ).value =
 
-                );
+                data.waktu_tugasan || "";
 
 
-            if (jamKlm)
+            document.getElementById(
 
-                jamKlm.value =
+                "jamKerja"
 
-                    data
+            ).value =
 
-                        ? data.jam_klm || 0
+                data.jam_kerja || 0;
 
-                        : 0;
+
+            document.getElementById(
+
+                "jamKlm"
+
+            ).value =
+
+                data.jam_klm || 0;
 
         }
 
@@ -1332,161 +1293,58 @@ function pasangEventKodDuty() {
 
 
 // =====================================================
-// ISI KOD DUTY IKUT UNIT
-// =====================================================
-
-function isiKodDutyIkutUnit(
-
-    unit
-
-) {
-
-
-    const select =
-
-        document.getElementById(
-
-            "kodDuty"
-
-        );
-
-
-    if (!select)
-
-        return;
-
-
-    select.innerHTML = `
-
-        <option value="">
-
-            -- Pilih Kod Waktu Kerja --
-
-        </option>
-
-    `;
-
-
-    window.semuaKodDuty
-
-        .filter(
-
-            item =>
-
-                item.unit === unit
-
-        )
-
-        .forEach(
-
-            function (item) {
-
-
-                const option =
-
-                    document.createElement(
-
-                        "option"
-
-                    );
-
-
-                option.value = item.kod;
-
-
-                option.textContent =
-
-                    item.kod +
-
-                    " - " +
-
-                    item.waktu_tugasan;
-
-
-                select.appendChild(
-
-                    option
-
-                );
-
-            }
-
-        );
-
-}
-
-
-// =====================================================
-// MUAT TEMPAT KERJA
+// MUAT KOD TEMPAT KERJA
 // =====================================================
 
 async function muatKodTempatKerja() {
 
 
-    try {
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from(
+
+            "kod_tempat_kerja"
+
+        )
+
+        .select(
+
+            `
+
+            kod_tempat_kerja,
+
+            nama_tempat_kerja,
+
+            unit,
+
+            status
+
+            `
+
+        )
+
+        .eq(
+
+            "status",
+
+            "Aktif"
+
+        )
+
+        .order(
+
+            "kod_tempat_kerja"
+
+        );
 
 
-        const {
-
-            data,
-
-            error
-
-        } = await supabaseClient
-
-            .from(
-
-                "kod_tempat_kerja"
-
-            )
-
-            .select(`
-
-                kod_tempat_kerja,
-
-                nama_tempat_kerja,
-
-                unit,
-
-                status
-
-            `)
-
-            .eq(
-
-                "status",
-
-                "Aktif"
-
-            )
-
-            .order(
-
-                "kod_tempat_kerja",
-
-                {
-
-                    ascending: true
-
-                }
-
-            );
-
-
-        if (error)
-
-            throw error;
-
-
-        window.semuaKodTempatKerja =
-
-            data || [];
-
-
-    }
-
-    catch (error) {
-
+    if (error) {
 
         paparPopup(
 
@@ -1498,13 +1356,18 @@ async function muatKodTempatKerja() {
 
         );
 
+        return;
+
     }
+
+
+    semuaKodTempatKerja = data || [];
 
 }
 
 
 // =====================================================
-// ISI TEMPAT KERJA IKUT UNIT
+// TEMPAT KERJA
 // =====================================================
 
 function isiKodTempatKerjaIkutUnit(
@@ -1523,74 +1386,63 @@ function isiKodTempatKerjaIkutUnit(
         );
 
 
-    if (!select)
+    const list =
 
-        return;
-
-
-    select.innerHTML = `
-
-        <option value="">
-
-            -- Pilih Kod Tempat Kerja --
-
-        </option>
-
-    `;
-
-
-    window.semuaKodTempatKerja
-
-        .filter(
+        semuaKodTempatKerja.filter(
 
             item =>
 
                 item.unit === unit
 
-        )
-
-        .forEach(
-
-            function (item) {
+        );
 
 
-                const option =
+    list.forEach(
 
-                    document.createElement(
-
-                        "option"
-
-                    );
+        function (item) {
 
 
-                option.value =
+            const option =
 
-                    item.kod_tempat_kerja;
+                document.createElement(
 
-
-                option.textContent =
-
-                    item.kod_tempat_kerja +
-
-                    " - " +
-
-                    item.nama_tempat_kerja;
-
-
-                option.dataset.nama =
-
-                    item.nama_tempat_kerja;
-
-
-                select.appendChild(
-
-                    option
+                    "option"
 
                 );
 
-            }
 
-        );
+            option.value =
+
+                item.kod_tempat_kerja;
+
+
+            option.textContent =
+
+                item.kod_tempat_kerja +
+
+                " - " +
+
+                item.nama_tempat_kerja;
+
+
+            option.dataset.data =
+
+                JSON.stringify(
+
+                    item
+
+                );
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        }
+
+    );
 
 }
 
@@ -1623,104 +1475,42 @@ function pasangEventKodTempatKerja() {
         function () {
 
 
-            // Nama tempat kerja dibaca terus
-            // semasa simpan Duty
+            const option =
 
-        }
+                this.options[
 
-    );
+                    this.selectedIndex
 
-}
-
-
-// =====================================================
-// EVENT OFFDAY
-// =====================================================
-
-function pasangEventOffday() {
+                ];
 
 
-    const checkbox =
+            if (
 
-        document.getElementById(
+                !option ||
 
-            "hariOffday"
+                !option.dataset.data
 
-        );
+            )
 
-
-    const input =
-
-        document.getElementById(
-
-            "jamOffday"
-
-        );
+                return;
 
 
-    if (!checkbox || !input)
+            const data =
 
-        return;
+                JSON.parse(
 
+                    option.dataset.data
 
-    checkbox.addEventListener(
-
-        "change",
-
-        function () {
+                );
 
 
-            if (!this.checked)
+            document.getElementById(
 
-                input.value = 0;
+                "tempatKerja"
 
-        }
+            ).value =
 
-    );
-
-}
-
-
-// =====================================================
-// EVENT CUTI AM
-// =====================================================
-
-function pasangEventCutiAm() {
-
-
-    const checkbox =
-
-        document.getElementById(
-
-            "hariCutiam"
-
-        );
-
-
-    const input =
-
-        document.getElementById(
-
-            "jamCutiam"
-
-        );
-
-
-    if (!checkbox || !input)
-
-        return;
-
-
-    checkbox.addEventListener(
-
-        "change",
-
-        function () {
-
-
-            if (!this.checked)
-
-                input.value = 0;
+                data.nama_tempat_kerja || "";
 
         }
 
@@ -1736,452 +1526,370 @@ function pasangEventCutiAm() {
 async function simpanDuty() {
 
 
-    try {
+    const anggota =
 
+        semuaAnggota.find(
 
-        const tarikh =
+            a =>
 
-            document
+                String(a.no_skb) ===
 
-                .getElementById(
+                String(
 
-                    "tarikh"
+                    document.getElementById(
 
-                )
+                        "noSkb"
 
-                .value;
-
-
-        const bulan =
-
-            document
-
-                .getElementById(
-
-                    "bulan"
+                    ).value
 
                 )
 
-                .value;
+        );
 
 
-        const tahun =
+    const kodDuty =
 
-            document
+        semuaKodDuty.find(
 
-                .getElementById(
+            item =>
 
-                    "tahun"
+                item.unit ===
 
-                )
+                document.getElementById(
 
-                .value;
+                    "unitPilihan"
 
+                ).value &&
 
-        const noSkb =
+                item.kod ===
 
-            document
-
-                .getElementById(
-
-                    "noSkb"
-
-                )
-
-                .value;
-
-
-        const kodDuty =
-
-            document
-
-                .getElementById(
+                document.getElementById(
 
                     "kodDuty"
 
-                )
+                ).value
 
-                .value;
-
-
-        const kodTempatKerja =
-
-            document
-
-                .getElementById(
-
-                    "kodTempatKerja"
-
-                )
-
-                .value;
+        );
 
 
-        const anggota =
+    const tempatKerja =
 
-            semuaAnggota.find(
+        semuaKodTempatKerja.find(
 
-                a =>
+            item =>
 
-                    String(
+                item.kod_tempat_kerja ===
 
-                        a.no_skb
-
-                    ) ===
-
-                    String(
-
-                        noSkb
-
-                    )
-
-            );
-
-
-        const dataKodDuty =
-
-            window.semuaKodDuty.find(
-
-                item =>
-
-                    item.unit ===
-
-                    anggota.unit &&
-
-                    item.kod ===
-
-                    kodDuty
-
-            );
-
-
-        const optionTempatKerja =
-
-            document
-
-                .getElementById(
+                document.getElementById(
 
                     "kodTempatKerja"
 
-                )
+                ).value
 
-                .selectedOptions[0];
-
-
-        const namaTempatKerja =
-
-            optionTempatKerja
-
-                ? optionTempatKerja.dataset.nama
-
-                : "";
+        );
 
 
-        if (!tarikh) {
+    if (
+
+        !document.getElementById(
+
+            "tarikh"
+
+        ).value
+
+    ) {
+
+        paparPopup(
+
+            "Sila pilih tarikh duty.",
+
+            "warning",
+
+            "Tarikh Diperlukan"
+
+        );
+
+        return;
+
+    }
 
 
-            paparPopup(
+    if (!anggota) {
 
-                "Sila pilih tarikh duty.",
+        paparPopup(
 
-                "warning",
+            "Sila pilih nama anggota.",
 
-                "Tarikh Diperlukan"
+            "warning",
 
-            );
+            "Anggota Diperlukan"
 
+        );
 
-            return;
+        return;
 
-        }
-
-
-        if (!anggota) {
+    }
 
 
-            paparPopup(
+    if (!kodDuty) {
 
-                "Sila pilih nama anggota.",
+        paparPopup(
 
-                "warning",
+            "Sila pilih Kod Duty.",
 
-                "Anggota Diperlukan"
+            "warning",
 
-            );
+            "Kod Duty Diperlukan"
 
+        );
 
-            return;
+        return;
 
-        }
-
-
-        if (!kodDuty) {
+    }
 
 
-            paparPopup(
+    if (!tempatKerja) {
 
-                "Sila pilih Kod Waktu Kerja.",
+        paparPopup(
 
-                "warning",
+            "Sila pilih tempat kerja.",
 
-                "Kod Duty Diperlukan"
+            "warning",
 
-            );
+            "Tempat Kerja Diperlukan"
 
+        );
 
-            return;
+        return;
 
-        }
-
-
-        if (!kodTempatKerja) {
+    }
 
 
-            paparPopup(
+    const sekarang =
 
-                "Sila pilih Kod Tempat Kerja.",
-
-                "warning",
-
-                "Tempat Kerja Diperlukan"
-
-            );
+        new Date().toISOString();
 
 
-            return;
-
-        }
+    const dataDuty = {
 
 
-        const dataDuty = {
+        tarikh:
+
+            document.getElementById(
+
+                "tarikh"
+
+            ).value,
 
 
-            tarikh: tarikh,
+        bulan:
 
-            bulan: bulan,
+            document.getElementById(
 
-            tahun: parseInt(
+                "bulan"
 
-                tahun
+            ).value,
+
+
+        tahun:
+
+            Number(
+
+                document.getElementById(
+
+                    "tahun"
+
+                ).value
 
             ),
 
 
-            no_skb: anggota.no_skb,
+        no_skb:
 
-            no_anggota: anggota.no_anggota,
+            anggota.no_skb,
 
-            nama_anggota: anggota.nama,
 
-            kawasan: anggota.kawasan,
+        no_anggota:
 
-            unit: anggota.unit,
+            anggota.no_anggota,
 
 
-            waktu_tugasan:
+        nama_anggota:
 
-                dataKodDuty
+            anggota.nama,
 
-                    ? dataKodDuty.waktu_tugasan
 
-                    : null,
+        kawasan:
 
+            anggota.kawasan,
 
-            jam_kerja:
 
-                dataKodDuty
+        unit:
 
-                    ? dataKodDuty.jam_kerja
+            anggota.unit,
 
-                    : 0,
 
+        ketua_unit:
 
-            jam_klm:
+            anggota.ketua_unit,
 
-                dataKodDuty
 
-                    ? dataKodDuty.jam_klm
+        ketua_pos:
 
-                    : 0,
+            anggota.ketua_pos,
 
 
-            pos: anggota.pos,
+        nama_ketua_pos:
 
-            nama_pos_asal: anggota.pos,
+            anggota.nama_ketua_pos,
 
 
-            ketua_pos: anggota.ketua_pos,
+        nama_pos_asal:
 
-            nama_ketua_pos: anggota.ketua_pos,
+            anggota.pos,
 
-            ketua_unit: anggota.ketua_unit,
 
+        pos:
 
-            kod_dutyy: kodDuty,
+            anggota.pos,
 
-            kod_waktu_kerja: kodDuty,
 
+        hari:
 
-            kod_tempat_kerja:
+            document.getElementById(
 
-                kodTempatKerja,
+                "hari"
 
-            tempat_kerja:
+            ).value,
 
-                namaTempatKerja,
 
+        kod_dutyy:
 
-            hari:
+            kodDuty.kod,
 
-                document
 
-                    .getElementById(
+        kod_waktu_kerja:
 
-                        "hari"
+            kodDuty.kod,
 
-                    )
 
-                    .value,
+        waktu_tugasan:
 
+            kodDuty.waktu_tugasan,
 
-            hari_offday_bertugas:
 
-                document
+        jam_kerja:
 
-                    .getElementById(
+            Number(
 
-                        "hariOffday"
+                kodDuty.jam_kerja || 0
 
-                    )
+            ),
 
-                    .checked
 
-                    ? 1
+        jam_klm:
 
-                    : 0,
+            Number(
 
+                kodDuty.jam_klm || 0
 
-            jam_offday_bertugas:
+            ),
 
-                Number(
 
-                    document
+        kod_tempat_kerja:
 
-                        .getElementById(
+            tempatKerja.kod_tempat_kerja,
 
-                            "jamOffday"
 
-                        )
+        tempat_kerja:
 
-                        .value || 0
+            tempatKerja.nama_tempat_kerja,
 
-                ),
 
+        dikemaskini_oleh:
 
-            hari_cutiam_bertugas:
+            "Ketua Unit",
 
-                document
 
-                    .getElementById(
+        dikemaskini_pada:
 
-                        "hariCutiam"
+            sekarang,
 
-                    )
 
-                    .checked
+        hari_offday_bertugas:
 
-                    ? 1
+            document.getElementById(
 
-                    : 0,
+                "hariOffday"
 
+            ).checked
 
-            jam_cutiam_bertugas:
+                ? 1
 
-                Number(
+                : 0,
 
-                    document
 
-                        .getElementById(
+        jam_offday_bertugas:
 
-                            "jamCutiam"
+            Number(
 
-                        )
+                document.getElementById(
 
-                        .value || 0
+                    "jamOffday"
 
-                ),
+                ).value || 0
 
+            ),
 
-            dikemaskini_oleh:
 
-                "Admin",
+        hari_cutiam_bertugas:
 
+            document.getElementById(
 
-            dikemaskini_pada:
+                "hariCutiam"
 
-                new Date()
+            ).checked
 
-                    .toISOString()
+                ? 1
 
-        };
+                : 0,
 
 
-        const {
+        jam_cutiam_bertugas:
 
-            error
+            Number(
 
-        } = await supabaseClient
+                document.getElementById(
 
-            .from(
+                    "jamCutiam"
 
-                "jadual_duty"
+                ).value || 0
 
             )
 
-            .insert(
-
-                [
-
-                    dataDuty
-
-                ]
-
-            );
+    };
 
 
-        if (error)
+    const {
 
-            throw error;
+        error
 
+    } = await supabaseClient
 
-        paparPopup(
+        .from(
 
-            "Rekod Duty berjaya disimpan ke dalam sistem.",
+            "jadual_duty"
 
-            "success",
+        )
 
-            "Berjaya Disimpan"
+        .insert(
+
+            [dataDuty]
 
         );
 
 
-        kosongkanBorang();
-
-
-        paparDuty();
-
-
-    }
-
-    catch (error) {
-
-
-        console.error(
-
-            error
-
-        );
-
+    if (error) {
 
         paparPopup(
 
@@ -2193,7 +1901,28 @@ async function simpanDuty() {
 
         );
 
+        return;
+
     }
+
+
+    paparPopup(
+
+        "Rekod Duty berjaya disimpan ke dalam database.",
+
+        "success",
+
+        "Berjaya Disimpan"
+
+    );
+
+
+    // KEKALKAN BORANG
+
+    // TIDAK kosongkanBorang()
+
+
+    paparDuty();
 
 }
 
@@ -2214,22 +1943,22 @@ async function paparDuty() {
         );
 
 
-    const filterBulan =
+    const ketuaUnit =
+
+        document.getElementById(
+
+            "filterKetuaUnit"
+
+        ).value;
+
+
+    const bulanTahun =
 
         document.getElementById(
 
             "filterBulan"
 
-        );
-
-
-    const filterPos =
-
-        document.getElementById(
-
-            "filterPos"
-
-        );
+        ).value;
 
 
     const cariNama =
@@ -2238,51 +1967,27 @@ async function paparDuty() {
 
             "cariNama"
 
-        );
+        ).value
+
+        .toLowerCase();
 
 
-    if (!tbody)
+    if (
 
-        return;
+        !ketuaUnit ||
 
+        !bulanTahun
 
-    const bulanDipilih =
-
-        filterBulan
-
-            ? filterBulan.value
-
-            : "";
-
-
-    const posDipilih =
-
-        filterPos
-
-            ? filterPos.value
-
-            : "";
-
-
-    const namaDicari =
-
-        cariNama
-
-            ? cariNama.value.toLowerCase()
-
-            : "";
-
-
-    if (!bulanDipilih) {
+    ) {
 
 
         tbody.innerHTML = `
 
             <tr>
 
-                <td colspan="18">
+                <td colspan="24">
 
-                    Sila pilih bulan
+                    Sila pilih Ketua Unit dan Bulan/Tahun
 
                 </td>
 
@@ -2302,13 +2007,7 @@ async function paparDuty() {
 
         bulan
 
-    ] =
-
-        bulanDipilih.split(
-
-            "-"
-
-        );
+    ] = bulanTahun.split("-");
 
 
     let query =
@@ -2329,13 +2028,17 @@ async function paparDuty() {
 
             .eq(
 
+                "ketua_unit",
+
+                ketuaUnit
+
+            )
+
+            .eq(
+
                 "tahun",
 
-                parseInt(
-
-                    tahun
-
-                )
+                Number(tahun)
 
             )
 
@@ -2345,11 +2048,7 @@ async function paparDuty() {
 
                 namaBulan(
 
-                    parseInt(
-
-                        bulan
-
-                    )
+                    Number(bulan)
 
                 )
 
@@ -2368,22 +2067,6 @@ async function paparDuty() {
             );
 
 
-    if (posDipilih) {
-
-
-        query =
-
-            query.eq(
-
-                "nama_pos_asal",
-
-                posDipilih
-
-            );
-
-    }
-
-
     const {
 
         data,
@@ -2395,7 +2078,6 @@ async function paparDuty() {
 
     if (error) {
 
-
         paparPopup(
 
             error.message,
@@ -2405,7 +2087,6 @@ async function paparDuty() {
             "Gagal Ambil Duty"
 
         );
-
 
         return;
 
@@ -2418,8 +2099,7 @@ async function paparDuty() {
     let filtered = semuaDuty;
 
 
-    if (namaDicari) {
-
+    if (cariNama) {
 
         filtered =
 
@@ -2429,7 +2109,9 @@ async function paparDuty() {
 
                     (
 
-                        item.nama_anggota || ""
+                        item.nama_anggota ||
+
+                        ""
 
                     )
 
@@ -2437,7 +2119,7 @@ async function paparDuty() {
 
                     .includes(
 
-                        namaDicari
+                        cariNama
 
                     )
 
@@ -2448,12 +2130,11 @@ async function paparDuty() {
 
     if (!filtered.length) {
 
-
         tbody.innerHTML = `
 
             <tr>
 
-                <td colspan="18">
+                <td colspan="24">
 
                     Tiada rekod duty ditemui
 
@@ -2463,7 +2144,6 @@ async function paparDuty() {
 
         `;
 
-
         return;
 
     }
@@ -2471,172 +2151,225 @@ async function paparDuty() {
 
     tbody.innerHTML =
 
-        filtered
+        filtered.map(
 
-            .map(
+            function (item) {
 
-                function (item) {
 
+                return `
 
-                    return `
+                <tr>
 
-                        <tr>
+                    <td>
 
-                            <td>
+                        ${formatTarikh(
 
-                                ${formatTarikh(
+                            item.tarikh
 
-                                    item.tarikh
+                        )}
 
-                                )}
+                    </td>
 
-                            </td>
 
-                            <td>
+                    <td>
 
-                                ${item.hari || ""}
+                        ${item.bulan || ""}
 
-                            </td>
+                    </td>
 
-                            <td>
 
-                                ${item.no_skb || ""}
+                    <td>
 
-                            </td>
+                        ${item.tahun || ""}
 
-                            <td>
+                    </td>
 
-                                ${item.no_anggota || ""}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        ${item.hari || ""}
 
-                                <strong>
+                    </td>
 
-                                    ${item.nama_anggota || ""}
 
-                                </strong>
+                    <td>
 
-                            </td>
+                        ${item.no_skb || ""}
 
-                            <td>
+                    </td>
 
-                                ${item.kawasan || ""}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        ${item.no_anggota || ""}
 
-                                <span class="badge">
+                    </td>
 
-                                    ${item.unit || ""}
 
-                                </span>
+                    <td>
 
-                            </td>
+                        <strong>
 
-                            <td>
+                            ${item.nama_anggota || ""}
 
-                                ${item.ketua_unit || ""}
+                        </strong>
 
-                            </td>
+                    </td>
 
-                            <td>
 
-                                ${item.ketua_pos || ""}
+                    <td>
 
-                            </td>
+                        ${item.kawasan || ""}
 
-                            <td>
+                    </td>
 
-                                ${item.nama_pos_asal || ""}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        <span class="badge">
 
-                                ${item.kod_waktu_kerja || ""}
+                            ${item.unit || ""}
 
-                            </td>
+                        </span>
 
-                            <td>
+                    </td>
 
-                                ${item.kod_tempat_kerja || ""}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        ${item.ketua_unit || ""}
 
-                                ${item.jam_klm || 0}
+                    </td>
 
-                            </td>
 
-                            <td>
+                    <td>
 
-                                ${item.hari_offday_bertugas == 1
+                        ${item.ketua_pos || ""}
 
-                                    ? "Ya"
+                    </td>
 
-                                    : "Tidak"}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        ${item.nama_ketua_pos || ""}
 
-                                ${item.jam_offday_bertugas || 0}
+                    </td>
 
-                            </td>
 
-                            <td>
+                    <td>
 
-                                ${item.hari_cutiam_bertugas == 1
+                        ${item.pos || ""}
 
-                                    ? "Ya"
+                    </td>
 
-                                    : "Tidak"}
 
-                            </td>
+                    <td>
 
-                            <td>
+                        ${item.kod_dutyy || ""}
 
-                                ${item.jam_cutiam_bertugas || 0}
+                    </td>
 
-                            </td>
 
-                            <td>
+                    <td>
 
-                                <button
+                        ${item.waktu_tugasan || ""}
 
-                                    class="btn-danger"
+                    </td>
 
-                                    onclick="padamDuty('${
 
-                                        item.id
+                    <td>
 
-                                    }')"
+                        ${item.jam_kerja || 0}
 
-                                >
+                    </td>
 
-                                    🗑️ Padam
 
-                                </button>
+                    <td>
 
-                            </td>
+                        ${item.kod_tempat_kerja || ""}
 
-                        </tr>
+                    </td>
 
-                    `;
 
-                }
+                    <td>
 
-            )
+                        ${item.tempat_kerja || ""}
 
-            .join(
+                    </td>
 
-                ""
 
-            );
+                    <td>
+
+                        ${item.jam_klm || 0}
+
+                    </td>
+
+
+                    <td>
+
+                        ${item.hari_offday_bertugas == 1
+
+                            ? "Ya"
+
+                            : "Tidak"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${item.jam_offday_bertugas || 0}
+
+                    </td>
+
+
+                    <td>
+
+                        ${item.hari_cutiam_bertugas == 1
+
+                            ? "Ya"
+
+                            : "Tidak"}
+
+                    </td>
+
+
+                    <td>
+
+                        ${item.jam_cutiam_bertugas || 0}
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+
+                            class="btn-danger"
+
+                            onclick="padamDuty('${
+
+                                item.id
+
+                            }')"
+
+                        >
+
+                            🗑️ Padam
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+
+        )
+
+        .join("");
 
 }
 
@@ -2654,272 +2387,97 @@ async function padamDuty(
 
     paparPopup(
 
-        "Adakah anda pasti mahu memadam rekod Duty ini?",
+        "Adakah anda pasti mahu memadam rekod Duty ini? Tekan OK sekali lagi untuk teruskan.",
 
         "warning",
 
-        "Sahkan Padam"
+        "Pengesahan Padam"
 
     );
 
 
-    const popup =
+    const teruskan =
 
-        document.getElementById(
+        confirm(
 
-            "popupMessage"
+            "Adakah anda pasti mahu memadam rekod Duty ini?"
 
         );
 
 
-    if (!popup)
+    if (!teruskan)
 
         return;
 
 
-    const button =
+    const {
 
-        popup.querySelector(
+        error
 
-            "button"
+    } = await supabaseClient
+
+        .from(
+
+            "jadual_duty"
+
+        )
+
+        .delete()
+
+        .eq(
+
+            "id",
+
+            id
 
         );
 
 
-    button.textContent =
+    if (error) {
 
-        "PADAM";
+        paparPopup(
 
+            error.message,
 
-    button.onclick =
+            "error",
 
-        async function () {
+            "Gagal Padam"
 
+        );
 
-            const {
+        return;
 
-                error
+    }
 
-            } = await supabaseClient
 
-                .from(
+    paparPopup(
 
-                    "jadual_duty"
+        "Rekod Duty berjaya dipadam.",
 
-                )
+        "success",
 
-                .delete()
-
-                .eq(
-
-                    "id",
-
-                    id
-
-                );
-
-
-            if (error) {
-
-
-                paparPopup(
-
-                    error.message,
-
-                    "error",
-
-                    "Gagal Padam"
-
-                );
-
-
-                return;
-
-            }
-
-
-            paparPopup(
-
-                "Rekod Duty berjaya dipadam.",
-
-                "success",
-
-                "Berjaya Dipadam"
-
-            );
-
-
-            paparDuty();
-
-        };
-
-}
-
-
-// =====================================================
-// KOSONGKAN BORANG
-// =====================================================
-
-function kosongkanBorang() {
-
-
-    const ids = [
-
-        "tarikh",
-
-        "bulan",
-
-        "tahun",
-
-        "hari",
-
-        "unit",
-
-        "noSkb",
-
-        "noAnggota",
-
-        "kawasan",
-
-        "ketuaUnit",
-
-        "ketuaPos",
-
-        "namaPosAsal",
-
-        "jamKlm"
-
-    ];
-
-
-    ids.forEach(
-
-        function (id) {
-
-
-            const element =
-
-                document.getElementById(
-
-                    id
-
-                );
-
-
-            if (element)
-
-                element.value = "";
-
-        }
+        "Berjaya Dipadam"
 
     );
 
 
-    const unit =
-
-        document.getElementById(
-
-            "unitPilihan"
-
-        );
-
-
-    if (unit)
-
-        unit.value = "";
-
-
-    kosongkanPos();
-
-    kosongkanAnggota();
-
-    kosongkanMaklumatAnggota();
-
-    kosongkanKodDuty();
-
-    kosongkanKodTempatKerja();
-
-
-    const offday =
-
-        document.getElementById(
-
-            "hariOffday"
-
-        );
-
-
-    const jamOffday =
-
-        document.getElementById(
-
-            "jamOffday"
-
-        );
-
-
-    const cutiam =
-
-        document.getElementById(
-
-            "hariCutiam"
-
-        );
-
-
-    const jamCutiam =
-
-        document.getElementById(
-
-            "jamCutiam"
-
-        );
-
-
-    if (offday)
-
-        offday.checked = false;
-
-
-    if (jamOffday)
-
-        jamOffday.value = 0;
-
-
-    if (cutiam)
-
-        cutiam.checked = false;
-
-
-    if (jamCutiam)
-
-        jamCutiam.value = 0;
+    paparDuty();
 
 }
 
 
 // =====================================================
-// KOSONGKAN POS
+// KOSONGKAN
 // =====================================================
 
 function kosongkanPos() {
 
 
-    const select =
+    document.getElementById(
 
-        document.getElementById(
+        "posAsal"
 
-            "posAsal"
-
-        );
-
-
-    if (!select)
-
-        return;
-
-
-    select.innerHTML = `
+    ).innerHTML = `
 
         <option value="">
 
@@ -2932,28 +2490,14 @@ function kosongkanPos() {
 }
 
 
-// =====================================================
-// KOSONGKAN ANGGOTA
-// =====================================================
-
 function kosongkanAnggota() {
 
 
-    const select =
+    document.getElementById(
 
-        document.getElementById(
+        "anggota"
 
-            "anggota"
-
-        );
-
-
-    if (!select)
-
-        return;
-
-
-    select.innerHTML = `
+    ).innerHTML = `
 
         <option value="">
 
@@ -2965,10 +2509,6 @@ function kosongkanAnggota() {
 
 }
 
-
-// =====================================================
-// KOSONGKAN MAKLUMAT ANGGOTA
-// =====================================================
 
 function kosongkanMaklumatAnggota() {
 
@@ -2986,6 +2526,8 @@ function kosongkanMaklumatAnggota() {
         "ketuaUnit",
 
         "ketuaPos",
+
+        "namaKetuaPos",
 
         "namaPosAsal"
 
@@ -3016,10 +2558,6 @@ function kosongkanMaklumatAnggota() {
 }
 
 
-// =====================================================
-// KOSONGKAN KOD DUTY
-// =====================================================
-
 function kosongkanKodDuty() {
 
 
@@ -3032,169 +2570,79 @@ function kosongkanKodDuty() {
         );
 
 
-    if (select)
-
-
-        select.innerHTML = `
-
-            <option value="">
-
-                -- Pilih Kod Waktu Kerja --
-
-            </option>
-
-        `;
-
-
-    const jamKlm =
-
-        document.getElementById(
-
-            "jamKlm"
-
-        );
-
-
-    if (jamKlm)
-
-        jamKlm.value = "";
-
-}
-
-
-// =====================================================
-// KOSONGKAN TEMPAT KERJA
-// =====================================================
-
-function kosongkanKodTempatKerja() {
-
-
-    const select =
-
-        document.getElementById(
-
-            "kodTempatKerja"
-
-        );
-
-
-    if (select)
-
-
-        select.innerHTML = `
-
-            <option value="">
-
-                -- Pilih Kod Tempat Kerja --
-
-            </option>
-
-        `;
-
-}
-
-
-// =====================================================
-// SENARAI POS FILTER
-// =====================================================
-
-async function muatSenaraiPos() {
-
-
-    const filterPos =
-
-        document.getElementById(
-
-            "filterPos"
-
-        );
-
-
-    if (!filterPos)
-
-        return;
-
-
-    filterPos.innerHTML = `
+    select.innerHTML = `
 
         <option value="">
 
-            Semua Pos
+            -- Pilih Kod Duty --
 
         </option>
 
     `;
 
 
-    const posList = [
+    document.getElementById(
 
-        ...new Set(
+        "waktuTugasan"
 
-            semuaAnggota
-
-                .map(
-
-                    a => a.pos
-
-                )
-
-                .filter(
-
-                    Boolean
-
-                )
-
-        )
-
-    ]
-
-    .sort();
+    ).value = "";
 
 
-    posList.forEach(
+    document.getElementById(
 
-        function (pos) {
+        "jamKerja"
 
-
-            const option =
-
-                document.createElement(
-
-                    "option"
-
-                );
+    ).value = "";
 
 
-            option.value = pos;
+    document.getElementById(
 
-            option.textContent = pos;
+        "jamKlm"
+
+    ).value = "";
+
+}
 
 
-            filterPos.appendChild(
+function kosongkanKodTempatKerja() {
 
-                option
 
-            );
+    document.getElementById(
 
-        }
+        "kodTempatKerja"
 
-    );
+    ).innerHTML = `
+
+        <option value="">
+
+            -- Pilih Kod Tempat Kerja --
+
+        </option>
+
+    `;
+
+
+    document.getElementById(
+
+        "tempatKerja"
+
+    ).value = "";
 
 }
 
 
 // =====================================================
-// NAMA BULAN
+// BULAN
 // =====================================================
 
 function namaBulan(
 
-    bulan
+    nombor
 
 ) {
 
 
-    const senarai = [
+    const bulan = [
 
         "Januari",
 
@@ -3223,9 +2671,9 @@ function namaBulan(
     ];
 
 
-    return senarai[
+    return bulan[
 
-        bulan - 1
+        nombor - 1
 
     ];
 
@@ -3250,11 +2698,7 @@ function formatTarikh(
 
     const parts =
 
-        tarikh.split(
-
-            "-"
-
-        );
+        tarikh.split("-");
 
 
     if (
