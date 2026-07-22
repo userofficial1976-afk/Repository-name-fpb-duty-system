@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
@@ -8,215 +9,582 @@
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
+
 >
 
-<title>FPB Duty System</title>
-
+<title>FPB Duty System | Dashboard</title>
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
 
     box-sizing: border-box;
 
-    font-family: Arial, sans-serif;
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
 
 }
 
 
 body {
 
-    margin: 0;
+    background: #f4f7fb;
 
-    background: #f1f5f9;
-
-    color: #1e293b;
+    color: #172033;
 
 }
 
 
-header {
+/* =====================================================
+   LAYOUT
+===================================================== */
 
-    background: #0f172a;
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 260px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0b1220 0%,
+            #111c31 100%
+        );
 
     color: white;
 
-    padding: 20px 25px;
+    padding: 24px 16px;
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 100;
+
+    box-shadow:
+        4px 0 20px
+        rgba(0,0,0,0.12);
 
 }
 
 
-.header-content {
+.brand {
 
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
+    gap: 12px;
+
+    padding: 0 10px 28px;
+
+    border-bottom: 1px solid
+        rgba(255,255,255,0.1);
 
 }
 
 
 .logo {
 
-    width: 55px;
+    width: 48px;
 
-    height: 55px;
+    height: 48px;
 
     object-fit: contain;
 
-    border: 2px solid white;
-
-    border-radius: 8px;
-
-    padding: 3px;
-
-}
-
-
-header h1 {
-
-    margin: 0;
-
-    font-size: 26px;
-
-}
-
-
-header p {
-
-    margin: 5px 0 0;
-
-    color: #cbd5e1;
-
-}
-
-
-.container {
-
-    max-width: 1400px;
-
-    margin: auto;
-
-    padding: 25px;
-
-}
-
-
-.menu {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(180px, 1fr)
-        );
-
-    gap: 15px;
-
-    margin-bottom: 25px;
-
-}
-
-
-.menu a {
-
-    display: block;
-
-    text-decoration: none;
+    border-radius: 10px;
 
     background: white;
 
-    color: #1e293b;
+    padding: 4px;
 
-    padding: 18px;
+}
 
-    border-radius: 12px;
 
-    text-align: center;
+.brand-text h1 {
+
+    font-size: 17px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.brand-text p {
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+
+}
+
+
+/* NAVIGATION */
+
+.nav-title {
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
 
     font-weight: bold;
 
-    box-shadow:
-        0 3px 10px
-        rgba(0,0,0,0.08);
+    margin: 28px 12px 10px;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
 
     transition: 0.2s;
 
 }
 
 
-.menu a:hover {
+.nav a:hover {
 
-    transform: translateY(-3px);
+    background: rgba(255,255,255,0.08);
 
-    background: #eff6ff;
+    color: white;
 
 }
 
 
-.card {
+.nav a.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    box-shadow:
+        0 5px 12px
+        rgba(37,99,235,0.25);
+
+}
+
+
+.nav-icon {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 260px;
+
+    width: calc(100% - 260px);
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    height: 74px;
 
     background: white;
 
-    padding: 20px;
+    border-bottom: 1px solid #e5eaf1;
 
-    border-radius: 12px;
+    display: flex;
 
-    margin-bottom: 20px;
+    align-items: center;
 
-    box-shadow:
-        0 3px 12px
-        rgba(0,0,0,0.08);
+    justify-content: space-between;
+
+    padding: 0 32px;
+
+}
+
+
+.page-title h2 {
+
+    font-size: 21px;
+
+    color: #172033;
 
 }
 
 
-.card h2 {
+.page-title p {
 
-    margin-top: 0;
+    font-size: 12px;
 
-    color: #0f172a;
+    color: #64748b;
+
+    margin-top: 3px;
 
 }
 
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    padding: 30px;
+
+    max-width: 1700px;
+
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome {
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #0f172a,
+            #1e3a8a
+        );
+
+    color: white;
+
+    border-radius: 14px;
+
+    padding: 27px 30px;
+
+    margin-bottom: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    position: relative;
+
+}
+
+
+.welcome::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.05);
+
+    right: -80px;
+
+    top: -120px;
+
+}
+
+
+.welcome h1 {
+
+    font-size: 24px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.welcome p {
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+}
+
+
+.welcome-date {
+
+    text-align: right;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.welcome-date strong {
+
+    display: block;
+
+    font-size: 18px;
+
+}
+
+
+.welcome-date span {
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 17px;
+
+    color: #172033;
+
+}
+
+
+.section-header p {
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
 
 .stats {
 
     display: grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(220px, 1fr)
-        );
+        repeat(4, 1fr);
 
-    gap: 20px;
+    gap: 18px;
+
+    margin-bottom: 30px;
 
 }
 
 
 .stat-card {
 
-    padding: 22px;
+    background: white;
+
+    border: 1px solid #e5eaf1;
 
     border-radius: 12px;
 
-    background: #f8fafc;
+    padding: 20px;
 
-    border-left: 5px solid #2563eb;
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px
+        rgba(15,23,42,0.04);
+
+}
+
+
+.stat-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -20px;
+
+    bottom: -35px;
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+}
+
+
+.stat-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.stat-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    background: #eff6ff;
 
 }
 
 
 .stat-card h3 {
 
-    margin: 0;
-
-    font-size: 15px;
+    font-size: 12px;
 
     color: #64748b;
+
+    font-weight: 600;
+
+    margin-top: 15px;
 
 }
 
@@ -225,14 +593,86 @@ header p {
 
     display: block;
 
-    font-size: 32px;
+    font-size: 30px;
 
-    margin-top: 10px;
+    color: #172033;
 
-    color: #0f172a;
+    margin-top: 6px;
 
 }
 
+
+/* =====================================================
+   MAIN GRID
+===================================================== */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap: 22px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: white;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(15,23,42,0.04);
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.card-header h2 {
+
+    font-size: 16px;
+
+    color: #172033;
+
+}
+
+
+.card-header span {
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrapper {
 
@@ -251,23 +691,44 @@ table {
 
 
 th,
-
 td {
 
-    padding: 12px;
-
-    border-bottom: 1px solid #e2e8f0;
+    padding: 13px 10px;
 
     text-align: left;
+
+    border-bottom: 1px solid #edf0f5;
+
+    font-size: 13px;
 
 }
 
 
 th {
 
-    background: #0f172a;
+    color: #64748b;
 
-    color: white;
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    background: #f8fafc;
+
+}
+
+
+td {
+
+    color: #334155;
+
+}
+
+
+tr:last-child td {
+
+    border-bottom: none;
 
 }
 
@@ -279,27 +740,244 @@ tr:hover {
 }
 
 
-@media(max-width:600px) {
+/* =====================================================
+   QUICK ACTION
+===================================================== */
 
-    .container {
+.quick-actions {
 
-        padding: 12px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.quick-action {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #172033;
+
+    transition: 0.2s;
+
+}
+
+
+.quick-action:hover {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    transform: translateY(-2px);
+
+}
+
+
+.quick-action-icon {
+
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+}
+
+
+.quick-action strong {
+
+    display: block;
+
+    font-size: 13px;
+
+}
+
+
+.quick-action span {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #64748b;
+
+    margin-top: 3px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px) {
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
 
     }
 
 
-    header h1 {
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width:750px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        padding: 15px 8px;
+
+    }
+
+
+    .brand {
+
+        justify-content: center;
+
+        padding: 0 0 20px;
+
+    }
+
+
+    .brand-text,
+
+    .nav-title,
+
+    .nav a span {
+
+        display: none;
+
+    }
+
+
+    .nav a {
+
+        justify-content: center;
+
+        padding: 13px 5px;
+
+    }
+
+
+    .nav-icon {
 
         font-size: 20px;
 
     }
 
 
-    .logo {
+    .main {
 
-        width: 45px;
+        margin-left: 70px;
 
-        height: 45px;
+        width: calc(100% - 70px);
+
+    }
+
+
+    .topbar {
+
+        padding: 0 16px;
+
+    }
+
+
+    .content {
+
+        padding: 16px;
+
+    }
+
+
+    .welcome {
+
+        padding: 22px;
+
+        display: block;
+
+    }
+
+
+    .welcome-date {
+
+        text-align: left;
+
+        margin-top: 15px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .quick-actions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .system-status {
+
+        display: none;
 
     }
 
@@ -309,191 +987,321 @@ tr:hover {
 
 </head>
 
-
 <body>
 
+<div class="app">
 
-<header>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-<div class="header-content">
+<aside class="sidebar">
+
+<div class="brand">
 
 <img
 src="logo.png"
 class="logo"
 alt="Logo FPB"
+
 >
 
+<div class="brand-text">
+
+<h1>FPB DUTY</h1>
+
+<p>Management System</p>
+
+</div>
+
+</div>
+
+<div class="nav-title">
+
+MAIN MENU
+
+</div>
+
+<nav class="nav">
+
+<a
+href="index.html"
+class="active"
+
+>
+
+<span class="nav-icon">⌂</span>
+
+<span>Dashboard</span>
+
+</a>
+
+<a href="anggota.html">
+
+<span class="nav-icon">♙</span>
+
+<span>Senarai Anggota</span>
+
+</a>
+
+<a href="jadual-duty.html">
+
+<span class="nav-icon">▣</span>
+
+<span>Jadual Duty</span>
+
+</a>
+
+<a href="kod-duty.html">
+
+<span class="nav-icon">▤</span>
+
+<span>Kod Duty</span>
+
+</a>
+
+<a href="tempat-kerja.html">
+
+<span class="nav-icon">▦</span>
+
+<span>Kod Tempat Kerja</span>
+
+</a>
+
+<div class="nav-title">
+
+REPORTING
+
+</div>
+
+<a href="laporan.html">
+
+<span class="nav-icon">▥</span>
+
+<span>Laporan</span>
+
+</a>
+
+<a href="laporan-anggaran.html">
+
+<span class="nav-icon">◫</span>
+
+<span>Anggaran Duty Bulanan</span>
+
+</a>
+
+<div class="nav-title">
+
+SYSTEM
+
+</div>
+
+<a href="#">
+
+<span class="nav-icon">⚙</span>
+
+<span>Tetapan</span>
+
+</a>
+
+</nav>
+
+</aside>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="page-title">
+
+<h2>Dashboard</h2>
+
+<p>FPB Duty System / Overview</p>
+
+</div>
+
+<div class="system-status">
+
+<span class="status-dot"></span>
+
+System Online
+
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- WELCOME -->
+
+<div class="welcome">
 
 <div>
 
-<h1>
-FPB DUTY SYSTEM
-</h1>
+<h1>Selamat Datang ke FPB Duty System</h1>
 
 <p>
-Sistem Pengurusan Jadual Duty Anggota
+Pantau dan urus jadual duty anggota secara sistematik,
+cekap dan berpusat.
 </p>
 
 </div>
 
-</div>
+<div class="welcome-date">
 
-</header>
+<strong id="tarikhHariIni">
+--
+</strong>
 
-
-<div class="container">
-
-
-<!-- MENU UTAMA -->
-
-<div class="menu">
-
-<a href="index.html">
-
-🏠<br>
-
-Dashboard
-
-</a>
-
-
-<a href="anggota.html">
-
-👥<br>
-
-Senarai Anggota
-
-</a>
-
-
-<a href="jadual-duty.html">
-
-📅<br>
-
-Jadual Duty
-
-</a>
-
-
-<a href="kod-duty.html">
-
-🏷️<br>
-
-Kod Duty
-
-</a>
-
-    <a href="tempat-kerja.html">
-    🏢 Kod Tempat Kerja
-</a>
-
-<a href="laporan.html">
-
-📊<br>
-
-Laporan
-
-</a>
-<a href="laporan-anggaran.html">
-    📊 Anggaran Duty Bulanan
-</a>
-
-<a href="#">
-
-⚙️<br>
-
-Tetapan
-
-</a>
+<span>
+Current Operational Date
+</span>
 
 </div>
 
+</div>
 
-<!-- STATISTIK -->
+<!-- STATISTICS -->
 
-<div class="card">
+<div class="section-header">
 
-<h2>
-📊 Statistik Sistem
-</h2>
+<div>
 
+<h2>System Overview</h2>
+
+<p>Ringkasan operasi sistem</p>
+
+</div>
+
+</div>
 
 <div class="stats">
 
-
 <div class="stat-card">
 
+<div class="stat-top">
+
+<div class="stat-icon">
+♙
+</div>
+
+</div>
+
 <h3>
-Jumlah Anggota Aktif
+JUMLAH ANGGOTA AKTIF
 </h3>
 
 <strong
 id="jumlahAnggota"
+
 >
+
 0
+
 </strong>
 
 </div>
 
-
 <div class="stat-card">
 
+<div class="stat-top">
+
+<div class="stat-icon">
+▣
+</div>
+
+</div>
+
 <h3>
-Jumlah Duty Hari Ini
+DUTY HARI INI
 </h3>
 
 <strong
 id="jumlahDutyHariIni"
+
 >
+
 0
+
 </strong>
 
 </div>
 
-
 <div class="stat-card">
 
+<div class="stat-top">
+
+<div class="stat-icon">
+◷
+</div>
+
+</div>
+
 <h3>
-Jumlah Jam Kerja Hari Ini
+JUMLAH JAM KERJA HARI INI
 </h3>
 
 <strong
 id="jumlahJamKerja"
+
 >
+
 0
+
 </strong>
 
 </div>
 
-
 <div class="stat-card">
 
+<div class="stat-top">
+
+<div class="stat-icon">
+◈
+</div>
+
+</div>
+
 <h3>
-Jumlah Jam KLM Hari Ini
+JUMLAH JAM KLM HARI INI
 </h3>
 
 <strong
 id="jumlahJamKlm"
+
 >
+
 0
+
 </strong>
 
 </div>
 
-
 </div>
 
-</div>
+<!-- DASHBOARD GRID -->
 
+<div class="dashboard-grid">
 
 <!-- DUTY MENGIKUT POS -->
 
 <div class="card">
 
-<h2>
-📍 Duty Mengikut Pos
-</h2>
+<div class="card-header">
 
+<h2>Duty Mengikut Pos</h2>
+
+<span>Hari Ini</span>
+
+</div>
 
 <div class="table-wrapper">
 
@@ -503,18 +1311,13 @@ id="jumlahJamKlm"
 
 <tr>
 
-<th>
-Pos
-</th>
+<th>Pos</th>
 
-<th>
-Jumlah Duty
-</th>
+<th>Jumlah Duty</th>
 
 </tr>
 
 </thead>
-
 
 <tbody
 id="senaraiPos"
@@ -538,16 +1341,178 @@ Memuatkan data...
 
 </div>
 
+<!-- QUICK ACTIONS -->
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>Quick Actions</h2>
+
+<span>Shortcuts</span>
 
 </div>
 
+<div class="quick-actions">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<a
+href="jadual-duty.html"
+class="quick-action"
 
-<script src="supabase.js"></script>
+>
 
-<script src="js/dashboard.js"></script>
+<div class="quick-action-icon">
+▣
+</div>
 
+<div>
+
+<strong>
+Masukkan Duty
+</strong>
+
+<span>
+Tambah jadual duty anggota
+</span>
+
+</div>
+
+</a>
+
+<a
+href="anggota.html"
+class="quick-action"
+
+>
+
+<div class="quick-action-icon">
+♙
+</div>
+
+<div>
+
+<strong>
+Senarai Anggota
+</strong>
+
+<span>
+Lihat data anggota
+</span>
+
+</div>
+
+</a>
+
+<a
+href="laporan.html"
+class="quick-action"
+
+>
+
+<div class="quick-action-icon">
+▥
+</div>
+
+<div>
+
+<strong>
+Lihat Laporan
+</strong>
+
+<span>
+Analisis data duty
+</span>
+
+</div>
+
+</a>
+
+<a
+href="laporan-anggaran.html"
+class="quick-action"
+
+>
+
+<div class="quick-action-icon">
+◫
+</div>
+
+<div>
+
+<strong>
+Anggaran Duty
+</strong>
+
+<span>
+Semak anggaran bulanan
+</span>
+
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+FPB Duty System © 2026
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- SUPABASE -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+<script
+src="supabase.js"
+></script>
+
+<script
+src="js/dashboard.js"
+></script>
+
+<script>
+
+
+/* PAPAR TARIKH HARI INI */
+
+const tarikh = new Date();
+
+
+const pilihanTarikh = {
+
+    weekday: "long",
+
+    day: "2-digit",
+
+    month: "long",
+
+    year: "numeric"
+
+};
+
+
+document.getElementById(
+    "tarikhHariIni"
+).textContent = tarikh.toLocaleDateString(
+    "ms-MY",
+    pilihanTarikh
+);
+
+
+</script>
 
 </body>
 
