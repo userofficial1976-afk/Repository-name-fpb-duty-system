@@ -1,209 +1,409 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jadual Duty - FPB Duty System</title>
 
-
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-
     box-sizing: border-box;
-
-    font-family: Arial, sans-serif;
-
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body {
 
     margin: 0;
 
-    background: #f1f5f9;
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff 0%,
+            #f8fafc 45%,
+            #eef2ff 100%
+        );
 
     color: #1e293b;
 
 }
 
 
+/* =====================================================
+   HEADER
+===================================================== */
+
 header {
 
-    background: #0f172a;
+    background:
+
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a
+        );
 
     color: white;
 
-    padding: 20px 25px;
+    padding: 22px 35px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.25);
 
 }
 
 
-header h1 {
+.header-content {
+
+    max-width: 1700px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.header-title h1 {
 
     margin: 0;
 
-    font-size: 25px;
+    font-size: 26px;
+
+    letter-spacing: 0.5px;
 
 }
 
 
-header p {
+.header-title p {
 
     margin: 6px 0 0;
 
     color: #cbd5e1;
-
-}
-
-
-.container {
-
-    max-width: 1600px;
-
-    margin: auto;
-
-    padding: 20px;
-
-}
-
-
-.btn-dashboard {
-
-    display: inline-block;
-
-    background: #2563eb;
-
-    color: white;
-
-    text-decoration: none;
-
-    padding: 10px 16px;
-
-    border-radius: 7px;
-
-    font-weight: bold;
-
-    margin-top: 15px;
-
-}
-
-
-.card {
-
-    background: white;
-
-    border-radius: 12px;
-
-    padding: 20px;
-
-    margin-bottom: 20px;
-
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
-}
-
-
-h2 {
-
-    margin-top: 0;
-
-    color: #0f172a;
-
-}
-
-
-.grid {
-
-    display: grid;
-
-    grid-template-columns:
-    repeat(auto-fit, minmax(230px, 1fr));
-
-    gap: 15px;
-
-}
-
-
-label {
-
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 6px;
-
-}
-
-
-input,
-select,
-button {
-
-    width: 100%;
-
-    padding: 11px;
-
-    border-radius: 7px;
-
-    border: 1px solid #cbd5e1;
 
     font-size: 14px;
 
 }
 
 
-input[readonly] {
+.btn-dashboard {
 
-    background: #f1f5f9;
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: rgba(255,255,255,0.12);
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 11px 17px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    transition: 0.2s;
 
 }
 
 
-select {
+.btn-dashboard:hover {
 
-    background: white;
+    background: rgba(255,255,255,0.22);
 
 }
 
 
-button {
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    max-width: 1700px;
+
+    margin: auto;
+
+    padding: 25px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: rgba(255,255,255,0.96);
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+
+        0 5px 20px rgba(15,23,42,0.08);
+
+    border: 1px solid #e2e8f0;
+
+}
+
+
+.card-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    padding-bottom: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.card-title h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #0f172a;
+
+}
+
+
+.section-number {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
 
     background: #2563eb;
 
     color: white;
 
-    border: none;
+    display: flex;
 
-    cursor: pointer;
+    align-items: center;
+
+    justify-content: center;
 
     font-weight: bold;
 
 }
 
 
-button:hover {
+/* =====================================================
+   GRID
+===================================================== */
 
-    background: #1d4ed8;
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(180px, 1fr));
+
+    gap: 18px;
 
 }
 
 
-.btn-danger {
+.grid-3 {
 
-    background: #dc2626;
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(200px, 1fr));
+
+    gap: 18px;
 
 }
 
 
-.btn-danger:hover {
+.grid-2 {
 
-    background: #b91c1c;
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(250px, 1fr));
+
+    gap: 18px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+label {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #475569;
+
+    margin-bottom: 7px;
+
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border-radius: 8px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    font-size: 14px;
+
+    color: #1e293b;
+
+    transition: 0.2s;
+
+}
+
+
+input:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+
+        0 0 0 3px rgba(37,99,235,0.12);
+
+}
+
+
+input[readonly] {
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info-box {
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+}
+
+
+/* =====================================================
+   DUTY CODE AREA
+===================================================== */
+
+.duty-code-box {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fafc
+        );
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+}
+
+
+/* =====================================================
+   OFFDAY & CUTI AM
+===================================================== */
+
+.special-duty-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+.special-box {
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    border: 1px solid;
 
 }
 
@@ -212,11 +412,7 @@ button:hover {
 
     background: #fff7ed;
 
-    border: 1px solid #fed7aa;
-
-    padding: 15px;
-
-    border-radius: 8px;
+    border-color: #fed7aa;
 
 }
 
@@ -225,18 +421,129 @@ button:hover {
 
     background: #fef2f2;
 
-    border: 1px solid #fecaca;
-
-    padding: 15px;
-
-    border-radius: 8px;
+    border-color: #fecaca;
 
 }
 
 
+.special-box h3 {
+
+    margin: 0 0 12px;
+
+    font-size: 15px;
+
+}
+
+
+.special-box .form-group {
+
+    margin-top: 10px;
+
+}
+
+
+.checkbox-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.checkbox-label input {
+
+    width: auto;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-save {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 4px 10px rgba(37,99,235,0.25);
+
+    transition: 0.2s;
+
+}
+
+
+.btn-save:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+
+        0 6px 15px rgba(37,99,235,0.35);
+
+}
+
+
+/* =====================================================
+   FILTER AREA
+===================================================== */
+
+.filter-panel {
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
 .table-wrapper {
 
     overflow-x: auto;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
 
 }
 
@@ -247,7 +554,9 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 1800px;
+    min-width: 1900px;
+
+    background: white;
 
 }
 
@@ -255,13 +564,15 @@ table {
 th,
 td {
 
-    border-bottom: 1px solid #e2e8f0;
-
-    padding: 10px;
+    padding: 12px;
 
     text-align: left;
 
+    border-bottom: 1px solid #e2e8f0;
+
     white-space: nowrap;
+
+    font-size: 13px;
 
 }
 
@@ -271,6 +582,12 @@ th {
     background: #0f172a;
 
     color: white;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.3px;
 
 }
 
@@ -282,17 +599,23 @@ tr:hover {
 }
 
 
+/* =====================================================
+   STATUS MESSAGE
+===================================================== */
+
 .success {
 
     background: #dcfce7;
 
     color: #166534;
 
-    padding: 10px;
+    padding: 12px 15px;
 
-    border-radius: 6px;
+    border-radius: 8px;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+
+    border: 1px solid #bbf7d0;
 
 }
 
@@ -303,14 +626,20 @@ tr:hover {
 
     color: #991b1b;
 
-    padding: 10px;
+    padding: 12px 15px;
 
-    border-radius: 6px;
+    border-radius: 8px;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+
+    border: 1px solid #fecaca;
 
 }
 
+
+/* =====================================================
+   BADGE
+===================================================== */
 
 .badge {
 
@@ -320,31 +649,89 @@ tr:hover {
 
     color: #1d4ed8;
 
-    padding: 5px 8px;
+    padding: 5px 9px;
 
-    border-radius: 5px;
+    border-radius: 6px;
+
+    font-size: 12px;
 
     font-weight: bold;
 
 }
 
 
-@media(max-width:600px) {
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .grid-3 {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
 
 
-    header h1 {
+@media (max-width: 700px) {
 
-        font-size: 20px;
+    header {
+
+        padding: 18px;
+
+    }
+
+
+    .header-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
 
     }
 
 
     .container {
 
-        padding: 10px;
+        padding: 12px;
 
     }
 
+
+    .card {
+
+        padding: 17px;
+
+    }
+
+
+    .grid,
+    .grid-2,
+    .grid-3,
+    .special-duty-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .btn-dashboard {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
 
 }
 
@@ -352,25 +739,28 @@ tr:hover {
 
 </head>
 
-
 <body>
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
+
+<div class="header-content">
+
+<div class="header-title">
 
 <h1>📅 JADUAL DUTY</h1>
 
 <p>
-
 Sistem Pengurusan Jadual Duty Anggota
-
 </p>
 
+</div>
 
 <a
-
 href="index.html"
-
 class="btn-dashboard"
 
 >
@@ -379,791 +769,513 @@ class="btn-dashboard"
 
 </a>
 
+</div>
 
 </header>
 
-
 <div class="container">
-
 
 <!-- =====================================================
      BORANG MASUKKAN DUTY
 ===================================================== -->
 
-
 <div class="card">
 
+<div class="card-title">
 
-<h2>➕ Masukkan Duty</h2>
+<div class="section-number">
+1
+</div>
 
+<h2>Maklumat Tarikh & Tugas</h2>
+
+</div>
 
 <div id="mesej"></div>
 
-
 <div class="grid">
 
-
-<!-- TARIKH -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Tarikh</label>
 
-
 <input
-
 type="date"
-
 id="tarikh"
-
 
 >
 
-
 </div>
 
-
-<!-- BULAN -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Bulan</label>
 
-
 <input
-
 type="text"
-
 id="bulan"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- TAHUN -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Tahun</label>
 
-
 <input
-
 type="text"
-
 id="tahun"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- HARI -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Hari</label>
 
-
 <input
-
 type="text"
-
 id="hari"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- =================================================
-     UNIT
-================================================= -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Unit</label>
 
-
-<select
-
-id="unitPilihan"
-
-
->
-
+<select id="unitPilihan">
 
 <option value="">
-
-
 -- Pilih Unit --
-
-
 </option>
-
 
 </select>
 
-
 </div>
 
-
-<!-- =================================================
-     POS ASAL
-================================================= -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Pos Asal</label>
 
-
-<select
-
-id="posAsal"
-
-
->
-
+<select id="posAsal">
 
 <option value="">
-
-
 -- Pilih Pos Asal --
-
-
 </option>
-
 
 </select>
 
+</div>
 
 </div>
 
+</div>
 
-<!-- =================================================
-     NAMA ANGGOTA
-================================================= -->
+<!-- =====================================================
+     MAKLUMAT ANGGOTA
+===================================================== -->
 
+<div class="card">
 
-<div>
+<div class="card-title">
 
+<div class="section-number">
+2
+</div>
+
+<h2>Maklumat Anggota</h2>
+
+</div>
+
+<div class="info-box">
+
+<div class="grid">
+
+<div class="form-group">
 
 <label>Nama Anggota</label>
 
-
-<select
-
-id="anggota"
-
-
->
-
+<select id="anggota">
 
 <option value="">
-
-
 -- Pilih Nama Anggota --
-
-
 </option>
-
 
 </select>
 
-
 </div>
 
-
-<!-- NO SKB -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>No. SKB</label>
 
-
 <input
-
 type="text"
-
 id="noSkb"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- NO ANGGOTA -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>No. Anggota</label>
 
-
 <input
-
 type="text"
-
 id="noAnggota"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- KAWASAN -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Kawasan</label>
 
-
 <input
-
 type="text"
-
 id="kawasan"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- UNIT AUTO -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Unit</label>
 
-
 <input
-
 type="text"
-
 id="unit"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- KETUA UNIT -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Ketua Unit</label>
 
-
 <input
-
 type="text"
-
 id="ketuaUnit"
-
 readonly
-
 
 >
 
-
 </div>
 
-
-<!-- KETUA POS -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Ketua Pos</label>
 
-
 <input
-
 type="text"
-
 id="ketuaPos"
-
 readonly
-
 
 >
 
-
 </div>
 
+<div class="form-group">
 
-<!-- POS ASAL AUTO -->
-
-
-<div>
-
-
-<label>Nama Pos </label>
-
+<label>Nama Pos</label>
 
 <input
-
 type="text"
-
 id="namaPosAsal"
-
 readonly
-
 
 >
 
+</div>
 
 </div>
 
+</div>
 
-<!-- =================================================
-     KOD WAKTU KERJA
-================================================= -->
+</div>
 
+<!-- =====================================================
+     KOD DUTY
+===================================================== -->
 
-<div>
+<div class="card">
 
+<div class="card-title">
+
+<div class="section-number">
+3
+</div>
+
+<h2>Kod Waktu & Tempat Kerja</h2>
+
+</div>
+
+<div class="duty-code-box">
+
+<div class="grid-3">
+
+<div class="form-group">
 
 <label>Kod Waktu Kerja</label>
 
-
-<select
-
-id="kodDuty"
-
-
->
-
+<select id="kodDuty">
 
 <option value="">
-
-
 -- Pilih Kod Waktu Kerja --
-
-
 </option>
-
 
 </select>
 
-
 </div>
 
-
-<!-- =================================================
-     KOD TEMPAT KERJA
-================================================= -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Kod Tempat Kerja</label>
 
-
-<select
-
-id="kodTempatKerja"
-
-
->
-
+<select id="kodTempatKerja">
 
 <option value="">
-
-
 -- Pilih Kod Tempat Kerja --
-
-
 </option>
-
 
 </select>
 
-
 </div>
 
-
-<!-- JAM KLM -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>Jam KLM Hari Biasa</label>
 
-
 <input
-
 type="number"
-
 id="jamKlm"
-
 readonly
 
-
 >
 
+</div>
 
 </div>
 
+</div>
 
 </div>
 
+<!-- =====================================================
+     OFFDAY & CUTI AM
+===================================================== -->
 
-<br>
+<div class="card">
 
+<div class="card-title">
 
-<!-- =================================================
-     OFFDAY
-================================================= -->
+<div class="section-number">
+4
+</div>
 
+<h2>Hari Khas Bertugas</h2>
 
-<div class="offday-box">
+</div>
 
+<div class="special-duty-grid">
 
-<h3>🟠 Offday Bertugas</h3>
+<!-- OFFDAY -->
 
+<div class="special-box offday-box">
 
-<div class="grid">
+<h3>
+🟠 Offday Bertugas
+</h3>
 
-
-<div>
-
-
-<label>
-
+<label class="checkbox-label">
 
 <input
-
 type="checkbox"
-
 id="hariOffday"
 
-
 >
 
-
-Hari Offday (Bertugas)
-
+Hari Offday Bertugas
 
 </label>
 
-
-</div>
-
-
-<div>
-
+<div class="form-group">
 
 <label>
-
-Jam KLM Offday (Bertugas)
-
+Jam KLM Offday
 </label>
 
-
 <input
-
 type="number"
-
 id="jamOffday"
-
 min="0"
-
 step="0.5"
-
 value="0"
 
-
 >
 
+</div>
 
 </div>
 
+<!-- CUTI AM -->
 
-</div>
+<div class="special-box cutiam-box">
 
+<h3>
+🔴 Cuti Am Bertugas
+</h3>
 
-</div>
-
-
-<br>
-
-
-<!-- =================================================
-     CUTI AM
-================================================= -->
-
-
-<div class="cutiam-box">
-
-
-<h3>🔴 Cuti Am Bertugas</h3>
-
-
-<div class="grid">
-
-
-<div>
-
-
-<label>
-
+<label class="checkbox-label">
 
 <input
-
 type="checkbox"
-
 id="hariCutiam"
 
-
 >
 
-
-Hari Cuti Am (Bertugas)
-
+Hari Cuti Am Bertugas
 
 </label>
 
-
-</div>
-
-
-<div>
-
+<div class="form-group">
 
 <label>
-
-Jam KLM Cuti Am (Bertugas)
-
+Jam KLM Cuti Am
 </label>
 
-
 <input
-
 type="number"
-
 id="jamCutiam"
-
 min="0"
-
 step="0.5"
-
 value="0"
 
-
 >
 
+</div>
 
 </div>
 
+</div>
 
 </div>
 
+<!-- =====================================================
+     SIMPAN
+===================================================== -->
 
-</div>
-
-
-<br>
-
+<div class="card">
 
 <button
-
+class="btn-save"
 onclick="simpanDuty()"
 
-
 >
-
 
 💾 SIMPAN DUTY
 
-
 </button>
 
-
 </div>
-
 
 <!-- =====================================================
      SENARAI DUTY
 ===================================================== -->
 
-
 <div class="card">
 
+<div class="card-title">
 
-<h2>📋 Senarai Duty</h2>
+<div class="section-number">
+5
+</div>
 
-
-<div class="grid">
-
-
-<!-- FILTER TARIKH -->
-
-
-<div>
-
-
-<label>
-
-Pilih Tarikh
-
-</label>
-
-
-<input
-
-type="date"
-
-id="filterTarikh"
-
-onchange="paparDuty()"
-
-
->
-
+<h2>Senarai Duty</h2>
 
 </div>
 
+<div class="filter-panel">
 
-<!-- FILTER POS -->
+<div class="grid-3">
 
-
-<div>
-
+<div class="form-group">
 
 <label>
-
-Pilih Pos Asal
-
+Pilih Tarikh
 </label>
 
-
-<select
-
-id="filterPos"
-
+<input
+type="date"
+id="filterTarikh"
 onchange="paparDuty()"
-
 
 >
 
+</div>
+
+<div class="form-group">
+
+<label>
+Pilih Pos Asal
+</label>
+
+<select
+id="filterPos"
+onchange="paparDuty()"
+
+>
 
 <option value="">
-
-
 Semua Pos
-
-
 </option>
-
 
 </select>
 
-
 </div>
 
-
-<!-- CARI NAMA -->
-
-
-<div>
-
+<div class="form-group">
 
 <label>
-
 Cari Nama
-
-
 </label>
 
-
 <input
-
 type="text"
-
 id="cariNama"
-
 placeholder="Cari nama anggota..."
-
 onkeyup="paparDuty()"
-
 
 >
 
+</div>
 
 </div>
 
-
 </div>
-
-
-<br>
-
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
-
 <tr>
-
 
 <th>Tarikh</th>
 
@@ -1201,88 +1313,52 @@ onkeyup="paparDuty()"
 
 <th>Tindakan</th>
 
-
 </tr>
-
 
 </thead>
 
-
-<tbody
-
-id="senaraiDuty"
-
-
->
-
+<tbody id="senaraiDuty">
 
 <tr>
 
-
 <td colspan="18">
-
 
 Sila pilih tarikh
 
-
 </td>
-
 
 </tr>
 
-
 </tbody>
-
 
 </table>
 
+</div>
 
 </div>
 
-
 </div>
 
-
-</div>
-
-
-<!-- SUPABASE -->
-
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script
-
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-
->
-
-</script>
-
+></script>
 
 <!-- CONFIG SUPABASE -->
 
-
 <script
-
 src="supabase.js"
+></script>
 
->
-
-</script>
-
-
-<!-- JAVASCRIPT JADUAL DUTY -->
-
+<!-- JAVASCRIPT -->
 
 <script
-
 src="js/jadual-duty.js"
-
->
-
-</script>
-
+></script>
 
 </body>
-
 
 </html>
