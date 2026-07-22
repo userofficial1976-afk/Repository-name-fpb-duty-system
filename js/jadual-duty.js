@@ -137,6 +137,7 @@ async function muatAnggota() {
                 kawasan,
                 unit,
                 pos,
+                ketua_unit,
                 ketua_pos
             `)
 
@@ -636,7 +637,14 @@ document
                 anggota.unit
                 || "";
 
-
+            document
+                .getElementById(
+                    "ketuaPos"
+                )
+                .value =
+                anggota.ketua_pos
+                || "";
+            
             document
                 .getElementById(
                     "ketuaPos"
