@@ -8,124 +8,419 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Jadual Duty - FPB Duty System</title>
-
+<title>Jadual Duty | FPB Duty System</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
 
     box-sizing: border-box;
 
-    font-family: Arial, sans-serif;
+    margin: 0;
+
+    padding: 0;
 
 }
 
+
+:root {
+
+    --navy: #0b1220;
+
+    --navy-2: #111c2e;
+
+    --blue: #2563eb;
+
+    --blue-dark: #1d4ed8;
+
+    --slate: #64748b;
+
+    --border: #e2e8f0;
+
+    --bg: #f4f7fb;
+
+    --white: #ffffff;
+
+    --green: #16a34a;
+
+    --orange: #f97316;
+
+    --red: #dc2626;
+
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body {
 
-    margin: 0;
+    font-family:
 
-    background: #f1f5f9;
+        Inter,
 
-    color: #1e293b;
+        "Segoe UI",
+
+        Arial,
+
+        sans-serif;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #eef3f9 0%,
+
+            #f8fafc 50%,
+
+            #eef3f9 100%
+
+        );
+
+    color: #172033;
+
+    min-height: 100vh;
 
 }
 
 
-header {
+/* =====================================================
+   HEADER
+===================================================== */
 
-    background: #0f172a;
+.top-header {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #08111f,
+
+            #14243a
+
+        );
 
     color: white;
 
-    padding: 20px 25px;
+    padding: 24px 35px;
+
+    position: relative;
+
+    overflow: hidden;
 
 }
 
 
-header h1 {
+.top-header::after {
 
-    margin: 0;
+    content: "";
 
-    font-size: 25px;
+    position: absolute;
+
+    width: 420px;
+
+    height: 420px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    right: -120px;
+
+    top: -180px;
 
 }
 
 
-header p {
+.header-content {
 
-    margin: 6px 0 0;
-
-    color: #cbd5e1;
-
-}
-
-
-.container {
-
-    max-width: 1600px;
+    max-width: 1700px;
 
     margin: auto;
 
-    padding: 20px;
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.brand-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+
+
+.logo-box {
+
+    width: 54px;
+
+    height: 54px;
+
+    border-radius: 16px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #60a5fa
+
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    box-shadow:
+
+        0 10px 25px
+
+        rgba(37,99,235,0.35);
+
+}
+
+
+.header-title h1 {
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+}
+
+
+.header-title p {
+
+    color: #a9b7ca;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+
+}
+
+
+.header-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 22px;
+
+}
+
+
+.page-label {
+
+    font-size: 13px;
+
+    color: #94a3b8;
 
 }
 
 
 .btn-dashboard {
 
-    display: inline-block;
+    display: inline-flex;
 
-    background: #2563eb;
+    align-items: center;
+
+    gap: 8px;
 
     color: white;
 
     text-decoration: none;
 
-    padding: 10px 16px;
+    padding: 11px 17px;
 
-    border-radius: 7px;
+    border-radius: 9px;
 
-    font-weight: bold;
+    background: rgba(255,255,255,0.10);
 
-    margin-top: 15px;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: .2s;
 
 }
 
+
+.btn-dashboard:hover {
+
+    background: rgba(255,255,255,0.18);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    max-width: 1700px;
+
+    margin: auto;
+
+    padding: 28px 25px 50px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card {
 
-    background: white;
+    background: rgba(255,255,255,0.95);
+
+    border: 1px solid rgba(226,232,240,0.9);
+
+    border-radius: 18px;
+
+    padding: 26px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+
+        0 10px 35px
+
+        rgba(15,23,42,0.07);
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid #edf1f5;
+
+}
+
+
+.card-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.card-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     border-radius: 12px;
 
-    padding: 20px;
+    background: #eff6ff;
 
-    margin-bottom: 20px;
+    color: #2563eb;
 
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    font-size: 20px;
 
 }
 
 
-h2 {
-
-    margin-top: 0;
+.card-title h2 {
 
     color: #0f172a;
 
+    font-size: 20px;
+
 }
 
+
+.card-title p {
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
 
 .grid {
 
     display: grid;
 
     grid-template-columns:
-    repeat(auto-fit, minmax(230px, 1fr));
 
-    gap: 15px;
+        repeat(
+
+            auto-fit,
+
+            minmax(220px, 1fr)
+
+        );
+
+    gap: 18px;
+
+}
+
+
+.field {
+
+    min-width: 0;
 
 }
 
@@ -134,109 +429,336 @@ label {
 
     display: block;
 
-    font-weight: bold;
+    font-size: 12px;
 
-    margin-bottom: 6px;
+    font-weight: 700;
+
+    color: #475569;
+
+    margin-bottom: 7px;
+
+    letter-spacing: .2px;
 
 }
 
 
 input,
+
 select,
+
 button {
 
     width: 100%;
 
-    padding: 11px;
+    min-height: 44px;
 
-    border-radius: 7px;
+    padding: 11px 13px;
 
-    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+
+    border: 1px solid #dbe3ec;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    font-family: inherit;
 
     font-size: 14px;
+
+    outline: none;
+
+    transition: .2s;
+
+}
+
+
+input:focus,
+
+select:focus {
+
+    border-color: #3b82f6;
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(59,130,246,0.12);
 
 }
 
 
 input[readonly] {
 
-    background: #f1f5f9;
+    background: #f8fafc;
+
+    color: #475569;
 
 }
 
 
 select {
 
-    background: white;
-
-}
-
-
-button {
-
-    background: #2563eb;
-
-    color: white;
-
-    border: none;
-
     cursor: pointer;
 
-    font-weight: bold;
+}
+
+
+/* =====================================================
+   SECTION LABEL
+===================================================== */
+
+.section-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 26px 0 14px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    color: #334155;
 
 }
 
 
-button:hover {
+.section-label::after {
 
-    background: #1d4ed8;
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e2e8f0;
 
 }
 
 
-.btn-danger {
+/* =====================================================
+   SPECIAL BOX
+===================================================== */
 
-    background: #dc2626;
+.offday-box,
 
-}
+.cutiam-box {
 
+    padding: 19px;
 
-.btn-danger:hover {
-
-    background: #b91c1c;
+    border-radius: 14px;
 
 }
 
 
 .offday-box {
 
-    background: #fff7ed;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #fffaf3,
+
+            #fff7ed
+
+        );
 
     border: 1px solid #fed7aa;
-
-    padding: 15px;
-
-    border-radius: 8px;
 
 }
 
 
 .cutiam-box {
 
-    background: #fef2f2;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #fff7f7,
+
+            #fef2f2
+
+        );
 
     border: 1px solid #fecaca;
-
-    padding: 15px;
-
-    border-radius: 8px;
 
 }
 
 
+.offday-box h3,
+
+.cutiam-box h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.offday-box h3 {
+
+    color: #c2410c;
+
+}
+
+
+.cutiam-box h3 {
+
+    color: #b91c1c;
+
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+input[type="checkbox"] {
+
+    width: 18px;
+
+    min-height: 18px;
+
+    accent-color: #2563eb;
+
+    vertical-align: middle;
+
+    margin-right: 7px;
+
+}
+
+
+.checkbox-label {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 44px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-save {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 24px;
+
+    min-height: 50px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #1d4ed8
+
+        );
+
+    border: none;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    box-shadow:
+
+        0 8px 18px
+
+        rgba(37,99,235,0.25);
+
+}
+
+
+.btn-save:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+
+        0 12px 25px
+
+        rgba(37,99,235,0.32);
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-panel {
+
+    background: #f8fafc;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 13px;
+
+    padding: 17px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.filter-title {
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #64748b;
+
+    margin-bottom: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .6px;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
 .table-wrapper {
 
     overflow-x: auto;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
 
 }
 
@@ -247,101 +769,186 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 1800px;
-
-}
-
-
-th,
-td {
-
-    border-bottom: 1px solid #e2e8f0;
-
-    padding: 10px;
-
-    text-align: left;
-
-    white-space: nowrap;
+    min-width: 1900px;
 
 }
 
 
 th {
 
-    background: #0f172a;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #111c2e,
+
+            #1e293b
+
+        );
 
     color: white;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .4px;
+
+    padding: 14px 12px;
+
+    white-space: nowrap;
 
 }
 
 
-tr:hover {
+td {
 
-    background: #f8fafc;
+    border-bottom: 1px solid #edf1f5;
+
+    padding: 13px 12px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+tbody tr {
+
+    transition: .15s;
+
+}
+
+
+tbody tr:hover {
+
+    background: #f8fbff;
+
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.success,
+
+.error {
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
+    font-size: 13px;
+
+    font-weight: 700;
 
 }
 
 
 .success {
 
-    background: #dcfce7;
+    background: #ecfdf5;
 
     color: #166534;
 
-    padding: 10px;
-
-    border-radius: 6px;
-
-    margin-bottom: 15px;
+    border: 1px solid #bbf7d0;
 
 }
 
 
 .error {
 
-    background: #fee2e2;
+    background: #fef2f2;
 
     color: #991b1b;
 
-    padding: 10px;
-
-    border-radius: 6px;
-
-    margin-bottom: 15px;
+    border: 1px solid #fecaca;
 
 }
 
 
-.badge {
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-    display: inline-block;
-
-    background: #dbeafe;
-
-    color: #1d4ed8;
-
-    padding: 5px 8px;
-
-    border-radius: 5px;
-
-    font-weight: bold;
-
-}
+@media(max-width: 700px) {
 
 
-@media(max-width:600px) {
+    .top-header {
 
-
-    header h1 {
-
-        font-size: 20px;
+        padding: 20px 16px;
 
     }
 
 
     .container {
 
-        padding: 10px;
+        padding: 16px 10px 30px;
+
+    }
+
+
+    .card {
+
+        padding: 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .header-bottom {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+
+    }
+
+
+    .header-title h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .card-header {
+
+        align-items: flex-start;
 
     }
 
@@ -356,15 +963,54 @@ tr:hover {
 <body>
 
 
-<header>
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<h1>📅 JADUAL DUTY</h1>
+
+<header class="top-header">
+
+
+<div class="header-content">
+
+
+<div class="brand-row">
+
+
+<div class="logo-box">
+
+📅
+
+</div>
+
+
+<div class="header-title">
+
+
+<h1>JADUAL DUTY</h1>
+
 
 <p>
 
-Sistem Pengurusan Jadual Duty Anggota
+FPB Duty System · Pengurusan Jadual Duty Anggota
 
 </p>
+
+
+</div>
+
+
+</div>
+
+
+<div class="header-bottom">
+
+
+<div class="page-label">
+
+📍 Modul Pengurusan Duty
+
+</div>
 
 
 <a
@@ -375,12 +1021,23 @@ class="btn-dashboard"
 
 >
 
-🏠 Kembali ke Dashboard
+🏠 Dashboard
 
 </a>
 
 
+</div>
+
+
+</div>
+
+
 </header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 
 <div class="container">
@@ -394,19 +1051,58 @@ class="btn-dashboard"
 <div class="card">
 
 
-<h2>➕ Masukkan Duty</h2>
+<div class="card-header">
+
+
+<div class="card-title">
+
+
+<div class="card-icon">
+
+➕
+
+</div>
+
+
+<div>
+
+
+<h2>Masukkan Duty</h2>
+
+
+<p>
+
+Lengkapkan maklumat tugasan anggota
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
 
 
 <div id="mesej"></div>
 
 
+<!-- TARIKH & MAKLUMAT ASAS -->
+
+
+<div class="section-label">
+
+📅 Maklumat Tarikh & Tugasan
+
+</div>
+
+
 <div class="grid">
 
 
-<!-- TARIKH -->
-
-
-<div>
+<div class="field">
 
 
 <label>Tarikh</label>
@@ -418,17 +1114,13 @@ type="date"
 
 id="tarikh"
 
-
 >
 
 
 </div>
 
 
-<!-- BULAN -->
-
-
-<div>
+<div class="field">
 
 
 <label>Bulan</label>
@@ -442,17 +1134,13 @@ id="bulan"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- TAHUN -->
-
-
-<div>
+<div class="field">
 
 
 <label>Tahun</label>
@@ -466,17 +1154,13 @@ id="tahun"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- HARI -->
-
-
-<div>
+<div class="field">
 
 
 <label>Hari</label>
@@ -490,19 +1174,29 @@ id="hari"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- =================================================
-     UNIT
-================================================= -->
+</div>
 
 
-<div>
+<!-- UNIT POS ANGGOTA -->
+
+
+<div class="section-label">
+
+👮 Maklumat Anggota
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="field">
 
 
 <label>Unit</label>
@@ -512,15 +1206,12 @@ readonly
 
 id="unitPilihan"
 
-
 >
 
 
 <option value="">
 
-
 -- Pilih Unit --
-
 
 </option>
 
@@ -531,12 +1222,7 @@ id="unitPilihan"
 </div>
 
 
-<!-- =================================================
-     POS ASAL
-================================================= -->
-
-
-<div>
+<div class="field">
 
 
 <label>Pos Asal</label>
@@ -546,15 +1232,12 @@ id="unitPilihan"
 
 id="posAsal"
 
-
 >
 
 
 <option value="">
 
-
 -- Pilih Pos Asal --
-
 
 </option>
 
@@ -565,12 +1248,7 @@ id="posAsal"
 </div>
 
 
-<!-- =================================================
-     NAMA ANGGOTA
-================================================= -->
-
-
-<div>
+<div class="field">
 
 
 <label>Nama Anggota</label>
@@ -580,15 +1258,12 @@ id="posAsal"
 
 id="anggota"
 
-
 >
 
 
 <option value="">
 
-
 -- Pilih Nama Anggota --
-
 
 </option>
 
@@ -599,10 +1274,7 @@ id="anggota"
 </div>
 
 
-<!-- NO SKB -->
-
-
-<div>
+<div class="field">
 
 
 <label>No. SKB</label>
@@ -616,17 +1288,13 @@ id="noSkb"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- NO ANGGOTA -->
-
-
-<div>
+<div class="field">
 
 
 <label>No. Anggota</label>
@@ -640,17 +1308,13 @@ id="noAnggota"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- KAWASAN -->
-
-
-<div>
+<div class="field">
 
 
 <label>Kawasan</label>
@@ -664,20 +1328,16 @@ id="kawasan"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- UNIT AUTO -->
+<div class="field">
 
 
-<div>
-
-
-<label>Unit</label>
+<label>Unit Anggota</label>
 
 
 <input
@@ -688,17 +1348,13 @@ id="unit"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- KETUA UNIT -->
-
-
-<div>
+<div class="field">
 
 
 <label>Ketua Unit</label>
@@ -712,17 +1368,13 @@ id="ketuaUnit"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- KETUA POS -->
-
-
-<div>
+<div class="field">
 
 
 <label>Ketua Pos</label>
@@ -736,20 +1388,16 @@ id="ketuaPos"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- POS ASAL AUTO -->
+<div class="field">
 
 
-<div>
-
-
-<label>Nama Pos </label>
+<label>Nama Pos Asal</label>
 
 
 <input
@@ -760,19 +1408,29 @@ id="namaPosAsal"
 
 readonly
 
-
 >
 
 
 </div>
 
 
-<!-- =================================================
-     KOD WAKTU KERJA
-================================================= -->
+</div>
 
 
-<div>
+<!-- KOD DUTY -->
+
+
+<div class="section-label">
+
+⏱️ Maklumat Waktu & Tempat Bertugas
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="field">
 
 
 <label>Kod Waktu Kerja</label>
@@ -782,15 +1440,12 @@ readonly
 
 id="kodDuty"
 
-
 >
 
 
 <option value="">
 
-
 -- Pilih Kod Waktu Kerja --
-
 
 </option>
 
@@ -801,12 +1456,7 @@ id="kodDuty"
 </div>
 
 
-<!-- =================================================
-     KOD TEMPAT KERJA
-================================================= -->
-
-
-<div>
+<div class="field">
 
 
 <label>Kod Tempat Kerja</label>
@@ -816,15 +1466,12 @@ id="kodDuty"
 
 id="kodTempatKerja"
 
-
 >
 
 
 <option value="">
 
-
 -- Pilih Kod Tempat Kerja --
-
 
 </option>
 
@@ -835,10 +1482,7 @@ id="kodTempatKerja"
 </div>
 
 
-<!-- JAM KLM -->
-
-
-<div>
+<div class="field">
 
 
 <label>Jam KLM Hari Biasa</label>
@@ -852,7 +1496,6 @@ id="jamKlm"
 
 readonly
 
-
 >
 
 
@@ -862,27 +1505,33 @@ readonly
 </div>
 
 
-<br>
+<!-- OFFDAY -->
 
 
-<!-- =================================================
-     OFFDAY
-================================================= -->
+<div class="section-label">
+
+🟠 Maklumat Offday
+
+</div>
 
 
 <div class="offday-box">
 
 
-<h3>🟠 Offday Bertugas</h3>
+<h3>
+
+🟠 Offday Bertugas
+
+</h3>
 
 
 <div class="grid">
 
 
-<div>
+<div class="field">
 
 
-<label>
+<label class="checkbox-label">
 
 
 <input
@@ -891,11 +1540,10 @@ type="checkbox"
 
 id="hariOffday"
 
-
 >
 
 
-Hari Offday (Bertugas)
+Hari Offday Bertugas
 
 
 </label>
@@ -904,12 +1552,12 @@ Hari Offday (Bertugas)
 </div>
 
 
-<div>
+<div class="field">
 
 
 <label>
 
-Jam KLM Offday (Bertugas)
+Jam KLM Offday Bertugas
 
 </label>
 
@@ -926,7 +1574,6 @@ step="0.5"
 
 value="0"
 
-
 >
 
 
@@ -939,27 +1586,33 @@ value="0"
 </div>
 
 
-<br>
+<!-- CUTI AM -->
 
 
-<!-- =================================================
-     CUTI AM
-================================================= -->
+<div class="section-label">
+
+🔴 Maklumat Cuti Am
+
+</div>
 
 
 <div class="cutiam-box">
 
 
-<h3>🔴 Cuti Am Bertugas</h3>
+<h3>
+
+🔴 Cuti Am Bertugas
+
+</h3>
 
 
 <div class="grid">
 
 
-<div>
+<div class="field">
 
 
-<label>
+<label class="checkbox-label">
 
 
 <input
@@ -968,11 +1621,10 @@ type="checkbox"
 
 id="hariCutiam"
 
-
 >
 
 
-Hari Cuti Am (Bertugas)
+Hari Cuti Am Bertugas
 
 
 </label>
@@ -981,12 +1633,12 @@ Hari Cuti Am (Bertugas)
 </div>
 
 
-<div>
+<div class="field">
 
 
 <label>
 
-Jam KLM Cuti Am (Bertugas)
+Jam KLM Cuti Am Bertugas
 
 </label>
 
@@ -1003,7 +1655,6 @@ step="0.5"
 
 value="0"
 
-
 >
 
 
@@ -1014,21 +1665,17 @@ value="0"
 
 
 </div>
-
-
-<br>
 
 
 <button
 
-onclick="simpanDuty()"
+class="btn-save"
 
+onclick="simpanDuty()"
 
 >
 
-
 💾 SIMPAN DUTY
-
 
 </button>
 
@@ -1044,23 +1691,58 @@ onclick="simpanDuty()"
 <div class="card">
 
 
-<h2>📋 Senarai Duty</h2>
+<div class="card-header">
 
 
-<div class="grid">
+<div class="card-title">
 
 
-<!-- FILTER TARIKH -->
+<div class="card-icon">
+
+📋
+
+</div>
 
 
 <div>
 
 
-<label>
+<h2>Senarai Duty</h2>
 
-Pilih Tarikh
 
-</label>
+<p>
+
+Semak dan tapis rekod duty anggota
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="filter-panel">
+
+
+<div class="filter-title">
+
+🔍 Tapisan Senarai Duty
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="field">
+
+
+<label>Pilih Tarikh</label>
 
 
 <input
@@ -1071,24 +1753,16 @@ id="filterTarikh"
 
 onchange="paparDuty()"
 
-
 >
 
 
 </div>
 
 
-<!-- FILTER POS -->
+<div class="field">
 
 
-<div>
-
-
-<label>
-
-Pilih Pos Asal
-
-</label>
+<label>Pilih Pos Asal</label>
 
 
 <select
@@ -1097,15 +1771,12 @@ id="filterPos"
 
 onchange="paparDuty()"
 
-
 >
 
 
 <option value="">
 
-
 Semua Pos
-
 
 </option>
 
@@ -1116,18 +1787,10 @@ Semua Pos
 </div>
 
 
-<!-- CARI NAMA -->
+<div class="field">
 
 
-<div>
-
-
-<label>
-
-Cari Nama
-
-
-</label>
+<label>Cari Nama</label>
 
 
 <input
@@ -1140,7 +1803,6 @@ placeholder="Cari nama anggota..."
 
 onkeyup="paparDuty()"
 
-
 >
 
 
@@ -1150,7 +1812,7 @@ onkeyup="paparDuty()"
 </div>
 
 
-<br>
+</div>
 
 
 <div class="table-wrapper">
@@ -1212,7 +1874,6 @@ onkeyup="paparDuty()"
 
 id="senaraiDuty"
 
-
 >
 
 
@@ -1223,7 +1884,6 @@ id="senaraiDuty"
 
 
 Sila pilih tarikh
-
 
 </td>
 
@@ -1246,40 +1906,30 @@ Sila pilih tarikh
 </div>
 
 
-<!-- SUPABASE -->
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
 
 
 <script
 
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
->
-
-</script>
-
-
-<!-- CONFIG SUPABASE -->
+></script>
 
 
 <script
 
 src="supabase.js"
 
->
-
-</script>
-
-
-<!-- JAVASCRIPT JADUAL DUTY -->
+></script>
 
 
 <script
 
 src="js/jadual-duty.js"
 
->
-
-</script>
+></script>
 
 
 </body>
