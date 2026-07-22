@@ -18,10 +18,6 @@ Kod Tempat Kerja — FPB Duty System
 
 <style>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
-
 * {
 
     box-sizing: border-box;
@@ -33,7 +29,6 @@ Kod Tempat Kerja — FPB Duty System
     font-family:
         "Segoe UI",
         Arial,
-        Helvetica,
         sans-serif;
 
 }
@@ -48,10 +43,6 @@ body {
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
-
 header {
 
     background: #080808;
@@ -59,8 +50,6 @@ header {
     color: white;
 
     padding: 25px 35px;
-
-    border-bottom: 1px solid #333;
 
 }
 
@@ -114,8 +103,6 @@ header h1 {
 
     font-size: 25px;
 
-    letter-spacing: 0.5px;
-
 }
 
 
@@ -150,23 +137,8 @@ header p {
 
     font-weight: bold;
 
-    font-size: 14px;
-
-    transition: 0.2s;
-
 }
 
-
-.btn-dashboard:hover {
-
-    background: #ddd;
-
-}
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
 
 .container {
 
@@ -178,10 +150,6 @@ header p {
 
 }
 
-
-/* =====================================================
-   CARD
-===================================================== */
 
 .card {
 
@@ -250,10 +218,6 @@ header p {
 }
 
 
-/* =====================================================
-   FORM GRID
-===================================================== */
-
 .grid {
 
     display: grid;
@@ -276,8 +240,6 @@ header p {
 
 
 label {
-
-    display: block;
 
     font-weight: 700;
 
@@ -303,8 +265,6 @@ select {
 
     background: white;
 
-    color: #111;
-
     font-size: 14px;
 
 }
@@ -324,10 +284,6 @@ select:focus {
 
 }
 
-
-/* =====================================================
-   BUTTON
-===================================================== */
 
 .btn-save {
 
@@ -349,8 +305,6 @@ select:focus {
 
     cursor: pointer;
 
-    transition: 0.2s;
-
 }
 
 
@@ -360,10 +314,6 @@ select:focus {
 
 }
 
-
-/* =====================================================
-   TABLE
-===================================================== */
 
 .table-wrapper {
 
@@ -382,7 +332,7 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 850px;
+    min-width: 900px;
 
 }
 
@@ -411,8 +361,6 @@ th {
 
     text-transform: uppercase;
 
-    letter-spacing: 0.5px;
-
 }
 
 
@@ -422,17 +370,6 @@ tr:hover {
 
 }
 
-
-tr:last-child td {
-
-    border-bottom: none;
-
-}
-
-
-/* =====================================================
-   BADGE
-===================================================== */
 
 .badge {
 
@@ -452,10 +389,6 @@ tr:last-child td {
 
 }
 
-
-/* =====================================================
-   STATUS MESSAGE
-===================================================== */
 
 .success {
 
@@ -491,10 +424,6 @@ tr:last-child td {
 }
 
 
-/* =====================================================
-   DANGER BUTTON
-===================================================== */
-
 .btn-danger {
 
     background: #111;
@@ -512,17 +441,6 @@ tr:last-child td {
 }
 
 
-.btn-danger:hover {
-
-    background: #555;
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
 .footer {
 
     text-align: center;
@@ -535,10 +453,6 @@ tr:last-child td {
 
 }
 
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 
 @media(max-width:1000px) {
 
@@ -553,13 +467,6 @@ tr:last-child td {
 
 
 @media(max-width:650px) {
-
-    header {
-
-        padding: 20px;
-
-    }
-
 
     .header-content {
 
@@ -586,23 +493,9 @@ tr:last-child td {
     }
 
 
-    .card {
-
-        padding: 18px;
-
-    }
-
-
     .grid {
 
         grid-template-columns: 1fr;
-
-    }
-
-
-    header h1 {
-
-        font-size: 21px;
 
     }
 
@@ -613,10 +506,6 @@ tr:last-child td {
 </head>
 
 <body>
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header>
 
@@ -668,15 +557,9 @@ class="btn-dashboard"
 
 </header>
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <div class="container">
 
-<!-- =====================================================
-     TAMBAH KOD TEMPAT KERJA
-===================================================== -->
+<!-- TAMBAH DATA -->
 
 <div class="card">
 
@@ -700,7 +583,7 @@ Tambah Kod Tempat Kerja
 
 <div class="grid">
 
-<!-- UNIT -->
+<!-- UNIT TETAP -->
 
 <div class="form-group">
 
@@ -719,6 +602,68 @@ id="unit"
 <option value="">
 
 -- Pilih Unit --
+
+</option>
+
+<option value="Jerangau">
+
+Jerangau
+
+</option>
+
+<option value="Terengganu">
+
+Terengganu
+
+</option>
+
+<option value="Setiu">
+
+Setiu
+
+</option>
+
+<option value="Chador">
+
+Chador
+
+</option>
+
+<option value="Kerteh">
+
+Kerteh
+
+</option>
+
+<option value="Rantau Abang">
+
+Rantau Abang
+
+</option>
+
+</select>
+
+</div>
+
+<!-- POS DARIPADA DATA ANGGOTA -->
+
+<div class="form-group">
+
+<label>
+
+Pos
+
+</label>
+
+<select
+
+id="pos"
+
+>
+
+<option value="">
+
+-- Pilih Pos --
 
 </option>
 
@@ -748,7 +693,7 @@ placeholder="Contoh: W"
 
 </div>
 
-<!-- NAMA -->
+<!-- NAMA TEMPAT KERJA -->
 
 <div class="form-group">
 
@@ -758,19 +703,15 @@ Nama Tempat Kerja
 
 </label>
 
-<select
+<input
+
+type="text"
 
 id="namaTempatKerja"
 
+placeholder="Contoh: Balai Polis Jerangau"
+
 >
-
-<option value="">
-
--- Pilih Tempat Kerja --
-
-</option>
-
-</select>
 
 </div>
 
@@ -792,9 +733,7 @@ onclick="simpanTempatKerja()"
 
 </div>
 
-<!-- =====================================================
-     SENARAI
-===================================================== -->
+<!-- SENARAI -->
 
 <div class="card">
 
@@ -822,41 +761,19 @@ Senarai Kod Tempat Kerja
 
 <tr>
 
-<th>
+<th>Bil</th>
 
-Bil
+<th>Unit</th>
 
-</th>
+<th>Pos</th>
 
-<th>
+<th>Kod Tempat Kerja</th>
 
-Unit
+<th>Nama Tempat Kerja</th>
 
-</th>
+<th>Status</th>
 
-<th>
-
-Kod Tempat Kerja
-
-</th>
-
-<th>
-
-Nama Tempat Kerja
-
-</th>
-
-<th>
-
-Status
-
-</th>
-
-<th>
-
-Tindakan
-
-</th>
+<th>Tindakan</th>
 
 </tr>
 
@@ -870,11 +787,7 @@ id="senaraiTempatKerja"
 
 <tr>
 
-<td
-
-colspan="6"
-
->
+<td colspan="7">
 
 Sedang memuatkan...
 
@@ -892,10 +805,6 @@ Sedang memuatkan...
 
 </div>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <div class="footer">
 
 FPB DUTY SYSTEM — WILAYAH TERENGGANU
@@ -905,10 +814,6 @@ FPB DUTY SYSTEM — WILAYAH TERENGGANU
 © 2026 | Operational Duty Management System
 
 </div>
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
 
 <script
 
