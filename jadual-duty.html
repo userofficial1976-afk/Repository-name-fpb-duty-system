@@ -4,259 +4,347 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Jadual Duty - FPB Duty System</title>
+
 
 <style>
 
 * {
+
     box-sizing: border-box;
+
     font-family: Arial, sans-serif;
+
 }
+
 
 body {
+
     margin: 0;
+
     background: #f1f5f9;
+
     color: #1e293b;
+
 }
+
 
 header {
+
     background: #0f172a;
+
     color: white;
+
     padding: 20px 25px;
+
 }
+
 
 header h1 {
+
     margin: 0;
+
     font-size: 25px;
+
 }
+
 
 header p {
+
     margin: 6px 0 0;
+
     color: #cbd5e1;
+
 }
+
 
 .container {
-    max-width: 1500px;
+
+    max-width: 1600px;
+
     margin: auto;
+
     padding: 20px;
+
 }
+
 
 .btn-dashboard {
+
     display: inline-block;
+
     background: #2563eb;
+
     color: white;
+
     text-decoration: none;
+
     padding: 10px 16px;
+
     border-radius: 7px;
+
     font-weight: bold;
+
     margin-top: 15px;
+
 }
+
 
 .card {
+
     background: white;
+
     border-radius: 12px;
+
     padding: 20px;
+
     margin-bottom: 20px;
+
     box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
 }
+
 
 h2 {
+
     margin-top: 0;
+
     color: #0f172a;
+
 }
 
-h3 {
-    margin-top: 0;
-}
 
 .grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(230px, 1fr));
+
     gap: 15px;
+
 }
 
+
 label {
+
     display: block;
+
     font-weight: bold;
+
     margin-bottom: 6px;
+
 }
+
 
 input,
 select,
 button {
+
     width: 100%;
+
     padding: 11px;
+
     border-radius: 7px;
+
     border: 1px solid #cbd5e1;
+
     font-size: 14px;
+
 }
+
 
 input[readonly] {
+
     background: #f1f5f9;
+
 }
+
 
 select {
+
     background: white;
+
 }
+
 
 button {
+
     background: #2563eb;
+
     color: white;
+
     border: none;
+
     cursor: pointer;
+
     font-weight: bold;
+
 }
+
 
 button:hover {
+
     background: #1d4ed8;
+
 }
+
 
 .btn-danger {
+
     background: #dc2626;
+
 }
+
 
 .btn-danger:hover {
+
     background: #b91c1c;
+
 }
 
-.info-box {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
-}
-
-.info-item {
-    background: white;
-    padding: 10px;
-    border-radius: 6px;
-}
-
-.info-item small {
-    color: #64748b;
-    display: block;
-}
-
-.info-item strong {
-    display: block;
-    margin-top: 4px;
-}
 
 .offday-box {
+
     background: #fff7ed;
+
     border: 1px solid #fed7aa;
+
     padding: 15px;
+
     border-radius: 8px;
+
 }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    padding: 12px;
-    border-radius: 7px;
-    border: 1px solid #cbd5e1;
-    cursor: pointer;
+
+.cutiam-box {
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
 }
 
-.checkbox-container input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-}
-
-.checkbox-container span {
-    font-weight: bold;
-}
 
 .table-wrapper {
+
     overflow-x: auto;
+
 }
 
+
 table {
+
     width: 100%;
+
     border-collapse: collapse;
-    min-width: 1500px;
+
+    min-width: 1800px;
+
 }
+
 
 th,
 td {
+
     border-bottom: 1px solid #e2e8f0;
+
     padding: 10px;
+
     text-align: left;
+
     white-space: nowrap;
+
 }
+
 
 th {
+
     background: #0f172a;
+
     color: white;
+
 }
+
 
 tr:hover {
+
     background: #f8fafc;
+
 }
+
 
 .success {
+
     background: #dcfce7;
+
     color: #166534;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
+
 
 .error {
+
     background: #fee2e2;
+
     color: #991b1b;
+
     padding: 10px;
+
     border-radius: 6px;
+
     margin-bottom: 15px;
+
 }
+
 
 .badge {
+
     display: inline-block;
+
     background: #dbeafe;
+
     color: #1d4ed8;
+
     padding: 5px 8px;
+
     border-radius: 5px;
+
     font-weight: bold;
+
 }
 
-.badge-ya {
-    display: inline-block;
-    background: #dcfce7;
-    color: #166534;
-    padding: 5px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.badge-tidak {
-    display: inline-block;
-    background: #f1f5f9;
-    color: #64748b;
-    padding: 5px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-}
 
 @media(max-width:600px) {
 
+
     header h1 {
+
         font-size: 20px;
+
     }
 
+
     .container {
+
         padding: 10px;
+
     }
+
 
 }
 
@@ -264,20 +352,33 @@ tr:hover {
 
 </head>
 
+
 <body>
+
 
 <header>
 
 <h1>📅 JADUAL DUTY</h1>
 
-<p>Sistem Pengurusan Jadual Duty Anggota</p>
+<p>
+
+Sistem Pengurusan Jadual Duty Anggota
+
+</p>
+
 
 <a
+
 href="index.html"
+
 class="btn-dashboard"
+
 >
+
 🏠 Kembali ke Dashboard
+
 </a>
+
 
 </header>
 
@@ -289,9 +390,12 @@ class="btn-dashboard"
      BORANG MASUKKAN DUTY
 ===================================================== -->
 
+
 <div class="card">
 
+
 <h2>➕ Masukkan Duty</h2>
+
 
 <div id="mesej"></div>
 
@@ -299,210 +403,461 @@ class="btn-dashboard"
 <div class="grid">
 
 
+<!-- TARIKH -->
+
+
 <div>
+
 
 <label>Tarikh</label>
 
+
 <input
+
 type="date"
+
 id="tarikh"
+
+
 >
+
 
 </div>
 
 
+<!-- BULAN -->
+
+
 <div>
+
 
 <label>Bulan</label>
 
+
 <input
+
 type="text"
+
 id="bulan"
+
 readonly
+
+
 >
+
 
 </div>
 
 
+<!-- TAHUN -->
+
+
 <div>
+
 
 <label>Tahun</label>
 
+
 <input
+
 type="text"
+
 id="tahun"
+
 readonly
+
+
 >
+
 
 </div>
 
 
+<!-- HARI -->
+
+
 <div>
+
 
 <label>Hari</label>
 
+
 <input
+
 type="text"
+
 id="hari"
+
 readonly
+
+
 >
 
-</div>
-
-
-<div>
-
-<label>Nama Anggota</label>
-
-<select id="anggota">
-
-<option value="">
-
--- Pilih Nama Anggota --
-
-</option>
-
-</select>
 
 </div>
 
 
-<div>
-
-<label>No. SKB</label>
-
-<input
-type="text"
-id="noSkb"
-readonly
->
-
-</div>
+<!-- =================================================
+     UNIT
+================================================= -->
 
 
 <div>
 
-<label>No. Anggota</label>
-
-<input
-type="text"
-id="noAnggota"
-readonly
->
-
-</div>
-
-
-<div>
-
-<label>Kawasan</label>
-
-<input
-type="text"
-id="kawasan"
-readonly
->
-
-</div>
-
-
-<div>
 
 <label>Unit</label>
 
-<input
-type="text"
-id="unit"
-readonly
+
+<select
+
+id="unitPilihan"
+
+
 >
+
+
+<option value="">
+
+
+-- Pilih Unit --
+
+
+</option>
+
+
+</select>
+
 
 </div>
 
 
-<div>
-
-<label>Ketua Unit</label>
-
-<input
-type="text"
-id="ketuaUnit"
-readonly
->
-
-</div>
+<!-- =================================================
+     POS ASAL
+================================================= -->
 
 
 <div>
 
-<label>Ketua Pos</label>
-
-<input
-type="text"
-id="ketuaPos"
-readonly
->
-
-</div>
-
-
-<div>
 
 <label>Pos Asal</label>
 
-<input
-type="text"
-id="namaPosAsal"
-readonly
+
+<select
+
+id="posAsal"
+
+
 >
+
+
+<option value="">
+
+
+-- Pilih Pos Asal --
+
+
+</option>
+
+
+</select>
+
 
 </div>
 
 
+<!-- =================================================
+     NAMA ANGGOTA
+================================================= -->
+
+
 <div>
+
+
+<label>Nama Anggota</label>
+
+
+<select
+
+id="anggota"
+
+
+>
+
+
+<option value="">
+
+
+-- Pilih Nama Anggota --
+
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<!-- NO SKB -->
+
+
+<div>
+
+
+<label>No. SKB</label>
+
+
+<input
+
+type="text"
+
+id="noSkb"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- NO ANGGOTA -->
+
+
+<div>
+
+
+<label>No. Anggota</label>
+
+
+<input
+
+type="text"
+
+id="noAnggota"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- KAWASAN -->
+
+
+<div>
+
+
+<label>Kawasan</label>
+
+
+<input
+
+type="text"
+
+id="kawasan"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- UNIT AUTO -->
+
+
+<div>
+
+
+<label>Unit</label>
+
+
+<input
+
+type="text"
+
+id="unit"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- KETUA UNIT -->
+
+
+<div>
+
+
+<label>Ketua Unit</label>
+
+
+<input
+
+type="text"
+
+id="ketuaUnit"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- KETUA POS -->
+
+
+<div>
+
+
+<label>Ketua Pos</label>
+
+
+<input
+
+type="text"
+
+id="ketuaPos"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- POS ASAL AUTO -->
+
+
+<div>
+
+
+<label>Nama Pos Asal</label>
+
+
+<input
+
+type="text"
+
+id="namaPosAsal"
+
+readonly
+
+
+>
+
+
+</div>
+
+
+<!-- =================================================
+     KOD WAKTU KERJA
+================================================= -->
+
+
+<div>
+
 
 <label>Kod Waktu Kerja</label>
 
-<select id="kodDuty">
+
+<select
+
+id="kodDuty"
+
+
+>
+
 
 <option value="">
+
 
 -- Pilih Kod Waktu Kerja --
 
+
 </option>
 
+
 </select>
+
 
 </div>
 
 
+<!-- =================================================
+     KOD TEMPAT KERJA
+================================================= -->
+
+
 <div>
+
 
 <label>Kod Tempat Kerja</label>
 
-<select id="kodTempatKerja">
+
+<select
+
+id="kodTempatKerja"
+
+
+>
+
 
 <option value="">
 
+
 -- Pilih Kod Tempat Kerja --
+
 
 </option>
 
+
 </select>
+
 
 </div>
 
 
+<!-- JAM KLM -->
+
+
 <div>
+
 
 <label>Jam KLM</label>
 
+
 <input
+
 type="number"
+
 id="jamKlm"
+
 readonly
+
+
 >
 
+
 </div>
+
 
 </div>
 
@@ -510,57 +865,76 @@ readonly
 <br>
 
 
-<!-- =====================================================
+<!-- =================================================
      OFFDAY
-===================================================== -->
+================================================= -->
+
 
 <div class="offday-box">
+
 
 <h3>🟠 Offday Bertugas</h3>
 
+
 <div class="grid">
 
 
 <div>
 
-<label>Hari Offday Bertugas</label>
 
-<label
-class="checkbox-container"
->
+<label>
+
 
 <input
+
 type="checkbox"
+
 id="hariOffday"
+
+
 >
 
-<span>
 
-Ya, bertugas pada Offday
+Hari Offday Bertugas
 
-</span>
 
 </label>
+
 
 </div>
 
 
 <div>
 
-<label>Jam Offday Bertugas</label>
+
+<label>
+
+Jam Offday Bertugas
+
+</label>
+
 
 <input
+
 type="number"
+
 id="jamOffday"
+
 min="0"
+
 step="0.5"
+
 value="0"
+
+
 >
 
+
 </div>
 
 
 </div>
+
 
 </div>
 
@@ -568,57 +942,76 @@ value="0"
 <br>
 
 
-<!-- =====================================================
+<!-- =================================================
      CUTI AM
-===================================================== -->
+================================================= -->
 
-<div class="offday-box">
+
+<div class="cutiam-box">
+
 
 <h3>🔴 Cuti Am Bertugas</h3>
+
 
 <div class="grid">
 
 
 <div>
 
-<label>Hari Cuti Am Bertugas</label>
 
-<label
-class="checkbox-container"
->
+<label>
+
 
 <input
+
 type="checkbox"
+
 id="hariCutiam"
+
+
 >
 
-<span>
 
-Ya, bertugas pada Cuti Am
+Hari Cuti Am Bertugas
 
-</span>
 
 </label>
+
 
 </div>
 
 
 <div>
 
-<label>Jam Cuti Am Bertugas</label>
+
+<label>
+
+Jam Cuti Am Bertugas
+
+</label>
+
 
 <input
+
 type="number"
+
 id="jamCutiam"
+
 min="0"
+
 step="0.5"
+
 value="0"
+
+
 >
 
+
 </div>
 
 
 </div>
+
 
 </div>
 
@@ -627,12 +1020,18 @@ value="0"
 
 
 <button
+
 onclick="simpanDuty()"
+
+
 >
+
 
 💾 SIMPAN DUTY
 
+
 </button>
+
 
 </div>
 
@@ -641,7 +1040,9 @@ onclick="simpanDuty()"
      SENARAI DUTY
 ===================================================== -->
 
+
 <div class="card">
+
 
 <h2>📋 Senarai Duty</h2>
 
@@ -649,51 +1050,102 @@ onclick="simpanDuty()"
 <div class="grid">
 
 
+<!-- FILTER TARIKH -->
+
+
 <div>
 
-<label>Pilih Tarikh</label>
+
+<label>
+
+Pilih Tarikh
+
+</label>
+
 
 <input
+
 type="date"
+
 id="filterTarikh"
+
 onchange="paparDuty()"
+
+
 >
+
 
 </div>
 
 
+<!-- FILTER POS -->
+
+
 <div>
 
-<label>Pilih Pos Asal</label>
+
+<label>
+
+Pilih Pos Asal
+
+</label>
+
 
 <select
+
 id="filterPos"
+
 onchange="paparDuty()"
+
+
 >
+
 
 <option value="">
 
+
 Semua Pos
+
 
 </option>
 
+
 </select>
 
+
 </div>
+
+
+<!-- CARI NAMA -->
 
 
 <div>
 
-<label>Cari Nama</label>
+
+<label>
+
+Cari Nama
+
+
+</label>
+
 
 <input
+
 type="text"
+
 id="cariNama"
+
 placeholder="Cari nama anggota..."
+
 onkeyup="paparDuty()"
+
+
 >
 
+
 </div>
+
 
 </div>
 
@@ -703,53 +1155,87 @@ onkeyup="paparDuty()"
 
 <div class="table-wrapper">
 
+
 <table>
+
 
 <thead>
 
+
 <tr>
 
+
 <th>Tarikh</th>
+
 <th>Hari</th>
+
 <th>No. SKB</th>
+
 <th>No. Anggota</th>
+
 <th>Nama</th>
+
 <th>Kawasan</th>
+
 <th>Unit</th>
+
 <th>Ketua Unit</th>
+
 <th>Ketua Pos</th>
+
 <th>Pos Asal</th>
+
 <th>Kod Waktu Kerja</th>
+
 <th>Kod Tempat Kerja</th>
+
 <th>Jam KLM</th>
+
 <th>Offday</th>
+
 <th>Jam Offday</th>
+
 <th>Cuti Am</th>
+
 <th>Jam Cuti Am</th>
+
 <th>Tindakan</th>
 
+
 </tr>
+
 
 </thead>
 
 
-<tbody id="senaraiDuty">
+<tbody
+
+id="senaraiDuty"
+
+
+>
+
 
 <tr>
 
+
 <td colspan="18">
+
 
 Sila pilih tarikh
 
+
 </td>
+
 
 </tr>
 
+
 </tbody>
+
 
 </table>
 
-</div>
 
 </div>
 
@@ -757,12 +1243,46 @@ Sila pilih tarikh
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</div>
 
-<script src="supabase.js"></script>
 
-<script src="js/jadual-duty.js"></script>
+<!-- SUPABASE -->
+
+
+<script
+
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
+>
+
+</script>
+
+
+<!-- CONFIG SUPABASE -->
+
+
+<script
+
+src="supabase.js"
+
+>
+
+</script>
+
+
+<!-- JAVASCRIPT JADUAL DUTY -->
+
+
+<script
+
+src="js/jadual-duty.js"
+
+>
+
+</script>
+
 
 </body>
+
 
 </html>
