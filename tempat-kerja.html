@@ -1,147 +1,609 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kod Tempat Kerja - FPB Duty System</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>
+Kod Tempat Kerja — FPB Duty System
+</title>
 
 <style>
 
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
+
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
 }
+
 
 body {
-    margin: 0;
-    background: #f1f5f9;
-    color: #1e293b;
+
+    background: #f3f3f3;
+
+    color: #111;
+
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header {
-    background: #0f172a;
+
+    background: #080808;
+
     color: white;
-    padding: 20px 25px;
+
+    padding: 25px 35px;
+
+    border-bottom: 1px solid #333;
+
 }
+
+
+.header-content {
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.header-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.logo {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: contain;
+
+    background: white;
+
+    border-radius: 9px;
+
+    padding: 4px;
+
+}
+
 
 header h1 {
-    margin: 0;
+
+    font-size: 25px;
+
+    letter-spacing: 0.5px;
+
 }
+
 
 header p {
-    color: #cbd5e1;
+
+    color: #aaa;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 15px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-
-input,
-select,
-button {
-    width: 100%;
-    padding: 11px;
-    border-radius: 7px;
-    border: 1px solid #cbd5e1;
-}
-
-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
 
 .btn-dashboard {
-    display: inline-block;
-    width: auto;
-    background: #2563eb;
-    color: white;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: white;
+
+    color: #111;
+
     text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 7px;
-    margin-top: 10px;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+
 }
 
-.btn-danger {
-    background: #dc2626;
+
+.btn-dashboard:hover {
+
+    background: #ddd;
+
 }
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    padding: 30px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: white;
+
+    padding: 26px;
+
+    border-radius: 13px;
+
+    margin-bottom: 24px;
+
+    border: 1px solid #dedede;
+
+    box-shadow:
+
+        0 4px 15px
+        rgba(0,0,0,0.05);
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #e5e5e5;
+
+    padding-bottom: 16px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.card-number {
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+}
+
+
+.card-header h2 {
+
+    font-size: 21px;
+
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+label {
+
+    display: block;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color: #444;
+
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    border: 1px solid #cfcfcf;
+
+    background: white;
+
+    color: #111;
+
+    font-size: 14px;
+
+}
+
+
+input:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: #111;
+
+    box-shadow:
+
+        0 0 0 3px
+        rgba(0,0,0,0.08);
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-save {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: #111;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-save:hover {
+
+    background: #333;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+    border: 1px solid #e0e0e0;
+
+    border-radius: 9px;
+
+}
+
 
 table {
+
     width: 100%;
+
     border-collapse: collapse;
+
+    min-width: 850px;
+
 }
+
 
 th,
 td {
-    padding: 10px;
-    border-bottom: 1px solid #e2e8f0;
+
+    padding: 14px 13px;
+
+    border-bottom: 1px solid #e5e5e5;
+
     text-align: left;
+
+    font-size: 14px;
+
 }
+
 
 th {
-    background: #0f172a;
+
+    background: #111;
+
     color: white;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
 }
 
-.success {
-    background: #dcfce7;
-    color: #166534;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+
+tr:hover {
+
+    background: #f7f7f7;
+
 }
 
-.error {
-    background: #fee2e2;
-    color: #991b1b;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+
+tr:last-child td {
+
+    border-bottom: none;
+
 }
+
+
+/* =====================================================
+   BADGE
+===================================================== */
 
 .badge {
-    background: #dbeafe;
-    color: #1d4ed8;
-    padding: 5px 8px;
+
+    display: inline-block;
+
+    background: #111;
+
+    color: white;
+
+    padding: 5px 9px;
+
     border-radius: 5px;
+
+    font-size: 12px;
+
     font-weight: bold;
+
 }
 
-.table-wrapper {
-    overflow-x: auto;
+
+/* =====================================================
+   STATUS MESSAGE
+===================================================== */
+
+.success {
+
+    background: #f0f0f0;
+
+    color: #111;
+
+    padding: 13px 15px;
+
+    border-radius: 7px;
+
+    margin-bottom: 18px;
+
+    border-left: 4px solid #111;
+
 }
 
-@media(max-width:600px) {
+
+.error {
+
+    background: #eeeeee;
+
+    color: #111;
+
+    padding: 13px 15px;
+
+    border-radius: 7px;
+
+    margin-bottom: 18px;
+
+    border-left: 4px solid #555;
+
+}
+
+
+/* =====================================================
+   DANGER BUTTON
+===================================================== */
+
+.btn-danger {
+
+    background: #111;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+
+.btn-danger:hover {
+
+    background: #555;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    color: #888;
+
+    font-size: 13px;
+
+    padding: 20px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px) {
 
     .grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media(max-width:650px) {
+
+    header {
+
+        padding: 20px;
+
+    }
+
+
+    .header-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .btn-dashboard {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+
+    .container {
+
+        padding: 15px;
+
+    }
+
+
+    .card {
+
+        padding: 18px;
+
+    }
+
+
+    .grid {
+
         grid-template-columns: 1fr;
+
+    }
+
+
+    header h1 {
+
+        font-size: 21px;
+
     }
 
 }
@@ -152,59 +614,154 @@ th {
 
 <body>
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
 
-<h1>🏢 KOD TEMPAT KERJA</h1>
+<div class="header-content">
 
-<p>Pengurusan Kod Tempat Kerja</p>
+<div class="header-title">
 
-<a
-href="index.html"
-class="btn-dashboard"
+<img
+
+src="logo.png"
+
+class="logo"
+
+alt="Logo FPB"
+
 >
-🏠 Kembali ke Dashboard
-</a>
-
-</header>
-
-
-<div class="container">
-
-
-<div class="card">
-
-<h2>➕ Tambah Kod Tempat Kerja</h2>
-
-<div id="mesej"></div>
-
-
-<div class="grid">
-
 
 <div>
 
-<label>
-Kod Tempat Kerja
-</label>
+<h1>
 
-<input
-type="text"
-id="kodTempatKerja"
-placeholder="Contoh: W"
->
+🏢 KOD TEMPAT KERJA
 
+</h1>
+
+<p>
+
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+</p>
 
 </div>
 
+</div>
 
-<div>
+<a
+
+href="index.html"
+
+class="btn-dashboard"
+
+>
+
+🏠 Kembali ke Dashboard
+
+</a>
+
+</div>
+
+</header>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+<!-- =====================================================
+     TAMBAH KOD TEMPAT KERJA
+===================================================== -->
+
+<div class="card">
+
+<div class="card-header">
+
+<div class="card-number">
+
+1
+
+</div>
+
+<h2>
+
+Tambah Kod Tempat Kerja
+
+</h2>
+
+</div>
+
+<div id="mesej"></div>
+
+<div class="grid">
+
+<!-- UNIT -->
+
+<div class="form-group">
 
 <label>
-Nama Tempat Kerja
+
+Unit
+
 </label>
 
 <select
+
+id="unit"
+
+>
+
+<option value="">
+
+-- Pilih Unit --
+
+</option>
+
+</select>
+
+</div>
+
+<!-- KOD -->
+
+<div class="form-group">
+
+<label>
+
+Kod Tempat Kerja
+
+</label>
+
+<input
+
+type="text"
+
+id="kodTempatKerja"
+
+placeholder="Contoh: W"
+
+>
+
+</div>
+
+<!-- NAMA -->
+
+<div class="form-group">
+
+<label>
+
+Nama Tempat Kerja
+
+</label>
+
+<select
+
 id="namaTempatKerja"
+
 >
 
 <option value="">
@@ -217,15 +774,16 @@ id="namaTempatKerja"
 
 </div>
 
-
 </div>
-
 
 <br>
 
-
 <button
+
+class="btn-save"
+
 onclick="simpanTempatKerja()"
+
 >
 
 💾 SIMPAN KOD TEMPAT KERJA
@@ -234,11 +792,27 @@ onclick="simpanTempatKerja()"
 
 </div>
 
+<!-- =====================================================
+     SENARAI
+===================================================== -->
 
 <div class="card">
 
-<h2>📋 Senarai Kod Tempat Kerja</h2>
+<div class="card-header">
 
+<div class="card-number">
+
+2
+
+</div>
+
+<h2>
+
+Senarai Kod Tempat Kerja
+
+</h2>
+
+</div>
 
 <div class="table-wrapper">
 
@@ -248,29 +822,58 @@ onclick="simpanTempatKerja()"
 
 <tr>
 
-<th>Bil</th>
+<th>
 
-<th>Kod Tempat Kerja</th>
+Bil
 
-<th>Nama Tempat Kerja</th>
+</th>
 
-<th>Status</th>
+<th>
 
-<th>Tindakan</th>
+Unit
+
+</th>
+
+<th>
+
+Kod Tempat Kerja
+
+</th>
+
+<th>
+
+Nama Tempat Kerja
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Tindakan
+
+</th>
 
 </tr>
 
 </thead>
 
-
 <tbody
+
 id="senaraiTempatKerja"
+
 >
 
 <tr>
 
 <td
-colspan="5"
+
+colspan="6"
+
 >
 
 Sedang memuatkan...
@@ -289,19 +892,40 @@ Sedang memuatkan...
 
 </div>
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+<br>
+
+© 2026 | Operational Duty Management System
+
+</div>
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script
+
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
 ></script>
 
-
 <script
+
 src="supabase.js"
+
 ></script>
 
-
 <script
+
 src="js/tempat-kerja.js"
+
 ></script>
 
 </body>
