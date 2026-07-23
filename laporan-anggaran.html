@@ -1,14 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 Anggaran Duty Bulanan — FPB Duty System
@@ -16,92 +14,44 @@ Anggaran Duty Bulanan — FPB Duty System
 
 <style>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
-
 * {
-
     box-sizing: border-box;
-
     margin: 0;
-
     padding: 0;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 body {
-
     background: #f4f7f8;
-
     color: #263238;
-
 }
 
 .app {
-
     display: flex;
-
     min-height: 100vh;
-
 }
 
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
 .sidebar {
-
     width: 290px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #e8f1f3 0%,
-            #dcecef 100%
-        );
-
+    background: linear-gradient(180deg, #e8f1f3 0%, #dcecef 100%);
     color: #234047;
-
     padding: 24px 16px;
-
     position: fixed;
-
     top: 0;
-
     bottom: 0;
-
     left: 0;
-
     z-index: 100;
-
     overflow-y: auto;
-
     border-right: 1px solid #cbdde1;
-
 }
 
 .sidebar::after {
-
     content: "";
-
     position: absolute;
-
     inset: 0;
-
     opacity: 0.15;
-
     pointer-events: none;
-
     background-image:
-
         linear-gradient(
             45deg,
             transparent 45%,
@@ -109,7 +59,6 @@ body {
             #7fa9b1 54%,
             transparent 55%
         ),
-
         linear-gradient(
             -45deg,
             transparent 45%,
@@ -117,426 +66,209 @@ body {
             #7fa9b1 54%,
             transparent 55%
         );
-
     background-size: 30px 30px;
-
 }
 
 .brand {
-
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
     padding: 0 11px 25px;
-
     border-bottom: 1px solid #cbdde1;
-
     position: relative;
-
     z-index: 2;
-
 }
 
 .logo {
-
     width: 58px;
-
     height: 58px;
-
     object-fit: contain;
-
     background: white;
-
     padding: 5px;
-
     border-radius: 12px;
-
-    box-shadow:
-        0 4px 12px
-        rgba(60,100,110,0.12);
-
+    box-shadow: 0 4px 12px rgba(60, 100, 110, 0.12);
 }
 
 .brand-text h1 {
-
     font-size: 17px;
-
     letter-spacing: 0.4px;
-
     color: #234047;
-
 }
 
 .brand-text p {
-
     color: #6d858b;
-
     font-size: 12px;
-
     margin-top: 4px;
-
 }
 
 .heritage-mark {
-
     margin: 22px 10px;
-
     padding: 15px;
-
     border: 1px solid #c6dadd;
-
     border-radius: 12px;
-
-    background:
-        rgba(255,255,255,0.55);
-
+    background: rgba(255, 255, 255, 0.55);
     position: relative;
-
     z-index: 2;
-
 }
 
 .heritage-mark strong {
-
     display: block;
-
     font-size: 12px;
-
     letter-spacing: 0.6px;
-
     color: #365b63;
-
 }
 
 .heritage-mark span {
-
     display: block;
-
     margin-top: 7px;
-
     color: #769097;
-
     font-size: 11px;
-
 }
 
 .nav-title {
-
     color: #789096;
-
     font-size: 11px;
-
     text-transform: uppercase;
-
     letter-spacing: 1.5px;
-
     font-weight: bold;
-
     margin: 26px 13px 10px;
-
     position: relative;
-
     z-index: 2;
-
 }
 
 .nav {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 5px;
-
     position: relative;
-
     z-index: 2;
-
 }
 
 .nav a {
-
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
     color: #577178;
-
     text-decoration: none;
-
     padding: 14px 15px;
-
     border-radius: 10px;
-
     font-size: 15px;
-
     font-weight: 600;
-
     transition: all 0.2s ease;
-
 }
 
 .nav a:hover {
-
     background: #d1e4e8;
-
     color: #234047;
-
     transform: translateX(2px);
-
 }
 
 .nav a.active {
-
     background: #ffffff;
-
     color: #247b83;
-
-    box-shadow:
-        0 4px 12px
-        rgba(50,100,110,0.10);
-
+    box-shadow: 0 4px 12px rgba(50, 100, 110, 0.10);
 }
 
 .nav-icon {
-
     width: 24px;
-
     text-align: center;
-
     font-size: 20px;
-
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
-
 .main {
-
     margin-left: 290px;
-
     width: calc(100% - 290px);
-
 }
 
 .topbar {
-
     min-height: 82px;
-
-    background:
-        rgba(255,255,255,0.92);
-
+    background: rgba(255, 255, 255, 0.92);
     border-bottom: 1px solid #dce7e9;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 0 38px;
-
 }
 
 .page-title h2 {
-
     font-size: 26px;
-
     letter-spacing: 0.3px;
-
     color: #263f45;
-
 }
 
 .page-title p {
-
     font-size: 14px;
-
     color: #829398;
-
     margin-top: 5px;
-
 }
 
 .system-status {
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     background: #e4f2ed;
-
     color: #3d7662;
-
     padding: 10px 16px;
-
     border-radius: 22px;
-
     font-size: 14px;
-
     font-weight: 600;
-
 }
 
 .status-dot {
-
     width: 9px;
-
     height: 9px;
-
     background: #61a98d;
-
     border-radius: 50%;
-
 }
 
 .content {
-
     padding: 32px;
-
     max-width: 1900px;
-
 }
-
-
-/* =====================================================
-   HERO
-===================================================== */
 
 .hero {
-
-    background:
-        linear-gradient(
-            135deg,
-            #3d7f86,
-            #5b9da0
-        );
-
+    background: linear-gradient(135deg, #3d7f86, #5b9da0);
     color: white;
-
     border-radius: 18px;
-
     padding: 35px 38px;
-
     margin-bottom: 30px;
-
     position: relative;
-
     overflow: hidden;
-
     border: 1px solid #77adb0;
-
-    box-shadow:
-        0 8px 22px
-        rgba(57,111,118,0.15);
-
-}
-
-.hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    right: -80px;
-
-    bottom: -140px;
-
-    width: 420px;
-
-    height: 420px;
-
-    border: 1px solid
-        rgba(255,255,255,0.25);
-
-    border-radius: 50%;
-
-}
-
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 80px;
-
-    bottom: -200px;
-
-    width: 400px;
-
-    height: 400px;
-
-    border: 1px solid
-        rgba(255,255,255,0.18);
-
-    border-radius: 50%;
-
+    box-shadow: 0 8px 22px rgba(57, 111, 118, 0.15);
 }
 
 .hero-content {
-
     position: relative;
-
     z-index: 2;
-
 }
 
 .hero h1 {
-
     font-size: 31px;
-
     letter-spacing: 0.6px;
-
     margin-bottom: 10px;
-
 }
 
 .hero p {
-
     color: #e3f2f3;
-
     font-size: 15px;
-
     max-width: 800px;
-
 }
 
 .hero-line {
-
     margin-top: 25px;
-
     width: 160px;
-
     height: 3px;
-
     background: #d8f1ef;
-
 }
 
 .wave {
-
     position: absolute;
-
     bottom: 0;
-
     left: 0;
-
     width: 100%;
-
     height: 30px;
-
     opacity: 0.20;
-
     background:
         repeating-linear-gradient(
             -45deg,
@@ -547,396 +279,217 @@ body {
             transparent 13px,
             transparent 22px
         );
-
 }
 
-
-/* =====================================================
-   CARD
-===================================================== */
-
 .card {
-
     background: #ffffff;
-
     border: 1px solid #dce7e9;
-
     border-radius: 15px;
-
     padding: 25px;
-
     margin-bottom: 25px;
-
-    box-shadow:
-        0 4px 14px
-        rgba(60,100,110,0.06);
-
+    box-shadow: 0 4px 14px rgba(60, 100, 110, 0.06);
 }
 
 .card-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 20px;
-
 }
 
 .card-header h2 {
-
     font-size: 20px;
-
     color: #304c53;
-
 }
 
 .card-header span {
-
     font-size: 14px;
-
     color: #829398;
-
 }
 
-
-/* =====================================================
-   FORM
-===================================================== */
-
 .form-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-
 }
 
 .form-group {
-
     display: flex;
-
     flex-direction: column;
-
 }
 
 label {
-
     font-size: 13px;
-
     font-weight: bold;
-
     color: #61757a;
-
     margin-bottom: 7px;
-
 }
 
 input,
 select,
 button {
-
     width: 100%;
-
     padding: 12px;
-
     border-radius: 8px;
-
     border: 1px solid #cbdde1;
-
     font-size: 14px;
-
 }
 
 input:focus,
 select:focus {
-
     outline: none;
-
     border-color: #3d7f86;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(61,127,134,0.12);
-
+    box-shadow: 0 0 0 3px rgba(61, 127, 134, 0.12);
 }
 
 .btn {
-
     border: none;
-
     cursor: pointer;
-
     font-weight: bold;
-
 }
 
 .btn-primary {
-
     background: #3d7f86;
-
     color: white;
-
 }
 
 .btn-primary:hover {
-
     background: #2f6970;
-
 }
 
 .btn-secondary {
-
     background: #e4f0f1;
-
     color: #315f65;
-
 }
 
 .btn-secondary:hover {
-
     background: #d5e7e9;
-
 }
 
 .action-buttons {
-
     display: flex;
-
     gap: 12px;
-
     margin-top: 20px;
-
 }
 
 .action-buttons button {
-
     width: auto;
-
     min-width: 150px;
-
 }
 
-
-/* =====================================================
-   REPORT HEADER
-===================================================== */
-
 .report-header {
-
     text-align: center;
-
     margin-bottom: 25px;
-
     border-bottom: 2px solid #dce7e9;
-
     padding-bottom: 18px;
-
 }
 
 .report-header h2 {
-
     font-size: 24px;
-
     color: #263f45;
-
     text-transform: uppercase;
-
 }
 
 .report-header h3 {
-
     margin-top: 7px;
-
     font-size: 18px;
-
     color: #3d7f86;
-
 }
 
 .report-header p {
-
     margin-top: 6px;
-
     font-size: 15px;
-
     color: #71858a;
-
 }
 
-
-/* =====================================================
-   TABLE
-===================================================== */
-
 .table-wrapper {
-
     width: 100%;
-
     overflow-x: auto;
-
     border: 1px solid #dce7e9;
-
     border-radius: 10px;
-
 }
 
 .report-table {
-
     width: 100%;
-
-    min-width: 1700px;
-
+    min-width: 1500px;
     border-collapse: collapse;
-
-    table-layout: auto;
-
 }
 
 .report-table th,
 .report-table td {
-
     border: 1px solid #d8e3e5;
-
     padding: 11px 9px;
-
     text-align: center;
-
     vertical-align: middle;
-
     font-size: 14px;
-
     white-space: nowrap;
-
 }
 
 .report-table th {
-
     background: #304c53;
-
     color: white;
-
     font-size: 12px;
-
     font-weight: bold;
-
 }
 
 .report-table .group-header {
-
     background: #3d7f86;
-
     color: white;
-
     font-size: 13px;
-
 }
 
 .report-table td.left {
-
     text-align: left;
-
 }
 
 .report-table tbody tr:hover {
-
     background: #f1f7f8;
-
 }
 
 .report-table tfoot td {
-
     background: #e6f0f1;
-
     font-weight: bold;
-
     font-size: 14px;
-
 }
 
 .amount {
-
     text-align: right !important;
-
     font-variant-numeric: tabular-nums;
-
 }
 
 .total-row {
-
     background: #dcecef !important;
-
 }
 
-
-/* =====================================================
-   MESEJ
-===================================================== */
-
 .mesej {
-
     margin-bottom: 15px;
-
 }
 
 .success {
-
     background: #e4f2ed;
-
     color: #3d7662;
-
     padding: 12px;
-
     border-radius: 8px;
-
 }
 
 .error {
-
     background: #f8e5e5;
-
     color: #9a4d4d;
-
     padding: 12px;
-
     border-radius: 8px;
-
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 .footer {
-
     text-align: center;
-
     padding: 30px;
-
     color: #91a0a4;
-
     font-size: 13px;
-
 }
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 
 @media(max-width:1200px) {
 
     .form-grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -944,106 +497,68 @@ select:focus {
 @media(max-width:800px) {
 
     .sidebar {
-
         width: 78px;
-
         padding: 16px 8px;
-
     }
 
     .brand {
-
         justify-content: center;
-
         padding: 0 0 22px;
-
     }
 
     .brand-text,
     .heritage-mark,
     .nav-title,
     .nav a span {
-
         display: none;
-
     }
 
     .nav a {
-
         justify-content: center;
-
         padding: 15px 5px;
-
     }
 
     .nav-icon {
-
         font-size: 22px;
-
     }
 
     .main {
-
         margin-left: 78px;
-
-        width:
-            calc(100% - 78px);
-
+        width: calc(100% - 78px);
     }
 
     .topbar {
-
         padding: 0 20px;
-
     }
 
     .content {
-
         padding: 20px;
-
     }
 
     .form-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .system-status {
-
         display: none;
-
     }
 
 }
 
-
-/* =====================================================
-   PRINT / PDF
-===================================================== */
-
 @media print {
 
     @page {
-
         size: A3 landscape;
-
         margin: 8mm;
-
     }
 
     * {
-
         -webkit-print-color-adjust: exact !important;
-
         print-color-adjust: exact !important;
-
     }
 
     body {
-
         background: white;
-
     }
 
     .sidebar,
@@ -1052,102 +567,68 @@ select:focus {
     .filter-card,
     .footer,
     .no-print {
-
         display: none !important;
-
     }
 
     .main {
-
         margin: 0;
-
         width: 100%;
-
     }
 
     .content {
-
         padding: 0;
-
         max-width: none;
-
     }
 
     .card {
-
         border: none;
-
         box-shadow: none;
-
         padding: 0;
-
         margin: 0;
-
     }
 
     .report-header {
-
         margin-bottom: 12px;
-
     }
 
     .report-header h2 {
-
         font-size: 20px;
-
     }
 
     .report-header h3 {
-
         font-size: 16px;
-
     }
 
     .report-header p {
-
         font-size: 12px;
-
     }
 
     .table-wrapper {
-
         overflow: visible;
-
         border: none;
-
     }
 
     .report-table {
-
         width: 100%;
-
         min-width: 0;
-
-        font-size: 9px;
-
+        font-size: 10px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .report-table th,
     .report-table td {
-
-        padding: 5px 4px;
-
-        font-size: 8px;
-
+        padding: 6px 5px;
+        font-size: 9px;
     }
 
     .report-table th {
-
         font-size: 8px;
-
     }
 
     tr {
-
         page-break-inside: avoid;
-
         page-break-after: auto;
-
     }
 
 }
@@ -1156,15 +637,9 @@ select:focus {
 
 </head>
 
-
 <body>
 
 <div class="app">
-
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
 
 <aside class="sidebar">
 
@@ -1174,6 +649,7 @@ select:focus {
 src="logo.png"
 class="logo"
 alt="Logo FPB"
+
 >
 
 <div class="brand-text">
@@ -1190,7 +666,6 @@ WILAYAH TERENGGANU
 
 </div>
 
-
 <div class="heritage-mark">
 
 <strong>
@@ -1204,11 +679,9 @@ La Ilaha Illallah
 
 </div>
 
-
 <div class="nav-title">
 MAIN MENU
 </div>
-
 
 <nav class="nav">
 
@@ -1237,7 +710,6 @@ MAIN MENU
 <span>Kod Tempat Kerja</span>
 </a>
 
-
 <div class="nav-title">
 REPORTING
 </div>
@@ -1247,55 +719,30 @@ REPORTING
 <span>Laporan</span>
 </a>
 
-<a
-href="laporan-anggaran.html"
-class="active"
->
-
+<a href="laporan-anggaran.html" class="active">
 <span class="nav-icon">◫</span>
-
-<span>
-Anggaran Duty Bulanan
-</span>
-
+<span>Anggaran Duty Bulanan</span>
 </a>
 
 <a href="Laporan-Penuh.html">
-
 <span class="nav-icon">▤</span>
-
-<span>
-Laporan Penuh
-</span>
-
+<span>Laporan Penuh</span>
 </a>
-
 
 <div class="nav-title">
 SYSTEM
 </div>
 
 <a href="#">
-
 <span class="nav-icon">⚙</span>
-
-<span>
-Tetapan
-</span>
-
+<span>Tetapan</span>
 </a>
 
 </nav>
 
 </aside>
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main class="main">
-
 
 <div class="topbar">
 
@@ -1306,8 +753,7 @@ Anggaran Duty Bulanan
 </h2>
 
 <p>
-Forecast Duty System /
-Wilayah Terengganu
+Forecast Duty System / Wilayah Terengganu
 </p>
 
 </div>
@@ -1322,13 +768,7 @@ System Online
 
 </div>
 
-
 <div class="content">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <div class="hero">
 
@@ -1339,8 +779,7 @@ ANGGARAN RK02
 </h1>
 
 <p>
-Anggaran tuntutan duty anggota
-mengikut pos dan bulan operasi.
+Anggaran tuntutan duty anggota mengikut pos dan bulan operasi.
 </p>
 
 <div class="hero-line"></div>
@@ -1350,11 +789,6 @@ mengikut pos dan bulan operasi.
 <div class="wave"></div>
 
 </div>
-
-
-<!-- =====================================================
-     FILTER
-===================================================== -->
 
 <div class="card filter-card">
 
@@ -1370,15 +804,9 @@ Pilih maklumat laporan
 
 </div>
 
-
-<div
-id="mesej"
-class="mesej"
-></div>
-
+<div id="mesej" class="mesej"></div>
 
 <div class="form-grid">
-
 
 <div class="form-group">
 
@@ -1388,58 +816,22 @@ Bulan
 
 <select id="bulan">
 
-<option value="1">
-Januari
-</option>
-
-<option value="2">
-Februari
-</option>
-
-<option value="3">
-Mac
-</option>
-
-<option value="4">
-April
-</option>
-
-<option value="5">
-Mei
-</option>
-
-<option value="6">
-Jun
-</option>
-
-<option value="7">
-Julai
-</option>
-
-<option value="8">
-Ogos
-</option>
-
-<option value="9">
-September
-</option>
-
-<option value="10">
-Oktober
-</option>
-
-<option value="11">
-November
-</option>
-
-<option value="12">
-Disember
-</option>
+<option value="1">Januari</option>
+<option value="2">Februari</option>
+<option value="3">Mac</option>
+<option value="4">April</option>
+<option value="5">Mei</option>
+<option value="6">Jun</option>
+<option value="7">Julai</option>
+<option value="8">Ogos</option>
+<option value="9">September</option>
+<option value="10">Oktober</option>
+<option value="11">November</option>
+<option value="12">Disember</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -1449,22 +841,13 @@ Tahun
 
 <select id="tahun">
 
-<option value="2026">
-2026
-</option>
-
-<option value="2027">
-2027
-</option>
-
-<option value="2028">
-2028
-</option>
+<option value="2026">2026</option>
+<option value="2027">2027</option>
+<option value="2028">2028</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -1484,39 +867,29 @@ Pos
 
 </div>
 
-
 <div class="action-buttons">
 
 <button
 class="btn btn-primary"
 onclick="janaLaporanAnggaran()"
+
 >
 
-📊 JANA LAPORAN
-
-</button>
-
+📊 JANA LAPORAN </button>
 
 <button
 class="btn btn-secondary"
 onclick="window.print()"
+
 >
 
-🖨️ PRINT / VIEW PDF
-
-</button>
+🖨️ PRINT / VIEW PDF </button>
 
 </div>
 
 </div>
-
-
-<!-- =====================================================
-     REPORT
-===================================================== -->
 
 <div class="card report-card">
-
 
 <div class="report-header">
 
@@ -1538,12 +911,9 @@ Pos
 
 </div>
 
-
 <div class="table-wrapper">
 
-
 <table class="report-table">
-
 
 <thead>
 
@@ -1562,46 +932,42 @@ NAMA ANGGOTA
 </th>
 
 <th rowspan="2">
-GAJI ELAUN<br>(RM)
+JAWATAN
 </th>
 
+<th rowspan="2">
+GAJI / ELAUN<br>(RM)
+</th>
 
 <th colspan="2" class="group-header">
 HARI BIASA
 </th>
 
-
 <th colspan="2" class="group-header">
-HARI OFF &lt; 4 JAM
+HARI OFF < 4 JAM
 </th>
-
 
 <th colspan="2" class="group-header">
 HARI OFF 4–8 JAM
 </th>
 
-
 <th colspan="2" class="group-header">
-HARI OFF &gt; 8 JAM
+HARI OFF > 8 JAM
 </th>
 
-
 <th colspan="2" class="group-header">
-HARI CUTI AM &lt; 8 JAM
+HARI CUTI AM < 8 JAM
 </th>
 
-
 <th colspan="2" class="group-header">
-HARI CUTI AM &gt; 8 JAM
+HARI CUTI AM > 8 JAM
 </th>
-
 
 <th rowspan="2">
-JUMLAH<br>TUNTUTAN<br>(RM)
+JUMLAH<br>TUNTUTAN (RM)
 </th>
 
 </tr>
-
 
 <tr>
 
@@ -1613,6 +979,21 @@ JAM
 RM
 </th>
 
+<th>
+HARI
+</th>
+
+<th>
+RM
+</th>
+
+<th>
+HARI
+</th>
+
+<th>
+RM
+</th>
 
 <th>
 JAM
@@ -1622,33 +1003,13 @@ JAM
 RM
 </th>
 
-
 <th>
-JAM
+HARI
 </th>
 
 <th>
 RM
 </th>
-
-
-<th>
-JAM
-</th>
-
-<th>
-RM
-</th>
-
-
-<th>
-JAM
-</th>
-
-<th>
-RM
-</th>
-
 
 <th>
 JAM
@@ -1662,15 +1023,13 @@ RM
 
 </thead>
 
-
 <tbody id="senaraiAnggaran">
 
 <tr>
 
-<td colspan="17">
+<td colspan="18">
 
-Sila pilih Pos dan Bulan / Tahun
-kemudian tekan JANA LAPORAN
+Sila pilih Pos dan Bulan / Tahun kemudian tekan JANA LAPORAN
 
 </td>
 
@@ -1678,11 +1037,9 @@ kemudian tekan JANA LAPORAN
 
 </tbody>
 
-
 <tfoot id="jumlahAnggaran">
 
 </tfoot>
-
 
 </table>
 
@@ -1692,16 +1049,13 @@ kemudian tekan JANA LAPORAN
 
 </div>
 
-
 <footer class="footer">
 
-FPB DUTY SYSTEM —
-WILAYAH TERENGGANU
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
 
 <br>
 
-© 2026 |
-Operational Duty Management System
+© 2026 | Operational Duty Management System
 
 </footer>
 
@@ -1709,223 +1063,150 @@ Operational Duty Management System
 
 </div>
 
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
-
-// =====================================================
-// SUPABASE CONFIG
-// =====================================================
-
 const SUPABASE_URL =
-    "https://nlwrrrwkjpktrifxeymw.supabase.co";
+"https://nlwrrrwkjpktrifxeymw.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
+"sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-console.log(
-    "SUPABASE BERJAYA DISAMBUNG"
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
-
-// =====================================================
-// SENARAI BULAN
-// =====================================================
+console.log("SUPABASE BERJAYA DISAMBUNG");
 
 const SENARAI_BULAN = [
 
     "",
-
     "Januari",
-
     "Februari",
-
     "Mac",
-
     "April",
-
     "Mei",
-
     "Jun",
-
     "Julai",
-
     "Ogos",
-
     "September",
-
     "Oktober",
-
     "November",
-
     "Disember"
 
 ];
 
-
-// =====================================================
-// LOAD HALAMAN
-// =====================================================
-
 window.addEventListener(
-
     "load",
-
     async function () {
 
         console.log(
             "HALAMAN LAPORAN ANGGARAN SIAP"
         );
 
-        const tahunSelect =
-            document.getElementById(
-                "tahun"
+        const tahunSekarang =
+            String(
+                new Date().getFullYear()
             );
 
-        if (tahunSelect) {
+        const tahunSelect =
+            document.getElementById("tahun");
 
-            const tahunSekarang =
-                String(
-                    new Date()
-                        .getFullYear()
-                );
+        if (tahunSelect) {
 
             const wujud =
                 Array.from(
                     tahunSelect.options
                 ).some(
-
                     function (option) {
-
-                        return
-                            option.value ===
-                            tahunSekarang;
-
+                        return option.value === tahunSekarang;
                     }
-
                 );
 
             if (wujud) {
-
                 tahunSelect.value =
                     tahunSekarang;
-
             }
+
+        }
+
+        const bulanSelect =
+            document.getElementById("bulan");
+
+        if (bulanSelect) {
+
+            bulanSelect.value =
+                String(
+                    new Date().getMonth() + 1
+                );
 
         }
 
         await isiSenaraiPos();
 
     }
-
 );
 
-
-// =====================================================
-// PAPAR MESEJ
-// =====================================================
-
 function paparMesej(
-
     mesej,
-
     jenis = "success"
-
 ) {
 
     const elemen =
-        document.getElementById(
-            "mesej"
-        );
+        document.getElementById("mesej");
 
     if (!elemen) {
 
-        console.log(
-            mesej
-        );
+        console.log(mesej);
 
         return;
 
     }
 
     elemen.className =
-        "mesej " +
-        jenis;
+        "mesej " + jenis;
 
     elemen.textContent =
         mesej;
 
     setTimeout(
-
         function () {
 
-            elemen.textContent =
-                "";
+            elemen.textContent = "";
 
             elemen.className =
                 "mesej";
 
         },
-
         5000
-
     );
 
 }
 
-
-// =====================================================
-// ISI SENARAI POS
-// =====================================================
-
 async function isiSenaraiPos() {
 
     const selectPos =
-        document.getElementById(
-            "pos"
-        );
+        document.getElementById("pos");
 
     if (!selectPos) {
-
         return;
-
     }
 
     selectPos.innerHTML = `
-
         <option value="">
-
             -- Sedang mengambil Pos --
-
         </option>
-
     `;
 
     try {
 
         const result =
             await supabaseClient
-
-                .from(
-                    "jadual_duty"
-                )
-
-                .select(
-                    "pos"
-                );
+                .from("jadual_duty")
+                .select("pos");
 
         console.log(
             "HASIL POS:",
@@ -1933,90 +1214,58 @@ async function isiSenaraiPos() {
         );
 
         if (result.error) {
-
             throw result.error;
-
         }
-
-        const data =
-            result.data || [];
 
         const setPos =
             new Set();
 
-        data.forEach(
-
+        (result.data || []).forEach(
             function (row) {
 
                 if (
-
                     row.pos !== null &&
-
                     row.pos !== undefined &&
-
-                    String(
-                        row.pos
-                    ).trim() !== ""
-
+                    String(row.pos).trim() !== ""
                 ) {
 
                     setPos.add(
-
-                        String(
-                            row.pos
-                        ).trim()
-
+                        String(row.pos).trim()
                     );
 
                 }
 
             }
-
         );
 
         const senaraiPos =
-            Array.from(
-                setPos
-            );
+            Array.from(setPos);
 
         senaraiPos.sort(
-
-            function (a,b) {
+            function (a, b) {
 
                 return a.localeCompare(
-
                     b,
-
                     "ms",
-
                     {
                         numeric: true
                     }
-
                 );
 
             }
-
         );
 
         selectPos.innerHTML = `
-
             <option value="">
-
                 -- Pilih Pos --
-
             </option>
-
         `;
 
         senaraiPos.forEach(
-
             function (pos) {
 
                 const option =
-                    document.createElement(
-                        "option"
-                    );
+                    document.createElement("option");
 
                 option.value =
                     pos;
@@ -2029,7 +1278,6 @@ async function isiSenaraiPos() {
                 );
 
             }
-
         );
 
         console.log(
@@ -2047,13 +1295,9 @@ async function isiSenaraiPos() {
         );
 
         selectPos.innerHTML = `
-
             <option value="">
-
                 -- Gagal Ambil Pos --
-
             </option>
-
         `;
 
         paparMesej(
@@ -2065,903 +1309,511 @@ async function isiSenaraiPos() {
 
 }
 
-
-// =====================================================
-// JANA LAPORAN
-// =====================================================
-
 async function janaLaporanAnggaran() {
-
-    const bulanElement =
-        document.getElementById(
-            "bulan"
-        );
-
-    const tahunElement =
-        document.getElementById(
-            "tahun"
-        );
-
-    const posElement =
-        document.getElementById(
-            "pos"
-        );
-
-    const tbody =
-        document.getElementById(
-            "senaraiAnggaran"
-        );
-
-    const tfoot =
-        document.getElementById(
-            "jumlahAnggaran"
-        );
 
     const bulan =
         parseInt(
-            bulanElement.value,
+            document.getElementById("bulan").value,
             10
         );
 
     const tahun =
         parseInt(
-            tahunElement.value,
+            document.getElementById("tahun").value,
             10
         );
 
     const pos =
         String(
-            posElement.value
+            document.getElementById("pos").value
         ).trim();
 
+    const tbody =
+        document.getElementById("senaraiAnggaran");
+
+    const tfoot =
+        document.getElementById("jumlahAnggaran");
 
     if (!pos) {
 
         paparMesej(
-
             "Sila pilih Pos terlebih dahulu.",
-
             "error"
-
         );
 
         return;
 
     }
 
-
     tbody.innerHTML = `
-
         <tr>
-
-            <td colspan="17">
-
+            <td colspan="18">
                 Sedang mengambil data...
-
             </td>
-
         </tr>
-
     `;
 
-    tfoot.innerHTML =
-        "";
+    tfoot.innerHTML = "";
 
-
-    document
-        .getElementById(
-            "tajukUnit"
-        )
-        .textContent =
+    document.getElementById(
+        "tajukUnit"
+    ).textContent =
         "WILAYAH TERENGGANU";
 
+    document.getElementById(
+        "tajukBulan"
+    ).textContent =
+        SENARAI_BULAN[bulan] +
+        " " +
+        tahun;
 
-    document
-        .getElementById(
-            "tajukBulan"
-        )
-        .textContent =
-
-        SENARAI_BULAN[bulan]
-
-        + " "
-
-        + tahun;
-
-
-    document
-        .getElementById(
-            "tajukPos"
-        )
-        .textContent =
+    document.getElementById(
+        "tajukPos"
+    ).textContent =
         pos;
-
 
     try {
 
-
-        // =================================================
-        // AMBIL DATA DUTY
-        // =================================================
-
         const dutyResult =
-
             await supabaseClient
-
-                .from(
-                    "jadual_duty"
-                )
-
+                .from("jadual_duty")
                 .select(`
-
                     tarikh,
-
                     bulan,
-
                     tahun,
-
                     no_skb,
-
                     kod_duty,
-
                     waktu_tugasan,
-
                     jam_kerja,
-
                     jam_klm,
-
                     pos,
-
-                    dikemaskini_oleh,
-
-                    dikemaskini_pada,
-
-                    id,
-
-                    ketua_pos,
-
-                    kod_tempat_kerja,
-
-                    tempat_kerja,
-
                     nama_anggota,
-
                     no_anggota,
-
-                    kawasan,
-
-                    unit,
-
-                    ketua_unit,
-
-                    nama_ketua_pos,
-
-                    nama_pos_asal,
-
-                    hari,
-
-                    kod_waktu_kerja,
-
                     hari_offday_bertugas,
-
                     jam_offday_bertugas,
-
                     hari_cutiam_bertugas,
-
-                    jam_cutiam_bertugas,
-
-                    pos_tampungan,
-
-                    jam_tampungan
-
+                    jam_cutiam_bertugas
                 `)
-
-                .eq(
-
-                    "bulan",
-
-                    bulan
-
-                )
-
-                .eq(
-
-                    "tahun",
-
-                    tahun
-
-                )
-
-                .eq(
-
-                    "pos",
-
-                    pos
-
-                )
-
+                .eq("bulan", bulan)
+                .eq("tahun", tahun)
+                .eq("pos", pos)
                 .order(
-
                     "tarikh",
-
                     {
-
                         ascending: true
-
                     }
-
                 );
 
-
         console.log(
-
             "HASIL QUERY DUTY:",
-
             dutyResult
-
         );
 
-
         if (dutyResult.error) {
-
             throw dutyResult.error;
-
         }
-
 
         const dataDuty =
             dutyResult.data || [];
 
-
         console.log(
-
             "JUMLAH DATA DUTY:",
-
             dataDuty.length
-
         );
-
 
         if (dataDuty.length === 0) {
 
             tbody.innerHTML = `
-
                 <tr>
-
-                    <td colspan="17">
-
+                    <td colspan="18">
                         Tiada data duty bagi Pos:
-
                         ${pos}
-
                     </td>
-
                 </tr>
-
             `;
 
             paparMesej(
-
-                "Tiada data duty bagi Pos: " +
-                pos,
-
+                "Tiada data duty bagi Pos: " + pos,
                 "error"
-
             );
 
             return;
 
         }
 
-
-        // =================================================
-        // AMBIL DATA ANGGOTA
-        // =================================================
-
-        const senaraiNoSkb = [
-
-            ...
-
-            new Set(
-
-                dataDuty
-
-                    .map(
-
-                        function (duty) {
-
-                            return duty.no_skb;
-
-                        }
-
-                    )
-
-                    .filter(
-
-                        function (no) {
-
-                            return
-
-                                no !== null &&
-
-                                no !== undefined &&
-
-                                String(
-                                    no
-                                ).trim() !== "";
-
-                        }
-
-                    )
-
-            )
-
-        ];
-
-
-        const mapAnggotaDB =
-            new Map();
-
-
-        if (
-            senaraiNoSkb.length > 0
-        ) {
-
-
-            const anggotaResult =
-
-                await supabaseClient
-
-                    .from(
-                        "Data_Anggota"
-                    )
-
-                    .select(`
-
-                        no_skb,
-
-                        gaji_elaun,
-
-                        jawatan
-
-                    `)
-
-                    .in(
-
-                        "no_skb",
-
-                        senaraiNoSkb
-
-                    );
-
-
-            console.log(
-
-                "HASIL DATA ANGGOTA:",
-
-                anggotaResult
-
-            );
-
-
-            if (
-                anggotaResult.error
-            ) {
-
-                throw anggotaResult.error;
-
-            }
-
-
-            const dataAnggota =
-                anggotaResult.data || [];
-
-
-            dataAnggota.forEach(
-
-                function (anggota) {
-
-                    mapAnggotaDB.set(
-
-                        String(
-                            anggota.no_skb
-                        ),
-
-                        anggota
-
-                    );
-
-                }
-
-            );
-
-        }
-
-
-        // =================================================
-        // KUMPUL IKUT ANGGOTA
-        // =================================================
+        const senaraiNoSkb =
+            [
+                ...new Set(
+                    dataDuty
+                        .map(
+                            function (duty) {
+                                return duty.no_skb;
+                            }
+                        )
+                        .filter(
+                            function (no) {
+                                return no !== null &&
+                                    no !== undefined &&
+                                    String(no).trim() !== "";
+                            }
+                        )
+                )
+            ];
 
         const mapAnggota =
             new Map();
 
+        if (senaraiNoSkb.length > 0) {
 
-        dataDuty.forEach(
-
-            function (duty) {
-
-
-                const key =
-                    String(
-                        duty.no_skb
+            const anggotaResult =
+                await supabaseClient
+                    .from("Data_Anggota")
+                    .select(`
+                        no_skb,
+                        nama,
+                        jawatan,
+                        gaji_elaun
+                    `)
+                    .in(
+                        "no_skb",
+                        senaraiNoSkb
                     );
 
+            console.log(
+                "HASIL DATA ANGGOTA:",
+                anggotaResult
+            );
 
-                const anggotaDB =
-                    mapAnggotaDB.get(
-                        key
-                    ) || {};
+            if (anggotaResult.error) {
+                throw anggotaResult.error;
+            }
 
-
-                if (
-                    !mapAnggota.has(
-                        key
-                    )
-                ) {
+            (anggotaResult.data || []).forEach(
+                function (anggota) {
 
                     mapAnggota.set(
+                        String(anggota.no_skb),
+                        anggota
+                    );
 
+                }
+            );
+
+        }
+
+        const kumpulan =
+            new Map();
+
+        dataDuty.forEach(
+            function (duty) {
+
+                const key =
+                    String(duty.no_skb);
+
+                if (!kumpulan.has(key)) {
+
+                    const anggota =
+                        mapAnggota.get(key) || {};
+
+                    kumpulan.set(
                         key,
-
                         {
-
                             no_skb:
                                 duty.no_skb,
 
-                            no_anggota:
-                                duty.no_anggota,
-
                             nama:
-                                duty.nama_anggota,
-
-                            gaji_elaun:
-                                anggotaDB.gaji_elaun || 0,
+                                anggota.nama ||
+                                duty.nama_anggota ||
+                                "",
 
                             jawatan:
-                                anggotaDB.jawatan || "",
+                                anggota.jawatan ||
+                                "",
 
-                            duty: []
+                            gaji_elaun:
+                                toNumber(
+                                    anggota.gaji_elaun
+                                ),
+
+                            duty:
+                                []
 
                         }
-
                     );
 
                 }
 
-
-                mapAnggota
-
+                kumpulan
                     .get(key)
-
                     .duty
-
                     .push(duty);
 
             }
-
         );
 
+        tbody.innerHTML = "";
 
-        // =================================================
-        // JUMLAH KESELURUHAN
-        // =================================================
+        let bil = 1;
 
-        let jumlahJamBiasa =
-            0;
+        let jumlahBiasaRM = 0;
+        let jumlahOff4RM = 0;
+        let jumlahOff8RM = 0;
+        let jumlahCuti8RM = 0;
+        let jumlahCutiLebih8RM = 0;
+        let jumlahKeseluruhanRM = 0;
 
-        let jumlahRMHariBiasa =
-            0;
-
-        let jumlahHariOff4_8 =
-            0;
-
-        let jumlahRMOff4_8 =
-            0;
-
-        let jumlahJamOffLebih8 =
-            0;
-
-        let jumlahRMOffLebih8 =
-            0;
-
-        let jumlahHariCutiAm =
-            0;
-
-        let jumlahRMCutiAm =
-            0;
-
-        let jumlahJamCutiAmLebih8 =
-            0;
-
-        let jumlahRMCutiAmLebih8 =
-            0;
-
-        let jumlahKeseluruhan =
-            0;
-
-
-        tbody.innerHTML =
-            "";
-
-
-        let bil =
-            1;
-
-
-        // =================================================
-        // PROSES SETIAP ANGGOTA
-        // =================================================
-
-        mapAnggota.forEach(
-
+        kumpulan.forEach(
             function (anggota) {
 
+                let jamBiasa = 0;
+                let jumlahRMBiasa = 0;
 
-                const dutyAnggota =
-                    anggota.duty;
+                let hariOff4 = 0;
+                let jumlahRMOff4 = 0;
 
+                let jamOff8 = 0;
+                let jumlahRMOff8 = 0;
 
-                const gajiElaun =
-                    toNumber(
-                        anggota.gaji_elaun
-                    );
+                let hariCuti8 = 0;
+                let jumlahRMCuti8 = 0;
 
+                let jamCutiLebih8 = 0;
+                let jumlahRMCutiLebih8 = 0;
 
-                const jawatan =
-                    String(
-                        anggota.jawatan || ""
-                    )
+                anggota.duty.forEach(
+                    function (duty) {
 
-                    .trim()
+                        const gaji =
+                            anggota.gaji_elaun;
 
-                    .toLowerCase();
+                        const jawatan =
+                            String(
+                                anggota.jawatan || ""
+                            )
+                            .trim()
+                            .toLowerCase();
 
+                        const pelatih =
+                            jawatan.includes(
+                                "pelatih polis bantuan"
+                            );
 
-                const pelatih =
-                    jawatan ===
-                    "pelatih polis bantuan";
+                        const jamKLM =
+                            toNumber(
+                                duty.jam_klm
+                            );
 
+                        const hariOff =
+                            toNumber(
+                                duty.hari_offday_bertugas
+                            );
 
-                const pembahagi =
-                    pelatih
-                        ? 7.5
-                        : 7;
+                        const jamOff =
+                            toNumber(
+                                duty.jam_offday_bertugas
+                            );
 
+                        const hariCuti =
+                            toNumber(
+                                duty.hari_cutiam_bertugas
+                            );
 
-                // =================================================
-                // HARI BIASA
-                // =================================================
+                        const jamCuti =
+                            toNumber(
+                                duty.jam_cutiam_bertugas
+                            );
 
-                const jamBiasa =
+                        // =================================
+                        // HARI BIASA
+                        // =================================
 
-                    dutyAnggota.reduce(
+                        if (jamKLM > 0) {
 
-                        function (
-                            jumlah,
-                            duty
-                        ) {
+                            let kadarBiasa;
 
-                            return
+                            if (pelatih) {
 
-                                jumlah +
+                                kadarBiasa =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7.5
+                                    ) * 1.5;
 
-                                toNumber(
-                                    duty.jam_klm
+                            }
+
+                            else {
+
+                                kadarBiasa =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7
+                                    ) * 1.5;
+
+                            }
+
+                            jamBiasa +=
+                                jamKLM;
+
+                            jumlahRMBiasa +=
+                                kadarBiasa *
+                                jamKLM;
+
+                        }
+
+                        // =================================
+                        // HARI OFF 4–8 JAM
+                        // =================================
+
+                        if (hariOff > 0) {
+
+                            const kadarOff4 =
+                                (
+                                    gaji /
+                                    26 /
+                                    7.5
                                 );
 
-                        },
+                            hariOff4 +=
+                                hariOff;
 
-                        0
+                            jumlahRMOff4 +=
+                                kadarOff4 *
+                                hariOff;
 
-                    );
+                        }
 
+                        // =================================
+                        // HARI OFF > 8 JAM
+                        // =================================
 
-                const rmHariBiasa =
+                        if (jamOff > 0) {
 
-                    (
+                            let kadarOff8;
 
-                        (
+                            if (pelatih) {
 
-                            gajiElaun
+                                kadarOff8 =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7.5
+                                    ) * 2;
 
-                            / 26
+                            }
 
-                            / pembahagi
+                            else {
 
-                        )
+                                kadarOff8 =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7
+                                    ) * 2;
 
-                        * 1.5
+                            }
 
-                    )
+                            jamOff8 +=
+                                jamOff;
 
-                    * jamBiasa;
+                            jumlahRMOff8 +=
+                                kadarOff8 *
+                                jamOff;
 
+                        }
 
-                // =================================================
-                // HARI OFF < 4 JAM
-                // KOSONG
-                // =================================================
+                        // =================================
+                        // CUTI AM < 8 JAM
+                        // =================================
 
-                const jamOffKurang4 =
-                    0;
+                        if (hariCuti > 0) {
 
-                const rmOffKurang4 =
-                    0;
+                            const kadarCuti8 =
+                                (
+                                    gaji /
+                                    26 /
+                                    7
+                                ) * 2;
 
+                            hariCuti8 +=
+                                hariCuti;
 
-                // =================================================
-                // HARI OFF 4–8 JAM
-                // (gaji / 26 / 7) × hari_offday_bertugas
-                // =================================================
+                            jumlahRMCuti8 +=
+                                kadarCuti8 *
+                                hariCuti;
 
-                const hariOff4_8 =
+                        }
 
-                    dutyAnggota.reduce(
+                        // =================================
+                        // CUTI AM > 8 JAM
+                        // =================================
 
-                        function (
-                            jumlah,
-                            duty
-                        ) {
+                        if (jamCuti > 0) {
 
-                            return
+                            let kadarCutiLebih8;
 
-                                jumlah +
+                            if (pelatih) {
 
-                                toNumber(
+                                kadarCutiLebih8 =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7.5
+                                    ) * 3;
 
-                                    duty.hari_offday_bertugas
+                            }
 
-                                );
+                            else {
 
-                        },
+                                kadarCutiLebih8 =
+                                    (
+                                        gaji /
+                                        26 /
+                                        7
+                                    ) * 3;
 
-                        0
+                            }
 
-                    );
+                            jamCutiLebih8 +=
+                                jamCuti;
 
+                            jumlahRMCutiLebih8 +=
+                                kadarCutiLebih8 *
+                                jamCuti;
 
-                const rmOff4_8 =
+                        }
 
-                    (
+                    }
+                );
 
-                        gajiElaun
+                const jumlahRM =
+                    jumlahRMBiasa +
+                    jumlahRMOff4 +
+                    jumlahRMOff8 +
+                    jumlahRMCuti8 +
+                    jumlahRMCutiLebih8;
 
-                        / 26
+                jumlahBiasaRM +=
+                    jumlahRMBiasa;
 
-                        / 7
+                jumlahOff4RM +=
+                    jumlahRMOff4;
 
-                    )
+                jumlahOff8RM +=
+                    jumlahRMOff8;
 
-                    * hariOff4_8;
+                jumlahCuti8RM +=
+                    jumlahRMCuti8;
 
+                jumlahCutiLebih8RM +=
+                    jumlahRMCutiLebih8;
 
-                // =================================================
-                // HARI OFF > 8 JAM
-                // =================================================
-
-                const jamOffLebih8 =
-
-                    dutyAnggota.reduce(
-
-                        function (
-                            jumlah,
-                            duty
-                        ) {
-
-                            return
-
-                                jumlah +
-
-                                toNumber(
-
-                                    duty.jam_offday_bertugas
-
-                                );
-
-                        },
-
-                        0
-
-                    );
-
-
-                const rmOffLebih8 =
-
-                    (
-
-                        (
-
-                            gajiElaun
-
-                            / 26
-
-                            / pembahagi
-
-                        )
-
-                        * 2
-
-                    )
-
-                    * jamOffLebih8;
-
-
-                // =================================================
-                // HARI CUTI AM < 8 JAM
-                // =================================================
-
-                const hariCutiAm =
-
-                    dutyAnggota.reduce(
-
-                        function (
-                            jumlah,
-                            duty
-                        ) {
-
-                            return
-
-                                jumlah +
-
-                                toNumber(
-
-                                    duty.hari_cutiam_bertugas
-
-                                );
-
-                        },
-
-                        0
-
-                    );
-
-
-                const rmCutiAm =
-
-                    (
-
-                        (
-
-                            gajiElaun
-
-                            / 26
-
-                            / 7
-
-                        )
-
-                        * 2
-
-                    )
-
-                    * hariCutiAm;
-
-
-                // =================================================
-                // HARI CUTI AM > 8 JAM
-                // =================================================
-
-                const jamCutiAmLebih8 =
-
-                    dutyAnggota.reduce(
-
-                        function (
-                            jumlah,
-                            duty
-                        ) {
-
-                            return
-
-                                jumlah +
-
-                                toNumber(
-
-                                    duty.jam_cutiam_bertugas
-
-                                );
-
-                        },
-
-                        0
-
-                    );
-
-
-                const rmCutiAmLebih8 =
-
-                    (
-
-                        (
-
-                            gajiElaun
-
-                            / 26
-
-                            / pembahagi
-
-                        )
-
-                        * 3
-
-                    )
-
-                    * jamCutiAmLebih8;
-
-
-                // =================================================
-                // JUMLAH ANGGOTA
-                // =================================================
-
-                const jumlahAnggota =
-
-                    rmHariBiasa
-
-                    + rmOff4_8
-
-                    + rmOffLebih8
-
-                    + rmCutiAm
-
-                    + rmCutiAmLebih8;
-
-
-                // =================================================
-                // JUMLAH LAPORAN
-                // =================================================
-
-                jumlahJamBiasa +=
-                    jamBiasa;
-
-                jumlahRMHariBiasa +=
-                    rmHariBiasa;
-
-                jumlahHariOff4_8 +=
-                    hariOff4_8;
-
-                jumlahRMOff4_8 +=
-                    rmOff4_8;
-
-                jumlahJamOffLebih8 +=
-                    jamOffLebih8;
-
-                jumlahRMOffLebih8 +=
-                    rmOffLebih8;
-
-                jumlahHariCutiAm +=
-                    hariCutiAm;
-
-                jumlahRMCutiAm +=
-                    rmCutiAm;
-
-                jumlahJamCutiAmLebih8 +=
-                    jamCutiAmLebih8;
-
-                jumlahRMCutiAmLebih8 +=
-                    rmCutiAmLebih8;
-
-                jumlahKeseluruhan +=
-                    jumlahAnggota;
-
-
-                // =================================================
-                // PAPAR BARIS
-                // =================================================
+                jumlahKeseluruhanRM +=
+                    jumlahRM;
 
                 const tr =
-                    document.createElement(
-                        "tr"
-                    );
-
+                    document.createElement("tr");
 
                 tr.innerHTML = `
 
@@ -2970,21 +1822,28 @@ async function janaLaporanAnggaran() {
                     </td>
 
                     <td>
-                        ${anggota.no_skb || ""}
+                        ${escapeHTML(
+                            anggota.no_skb
+                        )}
                     </td>
 
                     <td class="left">
-                        ${anggota.nama || ""}
+                        ${escapeHTML(
+                            anggota.nama
+                        )}
+                    </td>
+
+                    <td class="left">
+                        ${escapeHTML(
+                            anggota.jawatan
+                        )}
                     </td>
 
                     <td class="amount">
                         ${formatRM(
-                            gajiElaun
+                            anggota.gaji_elaun
                         )}
                     </td>
-
-
-                    <!-- HARI BIASA -->
 
                     <td>
                         ${formatNumber(
@@ -2994,12 +1853,9 @@ async function janaLaporanAnggaran() {
 
                     <td class="amount">
                         ${formatRM(
-                            rmHariBiasa
+                            jumlahRMBiasa
                         )}
                     </td>
-
-
-                    <!-- OFF < 4 JAM -->
 
                     <td>
                         -
@@ -3009,262 +1865,171 @@ async function janaLaporanAnggaran() {
                         -
                     </td>
 
-
-                    <!-- OFF 4–8 JAM -->
-
                     <td>
                         ${formatNumber(
-                            hariOff4_8
+                            hariOff4
                         )}
                     </td>
 
                     <td class="amount">
                         ${formatRM(
-                            rmOff4_8
+                            jumlahRMOff4
                         )}
                     </td>
 
-
-                    <!-- OFF > 8 JAM -->
-
                     <td>
                         ${formatNumber(
-                            jamOffLebih8
+                            jamOff8
                         )}
                     </td>
 
                     <td class="amount">
                         ${formatRM(
-                            rmOffLebih8
+                            jumlahRMOff8
                         )}
                     </td>
 
-
-                    <!-- CUTI AM < 8 JAM -->
-
                     <td>
                         ${formatNumber(
-                            hariCutiAm
+                            hariCuti8
                         )}
                     </td>
 
                     <td class="amount">
                         ${formatRM(
-                            rmCutiAm
+                            jumlahRMCuti8
                         )}
                     </td>
 
-
-                    <!-- CUTI AM > 8 JAM -->
-
                     <td>
                         ${formatNumber(
-                            jamCutiAmLebih8
+                            jamCutiLebih8
                         )}
                     </td>
 
                     <td class="amount">
                         ${formatRM(
-                            rmCutiAmLebih8
+                            jumlahRMCutiLebih8
                         )}
                     </td>
 
-
-                    <!-- JUMLAH -->
-
                     <td class="amount">
-
-                        <strong>
-
-                            ${formatRM(
-                                jumlahAnggota
-                            )}
-
-                        </strong>
-
+                        ${formatRM(
+                            jumlahRM
+                        )}
                     </td>
 
                 `;
 
-
-                tbody.appendChild(
-                    tr
-                );
-
+                tbody.appendChild(tr);
 
                 bil++;
 
             }
-
         );
-
-
-        // =================================================
-        // JUMLAH KESELURUHAN
-        // =================================================
 
         tfoot.innerHTML = `
 
             <tr class="total-row">
 
-                <td colspan="4">
-
+                <td colspan="5">
                     JUMLAH KESELURUHAN
-
                 </td>
-
 
                 <td>
-
-                    ${formatNumber(
-                        jumlahJamBiasa
-                    )}
-
-                </td>
-
-                <td class="amount">
-
-                    ${formatRM(
-                        jumlahRMHariBiasa
-                    )}
-
-                </td>
-
-
-                <td>
-
                     -
-
                 </td>
 
                 <td class="amount">
+                    ${formatRM(
+                        jumlahBiasaRM
+                    )}
+                </td>
 
+                <td>
                     -
-
                 </td>
-
 
                 <td>
-
-                    ${formatNumber(
-                        jumlahHariOff4_8
-                    )}
-
+                    -
                 </td>
-
-                <td class="amount">
-
-                    ${formatRM(
-                        jumlahRMOff4_8
-                    )}
-
-                </td>
-
 
                 <td>
-
-                    ${formatNumber(
-                        jumlahJamOffLebih8
-                    )}
-
+                    -
                 </td>
 
                 <td class="amount">
-
                     ${formatRM(
-                        jumlahRMOffLebih8
+                        jumlahOff4RM
                     )}
-
                 </td>
-
 
                 <td>
-
-                    ${formatNumber(
-                        jumlahHariCutiAm
-                    )}
-
+                    -
                 </td>
 
                 <td class="amount">
-
                     ${formatRM(
-                        jumlahRMCutiAm
+                        jumlahOff8RM
                     )}
-
                 </td>
-
 
                 <td>
-
-                    ${formatNumber(
-                        jumlahJamCutiAmLebih8
-                    )}
-
+                    -
                 </td>
 
                 <td class="amount">
-
                     ${formatRM(
-                        jumlahRMCutiAmLebih8
+                        jumlahCuti8RM
                     )}
-
                 </td>
 
+                <td>
+                    -
+                </td>
 
                 <td class="amount">
+                    ${formatRM(
+                        jumlahCutiLebih8RM
+                    )}
+                </td>
 
-                    <strong>
-
-                        ${formatRM(
-                            jumlahKeseluruhan
-                        )}
-
-                    </strong>
-
+                <td class="amount">
+                    ${formatRM(
+                        jumlahKeseluruhanRM
+                    )}
                 </td>
 
             </tr>
 
         `;
 
-
         paparMesej(
-
             "Laporan berjaya dijana. " +
-
             dataDuty.length +
-
             " rekod duty diproses.",
-
             "success"
-
         );
-
 
     }
 
     catch (error) {
 
-
         console.error(
-
             "RALAT JANA LAPORAN:",
-
             error
-
         );
-
 
         tbody.innerHTML = `
 
             <tr>
 
-                <td colspan="17">
+                <td colspan="18">
 
                     RALAT:
-
-                    ${error.message}
+                    ${escapeHTML(
+                        error.message
+                    )}
 
                 </td>
 
@@ -3272,110 +2037,91 @@ async function janaLaporanAnggaran() {
 
         `;
 
-
         paparMesej(
-
             error.message,
-
             "error"
-
         );
 
     }
 
 }
 
-
-// =====================================================
-// TUKAR KEPADA NOMBOR
-// =====================================================
-
 function toNumber(nilai) {
 
     if (
-
         nilai === null ||
-
         nilai === undefined ||
-
         nilai === ""
-
     ) {
 
         return 0;
 
     }
 
-
     const nombor =
-
         parseFloat(
-
             String(nilai)
-
-                .replace(
-                    /,/g,
-                    ""
-                )
-
+                .replace(",", "")
         );
 
-
     return isNaN(nombor)
-
         ? 0
-
         : nombor;
 
 }
 
-
-// =====================================================
-// FORMAT NOMBOR
-// =====================================================
-
 function formatNumber(nilai) {
 
     return toNumber(nilai)
-
         .toLocaleString(
-
             "ms-MY",
-
             {
-
                 minimumFractionDigits: 2,
-
                 maximumFractionDigits: 2
-
             }
-
         );
 
 }
 
-
-// =====================================================
-// FORMAT RM
-// =====================================================
-
 function formatRM(nilai) {
 
-    return toNumber(nilai)
+    return "RM " +
+        toNumber(nilai)
+            .toLocaleString(
+                "ms-MY",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            );
 
-        .toLocaleString(
+}
 
-            "ms-MY",
+function escapeHTML(nilai) {
 
-            {
-
-                minimumFractionDigits: 2,
-
-                maximumFractionDigits: 2
-
-            }
-
-        );
+    return String(
+        nilai ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
