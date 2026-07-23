@@ -1,7 +1,7 @@
 // =====================================================
 // JADUAL-DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI PENUH - DIPERBAIKI
+// VERSI PENUH - FIX POPUP MESSAGE
 // =====================================================
 
 
@@ -78,7 +78,7 @@ document.addEventListener(
 
 
 // =====================================================
-// POPUP SYSTEM
+// POPUP
 // =====================================================
 
 function paparPopup(
@@ -91,44 +91,19 @@ function paparPopup(
 
 ) {
 
+    // BUANG POPUP LAMA JIKA ADA
+
     const popupLama = document.getElementById(
 
         "popupSystem"
 
     );
 
-
     if (popupLama) {
 
         popupLama.remove();
 
     }
-
-
-    mesej =
-
-        mesej === null ||
-
-        mesej === undefined ||
-
-        String(mesej).trim() === ""
-
-            ? "Tiada mesej diterima."
-
-            : String(mesej);
-
-
-    tajuk =
-
-        tajuk === null ||
-
-        tajuk === undefined ||
-
-        String(tajuk).trim() === ""
-
-            ? "Makluman"
-
-            : String(tajuk);
 
 
     let icon = "ℹ️";
@@ -149,6 +124,58 @@ function paparPopup(
     else if (jenis === "warning") {
 
         icon = "⚠️";
+
+    }
+
+
+    let tajukPopup = tajuk;
+
+
+    if (!tajukPopup) {
+
+        if (jenis === "success") {
+
+            tajukPopup = "Berjaya";
+
+        }
+
+        else if (jenis === "error") {
+
+            tajukPopup = "Ralat";
+
+        }
+
+        else if (jenis === "warning") {
+
+            tajukPopup = "Amaran";
+
+        }
+
+        else {
+
+            tajukPopup = "Makluman";
+
+        }
+
+    }
+
+
+    // PASTIKAN MESEJ TIDAK KOSONG
+
+    let mesejPopup = mesej;
+
+
+    if (
+
+        mesejPopup === null ||
+
+        mesejPopup === undefined ||
+
+        String(mesejPopup).trim() === ""
+
+    ) {
+
+        mesejPopup = "Tiada mesej diterima daripada sistem.";
 
     }
 
@@ -176,23 +203,23 @@ function paparPopup(
 
             <h3>
 
-                ${escapeHTML(tajuk)}
+                ${tajukPopup}
 
             </h3>
 
 
-            <p>
+            <p class="popup-message">
 
-                ${escapeHTML(mesej)}
+                ${mesejPopup}
 
             </p>
 
 
             <button
 
-                id="btnTutupPopup"
-
                 type="button"
+
+                class="popup-ok-button"
 
             >
 
@@ -205,40 +232,17 @@ function paparPopup(
     `;
 
 
-    document.body.appendChild(
-
-        popup
-
-    );
+    document.body.appendChild(popup);
 
 
-    const btnTutup = document.getElementById(
+    const styleLama = document.getElementById(
 
-        "btnTutupPopup"
+        "popupSystemStyle"
 
     );
 
 
-    if (btnTutup) {
-
-        btnTutup.onclick = function () {
-
-            popup.remove();
-
-        };
-
-    }
-
-
-    if (
-
-        !document.getElementById(
-
-            "stylePopupSystem"
-
-        )
-
-    ) {
+    if (!styleLama) {
 
         const style = document.createElement(
 
@@ -247,7 +251,7 @@ function paparPopup(
         );
 
 
-        style.id = "stylePopupSystem";
+        style.id = "popupSystemStyle";
 
 
         style.innerHTML = `
@@ -258,16 +262,6 @@ function paparPopup(
 
                 inset: 0;
 
-                z-index: 999999;
-
-                display: flex;
-
-                align-items: center;
-
-                justify-content: center;
-
-                padding: 20px;
-
                 background: rgba(
 
                     15,
@@ -276,9 +270,19 @@ function paparPopup(
 
                     42,
 
-                    0.60
+                    0.55
 
                 );
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                z-index: 99999;
+
+                padding: 20px;
 
             }
 
@@ -289,7 +293,7 @@ function paparPopup(
 
                 max-width: 430px;
 
-                background: #ffffff;
+                background: white;
 
                 border-radius: 18px;
 
@@ -309,7 +313,7 @@ function paparPopup(
 
                         0,
 
-                        0.30
+                        0.3
 
                     );
 
@@ -320,71 +324,6 @@ function paparPopup(
                     0.25s
 
                     ease;
-
-            }
-
-
-            #popupSystem .popup-icon {
-
-                font-size: 52px;
-
-                margin-bottom: 12px;
-
-            }
-
-
-            #popupSystem h3 {
-
-                margin: 8px 0 12px;
-
-                color: #0f172a;
-
-                font-size: 22px;
-
-            }
-
-
-            #popupSystem p {
-
-                margin: 0 0 24px;
-
-                color: #475569;
-
-                line-height: 1.6;
-
-                font-size: 16px;
-
-                white-space: pre-wrap;
-
-                word-break: break-word;
-
-            }
-
-
-            #popupSystem button {
-
-                border: none;
-
-                padding: 12px 40px;
-
-                border-radius: 8px;
-
-                background: #2563eb;
-
-                color: white;
-
-                font-size: 15px;
-
-                font-weight: bold;
-
-                cursor: pointer;
-
-            }
-
-
-            #popupSystem button:hover {
-
-                background: #1d4ed8;
 
             }
 
@@ -418,102 +357,91 @@ function paparPopup(
 
             }
 
+
+            #popupSystem .popup-icon {
+
+                font-size: 48px;
+
+                margin-bottom: 10px;
+
+            }
+
+
+            #popupSystem h3 {
+
+                margin: 8px 0;
+
+                color: #0f172a;
+
+                font-size: 22px;
+
+            }
+
+
+            #popupSystem .popup-message {
+
+                color: #475569;
+
+                line-height: 1.6;
+
+                margin: 12px 0 22px;
+
+                white-space: pre-wrap;
+
+                word-break: break-word;
+
+            }
+
+
+            #popupSystem .popup-ok-button {
+
+                border: none;
+
+                padding: 11px 35px;
+
+                border-radius: 8px;
+
+                background: #2563eb;
+
+                color: white;
+
+                font-weight: bold;
+
+                cursor: pointer;
+
+            }
+
+
+            #popupSystem .popup-ok-button:hover {
+
+                background: #1d4ed8;
+
+            }
+
         `;
 
 
-        document.head.appendChild(
-
-            style
-
-        );
+        document.head.appendChild(style);
 
     }
 
-}
 
+    const button = popup.querySelector(
 
-// =====================================================
-// TUTUP POPUP
-// =====================================================
-
-function tutupPopup() {
-
-    const popup = document.getElementById(
-
-        "popupSystem"
+        ".popup-ok-button"
 
     );
 
 
-    if (popup) {
+    if (button) {
 
-        popup.remove();
+        button.onclick = function () {
 
-    }
+            popup.remove();
 
-}
-
-
-// =====================================================
-// ESCAPE HTML
-// =====================================================
-
-function escapeHTML(value) {
-
-    if (
-
-        value === null ||
-
-        value === undefined
-
-    ) {
-
-        return "";
+        };
 
     }
-
-
-    return String(value)
-
-        .replace(
-
-            /&/g,
-
-            "&amp;"
-
-        )
-
-        .replace(
-
-            /</g,
-
-            "&lt;"
-
-        )
-
-        .replace(
-
-            />/g,
-
-            "&gt;"
-
-        )
-
-        .replace(
-
-            /"/g,
-
-            "&quot;"
-
-        )
-
-        .replace(
-
-            /'/g,
-
-            "&#039;"
-
-        );
 
 }
 
@@ -545,32 +473,23 @@ function isiSenaraiUnit() {
     `;
 
 
-    SENARAI_UNIT.forEach(
+    SENARAI_UNIT.forEach(function (unit) {
 
-        function (unit) {
+        const option = document.createElement(
 
-            const option = document.createElement(
+            "option"
 
-                "option"
-
-            );
+        );
 
 
-            option.value = unit;
+        option.value = unit;
+
+        option.textContent = unit;
 
 
-            option.textContent = unit;
+        select.appendChild(option);
 
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
-
-    );
+    });
 
 }
 
@@ -665,11 +584,7 @@ function pasangEventTarikh() {
 
                 "bulan",
 
-                namaBulan[
-
-                    date.getMonth()
-
-                ]
+                namaBulan[date.getMonth()]
 
             );
 
@@ -687,11 +602,7 @@ function pasangEventTarikh() {
 
                 "hari",
 
-                namaHari[
-
-                    date.getDay()
-
-                ]
+                namaHari[date.getDay()]
 
             );
 
@@ -701,10 +612,6 @@ function pasangEventTarikh() {
 
 }
 
-
-// =====================================================
-// KOSONGKAN TARIKH
-// =====================================================
 
 function kosongkanTarikh() {
 
@@ -718,21 +625,17 @@ function kosongkanTarikh() {
 
     ]
 
-        .forEach(
+        .forEach(function (id) {
 
-            function (id) {
+            setValue(
 
-                setValue(
+                id,
 
-                    id,
+                ""
 
-                    ""
+            );
 
-                );
-
-            }
-
-        );
+        });
 
 }
 
@@ -773,18 +676,9 @@ function pasangEventUnit() {
             kosongkanKodTempatKerja();
 
 
-            isiKodDutyIkutUnit(
+            isiKodDutyIkutUnit(unit);
 
-                unit
-
-            );
-
-
-            isiKodTempatKerjaIkutUnit(
-
-                unit
-
-            );
+            isiKodTempatKerjaIkutUnit(unit);
 
 
             if (!unit) return;
@@ -796,53 +690,33 @@ function pasangEventUnit() {
 
                     semuaAnggota
 
-                        .filter(
+                        .filter(function (a) {
 
-                            function (a) {
+                            return (
 
-                                return (
+                                String(a.unit)
 
-                                    String(
+                                    .trim()
 
-                                        a.unit
+                                    .toLowerCase() ===
 
-                                    )
+                                String(unit)
 
-                                        .trim()
+                                    .trim()
 
-                                        .toLowerCase() ===
+                                    .toLowerCase()
 
-                                    String(
+                            );
 
-                                        unit
+                        })
 
-                                    )
+                        .map(function (a) {
 
-                                        .trim()
+                            return a.pos;
 
-                                        .toLowerCase()
+                        })
 
-                                );
-
-                            }
-
-                        )
-
-                        .map(
-
-                            function (a) {
-
-                                return a.pos;
-
-                            }
-
-                        )
-
-                        .filter(
-
-                            Boolean
-
-                        )
+                        .filter(Boolean)
 
                 )
 
@@ -861,32 +735,23 @@ function pasangEventUnit() {
             if (!posSelect) return;
 
 
-            posList.forEach(
+            posList.forEach(function (pos) {
 
-                function (pos) {
+                const option = document.createElement(
 
-                    const option = document.createElement(
+                    "option"
 
-                        "option"
-
-                    );
+                );
 
 
-                    option.value = pos;
+                option.value = pos;
+
+                option.textContent = pos;
 
 
-                    option.textContent = pos;
+                posSelect.appendChild(option);
 
-
-                    posSelect.appendChild(
-
-                        option
-
-                    );
-
-                }
-
-            );
+            });
 
         }
 
@@ -937,65 +802,45 @@ function pasangEventPos() {
 
             const anggotaList = semuaAnggota
 
-                .filter(
+                .filter(function (a) {
 
-                    function (a) {
+                    return (
 
-                        return (
+                        String(a.unit)
 
-                            String(
+                            .trim()
 
-                                a.unit
+                            .toLowerCase() ===
 
-                            )
+                        String(unit)
 
-                                .trim()
+                            .trim()
 
-                                .toLowerCase() ===
+                            .toLowerCase()
 
-                            String(
+                        &&
 
-                                unit
+                        String(a.pos)
 
-                            )
+                            .trim()
 
-                                .trim()
+                            .toLowerCase() ===
 
-                                .toLowerCase()
+                        String(pos)
 
-                            &&
+                            .trim()
 
-                            String(
+                            .toLowerCase()
 
-                                a.pos
+                    );
 
-                            )
+                })
 
-                                .trim()
+                .sort(function (a, b) {
 
-                                .toLowerCase() ===
+                    return (
 
-                            String(
-
-                                pos
-
-                            )
-
-                                .trim()
-
-                                .toLowerCase()
-
-                        );
-
-                    }
-
-                )
-
-                .sort(
-
-                    function (a, b) {
-
-                        return (
+                        (
 
                             a.nama || ""
 
@@ -1005,11 +850,11 @@ function pasangEventPos() {
 
                                 b.nama || ""
 
-                            );
+                            )
 
-                    }
+                    );
 
-                );
+                });
 
 
             const anggotaSelect = document.getElementById(
@@ -1022,39 +867,31 @@ function pasangEventPos() {
             if (!anggotaSelect) return;
 
 
-            anggotaList.forEach(
+            anggotaList.forEach(function (anggota) {
 
-                function (anggota) {
+                const option = document.createElement(
 
-                    const option = document.createElement(
+                    "option"
 
-                        "option"
-
-                    );
+                );
 
 
-                    option.value = anggota.no_skb;
+                option.value = anggota.no_skb;
 
 
-                    option.textContent = anggota.nama;
+                option.textContent = anggota.nama;
 
 
-                    option.dataset.data = JSON.stringify(
+                option.dataset.data = JSON.stringify(
 
-                        anggota
+                    anggota
 
-                    );
+                );
 
 
-                    anggotaSelect.appendChild(
+                anggotaSelect.appendChild(option);
 
-                        option
-
-                    );
-
-                }
-
-            );
+            });
 
         }
 
@@ -1284,7 +1121,7 @@ async function muatAnggota() {
 
         console.error(
 
-            "ERROR MUAT ANGGOTA:",
+            "ERROR ANGGOTA:",
 
             error
 
@@ -1392,7 +1229,7 @@ async function muatKodDuty() {
 
         console.error(
 
-            "ERROR MUAT KOD DUTY:",
+            "ERROR KOD DUTY:",
 
             error
 
@@ -1454,21 +1291,13 @@ function pasangEventKodDuty() {
 
                     return (
 
-                        String(
-
-                            item.unit
-
-                        )
+                        String(item.unit)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            unit
-
-                        )
+                        String(unit)
 
                             .trim()
 
@@ -1476,21 +1305,13 @@ function pasangEventKodDuty() {
 
                         &&
 
-                        String(
-
-                            item.kod
-
-                        )
+                        String(item.kod)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            kod
-
-                        )
+                        String(kod)
 
                             .trim()
 
@@ -1604,77 +1425,57 @@ function isiKodDutyIkutUnit(
 
     semuaKodDuty
 
-        .filter(
+        .filter(function (item) {
 
-            function (item) {
+            return (
 
-                return (
+                String(item.unit)
 
-                    String(
+                    .trim()
 
-                        item.unit
+                    .toLowerCase() ===
 
-                    )
+                String(unit)
 
-                        .trim()
+                    .trim()
 
-                        .toLowerCase() ===
+                    .toLowerCase()
 
-                    String(
+            );
 
-                        unit
+        })
 
-                    )
+        .forEach(function (item) {
 
-                        .trim()
+            const option = document.createElement(
 
-                        .toLowerCase()
+                "option"
 
-                );
-
-            }
-
-        )
-
-        .forEach(
-
-            function (item) {
-
-                const option = document.createElement(
-
-                    "option"
-
-                );
+            );
 
 
-                option.value = item.kod;
+            option.value = item.kod;
 
 
-                option.textContent =
+            option.textContent =
 
-                    item.kod +
+                item.kod +
 
-                    " - " +
+                " - " +
 
-                    item.waktu_tugasan;
-
-
-                option.dataset.data = JSON.stringify(
-
-                    item
-
-                );
+                item.waktu_tugasan;
 
 
-                select.appendChild(
+            option.dataset.data = JSON.stringify(
 
-                    option
+                item
 
-                );
+            );
 
-            }
 
-        );
+            select.appendChild(option);
+
+        });
 
 }
 
@@ -1759,7 +1560,7 @@ async function muatKodTempatKerja() {
 
         console.error(
 
-            "ERROR MUAT TEMPAT KERJA:",
+            "ERROR TEMPAT KERJA:",
 
             error
 
@@ -1816,77 +1617,57 @@ function isiKodTempatKerjaIkutUnit(
 
     semuaKodTempatKerja
 
-        .filter(
+        .filter(function (item) {
 
-            function (item) {
+            return (
 
-                return (
+                String(item.unit)
 
-                    String(
+                    .trim()
 
-                        item.unit
+                    .toLowerCase() ===
 
-                    )
+                String(unit)
 
-                        .trim()
+                    .trim()
 
-                        .toLowerCase() ===
+                    .toLowerCase()
 
-                    String(
+            );
 
-                        unit
+        })
 
-                    )
+        .forEach(function (item) {
 
-                        .trim()
+            const option = document.createElement(
 
-                        .toLowerCase()
+                "option"
 
-                );
-
-            }
-
-        )
-
-        .forEach(
-
-            function (item) {
-
-                const option = document.createElement(
-
-                    "option"
-
-                );
+            );
 
 
-                option.value =
+            option.value =
 
-                    item.kod_tempat_kerja;
-
-
-                option.textContent =
-
-                    item.kod_tempat_kerja +
-
-                    " - " +
-
-                    item.nama_tempat_kerja;
+                item.kod_tempat_kerja;
 
 
-                option.dataset.nama =
+            option.textContent =
 
-                    item.nama_tempat_kerja;
+                item.kod_tempat_kerja +
+
+                " - " +
+
+                item.nama_tempat_kerja;
 
 
-                select.appendChild(
+            option.dataset.nama =
 
-                    option
+                item.nama_tempat_kerja;
 
-                );
 
-            }
+            select.appendChild(option);
 
-        );
+        });
 
 }
 
@@ -1975,21 +1756,13 @@ function isiSenaraiFilterKetuaUnit() {
 
             semuaAnggota
 
-                .map(
+                .map(function (a) {
 
-                    function (a) {
+                    return a.ketua_unit;
 
-                        return a.ketua_unit;
+                })
 
-                    }
-
-                )
-
-                .filter(
-
-                    Boolean
-
-                )
+                .filter(Boolean)
 
         )
 
@@ -1998,32 +1771,23 @@ function isiSenaraiFilterKetuaUnit() {
         .sort();
 
 
-    list.forEach(
+    list.forEach(function (nama) {
 
-        function (nama) {
+        const option = document.createElement(
 
-            const option = document.createElement(
+            "option"
 
-                "option"
-
-            );
+        );
 
 
-            option.value = nama;
+        option.value = nama;
+
+        option.textContent = nama;
 
 
-            option.textContent = nama;
+        select.appendChild(option);
 
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
-
-    );
+    });
 
 }
 
@@ -2164,21 +1928,13 @@ async function simpanDuty() {
 
                 return (
 
-                    String(
-
-                        item.unit
-
-                    )
+                    String(item.unit)
 
                         .trim()
 
                         .toLowerCase() ===
 
-                    String(
-
-                        unitPilihan
-
-                    )
+                    String(unitPilihan)
 
                         .trim()
 
@@ -2186,21 +1942,13 @@ async function simpanDuty() {
 
                     &&
 
-                    String(
-
-                        item.kod
-
-                    )
+                    String(item.kod)
 
                         .trim()
 
                         .toLowerCase() ===
 
-                    String(
-
-                        kodDuty
-
-                    )
+                    String(kodDuty)
 
                         .trim()
 
@@ -2221,21 +1969,13 @@ async function simpanDuty() {
 
                     return (
 
-                        String(
-
-                            item.unit
-
-                        )
+                        String(item.unit)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            unitPilihan
-
-                        )
+                        String(unitPilihan)
 
                             .trim()
 
@@ -2354,6 +2094,11 @@ async function simpanDuty() {
                 "hariCutiam"
 
             );
+
+
+        const sedangEdit =
+
+            dutySedangEdit !== null;
 
 
         const dataDuty = {
@@ -2504,10 +2249,9 @@ async function simpanDuty() {
         let result;
 
 
-        const sedangEdit =
-
-            dutySedangEdit !== null;
-
+        // =================================================
+        // UPDATE
+        // =================================================
 
         if (sedangEdit) {
 
@@ -2538,6 +2282,10 @@ async function simpanDuty() {
         }
 
 
+        // =================================================
+        // INSERT
+        // =================================================
+
         else {
 
             result = await supabaseClient
@@ -2548,68 +2296,46 @@ async function simpanDuty() {
 
                 )
 
-                .insert(
+                .insert([
 
-                    [
+                    dataDuty
 
-                        dataDuty
-
-                    ]
-
-                )
+                ])
 
                 .select();
 
         }
 
 
+        // =================================================
+        // SEMAK ERROR
+        // =================================================
+
         if (result.error) {
 
             console.error(
 
-                "ERROR SUPABASE:",
+                "RALAT SUPABASE:",
 
                 result.error
 
             );
 
 
-            const errorMessage = [
+            const mesejRalat =
 
-                result.error.message,
+                result.error.message ||
 
-                result.error.details,
+                result.error.details ||
 
-                result.error.hint,
+                result.error.hint ||
 
-                result.error.code
-
-                    ? "Kod: " +
-
-                      result.error.code
-
-                    : ""
-
-            ]
-
-                .filter(
-
-                    Boolean
-
-                )
-
-                .join(
-
-                    "\n\n"
-
-                );
+                "Gagal menyimpan data ke dalam jadual jadual_duty.";
 
 
             paparPopup(
 
-                errorMessage ||
-
-                "Gagal menyimpan data ke Supabase.",
+                mesejRalat,
 
                 "error",
 
@@ -2632,27 +2358,65 @@ async function simpanDuty() {
         );
 
 
+        if (
+
+            !result.data ||
+
+            result.data.length === 0
+
+        ) {
+
+            paparPopup(
+
+                "Data mungkin berjaya dihantar tetapi Supabase tidak mengembalikan rekod. Sila semak RLS atau polisi INSERT.",
+
+                "warning",
+
+                "Rekod Tidak Disahkan"
+
+            );
+
+
+            return;
+
+        }
+
+
+        // SIMPAN STATUS SEBELUM RESET
+
+        const tajukBerjaya = sedangEdit
+
+            ? "Duty Dikemaskini"
+
+            : "Duty Berjaya Disimpan";
+
+
+        const mesejBerjaya = sedangEdit
+
+            ? "Rekod Duty berjaya dikemaskini."
+
+            : "Rekod Duty berjaya disimpan.";
+
+
+        // RESET MODE EDIT
+
         dutySedangEdit = null;
 
 
+        // PAPAR POPUP
+
         paparPopup(
 
-            sedangEdit
-
-                ? "Rekod Duty berjaya dikemaskini."
-
-                : "Rekod Duty berjaya disimpan.",
+            mesejBerjaya,
 
             "success",
 
-            sedangEdit
-
-                ? "Duty Dikemaskini"
-
-                : "Duty Berjaya Disimpan"
+            tajukBerjaya
 
         );
 
+
+        // PAPAR SEMULA DATA
 
         await paparDuty();
 
@@ -2670,42 +2434,11 @@ async function simpanDuty() {
         );
 
 
-        const errorMessage = [
-
-            error.message,
-
-            error.details,
-
-            error.hint,
-
-            error.code
-
-                ? "Kod: " +
-
-                  error.code
-
-                : ""
-
-        ]
-
-            .filter(
-
-                Boolean
-
-            )
-
-            .join(
-
-                "\n\n"
-
-            );
-
-
         paparPopup(
 
-            errorMessage ||
+            error.message ||
 
-            "Ralat sistem tidak diketahui.",
+            "Ralat tidak diketahui berlaku.",
 
             "error",
 
@@ -2791,21 +2524,13 @@ async function paparDuty() {
 
         )
 
-        .select(
-
-            "*"
-
-        )
+        .select("*")
 
         .eq(
 
             "tahun",
 
-            Number(
-
-                tahun
-
-            )
+            Number(tahun)
 
         )
 
@@ -2815,11 +2540,7 @@ async function paparDuty() {
 
             getNamaBulan(
 
-                Number(
-
-                    bulan
-
-                )
+                Number(bulan)
 
             )
 
@@ -2875,7 +2596,7 @@ async function paparDuty() {
 
             error.message ||
 
-            "Gagal mengambil data Duty.",
+            "Gagal mengambil data duty.",
 
             "error",
 
@@ -2912,9 +2633,7 @@ async function paparDuty() {
 
                 return (
 
-                    item.nama_anggota ||
-
-                    ""
+                    item.nama_anggota || ""
 
                 )
 
@@ -2957,278 +2676,210 @@ async function paparDuty() {
 
     tbody.innerHTML = senarai
 
-        .map(
+        .map(function (item) {
 
-            function (item) {
+            return `
 
-                return `
+                <tr>
 
-                    <tr>
+                    <td>
 
-                        <td>
+                        ${formatTarikh(
 
-                            ${formatTarikh(
+                            item.tarikh
 
-                                item.tarikh
+                        )}
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.hari || ""}
 
-                            ${escapeHTML(
+                    </td>
 
-                                item.hari || ""
 
-                            )}
+                    <td>
 
-                        </td>
+                        ${item.no_skb || ""}
 
+                    </td>
 
-                        <td>
 
-                            ${escapeHTML(
+                    <td>
 
-                                item.no_skb || ""
+                        ${item.no_anggota || ""}
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        <strong>
 
-                            ${escapeHTML(
+                            ${item.nama_anggota || ""}
 
-                                item.no_anggota || ""
+                        </strong>
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.kawasan || ""}
 
-                            <strong>
+                    </td>
 
-                                ${escapeHTML(
 
-                                    item.nama_anggota || ""
+                    <td>
 
-                                )}
+                        ${item.unit || ""}
 
-                            </strong>
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.ketua_unit || ""}
 
-                            ${escapeHTML(
+                    </td>
 
-                                item.kawasan || ""
 
-                            )}
+                    <td>
 
-                        </td>
+                        ${item.ketua_pos || ""}
 
+                    </td>
 
-                        <td>
 
-                            ${escapeHTML(
+                    <td>
 
-                                item.unit || ""
+                        ${item.pos || item.nama_pos_asal || ""}
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.waktu_tugasan || ""}
 
-                            ${escapeHTML(
+                    </td>
 
-                                item.ketua_unit || ""
 
-                            )}
+                    <td>
 
-                        </td>
+                        ${item.jam_kerja || 0}
 
+                    </td>
 
-                        <td>
 
-                            ${escapeHTML(
+                    <td>
 
-                                item.ketua_pos || ""
+                        ${item.jam_klm || 0}
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.kod_duty || item.kod_waktu_kerja || ""}
 
-                            ${escapeHTML(
+                    </td>
 
-                                item.pos ||
 
-                                item.nama_pos_asal ||
+                    <td>
 
-                                ""
+                        ${item.kod_tempat_kerja || ""}
 
-                            )}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.tempat_kerja || ""}
 
-                            ${escapeHTML(
+                    </td>
 
-                                item.waktu_tugasan || ""
 
-                            )}
+                    <td>
 
-                        </td>
+                        ${item.hari_offday_bertugas == 1
 
+                            ? "Ya"
 
-                        <td>
+                            : "Tidak"}
 
-                            ${item.jam_kerja || 0}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.jam_offday_bertugas || 0}
 
-                            ${item.jam_klm || 0}
+                    </td>
 
-                        </td>
 
+                    <td>
 
-                        <td>
+                        ${item.hari_cutiam_bertugas == 1
 
-                            ${escapeHTML(
+                            ? "Ya"
 
-                                item.kod_duty ||
+                            : "Tidak"}
 
-                                item.kod_waktu_kerja ||
+                    </td>
 
-                                ""
 
-                            )}
+                    <td>
 
-                        </td>
+                        ${item.jam_cutiam_bertugas || 0}
 
+                    </td>
 
-                        <td>
 
-                            ${escapeHTML(
+                    <td>
 
-                                item.kod_tempat_kerja || ""
+                        <button
 
-                            )}
+                            onclick="editDuty('${
 
-                        </td>
+                                item.id
 
+                            }')"
 
-                        <td>
+                        >
 
-                            ${escapeHTML(
+                            ✏️ Edit
 
-                                item.tempat_kerja || ""
+                        </button>
 
-                            )}
 
-                        </td>
+                        <button
 
+                            class="btn-danger"
 
-                        <td>
+                            onclick="padamDuty('${
 
-                            ${item.hari_offday_bertugas == 1
+                                item.id
 
-                                ? "Ya"
+                            }')"
 
-                                : "Tidak"}
+                        >
 
-                        </td>
+                            🗑️ Padam
 
+                        </button>
 
-                        <td>
+                    </td>
 
-                            ${item.jam_offday_bertugas || 0}
+                </tr>
 
-                        </td>
+            `;
 
+        })
 
-                        <td>
-
-                            ${item.hari_cutiam_bertugas == 1
-
-                                ? "Ya"
-
-                                : "Tidak"}
-
-                        </td>
-
-
-                        <td>
-
-                            ${item.jam_cutiam_bertugas || 0}
-
-                        </td>
-
-
-                        <td>
-
-                            <button
-
-                                onclick="editDuty('${
-
-                                    item.id
-
-                                }')"
-
-                            >
-
-                                ✏️ Edit
-
-                            </button>
-
-
-                            <button
-
-                                class="btn-danger"
-
-                                onclick="padamDuty('${
-
-                                    item.id
-
-                                }')"
-
-                            >
-
-                                🗑️ Padam
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-
-        )
-
-        .join(
-
-            ""
-
-        );
+        .join("");
 
 }
 
@@ -3251,11 +2902,7 @@ async function editDuty(
 
                 item.id
 
-            ) === String(
-
-                id
-
-            );
+            ) === String(id);
 
         }
 
@@ -3506,17 +3153,13 @@ async function editDuty(
     }
 
 
-    window.scrollTo(
+    window.scrollTo({
 
-        {
+        top: 0,
 
-            top: 0,
+        behavior: "smooth"
 
-            behavior: "smooth"
-
-        }
-
-    );
+    });
 
 
     paparPopup(
@@ -3635,6 +3278,37 @@ function popupConfirm(
             popup.id = "popupConfirm";
 
 
+            popup.style.cssText = `
+
+                position: fixed;
+
+                inset: 0;
+
+                background: rgba(
+
+                    15,
+
+                    23,
+
+                    42,
+
+                    0.55
+
+                );
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                z-index: 99999;
+
+                padding: 20px;
+
+            `;
+
+
             popup.innerHTML = `
 
                 <div class="popup-box">
@@ -3655,11 +3329,7 @@ function popupConfirm(
 
                     <p>
 
-                        ${escapeHTML(
-
-                            mesej
-
-                        )}
+                        ${mesej}
 
                     </p>
 
@@ -3668,7 +3338,23 @@ function popupConfirm(
 
                         id="btnYa"
 
-                        type="button"
+                        style="
+
+                            border:none;
+
+                            padding:11px 20px;
+
+                            border-radius:8px;
+
+                            background:#dc2626;
+
+                            color:white;
+
+                            font-weight:bold;
+
+                            cursor:pointer;
+
+                        "
 
                     >
 
@@ -3681,11 +3367,21 @@ function popupConfirm(
 
                         id="btnTidak"
 
-                        type="button"
-
                         style="
 
+                            border:none;
+
+                            padding:11px 20px;
+
+                            border-radius:8px;
+
                             background:#64748b;
+
+                            color:white;
+
+                            font-weight:bold;
+
+                            cursor:pointer;
 
                             margin-left:8px;
 
@@ -3709,42 +3405,28 @@ function popupConfirm(
             );
 
 
-            const btnYa = document.getElementById(
+            document.getElementById(
 
                 "btnYa"
 
-            );
-
-
-            const btnTidak = document.getElementById(
-
-                "btnTidak"
-
-            );
-
-
-            btnYa.onclick = function () {
+            ).onclick = function () {
 
                 popup.remove();
 
-                resolve(
-
-                    true
-
-                );
+                resolve(true);
 
             };
 
 
-            btnTidak.onclick = function () {
+            document.getElementById(
+
+                "btnTidak"
+
+            ).onclick = function () {
 
                 popup.remove();
 
-                resolve(
-
-                    false
-
-                );
+                resolve(false);
 
             };
 
@@ -3804,9 +3486,7 @@ function setValue(
 
         element.value =
 
-            value === null ||
-
-            value === undefined
+            value == null
 
                 ? ""
 
@@ -3841,21 +3521,17 @@ function kosongkanMaklumatAnggota() {
 
     ]
 
-        .forEach(
+        .forEach(function (id) {
 
-            function (id) {
+            setValue(
 
-                setValue(
+                id,
 
-                    id,
+                ""
 
-                    ""
+            );
 
-                );
-
-            }
-
-        );
+        });
 
 }
 
@@ -4002,15 +3678,6 @@ function kosongkanKodTempatKerja() {
 
     }
 
-
-    setValue(
-
-        "tempatKerja",
-
-        ""
-
-    );
-
 }
 
 
@@ -4053,11 +3720,7 @@ function getNamaBulan(
     ];
 
 
-    return nama[
-
-        bulan - 1
-
-    ] || "";
+    return nama[bulan - 1] || "";
 
 }
 
@@ -4082,11 +3745,7 @@ function formatTarikh(
     );
 
 
-    if (
-
-        parts.length !== 3
-
-    ) {
+    if (parts.length !== 3) {
 
         return tarikh;
 
