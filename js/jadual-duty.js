@@ -1,17 +1,44 @@
 // =====================================================
 // JADUAL-DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI PENUH - FIX POPUP MESSAGE
+// VERSI PENUH
 // =====================================================
 
 
 // =====================================================
 // SENARAI UNIT
 // =====================================================
+
+const SENARAI_UNIT = [
+
+    "Jerangau",
+    "Chador",
+    "Terengganu",
+    "Setiu",
+    "Rantau Abang",
+    "Kerteh"
+
+];
+
+
+// =====================================================
+// DATA GLOBAL
+// =====================================================
+
+let semuaAnggota = [];
+
+let semuaDuty = [];
+
+let semuaKodDuty = [];
+
+let semuaKodTempatKerja = [];
+
+let dutySedangEdit = null;
+
+
 // =====================================================
 // ISI SENARAI POS TAMPUNGAN
 // AMBIL SEMUA POS DARI DATA_ANGGOTA
-// TANPA FILTER
 // =====================================================
 
 function isiSenaraiPosTampungan() {
@@ -22,7 +49,7 @@ function isiSenaraiPosTampungan() {
 
     if (!select) return;
 
-    // Reset dropdown
+
     select.innerHTML = `
 
         <option value="">
@@ -33,7 +60,7 @@ function isiSenaraiPosTampungan() {
 
     `;
 
-    // Ambil semua pos dari semua anggota
+
     const posList = [
 
         ...new Set(
@@ -64,61 +91,45 @@ function isiSenaraiPosTampungan() {
 
     ];
 
-    // Susun ikut abjad
+
     posList.sort(function (a, b) {
 
         return a.localeCompare(
+
             b,
+
             "ms",
+
             {
+
                 numeric: true
+
             }
+
         );
 
     });
 
-    // Masukkan ke dropdown
+
     posList.forEach(function (pos) {
 
-        const option =
-            document.createElement(
-                "option"
-            );
+        const option = document.createElement(
+
+            "option"
+
+        );
+
 
         option.value = pos;
 
         option.textContent = pos;
+
 
         select.appendChild(option);
 
     });
 
 }
-const SENARAI_UNIT = [
-
-    "Jerangau",
-    "Chador",
-    "Terengganu",
-    "Setiu",
-    "Rantau Abang",
-    "Kerteh"
-
-];
-
-
-// =====================================================
-// DATA GLOBAL
-// =====================================================
-
-let semuaAnggota = [];
-
-let semuaDuty = [];
-
-let semuaKodDuty = [];
-
-let semuaKodTempatKerja = [];
-
-let dutySedangEdit = null;
 
 
 // =====================================================
@@ -131,31 +142,51 @@ document.addEventListener(
 
     async function () {
 
+
         isiSenaraiUnit();
+
 
         pasangEventTarikh();
 
+
         pasangEventUnit();
+
 
         pasangEventPos();
 
+
         pasangEventAnggota();
+
 
         pasangEventKodDuty();
 
+
         pasangEventKodTempatKerja();
+
 
         pasangEventFilter();
 
+
         await muatAnggota();
+
+
+        // ISI DROPDOWN POS TAMPUNGAN
+        // SELEPAS DATA ANGGOTA BERJAYA DIMUATKAN
+
+        isiSenaraiPosTampungan();
+
 
         await muatKodDuty();
 
+
         await muatKodTempatKerja();
+
 
         isiSenaraiFilterKetuaUnit();
 
+
         await paparDuty();
+
 
     }
 
@@ -176,11 +207,13 @@ function paparPopup(
 
 ) {
 
+
     const popupLama = document.getElementById(
 
         "popupSystem"
 
     );
+
 
     if (popupLama) {
 
@@ -256,7 +289,9 @@ function paparPopup(
 
     ) {
 
-        mesejPopup = "Tiada mesej diterima daripada sistem.";
+        mesejPopup =
+
+            "Tiada mesej diterima daripada sistem.";
 
     }
 
@@ -498,13 +533,6 @@ function paparPopup(
                 background: #1d4ed8;
 
             }
-
-
-            /* =========================================
-
-               BUTANG TINDAKAN DUTY
-
-            ========================================= */
 
 
             .tindakan-duty {
@@ -817,16 +845,21 @@ function pasangEventUnit() {
 
             kosongkanPos();
 
+
             kosongkanAnggota();
+
 
             kosongkanMaklumatAnggota();
 
+
             kosongkanKodDuty();
+
 
             kosongkanKodTempatKerja();
 
 
             isiKodDutyIkutUnit(unit);
+
 
             isiKodTempatKerjaIkutUnit(unit);
 
@@ -943,6 +976,7 @@ function pasangEventPos() {
 
 
             kosongkanAnggota();
+
 
             kosongkanMaklumatAnggota();
 
@@ -2046,6 +2080,15 @@ async function simpanDuty() {
         );
 
 
+        // POS TAMPUNGAN DIPILIH DARIPADA DROPDOWN
+
+        const posTampungan = getValue(
+
+            "posTampungan"
+
+        );
+
+
         const unitPilihan = getValue(
 
             "unitPilihan"
@@ -2287,15 +2330,22 @@ async function simpanDuty() {
 
             pos: anggota.pos,
 
-            pos_tampungan: anggota.pos,
+
+            // NILAI POS TAMPUNGAN DARI DROPDOWN
+
+            pos_tampungan: posTampungan,
+
 
             nama_pos_asal: anggota.pos,
 
             jam_tampungan:
+
                 duty.jam_kerja,
 
             hari: getValue(
+
                 "hari"
+
             ),
 
             waktu_tugasan:
@@ -2402,10 +2452,6 @@ async function simpanDuty() {
         let result;
 
 
-        // =================================================
-        // UPDATE
-        // =================================================
-
         if (sedangEdit) {
 
             result = await supabaseClient
@@ -2435,10 +2481,6 @@ async function simpanDuty() {
         }
 
 
-        // =================================================
-        // INSERT
-        // =================================================
-
         else {
 
             result = await supabaseClient
@@ -2459,10 +2501,6 @@ async function simpanDuty() {
 
         }
 
-
-        // =================================================
-        // SEMAK ERROR
-        // =================================================
 
         if (result.error) {
 
@@ -2598,19 +2636,6 @@ async function simpanDuty() {
 
 // =====================================================
 // PAPAR DUTY
-// =====================================================
-// BAHAGIAN INI SAHAJA DIUBAH
-// PAPARAN:
-// Tarikh
-// Nama Anggota
-// Kod TK
-// Kod WK
-// KLM Hari Biasa
-// Offday (Hari)
-// Offday (Jam)
-// Cuti Am (Hari)
-// Cuti Am (Jam)
-// Tindakan
 // =====================================================
 
 async function paparDuty() {
@@ -2840,9 +2865,6 @@ async function paparDuty() {
 
                 <tr>
 
-
-                    <!-- TARIKH -->
-
                     <td>
 
                         ${formatTarikh(
@@ -2853,8 +2875,6 @@ async function paparDuty() {
 
                     </td>
 
-
-                    <!-- NAMA ANGGOTA -->
 
                     <td>
 
@@ -2867,16 +2887,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KOD TK -->
-
                     <td>
 
                         ${item.kod_tempat_kerja || ""}
 
                     </td>
 
-
-                    <!-- KOD WK -->
 
                     <td>
 
@@ -2893,16 +2909,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KLM HARI BIASA -->
-
                     <td>
 
                         ${item.jam_klm || 0}
 
                     </td>
 
-
-                    <!-- OFFDAY HARI -->
 
                     <td>
 
@@ -2911,16 +2923,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- OFFDAY JAM -->
-
                     <td>
 
                         ${item.jam_offday_bertugas || 0}
 
                     </td>
 
-
-                    <!-- CUTI AM HARI -->
 
                     <td>
 
@@ -2929,8 +2937,6 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- CUTI AM JAM -->
-
                     <td>
 
                         ${item.jam_cutiam_bertugas || 0}
@@ -2938,14 +2944,10 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- TINDAKAN -->
-
                     <td>
 
                         <div class="tindakan-duty">
 
-
-                            <!-- DUPLICATE -->
 
                             <button
 
@@ -2968,8 +2970,6 @@ async function paparDuty() {
                             </button>
 
 
-                            <!-- EDIT -->
-
                             <button
 
                                 type="button"
@@ -2990,8 +2990,6 @@ async function paparDuty() {
 
                             </button>
 
-
-                            <!-- DELETE -->
 
                             <button
 
@@ -3017,7 +3015,6 @@ async function paparDuty() {
                         </div>
 
                     </td>
-
 
                 </tr>
 
@@ -3187,6 +3184,15 @@ async function editDuty(
 
     setValue(
 
+        "posTampungan",
+
+        duty.pos_tampungan
+
+    );
+
+
+    setValue(
+
         "kodDuty",
 
         duty.kod_duty ||
@@ -3349,11 +3355,6 @@ async function duplicateDuty(
     if (!duty) return;
 
 
-    // PENTING:
-    // DUPLICATE BUKAN EDIT
-    // dutySedangEdit KEKAL NULL
-    // SUPAYA TEKAN SIMPAN = INSERT DATA BARU
-
     dutySedangEdit = null;
 
 
@@ -3479,6 +3480,15 @@ async function duplicateDuty(
         );
 
     }
+
+
+    setValue(
+
+        "posTampungan",
+
+        duty.pos_tampungan
+
+    );
 
 
     setValue(
@@ -4208,4 +4218,4 @@ function formatTarikh(
 
     );
 
-} 
+}
