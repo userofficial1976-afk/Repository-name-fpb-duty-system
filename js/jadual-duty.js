@@ -1,7 +1,7 @@
 // =====================================================
 // JADUAL-DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI PENUH - DIKEMASKINI
+// VERSI PENUH
 // =====================================================
 
 
@@ -643,7 +643,17 @@ function pasangEventUnit() {
 
                             return (
 
-                                a.unit === unit
+                                String(a.unit)
+
+                                    .trim()
+
+                                    .toLowerCase() ===
+
+                                String(unit)
+
+                                    .trim()
+
+                                    .toLowerCase()
 
                             );
 
@@ -746,9 +756,31 @@ function pasangEventPos() {
 
                     return (
 
-                        a.unit === unit &&
+                        String(a.unit)
 
-                        a.pos === pos
+                            .trim()
+
+                            .toLowerCase() ===
+
+                        String(unit)
+
+                            .trim()
+
+                            .toLowerCase()
+
+                        &&
+
+                        String(a.pos)
+
+                            .trim()
+
+                            .toLowerCase() ===
+
+                        String(pos)
+
+                            .trim()
+
+                            .toLowerCase()
 
                     );
 
@@ -1011,6 +1043,15 @@ async function muatAnggota() {
 
         semuaAnggota = data || [];
 
+
+        console.log(
+
+            "ANGGOTA BERJAYA DIMUATKAN:",
+
+            semuaAnggota
+
+        );
+
     }
 
 
@@ -1101,7 +1142,7 @@ async function muatKodDuty() {
 
         console.log(
 
-            "Kod Duty berjaya dimuatkan:",
+            "KOD DUTY BERJAYA DIMUATKAN:",
 
             semuaKodDuty
 
@@ -1168,21 +1209,13 @@ function pasangEventKodDuty() {
 
                     return (
 
-                        String(
-
-                            item.unit
-
-                        )
+                        String(item.unit)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            unit
-
-                        )
+                        String(unit)
 
                             .trim()
 
@@ -1190,21 +1223,13 @@ function pasangEventKodDuty() {
 
                         &&
 
-                        String(
-
-                            item.kod
-
-                        )
+                        String(item.kod)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            kod
-
-                        )
+                        String(kod)
 
                             .trim()
 
@@ -1219,8 +1244,6 @@ function pasangEventKodDuty() {
 
             if (data) {
 
-                // WAKTU TUGASAN
-
                 setValue(
 
                     "waktuTugasan",
@@ -1230,8 +1253,6 @@ function pasangEventKodDuty() {
                 );
 
 
-                // JAM KERJA
-
                 setValue(
 
                     "jamKerja",
@@ -1240,8 +1261,6 @@ function pasangEventKodDuty() {
 
                 );
 
-
-                // JAM KLM
 
                 setValue(
 
@@ -1443,6 +1462,15 @@ async function muatKodTempatKerja() {
 
 
         semuaKodTempatKerja = data || [];
+
+
+        console.log(
+
+            "TEMPAT KERJA BERJAYA DIMUATKAN:",
+
+            semuaKodTempatKerja
+
+        );
 
     }
 
@@ -1847,21 +1875,13 @@ async function simpanDuty() {
 
                     return (
 
-                        String(
-
-                            item.unit
-
-                        )
+                        String(item.unit)
 
                             .trim()
 
                             .toLowerCase() ===
 
-                        String(
-
-                            unitPilihan
-
-                        )
+                        String(unitPilihan)
 
                             .trim()
 
@@ -2002,7 +2022,6 @@ async function simpanDuty() {
 
             ),
 
-
             no_skb: anggota.no_skb,
 
             no_anggota: anggota.no_anggota,
@@ -2027,16 +2046,13 @@ async function simpanDuty() {
 
             ),
 
-
             waktu_tugasan:
 
                 duty.waktu_tugasan,
 
-
             jam_kerja:
 
                 duty.jam_kerja,
-
 
             jam_klm:
 
@@ -2046,26 +2062,21 @@ async function simpanDuty() {
 
                 ),
 
-
             kod_duty:
 
                 duty.kod,
-
 
             kod_waktu_kerja:
 
                 duty.kod,
 
-
             kod_tempat_kerja:
 
                 tempatKerja.kod_tempat_kerja,
 
-
             tempat_kerja:
 
                 tempatKerja.nama_tempat_kerja,
-
 
             hari_offday_bertugas:
 
@@ -2076,7 +2087,6 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
-
 
             jam_offday_bertugas:
 
@@ -2090,7 +2100,6 @@ async function simpanDuty() {
 
                 ),
 
-
             hari_cutiam_bertugas:
 
                 hariCutiamElement &&
@@ -2100,7 +2109,6 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
-
 
             jam_cutiam_bertugas:
 
@@ -2114,11 +2122,9 @@ async function simpanDuty() {
 
                 ),
 
-
             dikemaskini_oleh:
 
                 "Sistem",
-
 
             dikemaskini_pada:
 
@@ -2127,8 +2133,44 @@ async function simpanDuty() {
         };
 
 
+        // =================================================
+        // PAPAR DATA SEBELUM SIMPAN
+        // =================================================
+
+        console.log(
+
+            "===================================="
+
+        );
+
+
+        console.log(
+
+            "DATA YANG AKAN DISIMPAN:"
+
+        );
+
+
+        console.table(
+
+            dataDuty
+
+        );
+
+
+        console.log(
+
+            "===================================="
+
+        );
+
+
         let result;
 
+
+        // =================================================
+        // UPDATE
+        // =================================================
 
         if (dutySedangEdit) {
 
@@ -2152,10 +2194,17 @@ async function simpanDuty() {
 
                     dutySedangEdit
 
-                );
+                )
+
+                .select();
+
 
         }
 
+
+        // =================================================
+        // INSERT
+        // =================================================
 
         else {
 
@@ -2171,14 +2220,23 @@ async function simpanDuty() {
 
                     dataDuty
 
-                ]);
+                ])
+
+                .select();
+
 
         }
 
 
+        // =================================================
+        // SEMAK ERROR
+        // =================================================
+
         if (result.error) {
 
             console.error(
+
+                "ERROR SUPABASE:",
 
                 result.error
 
@@ -2201,6 +2259,54 @@ async function simpanDuty() {
         }
 
 
+        // =================================================
+        // SEMAK DATA BERJAYA MASUK
+        // =================================================
+
+        console.log(
+
+            "DATA BERJAYA DISIMPAN:",
+
+            result.data
+
+        );
+
+
+        if (
+
+            !result.data ||
+
+            result.data.length === 0
+
+        ) {
+
+            paparPopup(
+
+                "Supabase tidak mengembalikan rekod yang disimpan. Sila semak RLS atau polisi INSERT.",
+
+                "warning",
+
+                "Rekod Tidak Disahkan"
+
+            );
+
+
+            return;
+
+        }
+
+
+        // =================================================
+        // RESET MODE EDIT
+        // =================================================
+
+        dutySedangEdit = null;
+
+
+        // =================================================
+        // POPUP BERJAYA
+        // =================================================
+
         paparPopup(
 
             dutySedangEdit
@@ -2220,8 +2326,9 @@ async function simpanDuty() {
         );
 
 
-        dutySedangEdit = null;
-
+        // =================================================
+        // PAPAR SEMULA DATA
+        // =================================================
 
         await paparDuty();
 
@@ -2230,7 +2337,13 @@ async function simpanDuty() {
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+
+            "ERROR SISTEM:",
+
+            error
+
+        );
 
 
         paparPopup(
@@ -2373,6 +2486,15 @@ async function paparDuty() {
 
 
     if (error) {
+
+        console.error(
+
+            "ERROR PAPAR DUTY:",
+
+            error
+
+        );
+
 
         paparPopup(
 
