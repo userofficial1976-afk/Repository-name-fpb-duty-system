@@ -13,168 +13,474 @@ content="width=device-width, initial-scale=1.0"
 >
 
 <title>
-
-Senarai Anggota - FPB Duty System
-
+Senarai Anggota — FPB Duty System
 </title>
 
 <script
-
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
 
 <style>
 
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
 
     box-sizing: border-box;
 
-    font-family: Arial, sans-serif;
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
 
 }
 
 
 body {
 
-    margin: 0;
+    background: #f4f7fb;
 
-    background: #f1f5f9;
-
-    color: #1e293b;
+    color: #263238;
 
 }
 
 
-header {
+/* =====================================================
+   APP
+===================================================== */
 
-    background: #0f172a;
-
-    color: white;
-
-    padding: 20px 25px;
-
-}
-
-
-header h1 {
-
-    margin: 0;
-
-    font-size: 25px;
-
-}
-
-
-header p {
-
-    margin: 6px 0 0;
-
-    color: #cbd5e1;
-
-}
-
-
-nav {
-
-    background: #1e293b;
-
-    padding: 10px 20px;
+.app {
 
     display: flex;
 
-    gap: 10px;
+    height: 100vh;
 
-    flex-wrap: wrap;
+    overflow: hidden;
 
 }
 
 
-nav a {
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 270px;
+
+    flex-shrink: 0;
+
+    background: #253447;
 
     color: white;
 
+    padding: 22px 14px;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #dbe3ec;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 10px 22px;
+
+    border-bottom: 1px solid #415166;
+
+}
+
+
+.logo {
+
+    width: 52px;
+
+    height: 52px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 15px;
+
+    letter-spacing: 0.4px;
+
+}
+
+
+.brand-text p {
+
+    color: #b9c5d3;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+
+}
+
+
+.heritage-mark {
+
+    margin: 20px 8px;
+
+    padding: 13px;
+
+    border: 1px solid #46576c;
+
+    border-radius: 10px;
+
+    background: #2d3d50;
+
+}
+
+
+.heritage-mark strong {
+
+    display: block;
+
+    font-size: 11px;
+
+}
+
+
+.heritage-mark span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #b9c5d3;
+
+    font-size: 10px;
+
+}
+
+
+.nav-title {
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+
+    font-weight: bold;
+
+    margin: 24px 12px 9px;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: #d7e0ea;
+
     text-decoration: none;
 
-    padding: 9px 14px;
+    padding: 12px 14px;
 
-    border-radius: 6px;
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+
+}
+
+
+.nav a:hover {
+
+    background: #34475c;
+
+    color: white;
+
+}
+
+
+.nav a.active {
+
+    background: #ffffff;
+
+    color: #253447;
+
+}
+
+
+.nav-icon {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    min-height: 78px;
+
+    flex-shrink: 0;
+
+    background: white;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 32px;
+
+}
+
+
+.page-title h2 {
+
+    font-size: 24px;
+
+    color: #26384d;
+
+}
+
+
+.page-title p {
+
+    font-size: 13px;
+
+    color: #7b8794;
+
+    margin-top: 4px;
+
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #eef5f1;
+
+    color: #4c705d;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #6da581;
+
+    border-radius: 50%;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    padding: 24px 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.page-header {
+
+    background: #dfeaf3;
+
+    border: 1px solid #cfdae5;
+
+    border-radius: 13px;
+
+    padding: 20px 24px;
+
+    flex-shrink: 0;
+
+}
+
+
+.page-header h1 {
+
+    font-size: 24px;
+
+    color: #30465d;
+
+}
+
+
+.page-header p {
+
+    margin-top: 6px;
+
+    color: #68798b;
 
     font-size: 14px;
 
 }
 
 
-nav a:hover,
+/* =====================================================
+   FILTER CARD
+===================================================== */
 
-nav a.active {
-
-    background: #2563eb;
-
-}
-
-
-.container {
-
-    max-width: 1500px;
-
-    margin: auto;
-
-    padding: 20px;
-
-}
-
-
-.card {
+.filter-card {
 
     background: white;
 
+    border: 1px solid #e1e8ef;
+
     border-radius: 12px;
 
-    padding: 20px;
-
-    margin-bottom: 20px;
+    padding: 18px;
 
     box-shadow:
 
-        0 3px 12px
+        0 3px 10px
 
-        rgba(0,0,0,0.08);
+        rgba(54, 72, 91, 0.05);
 
-}
-
-
-h2 {
-
-    margin-top: 0;
-
-    color: #0f172a;
+    flex-shrink: 0;
 
 }
 
 
-.grid {
+.filter-grid {
 
     display: grid;
 
     grid-template-columns:
 
-        repeat(
+        2fr
 
-            auto-fit,
+        1fr
 
-            minmax(
+        1fr
 
-                220px,
+        1fr
 
-                1fr
+        auto;
 
-            )
+    gap: 12px;
 
-        );
-
-    gap: 15px;
+    align-items: end;
 
 }
 
@@ -183,7 +489,11 @@ label {
 
     display: block;
 
-    font-weight: bold;
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #526274;
 
     margin-bottom: 6px;
 
@@ -191,172 +501,210 @@ label {
 
 
 input,
-
 select,
-
 button {
 
     width: 100%;
 
-    padding: 11px;
+    min-height: 40px;
 
-    border-radius: 7px;
+    padding: 9px 11px;
 
-    border: 1px solid #cbd5e1;
+    border-radius: 8px;
 
-    font-size: 14px;
+    border: 1px solid #ccd7e2;
+
+    font-size: 13px;
+
+    outline: none;
 
 }
 
 
-input[readonly] {
+input:focus,
+select:focus {
 
-    background: #f1f5f9;
+    border-color: #8ca9c2;
 
-    color: #475569;
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(140, 169, 194, 0.15);
 
 }
 
 
 button {
-
-    background: #2563eb;
-
-    color: white;
 
     border: none;
 
     cursor: pointer;
 
-    font-weight: bold;
+    font-weight: 700;
+
+    transition: 0.2s;
 
 }
 
 
-button:hover {
+.btn-primary {
 
-    background: #1d4ed8;
+    background: #5d7892;
 
-}
-
-
-.btn-danger {
-
-    background: #dc2626;
+    color: white;
 
 }
 
 
-.btn-danger:hover {
+.btn-primary:hover {
 
-    background: #b91c1c;
+    background: #4d667d;
 
 }
 
 
 .btn-warning {
 
-    background: #f59e0b;
+    background: #d8a75d;
+
+    color: white;
 
 }
 
 
 .btn-warning:hover {
 
-    background: #d97706;
+    background: #c2924c;
 
 }
 
 
-/* BUTTON TINDAKAN */
+.btn-danger {
 
-.btn-edit {
-
-    background: #f59e0b;
+    background: #c97979;
 
     color: white;
 
-    border: none;
+}
 
-    padding: 8px 12px;
 
-    border-radius: 6px;
+.btn-danger:hover {
 
-    cursor: pointer;
-
-    font-weight: bold;
-
-    margin-right: 5px;
+    background: #b86464;
 
 }
 
 
-.btn-edit:hover {
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-    background: #d97706;
+.success,
+.error {
 
-}
+    padding: 10px 13px;
 
+    border-radius: 8px;
 
-.btn-delete {
+    margin-top: 12px;
 
-    background: #dc2626;
-
-    color: white;
-
-    border: none;
-
-    padding: 8px 12px;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-}
-
-
-.btn-delete:hover {
-
-    background: #b91c1c;
+    font-size: 13px;
 
 }
 
 
 .success {
 
-    background: #dcfce7;
+    background: #e4f2e8;
 
-    color: #166534;
-
-    padding: 10px;
-
-    border-radius: 6px;
-
-    margin-bottom: 15px;
+    color: #477154;
 
 }
 
 
 .error {
 
-    background: #fee2e2;
+    background: #f8e5e5;
 
-    color: #991b1b;
+    color: #914f4f;
 
-    padding: 10px;
+}
 
-    border-radius: 6px;
 
-    margin-bottom: 15px;
+/* =====================================================
+   TABLE CARD
+===================================================== */
+
+.table-card {
+
+    background: white;
+
+    border: 1px solid #e1e8ef;
+
+    border-radius: 12px;
+
+    box-shadow:
+
+        0 3px 10px
+
+        rgba(54, 72, 91, 0.05);
+
+    min-height: 0;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+}
+
+
+.table-header {
+
+    padding: 16px 20px;
+
+    border-bottom: 1px solid #e5ebf0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.table-header h2 {
+
+    font-size: 18px;
+
+    color: #30465d;
+
+}
+
+
+.table-header span {
+
+    font-size: 12px;
+
+    color: #8793a0;
 
 }
 
 
 .table-wrapper {
 
-    overflow-x: auto;
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: auto;
 
 }
 
@@ -365,40 +713,60 @@ table {
 
     width: 100%;
 
-    border-collapse: collapse;
+    min-width: 1350px;
 
-    min-width: 1500px;
+    border-collapse: collapse;
 
 }
 
 
 th,
-
 td {
 
-    border-bottom: 1px solid #e2e8f0;
-
-    padding: 10px;
+    padding: 11px 12px;
 
     text-align: left;
 
     white-space: nowrap;
+
+    border-bottom: 1px solid #edf1f4;
+
+    font-size: 13px;
 
 }
 
 
 th {
 
-    background: #0f172a;
+    position: sticky;
 
-    color: white;
+    top: 0;
+
+    z-index: 5;
+
+    background: #edf3f7;
+
+    color: #526274;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
 
 }
 
 
-tr:hover {
+td {
 
-    background: #f8fafc;
+    color: #465565;
+
+}
+
+
+tbody tr:hover {
+
+    background: #f7fafc;
 
 }
 
@@ -409,30 +777,62 @@ tr:hover {
 
     padding: 5px 9px;
 
-    border-radius: 5px;
+    border-radius: 20px;
 
-    font-weight: bold;
+    font-size: 11px;
+
+    font-weight: 700;
 
 }
 
 
 .badge-aktif {
 
-    background: #dcfce7;
+    background: #e2f1e7;
 
-    color: #166534;
+    color: #4c775a;
 
 }
 
 
 .badge-tidak {
 
-    background: #fee2e2;
+    background: #f7e4e4;
 
-    color: #991b1b;
+    color: #925656;
 
 }
 
+
+/* =====================================================
+   ACTION BUTTON
+===================================================== */
+
+.action-buttons {
+
+    display: flex;
+
+    gap: 6px;
+
+}
+
+
+.action-buttons button {
+
+    width: auto;
+
+    min-height: 32px;
+
+    padding: 6px 10px;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal {
 
@@ -440,27 +840,21 @@ tr:hover {
 
     position: fixed;
 
+    inset: 0;
+
     z-index: 1000;
-
-    left: 0;
-
-    top: 0;
-
-    width: 100%;
-
-    height: 100%;
 
     background:
 
         rgba(
 
-            0,
+            34,
 
-            0,
+            48,
 
-            0,
+            63,
 
-            0.5
+            0.48
 
         );
 
@@ -471,7 +865,7 @@ tr:hover {
 
     background: white;
 
-    width: 95%;
+    width: 94%;
 
     max-width: 1000px;
 
@@ -479,11 +873,17 @@ tr:hover {
 
     overflow-y: auto;
 
-    margin: 2% auto;
+    margin: 3vh auto;
 
-    padding: 25px;
+    padding: 24px;
 
-    border-radius: 12px;
+    border-radius: 14px;
+
+    box-shadow:
+
+        0 15px 40px
+
+        rgba(0,0,0,0.2);
 
 }
 
@@ -492,18 +892,76 @@ tr:hover {
 
     float: right;
 
-    font-size: 28px;
+    font-size: 27px;
 
     cursor: pointer;
 
-    color: #64748b;
+    color: #7d8b99;
 
 }
 
 
 .close:hover {
 
-    color: red;
+    color: #c97979;
+
+}
+
+
+.modal-content h2 {
+
+    color: #30465d;
+
+    margin-bottom: 20px;
+
+}
+
+
+.modal-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            1fr
+
+        );
+
+    gap: 14px;
+
+}
+
+
+.section-title {
+
+    grid-column: 1 / -1;
+
+    background: #edf3f7;
+
+    padding: 10px 12px;
+
+    border-left: 4px solid #7895ae;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #40576d;
+
+    border-radius: 5px;
+
+}
+
+
+input[readonly] {
+
+    background: #f2f5f7;
+
+    color: #68798b;
 
 }
 
@@ -514,7 +972,7 @@ tr:hover {
 
     gap: 10px;
 
-    margin-top: 20px;
+    margin-top: 22px;
 
 }
 
@@ -526,54 +984,157 @@ tr:hover {
 }
 
 
-.section-title {
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-    grid-column: 1 / -1;
+@media(max-width:1200px) {
 
-    background: #f1f5f9;
+    .filter-grid {
 
-    padding: 10px 12px;
+        grid-template-columns:
 
-    border-left: 4px solid #2563eb;
+            repeat(
 
-    font-weight: bold;
+                3,
 
-    color: #0f172a;
+                1fr
+
+            );
+
+    }
+
+}
+
+
+@media(max-width:850px) {
+
+    html,
+    body {
+
+        overflow: auto;
+
+    }
+
+
+    .app {
+
+        height: auto;
+
+        min-height: 100vh;
+
+    }
+
+
+    .sidebar {
+
+        width: 78px;
+
+    }
+
+
+    .brand {
+
+        justify-content: center;
+
+        padding-left: 0;
+
+        padding-right: 0;
+
+    }
+
+
+    .brand-text,
+    .heritage-mark,
+    .nav-title,
+    .nav a span {
+
+        display: none;
+
+    }
+
+
+    .nav a {
+
+        justify-content: center;
+
+        padding: 14px 5px;
+
+    }
+
+
+    .main {
+
+        min-height: 100vh;
+
+        height: auto;
+
+    }
+
+
+    .content {
+
+        overflow: visible;
+
+    }
+
+
+    .filter-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .modal-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
 
 }
 
 
 @media(max-width:600px) {
 
+    .topbar {
 
-    header h1 {
+        padding: 0 16px;
+
+    }
+
+
+    .system-status {
+
+        display: none;
+
+    }
+
+
+    .content {
+
+        padding: 15px;
+
+    }
+
+
+    .page-header h1 {
 
         font-size: 20px;
 
     }
 
 
-    .container {
+    .filter-grid {
 
-        padding: 10px;
-
-    }
-
-
-    nav {
-
-        padding: 8px;
+        grid-template-columns: 1fr;
 
     }
 
 
-    .modal-content {
+    .modal-grid {
 
-        margin: 3% auto;
-
-        width: 96%;
-
-        padding: 18px;
+        grid-template-columns: 1fr;
 
     }
 
@@ -584,21 +1145,7 @@ tr:hover {
 
     }
 
-
-    .btn-edit,
-
-    .btn-delete {
-
-        display: block;
-
-        width: 100%;
-
-        margin: 3px 0;
-
-    }
-
 }
-
 
 </style>
 
@@ -606,118 +1153,245 @@ tr:hover {
 
 <body>
 
-<header>
+<div class="app">
 
-<h1>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-FPB DUTY SYSTEM
+<aside class="sidebar">
 
-</h1>
+<div class="brand">
 
-<p>
-
-Senarai Anggota
-
-</p>
-
-</header>
-
-<nav>
-
-<a
-
-href="index.html"
+<img
+src="logo.png"
+class="logo"
+alt="Logo FPB"
 
 >
 
-🏠 Dashboard
+<div class="brand-text">
+
+<h1>
+POLIS BANTUAN FGVSSSB
+</h1>
+
+<p>
+WILAYAH TERENGGANU
+</p>
+
+</div>
+
+</div>
+
+<div class="heritage-mark">
+
+<strong>
+La Ilaha Illallah
+</strong>
+
+<span>
+• Terengganu Maju, Berkat Sejahtera •
+</span>
+
+</div>
+
+<div class="nav-title">
+MAIN MENU
+</div>
+
+<nav class="nav">
+
+<a href="index.html">
+
+<span class="nav-icon">
+⌂
+</span>
+
+<span>
+Dashboard
+</span>
 
 </a>
 
 <a
-
 href="anggota.html"
-
 class="active"
 
 >
 
-👥 Senarai Anggota
+<span class="nav-icon">
+♙
+</span>
+
+<span>
+Senarai Anggota
+</span>
 
 </a>
 
-<a
+<a href="jadual-duty.html">
 
-href="jadual-duty.html"
+<span class="nav-icon">
+▣
+</span>
 
->
-
-📅 Jadual Duty
-
-</a>
-
-<a
-
-href="kod-duty.html"
-
->
-
-🏷️ Kod Duty
+<span>
+Jadual Duty
+</span>
 
 </a>
 
-<a
+<a href="kod-duty.html">
 
-href="laporan.html"
+<span class="nav-icon">
+▤
+</span>
 
->
-
-📊 Laporan
+<span>
+Kod Duty
+</span>
 
 </a>
 
-<a
+<a href="tempat-kerja.html">
 
-href="tetapan.html"
+<span class="nav-icon">
+▦
+</span>
 
->
+<span>
+Kod Tempat Kerja
+</span>
 
-⚙️ Tetapan
+</a>
+
+<div class="nav-title">
+REPORTING
+</div>
+
+<a href="laporan.html">
+
+<span class="nav-icon">
+▥
+</span>
+
+<span>
+Laporan
+</span>
+
+</a>
+
+<a href="laporan-anggaran.html">
+
+<span class="nav-icon">
+◫
+</span>
+
+<span>
+Anggaran Duty Bulanan
+</span>
+
+</a>
+
+<a href="Laporan-Penuh.html">
+
+<span class="nav-icon">
+▤
+</span>
+
+<span>
+Laporan Penuh
+</span>
+
+</a>
+
+<div class="nav-title">
+SYSTEM
+</div>
+
+<a href="#">
+
+<span class="nav-icon">
+⚙
+</span>
+
+<span>
+Tetapan
+</span>
 
 </a>
 
 </nav>
 
-<div class="container">
+</aside>
 
-<div class="card">
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="page-title">
 
 <h2>
-
-👥 Senarai Anggota
-
+Senarai Anggota
 </h2>
 
-<div id="mesej"></div>
+<p>
+Forecast Duty System / Wilayah Terengganu
+</p>
 
-<div class="grid">
+</div>
+
+<div class="system-status">
+
+<span class="status-dot"></span>
+
+System Online
+
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- PAGE HEADER -->
+
+<div class="page-header">
+
+<h1>
+👥 Senarai Anggota
+</h1>
+
+<p>
+Pengurusan maklumat anggota Polis Bantuan FGV Wilayah Terengganu
+</p>
+
+</div>
+
+<!-- FILTER -->
+
+<div class="filter-card">
+
+<div class="filter-grid">
 
 <div>
 
 <label>
-
 Cari Anggota
-
 </label>
 
 <input
-
 type="text"
-
 id="cari"
-
-placeholder="Cari nama, no anggota atau no SKB..."
-
+placeholder="Nama, No. Anggota atau No. SKB..."
 onkeyup="paparAnggota()"
 
 >
@@ -727,23 +1401,17 @@ onkeyup="paparAnggota()"
 <div>
 
 <label>
-
 Filter Pos
-
 </label>
 
 <select
-
 id="filterPos"
-
 onchange="paparAnggota()"
 
 >
 
 <option value="">
-
 Semua Pos
-
 </option>
 
 </select>
@@ -753,23 +1421,17 @@ Semua Pos
 <div>
 
 <label>
-
 Filter Kawasan
-
 </label>
 
 <select
-
 id="filterKawasan"
-
 onchange="paparAnggota()"
 
 >
 
 <option value="">
-
 Semua Kawasan
-
 </option>
 
 </select>
@@ -779,58 +1441,66 @@ Semua Kawasan
 <div>
 
 <label>
-
 Status
-
 </label>
 
 <select
-
 id="filterStatus"
-
 onchange="paparAnggota()"
 
 >
 
 <option value="">
-
 Semua Status
-
 </option>
 
 <option value="Aktif">
-
 Aktif
-
 </option>
 
 <option value="Tidak Aktif">
-
 Tidak Aktif
-
 </option>
 
 </select>
 
 </div>
 
-</div>
-
-<br>
+<div>
 
 <button
-
+class="btn-primary"
 onclick="bukaTambah()"
 
 >
 
-➕ TAMBAH ANGGOTA
+➕ Tambah Anggota
 
 </button>
 
 </div>
 
-<div class="card">
+</div>
+
+<div id="mesej"></div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-card">
+
+<div class="table-header">
+
+<h2>
+Data Anggota
+</h2>
+
+<span id="jumlahRekod">
+0 rekod
+</span>
+
+</div>
 
 <div class="table-wrapper">
 
@@ -841,100 +1511,66 @@ onclick="bukaTambah()"
 <tr>
 
 <th>
-
 No. SKB
-
 </th>
 
 <th>
-
 No. Anggota
-
 </th>
 
 <th>
-
 Nama
-
 </th>
 
 <th>
-
 Pangkat
-
 </th>
 
 <th>
-
 Wilayah
-
 </th>
 
 <th>
-
 Kawasan
-
 </th>
 
 <th>
-
 Pos
-
 </th>
 
 <th>
-
 Unit
-
 </th>
 
 <th>
-
 Jawatan
-
 </th>
 
 <th>
-
 Ketua Pos
-
 </th>
 
 <th>
-
 Ketua Unit
-
 </th>
 
 <th>
-
 Status
-
 </th>
 
 <th>
-
 Tindakan
-
 </th>
 
 </tr>
 
 </thead>
 
-<tbody
-
-id="senaraiAnggota"
-
->
+<tbody id="senaraiAnggota">
 
 <tr>
 
-<td
-
-colspan="13"
-
->
+<td colspan="13">
 
 Memuatkan data...
 
@@ -952,74 +1588,53 @@ Memuatkan data...
 
 </div>
 
+</main>
+
+</div>
+
 <!-- =====================================================
      MODAL ANGGOTA
 ===================================================== -->
 
 <div
-
-id="modalAnggota"
-
-class="modal"
-
+    id="modalAnggota"
+    class="modal"
 >
 
-<div
-
-class="modal-content"
-
->
+<div class="modal-content">
 
 <span
-
 class="close"
-
 onclick="tutupModal()"
 
 >
 
-×
+× </span>
 
-</span>
-
-<h2
-
-id="tajukModal"
-
->
-
+<h2 id="tajukModal">
 Tambah Anggota
-
 </h2>
 
 <input
-
 type="hidden"
-
 id="editNoSkb"
 
 >
 
-<div class="grid">
+<div class="modal-grid">
 
 <div class="section-title">
-
 📌 MAKLUMAT ANGGOTA
-
 </div>
 
 <div>
 
 <label>
-
 No. SKB
-
 </label>
 
 <input
-
 type="text"
-
 id="noSkb"
 
 >
@@ -1029,15 +1644,11 @@ id="noSkb"
 <div>
 
 <label>
-
 No. Anggota
-
 </label>
 
 <input
-
 type="text"
-
 id="noAnggota"
 
 >
@@ -1047,15 +1658,11 @@ id="noAnggota"
 <div>
 
 <label>
-
 Nama
-
 </label>
 
 <input
-
 type="text"
-
 id="nama"
 
 >
@@ -1065,21 +1672,13 @@ id="nama"
 <div>
 
 <label>
-
 Pangkat
-
 </label>
 
-<select
-
-id="pangkat"
-
->
+<select id="pangkat">
 
 <option value="">
-
 -- Pilih Pangkat --
-
 </option>
 
 </select>
@@ -1089,19 +1688,13 @@ id="pangkat"
 <div>
 
 <label>
-
 Wilayah
-
 </label>
 
 <input
-
 type="text"
-
 id="wilayah"
-
 value="Terengganu"
-
 readonly
 
 >
@@ -1111,33 +1704,21 @@ readonly
 <div>
 
 <label>
-
 Kawasan
-
 </label>
 
-<select
-
-id="kawasan"
-
->
+<select id="kawasan">
 
 <option value="">
-
 -- Pilih Kawasan --
-
 </option>
 
 <option value="F102-Jerangau">
-
 F102-Jerangau
-
 </option>
 
 <option value="F105-Chalok">
-
 F105-Chalok
-
 </option>
 
 </select>
@@ -1147,21 +1728,16 @@ F105-Chalok
 <div>
 
 <label>
-
 Pos
-
 </label>
 
 <select
-
 id="pos"
 
 >
 
 <option value="">
-
 -- Pilih Pos --
-
 </option>
 
 </select>
@@ -1171,21 +1747,16 @@ id="pos"
 <div>
 
 <label>
-
 Unit
-
 </label>
 
 <select
-
 id="unit"
 
 >
 
 <option value="">
-
 -- Pilih Unit --
-
 </option>
 
 </select>
@@ -1195,57 +1766,37 @@ id="unit"
 <div>
 
 <label>
-
 Jawatan
-
 </label>
 
-<select
-
-id="jawatan"
-
->
+<select id="jawatan">
 
 <option value="">
-
 -- Pilih Jawatan --
-
 </option>
 
 <option value="Anggota Pos">
-
 Anggota Pos
-
 </option>
 
 <option value="Ketua Pos">
-
 Ketua Pos
-
 </option>
 
 <option value="Ketua Unit">
-
 Ketua Unit
-
 </option>
 
 <option value="PTW">
-
 PTW
-
 </option>
 
 <option value="PPOW">
-
 PPOW
-
 </option>
 
 <option value="POW">
-
 POW
-
 </option>
 
 </select>
@@ -1255,20 +1806,14 @@ POW
 <div>
 
 <label>
-
 Ketua Pos
-
 </label>
 
 <input
-
 type="text"
-
 id="ketuaPos"
-
 readonly
-
-placeholder="Auto papar selepas pilih Pos"
+placeholder="Auto papar"
 
 >
 
@@ -1277,20 +1822,14 @@ placeholder="Auto papar selepas pilih Pos"
 <div>
 
 <label>
-
 Ketua Unit
-
 </label>
 
 <input
-
 type="text"
-
 id="ketuaUnit"
-
 readonly
-
-placeholder="Auto papar selepas pilih Unit"
+placeholder="Auto papar"
 
 >
 
@@ -1299,27 +1838,17 @@ placeholder="Auto papar selepas pilih Unit"
 <div>
 
 <label>
-
 Status
-
 </label>
 
-<select
-
-id="status"
-
->
+<select id="status">
 
 <option value="Aktif">
-
 Aktif
-
 </option>
 
 <option value="Tidak Aktif">
-
 Tidak Aktif
-
 </option>
 
 </select>
@@ -1331,7 +1860,7 @@ Tidak Aktif
 <div class="modal-buttons">
 
 <button
-
+class="btn-primary"
 onclick="simpanAnggota()"
 
 >
@@ -1341,9 +1870,7 @@ onclick="simpanAnggota()"
 </button>
 
 <button
-
 class="btn-danger"
-
 onclick="tutupModal()"
 
 >
@@ -1365,32 +1892,24 @@ BATAL
 // SUPABASE
 // =====================================================
 
-
 const SUPABASE_URL =
-
 "https://nlwrrrwkjpktrifxeymw.supabase.co";
 
 
 const SUPABASE_KEY =
-
 "sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
 
 
 const supabaseClient =
-
 supabase.createClient(
-
     SUPABASE_URL,
-
     SUPABASE_KEY
-
 );
 
 
 // =====================================================
 // DATA
 // =====================================================
-
 
 let semuaAnggota = [];
 
@@ -1399,89 +1918,52 @@ let semuaAnggota = [];
 // MULA
 // =====================================================
 
-
 document.addEventListener(
 
     "DOMContentLoaded",
 
     async function () {
 
-
         await muatAnggota();
-
 
         muatDropdownPangkat();
 
-
         muatDropdownPos();
-
 
         muatDropdownUnit();
 
-
         muatFilterPos();
-
 
         muatFilterKawasan();
 
 
         document
-
-            .getElementById(
-
-                "pos"
-
-            )
-
+            .getElementById("pos")
             .addEventListener(
-
                 "change",
-
                 paparKetua
-
             );
 
 
         document
-
-            .getElementById(
-
-                "unit"
-
-            )
-
+            .getElementById("unit")
             .addEventListener(
-
                 "change",
-
                 paparKetuaUnit
-
             );
 
 
         document
-
-            .getElementById(
-
-                "kawasan"
-
-            )
-
+            .getElementById("kawasan")
             .addEventListener(
-
                 "change",
-
                 function () {
-
 
                     paparKetua();
 
-
                     paparKetuaUnit();
 
-
                 }
-
             );
 
     }
@@ -1493,7 +1975,6 @@ document.addEventListener(
 // MUAT ANGGOTA
 // =====================================================
 
-
 async function muatAnggota() {
 
 
@@ -1501,62 +1982,34 @@ async function muatAnggota() {
 
         await supabaseClient
 
-            .from(
-
-                "Data_Anggota"
-
-            )
+            .from("Data_Anggota")
 
             .select(
-
                 "no_skb,no_anggota,nama,pangkat,wilayah,kawasan,pos,unit,jawatan,ketua_pos,ketua_unit,status"
-
             )
 
             .order(
-
                 "nama",
-
                 {
-
-                    ascending:
-
-                        true
-
+                    ascending: true
                 }
-
             );
 
 
-    if (
-
-        result.error
-
-    ) {
-
+    if (result.error) {
 
         paparMesej(
-
-            "Gagal ambil data: "
-
-            +
-
+            "Gagal ambil data: " +
             result.error.message,
-
             "error"
-
         );
-
 
         return;
 
     }
 
 
-    semuaAnggota =
-
-        result.data || [];
-
+    semuaAnggota = result.data || [];
 
     paparAnggota();
 
@@ -1567,16 +2020,9 @@ async function muatAnggota() {
 // SENARAI UNIK
 // =====================================================
 
-
-function senaraiUnik(
-
-    namaKolum
-
-) {
-
+function senaraiUnik(namaKolum) {
 
     return [
-
 
         ...
 
@@ -1585,103 +2031,29 @@ function senaraiUnik(
             semuaAnggota
 
                 .map(
-
-                    function (
-
-                        item
-
-                    ) {
-
-
-                        return item[
-
-                            namaKolum
-
-                        ];
-
-                    }
-
+                    item => item[namaKolum]
                 )
 
                 .filter(
-
-                    function (
-
-                        nilai
-
-                    ) {
-
-
-                        return (
-
-                            nilai !== null
-
-                            &&
-
-                            nilai !== undefined
-
-                            &&
-
-                            String(
-
-                                nilai
-
-                            )
-
-                            .trim()
-
-                            !== ""
-
-                        );
-
-                    }
-
+                    nilai =>
+                        nilai !== null &&
+                        nilai !== undefined &&
+                        String(nilai).trim() !== ""
                 )
 
                 .map(
-
-                    function (
-
-                        nilai
-
-                    ) {
-
-
-                        return String(
-
-                            nilai
-
-                        )
-
-                        .trim();
-
-                    }
-
+                    nilai =>
+                        String(nilai).trim()
                 )
 
         )
-
 
     ]
 
     .sort(
 
-        function (
-
-            a,
-
-            b
-
-        ) {
-
-
-            return a.localeCompare(
-
-                b
-
-            );
-
-        }
+        (a, b) =>
+            a.localeCompare(b)
 
     );
 
@@ -1689,114 +2061,68 @@ function senaraiUnik(
 
 
 // =====================================================
-// DROPDOWN UMUM
+// ISI DROPDOWN
 // =====================================================
 
-
 function isiDropdown(
-
     id,
-
     namaKolum,
-
     teksDefault
-
 ) {
 
 
     const select =
-
-        document
-
-            .getElementById(
-
-                id
-
-            );
+        document.getElementById(id);
 
 
     const nilaiLama =
-
         select.value;
 
 
-    select.innerHTML =
-
-
-        `
+    select.innerHTML = `
 
         <option value="">
-
             ${teksDefault}
-
         </option>
 
-        `;
+    `;
 
 
-    const data =
+    senaraiUnik(namaKolum)
 
-        senaraiUnik(
+        .forEach(
 
-            namaKolum
+            nilai => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    nilai;
+
+
+                option.textContent =
+                    nilai;
+
+
+                select.appendChild(
+                    option
+                );
+
+            }
 
         );
 
 
-    data.forEach(
-
-        function (
-
-            nilai
-
-        ) {
-
-
-            const option =
-
-                document
-
-                    .createElement(
-
-                        "option"
-
-                    );
-
-
-            option.value =
-
-                nilai;
-
-
-            option.textContent =
-
-                nilai;
-
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
-
-    );
-
-
     if (
-
-        data.includes(
-
-            nilaiLama
-
-        )
-
+        senaraiUnik(namaKolum)
+            .includes(nilaiLama)
     ) {
 
-
         select.value =
-
             nilaiLama;
 
     }
@@ -1804,132 +2130,57 @@ function isiDropdown(
 }
 
 
-// =====================================================
-// DROPDOWN PANGKAT
-// =====================================================
-
-
 function muatDropdownPangkat() {
 
-
     isiDropdown(
-
         "pangkat",
-
         "pangkat",
-
         "-- Pilih Pangkat --"
-
     );
 
 }
-
-
-// =====================================================
-// DROPDOWN POS
-// =====================================================
 
 
 function muatDropdownPos() {
 
-
     isiDropdown(
-
         "pos",
-
         "pos",
-
         "-- Pilih Pos --"
-
     );
 
 }
-
-
-// =====================================================
-// DROPDOWN UNIT
-// =====================================================
 
 
 function muatDropdownUnit() {
 
-
     isiDropdown(
-
         "unit",
-
         "unit",
-
         "-- Pilih Unit --"
-
     );
 
 }
-
-
-// =====================================================
-// FILTER POS
-// =====================================================
 
 
 function muatFilterPos() {
 
-
     isiDropdown(
-
         "filterPos",
-
         "pos",
-
         "Semua Pos"
-
     );
 
 }
 
 
-// =====================================================
-// FILTER KAWASAN
-// =====================================================
-
-
 function muatFilterKawasan() {
 
-
-    const select =
-
-        document
-
-            .getElementById(
-
-                "filterKawasan"
-
-            );
-
-
-    select.innerHTML = `
-
-        <option value="">
-
-            Semua Kawasan
-
-        </option>
-
-
-        <option value="F102-Jerangau">
-
-            F102-Jerangau
-
-        </option>
-
-
-        <option value="F105-Chalok">
-
-            F105-Chalok
-
-        </option>
-
-    `;
+    isiDropdown(
+        "filterKawasan",
+        "kawasan",
+        "Semua Kawasan"
+    );
 
 }
 
@@ -1938,62 +2189,29 @@ function muatFilterKawasan() {
 // AUTO KETUA POS
 // =====================================================
 
-
 function paparKetua() {
 
 
     const kawasan =
-
         document
-
-            .getElementById(
-
-                "kawasan"
-
-            )
-
+            .getElementById("kawasan")
             .value;
 
 
     const pos =
-
         document
-
-            .getElementById(
-
-                "pos"
-
-            )
-
+            .getElementById("pos")
             .value;
 
 
     const input =
-
         document
-
-            .getElementById(
-
-                "ketuaPos"
-
-            );
+            .getElementById("ketuaPos");
 
 
-    if (
+    if (!kawasan || !pos) {
 
-        !kawasan
-
-        ||
-
-        !pos
-
-    ) {
-
-
-        input.value =
-
-            "";
-
+        input.value = "";
 
         return;
 
@@ -2001,58 +2219,25 @@ function paparKetua() {
 
 
     const ketua =
-
         semuaAnggota.find(
 
-            function (
+            anggota =>
 
-                anggota
+                anggota.kawasan === kawasan &&
 
-            ) {
+                anggota.pos === pos &&
 
+                anggota.jawatan === "Ketua Pos" &&
 
-                return (
-
-
-                    anggota.kawasan === kawasan
-
-
-                    &&
-
-
-                    anggota.pos === pos
-
-
-                    &&
-
-
-                    anggota.jawatan === "Ketua Pos"
-
-
-                    &&
-
-
-                    anggota.status === "Aktif"
-
-
-                );
-
-            }
+                anggota.status === "Aktif"
 
         );
 
 
     input.value =
-
         ketua
-
-        ?
-
-        ketua.nama
-
-        :
-
-        "";
+        ? ketua.nama
+        : "";
 
 }
 
@@ -2061,62 +2246,29 @@ function paparKetua() {
 // AUTO KETUA UNIT
 // =====================================================
 
-
 function paparKetuaUnit() {
 
 
     const kawasan =
-
         document
-
-            .getElementById(
-
-                "kawasan"
-
-            )
-
+            .getElementById("kawasan")
             .value;
 
 
     const unit =
-
         document
-
-            .getElementById(
-
-                "unit"
-
-            )
-
+            .getElementById("unit")
             .value;
 
 
     const input =
-
         document
-
-            .getElementById(
-
-                "ketuaUnit"
-
-            );
+            .getElementById("ketuaUnit");
 
 
-    if (
+    if (!kawasan || !unit) {
 
-        !kawasan
-
-        ||
-
-        !unit
-
-    ) {
-
-
-        input.value =
-
-            "";
-
+        input.value = "";
 
         return;
 
@@ -2124,58 +2276,25 @@ function paparKetuaUnit() {
 
 
     const ketua =
-
         semuaAnggota.find(
 
-            function (
+            anggota =>
 
-                anggota
+                anggota.kawasan === kawasan &&
 
-            ) {
+                anggota.unit === unit &&
 
+                anggota.jawatan === "Ketua Unit" &&
 
-                return (
-
-
-                    anggota.kawasan === kawasan
-
-
-                    &&
-
-
-                    anggota.unit === unit
-
-
-                    &&
-
-
-                    anggota.jawatan === "Ketua Unit"
-
-
-                    &&
-
-
-                    anggota.status === "Aktif"
-
-
-                );
-
-            }
+                anggota.status === "Aktif"
 
         );
 
 
     input.value =
-
         ketua
-
-        ?
-
-        ketua.nama
-
-        :
-
-        "";
+        ? ketua.nama
+        : "";
 
 }
 
@@ -2184,179 +2303,78 @@ function paparKetuaUnit() {
 // PAPAR ANGGOTA
 // =====================================================
 
-
 function paparAnggota() {
 
 
     const cari =
-
         document
-
-            .getElementById(
-
-                "cari"
-
-            )
-
+            .getElementById("cari")
             .value
-
             .toLowerCase();
 
 
     const filterPos =
-
         document
-
-            .getElementById(
-
-                "filterPos"
-
-            )
-
+            .getElementById("filterPos")
             .value;
 
 
     const filterKawasan =
-
         document
-
-            .getElementById(
-
-                "filterKawasan"
-
-            )
-
+            .getElementById("filterKawasan")
             .value;
 
 
     const filterStatus =
-
         document
-
-            .getElementById(
-
-                "filterStatus"
-
-            )
-
+            .getElementById("filterStatus")
             .value;
 
 
     const data =
-
         semuaAnggota.filter(
 
-            function (
-
-                x
-
-            ) {
+            x => {
 
 
                 const teks =
 
+                    [
 
-                    (
+                        x.no_skb,
 
-                        x.no_skb
+                        x.no_anggota,
 
-                        +
+                        x.nama,
 
-                        " "
+                        x.pangkat,
 
-                        +
+                        x.wilayah,
 
-                        x.no_anggota
+                        x.kawasan,
 
-                        +
+                        x.pos,
 
-                        " "
+                        x.unit,
 
-                        +
+                        x.jawatan,
 
-                        x.nama
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.pangkat
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.wilayah
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.kawasan
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.pos
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.unit
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.jawatan
-
-                        +
-
-                        " "
-
-                        +
-
-                        x.ketua_pos
-
-                        +
-
-                        " "
-
-                        +
+                        x.ketua_pos,
 
                         x.ketua_unit
 
-                    )
+                    ]
+
+                    .join(" ")
 
                     .toLowerCase();
 
 
                 return (
 
-
-                    teks.includes(
-
-                        cari
-
-                    )
-
+                    teks.includes(cari)
 
                     &&
-
 
                     (
 
@@ -2368,9 +2386,7 @@ function paparAnggota() {
 
                     )
 
-
                     &&
-
 
                     (
 
@@ -2382,9 +2398,7 @@ function paparAnggota() {
 
                     )
 
-
                     &&
-
 
                     (
 
@@ -2396,7 +2410,6 @@ function paparAnggota() {
 
                     )
 
-
                 );
 
             }
@@ -2404,26 +2417,21 @@ function paparAnggota() {
         );
 
 
+    document
+        .getElementById("jumlahRekod")
+        .textContent =
+        data.length + " rekod";
+
+
     const tbody =
-
         document
-
-            .getElementById(
-
-                "senaraiAnggota"
-
-            );
+            .getElementById("senaraiAnggota");
 
 
     tbody.innerHTML = "";
 
 
-    if (
-
-        data.length === 0
-
-    ) {
-
+    if (data.length === 0) {
 
         tbody.innerHTML = `
 
@@ -2439,7 +2447,6 @@ function paparAnggota() {
 
         `;
 
-
         return;
 
     }
@@ -2447,26 +2454,14 @@ function paparAnggota() {
 
     data.forEach(
 
-        function (
-
-            anggota
-
-        ) {
+        anggota => {
 
 
             const tr =
-
-                document
-
-                    .createElement(
-
-                        "tr"
-
-                    );
+                document.createElement("tr");
 
 
             const statusClass =
-
                 anggota.status === "Aktif"
 
                 ?
@@ -2481,212 +2476,94 @@ function paparAnggota() {
             tr.innerHTML = `
 
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.no_skb
-
-                    )}
-
+                    ${escapeHTML(anggota.no_skb)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.no_anggota
-
-                    )}
-
+                    ${escapeHTML(anggota.no_anggota)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.nama
-
-                    )}
-
+                    <strong>
+                        ${escapeHTML(anggota.nama)}
+                    </strong>
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.pangkat
-
-                    )}
-
+                    ${escapeHTML(anggota.pangkat)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.wilayah
-
-                    )}
-
+                    ${escapeHTML(anggota.wilayah)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.kawasan
-
-                    )}
-
+                    ${escapeHTML(anggota.kawasan)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.pos
-
-                    )}
-
+                    ${escapeHTML(anggota.pos)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.unit
-
-                    )}
-
+                    ${escapeHTML(anggota.unit)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.jawatan
-
-                    )}
-
+                    ${escapeHTML(anggota.jawatan)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.ketua_pos
-
-                    )}
-
+                    ${escapeHTML(anggota.ketua_pos)}
                 </td>
 
-
                 <td>
-
-                    ${escapeHTML(
-
-                        anggota.ketua_unit
-
-                    )}
-
+                    ${escapeHTML(anggota.ketua_unit)}
                 </td>
 
-
                 <td>
-
 
                     <span
-
-                        class="badge
-
-                        ${statusClass}"
-
+                        class="badge ${statusClass}"
                     >
 
-                        ${escapeHTML(
-
-                            anggota.status
-
-                        )}
+                        ${escapeHTML(anggota.status)}
 
                     </span>
 
-
                 </td>
-
 
                 <td>
 
+                    <div class="action-buttons">
 
-                    <button
+                        <button
+                            class="btn-warning"
+                            onclick="editAnggota('${escapeJS(anggota.no_skb)}')"
+                        >
 
-                        class="btn-edit"
+                            ✏️ Edit
 
-                        onclick=
-
-                        "editAnggota('${String(
-
-                            anggota.no_skb
-
-                        ).replace(
-
-                            /'/g,
-
-                            "\\'"
-
-                        )}')"
-
-                    >
-
-                        ✏️ Edit
-
-                    </button>
+                        </button>
 
 
-                    <button
+                        <button
+                            class="btn-danger"
+                            onclick="padamAnggota('${escapeJS(anggota.no_skb)}','${escapeJS(anggota.nama)}')"
+                        >
 
-                        class="btn-delete"
+                            🗑️ Padam
 
-                        onclick=
+                        </button>
 
-                        "padamAnggota('${String(
-
-                            anggota.no_skb
-
-                        ).replace(
-
-                            /'/g,
-
-                            "\\'"
-
-                        )}')"
-
-                    >
-
-                        🗑️ Padam
-
-                    </button>
-
+                    </div>
 
                 </td>
 
             `;
 
 
-            tbody.appendChild(
-
-                tr
-
-            );
+            tbody.appendChild(tr);
 
         }
 
@@ -2699,268 +2576,117 @@ function paparAnggota() {
 // BUKA TAMBAH
 // =====================================================
 
-
 function bukaTambah() {
 
 
     document
-
-        .getElementById(
-
-            "tajukModal"
-
-        )
-
+        .getElementById("tajukModal")
         .textContent =
-
         "Tambah Anggota";
 
 
     document
-
-        .getElementById(
-
-            "editNoSkb"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("editNoSkb")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "noSkb"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("noSkb")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "noAnggota"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("noSkb")
+        .disabled = false;
 
 
     document
-
-        .getElementById(
-
-            "nama"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("noAnggota")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "pangkat"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("nama")
+        .value = "";
 
 
     document
+        .getElementById("pangkat")
+        .value = "";
 
-        .getElementById(
 
-            "wilayah"
-
-        )
-
+    document
+        .getElementById("wilayah")
         .value =
-
         "Terengganu";
 
 
     document
-
-        .getElementById(
-
-            "kawasan"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("kawasan")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "pos"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("pos")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "unit"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("unit")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "jawatan"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("jawatan")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "ketuaPos"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("ketuaPos")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "ketuaUnit"
-
-        )
-
-        .value =
-
-        "";
+        .getElementById("ketuaUnit")
+        .value = "";
 
 
     document
-
-        .getElementById(
-
-            "status"
-
-        )
-
+        .getElementById("status")
         .value =
-
         "Aktif";
 
 
     document
-
-        .getElementById(
-
-            "noSkb"
-
-        )
-
-        .disabled =
-
-        false;
-
-
-    document
-
-        .getElementById(
-
-            "modalAnggota"
-
-        )
-
+        .getElementById("modalAnggota")
         .style.display =
-
         "block";
 
 }
 
 
 // =====================================================
-// EDIT ANGGOTA
+// EDIT
 // =====================================================
 
-
-function editAnggota(
-
-    noSkb
-
-) {
+function editAnggota(noSkb) {
 
 
     const anggota =
-
         semuaAnggota.find(
 
-            function (
+            x =>
 
-                x
-
-            ) {
-
-
-                return String(
-
-                    x.no_skb
-
-                )
+                String(x.no_skb)
 
                 ===
 
-                String(
-
-                    noSkb
-
-                );
-
-            }
+                String(noSkb)
 
         );
 
 
-    if (
-
-        !anggota
-
-    ) {
-
+    if (!anggota) {
 
         return;
 
@@ -2968,392 +2694,99 @@ function editAnggota(
 
 
     document
-
-        .getElementById(
-
-            "tajukModal"
-
-        )
-
+        .getElementById("tajukModal")
         .textContent =
-
         "Edit Anggota";
 
 
     document
-
-        .getElementById(
-
-            "editNoSkb"
-
-        )
-
+        .getElementById("editNoSkb")
         .value =
-
         anggota.no_skb;
 
 
     document
-
-        .getElementById(
-
-            "noSkb"
-
-        )
-
+        .getElementById("noSkb")
         .value =
-
         anggota.no_skb;
 
 
     document
-
-        .getElementById(
-
-            "noSkb"
-
-        )
-
+        .getElementById("noSkb")
         .disabled =
-
         true;
 
 
     document
-
-        .getElementById(
-
-            "noAnggota"
-
-        )
-
+        .getElementById("noAnggota")
         .value =
-
         anggota.no_anggota || "";
 
 
     document
-
-        .getElementById(
-
-            "nama"
-
-        )
-
+        .getElementById("nama")
         .value =
-
         anggota.nama || "";
 
 
     document
-
-        .getElementById(
-
-            "pangkat"
-
-        )
-
+        .getElementById("pangkat")
         .value =
-
         anggota.pangkat || "";
 
 
     document
-
-        .getElementById(
-
-            "wilayah"
-
-        )
-
+        .getElementById("wilayah")
         .value =
-
         anggota.wilayah || "Terengganu";
 
 
     document
-
-        .getElementById(
-
-            "kawasan"
-
-        )
-
+        .getElementById("kawasan")
         .value =
-
         anggota.kawasan || "";
 
 
     document
-
-        .getElementById(
-
-            "pos"
-
-        )
-
+        .getElementById("pos")
         .value =
-
         anggota.pos || "";
 
 
     document
-
-        .getElementById(
-
-            "unit"
-
-        )
-
+        .getElementById("unit")
         .value =
-
         anggota.unit || "";
 
 
     document
-
-        .getElementById(
-
-            "jawatan"
-
-        )
-
+        .getElementById("jawatan")
         .value =
-
         anggota.jawatan || "";
 
 
     document
-
-        .getElementById(
-
-            "ketuaPos"
-
-        )
-
+        .getElementById("ketuaPos")
         .value =
-
         anggota.ketua_pos || "";
 
 
     document
-
-        .getElementById(
-
-            "ketuaUnit"
-
-        )
-
+        .getElementById("ketuaUnit")
         .value =
-
         anggota.ketua_unit || "";
 
 
     document
-
-        .getElementById(
-
-            "status"
-
-        )
-
+        .getElementById("status")
         .value =
-
         anggota.status || "Aktif";
 
 
     document
-
-        .getElementById(
-
-            "modalAnggota"
-
-        )
-
+        .getElementById("modalAnggota")
         .style.display =
-
         "block";
-
-}
-
-
-// =====================================================
-// PADAM ANGGOTA
-// =====================================================
-
-
-async function padamAnggota(
-
-    noSkb
-
-) {
-
-
-    const anggota =
-
-        semuaAnggota.find(
-
-            function (
-
-                x
-
-            ) {
-
-
-                return String(
-
-                    x.no_skb
-
-                )
-
-                ===
-
-                String(
-
-                    noSkb
-
-                );
-
-            }
-
-        );
-
-
-    if (
-
-        !anggota
-
-    ) {
-
-
-        alert(
-
-            "Data anggota tidak dijumpai."
-
-        );
-
-
-        return;
-
-    }
-
-
-    const sahPadam =
-
-        confirm(
-
-            "ADAKAH ANDA PASTI?\n\n"
-
-            +
-
-            "Data anggota akan dipadam secara kekal.\n\n"
-
-            +
-
-            "No. SKB: "
-
-            +
-
-            anggota.no_skb
-
-            +
-
-            "\n"
-
-            +
-
-            "Nama: "
-
-            +
-
-            anggota.nama
-
-        );
-
-
-    if (
-
-        !sahPadam
-
-    ) {
-
-
-        return;
-
-    }
-
-
-    const result =
-
-        await supabaseClient
-
-            .from(
-
-                "Data_Anggota"
-
-            )
-
-            .delete()
-
-            .eq(
-
-                "no_skb",
-
-                noSkb
-
-            );
-
-
-    if (
-
-        result.error
-
-    ) {
-
-
-        paparMesej(
-
-            "Gagal padam data: "
-
-            +
-
-            result.error.message,
-
-            "error"
-
-        );
-
-
-        return;
-
-    }
-
-
-    paparMesej(
-
-        "Data anggota berjaya dipadam.",
-
-        "success"
-
-    );
-
-
-    await muatAnggota();
-
-
-    muatDropdownPangkat();
-
-
-    muatDropdownPos();
-
-
-    muatDropdownUnit();
-
-
-    muatFilterPos();
-
-
-    muatFilterKawasan();
 
 }
 
@@ -3362,182 +2795,87 @@ async function padamAnggota(
 // SIMPAN
 // =====================================================
 
-
 async function simpanAnggota() {
 
 
     const noSkb =
-
         document
-
-            .getElementById(
-
-                "noSkb"
-
-            )
-
+            .getElementById("noSkb")
             .value
-
             .trim();
 
 
     const noAnggota =
-
         document
-
-            .getElementById(
-
-                "noAnggota"
-
-            )
-
+            .getElementById("noAnggota")
             .value
-
             .trim();
 
 
     const nama =
-
         document
-
-            .getElementById(
-
-                "nama"
-
-            )
-
+            .getElementById("nama")
             .value
-
             .trim();
 
 
     const pangkat =
-
         document
-
-            .getElementById(
-
-                "pangkat"
-
-            )
-
+            .getElementById("pangkat")
             .value;
 
 
     const wilayah =
-
         document
-
-            .getElementById(
-
-                "wilayah"
-
-            )
-
+            .getElementById("wilayah")
             .value;
 
 
     const kawasan =
-
         document
-
-            .getElementById(
-
-                "kawasan"
-
-            )
-
+            .getElementById("kawasan")
             .value;
 
 
     const pos =
-
         document
-
-            .getElementById(
-
-                "pos"
-
-            )
-
+            .getElementById("pos")
             .value;
 
 
     const unit =
-
         document
-
-            .getElementById(
-
-                "unit"
-
-            )
-
+            .getElementById("unit")
             .value;
 
 
     const jawatan =
-
         document
-
-            .getElementById(
-
-                "jawatan"
-
-            )
-
+            .getElementById("jawatan")
             .value;
 
 
     const ketuaPos =
-
         document
-
-            .getElementById(
-
-                "ketuaPos"
-
-            )
-
+            .getElementById("ketuaPos")
             .value;
 
 
     const ketuaUnit =
-
         document
-
-            .getElementById(
-
-                "ketuaUnit"
-
-            )
-
+            .getElementById("ketuaUnit")
             .value;
 
 
     const status =
-
         document
-
-            .getElementById(
-
-                "status"
-
-            )
-
+            .getElementById("status")
             .value;
 
 
     const editNoSkb =
-
         document
-
-            .getElementById(
-
-                "editNoSkb"
-
-            )
-
+            .getElementById("editNoSkb")
             .value;
 
 
@@ -3567,13 +2905,9 @@ async function simpanAnggota() {
 
     ) {
 
-
         alert(
-
             "Sila lengkapkan No. SKB, Nama, Kawasan, Pos, Unit dan Jawatan."
-
         );
-
 
         return;
 
@@ -3584,57 +2918,46 @@ async function simpanAnggota() {
 
 
         no_anggota:
-
             noAnggota,
 
 
         nama:
-
             nama,
 
 
         pangkat:
-
             pangkat,
 
 
         wilayah:
-
             wilayah,
 
 
         kawasan:
-
             kawasan,
 
 
         pos:
-
             pos,
 
 
         unit:
-
             unit,
 
 
         jawatan:
-
             jawatan,
 
 
         ketua_pos:
-
             ketuaPos,
 
 
         ketua_unit:
-
             ketuaUnit,
 
 
         status:
-
             status
 
     };
@@ -3643,39 +2966,23 @@ async function simpanAnggota() {
     let result;
 
 
-    if (
-
-        editNoSkb
-
-    ) {
+    if (editNoSkb) {
 
 
         result =
 
             await supabaseClient
 
-                .from(
+                .from("Data_Anggota")
 
-                    "Data_Anggota"
-
-                )
-
-                .update(
-
-                    data
-
-                )
+                .update(data)
 
                 .eq(
-
                     "no_skb",
-
                     editNoSkb
-
                 );
 
     }
-
 
     else {
 
@@ -3684,50 +2991,31 @@ async function simpanAnggota() {
 
             await supabaseClient
 
-                .from(
+                .from("Data_Anggota")
 
-                    "Data_Anggota"
+                .insert({
 
-                )
+                    no_skb:
+                        noSkb,
 
-                .insert(
+                    ...data
 
-                    {
-
-
-                        no_skb:
-
-                            noSkb,
-
-
-                        ...data
-
-                    }
-
-                );
+                });
 
     }
 
 
-    if (
-
-        result.error
-
-    ) {
-
+    if (result.error) {
 
         paparMesej(
 
-            "Gagal simpan: "
-
-            +
+            "Gagal simpan: " +
 
             result.error.message,
 
             "error"
 
         );
-
 
         return;
 
@@ -3751,15 +3039,117 @@ async function simpanAnggota() {
 
     muatDropdownPangkat();
 
-
     muatDropdownPos();
-
 
     muatDropdownUnit();
 
-
     muatFilterPos();
 
+    muatFilterKawasan();
+
+}
+
+
+// =====================================================
+// PADAM ANGGOTA
+// =====================================================
+
+async function padamAnggota(
+
+    noSkb,
+
+    nama
+
+) {
+
+
+    const sah =
+        confirm(
+
+            "Adakah anda pasti mahu PADAM anggota ini?\n\n"
+
+            +
+
+            "Nama: "
+
+            +
+
+            nama
+
+            +
+
+            "\nNo. SKB: "
+
+            +
+
+            noSkb
+
+            +
+
+            "\n\nData yang dipadam tidak boleh dipulihkan."
+
+        );
+
+
+    if (!sah) {
+
+        return;
+
+    }
+
+
+    const result =
+
+        await supabaseClient
+
+            .from("Data_Anggota")
+
+            .delete()
+
+            .eq(
+                "no_skb",
+                noSkb
+            );
+
+
+    if (result.error) {
+
+        paparMesej(
+
+            "Gagal padam data: "
+
+            +
+
+            result.error.message,
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    paparMesej(
+
+        "Data anggota berjaya dipadam.",
+
+        "success"
+
+    );
+
+
+    await muatAnggota();
+
+
+    muatDropdownPangkat();
+
+    muatDropdownPos();
+
+    muatDropdownUnit();
+
+    muatFilterPos();
 
     muatFilterKawasan();
 
@@ -3770,20 +3160,11 @@ async function simpanAnggota() {
 // TUTUP MODAL
 // =====================================================
 
-
 function tutupModal() {
 
-
     document
-
-        .getElementById(
-
-            "modalAnggota"
-
-        )
-
+        .getElementById("modalAnggota")
         .style.display =
-
         "none";
 
 }
@@ -3792,7 +3173,6 @@ function tutupModal() {
 // =====================================================
 // MESEJ
 // =====================================================
-
 
 function paparMesej(
 
@@ -3804,23 +3184,15 @@ function paparMesej(
 
 
     const div =
-
         document
-
-            .getElementById(
-
-                "mesej"
-
-            );
+            .getElementById("mesej");
 
 
     div.className =
-
         jenis;
 
 
     div.textContent =
-
         mesej;
 
 
@@ -3828,14 +3200,10 @@ function paparMesej(
 
         function () {
 
-
             div.textContent =
-
                 "";
 
-
             div.className =
-
                 "";
 
         },
@@ -3851,12 +3219,7 @@ function paparMesej(
 // ESCAPE HTML
 // =====================================================
 
-
-function escapeHTML(
-
-    value
-
-) {
+function escapeHTML(value) {
 
 
     if (
@@ -3869,64 +3232,120 @@ function escapeHTML(
 
     ) {
 
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+// =====================================================
+// ESCAPE JAVASCRIPT
+// =====================================================
+
+function escapeJS(value) {
+
+
+    if (
+
+        value === null
+
+        ||
+
+        value === undefined
+
+    ) {
 
         return "";
 
     }
 
 
-    return String(
-
-        value
-
-    )
-
+    return String(value)
 
         .replace(
-
-            /&/g,
-
-            "&amp;"
-
+            /\\/g,
+            "\\\\"
         )
 
-
         .replace(
-
-            /</g,
-
-            "&lt;"
-
-        )
-
-
-        .replace(
-
-            />/g,
-
-            "&gt;"
-
-        )
-
-
-        .replace(
-
-            /"/g,
-
-            "&quot;"
-
-        )
-
-
-        .replace(
-
             /'/g,
+            "\\'"
+        )
 
-            "&#039;"
+        .replace(
+            /"/g,
+            '\\"'
+        )
 
+        .replace(
+            /\n/g,
+            "\\n"
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
         );
 
 }
+
+
+// =====================================================
+// TUTUP MODAL KLIK LUAR
+// =====================================================
+
+window.onclick =
+
+    function(event) {
+
+
+        const modal =
+            document
+                .getElementById(
+                    "modalAnggota"
+                );
+
+
+        if (
+
+            event.target === modal
+
+        ) {
+
+            tutupModal();
+
+        }
+
+    };
 
 
 </script>
