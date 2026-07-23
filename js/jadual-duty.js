@@ -8,7 +8,92 @@
 // =====================================================
 // SENARAI UNIT
 // =====================================================
+// =====================================================
+// ISI SENARAI POS TAMPUNGAN
+// AMBIL SEMUA POS DARI DATA_ANGGOTA
+// TANPA FILTER
+// =====================================================
 
+function isiSenaraiPosTampungan() {
+
+    const select = document.getElementById(
+        "posTampungan"
+    );
+
+    if (!select) return;
+
+    // Reset dropdown
+    select.innerHTML = `
+
+        <option value="">
+
+            -- Pilih Pos Tampungan --
+
+        </option>
+
+    `;
+
+    // Ambil semua pos dari semua anggota
+    const posList = [
+
+        ...new Set(
+
+            semuaAnggota
+
+                .map(function (anggota) {
+
+                    return anggota.pos;
+
+                })
+
+                .filter(function (pos) {
+
+                    return pos &&
+
+                        pos.toString().trim() !== "";
+
+                })
+
+                .map(function (pos) {
+
+                    return pos.toString().trim();
+
+                })
+
+        )
+
+    ];
+
+    // Susun ikut abjad
+    posList.sort(function (a, b) {
+
+        return a.localeCompare(
+            b,
+            "ms",
+            {
+                numeric: true
+            }
+        );
+
+    });
+
+    // Masukkan ke dropdown
+    posList.forEach(function (pos) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value = pos;
+
+        option.textContent = pos;
+
+        select.appendChild(option);
+
+    });
+
+}
 const SENARAI_UNIT = [
 
     "Jerangau",
