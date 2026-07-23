@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<title>Senarai Anggota - Forecast Duty System</title>
+>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>
+Senarai Anggota - Forecast Duty System
+</title>
 
 <style>
 
@@ -26,13 +31,9 @@
     padding: 0;
 
     font-family:
-
         "Segoe UI",
-
         Arial,
-
         Helvetica,
-
         sans-serif;
 
 }
@@ -46,10 +47,6 @@ body {
 
 }
 
-
-/* =====================================================
-   APP
-===================================================== */
 
 .app {
 
@@ -407,13 +404,11 @@ body {
 
     margin-left: 290px;
 
-    width:
+    width: calc(
 
-        calc(
+        100% - 290px
 
-            100% - 290px
-
-        );
+    );
 
 }
 
@@ -546,7 +541,7 @@ body {
 
     border-radius: 18px;
 
-    padding: 30px 35px;
+    padding: 30px 38px;
 
     margin-bottom: 25px;
 
@@ -608,39 +603,6 @@ body {
 }
 
 
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 80px;
-
-    bottom: -200px;
-
-    width: 400px;
-
-    height: 400px;
-
-    border: 1px solid
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.18
-
-        );
-
-    border-radius: 50%;
-
-}
-
-
 .hero-content {
 
     position: relative;
@@ -665,7 +627,7 @@ body {
 
     color: #e3f2f3;
 
-    font-size: 14px;
+    font-size: 15px;
 
 }
 
@@ -674,7 +636,7 @@ body {
 
     margin-top: 20px;
 
-    width: 140px;
+    width: 130px;
 
     height: 3px;
 
@@ -684,45 +646,10 @@ body {
 
 
 /* =====================================================
-   SECTION HEADER
+   CARD
 ===================================================== */
 
-.section-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 17px;
-
-}
-
-
-.section-header h2 {
-
-    font-size: 21px;
-
-    color: #304c53;
-
-}
-
-
-.section-header p {
-
-    font-size: 14px;
-
-    color: #829398;
-
-}
-
-
-/* =====================================================
-   FILTER CARD
-===================================================== */
-
-.filter-card {
+.card {
 
     background: #ffffff;
 
@@ -730,9 +657,9 @@ body {
 
     border-radius: 15px;
 
-    padding: 20px;
+    padding: 25px;
 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     box-shadow:
 
@@ -753,13 +680,52 @@ body {
 }
 
 
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.card-header h2 {
+
+    font-size: 20px;
+
+    color: #304c53;
+
+}
+
+
+.card-header span {
+
+    font-size: 14px;
+
+    color: #829398;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
 .filter-grid {
 
     display: grid;
 
     grid-template-columns:
 
-        2fr 1fr auto;
+        2fr
+
+        1fr
+
+        auto;
 
     gap: 15px;
 
@@ -772,7 +738,7 @@ body {
 
     display: block;
 
-    color: #60777d;
+    color: #5e747a;
 
     font-size: 13px;
 
@@ -833,19 +799,15 @@ select:focus {
 }
 
 
-/* =====================================================
-   BUTTON
-===================================================== */
-
 .btn {
 
     height: 44px;
 
+    padding: 0 18px;
+
     border: none;
 
     border-radius: 9px;
-
-    padding: 0 18px;
 
     cursor: pointer;
 
@@ -867,67 +829,7 @@ select:focus {
 
 .btn-primary:hover {
 
-    background: #326d73;
-
-}
-
-
-.btn-warning {
-
-    background: #f0b45b;
-
-    color: white;
-
-}
-
-
-.btn-danger {
-
-    background: #d97979;
-
-    color: white;
-
-}
-
-
-.btn-secondary {
-
-    background: #e5eef0;
-
-    color: #4c666c;
-
-}
-
-
-/* =====================================================
-   TABLE CARD
-===================================================== */
-
-.table-card {
-
-    background: #ffffff;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 15px;
-
-    padding: 20px;
-
-    box-shadow:
-
-        0 4px 14px
-
-        rgba(
-
-            60,
-
-            100,
-
-            110,
-
-            0.06
-
-        );
+    background: #326c72;
 
 }
 
@@ -951,7 +853,7 @@ table {
 
     border-collapse: collapse;
 
-    min-width: 1100px;
+    min-width: 1050px;
 
 }
 
@@ -966,9 +868,7 @@ td {
 
     border-bottom: 1px solid #edf2f3;
 
-    font-size: 13px;
-
-    white-space: nowrap;
+    font-size: 14px;
 
 }
 
@@ -981,15 +881,11 @@ th {
 
     text-transform: uppercase;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
 
     background: #f2f7f8;
 
-    position: sticky;
-
-    top: 0;
-
-    z-index: 2;
+    white-space: nowrap;
 
 }
 
@@ -997,6 +893,8 @@ th {
 td {
 
     color: #40575d;
+
+    white-space: nowrap;
 
 }
 
@@ -1016,11 +914,11 @@ tr:hover {
 
     display: inline-block;
 
-    padding: 5px 10px;
+    padding: 6px 10px;
 
     border-radius: 20px;
 
-    font-size: 11px;
+    font-size: 12px;
 
     font-weight: 600;
 
@@ -1029,42 +927,80 @@ tr:hover {
 
 .badge-aktif {
 
-    background: #e4f2ed;
+    background: #e1f0e8;
 
-    color: #3d7662;
+    color: #4b9277;
 
 }
 
 
 .badge-tidak {
 
-    background: #f8e4e4;
+    background: #f8e5e5;
 
-    color: #a65d5d;
+    color: #bd6262;
 
 }
 
 
 /* =====================================================
-   ACTIONS
+   BUTTON TINDAKAN
 ===================================================== */
 
 .action-buttons {
 
     display: flex;
 
-    gap: 6px;
+    gap: 7px;
 
 }
 
 
-.action-buttons .btn {
+.action-buttons button {
 
-    height: 34px;
+    border: none;
 
-    padding: 0 10px;
+    border-radius: 7px;
+
+    padding: 8px 11px;
+
+    cursor: pointer;
 
     font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.btn-edit {
+
+    background: #e9f0f1;
+
+    color: #3d7f86;
+
+}
+
+
+.btn-edit:hover {
+
+    background: #d5e5e7;
+
+}
+
+
+.btn-delete {
+
+    background: #f8e5e5;
+
+    color: #bd6262;
+
+}
+
+
+.btn-delete:hover {
+
+    background: #f0d0d0;
 
 }
 
@@ -1079,46 +1015,46 @@ tr:hover {
 
     position: fixed;
 
-    z-index: 1000;
-
     inset: 0;
+
+    z-index: 5000;
 
     background:
 
         rgba(
 
-            30,
+            35,
 
-            60,
+            64,
 
-            65,
+            71,
 
-            0.45
+            0.35
 
         );
 
-    padding: 25px;
+    align-items: center;
 
-    overflow-y: auto;
+    justify-content: center;
 
 }
 
 
 .modal-content {
 
-    width: 100%;
+    width: 900px;
 
-    max-width: 950px;
+    max-width: 94%;
 
-    margin: auto;
+    max-height: 90vh;
 
-    background: #ffffff;
+    overflow-y: auto;
+
+    background: white;
 
     border-radius: 18px;
 
     padding: 28px;
-
-    border: 1px solid #dce7e9;
 
     box-shadow:
 
@@ -1132,7 +1068,7 @@ tr:hover {
 
             90,
 
-            0.2
+            0.25
 
         );
 
@@ -1143,9 +1079,9 @@ tr:hover {
 
     display: flex;
 
-    align-items: center;
-
     justify-content: space-between;
+
+    align-items: center;
 
     margin-bottom: 22px;
 
@@ -1163,18 +1099,15 @@ tr:hover {
 
 .close {
 
+    border: none;
+
+    background: none;
+
+    color: #789096;
+
     font-size: 28px;
 
     cursor: pointer;
-
-    color: #829398;
-
-}
-
-
-.close:hover {
-
-    color: #a65d5d;
 
 }
 
@@ -1187,29 +1120,63 @@ tr:hover {
 
         repeat(
 
-            3,
+            2,
 
             1fr
 
         );
 
-    gap: 15px;
+    gap: 16px;
 
 }
 
 
-.form-grid .full {
+.form-section {
 
     grid-column: 1 / -1;
 
+    background: #f2f7f8;
+
+    border-left: 4px solid #3d7f86;
+
+    padding: 11px 14px;
+
+    color: #304c53;
+
+    font-weight: 600;
+
+    border-radius: 5px;
+
 }
 
 
-.modal-footer {
+.form-field label {
+
+    display: block;
+
+    color: #5e747a;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+
+}
+
+
+.form-field input,
+
+.form-field select {
+
+    width: 100%;
+
+}
+
+
+.modal-actions {
 
     display: flex;
-
-    justify-content: flex-end;
 
     gap: 10px;
 
@@ -1218,42 +1185,176 @@ tr:hover {
 }
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
+.modal-actions button {
 
-#mesej {
-
-    margin-bottom: 15px;
+    flex: 1;
 
 }
 
 
-.message {
+.btn-cancel {
 
-    padding: 12px 15px;
+    background: #edf2f3;
 
-    border-radius: 9px;
+    color: #52696f;
+
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+.popup {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background:
+
+        rgba(
+
+            35,
+
+            64,
+
+            71,
+
+            0.35
+
+        );
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.popup-box {
+
+    width: 390px;
+
+    max-width: 90%;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow:
+
+        0 15px 40px
+
+        rgba(
+
+            40,
+
+            80,
+
+            90,
+
+            0.25
+
+        );
+
+}
+
+
+.popup-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin: auto auto 15px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    background: #e1f0f1;
+
+    color: #3d7f86;
+
+}
+
+
+.popup-box h3 {
+
+    color: #304c53;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.popup-box p {
+
+    color: #71858a;
 
     font-size: 14px;
 
-}
+    line-height: 1.6;
 
-
-.message.success {
-
-    background: #e4f2ed;
-
-    color: #3d7662;
+    margin-bottom: 22px;
 
 }
 
 
-.message.error {
+.popup-box button {
 
-    background: #f8e4e4;
+    width: 100%;
 
-    color: #a65d5d;
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #3d7f86;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.popup.success .popup-icon {
+
+    background: #e1f0e8;
+
+    color: #4b9277;
+
+}
+
+
+.popup.error .popup-icon {
+
+    background: #f8e5e5;
+
+    color: #bd6262;
 
 }
 
@@ -1283,7 +1384,11 @@ tr:hover {
 
     .filter-grid {
 
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+
+            1fr
+
+            1fr;
 
     }
 
@@ -1368,6 +1473,13 @@ tr:hover {
     }
 
 
+    .system-status {
+
+        display: none;
+
+    }
+
+
     .filter-grid {
 
         grid-template-columns: 1fr;
@@ -1378,13 +1490,6 @@ tr:hover {
     .form-grid {
 
         grid-template-columns: 1fr;
-
-    }
-
-
-    .system-status {
-
-        display: none;
 
     }
 
@@ -1402,9 +1507,35 @@ tr:hover {
 
     .hero h1 {
 
-        font-size: 21px;
+        font-size: 22px;
 
     }
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #829398;
+
+}
+
+
+.empty {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #829398;
 
 }
 
@@ -1412,12 +1543,9 @@ tr:hover {
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
 
 <!-- =====================================================
      SIDEBAR
@@ -1425,19 +1553,19 @@ tr:hover {
 
 <aside class="sidebar">
 
-
 <div class="brand">
 
 <img
 
-    src="logo.png"
+```
+src="logo.png"
 
-    class="logo"
+class="logo"
 
-    alt="Logo FPB"
+alt="Logo FPB"
+```
 
 >
-
 
 <div class="brand-text">
 
@@ -1446,7 +1574,6 @@ tr:hover {
 POLIS BANTUAN FGVSSSB
 
 </h1>
-
 
 <p>
 
@@ -1458,7 +1585,6 @@ WILAYAH TERENGGANU
 
 </div>
 
-
 <div class="heritage-mark">
 
 <strong>
@@ -1469,7 +1595,6 @@ La Ilaha Illallah
 
 </strong>
 
-
 <span>
 
 • Terengganu Maju, Berkat Sejahtera •
@@ -1478,61 +1603,93 @@ La Ilaha Illallah
 
 </div>
 
-
 <div class="nav-title">
 
 MAIN MENU
 
 </div>
 
-
 <nav class="nav">
-
 
 <a href="index.html">
 
-<span class="nav-icon">⌂</span>
+<span class="nav-icon">
 
-<span>Dashboard</span>
+⌂
+
+</span>
+
+<span>
+
+Dashboard
+
+</span>
 
 </a>
-
 
 <a href="anggota.html" class="active">
 
-<span class="nav-icon">♙</span>
+<span class="nav-icon">
 
-<span>Senarai Anggota</span>
+♙
+
+</span>
+
+<span>
+
+Senarai Anggota
+
+</span>
 
 </a>
-
 
 <a href="jadual-duty.html">
 
-<span class="nav-icon">▣</span>
+<span class="nav-icon">
 
-<span>Jadual Duty</span>
+▣
+
+</span>
+
+<span>
+
+Jadual Duty
+
+</span>
 
 </a>
-
 
 <a href="kod-duty.html">
 
-<span class="nav-icon">▤</span>
+<span class="nav-icon">
 
-<span>Kod Duty</span>
+▤
+
+</span>
+
+<span>
+
+Kod Duty
+
+</span>
 
 </a>
-
 
 <a href="tempat-kerja.html">
 
-<span class="nav-icon">▦</span>
+<span class="nav-icon">
 
-<span>Kod Tempat Kerja</span>
+▦
+
+</span>
+
+<span>
+
+Kod Tempat Kerja
+
+</span>
 
 </a>
-
 
 <div class="nav-title">
 
@@ -1540,33 +1697,53 @@ REPORTING
 
 </div>
 
-
 <a href="laporan.html">
 
-<span class="nav-icon">▥</span>
+<span class="nav-icon">
 
-<span>Laporan</span>
+▥
+
+</span>
+
+<span>
+
+Laporan
+
+</span>
 
 </a>
-
 
 <a href="laporan-anggaran.html">
 
-<span class="nav-icon">◫</span>
+<span class="nav-icon">
 
-<span>Anggaran Duty Bulanan</span>
+◫
+
+</span>
+
+<span>
+
+Anggaran Duty Bulanan
+
+</span>
 
 </a>
-
 
 <a href="Laporan-Penuh.html">
 
-<span class="nav-icon">▤</span>
+<span class="nav-icon">
 
-<span>Laporan Penuh</span>
+▤
+
+</span>
+
+<span>
+
+Laporan Penuh
+
+</span>
 
 </a>
-
 
 <div class="nav-title">
 
@@ -1574,20 +1751,25 @@ SYSTEM
 
 </div>
 
-
 <a href="#">
 
-<span class="nav-icon">⚙</span>
+<span class="nav-icon">
 
-<span>Tetapan</span>
+⚙
+
+</span>
+
+<span>
+
+Tetapan
+
+</span>
 
 </a>
-
 
 </nav>
 
 </aside>
-
 
 <!-- =====================================================
      MAIN
@@ -1595,11 +1777,7 @@ SYSTEM
 
 <main class="main">
 
-
-<!-- TOPBAR -->
-
 <div class="topbar">
-
 
 <div class="page-title">
 
@@ -1608,7 +1786,6 @@ SYSTEM
 Senarai Anggota
 
 </h2>
-
 
 <p>
 
@@ -1620,7 +1797,6 @@ Wilayah Terengganu
 
 </div>
 
-
 <div class="system-status">
 
 <span class="status-dot"></span>
@@ -1631,13 +1807,11 @@ System Online
 
 </div>
 
-
-<!-- CONTENT -->
-
 <div class="content">
 
-
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <div class="hero">
 
@@ -1649,13 +1823,11 @@ SENARAI ANGGOTA
 
 </h1>
 
-
 <p>
 
-Pengurusan dan rekod anggota Polis Bantuan FGV Wilayah Terengganu.
+Pengurusan data anggota Polis Bantuan FGVSSSB Wilayah Terengganu.
 
 </p>
-
 
 <div class="hero-line"></div>
 
@@ -1663,66 +1835,53 @@ Pengurusan dan rekod anggota Polis Bantuan FGV Wilayah Terengganu.
 
 </div>
 
+<!-- =====================================================
+     FILTER
+===================================================== -->
 
-<!-- SECTION HEADER -->
+<div class="card">
 
-<div class="section-header">
-
-<div>
+<div class="card-header">
 
 <h2>
 
-Data Anggota
+Carian & Filter Anggota
 
 </h2>
 
+<span id="jumlahRekod">
 
-<p>
+0 Rekod
 
-Cari dan urus rekod anggota
-
-</p>
-
-</div>
+</span>
 
 </div>
-
-
-<!-- MESSAGE -->
-
-<div id="mesej"></div>
-
-
-<!-- FILTER -->
-
-<div class="filter-card">
-
 
 <div class="filter-grid">
-
 
 <div class="form-group">
 
 <label>
 
-Cari No. SKB / No. Anggota / Nama
+Cari No. SKB atau Nama
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="cari"
+id="cari"
 
-    placeholder="Taip untuk mencari..."
+placeholder="Masukkan No. SKB atau Nama..."
+
+oninput="paparAnggota()"
+```
 
 >
 
-
 </div>
-
 
 <div class="form-group">
 
@@ -1732,31 +1891,33 @@ Filter Pos
 
 </label>
 
-
 <select
 
-    id="filterPos"
+```
+id="filterPos"
+
+onchange="paparAnggota()"
+```
 
 >
 
-
 <option value="">
 
-Semua Pos
+Memuatkan Pos...
 
 </option>
-
 
 </select>
 
 </div>
 
-
 <button
 
-    class="btn btn-primary"
+```
+class="btn btn-primary"
 
-    onclick="bukaTambah()"
+onclick="bukaTambah()"
+```
 
 >
 
@@ -1764,64 +1925,129 @@ Semua Pos
 
 </button>
 
-
 </div>
 
 </div>
 
+<!-- =====================================================
+     TABLE
+===================================================== -->
 
-<!-- TABLE -->
+<div class="card">
 
-<div class="table-card">
+<div class="card-header">
 
+<h2>
+
+Senarai Anggota
+
+</h2>
+
+<span>
+
+Data Semasa
+
+</span>
+
+</div>
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
 <tr>
 
-<th>No. SKB</th>
+<th>
 
-<th>No. Anggota</th>
+No. SKB
 
-<th>Nama</th>
+</th>
 
-<th>Pangkat</th>
+<th>
 
-<th>Wilayah</th>
+No. Anggota
 
-<th>Kawasan</th>
+</th>
 
-<th>Pos</th>
+<th>
 
-<th>Unit</th>
+Nama
 
-<th>Jawatan</th>
+</th>
 
-<th>Ketua Pos</th>
+<th>
 
-<th>Ketua Unit</th>
+Pangkat
 
-<th>Status</th>
+</th>
 
-<th>Tindakan</th>
+<th>
+
+Kawasan
+
+</th>
+
+<th>
+
+Pos
+
+</th>
+
+<th>
+
+Unit
+
+</th>
+
+<th>
+
+Jawatan
+
+</th>
+
+<th>
+
+Ketua Pos
+
+</th>
+
+<th>
+
+Ketua Unit
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Tindakan
+
+</th>
 
 </tr>
 
 </thead>
 
-
 <tbody id="senaraiAnggota">
-
 
 <tr>
 
-<td colspan="13">
+<td
+
+```
+colspan="12"
+
+class="loading"
+```
+
+>
 
 Memuatkan data...
 
@@ -1837,44 +2063,43 @@ Memuatkan data...
 
 </div>
 
-
-</div>
-
-
 <footer class="footer">
 
-FPB DUTY SYSTEM — WILAYAH TERENGGANU
+FPB DUTY SYSTEM —
+
+WILAYAH TERENGGANU
 
 <br>
 
-© 2026 | Operational Duty Management System
+© 2026 |
+
+Operational Duty Management System
 
 </footer>
 
+</div>
 
 </main>
 
 </div>
 
-
 <!-- =====================================================
-     MODAL TAMBAH / EDIT
+     MODAL ANGGOTA
 ===================================================== -->
 
 <div
 
-    id="modalAnggota"
+```
+id="modalAnggota"
 
-    class="modal"
+class="modal"
+```
 
 >
 
-
 <div class="modal-content">
 
-
 <div class="modal-header">
-
 
 <h2 id="tajukModal">
 
@@ -1882,204 +2107,323 @@ Tambah Anggota
 
 </h2>
 
+<button
 
-<span
+```
+class="close"
 
-    class="close"
-
-    onclick="tutupModal()"
+onclick="tutupModal()"
+```
 
 >
 
-&times;
+×
 
-</span>
+</button>
 
 </div>
 
-
 <input
 
-    type="hidden"
+```
+type="hidden"
 
-    id="editNoSkb"
+id="editNoSkb"
+```
 
 >
-
 
 <div class="form-grid">
 
+<div class="form-section">
 
-<div class="form-group">
+MAKLUMAT ANGGOTA
 
-<label>No. SKB</label>
+</div>
+
+<div class="form-field">
+
+<label>
+
+No. SKB
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="noSkb"
+id="noSkb"
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>No. Anggota</label>
+No. Anggota
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="noAnggota"
+id="noAnggota"
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>Nama</label>
+Nama
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="nama"
+id="nama"
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>Pangkat</label>
+Pangkat
+
+</label>
+
+<select id="pangkat">
+
+<option value="">
+
+-- Pilih Pangkat --
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-field">
+
+<label>
+
+Wilayah
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="pangkat"
+id="wilayah"
+
+value="Terengganu"
+
+readonly
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>Wilayah</label>
+Kawasan
+
+</label>
+
+<select id="kawasan">
+
+<option value="">
+
+-- Pilih Kawasan --
+
+</option>
+
+<option value="F102-Jerangau">
+
+F102-Jerangau
+
+</option>
+
+<option value="F105-Chalok">
+
+F105-Chalok
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-field">
+
+<label>
+
+Pos
+
+</label>
+
+<select id="pos">
+
+<option value="">
+
+-- Pilih Pos --
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-field">
+
+<label>
+
+Unit
+
+</label>
+
+<select id="unit">
+
+<option value="">
+
+-- Pilih Unit --
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-field">
+
+<label>
+
+Jawatan
+
+</label>
+
+<select id="jawatan">
+
+<option value="">
+
+-- Pilih Jawatan --
+
+</option>
+
+<option value="Anggota Pos">
+
+Anggota Pos
+
+</option>
+
+<option value="Ketua Pos">
+
+Ketua Pos
+
+</option>
+
+<option value="Ketua Unit">
+
+Ketua Unit
+
+</option>
+
+<option value="PTW">
+
+PTW
+
+</option>
+
+<option value="PPOW">
+
+PPOW
+
+</option>
+
+<option value="POW">
+
+POW
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-field">
+
+<label>
+
+Ketua Pos
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="wilayah"
+id="ketuaPos"
 
-    value="Terengganu"
+readonly
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>Kawasan</label>
+Ketua Unit
+
+</label>
 
 <input
 
-    type="text"
+```
+type="text"
 
-    id="kawasan"
+id="ketuaUnit"
+
+readonly
+```
 
 >
 
 </div>
 
+<div class="form-field">
 
-<div class="form-group">
+<label>
 
-<label>Pos</label>
+Status
 
-<input
-
-    type="text"
-
-    id="pos"
-
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Unit</label>
-
-<input
-
-    type="text"
-
-    id="unit"
-
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Jawatan</label>
-
-<input
-
-    type="text"
-
-    id="jawatan"
-
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Ketua Pos</label>
-
-<input
-
-    type="text"
-
-    id="ketuaPos"
-
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Ketua Unit</label>
-
-<input
-
-    type="text"
-
-    id="ketuaUnit"
-
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>Status</label>
+</label>
 
 <select id="status">
 
@@ -2101,28 +2445,15 @@ Tidak Aktif
 
 </div>
 
-
-<div class="modal-footer">
-
+<div class="modal-actions">
 
 <button
 
-    class="btn btn-secondary"
+```
+class="btn btn-primary"
 
-    onclick="tutupModal()"
-
->
-
-Batal
-
-</button>
-
-
-<button
-
-    class="btn btn-primary"
-
-    onclick="simpanAnggota()"
+onclick="simpanAnggota()"
+```
 
 >
 
@@ -2130,51 +2461,112 @@ Batal
 
 </button>
 
+<button
+
+```
+class="btn btn-cancel"
+
+onclick="tutupModal()"
+```
+
+>
+
+Batal
+
+</button>
+
 </div>
 
+</div>
+
+</div>
+
+<!-- =====================================================
+     POPUP
+===================================================== -->
+
+<div
+
+```
+id="popupMesej"
+
+class="popup"
+```
+
+>
+
+<div class="popup-box">
+
+<div
+
+```
+id="popupIcon"
+
+class="popup-icon"
+```
+
+>
+
+✓
+
+</div>
+
+<h3 id="popupTajuk">
+
+Makluman
+
+</h3>
+
+<p id="popupText">
+
+...
+
+</p>
+
+<button
+
+```
+onclick="tutupPopup()"
+```
+
+>
+
+OK
+
+</button>
 
 </div>
 
 </div>
 
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script
+
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
+></script>
+
+<script
+
+    src="supabase.js"
+
+></script>
 
 <script>
 
 
 // =====================================================
-// SUPABASE
-// =====================================================
-
-const SUPABASE_URL =
-
-"https://nlwrrrwkjpktrifxeymw.supabase.co";
-
-
-const SUPABASE_KEY =
-
-"sb_publishable_0ymP9thOFXkuNYzvwa0gwQ_1mbxyFE6";
-
-
-const supabaseClient =
-
-supabase.createClient(
-
-    SUPABASE_URL,
-
-    SUPABASE_KEY
-
-);
-
-
-// =====================================================
-// DATA GLOBAL
+// DATA
 // =====================================================
 
 let semuaAnggota = [];
 
 
 // =====================================================
-// APABILA HALAMAN DIBUKA
+// MULA
 // =====================================================
 
 document.addEventListener(
@@ -2187,34 +2579,49 @@ document.addEventListener(
         await muatAnggota();
 
 
-        await muatFilterPos();
-
-
         document
 
-            .getElementById("cari")
-
-            .addEventListener(
-
-                "input",
-
-                paparAnggota
-
-            );
-
-
-        document
-
-            .getElementById("filterPos")
+            .getElementById("pos")
 
             .addEventListener(
 
                 "change",
 
-                paparAnggota
+                paparKetua
 
             );
 
+
+        document
+
+            .getElementById("unit")
+
+            .addEventListener(
+
+                "change",
+
+                paparKetuaUnit
+
+            );
+
+
+        document
+
+            .getElementById("kawasan")
+
+            .addEventListener(
+
+                "change",
+
+                function () {
+
+                    paparKetua();
+
+                    paparKetuaUnit();
+
+                }
+
+            );
 
     }
 
@@ -2234,33 +2641,7 @@ async function muatAnggota() {
 
         .select(
 
-            `
-
-            no_skb,
-
-            no_anggota,
-
-            nama,
-
-            pangkat,
-
-            wilayah,
-
-            kawasan,
-
-            pos,
-
-            unit,
-
-            jawatan,
-
-            ketua_pos,
-
-            ketua_unit,
-
-            status
-
-            `
+            "no_skb,no_anggota,nama,pangkat,wilayah,kawasan,pos,unit,jawatan,ketua_pos,ketua_unit,status"
 
         )
 
@@ -2289,15 +2670,15 @@ async function muatAnggota() {
         );
 
 
-        paparMesej(
+        paparPopup(
 
-            "Gagal ambil data anggota: "
+            result.error.message ||
 
-            +
+            "Gagal mengambil data anggota.",
 
-            result.error.message,
+            "error",
 
-            "error"
+            "Gagal Muat Data"
 
         );
 
@@ -2310,25 +2691,94 @@ async function muatAnggota() {
     semuaAnggota = result.data || [];
 
 
+    muatSemuaDropdown();
+
+
     paparAnggota();
 
 }
 
 
 // =====================================================
-// MUAT FILTER POS
+// DROPDOWN
 // =====================================================
 
-async function muatFilterPos() {
+function senaraiUnik(namaKolum) {
 
 
-    const select = document
+    return [
 
-        .getElementById(
+        ...
 
-            "filterPos"
+        new Set(
 
-        );
+            semuaAnggota
+
+                .map(
+
+                    function (item) {
+
+                        return item[namaKolum];
+
+                    }
+
+                )
+
+                .filter(
+
+                    function (nilai) {
+
+                        return (
+
+                            nilai !== null &&
+
+                            nilai !== undefined &&
+
+                            String(nilai).trim() !== ""
+
+                        );
+
+                    }
+
+                )
+
+                .map(
+
+                    function (nilai) {
+
+                        return String(nilai).trim();
+
+                    }
+
+                )
+
+        )
+
+    ].sort(
+
+        function (a, b) {
+
+            return a.localeCompare(b);
+
+        }
+
+    );
+
+}
+
+
+function isiDropdown(
+
+    id,
+
+    namaKolum,
+
+    teksDefault
+
+) {
+
+
+    const select = document.getElementById(id);
 
 
     if (!select) {
@@ -2338,231 +2788,163 @@ async function muatFilterPos() {
     }
 
 
-    select.innerHTML = `
-
-        <option value="">
-
-            Semua Pos
-
-        </option>
-
-    `;
+    const nilaiLama = select.value;
 
 
-    const result = await supabaseClient
-
-        .from("Data_Anggota")
-
-        .select("pos")
-
-        .not(
-
-            "pos",
-
-            "is",
-
-            null
-
-        );
+    select.innerHTML = "";
 
 
-    if (result.error) {
+    const optionDefault = document.createElement(
+
+        "option"
+
+    );
 
 
-        console.error(
-
-            "RALAT FILTER POS:",
-
-            result.error
-
-        );
+    optionDefault.value = "";
 
 
-        return;
-
-    }
+    optionDefault.textContent = teksDefault;
 
 
-    const senaraiPos = [
-
-        ...
-
-        new Set(
-
-            (result.data || [])
-
-                .map(function (item) {
-
-                    return String(
-
-                        item.pos || ""
-
-                    ).trim();
-
-                })
-
-                .filter(function (pos) {
-
-                    return pos !== "";
-
-                })
-
-        )
-
-    ];
+    select.appendChild(optionDefault);
 
 
-    senaraiPos.sort(function (a, b) {
-
-        return a.localeCompare(b);
-
-    });
+    const data = senaraiUnik(namaKolum);
 
 
-    senaraiPos.forEach(function (pos) {
+    data.forEach(
+
+        function (nilai) {
 
 
-        const option = document
-
-            .createElement(
+            const option = document.createElement(
 
                 "option"
 
             );
 
 
-        option.value = pos;
+            option.value = nilai;
 
 
-        option.textContent = pos;
+            option.textContent = nilai;
 
 
-        select.appendChild(option);
+            select.appendChild(option);
 
-    });
+        }
+
+    );
+
+
+    if (data.includes(nilaiLama)) {
+
+        select.value = nilaiLama;
+
+    }
+
+}
+
+
+function muatSemuaDropdown() {
+
+
+    isiDropdown(
+
+        "pangkat",
+
+        "pangkat",
+
+        "-- Pilih Pangkat --"
+
+    );
+
+
+    isiDropdown(
+
+        "pos",
+
+        "pos",
+
+        "-- Pilih Pos --"
+
+    );
+
+
+    isiDropdown(
+
+        "unit",
+
+        "unit",
+
+        "-- Pilih Unit --"
+
+    );
+
+
+    isiDropdown(
+
+        "filterPos",
+
+        "pos",
+
+        "Semua Pos"
+
+    );
 
 }
 
 
 // =====================================================
-// PAPAR ANGGOTA
+// PAPAR KETUA POS
 // =====================================================
 
-function paparAnggota() {
+function paparKetua() {
 
 
-    const cari = document
+    const kawasan = document
 
-        .getElementById(
+        .getElementById("kawasan")
 
-            "cari"
-
-        )
-
-        .value
-
-        .trim()
-
-        .toLowerCase();
+        .value;
 
 
-    const filterPos = document
+    const pos = document
 
-        .getElementById(
+        .getElementById("pos")
 
-            "filterPos"
-
-        )
-
-        .value
-
-        .trim()
-
-        .toLowerCase();
+        .value;
 
 
-    const data = semuaAnggota.filter(
+    const input = document
+
+        .getElementById("ketuaPos");
+
+
+    if (!kawasan || !pos) {
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const ketua = semuaAnggota.find(
 
         function (anggota) {
 
 
-            const teksCarian = (
-
-                String(
-
-                    anggota.no_skb || ""
-
-                )
-
-                +
-
-                " "
-
-                +
-
-                String(
-
-                    anggota.no_anggota || ""
-
-                )
-
-                +
-
-                " "
-
-                +
-
-                String(
-
-                    anggota.nama || ""
-
-                )
-
-            )
-
-            .toLowerCase();
-
-
-            const pos = String(
-
-                anggota.pos || ""
-
-            )
-
-            .trim()
-
-            .toLowerCase();
-
-
-            const lulusCarian =
-
-                !cari
-
-                ||
-
-                teksCarian.includes(
-
-                    cari
-
-                );
-
-
-            const lulusFilterPos =
-
-                !filterPos
-
-                ||
-
-                pos === filterPos;
-
-
             return (
 
-                lulusCarian
+                anggota.kawasan === kawasan &&
 
-                &&
+                anggota.pos === pos &&
 
-                lulusFilterPos
+                anggota.jawatan === "Ketua Pos" &&
+
+                anggota.status === "Aktif"
 
             );
 
@@ -2571,13 +2953,164 @@ function paparAnggota() {
     );
 
 
+    input.value = ketua
+
+        ? ketua.nama
+
+        : "";
+
+}
+
+
+// =====================================================
+// PAPAR KETUA UNIT
+// =====================================================
+
+function paparKetuaUnit() {
+
+
+    const kawasan = document
+
+        .getElementById("kawasan")
+
+        .value;
+
+
+    const unit = document
+
+        .getElementById("unit")
+
+        .value;
+
+
+    const input = document
+
+        .getElementById("ketuaUnit");
+
+
+    if (!kawasan || !unit) {
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const ketua = semuaAnggota.find(
+
+        function (anggota) {
+
+
+            return (
+
+                anggota.kawasan === kawasan &&
+
+                anggota.unit === unit &&
+
+                anggota.jawatan === "Ketua Unit" &&
+
+                anggota.status === "Aktif"
+
+            );
+
+        }
+
+    );
+
+
+    input.value = ketua
+
+        ? ketua.nama
+
+        : "";
+
+}
+
+
+// =====================================================
+// PAPAR SENARAI
+// =====================================================
+
+function paparAnggota() {
+
+
+    const cari = document
+
+        .getElementById("cari")
+
+        .value
+
+        .toLowerCase()
+
+        .trim();
+
+
+    const filterPos = document
+
+        .getElementById("filterPos")
+
+        .value;
+
+
+    const data = semuaAnggota.filter(
+
+        function (anggota) {
+
+
+            const noSkb = String(
+
+                anggota.no_skb || ""
+
+            ).toLowerCase();
+
+
+            const nama = String(
+
+                anggota.nama || ""
+
+            ).toLowerCase();
+
+
+            const carianSama =
+
+                noSkb.includes(cari) ||
+
+                nama.includes(cari);
+
+
+            const posSama =
+
+                !filterPos ||
+
+                anggota.pos === filterPos;
+
+
+            return (
+
+                carianSama &&
+
+                posSama
+
+            );
+
+        }
+
+    );
+
+
+    document
+
+        .getElementById("jumlahRekod")
+
+        .textContent =
+
+        data.length + " Rekod";
+
+
     const tbody = document
 
-        .getElementById(
-
-            "senaraiAnggota"
-
-        );
+        .getElementById("senaraiAnggota");
 
 
     tbody.innerHTML = "";
@@ -2592,17 +3125,9 @@ function paparAnggota() {
 
                 <td
 
-                    colspan="13"
+                    colspan="12"
 
-                    style="
-
-                        text-align:center;
-
-                        padding:30px;
-
-                        color:#829398;
-
-                    "
+                    class="empty"
 
                 >
 
@@ -2620,262 +3145,167 @@ function paparAnggota() {
     }
 
 
-    data.forEach(function (anggota) {
+    data.forEach(
+
+        function (anggota) {
 
 
-        const tr = document
-
-            .createElement(
+            const tr = document.createElement(
 
                 "tr"
 
             );
 
 
-        const statusClass =
+            const statusClass =
 
-            String(
+                anggota.status === "Aktif"
 
-                anggota.status || ""
+                ? "badge-aktif"
 
-            )
+                : "badge-tidak";
 
-            .trim()
 
-            .toLowerCase()
+            tr.innerHTML = `
 
-            === "aktif"
+                <td>
 
-            ?
+                    ${escapeHTML(anggota.no_skb)}
 
-            "badge-aktif"
+                </td>
 
-            :
 
-            "badge-tidak";
+                <td>
 
+                    ${escapeHTML(anggota.no_anggota)}
 
-        tr.innerHTML = `
+                </td>
 
-            <td>
 
-                ${escapeHTML(
+                <td>
 
-                    anggota.no_skb
+                    <strong>
 
-                )}
+                        ${escapeHTML(anggota.nama)}
 
-            </td>
+                    </strong>
 
+                </td>
 
-            <td>
 
-                ${escapeHTML(
+                <td>
 
-                    anggota.no_anggota
+                    ${escapeHTML(anggota.pangkat)}
 
-                )}
+                </td>
 
-            </td>
 
+                <td>
 
-            <td>
+                    ${escapeHTML(anggota.kawasan)}
 
-                ${escapeHTML(
+                </td>
 
-                    anggota.nama
 
-                )}
+                <td>
 
-            </td>
+                    ${escapeHTML(anggota.pos)}
 
+                </td>
 
-            <td>
 
-                ${escapeHTML(
+                <td>
 
-                    anggota.pangkat
+                    ${escapeHTML(anggota.unit)}
 
-                )}
+                </td>
 
-            </td>
 
+                <td>
 
-            <td>
+                    ${escapeHTML(anggota.jawatan)}
 
-                ${escapeHTML(
+                </td>
 
-                    anggota.wilayah
 
-                )}
+                <td>
 
-            </td>
+                    ${escapeHTML(anggota.ketua_pos)}
 
+                </td>
 
-            <td>
 
-                ${escapeHTML(
+                <td>
 
-                    anggota.kawasan
+                    ${escapeHTML(anggota.ketua_unit)}
 
-                )}
+                </td>
 
-            </td>
 
+                <td>
 
-            <td>
+                    <span
 
-                ${escapeHTML(
-
-                    anggota.pos
-
-                )}
-
-            </td>
-
-
-            <td>
-
-                ${escapeHTML(
-
-                    anggota.unit
-
-                )}
-
-            </td>
-
-
-            <td>
-
-                ${escapeHTML(
-
-                    anggota.jawatan
-
-                )}
-
-            </td>
-
-
-            <td>
-
-                ${escapeHTML(
-
-                    anggota.ketua_pos
-
-                )}
-
-            </td>
-
-
-            <td>
-
-                ${escapeHTML(
-
-                    anggota.ketua_unit
-
-                )}
-
-            </td>
-
-
-            <td>
-
-                <span
-
-                    class="badge ${statusClass}"
-
-                >
-
-                    ${escapeHTML(
-
-                        anggota.status
-
-                    )}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <div class="action-buttons">
-
-
-                    <button
-
-                        class="btn btn-warning"
-
-                        onclick="editAnggota(
-
-                            '${String(
-
-                                anggota.no_skb
-
-                            )
-
-                            .replace(
-
-                                /'/g,
-
-                                "\\'"
-
-                            )}'
-
-                        )"
+                        class="badge ${statusClass}"
 
                     >
 
-                        ✏️ Edit
+                        ${escapeHTML(anggota.status)}
 
-                    </button>
+                    </span>
 
-
-                    <button
-
-                        class="btn btn-danger"
-
-                        onclick="padamAnggota(
-
-                            '${String(
-
-                                anggota.no_skb
-
-                            )
-
-                            .replace(
-
-                                /'/g,
-
-                                "\\'"
-
-                            )}'
-
-                        )"
-
-                    >
-
-                        🗑️
-
-                    </button>
+                </td>
 
 
-                </div>
+                <td>
 
-            </td>
-
-        `;
+                    <div class="action-buttons">
 
 
-        tbody.appendChild(tr);
+                        <button
 
-    });
+                            class="btn-edit"
+
+                            onclick="editAnggota('${escapeJS(anggota.no_skb)}')"
+
+                        >
+
+                            ✏️ Edit
+
+                        </button>
+
+
+                        <button
+
+                            class="btn-delete"
+
+                            onclick="padamAnggota('${escapeJS(anggota.no_skb)}')"
+
+                        >
+
+                            🗑️ Padam
+
+                        </button>
+
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(tr);
+
+        }
+
+    );
 
 }
 
 
 // =====================================================
-// BUKA TAMBAH
+// TAMBAH
 // =====================================================
 
 function bukaTambah() {
@@ -2883,11 +3313,7 @@ function bukaTambah() {
 
     document
 
-        .getElementById(
-
-            "tajukModal"
-
-        )
+        .getElementById("tajukModal")
 
         .textContent =
 
@@ -2896,173 +3322,113 @@ function bukaTambah() {
 
     document
 
-        .getElementById(
-
-            "editNoSkb"
-
-        )
+        .getElementById("editNoSkb")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "noSkb"
-
-        )
+        .getElementById("noSkb")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "noSkb"
-
-        )
+        .getElementById("noSkb")
 
         .disabled = false;
 
 
     document
 
-        .getElementById(
-
-            "noAnggota"
-
-        )
+        .getElementById("noAnggota")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "nama"
-
-        )
+        .getElementById("nama")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "pangkat"
-
-        )
+        .getElementById("pangkat")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "wilayah"
-
-        )
+        .getElementById("wilayah")
 
         .value = "Terengganu";
 
 
     document
 
-        .getElementById(
-
-            "kawasan"
-
-        )
+        .getElementById("kawasan")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "pos"
-
-        )
+        .getElementById("pos")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "unit"
-
-        )
+        .getElementById("unit")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "jawatan"
-
-        )
+        .getElementById("jawatan")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "ketuaPos"
-
-        )
+        .getElementById("ketuaPos")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "ketuaUnit"
-
-        )
+        .getElementById("ketuaUnit")
 
         .value = "";
 
 
     document
 
-        .getElementById(
-
-            "status"
-
-        )
+        .getElementById("status")
 
         .value = "Aktif";
 
 
     document
 
-        .getElementById(
+        .getElementById("modalAnggota")
 
-            "modalAnggota"
-
-        )
-
-        .style.display = "block";
+        .style.display = "flex";
 
 }
 
 
 // =====================================================
-// EDIT ANGGOTA
+// EDIT
 // =====================================================
 
 function editAnggota(noSkb) {
@@ -3070,22 +3436,9 @@ function editAnggota(noSkb) {
 
     const anggota = semuaAnggota.find(
 
-        function (item) {
+        function (x) {
 
-
-            return String(
-
-                item.no_skb
-
-            )
-
-            ===
-
-            String(
-
-                noSkb
-
-            );
+            return String(x.no_skb) === String(noSkb);
 
         }
 
@@ -3094,6 +3447,16 @@ function editAnggota(noSkb) {
 
     if (!anggota) {
 
+        paparPopup(
+
+            "Data anggota tidak dijumpai.",
+
+            "error",
+
+            "Gagal Edit"
+
+        );
+
         return;
 
     }
@@ -3101,11 +3464,7 @@ function editAnggota(noSkb) {
 
     document
 
-        .getElementById(
-
-            "tajukModal"
-
-        )
+        .getElementById("tajukModal")
 
         .textContent =
 
@@ -3114,199 +3473,113 @@ function editAnggota(noSkb) {
 
     document
 
-        .getElementById(
+        .getElementById("editNoSkb")
 
-            "editNoSkb"
-
-        )
-
-        .value =
-
-        anggota.no_skb;
+        .value = anggota.no_skb;
 
 
     document
 
-        .getElementById(
+        .getElementById("noSkb")
 
-            "noSkb"
-
-        )
-
-        .value =
-
-        anggota.no_skb;
+        .value = anggota.no_skb;
 
 
     document
 
-        .getElementById(
-
-            "noSkb"
-
-        )
+        .getElementById("noSkb")
 
         .disabled = true;
 
 
     document
 
-        .getElementById(
+        .getElementById("noAnggota")
 
-            "noAnggota"
-
-        )
-
-        .value =
-
-        anggota.no_anggota || "";
+        .value = anggota.no_anggota || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("nama")
 
-            "nama"
-
-        )
-
-        .value =
-
-        anggota.nama || "";
+        .value = anggota.nama || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("pangkat")
 
-            "pangkat"
-
-        )
-
-        .value =
-
-        anggota.pangkat || "";
+        .value = anggota.pangkat || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("wilayah")
 
-            "wilayah"
-
-        )
-
-        .value =
-
-        anggota.wilayah || "Terengganu";
+        .value = anggota.wilayah || "Terengganu";
 
 
     document
 
-        .getElementById(
+        .getElementById("kawasan")
 
-            "kawasan"
-
-        )
-
-        .value =
-
-        anggota.kawasan || "";
+        .value = anggota.kawasan || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("pos")
 
-            "pos"
-
-        )
-
-        .value =
-
-        anggota.pos || "";
+        .value = anggota.pos || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("unit")
 
-            "unit"
-
-        )
-
-        .value =
-
-        anggota.unit || "";
+        .value = anggota.unit || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("jawatan")
 
-            "jawatan"
-
-        )
-
-        .value =
-
-        anggota.jawatan || "";
+        .value = anggota.jawatan || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("ketuaPos")
 
-            "ketuaPos"
-
-        )
-
-        .value =
-
-        anggota.ketua_pos || "";
+        .value = anggota.ketua_pos || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("ketuaUnit")
 
-            "ketuaUnit"
-
-        )
-
-        .value =
-
-        anggota.ketua_unit || "";
+        .value = anggota.ketua_unit || "";
 
 
     document
 
-        .getElementById(
+        .getElementById("status")
 
-            "status"
-
-        )
-
-        .value =
-
-        anggota.status || "Aktif";
+        .value = anggota.status || "Aktif";
 
 
     document
 
-        .getElementById(
+        .getElementById("modalAnggota")
 
-            "modalAnggota"
-
-        )
-
-        .style.display = "block";
+        .style.display = "flex";
 
 }
 
 
 // =====================================================
-// SIMPAN ANGGOTA
+// SIMPAN
 // =====================================================
 
 async function simpanAnggota() {
@@ -3314,11 +3587,7 @@ async function simpanAnggota() {
 
     const noSkb = document
 
-        .getElementById(
-
-            "noSkb"
-
-        )
+        .getElementById("noSkb")
 
         .value
 
@@ -3327,11 +3596,7 @@ async function simpanAnggota() {
 
     const noAnggota = document
 
-        .getElementById(
-
-            "noAnggota"
-
-        )
+        .getElementById("noAnggota")
 
         .value
 
@@ -3340,11 +3605,7 @@ async function simpanAnggota() {
 
     const nama = document
 
-        .getElementById(
-
-            "nama"
-
-        )
+        .getElementById("nama")
 
         .value
 
@@ -3353,148 +3614,98 @@ async function simpanAnggota() {
 
     const pangkat = document
 
-        .getElementById(
+        .getElementById("pangkat")
 
-            "pangkat"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const wilayah = document
 
-        .getElementById(
+        .getElementById("wilayah")
 
-            "wilayah"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const kawasan = document
 
-        .getElementById(
+        .getElementById("kawasan")
 
-            "kawasan"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const pos = document
 
-        .getElementById(
+        .getElementById("pos")
 
-            "pos"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const unit = document
 
-        .getElementById(
+        .getElementById("unit")
 
-            "unit"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const jawatan = document
 
-        .getElementById(
+        .getElementById("jawatan")
 
-            "jawatan"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const ketuaPos = document
 
-        .getElementById(
+        .getElementById("ketuaPos")
 
-            "ketuaPos"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const ketuaUnit = document
 
-        .getElementById(
+        .getElementById("ketuaUnit")
 
-            "ketuaUnit"
-
-        )
-
-        .value
-
-        .trim();
+        .value;
 
 
     const status = document
 
-        .getElementById(
-
-            "status"
-
-        )
+        .getElementById("status")
 
         .value;
 
 
     const editNoSkb = document
 
-        .getElementById(
-
-            "editNoSkb"
-
-        )
+        .getElementById("editNoSkb")
 
         .value;
 
 
     if (
 
-        !noSkb
+        !noSkb ||
 
-        ||
+        !nama ||
 
-        !nama
+        !kawasan ||
 
-        ||
+        !pos ||
 
-        !pos
+        !unit ||
+
+        !jawatan
 
     ) {
 
 
-        alert(
+        paparPopup(
 
-            "Sila lengkapkan sekurang-kurangnya No. SKB, Nama dan Pos."
+            "Sila lengkapkan No. SKB, Nama, Kawasan, Pos, Unit dan Jawatan.",
+
+            "error",
+
+            "Maklumat Tidak Lengkap"
 
         );
 
@@ -3507,59 +3718,27 @@ async function simpanAnggota() {
     const data = {
 
 
-        no_anggota:
+        no_anggota: noAnggota,
 
-            noAnggota,
+        nama: nama,
 
+        pangkat: pangkat,
 
-        nama:
+        wilayah: wilayah,
 
-            nama,
+        kawasan: kawasan,
 
+        pos: pos,
 
-        pangkat:
+        unit: unit,
 
-            pangkat,
+        jawatan: jawatan,
 
+        ketua_pos: ketuaPos,
 
-        wilayah:
+        ketua_unit: ketuaUnit,
 
-            wilayah,
-
-
-        kawasan:
-
-            kawasan,
-
-
-        pos:
-
-            pos,
-
-
-        unit:
-
-            unit,
-
-
-        jawatan:
-
-            jawatan,
-
-
-        ketua_pos:
-
-            ketuaPos,
-
-
-        ketua_unit:
-
-            ketuaUnit,
-
-
-        status:
-
-            status
+        status: status
 
     };
 
@@ -3572,11 +3751,7 @@ async function simpanAnggota() {
 
         result = await supabaseClient
 
-            .from(
-
-                "Data_Anggota"
-
-            )
+            .from("Data_Anggota")
 
             .update(data)
 
@@ -3588,6 +3763,7 @@ async function simpanAnggota() {
 
             );
 
+
     }
 
     else {
@@ -3595,17 +3771,11 @@ async function simpanAnggota() {
 
         result = await supabaseClient
 
-            .from(
-
-                "Data_Anggota"
-
-            )
+            .from("Data_Anggota")
 
             .insert({
 
-                no_skb:
-
-                    noSkb,
+                no_skb: noSkb,
 
                 ...data
 
@@ -3619,22 +3789,26 @@ async function simpanAnggota() {
 
         console.error(
 
-            "RALAT SIMPAN:",
+            "RALAT SUPABASE:",
 
             result.error
 
         );
 
 
-        paparMesej(
+        paparPopup(
 
-            "Gagal simpan: "
+            result.error.message ||
 
-            +
+            result.error.details ||
 
-            result.error.message,
+            result.error.hint ||
 
-            "error"
+            "Gagal menyimpan data anggota.",
+
+            "error",
+
+            "Gagal Simpan"
 
         );
 
@@ -3647,19 +3821,18 @@ async function simpanAnggota() {
     tutupModal();
 
 
-    paparMesej(
+    paparPopup(
 
         "Data anggota berjaya disimpan.",
 
-        "success"
+        "success",
+
+        "Berjaya"
 
     );
 
 
     await muatAnggota();
-
-
-    await muatFilterPos();
 
 }
 
@@ -3673,22 +3846,9 @@ async function padamAnggota(noSkb) {
 
     const anggota = semuaAnggota.find(
 
-        function (item) {
+        function (x) {
 
-
-            return String(
-
-                item.no_skb
-
-            )
-
-            ===
-
-            String(
-
-                noSkb
-
-            );
+            return String(x.no_skb) === String(noSkb);
 
         }
 
@@ -3697,6 +3857,18 @@ async function padamAnggota(noSkb) {
 
     if (!anggota) {
 
+
+        paparPopup(
+
+            "Data anggota tidak dijumpai.",
+
+            "error",
+
+            "Gagal Padam"
+
+        );
+
+
         return;
 
     }
@@ -3704,23 +3876,17 @@ async function padamAnggota(noSkb) {
 
     const sah = confirm(
 
-        "Adakah anda pasti mahu padam anggota:\n\n"
+        "Adakah anda pasti mahu padam data ini?\n\n" +
 
-        +
+        "No. SKB: " +
 
-        anggota.nama
+        (anggota.no_skb || "") +
 
-        +
+        "\nNama: " +
 
-        "\n\nNo. SKB: "
+        (anggota.nama || "") +
 
-        +
-
-        anggota.no_skb
-
-        +
-
-        "?"
+        "\n\nData yang dipadam tidak boleh dipulihkan."
 
     );
 
@@ -3734,11 +3900,7 @@ async function padamAnggota(noSkb) {
 
     const result = await supabaseClient
 
-        .from(
-
-            "Data_Anggota"
-
-        )
+        .from("Data_Anggota")
 
         .delete()
 
@@ -3756,22 +3918,26 @@ async function padamAnggota(noSkb) {
 
         console.error(
 
-            "RALAT PADAM:",
+            "RALAT DELETE SUPABASE:",
 
             result.error
 
         );
 
 
-        paparMesej(
+        paparPopup(
 
-            "Gagal padam data: "
+            result.error.message ||
 
-            +
+            result.error.details ||
 
-            result.error.message,
+            result.error.hint ||
 
-            "error"
+            "Gagal memadam data anggota.",
+
+            "error",
+
+            "Gagal Padam"
 
         );
 
@@ -3781,19 +3947,22 @@ async function padamAnggota(noSkb) {
     }
 
 
-    paparMesej(
+    paparPopup(
 
-        "Data anggota berjaya dipadam.",
+        "Data anggota " +
 
-        "success"
+        (anggota.nama || "") +
+
+        " berjaya dipadam.",
+
+        "success",
+
+        "Data Berjaya Dipadam"
 
     );
 
 
     await muatAnggota();
-
-
-    await muatFilterPos();
 
 }
 
@@ -3807,11 +3976,7 @@ function tutupModal() {
 
     document
 
-        .getElementById(
-
-            "modalAnggota"
-
-        )
+        .getElementById("modalAnggota")
 
         .style.display = "none";
 
@@ -3819,54 +3984,83 @@ function tutupModal() {
 
 
 // =====================================================
-// MESEJ
+// POPUP
 // =====================================================
 
-function paparMesej(
+function paparPopup(
 
     mesej,
 
-    jenis
+    jenis = "success",
+
+    tajuk = "Makluman"
 
 ) {
 
 
-    const div = document
+    const popup = document
 
-        .getElementById(
-
-            "mesej"
-
-        );
+        .getElementById("popupMesej");
 
 
-    div.className =
+    const icon = document
 
-        "message "
-
-        +
-
-        jenis;
+        .getElementById("popupIcon");
 
 
-    div.textContent = mesej;
+    const tajukElement = document
+
+        .getElementById("popupTajuk");
 
 
-    setTimeout(
+    const text = document
 
-        function () {
-
-
-            div.textContent = "";
+        .getElementById("popupText");
 
 
-            div.className = "";
+    popup.className =
 
-        },
+        "popup " + jenis;
 
-        5000
 
-    );
+    tajukElement.textContent = tajuk;
+
+
+    text.textContent = mesej;
+
+
+    if (jenis === "success") {
+
+        icon.textContent = "✓";
+
+    }
+
+    else if (jenis === "error") {
+
+        icon.textContent = "✕";
+
+    }
+
+    else {
+
+        icon.textContent = "ℹ";
+
+    }
+
+
+    popup.style.display = "flex";
+
+}
+
+
+function tutupPopup() {
+
+
+    document
+
+        .getElementById("popupMesej")
+
+        .style.display = "none";
 
 }
 
@@ -3880,9 +4074,7 @@ function escapeHTML(value) {
 
     if (
 
-        value === null
-
-        ||
+        value === null ||
 
         value === undefined
 
@@ -3939,38 +4131,39 @@ function escapeHTML(value) {
 
 
 // =====================================================
-// KLIK LUAR MODAL
+// ESCAPE JAVASCRIPT
 // =====================================================
 
-window.addEventListener(
-
-    "click",
-
-    function(event) {
+function escapeJS(value) {
 
 
-        const modal = document
+    return String(value || "")
 
-            .getElementById(
+        .replace(
 
-                "modalAnggota"
+            /\\/g,
 
-            );
+            "\\\\"
 
+        )
 
-        if (
+        .replace(
 
-            event.target === modal
+            /'/g,
 
-        ) {
+            "\\'"
 
-            tutupModal();
+        )
 
-        }
+        .replace(
 
-    }
+            /"/g,
 
-);
+            '\\"'
+
+        );
+
+}
 
 </script>
 
