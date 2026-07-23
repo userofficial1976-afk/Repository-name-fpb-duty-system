@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="ms">
@@ -805,7 +806,7 @@ body {
 
         repeat(
 
-            2,
+            3,
 
             1fr
 
@@ -1497,13 +1498,11 @@ select:focus {
 
 <img
 
-```
 src="logo.png"
 
 class="logo"
 
 alt="Logo FPB"
-```
 
 >
 
@@ -1639,6 +1638,7 @@ SYSTEM
 
 </aside>
 
+
 <!-- =====================================================
      MAIN
 ===================================================== -->
@@ -1675,7 +1675,9 @@ System Online
 
 </div>
 
+
 <div class="content">
+
 
 <!-- =====================================================
      HERO
@@ -1707,6 +1709,7 @@ mengikut pos dan bulan operasi.
 
 </div>
 
+
 <!-- =====================================================
      FILTER
 ===================================================== -->
@@ -1729,9 +1732,16 @@ Pilih maklumat laporan
 
 </div>
 
+
 <div id="mesej" class="mesej"></div>
 
+
 <div class="form-grid">
+
+
+<!-- =========================
+     BULAN
+========================= -->
 
 <div class="form-group">
 
@@ -1743,33 +1753,135 @@ Bulan
 
 <select id="bulan">
 
-<option value="1">Januari</option>
+<option value="1">
 
-<option value="2">Februari</option>
+Januari
 
-<option value="3">Mac</option>
+</option>
 
-<option value="4">April</option>
+<option value="2">
 
-<option value="5">Mei</option>
+Februari
 
-<option value="6">Jun</option>
+</option>
 
-<option value="7">Julai</option>
+<option value="3">
 
-<option value="8">Ogos</option>
+Mac
 
-<option value="9">September</option>
+</option>
 
-<option value="10">Oktober</option>
+<option value="4">
 
-<option value="11">November</option>
+April
 
-<option value="12">Disember</option>
+</option>
+
+<option value="5">
+
+Mei
+
+</option>
+
+<option value="6">
+
+Jun
+
+</option>
+
+<option value="7">
+
+Julai
+
+</option>
+
+<option value="8">
+
+Ogos
+
+</option>
+
+<option value="9">
+
+September
+
+</option>
+
+<option value="10">
+
+Oktober
+
+</option>
+
+<option value="11">
+
+November
+
+</option>
+
+<option value="12">
+
+Disember
+
+</option>
 
 </select>
 
 </div>
+
+
+<!-- =========================
+     TAHUN
+========================= -->
+
+<div class="form-group">
+
+<label>
+
+Tahun
+
+</label>
+
+<select id="tahun">
+
+<option value="2026">
+
+2026
+
+</option>
+
+<option value="2027">
+
+2027
+
+</option>
+
+<option value="2028">
+
+2028
+
+</option>
+
+<option value="2029">
+
+2029
+
+</option>
+
+<option value="2030">
+
+2030
+
+</option>
+
+</select>
+
+</div>
+
+
+<!-- =========================
+     POS
+========================= -->
 
 <div class="form-group">
 
@@ -1791,17 +1903,17 @@ Pos
 
 </div>
 
+
 </div>
+
 
 <div class="action-buttons">
 
 <button
 
-```
 class="btn btn-primary"
 
 onclick="janaLaporanAnggaran()"
-```
 
 >
 
@@ -1809,13 +1921,12 @@ onclick="janaLaporanAnggaran()"
 
 </button>
 
+
 <button
 
-```
 class="btn btn-secondary"
 
 onclick="window.print()"
-```
 
 >
 
@@ -1826,6 +1937,7 @@ onclick="window.print()"
 </div>
 
 </div>
+
 
 <!-- =====================================================
      REPORT
@@ -1849,7 +1961,7 @@ Unit
 
 <p id="tajukBulan">
 
-Bulan
+Bulan Tahun
 
 </p>
 
@@ -1861,9 +1973,11 @@ Pos
 
 </div>
 
+
 <div class="table-wrapper">
 
 <table class="report-table">
+
 
 <thead>
 
@@ -1918,6 +2032,7 @@ JUMLAH<br>TUNTUTAN KLM
 </th>
 
 </tr>
+
 
 <tr>
 
@@ -1997,13 +2112,14 @@ RM
 
 </thead>
 
+
 <tbody id="senaraiAnggaran">
 
 <tr>
 
-<td colspan="15">
+<td colspan="17">
 
-Sila pilih Pos dan Bulan kemudian tekan JANA LAPORAN
+Sila pilih Pos, Bulan dan Tahun kemudian tekan JANA LAPORAN
 
 </td>
 
@@ -2011,9 +2127,11 @@ Sila pilih Pos dan Bulan kemudian tekan JANA LAPORAN
 
 </tbody>
 
+
 <tfoot id="jumlahAnggaran">
 
 </tfoot>
+
 
 </table>
 
@@ -2021,7 +2139,9 @@ Sila pilih Pos dan Bulan kemudian tekan JANA LAPORAN
 
 </div>
 
+
 </div>
+
 
 <footer class="footer">
 
@@ -2037,9 +2157,11 @@ Operational Duty Management System
 
 </footer>
 
+
 </main>
 
 </div>
+
 
 <script
 
@@ -2047,11 +2169,13 @@ src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
 ></script>
 
+
 <script
 
 src="supabase.js"
 
 ></script>
+
 
 <script
 
@@ -2059,6 +2183,8 @@ src="js/laporan-anggaran.js"
 
 ></script>
 
+
 </body>
 
 </html>
+```
