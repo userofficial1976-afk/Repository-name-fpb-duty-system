@@ -170,9 +170,6 @@ document.addEventListener(
         await muatAnggota();
 
 
-        // ISI DROPDOWN POS TAMPUNGAN
-        // SELEPAS DATA ANGGOTA BERJAYA DIMUATKAN
-
         isiSenaraiPosTampungan();
 
 
@@ -1536,6 +1533,20 @@ function pasangEventKodDuty() {
 
                 );
 
+
+                // =================================================
+                // TAMBAHAN BARU
+                // JAM TAMPUNGAN IKUT JAM KERJA KOD DUTY
+                // =================================================
+
+                setValue(
+
+                    "jamTampungan",
+
+                    data.jam_kerja
+
+                );
+
             }
 
 
@@ -1562,6 +1573,15 @@ function pasangEventKodDuty() {
                 setValue(
 
                     "jamKlm",
+
+                    ""
+
+                );
+
+
+                setValue(
+
+                    "jamTampungan",
 
                     ""
 
@@ -2080,7 +2100,9 @@ async function simpanDuty() {
         );
 
 
-        // POS TAMPUNGAN DIPILIH DARIPADA DROPDOWN
+        // =================================================
+        // POS TAMPUNGAN
+        // =================================================
 
         const posTampungan = getValue(
 
@@ -2294,6 +2316,10 @@ async function simpanDuty() {
             dutySedangEdit !== null;
 
 
+        // =================================================
+        // DATA DUTY
+        // =================================================
+
         const dataDuty = {
 
             tarikh: tarikh,
@@ -2331,16 +2357,29 @@ async function simpanDuty() {
             pos: anggota.pos,
 
 
-            // NILAI POS TAMPUNGAN DARI DROPDOWN
+            // =================================================
+            // POS TAMPUNGAN
+            // =================================================
 
-            pos_tampungan: posTampungan,
+            pos_tampungan:
+
+                posTampungan,
 
 
-            nama_pos_asal: anggota.pos,
+            nama_pos_asal:
+
+                anggota.pos,
+
+
+            // =================================================
+            // JAM TAMPUNGAN
+            // DIAMBIL DARIPADA JAM KERJA KOD DUTY
+            // =================================================
 
             jam_tampungan:
 
                 duty.jam_kerja,
+
 
             hari: getValue(
 
@@ -2348,13 +2387,16 @@ async function simpanDuty() {
 
             ),
 
+
             waktu_tugasan:
 
                 duty.waktu_tugasan,
 
+
             jam_kerja:
 
                 duty.jam_kerja,
+
 
             jam_klm:
 
@@ -2364,21 +2406,26 @@ async function simpanDuty() {
 
                 ),
 
+
             kod_duty:
 
                 duty.kod,
+
 
             kod_waktu_kerja:
 
                 duty.kod,
 
+
             kod_tempat_kerja:
 
                 tempatKerja.kod_tempat_kerja,
 
+
             tempat_kerja:
 
                 tempatKerja.nama_tempat_kerja,
+
 
             hari_offday_bertugas:
 
@@ -2389,6 +2436,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_offday_bertugas:
 
@@ -2402,6 +2450,7 @@ async function simpanDuty() {
 
                 ),
 
+
             hari_cutiam_bertugas:
 
                 hariCutiamElement &&
@@ -2411,6 +2460,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_cutiam_bertugas:
 
@@ -2424,9 +2474,11 @@ async function simpanDuty() {
 
                 ),
 
+
             dikemaskini_oleh:
 
                 "Sistem",
+
 
             dikemaskini_pada:
 
@@ -3182,11 +3234,28 @@ async function editDuty(
     }
 
 
+    // =================================================
+    // POS TAMPUNGAN
+    // =================================================
+
     setValue(
 
         "posTampungan",
 
         duty.pos_tampungan
+
+    );
+
+
+    // =================================================
+    // JAM TAMPUNGAN
+    // =================================================
+
+    setValue(
+
+        "jamTampungan",
+
+        duty.jam_tampungan
 
     );
 
@@ -3442,7 +3511,7 @@ async function duplicateDuty(
 
             new Event(
 
-                "change"
+            "change"
 
             )
 
@@ -3482,11 +3551,28 @@ async function duplicateDuty(
     }
 
 
+    // =================================================
+    // POS TAMPUNGAN
+    // =================================================
+
     setValue(
 
         "posTampungan",
 
         duty.pos_tampungan
+
+    );
+
+
+    // =================================================
+    // JAM TAMPUNGAN
+    // =================================================
+
+    setValue(
+
+        "jamTampungan",
+
+        duty.jam_tampungan
 
     );
 
@@ -4095,6 +4181,15 @@ function kosongkanKodDuty() {
     setValue(
 
         "jamKlm",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "jamTampungan",
 
         ""
 
