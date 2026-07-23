@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
@@ -6,16 +7,20 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>
     Laporan Anggaran Duty
 </title>
 
-
 <style>
+
+/* =====================================================
+   ASAS
+===================================================== */
 
 * {
 
@@ -36,6 +41,10 @@ body {
 
 }
 
+
+/* =====================================================
+   HEADER SISTEM
+===================================================== */
 
 header {
 
@@ -77,6 +86,10 @@ header p {
 }
 
 
+/* =====================================================
+   BUTTON
+===================================================== */
+
 .btn-dashboard {
 
     display: inline-block;
@@ -98,71 +111,6 @@ header p {
 }
 
 
-.card {
-
-    background: white;
-
-    border-radius: 12px;
-
-    padding: 20px;
-
-    margin-bottom: 20px;
-
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-
-}
-
-
-h2 {
-
-    margin-top: 0;
-
-    color: #0f172a;
-
-}
-
-
-h3 {
-
-    color: #0f172a;
-
-}
-
-
-.grid {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            auto-fit,
-
-            minmax(220px, 1fr)
-
-        );
-
-    gap: 15px;
-
-}
-
-
-label {
-
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 6px;
-
-}
-
-
-input,
-
-select,
-
 button {
 
     width: 100%;
@@ -174,11 +122,6 @@ button {
     border: 1px solid #cbd5e1;
 
     font-size: 14px;
-
-}
-
-
-button {
 
     background: #2563eb;
 
@@ -214,144 +157,251 @@ button:hover {
 }
 
 
-.table-wrapper {
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+}
+
+
+h2 {
+
+    margin-top: 0;
+
+    color: #0f172a;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            auto-fit,
+
+            minmax(220px, 1fr)
+
+        );
+
+    gap: 15px;
+
+}
+
+
+label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+
+}
+
+
+input,
+
+select {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    border: 1px solid #cbd5e1;
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   LAPORAN A4 LANDSCAPE
+===================================================== */
+
+.laporan-a4 {
+
+    width: 100%;
+
+    background: white;
+
+    border: 1px solid #000;
+
+    padding: 8px;
 
     overflow-x: auto;
 
 }
 
 
-table {
+/* =====================================================
+   TAJUK LAPORAN
+===================================================== */
 
-    width: 100%;
-
-    border-collapse: collapse;
-
-}
-
-
-th,
-
-td {
-
-    border: 1px solid #cbd5e1;
-
-    padding: 8px;
+.laporan-tajuk {
 
     text-align: center;
 
-    white-space: nowrap;
-
-}
-
-
-th {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-td {
-
-    background: white;
-
-}
-
-
-.info-header {
-
-    margin-bottom: 20px;
-
-}
-
-
-.info-header h2 {
-
-    text-align: center;
-
-    margin-bottom: 20px;
-
-}
-
-
-.info-header table {
-
-    width: 100%;
-
-    max-width: 800px;
-
-}
-
-
-.info-header td:first-child {
+    font-size: 18px;
 
     font-weight: bold;
 
-    text-align: left;
-
-    width: 250px;
-
-    background: #e2e8f0;
+    margin-bottom: 8px;
 
 }
 
 
-.info-header td:last-child {
+.laporan-maklumat {
 
-    text-align: left;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    border-bottom: 1px solid #000;
+
+    padding-bottom: 6px;
+
+    margin-bottom: 6px;
+
+    font-size: 10px;
 
 }
 
+
+.laporan-maklumat div {
+
+    padding: 2px 5px;
+
+}
+
+
+/* =====================================================
+   JADUAL UTAMA
+===================================================== */
 
 .jadual-bulanan {
 
-    min-width: 1600px;
+    width: 100%;
+
+    min-width: 1500px;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
 
 }
 
+
+/* Semua cell */
 
 .jadual-bulanan th,
 
 .jadual-bulanan td {
 
-    font-size: 11px;
+    border: 1px solid #000;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    padding: 2px;
 
 }
 
 
-.jadual-bulanan th {
+/* =====================================================
+   HEADER ANGGOTA
+===================================================== */
 
-    height: 40px;
+.jadual-bulanan .header-anggota {
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    height: 22px;
+
+    background: #f1f1f1;
 
 }
 
 
-.jadual-bulanan td {
+.jadual-bulanan .maklumat-anggota {
 
-    height: 35px;
+    font-size: 8px;
 
-}
+    text-align: left;
 
-
-.jadual-bulanan .nama-anggota {
-
-    min-width: 220px;
-
-    height: 70px;
-
-    font-size: 12px;
+    padding: 3px;
 
     vertical-align: middle;
 
 }
 
 
+.jadual-bulanan .maklumat-anggota strong {
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   SUB HEADER KOD / JAM / OFF / AM
+===================================================== */
+
+.jadual-bulanan .sub-header {
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    height: 20px;
+
+    background: #e5e7eb;
+
+}
+
+
+/* =====================================================
+   TARIKH / HARI
+===================================================== */
+
+.jadual-bulanan .tarikh-hari {
+
+    width: 70px;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+}
+
+
 .jadual-bulanan .tarikh {
 
-    min-width: 60px;
+    font-size: 9px;
 
     font-weight: bold;
 
@@ -360,39 +410,136 @@ td {
 
 .jadual-bulanan .hari {
 
-    min-width: 100px;
+    font-size: 8px;
 
 }
 
 
-.jadual-bulanan .kod {
+/* =====================================================
+   WK / TK
+===================================================== */
+
+.jadual-bulanan .jenis-baris {
+
+    width: 24px;
+
+    font-size: 8px;
 
     font-weight: bold;
 
-    font-size: 14px;
+}
+
+
+/* =====================================================
+   DATA DUTY
+===================================================== */
+
+.jadual-bulanan .kod {
+
+    font-size: 9px;
+
+    font-weight: bold;
 
 }
 
 
-.jadual-bulanan small {
+.jadual-bulanan .jam-klm {
 
-    font-size: 10px;
+    font-size: 9px;
 
-    font-weight: normal;
-
-}
-
-
-.summary-table {
-
-    margin-top: 20px;
+    font-weight: bold;
 
 }
 
 
-.summary-table th {
+.jadual-bulanan .off,
 
-    background: #334155;
+.jadual-bulanan .am {
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+/* JAM KLM 1 RUANG SAHAJA */
+
+.jadual-bulanan .jam-klm-cell {
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   WARNA MAKLUMAT
+===================================================== */
+
+.wk {
+
+    background: #ffffff;
+
+}
+
+
+.tk {
+
+    background: #fafafa;
+
+}
+
+
+/* =====================================================
+   NOTA / PETUNJUK
+===================================================== */
+
+.petunjuk {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 8px;
+
+    border-top: 1px solid #000;
+
+    padding-top: 6px;
+
+    font-size: 8px;
+
+}
+
+
+.petunjuk-box {
+
+    padding: 5px;
+
+}
+
+
+.petunjuk-title {
+
+    font-weight: bold;
+
+    margin-bottom: 3px;
+
+}
+
+
+/* =====================================================
+   CETAK A4 LANDSCAPE
+===================================================== */
+
+@page {
+
+    size: A4 landscape;
+
+    margin: 5mm;
 
 }
 
@@ -426,6 +573,8 @@ td {
 
         padding: 0;
 
+        margin: 0;
+
     }
 
 
@@ -433,12 +582,22 @@ td {
 
         box-shadow: none;
 
+        border: none;
+
         padding: 0;
+
+        margin: 0;
 
     }
 
 
-    .table-wrapper {
+    .laporan-a4 {
+
+        width: 100%;
+
+        border: 1px solid #000;
+
+        padding: 4px;
 
         overflow: visible;
 
@@ -447,9 +606,11 @@ td {
 
     .jadual-bulanan {
 
+        width: 100%;
+
         min-width: 0;
 
-        width: 100%;
+        table-layout: fixed;
 
     }
 
@@ -458,41 +619,69 @@ td {
 
     .jadual-bulanan td {
 
-        font-size: 8px;
-
-        padding: 4px;
+        padding: 1px;
 
     }
 
 
-    .jadual-bulanan .nama-anggota {
+    .jadual-bulanan .header-anggota {
 
-        font-size: 8px;
-
-        min-width: 0;
-
-        height: 50px;
+        font-size: 7px;
 
     }
 
 
-    .info-header h2 {
+    .jadual-bulanan .maklumat-anggota {
 
-        font-size: 16px;
-
-    }
-
-
-    .info-header table {
-
-        font-size: 10px;
+        font-size: 6px;
 
     }
 
 
-    .summary-table {
+    .jadual-bulanan .sub-header {
 
-        page-break-before: always;
+        font-size: 6px;
+
+    }
+
+
+    .jadual-bulanan .tarikh-hari,
+
+    .jadual-bulanan .jenis-baris,
+
+    .jadual-bulanan .kod,
+
+    .jadual-bulanan .jam-klm-cell,
+
+    .jadual-bulanan .off,
+
+    .jadual-bulanan .am {
+
+        font-size: 6px;
+
+    }
+
+
+    .petunjuk {
+
+        font-size: 6px;
+
+    }
+
+
+}
+
+
+/* =====================================================
+   SKRIN KOMPUTER
+===================================================== */
+
+@media screen and (max-width: 1200px) {
+
+
+    .laporan-a4 {
+
+        overflow-x: auto;
 
     }
 
@@ -503,293 +692,210 @@ td {
 
 </head>
 
-
 <body>
 
+<!-- =====================================================
+     HEADER SISTEM
+===================================================== -->
 
 <header>
 
-    <h1>
+```
+<h1>
 
-        📊 LAPORAN ANGGARAN DUTY
+    📊 LAPORAN ANGGARAN DUTY
 
-    </h1>
-
-
-    <p>
-
-        Laporan Bulanan Duty Anggota
-
-    </p>
+</h1>
 
 
-    <a
+<p>
 
-        href="index.html"
+    Laporan Bulanan Duty Anggota
 
-        class="btn-dashboard"
+</p>
 
-    >
 
-        🏠 Kembali ke Dashboard
+<a
 
-    </a>
+    href="index.html"
+
+    class="btn-dashboard"
+
+>
+
+    🏠 Kembali ke Dashboard
+
+</a>
+```
 
 </header>
 
-
 <div class="container">
 
+<!-- =====================================================
+     FILTER LAPORAN
+===================================================== -->
 
-    <!-- =========================================
-         FILTER LAPORAN
-    ========================================== -->
+<div class="card filter-card">
 
+```
+<h2>
 
-    <div class="card filter-card">
+    🔍 Pilih Laporan
 
+</h2>
 
-        <h2>
 
-            🔍 Pilih Laporan
+<div class="grid">
 
-        </h2>
 
+    <div>
 
-        <div class="grid">
+        <label>
 
+            Bulan
 
-            <div>
+        </label>
 
 
-                <label>
+        <select
 
-                    Bulan
+            id="bulan"
 
-                </label>
+        >
 
+            <option value="1">
 
-                <select
+                Januari
 
-                    id="bulan"
+            </option>
 
-                >
 
-                    <option value="1">
+            <option value="2">
 
-                        Januari
+                Februari
 
-                    </option>
+            </option>
 
 
-                    <option value="2">
+            <option value="3">
 
-                        Februari
+                Mac
 
-                    </option>
+            </option>
 
 
-                    <option value="3">
+            <option value="4">
 
-                        Mac
+                April
 
-                    </option>
+            </option>
 
 
-                    <option value="4">
+            <option value="5">
 
-                        April
+                Mei
 
-                    </option>
+            </option>
 
 
-                    <option value="5">
+            <option value="6">
 
-                        Mei
+                Jun
 
-                    </option>
+            </option>
 
 
-                    <option value="6">
+            <option value="7">
 
-                        Jun
+                Julai
 
-                    </option>
+            </option>
 
 
-                    <option value="7">
+            <option value="8">
 
-                        Julai
+                Ogos
 
-                    </option>
+            </option>
 
 
-                    <option value="8">
+            <option value="9">
 
-                        Ogos
+                September
 
-                    </option>
+            </option>
 
 
-                    <option value="9">
+            <option value="10">
 
-                        September
+                Oktober
 
-                    </option>
+            </option>
 
 
-                    <option value="10">
+            <option value="11">
 
-                        Oktober
+                November
 
-                    </option>
+            </option>
 
 
-                    <option value="11">
+            <option value="12">
 
-                        November
+                Disember
 
-                    </option>
+            </option>
 
 
-                    <option value="12">
-
-                        Disember
-
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-            <div>
-
-
-                <label>
-
-                    Tahun
-
-                </label>
-
-
-                <select
-
-                    id="tahun"
-
-                >
-
-                </select>
-
-
-            </div>
-
-
-            <div>
-
-
-                <label>
-
-                    Pos Asal
-
-                </label>
-
-
-                <select
-
-                    id="pos"
-
-                >
-
-                    <option value="">
-
-                        -- Pilih Pos --
-
-                    </option>
-
-
-                </select>
-
-
-            </div>
-
-
-        </div>
-
-
-        <br>
-
-
-        <div class="grid">
-
-
-            <div>
-
-
-                <button
-
-                    onclick="janaLaporan()"
-
-                >
-
-                    🔍 JANA LAPORAN
-
-                </button>
-
-
-            </div>
-
-
-            <div>
-
-
-                <button
-
-                    class="btn-print"
-
-                    onclick="window.print()"
-
-                >
-
-                    🖨️ CETAK LAPORAN
-
-                </button>
-
-
-            </div>
-
-
-        </div>
-
+        </select>
 
     </div>
 
 
-    <!-- =========================================
-         HASIL LAPORAN
-    ========================================== -->
+    <div>
+
+        <label>
+
+            Tahun
+
+        </label>
 
 
-    <div class="card">
+        <select
 
-
-        <div
-
-            id="laporan"
+            id="tahun"
 
         >
 
-            <p>
+        </select>
 
-                Sila pilih bulan, tahun dan pos.
-
-            </p>
+    </div>
 
 
-        </div>
+    <div>
 
+        <label>
+
+            Pos Asal
+
+        </label>
+
+
+        <select
+
+            id="pos"
+
+        >
+
+            <option value="">
+
+                -- Pilih Pos --
+
+            </option>
+
+
+        </select>
 
     </div>
 
@@ -797,10 +903,76 @@ td {
 </div>
 
 
-<!-- =============================================
-     SUPABASE
-============================================= -->
+<br>
 
+
+<div class="grid">
+
+
+    <div>
+
+        <button
+
+            onclick="janaLaporan()"
+
+        >
+
+            🔍 JANA LAPORAN
+
+        </button>
+
+    </div>
+
+
+    <div>
+
+        <button
+
+            class="btn-print"
+
+            onclick="window.print()"
+
+        >
+
+            🖨️ CETAK LAPORAN
+
+        </button>
+
+    </div>
+
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     HASIL LAPORAN
+===================================================== -->
+
+<div class="card">
+
+```
+<div id="laporan">
+
+
+    <p>
+
+        Sila pilih bulan, tahun dan pos.
+
+    </p>
+
+
+</div>
+```
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script
 
@@ -808,25 +980,21 @@ td {
 
 ></script>
 
-
 <script
 
     src="supabase.js"
 
 ></script>
 
-
-<!-- =============================================
+<!-- =====================================================
      JAVASCRIPT LAPORAN
-============================================= -->
-
+===================================================== -->
 
 <script
 
     src="js/laporan-anggaran.js"
 
 ></script>
-
 
 </body>
 
