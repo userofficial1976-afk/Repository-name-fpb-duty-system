@@ -1,4 +1,3 @@
-```javascript
 // =====================================================
 // LAPORAN-ANGGARAN.JS
 // FPB DUTY SYSTEM
@@ -19,8 +18,6 @@ let semuaAnggota = [];
 
 // =====================================================
 // SENARAI BULAN
-// DATABASE MENGGUNAKAN NAMA BULAN
-// CONTOH: Julai
 // =====================================================
 
 const SENARAI_BULAN = [
@@ -55,94 +52,6 @@ const SENARAI_BULAN = [
 
 
 // =====================================================
-// DAPATKAN NAMA BULAN
-// BOLEH TERIMA:
-//
-// 7       -> Julai
-// "7"     -> Julai
-// Julai   -> Julai
-// =====================================================
-
-function dapatkanNamaBulan(nilai) {
-
-
-    if (
-
-        nilai === null ||
-
-        nilai === undefined ||
-
-        nilai === ""
-
-    ) {
-
-        return "";
-
-    }
-
-
-    const nilaiString =
-
-        String(
-
-            nilai
-
-        ).trim();
-
-
-    // JIKA SUDAH NAMA BULAN
-
-    if (
-
-        SENARAI_BULAN.includes(
-
-            nilaiString
-
-        )
-
-    ) {
-
-        return nilaiString;
-
-    }
-
-
-    // JIKA NOMBOR BULAN
-
-    const nomborBulan =
-
-        parseInt(
-
-            nilaiString,
-
-            10
-
-        );
-
-
-    if (
-
-        nomborBulan >= 1 &&
-
-        nomborBulan <= 12
-
-    ) {
-
-        return SENARAI_BULAN[
-
-            nomborBulan
-
-        ];
-
-    }
-
-
-    return nilaiString;
-
-}
-
-
-// =====================================================
 // APABILA HALAMAN DIBUKA
 // =====================================================
 
@@ -162,7 +71,7 @@ document.addEventListener(
 
         console.log(
 
-            "LAPORAN ANGGARAN DIMUATKAN"
+            "HALAMAN LAPORAN ANGGARAN SIAP"
 
         );
 
@@ -171,10 +80,13 @@ document.addEventListener(
 
             "===================================="
 
+
         );
 
 
+        // =============================================
         // SEMAK SUPABASE
+        // =============================================
 
         if (
 
@@ -206,12 +118,16 @@ document.addEventListener(
         }
 
 
+        // =============================================
         // MUAT POS
+        // =============================================
 
         await muatSenaraiPos();
 
 
+        // =============================================
         // MUAT TAHUN
+        // =============================================
 
         muatSenaraiTahun();
 
@@ -223,8 +139,12 @@ document.addEventListener(
 
 // =====================================================
 // MUAT SENARAI POS
-// SUMBER: Data_Anggota
-// COLUMN: pos
+// SUMBER: jadual_duty
+//
+//
+// PENTING:
+// Pos laporan mesti datang daripada jadual_duty
+// kerana itulah pos duty yang sebenar.
 // =====================================================
 
 async function muatSenaraiPos() {
@@ -246,12 +166,16 @@ async function muatSenaraiPos() {
         );
 
 
-    if (!selectPos) {
+    if (
+
+        !selectPos
+
+    ) {
 
 
         console.error(
 
-            "ERROR: ID pos TIDAK DIJUMPAI."
+            "ERROR: ELEMENT ID pos TIDAK DIJUMPAI."
 
         );
 
@@ -275,13 +199,17 @@ async function muatSenaraiPos() {
     try {
 
 
+        // =============================================
+        // AMBIL POS DARI JADUAL DUTY
+        // =============================================
+
         const result =
 
             await supabase
 
                 .from(
 
-                    "Data_Anggota"
+                    "jadual_duty"
 
                 )
 
@@ -310,7 +238,7 @@ async function muatSenaraiPos() {
 
             console.error(
 
-                "RALAT SUPABASE POS:",
+                "RALAT AMBIL POS:",
 
                 result.error
 
@@ -344,41 +272,7 @@ async function muatSenaraiPos() {
 
         const data =
 
-            result.data;
-
-
-        if (
-
-            !data ||
-
-            data.length === 0
-
-        ) {
-
-
-            selectPos.innerHTML = `
-
-                <option value="">
-
-                    -- Tiada Data Anggota --
-
-                </option>
-
-            `;
-
-
-            paparMesej(
-
-                "Tiada data Pos dalam Data_Anggota.",
-
-                "error"
-
-            );
-
-
-            return;
-
-        }
+            result.data || [];
 
 
         const senaraiPos = [];
@@ -439,6 +333,10 @@ async function muatSenaraiPos() {
         );
 
 
+        // =============================================
+        // SUSUN POS
+        // =============================================
+
         senaraiPos.sort(
 
             function (
@@ -466,7 +364,9 @@ async function muatSenaraiPos() {
 
                     {
 
-                        numeric: true
+                        numeric:
+
+                            true
 
                     }
 
@@ -480,6 +380,15 @@ async function muatSenaraiPos() {
         semuaPos =
 
             senaraiPos;
+
+
+        console.log(
+
+            "JUMLAH POS:",
+
+            senaraiPos.length
+
+        );
 
 
         selectPos.innerHTML = `
@@ -527,21 +436,13 @@ async function muatSenaraiPos() {
 
                 );
 
+
             }
 
         );
 
 
-        console.log(
-
-            "JUMLAH POS:",
-
-            senaraiPos.length
-
-        );
-
     }
-
 
     catch (
 
@@ -557,6 +458,17 @@ async function muatSenaraiPos() {
             error
 
         );
+
+
+        selectPos.innerHTML = `
+
+            <option value="">
+
+                -- Ralat Sistem --
+
+            </option>
+
+        `;
 
 
         paparMesej(
@@ -590,12 +502,16 @@ function muatSenaraiTahun() {
         );
 
 
-    if (!selectTahun) {
+    if (
+
+        !selectTahun
+
+    ) {
 
 
         console.warn(
 
-            "Dropdown tahun tidak wujud."
+            "Dropdown tahun tidak dijumpai."
 
         );
 
@@ -681,6 +597,23 @@ function muatSenaraiTahun() {
 // =====================================================
 // JANA LAPORAN ANGGARAN
 // =====================================================
+//
+// PENTING:
+//
+// DATABASE:
+//
+// bulan = "Julai"
+// tahun = 2026
+//
+// Maka query mesti:
+//
+// .eq("bulan", "Julai")
+// .eq("tahun", 2026)
+//
+// BUKAN:
+//
+// .eq("bulan", 7)
+// =====================================================
 
 async function janaLaporanAnggaran() {
 
@@ -694,7 +627,7 @@ async function janaLaporanAnggaran() {
 
     console.log(
 
-        "MULA JANA LAPORAN ANGGARAN"
+        "MULA JANA LAPORAN"
 
     );
 
@@ -703,8 +636,13 @@ async function janaLaporanAnggaran() {
 
         "===================================="
 
+
     );
 
+
+    // =============================================
+    // AMBIL ELEMENT
+    // =============================================
 
     const bulanElement =
 
@@ -733,11 +671,19 @@ async function janaLaporanAnggaran() {
         );
 
 
+    // =============================================
+    // AMBIL NILAI
+    // =============================================
+
     const bulan =
 
         bulanElement
 
-            ? bulanElement.value
+            ? String(
+
+                bulanElement.value
+
+            ).trim()
 
             : "";
 
@@ -746,7 +692,11 @@ async function janaLaporanAnggaran() {
 
         tahunElement
 
-            ? tahunElement.value
+            ? Number(
+
+                tahunElement.value
+
+            )
 
             : new Date()
 
@@ -757,37 +707,41 @@ async function janaLaporanAnggaran() {
 
         posElement
 
-            ? posElement.value
+            ? String(
+
+                posElement.value
+
+            ).trim()
 
             : "";
 
 
     console.log(
 
-        "BULAN DROPDOWN:",
+        "FILTER LAPORAN:",
 
-        bulan
+        {
 
-    );
+            bulan:
 
+                bulan,
 
-    console.log(
+            tahun:
 
-        "TAHUN DROPDOWN:",
+                tahun,
 
-        tahun
+            pos:
 
-    );
+                pos
 
-
-    console.log(
-
-        "POS DROPDOWN:",
-
-        pos
+        }
 
     );
 
+
+    // =============================================
+    // SEMAK POS
+    // =============================================
 
     if (
 
@@ -810,6 +764,10 @@ async function janaLaporanAnggaran() {
     }
 
 
+    // =============================================
+    // SEMAK BULAN
+    // =============================================
+
     if (
 
         !bulan
@@ -820,6 +778,31 @@ async function janaLaporanAnggaran() {
         paparMesej(
 
             "Sila pilih Bulan terlebih dahulu.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    // =============================================
+    // SEMAK TAHUN
+    // =============================================
+
+    if (
+
+        !tahun
+
+    ) {
+
+
+        paparMesej(
+
+            "Sila pilih Tahun terlebih dahulu.",
 
             "error"
 
@@ -844,59 +827,7 @@ async function janaLaporanAnggaran() {
 
 
         // =============================================
-        // DAPATKAN NAMA BULAN UNTUK DATABASE
-        // =============================================
-
-        const namaBulanDatabase =
-
-            dapatkanNamaBulan(
-
-                bulan
-
-            );
-
-
-        console.log(
-
-            "BULAN UNTUK DATABASE:",
-
-            namaBulanDatabase
-
-        );
-
-
-        console.log(
-
-            "TAHUN UNTUK DATABASE:",
-
-            parseInt(
-
-                tahun,
-
-                10
-
-            )
-
-        );
-
-
-        console.log(
-
-            "POS UNTUK DATABASE:",
-
-            pos
-
-        );
-
-
-        // =============================================
         // QUERY JADUAL DUTY
-        //
-        // DATABASE:
-        //
-        // bulan = "Julai"
-        // tahun = 2026
-        // pos = "F102-01(SS)Kilang Sawit Jerangau"
         // =============================================
 
         const resultDuty =
@@ -911,69 +842,7 @@ async function janaLaporanAnggaran() {
 
                 .select(
 
-                    `
-
-                    tarikh,
-
-                    bulan,
-
-                    tahun,
-
-                    no_skb,
-
-                    kod_duty,
-
-                    waktu_tugasan,
-
-                    jam_kerja,
-
-                    jam_klm,
-
-                    pos,
-
-                    dikemaskini_oleh,
-
-                    dikemaskini_pada,
-
-                    id,
-
-                    ketua_pos,
-
-                    kod_tempat_kerja,
-
-                    tempat_kerja,
-
-                    nama_anggota,
-
-                    no_anggota,
-
-                    kawasan,
-
-                    unit,
-
-                    ketua_unit,
-
-                    nama_ketua_pos,
-
-                    nama_pos_asal,
-
-                    hari,
-
-                    kod_waktu_kerja,
-
-                    hari_offday_bertugas,
-
-                    jam_offday_bertugas,
-
-                    hari_cutiam_bertugas,
-
-                    jam_cutiam_bertugas,
-
-                    pos_tampungan,
-
-                    jam_tampungan
-
-                    `
+                    "*"
 
                 )
 
@@ -989,7 +858,7 @@ async function janaLaporanAnggaran() {
 
                     "bulan",
 
-                    namaBulanDatabase
+                    bulan
 
                 )
 
@@ -997,13 +866,9 @@ async function janaLaporanAnggaran() {
 
                     "tahun",
 
-                    parseInt(
+                    tahun
 
-                        tahun,
-
-                        10
-
-                    ));
+                );
 
 
         console.log(
@@ -1017,16 +882,25 @@ async function janaLaporanAnggaran() {
 
         console.log(
 
-            "JUMLAH DATA DUTY:",
+            "DATA DUTY:",
 
             resultDuty.data
 
-                ? resultDuty.data.length
+        );
 
-                : 0
+
+        console.log(
+
+            "RALAT DUTY:",
+
+            resultDuty.error
 
         );
 
+
+        // =============================================
+        // SEMAK ERROR
+        // =============================================
 
         if (
 
@@ -1037,7 +911,7 @@ async function janaLaporanAnggaran() {
 
             console.error(
 
-                "RALAT JADUAL DUTY:",
+                "RALAT SUPABASE DUTY:",
 
                 resultDuty.error
 
@@ -1046,7 +920,9 @@ async function janaLaporanAnggaran() {
 
             paparMesej(
 
-                resultDuty.error.message,
+                resultDuty.error.message ||
+
+                "Gagal mengambil data duty.",
 
                 "error"
 
@@ -1058,14 +934,34 @@ async function janaLaporanAnggaran() {
         }
 
 
+        // =============================================
+        // SIMPAN DATA DUTY
+        // =============================================
+
         const dataDuty =
 
-            resultDuty.data;
+            resultDuty.data || [];
 
+
+        semuaDuty =
+
+            dataDuty;
+
+
+        console.log(
+
+            "JUMLAH DATA DUTY:",
+
+            dataDuty.length
+
+        );
+
+
+        // =============================================
+        // SEMAK DATA KOSONG
+        // =============================================
 
         if (
-
-            !dataDuty ||
 
             dataDuty.length === 0
 
@@ -1077,7 +973,17 @@ async function janaLaporanAnggaran() {
 
             paparMesej(
 
-                `Tiada data duty bagi Pos: ${pos}`,
+                "Tiada data duty bagi Pos: " +
+
+                pos +
+
+                " | Bulan: " +
+
+                bulan +
+
+                " | Tahun: " +
+
+                tahun,
 
                 "error"
 
@@ -1089,68 +995,64 @@ async function janaLaporanAnggaran() {
         }
 
 
-        semuaDuty =
-
-            dataDuty;
-
-
         // =============================================
-        // AMBIL NO SKB
+        // AMBIL SENARAI NO SKB
         // =============================================
 
-        const senaraiNoSKB = [
+        const senaraiNoSKB =
 
-            ...
+            [
 
-            new Set(
+                ...
 
-                dataDuty
+                new Set(
 
-                    .map(
+                    dataDuty
 
-                        function (
+                        .map(
 
-                            item
+                            function (
 
-                        ) {
+                                item
+
+                            ) {
+
+                                return item.no_skb;
+
+                            }
+
+                        )
+
+                        .filter(
+
+                            function (
+
+                                no
+
+                            ) {
 
 
-                            return item.no_skb;
+                                return (
 
-                        }
+                                    no !== null &&
 
-                    )
+                                    no !== undefined &&
 
-                    .filter(
+                                    String(
 
-                        function (
+                                        no
 
-                            no
+                                    ).trim() !== ""
 
-                        ) {
+                                );
 
+                            }
 
-                            return (
+                        )
 
-                                no !== null &&
+                )
 
-                                no !== undefined &&
-
-                                String(
-
-                                    no
-
-                                ).trim() !== ""
-
-                            );
-
-                        }
-
-                    )
-
-            )
-
-        ];
+            ];
 
 
         console.log(
@@ -1164,116 +1066,86 @@ async function janaLaporanAnggaran() {
 
         // =============================================
         // AMBIL DATA ANGGOTA
-        // Gaji hanya dari Data_Anggota
         // =============================================
 
-        const resultAnggota =
+        let dataAnggota = [];
 
-            await supabase
 
-                .from(
+        if (
 
-                    "Data_Anggota"
+            senaraiNoSKB.length > 0
 
-                )
+        ) {
 
-                .select(
 
-                    `
+            const resultAnggota =
 
-                    no_skb,
+                await supabase
 
-                    no_anggota,
+                    .from(
 
-                    nama,
+                        "Data_Anggota"
 
-                    pangkat,
+                    )
 
-                    pos,
+                    .select(
 
-                    unit,
+                        "*"
 
-                    gaji
+                    )
 
-                    `
+                    .in(
 
-                )
+                        "no_skb",
 
-                .in(
+                        senaraiNoSKB
 
-                    "no_skb",
+                    );
 
-                    senaraiNoSKB
+
+            console.log(
+
+                "HASIL DATA ANGGOTA:",
+
+                resultAnggota
+
+            );
+
+
+            if (
+
+                resultAnggota.error
+
+            ) {
+
+
+                console.error(
+
+                    "RALAT DATA ANGGOTA:",
+
+                    resultAnggota.error
 
                 );
 
 
-        console.log(
+                paparMesej(
 
-            "HASIL DATA ANGGOTA:",
+                    resultAnggota.error.message,
 
-            resultAnggota
+                    "error"
 
-        );
-
-
-        if (
-
-            resultAnggota.error
-
-        ) {
+                );
 
 
-            console.error(
+                return;
 
-                "RALAT DATA ANGGOTA:",
-
-                resultAnggota.error
-
-            );
+            }
 
 
-            paparMesej(
+            dataAnggota =
 
-                resultAnggota.error.message,
+                resultAnggota.data || [];
 
-                "error"
-
-            );
-
-
-            return;
-
-        }
-
-
-        const dataAnggota =
-
-            resultAnggota.data;
-
-
-        if (
-
-            !dataAnggota ||
-
-            dataAnggota.length === 0
-
-        ) {
-
-
-            kosongkanLaporan();
-
-
-            paparMesej(
-
-                "Data anggota tidak dijumpai berdasarkan no_skb.",
-
-                "error"
-
-            );
-
-
-            return;
 
         }
 
@@ -1281,6 +1153,15 @@ async function janaLaporanAnggaran() {
         semuaAnggota =
 
             dataAnggota;
+
+
+        console.log(
+
+            "JUMLAH ANGGOTA:",
+
+            dataAnggota.length
+
+        );
 
 
         // =============================================
@@ -1301,65 +1182,119 @@ async function janaLaporanAnggaran() {
 
 
         // =============================================
-        // GABUNG DATA DUTY + ANGGOTA
+        // BINA LAPORAN
         // =============================================
 
-        const laporan =
-
-            dataAnggota.map(
-
-                function (
-
-                    anggota
-
-                ) {
+        const laporan = [];
 
 
-                    const dutyAnggota =
+        dataDuty.forEach(
 
-                        dataDuty.filter(
+            function (
 
-                            function (
+                duty
 
-                                duty
-
-                            ) {
+            ) {
 
 
-                                return String(
+                const anggota =
 
-                                    duty.no_skb
+                    dataAnggota.find(
 
-                                )
+                        function (
 
-                                ===
+                            item
 
-                                String(
-
-                                    anggota.no_skb
-
-                                );
-
-                            }
-
-                        );
+                        ) {
 
 
-                    return {
+                            return String(
 
-                        anggota:
+                                item.no_skb
 
-                            anggota,
+                            )
 
-                        duty:
+                            ===
 
-                            dutyAnggota
+                            String(
 
-                    };
+                                duty.no_skb
 
-                }
+                            );
 
-            );
+                        }
+
+                    );
+
+
+                laporan.push({
+
+                    anggota:
+
+                        anggota ||
+
+                        {
+
+                            no_skb:
+
+                                duty.no_skb,
+
+                            no_anggota:
+
+                                duty.no_anggota ||
+
+                                "",
+
+                            nama:
+
+                                duty.nama_anggota ||
+
+                                "",
+
+                            pangkat:
+
+                                duty.pangkat ||
+
+                                "",
+
+                            unit:
+
+                                duty.unit ||
+
+                                "",
+
+                            pos:
+
+                                duty.pos ||
+
+                                ""
+
+                        },
+
+
+                    duty:
+
+                        [
+
+                            duty
+
+                        ]
+
+                });
+
+
+            }
+
+        );
+
+
+        console.log(
+
+            "LAPORAN AKHIR:",
+
+            laporan
+
+        );
 
 
         // =============================================
@@ -1375,14 +1310,18 @@ async function janaLaporanAnggaran() {
 
         paparMesej(
 
-            `Laporan berjaya dijana. ${laporan.length} anggota dijumpai.`,
+            "Laporan berjaya dijana. " +
+
+            dataDuty.length +
+
+            " rekod duty dijumpai.",
 
             "success"
 
         );
 
-    }
 
+    }
 
     catch (
 
@@ -1505,7 +1444,11 @@ function paparTajukLaporan(
 
         tajukBulan.textContent =
 
-            `${dapatkanNamaBulan(bulan)} ${tahun}`;
+            bulan +
+
+            " " +
+
+            tahun;
 
     }
 
@@ -1535,19 +1478,24 @@ function paparTajukLaporan(
 // JAM HARI BIASA
 // = jumlah jam_klm daripada jadual_duty
 //
-// Hari Off < 4 jam
+// HARI OFF
+// < 4 jam
 // = kosong
 //
-// Hari Off 4–8 jam
+// HARI OFF
+// 4 - 8 jam
 // = hari_offday_bertugas
 //
-// Hari Off > 8 jam
+// HARI OFF
+// > 8 jam
 // = jam_offday_bertugas
 //
-// Hari Cuti Am < 8 jam
+// HARI CUTI AM
+// < 8 jam
 // = hari_cutiam_bertugas
 //
-// Hari Cuti Am > 8 jam
+// HARI CUTI AM
+// > 8 jam
 // = jam_cutiam_bertugas
 //
 // JUMLAH TUNTUTAN KLM
@@ -1588,7 +1536,7 @@ function paparJadualAnggaran(
 
         console.error(
 
-            "senaraiAnggaran tidak dijumpai."
+            "ELEMENT senaraiAnggaran TIDAK DIJUMPAI."
 
         );
 
@@ -1645,16 +1593,22 @@ function paparJadualAnggaran(
     let jumlahRMHariOff = 0;
 
 
+    let jumlahJamOff = 0;
+
+
+    let jumlahRMJamOff = 0;
+
+
     let jumlahHariCutiAm = 0;
 
 
-    let jumlahRMCutiAm = 0;
+    let jumlahRMHariCutiAm = 0;
 
 
-    let jumlahHariTampungan = 0;
+    let jumlahJamCutiAm = 0;
 
 
-    let jumlahRMTampungan = 0;
+    let jumlahRMJamCutiAm = 0;
 
 
     laporan.forEach(
@@ -1677,8 +1631,7 @@ function paparJadualAnggaran(
 
 
             // =========================================
-            // JAM HARI BIASA
-            // JUMLAH jam_klm
+            // PEMBOLEHUBAH KIRAAN
             // =========================================
 
             let jamBiasa =
@@ -1686,32 +1639,29 @@ function paparJadualAnggaran(
                 0;
 
 
-            // =========================================
-            // HARI OFF
-            // =========================================
-
             let hariOff =
 
                 0;
 
 
-            // =========================================
-            // CUTI AM
-            // =========================================
+            let jamOff =
+
+                0;
+
 
             let hariCutiAm =
 
                 0;
 
 
-            // =========================================
-            // TAMPUNGAN
-            // =========================================
-
-            let hariTampungan =
+            let jamCutiAm =
 
                 0;
 
+
+            // =========================================
+            // KIRA SETIAP DUTY
+            // =========================================
 
             duty.forEach(
 
@@ -1722,6 +1672,10 @@ function paparJadualAnggaran(
                 ) {
 
 
+                    // ---------------------------------
+                    // JAM HARI BIASA
+                    // ---------------------------------
+
                     const jamKLM =
 
                         parseFloat(
@@ -1731,7 +1685,16 @@ function paparJadualAnggaran(
                         ) || 0;
 
 
-                    const hariOffData =
+                    jamBiasa +=
+
+                        jamKLM;
+
+
+                    // ---------------------------------
+                    // HARI OFF
+                    // ---------------------------------
+
+                    const nilaiHariOff =
 
                         parseFloat(
 
@@ -1740,7 +1703,7 @@ function paparJadualAnggaran(
                         ) || 0;
 
 
-                    const jamOffData =
+                    const nilaiJamOff =
 
                         parseFloat(
 
@@ -1749,7 +1712,52 @@ function paparJadualAnggaran(
                         ) || 0;
 
 
-                    const hariCutiData =
+                    if (
+
+                        nilaiHariOff < 4
+
+                    ) {
+
+
+                        // KOSONG
+
+
+                    }
+
+                    else if (
+
+                        nilaiHariOff >= 4 &&
+
+                        nilaiHariOff <= 8
+
+                    ) {
+
+
+                        hariOff +=
+
+                            nilaiHariOff;
+
+                    }
+
+                    else if (
+
+                        nilaiHariOff > 8
+
+                    ) {
+
+
+                        jamOff +=
+
+                            nilaiJamOff;
+
+                    }
+
+
+                    // ---------------------------------
+                    // HARI CUTI AM
+                    // ---------------------------------
+
+                    const nilaiHariCutiAm =
 
                         parseFloat(
 
@@ -1758,7 +1766,7 @@ function paparJadualAnggaran(
                         ) || 0;
 
 
-                    const jamCutiData =
+                    const nilaiJamCutiAm =
 
                         parseFloat(
 
@@ -1767,96 +1775,31 @@ function paparJadualAnggaran(
                         ) || 0;
 
 
-                    const jamTampungan =
-
-                        parseFloat(
-
-                            item.jam_tampungan
-
-                        ) || 0;
-
-
-                    // JAM BIASA
-                    jamBiasa +=
-
-                        jamKLM;
-
-
-                    // HARI OFF
                     if (
 
-                        jamOffData < 4
-
-                    ) {
-
-
-                        hariOff +=
-
-                            0;
-
-                    }
-
-                    else if (
-
-                        jamOffData >= 4 &&
-
-                        jamOffData <= 8
-
-                    ) {
-
-
-                        hariOff +=
-
-                            hariOffData;
-
-                    }
-
-                    else if (
-
-                        jamOffData > 8
-
-                    ) {
-
-
-                        hariOff +=
-
-                            jamOffData;
-
-                    }
-
-
-                    // CUTI AM
-                    if (
-
-                        jamCutiData < 8
+                        nilaiHariCutiAm < 8
 
                     ) {
 
 
                         hariCutiAm +=
 
-                            hariCutiData;
+                            nilaiHariCutiAm;
 
                     }
 
                     else if (
 
-                        jamCutiData > 8
+                        nilaiHariCutiAm > 8
 
                     ) {
 
 
-                        hariCutiAm +=
+                        jamCutiAm +=
 
-                            jamCutiData;
+                            nilaiJamCutiAm;
 
                     }
-
-
-                    // TAMPUNGAN
-                    hariTampungan +=
-
-                        jamTampungan;
 
                 }
 
@@ -1864,20 +1807,46 @@ function paparJadualAnggaran(
 
 
             // =========================================
-            // Gaji dari Data_Anggota
+            // RM BUAT MASA INI KOSONG
             // =========================================
 
-            const gaji =
+            const rmBiasa =
 
-                parseFloat(
+                0;
 
-                    anggota.gaji
 
-                ) || 0;
+            const rmHariOff =
+
+                0;
+
+
+            const rmJamOff =
+
+                0;
+
+
+            const rmHariCutiAm =
+
+                0;
+
+
+            const rmJamCutiAm =
+
+                0;
 
 
             // =========================================
-            // BINA BARIS
+            // JUMLAH TUNTUTAN KLM
+            // KOSONG DAHULU
+            // =========================================
+
+            const jumlahTuntutanKLM =
+
+                "";
+
+
+            // =========================================
+            // BINA ROW
             // =========================================
 
             const tr =
@@ -1922,27 +1891,9 @@ function paparJadualAnggaran(
 
                 <td>
 
-                    -
-
-                </td>
-
-
-                <td>
-
                     ${formatNombor(
 
                         jamBiasa
-
-                    )}
-
-                </td>
-
-
-                <td class="amount">
-
-                    ${formatRM(
-
-                        gaji
 
                     )}
 
@@ -1962,7 +1913,33 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        rmHariOff
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${formatNombor(
+
+                        jamOff
+
+                    )}
+
+                </td>
+
+
+                <td class="amount">
+
+                    ${formatRM(
+
+                        rmJamOff
+
+                    )}
 
                 </td>
 
@@ -1980,7 +1957,11 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        rmHariCutiAm
+
+                    )}
 
                 </td>
 
@@ -1989,7 +1970,7 @@ function paparJadualAnggaran(
 
                     ${formatNombor(
 
-                        hariTampungan
+                        jamCutiAm
 
                     )}
 
@@ -1998,28 +1979,32 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        rmJamCutiAm
+
+                    )}
 
                 </td>
 
 
                 <td>
 
-                    0
+                    -
 
                 </td>
 
 
-                <td class="amount">
-
-                    RM 0.00
-
-                </td>
-
-
-                <td class="amount">
+                <td>
 
                     -
+
+                </td>
+
+
+                <td class="amount">
+
+                    ${jumlahTuntutanKLM}
 
                 </td>
 
@@ -2036,6 +2021,10 @@ function paparJadualAnggaran(
             bil++;
 
 
+            // =========================================
+            // JUMLAH
+            // =========================================
+
             jumlahJamBiasa +=
 
                 jamBiasa;
@@ -2043,7 +2032,7 @@ function paparJadualAnggaran(
 
             jumlahRMBiasa +=
 
-                gaji;
+                rmBiasa;
 
 
             jumlahHariOff +=
@@ -2051,14 +2040,40 @@ function paparJadualAnggaran(
                 hariOff;
 
 
+            jumlahRMHariOff +=
+
+                rmHariOff;
+
+
+            jumlahJamOff +=
+
+                jamOff;
+
+
+            jumlahRMJamOff +=
+
+                rmJamOff;
+
+
             jumlahHariCutiAm +=
 
                 hariCutiAm;
 
 
-            jumlahHariTampungan +=
+            jumlahRMHariCutiAm +=
 
-                hariTampungan;
+                rmHariCutiAm;
+
+
+            jumlahJamCutiAm +=
+
+                jamCutiAm;
+
+
+            jumlahRMJamCutiAm +=
+
+                rmJamCutiAm;
+
 
         }
 
@@ -2066,7 +2081,7 @@ function paparJadualAnggaran(
 
 
     // =============================================
-    // FOOTER JUMLAH
+    // PAPAR FOOTER
     // =============================================
 
     if (
@@ -2081,7 +2096,7 @@ function paparJadualAnggaran(
             <tr class="total-row">
 
 
-                <td colspan="4">
+                <td colspan="3">
 
                     JUMLAH
 
@@ -2093,17 +2108,6 @@ function paparJadualAnggaran(
                     ${formatNombor(
 
                         jumlahJamBiasa
-
-                    )}
-
-                </td>
-
-
-                <td class="amount">
-
-                    ${formatRM(
-
-                        jumlahRMBiasa
 
                     )}
 
@@ -2123,7 +2127,33 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        jumlahRMHariOff
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${formatNombor(
+
+                        jumlahJamOff
+
+                    )}
+
+                </td>
+
+
+                <td class="amount">
+
+                    ${formatRM(
+
+                        jumlahRMJamOff
+
+                    )}
 
                 </td>
 
@@ -2141,7 +2171,11 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        jumlahRMHariCutiAm
+
+                    )}
 
                 </td>
 
@@ -2150,7 +2184,7 @@ function paparJadualAnggaran(
 
                     ${formatNombor(
 
-                        jumlahHariTampungan
+                        jumlahJamCutiAm
 
                     )}
 
@@ -2159,26 +2193,30 @@ function paparJadualAnggaran(
 
                 <td class="amount">
 
-                    RM 0.00
+                    ${formatRM(
+
+                        jumlahRMJamCutiAm
+
+                    )}
 
                 </td>
 
 
                 <td>
 
-                    0
+                    -
 
                 </td>
 
 
-                <td class="amount">
+                <td>
 
-                    RM 0.00
+                    -
 
                 </td>
 
 
-                <td class="amount">
+                <td>
 
                     -
 
@@ -2350,9 +2388,13 @@ function formatRM(
 
             {
 
-                minimumFractionDigits: 2,
+                minimumFractionDigits:
 
-                maximumFractionDigits: 2
+                    2,
+
+                maximumFractionDigits:
+
+                    2
 
             }
 
@@ -2374,6 +2416,22 @@ function formatNombor(
 ) {
 
 
+    if (
+
+        nilai === "" ||
+
+        nilai === null ||
+
+        nilai === undefined
+
+    ) {
+
+
+        return "";
+
+    }
+
+
     const nombor =
 
         parseFloat(
@@ -2389,9 +2447,13 @@ function formatNombor(
 
         {
 
-            minimumFractionDigits: 2,
+            minimumFractionDigits:
 
-            maximumFractionDigits: 2
+                2,
+
+            maximumFractionDigits:
+
+                2
 
         }
 
@@ -2472,4 +2534,3 @@ function escapeHTML(
         );
 
 }
-```
