@@ -64,13 +64,6 @@ document.addEventListener(
 
         await muatAnggota();
 
-        // =================================================
-        // TAMBAHAN:
-        // ISI SEMUA SENARAI POS UNTUK POS TAMPUNGAN
-        // =================================================
-
-        isiSenaraiPosTampungan();
-
         await muatKodDuty();
 
         await muatKodTempatKerja();
@@ -1213,96 +1206,6 @@ async function muatAnggota() {
         );
 
     }
-
-}
-
-
-// =====================================================
-// TAMBAHAN BARU
-// ISI SENARAI POS TAMPUNGAN
-// SEMUA POS YANG ADA DALAM DATA ANGGOTA
-// =====================================================
-
-function isiSenaraiPosTampungan() {
-
-    const select = document.getElementById(
-
-        "posTampungan"
-
-    );
-
-
-    if (!select) return;
-
-
-    select.innerHTML = `
-
-        <option value="">
-
-            -- Pilih Pos Tampungan --
-
-        </option>
-
-    `;
-
-
-    const senaraiPos = [
-
-        ...new Set(
-
-            semuaAnggota
-
-                .map(function (anggota) {
-
-                    return anggota.pos;
-
-                })
-
-                .filter(function (pos) {
-
-                    return (
-
-                        pos &&
-
-                        String(pos).trim() !== ""
-
-                    );
-
-                })
-
-        )
-
-    ]
-
-        .sort(function (a, b) {
-
-            return String(a).localeCompare(
-
-                String(b)
-
-            );
-
-        });
-
-
-    senaraiPos.forEach(function (pos) {
-
-        const option = document.createElement(
-
-            "option"
-
-        );
-
-
-        option.value = pos;
-
-
-        option.textContent = pos;
-
-
-        select.appendChild(option);
-
-    });
 
 }
 
@@ -2607,6 +2510,19 @@ async function simpanDuty() {
 
 // =====================================================
 // PAPAR DUTY
+// =====================================================
+// BAHAGIAN INI SAHAJA DIUBAH
+// PAPARAN:
+// Tarikh
+// Nama Anggota
+// Kod TK
+// Kod WK
+// KLM Hari Biasa
+// Offday (Hari)
+// Offday (Jam)
+// Cuti Am (Hari)
+// Cuti Am (Jam)
+// Tindakan
 // =====================================================
 
 async function paparDuty() {
@@ -4204,4 +4120,4 @@ function formatTarikh(
 
     );
 
-}
+} 
