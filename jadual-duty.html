@@ -2627,231 +2627,169 @@ onclick="simpanDuty()"
      SENARAI DUTY
 ===================================================== -->
 
-
 <div class="card">
 
-
+```
 <div class="card-title">
 
+    <div class="section-number">
+        5
+    </div>
 
-<div class="section-number">
-
-5
-
-</div>
-
-
-<h2>
-
-Senarai Semak Duty By Unit
-
-</h2>
-
+    <h2>
+        Senarai Semak Duty By Unit
+    </h2>
 
 </div>
 
+
+<!-- FILTER -->
 
 <div class="filter-panel">
 
-
-<div class="grid-3">
-
-
-<div class="form-group">
+    <div class="grid-3">
 
 
-<label>
+        <!-- KETUA UNIT -->
 
-Nama Ketua Unit
+        <div class="form-group">
 
-</label>
+            <label>
+                Nama Ketua Unit
+            </label>
 
+            <select
+                id="filterKetuaUnit"
+                onchange="paparDuty()"
+            >
 
-<select
+                <option value="">
 
-id="filterKetuaUnit"
+                    -- Semua Ketua Unit --
 
-onchange="paparDuty()"
+                </option>
 
->
+            </select>
 
-
-<option value="">
-
--- Semua Ketua Unit --
-
-</option>
-
-
-</select>
+        </div>
 
 
-</div>
+        <!-- BULAN -->
+
+        <div class="form-group">
+
+            <label>
+                Bulan / Tahun
+            </label>
+
+            <input
+                type="month"
+                id="filterBulan"
+                onchange="paparDuty()"
+            >
+
+        </div>
 
 
-<div class="form-group">
+        <!-- CARI NAMA -->
+
+        <div class="form-group">
+
+            <label>
+                Cari Nama Anggota
+            </label>
+
+            <input
+                type="text"
+                id="cariNama"
+                placeholder="Cari nama anggota..."
+                onkeyup="paparDuty()"
+            >
+
+        </div>
 
 
-<label>
-
-Bulan / Tahun
-
-</label>
-
-
-<input
-
-type="month"
-
-id="filterBulan"
-
-onchange="paparDuty()"
-
->
-
-
-</div>
-
-
-<div class="form-group">
-
-
-<label>
-
-Cari Nama Anggota
-
-</label>
-
-
-<input
-
-type="text"
-
-id="cariNama"
-
-placeholder="Cari nama anggota..."
-
-onkeyup="paparDuty()"
-
->
-
+    </div>
 
 </div>
 
 
-</div>
-
-
-</div>
-
+<!-- JADUAL RINGKAS -->
 
 <div class="table-wrapper">
 
+    <table>
 
-<table>
+        <thead>
 
+            <tr>
 
-<thead>
+                <th>
+                    Tarikh
+                </th>
 
+                <th>
+                    Nama Anggota
+                </th>
 
-<tr>
+                <th>
+                    Kod TK
+                </th>
 
+                <th>
+                    Kod WK
+                </th>
 
-<th>Tarikh</th>
+                <th>
+                    KLM Hari Biasa
+                </th>
 
-<th>Hari</th>
+                <th>
+                    Offday (Hari)
+                </th>
 
-<th>No SKB</th>
+                <th>
+                    Offday (Jam)
+                </th>
 
-<th>No.Anggota</th>
+                <th>
+                    Cuti Am (Hari)
+                </th>
 
-<th>Nama Anggota</th>
+                <th>
+                    Cuti Am (Jam)
+                </th>
 
-<th>Kod Kawasan</th>
+                <th>
+                    Tindakan
+                </th>
 
-<th>Kawasan</th>
+            </tr>
 
-<th>Nama Ketua Unit</th>
-
-<th>Nama Ketua Pos</th>
-
-<th>Pos Bertugas</th>
-
-<th>Masa Bertugas</th>
-
-<th>KLM Hari Biasa</th>
-
-<th>Hari Offday</th>
-
-<th>Kod WK</th>
-
-<th>Kod TK</th>
-
-<th>Pos Tetap</th>
-
-<th>Offday (hari)</th>
-
-<th>Offday (Jam)</th>
-
-<th>Cuti Am (Hari)</th>
-
-<th>Cuti Am (Jam)</th>
-
-<th>Jam Offday</th>
-
-<th>Cuti Am</th>
-
-<th>Jam Cuti Am</th>
-
-<th>Tindakan</th>
+        </thead>
 
 
-</tr>
+        <tbody id="senaraiDuty">
 
+            <tr>
 
-</thead>
+                <td colspan="10">
 
+                    Sila pilih Ketua Unit dan Bulan/Tahun
 
-<tbody
+                </td>
 
-id="senaraiDuty"
+            </tr>
 
->
+        </tbody>
 
+    </table>
 
-<tr>
-
-
-<td colspan="24">
-
-
-Sila pilih Ketua Unit dan Bulan/Tahun
-
-
-</td>
-
-
-</tr>
-
-
-</tbody>
-
-
-</table>
-
+</div>
+```
 
 </div>
 
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 
 <footer class="footer">
