@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
@@ -6,23 +7,18 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>
 Senarai Anggota - Forecast Duty System
 </title>
 
-
-<!-- =====================================================
-     SUPABASE CDN
-===================================================== -->
-
 <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
-
 
 <style>
 
@@ -57,8 +53,6 @@ body {
 
     color: #263238;
 
-    overflow: hidden;
-
 }
 
 
@@ -70,7 +64,7 @@ body {
 
     display: flex;
 
-    height: 100vh;
+    min-height: 100vh;
 
 }
 
@@ -115,8 +109,6 @@ body {
 
 }
 
-
-/* CORAK HALUS */
 
 .sidebar::after {
 
@@ -244,7 +236,7 @@ body {
 
 
 /* =====================================================
-   HERITAGE MARK
+   HERITAGE
 ===================================================== */
 
 .heritage-mark {
@@ -424,19 +416,11 @@ body {
 
     margin-left: 290px;
 
-    width:
+    width: calc(
 
-        calc(
+        100% - 290px
 
-            100% - 290px
-
-        );
-
-    height: 100vh;
-
-    display: flex;
-
-    flex-direction: column;
+    );
 
 }
 
@@ -472,8 +456,6 @@ body {
     justify-content: space-between;
 
     padding: 0 38px;
-
-    flex-shrink: 0;
 
 }
 
@@ -542,13 +524,93 @@ body {
 
 .content {
 
-    padding: 25px 32px;
+    padding: 32px;
 
-    flex: 1;
+    max-width: 1800px;
 
-    min-height: 0;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 30px 35px;
+
+    margin-bottom: 25px;
+
+    position: relative;
 
     overflow: hidden;
+
+    border: 1px solid #77adb0;
+
+    box-shadow:
+
+        0 8px 22px
+
+        rgba(
+
+            57,
+
+            111,
+
+            118,
+
+            0.15
+
+        );
+
+}
+
+
+.hero h1 {
+
+    font-size: 27px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.hero p {
+
+    margin-top: 8px;
+
+    color: #e3f2f3;
+
+    font-size: 14px;
+
+}
+
+
+.hero-line {
+
+    margin-top: 18px;
+
+    width: 130px;
+
+    height: 3px;
+
+    background: #d8f1ef;
 
 }
 
@@ -565,7 +627,9 @@ body {
 
     border-radius: 15px;
 
-    padding: 23px;
+    padding: 25px;
+
+    margin-bottom: 25px;
 
     box-shadow:
 
@@ -605,7 +669,7 @@ body {
 
 .card-header h2 {
 
-    font-size: 21px;
+    font-size: 20px;
 
     color: #304c53;
 
@@ -614,13 +678,9 @@ body {
 
 .card-header span {
 
-    display: block;
-
-    font-size: 13px;
+    font-size: 14px;
 
     color: #829398;
-
-    margin-top: 5px;
 
 }
 
@@ -641,60 +701,62 @@ body {
 
         1fr
 
-        1fr;
+        1fr
+
+        auto;
 
     gap: 14px;
 
-    margin-bottom: 18px;
+    align-items: end;
 
 }
 
 
-.filter-grid label {
+.form-group label {
 
     display: block;
 
-    font-size: 11px;
+    font-size: 12px;
 
-    font-weight: 700;
+    font-weight: bold;
 
     color: #71858a;
 
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.5px;
-
 }
 
 
-.filter-grid input,
+input,
 
-.filter-grid select {
+select {
 
     width: 100%;
 
-    padding: 11px 13px;
+    height: 42px;
 
-    border: 1px solid #dce7e9;
+    padding: 0 12px;
+
+    border: 1px solid #cbdde1;
 
     border-radius: 9px;
 
-    background: #f9fbfb;
+    background: #ffffff;
 
-    color: #40575d;
+    color: #304c53;
+
+    font-size: 14px;
 
     outline: none;
-
-    font-size: 13px;
 
 }
 
 
-.filter-grid input:focus,
+input:focus,
 
-.filter-grid select:focus {
+select:focus {
 
     border-color: #5b9da0;
 
@@ -717,133 +779,112 @@ body {
 }
 
 
-/* =====================================================
-   BUTTON
-===================================================== */
+.btn {
 
-.btn-primary {
-
-    width: auto;
-
-    padding: 11px 18px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #3d7f86,
-
-            #5b9da0
-
-        );
-
-    color: white;
+    height: 42px;
 
     border: none;
 
     border-radius: 9px;
 
+    padding: 0 18px;
+
     cursor: pointer;
 
-    font-weight: 600;
+    font-weight: bold;
 
     font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+.btn-primary {
+
+    background: #3d7f86;
+
+    color: white;
 
 }
 
 
 .btn-primary:hover {
 
-    opacity: 0.9;
+    background: #286c73;
 
 }
 
 
-.btn-warning {
+.btn-edit {
 
-    background: #e8a94c;
+    background: #e7f2f3;
 
-    color: white;
-
-    border: none;
-
-    padding: 7px 10px;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-size: 12px;
-
-    margin-right: 4px;
+    color: #286c73;
 
 }
 
 
-.btn-warning:hover {
+.btn-edit:hover {
 
-    background: #d9922e;
-
-}
-
-
-.btn-danger {
-
-    background: #c96b6b;
-
-    color: white;
-
-    border: none;
-
-    padding: 7px 10px;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-size: 12px;
+    background: #d4e9eb;
 
 }
 
 
-.btn-danger:hover {
+.btn-delete {
 
-    background: #b65353;
+    background: #fbe7e7;
+
+    color: #b23b3b;
+
+}
+
+
+.btn-delete:hover {
+
+    background: #f7d4d4;
 
 }
 
 
 /* =====================================================
-   TABLE WRAPPER
+   MESSAGE
 ===================================================== */
 
-.anggota-table-wrapper {
+#mesej {
 
-    width: 100%;
+    margin-bottom: 15px;
 
-    height:
+}
 
-        calc(
 
-            100vh - 290px
+.success {
 
-        );
+    background: #e4f2ed;
 
-    min-height: 250px;
+    color: #3d7662;
 
-    overflow-x: auto;
+    padding: 12px 15px;
 
-    overflow-y: auto;
+    border-radius: 9px;
 
-    border:
+    border: 1px solid #c7e2d7;
 
-        1px solid
+}
 
-        #dce7e9;
 
-    border-radius: 12px;
+.error {
+
+    background: #fbe7e7;
+
+    color: #a53c3c;
+
+    padding: 12px 15px;
+
+    border-radius: 9px;
+
+    border: 1px solid #efcaca;
 
 }
 
@@ -852,90 +893,210 @@ body {
    TABLE
 ===================================================== */
 
-.anggota-table-wrapper table {
+.table-wrapper {
 
     width: 100%;
 
-    min-width: 1250px;
+    overflow: visible;
+
+}
+
+
+table {
+
+    width: 100%;
 
     border-collapse: collapse;
 
-}
-
-
-.anggota-table-wrapper thead {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 5;
+    table-layout: fixed;
 
 }
 
 
-.anggota-table-wrapper th {
+th,
 
-    padding: 12px 10px;
+td {
 
-    background: #f2f7f8;
+    padding: 12px 8px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #edf2f3;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    word-wrap: break-word;
+
+    overflow-wrap: break-word;
+
+}
+
+
+th {
 
     color: #71858a;
 
-    font-size: 10px;
+    font-size: 11px;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
 
-    white-space: nowrap;
-
-    border-bottom: 1px solid #dce7e9;
+    background: #f2f7f8;
 
 }
 
 
-.anggota-table-wrapper td {
-
-    padding: 10px;
-
-    border-bottom:
-
-        1px solid
-
-        #edf2f3;
+td {
 
     color: #40575d;
 
-    font-size: 12px;
-
-    white-space: nowrap;
-
 }
 
 
-.anggota-table-wrapper tr:hover {
+tr:hover {
 
     background: #f6fafb;
 
 }
 
 
+/* WIDTH KOLOM */
+
+th:nth-child(1),
+
+td:nth-child(1) {
+
+    width: 6%;
+
+}
+
+
+th:nth-child(2),
+
+td:nth-child(2) {
+
+    width: 8%;
+
+}
+
+
+th:nth-child(3),
+
+td:nth-child(3) {
+
+    width: 15%;
+
+}
+
+
+th:nth-child(4),
+
+td:nth-child(4) {
+
+    width: 8%;
+
+}
+
+
+th:nth-child(5),
+
+td:nth-child(5) {
+
+    width: 8%;
+
+}
+
+
+th:nth-child(6),
+
+td:nth-child(6) {
+
+    width: 10%;
+
+}
+
+
+th:nth-child(7),
+
+td:nth-child(7) {
+
+    width: 11%;
+
+}
+
+
+th:nth-child(8),
+
+td:nth-child(8) {
+
+    width: 9%;
+
+}
+
+
+th:nth-child(9),
+
+td:nth-child(9) {
+
+    width: 9%;
+
+}
+
+
+th:nth-child(10),
+
+td:nth-child(10) {
+
+    width: 7%;
+
+}
+
+
+th:nth-child(11),
+
+td:nth-child(11) {
+
+    width: 7%;
+
+}
+
+
+th:nth-child(12),
+
+td:nth-child(12) {
+
+    width: 7%;
+
+}
+
+
+th:nth-child(13),
+
+td:nth-child(13) {
+
+    width: 10%;
+
+}
+
+
 /* =====================================================
-   STATUS
+   BADGE
 ===================================================== */
 
 .badge {
 
     display: inline-block;
 
-    padding: 5px 9px;
+    padding: 5px 8px;
 
-    border-radius: 20px;
+    border-radius: 7px;
 
-    font-size: 10px;
+    font-size: 11px;
 
-    font-weight: 700;
+    font-weight: bold;
 
 }
 
@@ -951,50 +1112,39 @@ body {
 
 .badge-tidak {
 
-    background: #fbe8e8;
+    background: #fbe7e7;
 
-    color: #a05252;
+    color: #a53c3c;
 
 }
 
 
 /* =====================================================
-   MESEJ
+   BUTTON ACTION
 ===================================================== */
 
-#mesej {
+.action-buttons {
 
-    margin-bottom: 12px;
+    display: flex;
 
-}
-
-
-#mesej.success {
-
-    background: #e4f2ed;
-
-    color: #3d7662;
-
-    padding: 10px 12px;
-
-    border-radius: 9px;
-
-    font-size: 13px;
+    gap: 5px;
 
 }
 
 
-#mesej.error {
+.action-buttons button {
 
-    background: #fbe8e8;
+    padding: 6px 8px;
 
-    color: #a05252;
+    border: none;
 
-    padding: 10px 12px;
+    border-radius: 6px;
 
-    border-radius: 9px;
+    cursor: pointer;
 
-    font-size: 13px;
+    font-size: 11px;
+
+    font-weight: bold;
 
 }
 
@@ -1009,19 +1159,19 @@ body {
 
     position: fixed;
 
-    z-index: 1000;
-
     inset: 0;
+
+    z-index: 1000;
 
     background:
 
         rgba(
 
-            35,
+            30,
 
-            64,
+            60,
 
-            71,
+            65,
 
             0.45
 
@@ -1034,9 +1184,9 @@ body {
 
     background: white;
 
-    width: 94%;
+    width: 95%;
 
-    max-width: 1000px;
+    max-width: 950px;
 
     max-height: 92vh;
 
@@ -1044,11 +1194,9 @@ body {
 
     margin: 3vh auto;
 
-    padding: 25px;
+    padding: 28px;
 
-    border-radius: 15px;
-
-    border: 1px solid #dce7e9;
+    border-radius: 16px;
 
     box-shadow:
 
@@ -1056,24 +1204,15 @@ body {
 
         rgba(
 
-            40,
+            0,
 
-            80,
+            0,
 
-            90,
+            0,
 
-            0.20
+            0.18
 
         );
-
-}
-
-
-.modal-content h2 {
-
-    color: #304c53;
-
-    margin-bottom: 20px;
 
 }
 
@@ -1093,7 +1232,7 @@ body {
 
 .close:hover {
 
-    color: #b65353;
+    color: #b23b3b;
 
 }
 
@@ -1114,76 +1253,14 @@ body {
 
     gap: 15px;
 
-}
-
-
-.modal-grid label {
-
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    color: #71858a;
-
-    margin-bottom: 6px;
+    margin-top: 20px;
 
 }
 
 
-.modal-grid input,
-
-.modal-grid select {
-
-    width: 100%;
-
-    padding: 11px;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 8px;
-
-    outline: none;
-
-    color: #40575d;
-
-}
-
-
-.modal-grid input:focus,
-
-.modal-grid select:focus {
-
-    border-color: #5b9da0;
-
-}
-
-
-.modal-grid input[readonly] {
-
-    background: #f2f7f8;
-
-}
-
-
-.section-title {
+.modal-grid .full {
 
     grid-column: 1 / -1;
-
-    background: #f2f7f8;
-
-    padding: 10px 13px;
-
-    border-left: 4px solid #5b9da0;
-
-    color: #365b63;
-
-    font-weight: bold;
-
-    border-radius: 5px;
-
-    margin-top: 5px;
 
 }
 
@@ -1194,7 +1271,7 @@ body {
 
     gap: 10px;
 
-    margin-top: 22px;
+    margin-top: 25px;
 
 }
 
@@ -1203,35 +1280,6 @@ body {
 
     flex: 1;
 
-    padding: 12px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-}
-
-
-.btn-save {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #3d7f86,
-
-            #5b9da0
-
-        );
-
-    color: white;
-
 }
 
 
@@ -1239,14 +1287,24 @@ body {
 
     background: #edf2f3;
 
-    color: #526970;
+    color: #40575d;
 
 }
 
 
-.btn-cancel:hover {
+/* =====================================================
+   FOOTER
+===================================================== */
 
-    background: #dce7e9;
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #91a0a4;
+
+    font-size: 13px;
 
 }
 
@@ -1255,34 +1313,34 @@ body {
    RESPONSIVE
 ===================================================== */
 
-@media(max-width:1200px) {
+@media(max-width:1400px) {
 
     .filter-grid {
 
         grid-template-columns:
 
-            repeat(
+            1fr
 
-                2,
+            1fr
 
-                1fr
-
-            );
+            1fr;
 
     }
 
+}
 
-    .modal-grid {
 
-        grid-template-columns:
+@media(max-width:1200px) {
 
-            repeat(
+    .table-wrapper {
 
-                2,
+        overflow-x: auto;
 
-                1fr
+    }
 
-            );
+    table {
+
+        min-width: 1100px;
 
     }
 
@@ -1290,13 +1348,6 @@ body {
 
 
 @media(max-width:800px) {
-
-    body {
-
-        overflow: auto;
-
-    }
-
 
     .sidebar {
 
@@ -1357,10 +1408,6 @@ body {
 
             );
 
-        height: auto;
-
-        min-height: 100vh;
-
     }
 
 
@@ -1375,7 +1422,12 @@ body {
 
         padding: 20px;
 
-        overflow: visible;
+    }
+
+
+    .system-status {
+
+        display: none;
 
     }
 
@@ -1387,41 +1439,9 @@ body {
     }
 
 
-    .card-header {
-
-        align-items: flex-start;
-
-        gap: 15px;
-
-        flex-direction: column;
-
-    }
-
-
-    .btn-primary {
-
-        width: 100%;
-
-    }
-
-
-    .anggota-table-wrapper {
-
-        height: 500px;
-
-    }
-
-
     .modal-grid {
 
         grid-template-columns: 1fr;
-
-    }
-
-
-    .system-status {
-
-        display: none;
 
     }
 
@@ -1431,6 +1451,13 @@ body {
 @media(max-width:500px) {
 
     .page-title h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .hero h1 {
 
         font-size: 21px;
 
@@ -1443,18 +1470,23 @@ body {
 
     }
 
+
+    .card {
+
+        padding: 16px;
+
+    }
+
 }
+
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
 
 <!-- =====================================================
      SIDEBAR
@@ -1462,23 +1494,21 @@ body {
 
 <aside class="sidebar">
 
-
 <div class="brand">
-
 
 <img
 
-    src="logo.png"
+```
+src="logo.png"
 
-    class="logo"
+class="logo"
 
-    alt="Logo FPB"
+alt="Logo FPB"
+```
 
 >
 
-
 <div class="brand-text">
-
 
 <h1>
 
@@ -1486,21 +1516,17 @@ POLIS BANTUAN FGVSSSB
 
 </h1>
 
-
 <p>
 
 WILAYAH TERENGGANU
 
 </p>
 
-
 </div>
 
 </div>
-
 
 <div class="heritage-mark">
-
 
 <strong>
 
@@ -1510,7 +1536,6 @@ La Ilaha Illallah
 
 </strong>
 
-
 <span>
 
 • Terengganu Maju, Berkat Sejahtera •
@@ -1519,30 +1544,27 @@ La Ilaha Illallah
 
 </div>
 
-
 <div class="nav-title">
 
 MAIN MENU
 
 </div>
 
-
 <nav class="nav">
-
 
 <a
 
-    href="index.html"
+```
+href="index.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ⌂
 
 </span>
-
 
 <span>
 
@@ -1552,22 +1574,21 @@ Dashboard
 
 </a>
 
-
 <a
 
-    href="anggota.html"
+```
+href="anggota.html"
 
-    class="active"
+class="active"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ♙
 
 </span>
-
 
 <span>
 
@@ -1577,20 +1598,19 @@ Senarai Anggota
 
 </a>
 
-
 <a
 
-    href="jadual-duty.html"
+```
+href="jadual-duty.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ▣
 
 </span>
-
 
 <span>
 
@@ -1600,20 +1620,19 @@ Jadual Duty
 
 </a>
 
-
 <a
 
-    href="kod-duty.html"
+```
+href="kod-duty.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ▤
 
 </span>
-
 
 <span>
 
@@ -1623,20 +1642,19 @@ Kod Duty
 
 </a>
 
-
 <a
 
-    href="tempat-kerja.html"
+```
+href="tempat-kerja.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ▦
 
 </span>
-
 
 <span>
 
@@ -1646,27 +1664,25 @@ Kod Tempat Kerja
 
 </a>
 
-
 <div class="nav-title">
 
 REPORTING
 
 </div>
 
-
 <a
 
-    href="laporan.html"
+```
+href="laporan.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ▥
 
 </span>
-
 
 <span>
 
@@ -1676,20 +1692,19 @@ Laporan
 
 </a>
 
-
 <a
 
-    href="laporan-anggaran.html"
+```
+href="laporan-anggaran.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ◫
 
 </span>
-
 
 <span>
 
@@ -1699,20 +1714,19 @@ Anggaran Duty Bulanan
 
 </a>
 
-
 <a
 
-    href="Laporan-Penuh.html"
+```
+href="Laporan-Penuh.html"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ▤
 
 </span>
-
 
 <span>
 
@@ -1722,27 +1736,25 @@ Laporan Penuh
 
 </a>
 
-
 <div class="nav-title">
 
 SYSTEM
 
 </div>
 
-
 <a
 
-    href="#"
+```
+href="#"
+```
 
 >
-
 
 <span class="nav-icon">
 
 ⚙
 
 </span>
-
 
 <span>
 
@@ -1752,12 +1764,9 @@ Tetapan
 
 </a>
 
-
 </nav>
 
-
 </aside>
-
 
 <!-- =====================================================
      MAIN
@@ -1765,23 +1774,15 @@ Tetapan
 
 <main class="main">
 
-
-<!-- =====================================================
-     TOPBAR
-===================================================== -->
-
 <div class="topbar">
 
-
 <div class="page-title">
-
 
 <h2>
 
 Senarai Anggota
 
 </h2>
-
 
 <p>
 
@@ -1791,83 +1792,67 @@ Wilayah Terengganu
 
 </p>
 
-
 </div>
-
 
 <div class="system-status">
 
-
 <span class="status-dot"></span>
-
 
 System Online
 
 </div>
 
-
 </div>
-
-
-<!-- =====================================================
-     CONTENT
-===================================================== -->
 
 <div class="content">
 
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>
+
+SENARAI ANGGOTA
+
+</h1>
+
+<p>
+
+Pengurusan maklumat anggota Polis Bantuan FGVSSSB
+
+Wilayah Terengganu.
+
+</p>
+
+<div class="hero-line"></div>
+
+</div>
+
+<!-- FILTER -->
 
 <div class="card">
 
-
-<!-- CARD HEADER -->
-
 <div class="card-header">
-
-
-<div>
-
 
 <h2>
 
-👥 Senarai Anggota
+Carian & Tapisan Anggota
 
 </h2>
 
+<span id="jumlahRekod">
 
-<span>
-
-Rekod anggota Wilayah Terengganu
+0 Rekod
 
 </span>
 
 </div>
 
-
-<button
-
-    class="btn-primary"
-
-    onclick="bukaTambah()"
-
->
-
-＋ Tambah Anggota
-
-</button>
-
-
-</div>
-
-
-<!-- =====================================================
-     FILTER
-===================================================== -->
+<div id="mesej"></div>
 
 <div class="filter-grid">
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -1875,24 +1860,21 @@ Cari Anggota
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="cari"
+id="cari"
 
-    placeholder="Nama / No Anggota / No SKB..."
-
-    onkeyup="paparAnggota()"
+placeholder="Nama, No. Anggota atau No. SKB..."
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -1900,15 +1882,13 @@ Filter Pos
 
 </label>
 
-
 <select
 
-    id="filterPos"
-
-    onchange="paparAnggota()"
+```
+id="filterPos"
+```
 
 >
-
 
 <option value="">
 
@@ -1916,14 +1896,11 @@ Semua Pos
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -1931,15 +1908,13 @@ Filter Kawasan
 
 </label>
 
-
 <select
 
-    id="filterKawasan"
-
-    onchange="paparAnggota()"
+```
+id="filterKawasan"
+```
 
 >
-
 
 <option value="">
 
@@ -1947,14 +1922,11 @@ Semua Kawasan
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -1962,15 +1934,13 @@ Status
 
 </label>
 
-
 <select
 
-    id="filterStatus"
-
-    onchange="paparAnggota()"
+```
+id="filterStatus"
+```
 
 >
-
 
 <option value="">
 
@@ -1978,13 +1948,11 @@ Semua Status
 
 </option>
 
-
 <option value="Aktif">
 
 Aktif
 
 </option>
-
 
 <option value="Tidak Aktif">
 
@@ -1992,141 +1960,89 @@ Tidak Aktif
 
 </option>
 
-
 </select>
 
 </div>
 
-</div>
+<button
 
+```
+class="btn btn-primary"
 
-<!-- MESEJ -->
-
-<div id="mesej"></div>
-
-
-<!-- =====================================================
-     TABLE
-===================================================== -->
-
-<div class="anggota-table-wrapper">
-
-
-<table>
-
-
-<thead>
-
-
-<tr>
-
-
-<th>
-
-No. SKB
-
-</th>
-
-
-<th>
-
-No. Anggota
-
-</th>
-
-
-<th>
-
-Nama
-
-</th>
-
-
-<th>
-
-Pangkat
-
-</th>
-
-
-<th>
-
-Wilayah
-
-</th>
-
-
-<th>
-
-Kawasan
-
-</th>
-
-
-<th>
-
-Pos
-
-</th>
-
-
-<th>
-
-Unit
-
-</th>
-
-
-<th>
-
-Jawatan
-
-</th>
-
-
-<th>
-
-Ketua Pos
-
-</th>
-
-
-<th>
-
-Ketua Unit
-
-</th>
-
-
-<th>
-
-Status
-
-</th>
-
-
-<th>
-
-Tindakan
-
-</th>
-
-
-</tr>
-
-
-</thead>
-
-
-<tbody
-
-    id="senaraiAnggota"
+onclick="bukaTambah()"
+```
 
 >
 
+➕ Tambah Anggota
+
+</button>
+
+</div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+
+Data Anggota
+
+</h2>
+
+<span>
+
+Senarai Keseluruhan
+
+</span>
+
+</div>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
 
 <tr>
 
+<th>No. SKB</th>
+
+<th>No. Anggota</th>
+
+<th>Nama</th>
+
+<th>Pangkat</th>
+
+<th>Wilayah</th>
+
+<th>Kawasan</th>
+
+<th>Pos</th>
+
+<th>Unit</th>
+
+<th>Jawatan</th>
+
+<th>Ketua Pos</th>
+
+<th>Ketua Unit</th>
+
+<th>Status</th>
+
+<th>Tindakan</th>
+
+</tr>
+
+</thead>
+
+<tbody id="senaraiAnggota">
+
+<tr>
 
 <td colspan="13">
 
@@ -2134,30 +2050,31 @@ Memuatkan data...
 
 </td>
 
-
 </tr>
-
 
 </tbody>
 
-
 </table>
 
+</div>
 
 </div>
 
+<footer class="footer">
+
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+<br>
+
+© 2026 | Operational Duty Management System
+
+</footer>
 
 </div>
-
-
-</div>
-
 
 </main>
 
-
 </div>
-
 
 <!-- =====================================================
      MODAL
@@ -2165,25 +2082,23 @@ Memuatkan data...
 
 <div
 
-    id="modalAnggota"
+```
+id="modalAnggota"
 
-    class="modal"
-
->
-
-
-<div
-
-    class="modal-content"
+class="modal"
+```
 
 >
 
+<div class="modal-content">
 
 <span
 
-    class="close"
+```
+class="close"
 
-    onclick="tutupModal()"
+onclick="tutupModal()"
+```
 
 >
 
@@ -2191,39 +2106,25 @@ Memuatkan data...
 
 </span>
 
-
-<h2
-
-    id="tajukModal"
-
->
+<h2 id="tajukModal">
 
 Tambah Anggota
 
 </h2>
 
-
 <input
 
-    type="hidden"
+```
+type="hidden"
 
-    id="editNoSkb"
+id="editNoSkb"
+```
 
 >
 
-
 <div class="modal-grid">
 
-
-<div class="section-title">
-
-📌 MAKLUMAT ANGGOTA
-
-</div>
-
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2231,20 +2132,19 @@ No. SKB
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="noSkb"
+id="noSkb"
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2252,20 +2152,19 @@ No. Anggota
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="noAnggota"
+id="noAnggota"
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2273,20 +2172,19 @@ Nama
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="nama"
+id="nama"
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2294,13 +2192,13 @@ Pangkat
 
 </label>
 
-
 <select
 
-    id="pangkat"
+```
+id="pangkat"
+```
 
 >
-
 
 <option value="">
 
@@ -2308,14 +2206,11 @@ Pangkat
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2323,24 +2218,23 @@ Wilayah
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="wilayah"
+id="wilayah"
 
-    value="Terengganu"
+value="Terengganu"
 
-    readonly
+readonly
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2348,13 +2242,13 @@ Kawasan
 
 </label>
 
-
 <select
 
-    id="kawasan"
+```
+id="kawasan"
+```
 
 >
-
 
 <option value="">
 
@@ -2362,28 +2256,11 @@ Kawasan
 
 </option>
 
-
-<option value="F102-Jerangau">
-
-F102-Jerangau
-
-</option>
-
-
-<option value="F105-Chalok">
-
-F105-Chalok
-
-</option>
-
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2391,13 +2268,13 @@ Pos
 
 </label>
 
-
 <select
 
-    id="pos"
+```
+id="pos"
+```
 
 >
-
 
 <option value="">
 
@@ -2405,14 +2282,11 @@ Pos
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2420,13 +2294,13 @@ Unit
 
 </label>
 
-
 <select
 
-    id="unit"
+```
+id="unit"
+```
 
 >
-
 
 <option value="">
 
@@ -2434,14 +2308,11 @@ Unit
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2449,13 +2320,13 @@ Jawatan
 
 </label>
 
-
 <select
 
-    id="jawatan"
+```
+id="jawatan"
+```
 
 >
-
 
 <option value="">
 
@@ -2463,13 +2334,11 @@ Jawatan
 
 </option>
 
-
 <option value="Anggota Pos">
 
 Anggota Pos
 
 </option>
-
 
 <option value="Ketua Pos">
 
@@ -2477,13 +2346,11 @@ Ketua Pos
 
 </option>
 
-
 <option value="Ketua Unit">
 
 Ketua Unit
 
 </option>
-
 
 <option value="PTW">
 
@@ -2491,13 +2358,11 @@ PTW
 
 </option>
 
-
 <option value="PPOW">
 
 PPOW
 
 </option>
-
 
 <option value="POW">
 
@@ -2505,14 +2370,11 @@ POW
 
 </option>
 
-
 </select>
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2520,24 +2382,21 @@ Ketua Pos
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="ketuaPos"
+id="ketuaPos"
 
-    readonly
-
-    placeholder="Auto papar"
+readonly
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2545,24 +2404,21 @@ Ketua Unit
 
 </label>
 
-
 <input
 
-    type="text"
+```
+type="text"
 
-    id="ketuaUnit"
+id="ketuaUnit"
 
-    readonly
-
-    placeholder="Auto papar"
+readonly
+```
 
 >
 
 </div>
 
-
-<div>
-
+<div class="form-group">
 
 <label>
 
@@ -2570,13 +2426,13 @@ Status
 
 </label>
 
-
 <select
 
-    id="status"
+```
+id="status"
+```
 
 >
-
 
 <option value="Aktif">
 
@@ -2584,67 +2440,59 @@ Aktif
 
 </option>
 
-
 <option value="Tidak Aktif">
 
 Tidak Aktif
 
 </option>
 
-
 </select>
 
 </div>
 
-
 </div>
-
 
 <div class="modal-buttons">
 
-
 <button
 
-    class="btn-save"
+```
+class="btn btn-primary"
 
-    onclick="simpanAnggota()"
+onclick="simpanAnggota()"
+```
 
 >
 
-💾 SIMPAN
+💾 Simpan
 
 </button>
-
 
 <button
 
-    class="btn-cancel"
+```
+class="btn btn-cancel"
 
-    onclick="tutupModal()"
+onclick="tutupModal()"
+```
 
 >
 
-BATAL
+Batal
 
 </button>
 
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 <script>
 
-
-// =====================================================
-// SUPABASE
-// =====================================================
-
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 
@@ -2667,18 +2515,16 @@ supabase.createClient(
 );
 
 
-// =====================================================
-// DATA
-// =====================================================
-
+/* =====================================================
+   DATA
+===================================================== */
 
 let semuaAnggota = [];
 
 
-// =====================================================
-// MULA
-// =====================================================
-
+/* =====================================================
+   MULA
+===================================================== */
 
 document.addEventListener(
 
@@ -2686,32 +2532,77 @@ document.addEventListener(
 
     async function () {
 
+        document
+
+            .getElementById("cari")
+
+            .addEventListener(
+
+                "input",
+
+                paparAnggota
+
+            );
+
+
+        document
+
+            .getElementById("filterPos")
+
+            .addEventListener(
+
+                "change",
+
+                paparAnggota
+
+            );
+
+
+        document
+
+            .getElementById("filterKawasan")
+
+            .addEventListener(
+
+                "change",
+
+                paparAnggota
+
+            );
+
+
+        document
+
+            .getElementById("filterStatus")
+
+            .addEventListener(
+
+                "change",
+
+                paparAnggota
+
+            );
+
 
         await muatAnggota();
 
 
         muatDropdownPangkat();
 
-
         muatDropdownPos();
-
 
         muatDropdownUnit();
 
+        muatDropdownKawasan();
 
         muatFilterPos();
-
 
         muatFilterKawasan();
 
 
         document
 
-            .getElementById(
-
-                "pos"
-
-            )
+            .getElementById("pos")
 
             .addEventListener(
 
@@ -2724,11 +2615,7 @@ document.addEventListener(
 
         document
 
-            .getElementById(
-
-                "unit"
-
-            )
+            .getElementById("unit")
 
             .addEventListener(
 
@@ -2741,11 +2628,7 @@ document.addEventListener(
 
         document
 
-            .getElementById(
-
-                "kawasan"
-
-            )
+            .getElementById("kawasan")
 
             .addEventListener(
 
@@ -2753,40 +2636,30 @@ document.addEventListener(
 
                 function () {
 
-
                     paparKetua();
 
-
                     paparKetuaUnit();
-
 
                 }
 
             );
-
 
     }
 
 );
 
 
-// =====================================================
-// MUAT DATA ANGGOTA
-// =====================================================
-
+/* =====================================================
+   MUAT ANGGOTA
+===================================================== */
 
 async function muatAnggota() {
-
 
     const result =
 
         await supabaseClient
 
-            .from(
-
-                "Data_Anggota"
-
-            )
+            .from("Data_Anggota")
 
             .select(
 
@@ -2800,34 +2673,24 @@ async function muatAnggota() {
 
                 {
 
-                    ascending:
-
-                        true
+                    ascending: true
 
                 }
 
             );
 
 
-    if (
-
-        result.error
-
-    ) {
-
+    if (result.error) {
 
         paparMesej(
 
             "Gagal ambil data: "
 
-            +
-
-            result.error.message,
+            + result.error.message,
 
             "error"
 
         );
-
 
         return;
 
@@ -2844,17 +2707,11 @@ async function muatAnggota() {
 }
 
 
-// =====================================================
-// SENARAI UNIK
-// =====================================================
+/* =====================================================
+   SENARAI UNIK
+===================================================== */
 
-
-function senaraiUnik(
-
-    namaKolum
-
-) {
-
+function senaraiUnik(namaKolum) {
 
     return [
 
@@ -2866,76 +2723,25 @@ function senaraiUnik(
 
                 .map(
 
-                    function (
-
-                        item
-
-                    ) {
-
-
-                        return item[
-
-                            namaKolum
-
-                        ];
-
-                    }
+                    x => x[namaKolum]
 
                 )
 
                 .filter(
 
-                    function (
+                    x =>
 
-                        nilai
+                        x !== null &&
 
-                    ) {
+                        x !== undefined &&
 
-
-                        return (
-
-                            nilai !== null
-
-                            &&
-
-                            nilai !== undefined
-
-                            &&
-
-                            String(
-
-                                nilai
-
-                            )
-
-                            .trim()
-
-                            !== ""
-
-                        );
-
-                    }
+                        String(x).trim() !== ""
 
                 )
 
                 .map(
 
-                    function (
-
-                        nilai
-
-                    ) {
-
-
-                        return String(
-
-                            nilai
-
-                        )
-
-                        .trim();
-
-                    }
+                    x => String(x).trim()
 
                 )
 
@@ -2945,32 +2751,18 @@ function senaraiUnik(
 
     .sort(
 
-        function (
+        (a, b) =>
 
-            a,
-
-            b
-
-        ) {
-
-
-            return a.localeCompare(
-
-                b
-
-            );
-
-        }
+            a.localeCompare(b)
 
     );
 
 }
 
 
-// =====================================================
-// ISI DROPDOWN
-// =====================================================
-
+/* =====================================================
+   ISI DROPDOWN
+===================================================== */
 
 function isiDropdown(
 
@@ -2982,16 +2774,9 @@ function isiDropdown(
 
 ) {
 
-
     const select =
 
-        document
-
-            .getElementById(
-
-                id
-
-            );
+        document.getElementById(id);
 
 
     const nilaiLama =
@@ -3001,95 +2786,60 @@ function isiDropdown(
 
     select.innerHTML =
 
-        `
-
-        <option value="">
+        `<option value="">
 
             ${teksDefault}
 
-        </option>
-
-        `;
+        </option>`;
 
 
-    const data =
+    senaraiUnik(namaKolum)
 
-        senaraiUnik(
+        .forEach(
 
-            namaKolum
+            nilai => {
 
-        );
+                const option =
 
-
-    data.forEach(
-
-        function (
-
-            nilai
-
-        ) {
-
-
-            const option =
-
-                document
-
-                    .createElement(
+                    document.createElement(
 
                         "option"
 
                     );
 
 
-            option.value =
+                option.value = nilai;
 
-                nilai;
-
-
-            option.textContent =
-
-                nilai;
+                option.textContent = nilai;
 
 
-            select.appendChild(
+                select.appendChild(option);
 
-                option
+            }
 
-            );
-
-
-        }
-
-    );
+        );
 
 
     if (
 
-        data.includes(
+        senaraiUnik(namaKolum)
 
-            nilaiLama
-
-        )
+            .includes(nilaiLama)
 
     ) {
 
-
-        select.value =
-
-            nilaiLama;
+        select.value = nilaiLama;
 
     }
 
 }
 
 
-// =====================================================
-// DROPDOWN
-// =====================================================
-
+/* =====================================================
+   DROPDOWN
+===================================================== */
 
 function muatDropdownPangkat() {
-
 
     isiDropdown(
 
@@ -3106,7 +2856,6 @@ function muatDropdownPangkat() {
 
 function muatDropdownPos() {
 
-
     isiDropdown(
 
         "pos",
@@ -3122,7 +2871,6 @@ function muatDropdownPos() {
 
 function muatDropdownUnit() {
 
-
     isiDropdown(
 
         "unit",
@@ -3136,8 +2884,22 @@ function muatDropdownUnit() {
 }
 
 
-function muatFilterPos() {
+function muatDropdownKawasan() {
 
+    isiDropdown(
+
+        "kawasan",
+
+        "kawasan",
+
+        "-- Pilih Kawasan --"
+
+    );
+
+}
+
+
+function muatFilterPos() {
 
     isiDropdown(
 
@@ -3154,100 +2916,30 @@ function muatFilterPos() {
 
 function muatFilterKawasan() {
 
+    isiDropdown(
 
-    const select =
+        "filterKawasan",
 
-        document
+        "kawasan",
 
-            .getElementById(
-
-                "filterKawasan"
-
-            );
-
-
-    select.innerHTML =
-
-        `
-
-        <option value="">
-
-            Semua Kawasan
-
-        </option>
-
-        `;
-
-
-    const data =
-
-        senaraiUnik(
-
-            "kawasan"
-
-        );
-
-
-    data.forEach(
-
-        function (
-
-            nilai
-
-        ) {
-
-
-            const option =
-
-                document
-
-                    .createElement(
-
-                        "option"
-
-                    );
-
-
-            option.value =
-
-                nilai;
-
-
-            option.textContent =
-
-                nilai;
-
-
-            select.appendChild(
-
-                option
-
-            );
-
-        }
+        "Semua Kawasan"
 
     );
 
 }
 
 
-// =====================================================
-// AUTO KETUA POS
-// =====================================================
-
+/* =====================================================
+   AUTO KETUA POS
+===================================================== */
 
 function paparKetua() {
-
 
     const kawasan =
 
         document
 
-            .getElementById(
-
-                "kawasan"
-
-            )
+            .getElementById("kawasan")
 
             .value;
 
@@ -3256,113 +2948,54 @@ function paparKetua() {
 
         document
 
-            .getElementById(
-
-                "pos"
-
-            )
+            .getElementById("pos")
 
             .value;
-
-
-    const input =
-
-        document
-
-            .getElementById(
-
-                "ketuaPos"
-
-            );
-
-
-    if (
-
-        !kawasan
-
-        ||
-
-        !pos
-
-    ) {
-
-
-        input.value =
-
-            "";
-
-
-        return;
-
-    }
 
 
     const ketua =
 
         semuaAnggota.find(
 
-            function (
+            anggota =>
 
-                anggota
+                anggota.kawasan === kawasan &&
 
-            ) {
+                anggota.pos === pos &&
 
+                anggota.jawatan === "Ketua Pos" &&
 
-                return (
-
-                    anggota.kawasan === kawasan
-
-                    &&
-
-                    anggota.pos === pos
-
-                    &&
-
-                    anggota.jawatan === "Ketua Pos"
-
-                    &&
-
-                    anggota.status === "Aktif"
-
-                );
-
-            }
+                anggota.status === "Aktif"
 
         );
 
 
-    input.value =
+    document
+
+        .getElementById("ketuaPos")
+
+        .value =
 
         ketua
 
-        ?
+            ? ketua.nama
 
-        ketua.nama
-
-        :
-
-        "";
+            : "";
 
 }
 
 
-// =====================================================
-// AUTO KETUA UNIT
-// =====================================================
-
+/* =====================================================
+   AUTO KETUA UNIT
+===================================================== */
 
 function paparKetuaUnit() {
-
 
     const kawasan =
 
         document
 
-            .getElementById(
-
-                "kawasan"
-
-            )
+            .getElementById("kawasan")
 
             .value;
 
@@ -3371,113 +3004,54 @@ function paparKetuaUnit() {
 
         document
 
-            .getElementById(
-
-                "unit"
-
-            )
+            .getElementById("unit")
 
             .value;
-
-
-    const input =
-
-        document
-
-            .getElementById(
-
-                "ketuaUnit"
-
-            );
-
-
-    if (
-
-        !kawasan
-
-        ||
-
-        !unit
-
-    ) {
-
-
-        input.value =
-
-            "";
-
-
-        return;
-
-    }
 
 
     const ketua =
 
         semuaAnggota.find(
 
-            function (
+            anggota =>
 
-                anggota
+                anggota.kawasan === kawasan &&
 
-            ) {
+                anggota.unit === unit &&
 
+                anggota.jawatan === "Ketua Unit" &&
 
-                return (
-
-                    anggota.kawasan === kawasan
-
-                    &&
-
-                    anggota.unit === unit
-
-                    &&
-
-                    anggota.jawatan === "Ketua Unit"
-
-                    &&
-
-                    anggota.status === "Aktif"
-
-                );
-
-            }
+                anggota.status === "Aktif"
 
         );
 
 
-    input.value =
+    document
+
+        .getElementById("ketuaUnit")
+
+        .value =
 
         ketua
 
-        ?
+            ? ketua.nama
 
-        ketua.nama
-
-        :
-
-        "";
+            : "";
 
 }
 
 
-// =====================================================
-// PAPAR ANGGOTA
-// =====================================================
-
+/* =====================================================
+   PAPAR ANGGOTA
+===================================================== */
 
 function paparAnggota() {
-
 
     const cari =
 
         document
 
-            .getElementById(
-
-                "cari"
-
-            )
+            .getElementById("cari")
 
             .value
 
@@ -3488,11 +3062,7 @@ function paparAnggota() {
 
         document
 
-            .getElementById(
-
-                "filterPos"
-
-            )
+            .getElementById("filterPos")
 
             .value;
 
@@ -3501,11 +3071,7 @@ function paparAnggota() {
 
         document
 
-            .getElementById(
-
-                "filterKawasan"
-
-            )
+            .getElementById("filterKawasan")
 
             .value;
 
@@ -3514,11 +3080,7 @@ function paparAnggota() {
 
         document
 
-            .getElementById(
-
-                "filterStatus"
-
-            )
+            .getElementById("filterStatus")
 
             .value;
 
@@ -3527,57 +3089,42 @@ function paparAnggota() {
 
         semuaAnggota.filter(
 
-            function (
+            x => {
 
-                x
+                const teks = [
 
-            ) {
+                    x.no_skb,
 
+                    x.no_anggota,
 
-                const teks =
+                    x.nama,
 
-                    [
+                    x.pangkat,
 
-                        x.no_skb,
+                    x.wilayah,
 
-                        x.no_anggota,
+                    x.kawasan,
 
-                        x.nama,
+                    x.pos,
 
-                        x.pangkat,
+                    x.unit,
 
-                        x.wilayah,
+                    x.jawatan,
 
-                        x.kawasan,
+                    x.ketua_pos,
 
-                        x.pos,
+                    x.ketua_unit
 
-                        x.unit,
+                ]
 
-                        x.jawatan,
+                .join(" ")
 
-                        x.ketua_pos,
-
-                        x.ketua_unit
-
-                    ]
-
-                    .join(
-
-                        " "
-
-                    )
-
-                    .toLowerCase();
+                .toLowerCase();
 
 
-                return (
+                return
 
-                    teks.includes(
-
-                        cari
-
-                    )
+                    teks.includes(cari)
 
                     &&
 
@@ -3613,57 +3160,47 @@ function paparAnggota() {
 
                         x.status === filterStatus
 
-                    )
-
-                );
+                    );
 
             }
 
         );
 
 
+    document
+
+        .getElementById("jumlahRekod")
+
+        .textContent =
+
+        data.length
+
+        + " Rekod";
+
+
     const tbody =
 
         document
 
-            .getElementById(
-
-                "senaraiAnggota"
-
-            );
+            .getElementById("senaraiAnggota");
 
 
     tbody.innerHTML = "";
 
 
-    if (
-
-        data.length === 0
-
-    ) {
-
+    if (!data.length) {
 
         tbody.innerHTML =
 
-            `
+            `<tr>
 
-            <tr>
-
-                <td
-
-                    colspan="13"
-
-                    style="text-align:center;padding:30px;"
-
-                >
+                <td colspan="13">
 
                     Tiada rekod anggota.
 
                 </td>
 
-            </tr>
-
-            `;
+            </tr>`;
 
 
         return;
@@ -3673,236 +3210,96 @@ function paparAnggota() {
 
     data.forEach(
 
-        function (
-
-            anggota
-
-        ) {
-
+        anggota => {
 
             const tr =
 
-                document
-
-                    .createElement(
-
-                        "tr"
-
-                    );
+                document.createElement("tr");
 
 
             const statusClass =
 
                 anggota.status === "Aktif"
 
-                ?
+                    ? "badge-aktif"
 
-                "badge-aktif"
-
-                :
-
-                "badge-tidak";
+                    : "badge-tidak";
 
 
-            tr.innerHTML =
+            tr.innerHTML = `
 
-                `
+                <td>${escapeHTML(anggota.no_skb)}</td>
 
-                <td>
+                <td>${escapeHTML(anggota.no_anggota)}</td>
 
-                    ${escapeHTML(
+                <td><strong>
 
-                        anggota.no_skb
+                    ${escapeHTML(anggota.nama)}
 
-                    )}
+                </strong></td>
 
-                </td>
+                <td>${escapeHTML(anggota.pangkat)}</td>
 
+                <td>${escapeHTML(anggota.wilayah)}</td>
 
-                <td>
+                <td>${escapeHTML(anggota.kawasan)}</td>
 
-                    ${escapeHTML(
+                <td>${escapeHTML(anggota.pos)}</td>
 
-                        anggota.no_anggota
+                <td>${escapeHTML(anggota.unit)}</td>
 
-                    )}
+                <td>${escapeHTML(anggota.jawatan)}</td>
 
-                </td>
+                <td>${escapeHTML(anggota.ketua_pos)}</td>
 
+                <td>${escapeHTML(anggota.ketua_unit)}</td>
 
                 <td>
 
-                    <strong>
+                    <span class="badge ${statusClass}">
 
-                        ${escapeHTML(
-
-                            anggota.nama
-
-                        )}
-
-                    </strong>
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.pangkat
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.wilayah
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.kawasan
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.pos
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.unit
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.jawatan
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.ketua_pos
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    ${escapeHTML(
-
-                        anggota.ketua_unit
-
-                    )}
-
-                </td>
-
-
-                <td>
-
-                    <span
-
-                        class="badge
-
-                        ${statusClass}"
-
-                    >
-
-                        ${escapeHTML(
-
-                            anggota.status
-
-                        )}
+                        ${escapeHTML(anggota.status)}
 
                     </span>
 
                 </td>
 
-
                 <td>
 
-                    <button
+                    <div class="action-buttons">
 
-                        class="btn-warning"
+                        <button
 
-                        onclick="editAnggota('${escapeJS(
+                            class="btn-edit"
 
-                            anggota.no_skb
+                            onclick="editAnggota('${escapeJS(anggota.no_skb)}')"
 
-                        )}')"
+                        >
 
-                    >
+                            ✏️
 
-                        ✏️ Edit
+                        </button>
 
-                    </button>
+                        <button
 
+                            class="btn-delete"
 
-                    <button
+                            onclick="padamAnggota('${escapeJS(anggota.no_skb)}')"
 
-                        class="btn-danger"
+                        >
 
-                        onclick="padamAnggota('${escapeJS(
+                            🗑️
 
-                            anggota.no_skb
+                        </button>
 
-                        )}', '${escapeJS(
-
-                            anggota.nama
-
-                        )}')"
-
-                    >
-
-                        🗑️ Padam
-
-                    </button>
+                    </div>
 
                 </td>
 
-                `;
+            `;
 
 
-            tbody.appendChild(
-
-                tr
-
-            );
+            tbody.appendChild(tr);
 
         }
 
@@ -3911,21 +3308,15 @@ function paparAnggota() {
 }
 
 
-// =====================================================
-// BUKA TAMBAH
-// =====================================================
-
+/* =====================================================
+   BUKA TAMBAH
+===================================================== */
 
 function bukaTambah() {
 
-
     document
 
-        .getElementById(
-
-            "tajukModal"
-
-        )
+        .getElementById("tajukModal")
 
         .textContent =
 
@@ -3934,261 +3325,138 @@ function bukaTambah() {
 
     document
 
-        .getElementById(
+        .getElementById("editNoSkb")
 
-            "editNoSkb"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("noSkb")
 
-            "noSkb"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("noSkb")
 
-            "noAnggota"
-
-        )
-
-        .value =
-
-        "";
+        .disabled = false;
 
 
     document
 
-        .getElementById(
+        .getElementById("noAnggota")
 
-            "nama"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("nama")
 
-            "pangkat"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("pangkat")
 
-            "wilayah"
-
-        )
-
-        .value =
-
-        "Terengganu";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("wilayah")
 
-            "kawasan"
-
-        )
-
-        .value =
-
-        "";
+        .value = "Terengganu";
 
 
     document
 
-        .getElementById(
+        .getElementById("kawasan")
 
-            "pos"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("pos")
 
-            "unit"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("unit")
 
-            "jawatan"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("jawatan")
 
-            "ketuaPos"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("ketuaPos")
 
-            "ketuaUnit"
-
-        )
-
-        .value =
-
-        "";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("ketuaUnit")
 
-            "status"
-
-        )
-
-        .value =
-
-        "Aktif";
+        .value = "";
 
 
     document
 
-        .getElementById(
+        .getElementById("status")
 
-            "noSkb"
-
-        )
-
-        .disabled =
-
-        false;
+        .value = "Aktif";
 
 
     document
 
-        .getElementById(
+        .getElementById("modalAnggota")
 
-            "modalAnggota"
-
-        )
-
-        .style.display =
-
-        "block";
+        .style.display = "block";
 
 }
 
 
-// =====================================================
-// EDIT ANGGOTA
-// =====================================================
+/* =====================================================
+   EDIT
+===================================================== */
 
-
-function editAnggota(
-
-    noSkb
-
-) {
-
+function editAnggota(noSkb) {
 
     const anggota =
 
         semuaAnggota.find(
 
-            function (
+            x =>
 
-                x
-
-            ) {
-
-
-                return String(
-
-                    x.no_skb
-
-                )
+                String(x.no_skb)
 
                 ===
 
-                String(
-
-                    noSkb
-
-                );
-
-            }
+                String(noSkb)
 
         );
 
 
-    if (
-
-        !anggota
-
-    ) {
-
-        return;
-
-    }
+    if (!anggota) return;
 
 
     document
 
-        .getElementById(
-
-            "tajukModal"
-
-        )
+        .getElementById("tajukModal")
 
         .textContent =
 
@@ -4197,11 +3465,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "editNoSkb"
-
-        )
+        .getElementById("editNoSkb")
 
         .value =
 
@@ -4210,11 +3474,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "noSkb"
-
-        )
+        .getElementById("noSkb")
 
         .value =
 
@@ -4223,24 +3483,14 @@ function editAnggota(
 
     document
 
-        .getElementById(
+        .getElementById("noSkb")
 
-            "noSkb"
-
-        )
-
-        .disabled =
-
-        true;
+        .disabled = true;
 
 
     document
 
-        .getElementById(
-
-            "noAnggota"
-
-        )
+        .getElementById("noAnggota")
 
         .value =
 
@@ -4249,11 +3499,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "nama"
-
-        )
+        .getElementById("nama")
 
         .value =
 
@@ -4262,11 +3508,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "pangkat"
-
-        )
+        .getElementById("pangkat")
 
         .value =
 
@@ -4275,11 +3517,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "wilayah"
-
-        )
+        .getElementById("wilayah")
 
         .value =
 
@@ -4288,11 +3526,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "kawasan"
-
-        )
+        .getElementById("kawasan")
 
         .value =
 
@@ -4301,11 +3535,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "pos"
-
-        )
+        .getElementById("pos")
 
         .value =
 
@@ -4314,11 +3544,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "unit"
-
-        )
+        .getElementById("unit")
 
         .value =
 
@@ -4327,11 +3553,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "jawatan"
-
-        )
+        .getElementById("jawatan")
 
         .value =
 
@@ -4340,11 +3562,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "ketuaPos"
-
-        )
+        .getElementById("ketuaPos")
 
         .value =
 
@@ -4353,11 +3571,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "ketuaUnit"
-
-        )
+        .getElementById("ketuaUnit")
 
         .value =
 
@@ -4366,11 +3580,7 @@ function editAnggota(
 
     document
 
-        .getElementById(
-
-            "status"
-
-        )
+        .getElementById("status")
 
         .value =
 
@@ -4379,36 +3589,24 @@ function editAnggota(
 
     document
 
-        .getElementById(
+        .getElementById("modalAnggota")
 
-            "modalAnggota"
-
-        )
-
-        .style.display =
-
-        "block";
+        .style.display = "block";
 
 }
 
 
-// =====================================================
-// SIMPAN ANGGOTA
-// =====================================================
-
+/* =====================================================
+   SIMPAN
+===================================================== */
 
 async function simpanAnggota() {
-
 
     const noSkb =
 
         document
 
-            .getElementById(
-
-                "noSkb"
-
-            )
+            .getElementById("noSkb")
 
             .value
 
@@ -4419,11 +3617,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "noAnggota"
-
-            )
+            .getElementById("noAnggota")
 
             .value
 
@@ -4434,11 +3628,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "nama"
-
-            )
+            .getElementById("nama")
 
             .value
 
@@ -4449,11 +3639,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "pangkat"
-
-            )
+            .getElementById("pangkat")
 
             .value;
 
@@ -4462,11 +3648,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "wilayah"
-
-            )
+            .getElementById("wilayah")
 
             .value;
 
@@ -4475,11 +3657,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "kawasan"
-
-            )
+            .getElementById("kawasan")
 
             .value;
 
@@ -4488,11 +3666,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "pos"
-
-            )
+            .getElementById("pos")
 
             .value;
 
@@ -4501,11 +3675,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "unit"
-
-            )
+            .getElementById("unit")
 
             .value;
 
@@ -4514,11 +3684,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "jawatan"
-
-            )
+            .getElementById("jawatan")
 
             .value;
 
@@ -4527,11 +3693,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "ketuaPos"
-
-            )
+            .getElementById("ketuaPos")
 
             .value;
 
@@ -4540,11 +3702,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "ketuaUnit"
-
-            )
+            .getElementById("ketuaUnit")
 
             .value;
 
@@ -4553,11 +3711,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "status"
-
-            )
+            .getElementById("status")
 
             .value;
 
@@ -4566,11 +3720,7 @@ async function simpanAnggota() {
 
         document
 
-            .getElementById(
-
-                "editNoSkb"
-
-            )
+            .getElementById("editNoSkb")
 
             .value;
 
@@ -4601,10 +3751,11 @@ async function simpanAnggota() {
 
     ) {
 
+        paparMesej(
 
-        alert(
+            "Sila lengkapkan No. SKB, Nama, Kawasan, Pos, Unit dan Jawatan.",
 
-            "Sila lengkapkan No. SKB, Nama, Kawasan, Pos, Unit dan Jawatan."
+            "error"
 
         );
 
@@ -4616,56 +3767,45 @@ async function simpanAnggota() {
 
     const data = {
 
-
         no_anggota:
 
             noAnggota,
-
 
         nama:
 
             nama,
 
-
         pangkat:
 
             pangkat,
-
 
         wilayah:
 
             wilayah,
 
-
         kawasan:
 
             kawasan,
-
 
         pos:
 
             pos,
 
-
         unit:
 
             unit,
-
 
         jawatan:
 
             jawatan,
 
-
         ketua_pos:
 
             ketuaPos,
 
-
         ketua_unit:
 
             ketuaUnit,
-
 
         status:
 
@@ -4677,28 +3817,15 @@ async function simpanAnggota() {
     let result;
 
 
-    if (
-
-        editNoSkb
-
-    ) {
-
+    if (editNoSkb) {
 
         result =
 
             await supabaseClient
 
-                .from(
+                .from("Data_Anggota")
 
-                    "Data_Anggota"
-
-                )
-
-                .update(
-
-                    data
-
-                )
+                .update(data)
 
                 .eq(
 
@@ -4713,48 +3840,32 @@ async function simpanAnggota() {
 
     else {
 
-
         result =
 
             await supabaseClient
 
-                .from(
+                .from("Data_Anggota")
 
-                    "Data_Anggota"
+                .insert({
 
-                )
+                    no_skb:
 
-                .insert(
+                        noSkb,
 
-                    {
+                    ...data
 
-                        no_skb:
-
-                            noSkb,
-
-                        ...data
-
-                    }
-
-                );
+                });
 
     }
 
 
-    if (
-
-        result.error
-
-    ) {
-
+    if (result.error) {
 
         paparMesej(
 
             "Gagal simpan: "
 
-            +
-
-            result.error.message,
+            + result.error.message,
 
             "error"
 
@@ -4787,6 +3898,8 @@ async function simpanAnggota() {
 
     muatDropdownUnit();
 
+    muatDropdownKawasan();
+
     muatFilterPos();
 
     muatFilterKawasan();
@@ -4794,58 +3907,58 @@ async function simpanAnggota() {
 }
 
 
-// =====================================================
-// PADAM ANGGOTA
-// =====================================================
+/* =====================================================
+   PADAM ANGGOTA
+===================================================== */
+
+async function padamAnggota(noSkb) {
+
+    const anggota =
+
+        semuaAnggota.find(
+
+            x =>
+
+                String(x.no_skb)
+
+                ===
+
+                String(noSkb)
+
+        );
 
 
-async function padamAnggota(
+    if (!anggota) {
 
-    noSkb,
+        return;
 
-    nama
-
-) {
+    }
 
 
     const sah =
 
         confirm(
 
-            "ANDA PASTI MAHU PADAM DATA ANGGOTA INI?\n\n"
+            "Adakah anda pasti mahu PADAM data anggota ini?\n\n"
 
-            +
+            + "No. SKB: "
 
-            "No. SKB: "
+            + anggota.no_skb
 
-            +
+            + "\n"
 
-            noSkb
+            + "Nama: "
 
-            +
+            + anggota.nama
 
-            "\nNama: "
+            + "\n\n"
 
-            +
-
-            nama
-
-            +
-
-            "\n\n"
-
-            +
-
-            "Data yang telah dipadam tidak boleh dikembalikan."
+            + "Tindakan ini tidak boleh dibatalkan."
 
         );
 
 
-    if (
-
-        !sah
-
-    ) {
+    if (!sah) {
 
         return;
 
@@ -4856,11 +3969,7 @@ async function padamAnggota(
 
         await supabaseClient
 
-            .from(
-
-                "Data_Anggota"
-
-            )
+            .from("Data_Anggota")
 
             .delete()
 
@@ -4873,20 +3982,13 @@ async function padamAnggota(
             );
 
 
-    if (
-
-        result.error
-
-    ) {
-
+    if (result.error) {
 
         paparMesej(
 
-            "Gagal padam data: "
+            "Gagal padam: "
 
-            +
-
-            result.error.message,
+            + result.error.message,
 
             "error"
 
@@ -4916,6 +4018,8 @@ async function padamAnggota(
 
     muatDropdownUnit();
 
+    muatDropdownKawasan();
+
     muatFilterPos();
 
     muatFilterKawasan();
@@ -4923,33 +4027,24 @@ async function padamAnggota(
 }
 
 
-// =====================================================
-// TUTUP MODAL
-// =====================================================
-
+/* =====================================================
+   TUTUP MODAL
+===================================================== */
 
 function tutupModal() {
 
-
     document
 
-        .getElementById(
+        .getElementById("modalAnggota")
 
-            "modalAnggota"
-
-        )
-
-        .style.display =
-
-        "none";
+        .style.display = "none";
 
 }
 
 
-// =====================================================
-// PAPAR MESEJ
-// =====================================================
-
+/* =====================================================
+   MESEJ
+===================================================== */
 
 function paparMesej(
 
@@ -4959,42 +4054,26 @@ function paparMesej(
 
 ) {
 
-
     const div =
 
         document
 
-            .getElementById(
-
-                "mesej"
-
-            );
+            .getElementById("mesej");
 
 
-    div.className =
-
-        jenis;
+    div.className = jenis;
 
 
-    div.textContent =
-
-        mesej;
+    div.textContent = mesej;
 
 
     setTimeout(
 
         function () {
 
+            div.textContent = "";
 
-            div.textContent =
-
-                "";
-
-
-            div.className =
-
-                "";
-
+            div.className = "";
 
         },
 
@@ -5005,17 +4084,11 @@ function paparMesej(
 }
 
 
-// =====================================================
-// ESCAPE HTML
-// =====================================================
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-
-function escapeHTML(
-
-    value
-
-) {
-
+function escapeHTML(value) {
 
     if (
 
@@ -5027,17 +4100,12 @@ function escapeHTML(
 
     ) {
 
-
         return "";
 
     }
 
 
-    return String(
-
-        value
-
-    )
+    return String(value)
 
         .replace(
 
@@ -5082,23 +4150,13 @@ function escapeHTML(
 }
 
 
-// =====================================================
-// ESCAPE JAVASCRIPT
-// =====================================================
+/* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
 
+function escapeJS(value) {
 
-function escapeJS(
-
-    value
-
-) {
-
-
-    return String(
-
-        value
-
-    )
+    return String(value)
 
         .replace(
 
@@ -5122,42 +4180,20 @@ function escapeJS(
 
             '\\"'
 
-        )
-
-        .replace(
-
-            /\n/g,
-
-            "\\n"
-
-        )
-
-        .replace(
-
-            /\r/g,
-
-            "\\r"
-
         );
 
 }
 
 
-// =====================================================
-// TUTUP MODAL KLIK LUAR
-// =====================================================
-
+/* =====================================================
+   KLIK LUAR MODAL
+===================================================== */
 
 window.addEventListener(
 
     "click",
 
-    function (
-
-        event
-
-    ) {
-
+    function(event) {
 
         const modal =
 
@@ -5176,7 +4212,6 @@ window.addEventListener(
 
         ) {
 
-
             tutupModal();
 
         }
@@ -5186,7 +4221,6 @@ window.addEventListener(
 );
 
 </script>
-
 
 </body>
 
