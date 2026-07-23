@@ -1,7 +1,9 @@
+```javascript
 // =====================================================
 // JADUAL-DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI PENUH - FIX POPUP MESSAGE
+// VERSI PENUH
+// POS TAMPUNG AMBIL SEMUA Data_Anggota.pos
 // =====================================================
 
 
@@ -62,7 +64,18 @@ document.addEventListener(
 
         pasangEventFilter();
 
+
         await muatAnggota();
+
+
+        // =================================================
+        // POS TAMPUNG
+        // AMBIL SEMUA POS DARIPADA Data_Anggota.pos
+        // TANPA TAPIS UNIT
+        // =================================================
+
+        isiSenaraiPosTampung();
+
 
         await muatKodDuty();
 
@@ -96,6 +109,7 @@ function paparPopup(
         "popupSystem"
 
     );
+
 
     if (popupLama) {
 
@@ -171,7 +185,9 @@ function paparPopup(
 
     ) {
 
-        mesejPopup = "Tiada mesej diterima daripada sistem.";
+        mesejPopup =
+
+            "Tiada mesej diterima daripada sistem.";
 
     }
 
@@ -413,13 +429,6 @@ function paparPopup(
                 background: #1d4ed8;
 
             }
-
-
-            /* =========================================
-
-               BUTANG TINDAKAN DUTY
-
-            ========================================= */
 
 
             .tindakan-duty {
@@ -826,7 +835,7 @@ function pasangEventUnit() {
 
 
 // =====================================================
-// EVENT POS
+// EVENT POS ASAL
 // =====================================================
 
 function pasangEventPos() {
@@ -1206,6 +1215,133 @@ async function muatAnggota() {
         );
 
     }
+
+}
+
+
+// =====================================================
+// POS TAMPUNG
+// AMBIL SEMUA POS DARIPADA Data_Anggota.pos
+// TANPA TAPIS UNIT
+// =====================================================
+
+function isiSenaraiPosTampung() {
+
+    const select = document.getElementById(
+
+        "posTampung"
+
+    );
+
+
+    if (!select) {
+
+        console.warn(
+
+            "Element #posTampung tidak dijumpai."
+
+        );
+
+        return;
+
+    }
+
+
+    select.innerHTML = `
+
+        <option value="">
+
+            -- Pilih Pos Tampung --
+
+        </option>
+
+    `;
+
+
+    const senaraiPos = [
+
+        ...new Set(
+
+            semuaAnggota
+
+                .map(function (anggota) {
+
+                    return anggota.pos;
+
+                })
+
+                .filter(function (pos) {
+
+                    return (
+
+                        pos !== null &&
+
+                        pos !== undefined &&
+
+                        String(pos).trim() !== ""
+
+                    );
+
+                })
+
+                .map(function (pos) {
+
+                    return String(pos).trim();
+
+                })
+
+        )
+
+    ]
+
+        .sort(function (a, b) {
+
+            return a.localeCompare(
+
+                b,
+
+                "ms",
+
+                {
+
+                    numeric: true,
+
+                    sensitivity: "base"
+
+                }
+
+            );
+
+        });
+
+
+    senaraiPos.forEach(function (pos) {
+
+        const option = document.createElement(
+
+            "option"
+
+        );
+
+
+        option.value = pos;
+
+
+        option.textContent = pos;
+
+
+        select.appendChild(option);
+
+    });
+
+
+    console.log(
+
+        "SENARAI POS TAMPUNG:",
+
+        senaraiPos
+
+    );
 
 }
 
@@ -1961,6 +2097,13 @@ async function simpanDuty() {
         );
 
 
+        const posTampung = getValue(
+
+            "posTampung"
+
+        );
+
+
         const unitPilihan = getValue(
 
             "unitPilihan"
@@ -2143,6 +2286,23 @@ async function simpanDuty() {
         }
 
 
+        if (!posTampung) {
+
+            paparPopup(
+
+                "Sila pilih Pos Tampung.",
+
+                "warning",
+
+                "Pos Tampung Diperlukan"
+
+            );
+
+            return;
+
+        }
+
+
         const hariOffdayElement =
 
             document.getElementById(
@@ -2186,6 +2346,13 @@ async function simpanDuty() {
 
             ),
 
+            hari: getValue(
+
+                "hari"
+
+            ),
+
+
             no_skb: anggota.no_skb,
 
             no_anggota: anggota.no_anggota,
@@ -2200,26 +2367,28 @@ async function simpanDuty() {
 
             ketua_pos: anggota.ketua_pos,
 
+
             pos: anggota.pos,
 
-            pos_tampungan: anggota.pos,
+            pos_tampungan: posTampung,
 
             nama_pos_asal: anggota.pos,
 
+
             jam_tampungan:
+
                 duty.jam_kerja,
 
-            hari: getValue(
-                "hari"
-            ),
 
             waktu_tugasan:
 
                 duty.waktu_tugasan,
 
+
             jam_kerja:
 
                 duty.jam_kerja,
+
 
             jam_klm:
 
@@ -2229,21 +2398,26 @@ async function simpanDuty() {
 
                 ),
 
+
             kod_duty:
 
                 duty.kod,
+
 
             kod_waktu_kerja:
 
                 duty.kod,
 
+
             kod_tempat_kerja:
 
                 tempatKerja.kod_tempat_kerja,
 
+
             tempat_kerja:
 
                 tempatKerja.nama_tempat_kerja,
+
 
             hari_offday_bertugas:
 
@@ -2254,6 +2428,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_offday_bertugas:
 
@@ -2267,6 +2442,7 @@ async function simpanDuty() {
 
                 ),
 
+
             hari_cutiam_bertugas:
 
                 hariCutiamElement &&
@@ -2276,6 +2452,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_cutiam_bertugas:
 
@@ -2289,9 +2466,11 @@ async function simpanDuty() {
 
                 ),
 
+
             dikemaskini_oleh:
 
                 "Sistem",
+
 
             dikemaskini_pada:
 
@@ -2513,19 +2692,6 @@ async function simpanDuty() {
 
 // =====================================================
 // PAPAR DUTY
-// =====================================================
-// BAHAGIAN INI SAHAJA DIUBAH
-// PAPARAN:
-// Tarikh
-// Nama Anggota
-// Kod TK
-// Kod WK
-// KLM Hari Biasa
-// Offday (Hari)
-// Offday (Jam)
-// Cuti Am (Hari)
-// Cuti Am (Jam)
-// Tindakan
 // =====================================================
 
 async function paparDuty() {
@@ -2755,9 +2921,6 @@ async function paparDuty() {
 
                 <tr>
 
-
-                    <!-- TARIKH -->
-
                     <td>
 
                         ${formatTarikh(
@@ -2768,8 +2931,6 @@ async function paparDuty() {
 
                     </td>
 
-
-                    <!-- NAMA ANGGOTA -->
 
                     <td>
 
@@ -2782,16 +2943,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KOD TK -->
-
                     <td>
 
                         ${item.kod_tempat_kerja || ""}
 
                     </td>
 
-
-                    <!-- KOD WK -->
 
                     <td>
 
@@ -2808,16 +2965,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KLM HARI BIASA -->
-
                     <td>
 
                         ${item.jam_klm || 0}
 
                     </td>
 
-
-                    <!-- OFFDAY HARI -->
 
                     <td>
 
@@ -2826,16 +2979,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- OFFDAY JAM -->
-
                     <td>
 
                         ${item.jam_offday_bertugas || 0}
 
                     </td>
 
-
-                    <!-- CUTI AM HARI -->
 
                     <td>
 
@@ -2844,8 +2993,6 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- CUTI AM JAM -->
-
                     <td>
 
                         ${item.jam_cutiam_bertugas || 0}
@@ -2853,14 +3000,9 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- TINDAKAN -->
-
                     <td>
 
                         <div class="tindakan-duty">
-
-
-                            <!-- DUPLICATE -->
 
                             <button
 
@@ -2883,8 +3025,6 @@ async function paparDuty() {
                             </button>
 
 
-                            <!-- EDIT -->
-
                             <button
 
                                 type="button"
@@ -2906,8 +3046,6 @@ async function paparDuty() {
                             </button>
 
 
-                            <!-- DELETE -->
-
                             <button
 
                                 type="button"
@@ -2928,11 +3066,9 @@ async function paparDuty() {
 
                             </button>
 
-
                         </div>
 
                     </td>
-
 
                 </tr>
 
@@ -3067,6 +3203,15 @@ async function editDuty(
         );
 
     }
+
+
+    setValue(
+
+        "posTampung",
+
+        duty.pos_tampungan
+
+    );
 
 
     setValue(
@@ -3264,11 +3409,6 @@ async function duplicateDuty(
     if (!duty) return;
 
 
-    // PENTING:
-    // DUPLICATE BUKAN EDIT
-    // dutySedangEdit KEKAL NULL
-    // SUPAYA TEKAN SIMPAN = INSERT DATA BARU
-
     dutySedangEdit = null;
 
 
@@ -3363,6 +3503,15 @@ async function duplicateDuty(
         );
 
     }
+
+
+    setValue(
+
+        "posTampung",
+
+        duty.pos_tampungan
+
+    );
 
 
     setValue(
@@ -3894,7 +4043,7 @@ function kosongkanMaklumatAnggota() {
 
 
 // =====================================================
-// KOSONGKAN POS
+// KOSONGKAN POS ASAL
 // =====================================================
 
 function kosongkanPos() {
@@ -4123,4 +4272,5 @@ function formatTarikh(
 
     );
 
-} 
+}
+```
