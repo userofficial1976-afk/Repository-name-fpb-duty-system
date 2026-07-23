@@ -1,3 +1,4 @@
+```javascript
 // =====================================================
 // LAPORAN-ANGGARAN.JS
 // FPB DUTY SYSTEM
@@ -50,9 +51,15 @@ document.addEventListener(
 
     async function () {
 
+
         await isiSenaraiPos();
 
+
         tetapkanBulanSemasa();
+
+
+        tetapkanTahunSemasa();
+
 
     }
 
@@ -65,17 +72,52 @@ document.addEventListener(
 
 function tetapkanBulanSemasa() {
 
+
     const bulan = document.getElementById(
 
         "bulan"
 
     );
 
+
     if (!bulan) return;
 
-    const bulanSemasa = new Date().getMonth() + 1;
+
+    const bulanSemasa =
+
+        new Date().getMonth() + 1;
+
 
     bulan.value = bulanSemasa;
+
+
+}
+
+
+// =====================================================
+// TETAPKAN TAHUN SEMASA
+// =====================================================
+
+function tetapkanTahunSemasa() {
+
+
+    const tahun = document.getElementById(
+
+        "tahun"
+
+    );
+
+
+    if (!tahun) return;
+
+
+    const tahunSemasa =
+
+        new Date().getFullYear();
+
+
+    tahun.value = tahunSemasa;
+
 
 }
 
@@ -117,9 +159,20 @@ async function isiSenaraiPos() {
 
     } = await supabaseClient
 
-        .from("Data_Anggota")
 
-        .select("pos")
+        .from(
+
+            "Data_Anggota"
+
+        )
+
+
+        .select(
+
+            "pos"
+
+        )
+
 
         .not(
 
@@ -134,6 +187,7 @@ async function isiSenaraiPos() {
 
     if (error) {
 
+
         console.error(
 
             "RALAT AMBIL POS:",
@@ -141,6 +195,7 @@ async function isiSenaraiPos() {
             error
 
         );
+
 
         paparMesej(
 
@@ -150,6 +205,7 @@ async function isiSenaraiPos() {
 
         );
 
+
         return;
 
     }
@@ -157,23 +213,39 @@ async function isiSenaraiPos() {
 
     const senaraiPos = [
 
+
         ...new Set(
+
 
             data
 
+
                 .map(
+
 
                     item => item.pos
 
+
                 )
+
 
                 .filter(
 
-                    pos => pos && pos.trim() !== ""
+
+                    pos =>
+
+
+                        pos &&
+
+
+                        pos.trim() !== ""
+
 
                 )
 
+
         )
+
 
     ];
 
@@ -182,6 +254,7 @@ async function isiSenaraiPos() {
 
 
     senaraiPos.forEach(
+
 
         function (pos) {
 
@@ -197,6 +270,7 @@ async function isiSenaraiPos() {
 
             option.value = pos;
 
+
             option.textContent = pos;
 
 
@@ -208,6 +282,7 @@ async function isiSenaraiPos() {
 
 
         }
+
 
     );
 
@@ -228,6 +303,13 @@ async function janaLaporanAnggaran() {
     ).value;
 
 
+    const tahun = document.getElementById(
+
+        "tahun"
+
+    ).value;
+
+
     const pos = document.getElementById(
 
         "pos"
@@ -237,6 +319,7 @@ async function janaLaporanAnggaran() {
 
     if (!bulan) {
 
+
         paparMesej(
 
             "Sila pilih bulan.",
@@ -245,12 +328,31 @@ async function janaLaporanAnggaran() {
 
         );
 
+
+        return;
+
+    }
+
+
+    if (!tahun) {
+
+
+        paparMesej(
+
+            "Sila pilih tahun.",
+
+            "error"
+
+        );
+
+
         return;
 
     }
 
 
     if (!pos) {
+
 
         paparMesej(
 
@@ -259,6 +361,7 @@ async function janaLaporanAnggaran() {
             "error"
 
         );
+
 
         return;
 
@@ -275,18 +378,29 @@ async function janaLaporanAnggaran() {
 
 
     // =================================================
-    // AMBIL DATA DUTY
+    // AMBIL DATA JADUAL DUTY
+    // FILTER:
+    // BULAN + TAHUN + POS
     // =================================================
 
     const {
 
+
         data: dataDuty,
+
 
         error: errorDuty
 
+
     } = await supabaseClient
 
-        .from("jadual_duty")
+
+        .from(
+
+            "jadual_duty"
+
+        )
+
 
         .select(`
 
@@ -310,6 +424,7 @@ async function janaLaporanAnggaran() {
 
         `)
 
+
         .eq(
 
             "bulan",
@@ -317,6 +432,16 @@ async function janaLaporanAnggaran() {
             Number(bulan)
 
         )
+
+
+        .eq(
+
+            "tahun",
+
+            Number(tahun)
+
+        )
+
 
         .eq(
 
@@ -353,14 +478,26 @@ async function janaLaporanAnggaran() {
     }
 
 
-    if (!dataDuty || dataDuty.length === 0) {
+    if (
+
+
+        !dataDuty ||
+
+
+        dataDuty.length === 0
+
+
+    ) {
 
 
         paparMesej(
 
-            "Tiada rekod duty dijumpai untuk Pos dan bulan yang dipilih.",
+
+            "Tiada rekod duty dijumpai untuk Pos, Bulan dan Tahun yang dipilih.",
+
 
             "error"
+
 
         );
 
@@ -374,32 +511,75 @@ async function janaLaporanAnggaran() {
 
 
     // =================================================
-    // AMBIL NO SKB YANG TERLIBAT
+    // AMBIL NO SKB
     // =================================================
 
     const senaraiNoSKB = [
 
+
         ...new Set(
+
 
             dataDuty
 
+
                 .map(
+
 
                     item => item.no_skb
 
+
                 )
+
 
                 .filter(
 
-                    no => no !== null &&
 
-                          no !== undefined
+                    no =>
+
+
+                        no !== null &&
+
+
+                        no !== undefined
+
 
                 )
 
+
         )
 
+
     ];
+
+
+    if (
+
+
+        senaraiNoSKB.length === 0
+
+
+    ) {
+
+
+        paparMesej(
+
+
+            "Tiada no_skb dijumpai dalam jadual duty.",
+
+
+            "error"
+
+
+        );
+
+
+        kosongkanLaporan();
+
+
+        return;
+
+    }
 
 
     // =================================================
@@ -408,13 +588,22 @@ async function janaLaporanAnggaran() {
 
     const {
 
+
         data: dataAnggota,
+
 
         error: errorAnggota
 
+
     } = await supabaseClient
 
-        .from("Data_Anggota")
+
+        .from(
+
+            "Data_Anggota"
+
+        )
+
 
         .select(`
 
@@ -429,6 +618,7 @@ async function janaLaporanAnggaran() {
             pos
 
         `)
+
 
         .in(
 
@@ -466,13 +656,15 @@ async function janaLaporanAnggaran() {
 
 
     // =================================================
-    // GABUNG DATA ANGGOTA + DATA DUTY
+    // GABUNGKAN DATA
+    // ANGGOTA + JADUAL DUTY
     // =================================================
 
     const dataLaporan = [];
 
 
     dataAnggota.forEach(
+
 
         function (anggota) {
 
@@ -481,7 +673,9 @@ async function janaLaporanAnggaran() {
 
                 dataDuty.filter(
 
+
                     function (duty) {
+
 
                         return String(
 
@@ -493,18 +687,24 @@ async function janaLaporanAnggaran() {
 
                         );
 
+
                     }
+
 
                 );
 
 
             if (
 
+
                 dutyAnggota.length === 0
+
 
             ) {
 
+
                 return;
+
 
             }
 
@@ -514,20 +714,24 @@ async function janaLaporanAnggaran() {
 
                 no_skb:
 
+
                     anggota.no_skb,
 
 
                 no_anggota:
+
 
                     anggota.no_anggota || "",
 
 
                 nama:
 
+
                     anggota.nama || "",
 
 
                 gaji_pokok:
+
 
                     Number(
 
@@ -574,19 +778,22 @@ async function janaLaporanAnggaran() {
 
                 jumlah_tuntutan_klm: 0
 
+
             };
 
 
             // =========================================
-            // KIRA DUTY ANGGOTA
+            // KIRA SEMUA REKOD DUTY ANGGOTA
             // =========================================
 
             dutyAnggota.forEach(
+
 
                 function (duty) {
 
 
                     const tarikh = new Date(
+
 
                         duty.tarikh
 
@@ -602,6 +809,7 @@ async function janaLaporanAnggaran() {
 
                         Number(
 
+
                             duty.jam_kerja || 0
 
                         );
@@ -611,10 +819,15 @@ async function janaLaporanAnggaran() {
 
                         Number(
 
+
                             duty.jam_klm || 0
 
                         );
 
+
+                    // =================================
+                    // JUMLAH KLM
+                    // =================================
 
                     rekod.jumlah_tuntutan_klm +=
 
@@ -628,9 +841,12 @@ async function janaLaporanAnggaran() {
 
                     if (
 
+
                         hari >= 1 &&
 
+
                         hari <= 5
+
 
                     ) {
 
@@ -653,7 +869,9 @@ async function janaLaporanAnggaran() {
 
                         if (
 
+
                             jamKerja < 4
+
 
                         ) {
 
@@ -666,9 +884,12 @@ async function janaLaporanAnggaran() {
 
                         else if (
 
+
                             jamKerja >= 4 &&
 
+
                             jamKerja <= 8
+
 
                         ) {
 
@@ -681,7 +902,9 @@ async function janaLaporanAnggaran() {
 
                         else if (
 
+
                             jamKerja > 8
+
 
                         ) {
 
@@ -691,9 +914,12 @@ async function janaLaporanAnggaran() {
 
                         }
 
+
                     }
 
+
                 }
+
 
             );
 
@@ -704,52 +930,83 @@ async function janaLaporanAnggaran() {
 
             );
 
+
         }
+
 
     );
 
+
+    // =================================================
+    // SUSUN IKUT NAMA
+    // =================================================
 
     dataLaporan.sort(
 
+
         function (a, b) {
+
 
             return String(
 
+
                 a.nama
+
 
             ).localeCompare(
 
+
                 String(
+
 
                     b.nama
 
+
                 )
+
 
             );
 
+
         }
+
 
     );
 
 
+    // =================================================
+    // PAPAR LAPORAN
+    // =================================================
+
     paparLaporan(
+
 
         dataLaporan,
 
+
         bulan,
 
+
+        tahun,
+
+
         pos
+
 
     );
 
 
     paparMesej(
 
-        `Berjaya memuatkan ${dataLaporan.length} anggota.`,
+
+        `Berjaya memuatkan ${dataLaporan.length} anggota untuk ${SENARAI_BULAN[Number(bulan)]} ${tahun}.`,
+
 
         "success"
 
+
     );
+
 
 }
 
@@ -760,11 +1017,18 @@ async function janaLaporanAnggaran() {
 
 function paparLaporan(
 
+
     data,
+
 
     bulan,
 
+
+    tahun,
+
+
     pos
+
 
 ) {
 
@@ -804,9 +1068,9 @@ function paparLaporan(
     );
 
 
-    // =============================================
-    // TAJUK
-    // =============================================
+    // =================================================
+    // TAJUK LAPORAN
+    // =================================================
 
     tajukUnit.textContent =
 
@@ -815,11 +1079,18 @@ function paparLaporan(
 
     tajukBulan.textContent =
 
+
         SENARAI_BULAN[
 
             Number(bulan)
 
-        ];
+        ]
+
+
+        + " "
+
+
+        + tahun;
 
 
     tajukPos.textContent =
@@ -830,24 +1101,43 @@ function paparLaporan(
     tbody.innerHTML = "";
 
 
+    tfoot.innerHTML = "";
+
+
+    // =================================================
+    // JUMLAH
+    // =================================================
+
     let jumlahGaji = 0;
+
 
     let jumlahHariBiasaJam = 0;
 
+
     let jumlahOffBawah4 = 0;
+
 
     let jumlahOff4hingga8 = 0;
 
+
     let jumlahOffAtas8 = 0;
+
 
     let jumlahCutiBawah8 = 0;
 
+
     let jumlahCutiAtas8 = 0;
+
 
     let jumlahKLM = 0;
 
 
+    // =================================================
+    // PAPAR SETIAP ANGGOTA
+    // =================================================
+
     data.forEach(
+
 
         function (item, index) {
 
@@ -1072,28 +1362,34 @@ function paparLaporan(
 
             );
 
+
         }
+
 
     );
 
 
-    // =============================================
-    // JUMLAH
-    // =============================================
+    // =================================================
+    // JUMLAH KESELURUHAN
+    // =================================================
 
     tfoot.innerHTML = `
+
 
         <tr class="total-row">
 
 
             <td colspan="3">
 
+
                 JUMLAH
+
 
             </td>
 
 
             <td class="amount">
+
 
                 ${formatRM(
 
@@ -1101,94 +1397,120 @@ function paparLaporan(
 
                 )}
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahHariBiasaJam}
 
+
             </td>
 
 
             <td>
+
 
                 -
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahOffBawah4}
 
+
             </td>
 
 
             <td>
+
 
                 -
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahOff4hingga8}
 
+
             </td>
 
 
             <td>
+
 
                 -
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahOffAtas8}
 
+
             </td>
 
 
             <td>
+
 
                 -
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahCutiBawah8}
 
+
             </td>
 
 
             <td>
+
 
                 -
 
+
             </td>
 
 
             <td>
+
 
                 ${jumlahCutiAtas8}
 
+
             </td>
 
 
             <td>
 
+
                 -
+
 
             </td>
 
 
             <td class="amount">
+
 
                 ${formatRM(
 
@@ -1196,12 +1518,15 @@ function paparLaporan(
 
                 )}
 
+
             </td>
 
 
         </tr>
 
+
     `;
+
 
 }
 
@@ -1223,17 +1548,24 @@ function formatRM(
 
     ).toLocaleString(
 
+
         "ms-MY",
+
 
         {
 
+
             minimumFractionDigits: 2,
+
 
             maximumFractionDigits: 2
 
+
         }
 
+
     );
+
 
 }
 
@@ -1251,15 +1583,21 @@ function kosongkanLaporan() {
 
     ).innerHTML = `
 
+
         <tr>
+
 
             <td colspan="17">
 
+
                 Tiada data dijumpai
+
 
             </td>
 
+
         </tr>
+
 
     `;
 
@@ -1270,6 +1608,7 @@ function kosongkanLaporan() {
 
     ).innerHTML = "";
 
+
 }
 
 
@@ -1279,9 +1618,12 @@ function kosongkanLaporan() {
 
 function paparMesej(
 
+
     mesej,
 
+
     jenis
+
 
 ) {
 
@@ -1298,25 +1640,36 @@ function paparMesej(
 
     elemen.innerHTML = `
 
+
         <div class="${jenis}">
+
 
             ${mesej}
 
+
         </div>
+
 
     `;
 
 
     setTimeout(
 
+
         function () {
+
 
             elemen.innerHTML = "";
 
+
         },
+
 
         5000
 
+
     );
 
+
 }
+```
