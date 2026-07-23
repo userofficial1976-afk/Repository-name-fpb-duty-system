@@ -2202,12 +2202,15 @@ async function simpanDuty() {
 
             pos: anggota.pos,
 
+            pos_tampungan: anggota.pos,
+
             nama_pos_asal: anggota.pos,
 
+            jam_tampungan:
+                duty.jam_kerja,
+
             hari: getValue(
-
                 "hari"
-
             ),
 
             waktu_tugasan:
