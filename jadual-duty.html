@@ -5,163 +5,684 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>Jadual Duty - FPB Duty System</title>
+<title>
+Jadual Duty — Forecast Duty System
+</title>
 
 
 <style>
 
 /* =====================================================
-   RESET
+   GLOBAL
 ===================================================== */
 
 * {
 
     box-sizing: border-box;
 
-    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+
+        "Segoe UI",
+
+        Arial,
+
+        Helvetica,
+
+        sans-serif;
 
 }
 
-
-/* =====================================================
-   BODY
-===================================================== */
 
 body {
 
-    margin: 0;
+    background: #f4f7f8;
 
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #eef2ff 0%,
-
-            #f8fafc 45%,
-
-            #eef2ff 100%
-
-        );
-
-    color: #1e293b;
+    color: #263238;
 
 }
 
 
 /* =====================================================
-   HEADER
+   APP
 ===================================================== */
 
-header {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #0f172a,
-
-            #1e3a8a
-
-        );
-
-    color: white;
-
-    padding: 22px 35px;
-
-    box-shadow:
-
-        0 4px 15px
-
-        rgba(15, 23, 42, 0.25);
-
-}
-
-
-.header-content {
-
-    max-width: 1700px;
-
-    margin: auto;
+.app {
 
     display: flex;
 
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-
-}
-
-
-.header-title h1 {
-
-    margin: 0;
-
-    font-size: 26px;
-
-}
-
-
-.header-title p {
-
-    margin: 6px 0 0;
-
-    color: #cbd5e1;
-
-    font-size: 14px;
-
-}
-
-
-.btn-dashboard {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    background:
-
-        rgba(255,255,255,0.12);
-
-    color: white;
-
-    text-decoration: none;
-
-    padding: 11px 17px;
-
-    border-radius: 8px;
-
-    font-weight: 600;
-
-    border:
-
-        1px solid
-
-        rgba(255,255,255,0.2);
+    min-height: 100vh;
 
 }
 
 
 /* =====================================================
-   CONTAINER
+   SIDEBAR
 ===================================================== */
 
-.container {
+.sidebar {
 
-    max-width: 1700px;
+    width: 290px;
 
-    margin: auto;
+    background:
 
-    padding: 25px;
+        linear-gradient(
+
+            180deg,
+
+            #e8f1f3 0%,
+
+            #dcecef 100%
+
+        );
+
+    color: #234047;
+
+    padding: 24px 16px;
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 100;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #cbdde1;
+
+}
+
+
+.sidebar::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.15;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+
+            45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        ),
+
+        linear-gradient(
+
+            -45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        );
+
+    background-size: 30px 30px;
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 11px 25px;
+
+    border-bottom: 1px solid #cbdde1;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.logo {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 12px;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.12
+
+        );
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 17px;
+
+    letter-spacing: 0.4px;
+
+    color: #234047;
+
+}
+
+
+.brand-text p {
+
+    color: #6d858b;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   HERITAGE
+===================================================== */
+
+.heritage-mark {
+
+    margin: 22px 10px;
+
+    padding: 15px;
+
+    border: 1px solid #c6dadd;
+
+    border-radius: 12px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.55
+
+        );
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.heritage-mark strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 0.6px;
+
+    color: #365b63;
+
+}
+
+
+.heritage-mark span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #769097;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav-title {
+
+    color: #789096;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    font-weight: bold;
+
+    margin: 26px 13px 10px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: #577178;
+
+    text-decoration: none;
+
+    padding: 14px 15px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.nav a:hover {
+
+    background: #d1e4e8;
+
+    color: #234047;
+
+    transform: translateX(2px);
+
+}
+
+
+.nav a.active {
+
+    background: #ffffff;
+
+    color: #247b83;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            50,
+
+            100,
+
+            110,
+
+            0.10
+
+        );
+
+}
+
+
+.nav-icon {
+
+    width: 24px;
+
+    text-align: center;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 290px;
+
+    width:
+
+        calc(
+
+            100% - 290px
+
+        );
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    min-height: 82px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.92
+
+        );
+
+    border-bottom: 1px solid #dce7e9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+}
+
+
+.page-title h2 {
+
+    font-size: 26px;
+
+    letter-spacing: 0.3px;
+
+    color: #263f45;
+
+}
+
+
+.page-title p {
+
+    font-size: 14px;
+
+    color: #829398;
+
+    margin-top: 5px;
+
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    background: #e4f2ed;
+
+    color: #3d7662;
+
+    padding: 10px 16px;
+
+    border-radius: 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    background: #61a98d;
+
+    border-radius: 50%;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    padding: 32px;
+
+    max-width: 1900px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 30px 35px;
+
+    margin-bottom: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #77adb0;
+
+    box-shadow:
+
+        0 8px 22px
+
+        rgba(
+
+            57,
+
+            111,
+
+            118,
+
+            0.15
+
+        );
+
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -80px;
+
+    bottom: -140px;
+
+    width: 420px;
+
+    height: 420px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.25
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 80px;
+
+    bottom: -200px;
+
+    width: 400px;
+
+    height: 400px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.hero h1 {
+
+    font-size: 28px;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.hero p {
+
+    color: #e3f2f3;
+
+    font-size: 15px;
+
+}
+
+
+.hero-line {
+
+    margin-top: 20px;
+
+    width: 160px;
+
+    height: 3px;
+
+    background: #d8f1ef;
 
 }
 
@@ -172,30 +693,38 @@ header {
 
 .card {
 
-    background:
+    background: #ffffff;
 
-        rgba(255,255,255,0.96);
+    border: 1px solid #dce7e9;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    padding: 24px;
+    padding: 25px;
 
-    margin-bottom: 22px;
+    margin-bottom: 25px;
 
     box-shadow:
 
-        0 5px 20px
+        0 4px 14px
 
-        rgba(15,23,42,0.08);
+        rgba(
 
-    border:
+            60,
 
-        1px solid
+            100,
 
-        #e2e8f0;
+            110,
+
+            0.06
+
+        );
 
 }
 
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
 
 .card-title {
 
@@ -203,15 +732,11 @@ header {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    border-bottom:
+    border-bottom: 1px solid #edf2f3;
 
-        1px solid
-
-        #e2e8f0;
-
-    padding-bottom: 15px;
+    padding-bottom: 17px;
 
     margin-bottom: 20px;
 
@@ -220,7 +745,7 @@ header {
 
 .card-title h2 {
 
-    margin: 0;
+    color: #304c53;
 
     font-size: 20px;
 
@@ -229,15 +754,15 @@ header {
 
 .section-number {
 
-    width: 32px;
+    width: 35px;
 
-    height: 32px;
+    height: 35px;
 
-    border-radius: 50%;
+    border-radius: 10px;
 
-    background: #2563eb;
+    background: #e1f0f1;
 
-    color: white;
+    color: #3d7f86;
 
     display: flex;
 
@@ -246,6 +771,8 @@ header {
     justify-content: center;
 
     font-weight: bold;
+
+    font-size: 16px;
 
 }
 
@@ -264,7 +791,13 @@ header {
 
             4,
 
-            minmax(180px, 1fr)
+            minmax(
+
+                180px,
+
+                1fr
+
+            )
 
         );
 
@@ -283,7 +816,13 @@ header {
 
             3,
 
-            minmax(200px, 1fr)
+            minmax(
+
+                200px,
+
+                1fr
+
+            )
 
         );
 
@@ -311,7 +850,7 @@ label {
 
     font-weight: 700;
 
-    color: #475569;
+    color: #71858a;
 
     margin-bottom: 7px;
 
@@ -332,13 +871,13 @@ select {
 
         1px solid
 
-        #cbd5e1;
+        #cbdde1;
 
     background: white;
 
     font-size: 14px;
 
-    color: #1e293b;
+    color: #40575d;
 
 }
 
@@ -349,22 +888,32 @@ select:focus {
 
     outline: none;
 
-    border-color: #2563eb;
+    border-color: #5b9da0;
 
     box-shadow:
 
         0 0 0 3px
 
-        rgba(37,99,235,0.12);
+        rgba(
+
+            91,
+
+            157,
+
+            160,
+
+            0.15
+
+        );
 
 }
 
 
 input[readonly] {
 
-    background: #f8fafc;
+    background: #f2f7f8;
 
-    color: #475569;
+    color: #62777c;
 
     font-weight: 600;
 
@@ -372,24 +921,20 @@ input[readonly] {
 
 
 /* =====================================================
-   BOX
+   INFO BOX
 ===================================================== */
 
 .info-box,
 
 .duty-code-box {
 
-    background: #f8fafc;
+    background: #f6fafb;
 
-    border:
+    border: 1px solid #dce7e9;
 
-        1px solid
+    border-radius: 12px;
 
-        #e2e8f0;
-
-    border-radius: 10px;
-
-    padding: 18px;
+    padding: 20px;
 
 }
 
@@ -402,13 +947,13 @@ input[readonly] {
 
             135deg,
 
-            #eff6ff,
+            #edf6f7,
 
-            #f8fafc
+            #f8fbfb
 
         );
 
-    border-color: #bfdbfe;
+    border-color: #c3dfe1;
 
 }
 
@@ -425,16 +970,16 @@ input[readonly] {
 
         1fr 1fr;
 
-    gap: 15px;
+    gap: 18px;
 
 }
 
 
 .special-box {
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    padding: 15px;
+    padding: 18px;
 
     border: 1px solid;
 
@@ -443,27 +988,29 @@ input[readonly] {
 
 .offday-box {
 
-    background: #fff7ed;
+    background: #fff8ee;
 
-    border-color: #fed7aa;
+    border-color: #f1d4a8;
 
 }
 
 
 .cutiam-box {
 
-    background: #fef2f2;
+    background: #fff3f3;
 
-    border-color: #fecaca;
+    border-color: #efc6c6;
 
 }
 
 
 .special-box h3 {
 
-    margin: 0 0 12px;
+    margin: 0 0 15px;
 
     font-size: 15px;
+
+    color: #40575d;
 
 }
 
@@ -491,7 +1038,7 @@ input[readonly] {
 
 
 /* =====================================================
-   BUTTON
+   BUTTON SIMPAN
 ===================================================== */
 
 .btn-save {
@@ -502,7 +1049,7 @@ input[readonly] {
 
     border: none;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     background:
 
@@ -510,9 +1057,9 @@ input[readonly] {
 
             135deg,
 
-            #2563eb,
+            #3d7f86,
 
-            #1d4ed8
+            #5b9da0
 
         );
 
@@ -524,24 +1071,30 @@ input[readonly] {
 
     cursor: pointer;
 
+    transition: 0.2s;
+
 }
 
 
-.btn-danger {
+.btn-save:hover {
 
-    background: #dc2626;
+    transform: translateY(-2px);
 
-    color: white;
+    box-shadow:
 
-    border: none;
+        0 6px 15px
 
-    padding: 8px 12px;
+        rgba(
 
-    border-radius: 6px;
+            61,
 
-    cursor: pointer;
+            127,
 
-    font-weight: bold;
+            134,
+
+            0.25
+
+        );
 
 }
 
@@ -552,17 +1105,13 @@ input[readonly] {
 
 .filter-panel {
 
-    background: #f8fafc;
+    background: #f6fafb;
 
-    border:
+    border: 1px solid #dce7e9;
 
-        1px solid
+    border-radius: 12px;
 
-        #e2e8f0;
-
-    border-radius: 10px;
-
-    padding: 16px;
+    padding: 18px;
 
     margin-bottom: 20px;
 
@@ -575,15 +1124,13 @@ input[readonly] {
 
 .table-wrapper {
 
+    width: 100%;
+
     overflow-x: auto;
 
-    border:
+    border: 1px solid #dce7e9;
 
-        1px solid
-
-        #e2e8f0;
-
-    border-radius: 10px;
+    border-radius: 12px;
 
 }
 
@@ -605,15 +1152,11 @@ th,
 
 td {
 
-    padding: 12px;
+    padding: 13px 12px;
 
     text-align: left;
 
-    border-bottom:
-
-        1px solid
-
-        #e2e8f0;
+    border-bottom: 1px solid #edf2f3;
 
     white-space: nowrap;
 
@@ -624,18 +1167,29 @@ td {
 
 th {
 
-    background: #0f172a;
+    background: #f2f7f8;
 
-    color: white;
+    color: #71858a;
 
     font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+td {
+
+    color: #40575d;
 
 }
 
 
 tr:hover {
 
-    background: #f8fafc;
+    background: #f6fafb;
 
 }
 
@@ -648,9 +1202,9 @@ tr:hover {
 
     display: inline-block;
 
-    background: #dbeafe;
+    background: #e1f0f1;
 
-    color: #1d4ed8;
+    color: #3d7f86;
 
     padding: 5px 9px;
 
@@ -664,7 +1218,30 @@ tr:hover {
 
 
 /* =====================================================
-   POPUP TENGAH SCREEN
+   BUTTON DANGER
+===================================================== */
+
+.btn-danger {
+
+    background: #c96f6f;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   POPUP
 ===================================================== */
 
 .popup-overlay {
@@ -675,7 +1252,17 @@ tr:hover {
 
     background:
 
-        rgba(15,23,42,0.55);
+        rgba(
+
+            38,
+
+            63,
+
+            69,
+
+            0.55
+
+        );
 
     display: none;
 
@@ -690,7 +1277,13 @@ tr:hover {
 
 .popup-box {
 
-    width: min(450px, 90%);
+    width: min(
+
+        450px,
+
+        90%
+
+    );
 
     background: white;
 
@@ -704,32 +1297,17 @@ tr:hover {
 
         0 20px 60px
 
-        rgba(0,0,0,0.3);
+        rgba(
 
-    animation:
+            0,
 
-        popupMasuk 0.25s ease;
+            0,
 
-}
+            0,
 
+            0.3
 
-@keyframes popupMasuk {
-
-    from {
-
-        transform: scale(0.8);
-
-        opacity: 0;
-
-    }
-
-    to {
-
-        transform: scale(1);
-
-        opacity: 1;
-
-    }
+        );
 
 }
 
@@ -751,6 +1329,8 @@ tr:hover {
 
     margin-bottom: 10px;
 
+    color: #304c53;
+
 }
 
 
@@ -758,7 +1338,7 @@ tr:hover {
 
     font-size: 15px;
 
-    color: #475569;
+    color: #71858a;
 
     line-height: 1.5;
 
@@ -775,7 +1355,7 @@ tr:hover {
 
     border-radius: 8px;
 
-    background: #2563eb;
+    background: #3d7f86;
 
     color: white;
 
@@ -787,58 +1367,134 @@ tr:hover {
 
 
 /* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #91a0a4;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
    RESPONSIVE
 ===================================================== */
 
-@media (max-width: 1100px) {
+@media(max-width:1200px) {
 
     .grid {
 
         grid-template-columns:
 
-            repeat(2, 1fr);
+            repeat(
+
+                2,
+
+                1fr
+
+            );
 
     }
+
 
     .grid-3 {
 
         grid-template-columns:
 
-            repeat(2, 1fr);
+            repeat(
+
+                2,
+
+                1fr
+
+            );
 
     }
 
 }
 
 
-@media (max-width: 700px) {
+@media(max-width:800px) {
 
-    header {
+    .sidebar {
 
-        padding: 18px;
+        width: 78px;
 
-    }
-
-
-    .header-content {
-
-        flex-direction: column;
-
-        align-items: flex-start;
+        padding: 16px 8px;
 
     }
 
 
-    .container {
+    .brand {
 
-        padding: 12px;
+        justify-content: center;
+
+        padding: 0 0 22px;
 
     }
 
 
-    .card {
+    .brand-text,
 
-        padding: 17px;
+    .heritage-mark,
+
+    .nav-title,
+
+    .nav a span {
+
+        display: none;
+
+    }
+
+
+    .nav a {
+
+        justify-content: center;
+
+        padding: 15px 5px;
+
+    }
+
+
+    .nav-icon {
+
+        font-size: 22px;
+
+    }
+
+
+    .main {
+
+        margin-left: 78px;
+
+        width:
+
+            calc(
+
+                100% - 78px
+
+            );
+
+    }
+
+
+    .topbar {
+
+        padding: 0 20px;
+
+    }
+
+
+    .content {
+
+        padding: 20px;
 
     }
 
@@ -854,15 +1510,25 @@ tr:hover {
     }
 
 
-    .btn-dashboard {
+    .system-status {
 
-        width: 100%;
-
-        justify-content: center;
+        display: none;
 
     }
 
 }
+
+
+@media(max-width:500px) {
+
+    .page-title h2 {
+
+        font-size: 22px;
+
+    }
+
+}
+
 
 </style>
 
@@ -872,54 +1538,427 @@ tr:hover {
 <body>
 
 
+<div class="app">
+
+
 <!-- =====================================================
-     HEADER
+     SIDEBAR
 ===================================================== -->
 
-<header>
+<aside class="sidebar">
 
-<div class="header-content">
 
-<div class="header-title">
+<div class="brand">
 
-<h1>📅 JADUAL DUTY</h1>
+
+<img
+
+    src="logo.png"
+
+    class="logo"
+
+    alt="Logo FPB"
+
+>
+
+
+<div class="brand-text">
+
+
+<h1>
+
+POLIS BANTUAN FGVSSSB
+
+</h1>
+
 
 <p>
 
-Sistem Pengurusan Jadual Duty Anggota
+WILAYAH TERENGGANU
 
 </p>
+
+
+</div>
+
+
+</div>
+
+
+<div class="heritage-mark">
+
+
+<strong>
+
+La Ilaha Illallah
+
+(لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
+
+</strong>
+
+
+<span>
+
+• Terengganu Maju, Berkat Sejahtera •
+
+</span>
+
+
+</div>
+
+
+<div class="nav-title">
+
+MAIN MENU
+
+</div>
+
+
+<nav class="nav">
+
+
+<a
+
+    href="index.html"
+
+>
+
+
+<span class="nav-icon">
+
+⌂
+
+</span>
+
+
+<span>
+
+Dashboard
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="anggota.html"
+
+>
+
+
+<span class="nav-icon">
+
+♙
+
+</span>
+
+
+<span>
+
+Senarai Anggota
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="jadual-duty.html"
+
+    class="active"
+
+>
+
+
+<span class="nav-icon">
+
+▣
+
+</span>
+
+
+<span>
+
+Jadual Duty
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="kod-duty.html"
+
+>
+
+
+<span class="nav-icon">
+
+▤
+
+</span>
+
+
+<span>
+
+Kod Duty
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="tempat-kerja.html"
+
+>
+
+
+<span class="nav-icon">
+
+▦
+
+</span>
+
+
+<span>
+
+Kod Tempat Kerja
+
+</span>
+
+
+</a>
+
+
+<div class="nav-title">
+
+REPORTING
 
 </div>
 
 
 <a
 
-href="index.html"
-
-class="btn-dashboard"
+    href="laporan.html"
 
 >
 
-🏠 Kembali ke Dashboard
+
+<span class="nav-icon">
+
+▥
+
+</span>
+
+
+<span>
+
+Laporan
+
+</span>
+
 
 </a>
 
+
+<a
+
+    href="laporan-anggaran.html"
+
+>
+
+
+<span class="nav-icon">
+
+◫
+
+</span>
+
+
+<span>
+
+Anggaran Duty Bulanan
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="Laporan-Penuh.html"
+
+>
+
+
+<span class="nav-icon">
+
+▤
+
+</span>
+
+
+<span>
+
+Laporan Penuh
+
+</span>
+
+
+</a>
+
+
+<div class="nav-title">
+
+SYSTEM
+
 </div>
 
-</header>
+
+<a
+
+    href="#"
+
+>
 
 
-<div class="container">
+<span class="nav-icon">
+
+⚙
+
+</span>
+
+
+<span>
+
+Tetapan
+
+</span>
+
+
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+
+<main class="main">
+
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
+
+<div class="topbar">
+
+
+<div class="page-title">
+
+
+<h2>
+
+Jadual Duty
+
+</h2>
+
+
+<p>
+
+Forecast Duty System /
+
+Wilayah Terengganu
+
+</p>
+
+
+</div>
+
+
+<div class="system-status">
+
+
+<span class="status-dot"></span>
+
+
+System Online
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+
+<div class="content">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+
+<div class="hero">
+
+
+<div class="hero-content">
+
+
+<h1>
+
+📅 PENGURUSAN JADUAL DUTY
+
+</h1>
+
+
+<p>
+
+Sistem pengurusan dan penyusunan jadual duty anggota secara berpusat dan sistematik.
+
+</p>
+
+
+<div class="hero-line"></div>
+
+
+</div>
+
+
+</div>
 
 
 <!-- =====================================================
      BORANG DUTY
 ===================================================== -->
 
+
 <div class="card">
 
+
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -927,11 +1966,13 @@ class="btn-dashboard"
 
 </div>
 
+
 <h2>
 
 Maklumat Tarikh & Tugas
 
 </h2>
+
 
 </div>
 
@@ -942,6 +1983,7 @@ Maklumat Tarikh & Tugas
 <div class="form-group">
 
 <label>Tarikh</label>
+
 
 <input
 
@@ -958,6 +2000,7 @@ id="tarikh"
 <div class="form-group">
 
 <label>Bulan</label>
+
 
 <input
 
@@ -977,6 +2020,7 @@ readonly
 
 <label>Tahun</label>
 
+
 <input
 
 type="text"
@@ -994,6 +2038,7 @@ readonly
 <div class="form-group">
 
 <label>Hari</label>
+
 
 <input
 
@@ -1013,7 +2058,13 @@ readonly
 
 <label>Unit</label>
 
-<select id="unitPilihan">
+
+<select
+
+id="unitPilihan"
+
+>
+
 
 <option value="">
 
@@ -1021,7 +2072,9 @@ readonly
 
 </option>
 
+
 </select>
+
 
 </div>
 
@@ -1030,7 +2083,13 @@ readonly
 
 <label>Pos Asal</label>
 
-<select id="posAsal">
+
+<select
+
+id="posAsal"
+
+>
+
 
 <option value="">
 
@@ -1038,12 +2097,15 @@ readonly
 
 </option>
 
+
 </select>
 
+
 </div>
 
 
 </div>
+
 
 </div>
 
@@ -1052,9 +2114,12 @@ readonly
      MAKLUMAT ANGGOTA
 ===================================================== -->
 
+
 <div class="card">
 
+
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -1062,16 +2127,19 @@ readonly
 
 </div>
 
+
 <h2>
 
 Maklumat Anggota
 
 </h2>
 
+
 </div>
 
 
 <div class="info-box">
+
 
 <div class="grid">
 
@@ -1080,7 +2148,13 @@ Maklumat Anggota
 
 <label>Nama Anggota</label>
 
-<select id="anggota">
+
+<select
+
+id="anggota"
+
+>
+
 
 <option value="">
 
@@ -1088,7 +2162,9 @@ Maklumat Anggota
 
 </option>
 
+
 </select>
+
 
 </div>
 
@@ -1096,6 +2172,7 @@ Maklumat Anggota
 <div class="form-group">
 
 <label>No. SKB</label>
+
 
 <input
 
@@ -1107,12 +2184,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
 <label>No. Anggota</label>
+
 
 <input
 
@@ -1124,12 +2203,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
 <label>Kawasan</label>
+
 
 <input
 
@@ -1141,12 +2222,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
 <label>Unit</label>
+
 
 <input
 
@@ -1158,12 +2241,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
 <label>Ketua Unit</label>
+
 
 <input
 
@@ -1175,12 +2260,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
 <label>Ketua Pos</label>
+
 
 <input
 
@@ -1192,12 +2279,14 @@ readonly
 
 >
 
+
 </div>
 
 
 <div class="form-group">
 
-<label>Nama Pos</label>
+<label>Nama Pos Asal</label>
+
 
 <input
 
@@ -1209,12 +2298,15 @@ readonly
 
 >
 
+
+</div>
+
+
 </div>
 
 
 </div>
 
-</div>
 
 </div>
 
@@ -1223,9 +2315,12 @@ readonly
      KOD DUTY
 ===================================================== -->
 
+
 <div class="card">
 
+
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -1233,16 +2328,19 @@ readonly
 
 </div>
 
+
 <h2>
 
 Kod Waktu & Tempat Kerja
 
 </h2>
 
+
 </div>
 
 
 <div class="duty-code-box">
+
 
 <div class="grid-3">
 
@@ -1251,7 +2349,13 @@ Kod Waktu & Tempat Kerja
 
 <label>Kod Duty</label>
 
-<select id="kodDuty">
+
+<select
+
+id="kodDuty"
+
+>
+
 
 <option value="">
 
@@ -1259,17 +2363,17 @@ Kod Waktu & Tempat Kerja
 
 </option>
 
+
 </select>
 
+
 </div>
-
-
-
 
 
 <div class="form-group">
 
 <label>Jam Kerja</label>
+
 
 <input
 
@@ -1281,11 +2385,14 @@ readonly
 
 >
 
+
 </div>
+
 
 <div class="form-group">
 
 <label>Jam KLM Hari Biasa</label>
+
 
 <input
 
@@ -1297,12 +2404,21 @@ readonly
 
 >
 
+
 </div>
+
+
 <div class="form-group">
 
 <label>Kod Tempat Kerja</label>
 
-<select id="kodTempatKerja">
+
+<select
+
+id="kodTempatKerja"
+
+>
+
 
 <option value="">
 
@@ -1310,19 +2426,18 @@ readonly
 
 </option>
 
+
 </select>
 
+
 </div>
-
-
-
-
-
 
 
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -1331,9 +2446,12 @@ readonly
      HARI KHAS
 ===================================================== -->
 
+
 <div class="card">
 
+
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -1341,11 +2459,13 @@ readonly
 
 </div>
 
+
 <h2>
 
 Hari Khas Bertugas
 
 </h2>
+
 
 </div>
 
@@ -1354,6 +2474,7 @@ Hari Khas Bertugas
 
 
 <div class="special-box offday-box">
+
 
 <h3>
 
@@ -1364,6 +2485,7 @@ Hari Khas Bertugas
 
 <label class="checkbox-label">
 
+
 <input
 
 type="checkbox"
@@ -1372,12 +2494,15 @@ id="hariOffday"
 
 >
 
+
 Hari Offday Bertugas
+
 
 </label>
 
 
 <div class="form-group">
+
 
 <label>
 
@@ -1400,12 +2525,15 @@ value="0"
 
 >
 
+
 </div>
+
 
 </div>
 
 
 <div class="special-box cutiam-box">
+
 
 <h3>
 
@@ -1416,6 +2544,7 @@ value="0"
 
 <label class="checkbox-label">
 
+
 <input
 
 type="checkbox"
@@ -1424,12 +2553,15 @@ id="hariCutiam"
 
 >
 
+
 Hari Cuti Am Bertugas
+
 
 </label>
 
 
 <div class="form-group">
+
 
 <label>
 
@@ -1452,12 +2584,15 @@ value="0"
 
 >
 
-</div>
 
 </div>
 
 
 </div>
+
+
+</div>
+
 
 </div>
 
@@ -1466,7 +2601,9 @@ value="0"
      SIMPAN
 ===================================================== -->
 
+
 <div class="card">
+
 
 <button
 
@@ -1476,9 +2613,12 @@ onclick="simpanDuty()"
 
 >
 
+
 💾 SIMPAN DUTY
 
+
 </button>
+
 
 </div>
 
@@ -1487,9 +2627,12 @@ onclick="simpanDuty()"
      SENARAI DUTY
 ===================================================== -->
 
+
 <div class="card">
 
+
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -1497,21 +2640,25 @@ onclick="simpanDuty()"
 
 </div>
 
+
 <h2>
 
 Senarai Duty
 
 </h2>
 
+
 </div>
 
 
 <div class="filter-panel">
 
+
 <div class="grid-3">
 
 
 <div class="form-group">
+
 
 <label>
 
@@ -1528,18 +2675,22 @@ onchange="paparDuty()"
 
 >
 
+
 <option value="">
 
 -- Semua Ketua Unit --
 
 </option>
 
+
 </select>
+
 
 </div>
 
 
 <div class="form-group">
+
 
 <label>
 
@@ -1563,6 +2714,7 @@ onchange="paparDuty()"
 
 
 <div class="form-group">
+
 
 <label>
 
@@ -1589,16 +2741,21 @@ onkeyup="paparDuty()"
 
 </div>
 
+
 </div>
 
 
 <div class="table-wrapper">
 
+
 <table>
+
 
 <thead>
 
+
 <tr>
+
 
 <th>Tarikh</th>
 
@@ -1648,30 +2805,74 @@ onkeyup="paparDuty()"
 
 <th>Tindakan</th>
 
+
 </tr>
+
 
 </thead>
 
 
-<tbody id="senaraiDuty">
+<tbody
+
+id="senaraiDuty"
+
+>
+
 
 <tr>
 
+
 <td colspan="24">
+
 
 Sila pilih Ketua Unit dan Bulan/Tahun
 
+
 </td>
+
 
 </tr>
 
+
 </tbody>
+
 
 </table>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+
+<footer class="footer">
+
+
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+
+<br>
+
+
+© 2026 |
+
+Operational Duty Management System
+
+
+</footer>
+
+
+</main>
+
 
 </div>
 
@@ -1680,6 +2881,7 @@ Sila pilih Ketua Unit dan Bulan/Tahun
      POPUP
 ===================================================== -->
 
+
 <div
 
 id="popupOverlay"
@@ -1687,6 +2889,7 @@ id="popupOverlay"
 class="popup-overlay"
 
 >
+
 
 <div class="popup-box">
 
@@ -1745,12 +2948,14 @@ OK
 
 </div>
 
+
 </div>
 
 
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
+
 
 <script
 
