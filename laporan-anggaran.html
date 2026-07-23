@@ -6,10 +6,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 
@@ -414,11 +411,13 @@ body {
 
     margin-left: 290px;
 
-    width: calc(
+    width:
 
-        100% - 290px
+        calc(
 
-    );
+            100% - 290px
+
+        );
 
 }
 
@@ -1018,7 +1017,7 @@ select:focus {
 
     width: 100%;
 
-    min-width: 1450px;
+    min-width: 1500px;
 
     border-collapse: collapse;
 
@@ -1405,7 +1404,7 @@ select:focus {
 
         min-width: 0;
 
-        font-size: 10px;
+        font-size: 11px;
 
         margin-left: auto;
 
@@ -1420,14 +1419,14 @@ select:focus {
 
         padding: 6px 5px;
 
-        font-size: 9px;
+        font-size: 10px;
 
     }
 
 
     .report-table th {
 
-        font-size: 8px;
+        font-size: 9px;
 
     }
 
@@ -1444,6 +1443,36 @@ select:focus {
         page-break-inside: avoid;
 
         page-break-after: auto;
+
+    }
+
+}
+
+
+@media print {
+
+
+    .report-card {
+
+        width: 100%;
+
+        margin: 0 auto;
+
+    }
+
+
+    .report-header {
+
+        text-align: center;
+
+    }
+
+
+    .report-table {
+
+        margin-left: auto;
+
+        margin-right: auto;
 
     }
 
@@ -1756,13 +1785,7 @@ Pilih maklumat laporan
 </div>
 
 
-<div
-
-id="mesej"
-
-class="mesej"
-
-></div>
+<div id="mesej" class="mesej"></div>
 
 
 <div class="form-grid">
@@ -1823,7 +1846,7 @@ Jun
 </option>
 
 
-<option value="7">
+<option value="7" selected>
 
 Julai
 
@@ -2188,11 +2211,9 @@ RM
 
 <td colspan="16">
 
-
 Sila pilih Pos dan Bulan / Tahun
 
 kemudian tekan JANA LAPORAN
-
 
 </td>
 
@@ -2247,7 +2268,7 @@ Operational Duty Management System
 
 
 <!-- =====================================================
-     SUPABASE LIBRARY
+     SUPABASE
 ===================================================== -->
 
 <script
@@ -2257,20 +2278,12 @@ src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
 
 
-<!-- =====================================================
-     SUPABASE CONFIG
-===================================================== -->
-
 <script
 
 src="supabase.js"
 
 ></script>
 
-
-<!-- =====================================================
-     SCRIPT LAPORAN
-===================================================== -->
 
 <script>
 
@@ -2322,6 +2335,7 @@ function paparMesej(
 
 ) {
 
+
     const elemen =
 
         document.getElementById(
@@ -2331,13 +2345,19 @@ function paparMesej(
         );
 
 
-    if (!elemen) {
+    if (
+
+        !elemen
+
+    ) {
+
 
         console.log(
 
             mesej
 
         );
+
 
         return;
 
@@ -2368,9 +2388,10 @@ window.addEventListener(
 
     async function () {
 
+
         console.log(
 
-            "HALAMAN LAPORAN ANGGARAN SIAP"
+            "HALAMAN SIAP"
 
         );
 
@@ -2384,7 +2405,12 @@ window.addEventListener(
             );
 
 
-        if (tahun) {
+        if (
+
+            tahun
+
+        ) {
+
 
             const tahunSekarang =
 
@@ -2411,16 +2437,23 @@ window.addEventListener(
 
                     ) {
 
+
                         return option.value ===
 
                             tahunSekarang;
+
 
                     }
 
                 );
 
 
-            if (optionWujud) {
+            if (
+
+                optionWujud
+
+            ) {
+
 
                 tahun.value =
 
@@ -2433,23 +2466,50 @@ window.addEventListener(
 
         await isiSenaraiPos();
 
+
     }
 
 );
 
 
 // =====================================================
-// ISI SENARAI POS
-// DARIPADA jadual_duty
+// BERSIHKAN TEKS
+// =====================================================
+
+function bersihkanTeks(
+
+    nilai
+
+) {
+
+
+    return String(
+
+        nilai || ""
+
+    )
+
+        .trim()
+
+        .replace(
+
+            /\s+/g,
+
+            " "
+
+        )
+
+        .toUpperCase();
+
+}
+
+
+// =====================================================
+// ISI DROPDOWN POS
+// AMBIL DARI jadual_duty
 // =====================================================
 
 async function isiSenaraiPos() {
-
-    console.log(
-
-        "MULA AMBIL SENARAI POS"
-
-    );
 
 
     const selectPos =
@@ -2461,13 +2521,19 @@ async function isiSenaraiPos() {
         );
 
 
-    if (!selectPos) {
+    if (
+
+        !selectPos
+
+    ) {
+
 
         console.error(
 
             "Dropdown Pos tidak dijumpai dalam HTML."
 
         );
+
 
         return;
 
@@ -2500,30 +2566,21 @@ async function isiSenaraiPos() {
 
                 .select(
 
-                    "pos"
+                    "pos, nama_pos_asal"
 
                 );
 
 
-        console.log(
+        if (
 
-            "HASIL SENARAI POS:",
+            result.error
 
-            result
+        ) {
 
-        );
-
-
-        if (result.error) {
 
             throw result.error;
 
         }
-
-
-        const data =
-
-            result.data || [];
 
 
         const setPos =
@@ -2531,43 +2588,75 @@ async function isiSenaraiPos() {
             new Set();
 
 
-        data.forEach(
+        (result.data || [])
 
-            function (
+            .forEach(
 
-                row
+                function (
 
-            ) {
-
-                if (
-
-                    row.pos !== null &&
-
-                    row.pos !== undefined &&
-
-                    String(
-
-                        row.pos
-
-                    ).trim() !== ""
+                    row
 
                 ) {
 
-                    setPos.add(
+
+                    if (
+
+                        row.pos !== null &&
+
+                        row.pos !== undefined &&
 
                         String(
 
                             row.pos
 
-                        ).trim()
+                        ).trim() !== ""
 
-                    );
+                    ) {
+
+
+                        setPos.add(
+
+                            String(
+
+                                row.pos
+
+                            ).trim()
+
+                        );
+
+                    }
+
+
+                    if (
+
+                        row.nama_pos_asal !== null &&
+
+                        row.nama_pos_asal !== undefined &&
+
+                        String(
+
+                            row.nama_pos_asal
+
+                        ).trim() !== ""
+
+                    ) {
+
+
+                        setPos.add(
+
+                            String(
+
+                                row.nama_pos_asal
+
+                            ).trim()
+
+                        );
+
+                    }
 
                 }
 
-            }
-
-        );
+            );
 
 
         const senaraiPos =
@@ -2588,6 +2677,7 @@ async function isiSenaraiPos() {
                 b
 
             ) {
+
 
                 return a.localeCompare(
 
@@ -2627,6 +2717,7 @@ async function isiSenaraiPos() {
 
             ) {
 
+
                 const option =
 
                     document.createElement(
@@ -2659,11 +2750,12 @@ async function isiSenaraiPos() {
 
         console.log(
 
-            "JUMLAH POS:",
+            "SENARAI POS:",
 
-            senaraiPos.length
+            senaraiPos
 
         );
+
 
     }
 
@@ -2673,6 +2765,7 @@ async function isiSenaraiPos() {
         error
 
     ) {
+
 
         console.error(
 
@@ -2759,31 +2852,6 @@ async function janaLaporanAnggaran() {
         );
 
 
-    if (
-
-        !bulanElement ||
-
-        !tahunElement ||
-
-        !posElement ||
-
-        !tbody ||
-
-        !tfoot
-
-    ) {
-
-        console.error(
-
-            "ELEMEN LAPORAN TIDAK LENGKAP"
-
-        );
-
-        return;
-
-    }
-
-
     const bulan =
 
         parseInt(
@@ -2806,7 +2874,7 @@ async function janaLaporanAnggaran() {
         );
 
 
-    const pos =
+    const posDipilih =
 
         String(
 
@@ -2815,7 +2883,12 @@ async function janaLaporanAnggaran() {
         ).trim();
 
 
-    if (!pos) {
+    if (
+
+        !posDipilih
+
+    ) {
+
 
         paparMesej(
 
@@ -2824,6 +2897,7 @@ async function janaLaporanAnggaran() {
             "error"
 
         );
+
 
         return;
 
@@ -2888,14 +2962,14 @@ async function janaLaporanAnggaran() {
 
         .textContent =
 
-        pos;
+        posDipilih;
 
 
     try {
 
 
         // =================================================
-        // 1. AMBIL SEMUA DATA DARIPADA jadual_duty
+        // 1. AMBIL SEMUA DATA DUTY
         // =================================================
 
         const dutyResult =
@@ -2938,6 +3012,8 @@ async function janaLaporanAnggaran() {
 
                     ketua_unit,
 
+                    ketua_pos,
+
                     nama_ketua_pos,
 
                     nama_pos_asal,
@@ -2974,36 +3050,108 @@ async function janaLaporanAnggaran() {
 
                     tahun
 
-                )
-
-                .eq(
-
-                    "pos",
-
-                    pos
-
                 );
 
 
-        console.log(
+        if (
 
-            "DATA DUTY:",
+            dutyResult.error
 
-            dutyResult
+        ) {
 
-        );
-
-
-        if (dutyResult.error) {
 
             throw dutyResult.error;
 
         }
 
 
-        const dataDuty =
+        const semuaDuty =
 
             dutyResult.data || [];
+
+
+        console.log(
+
+            "SEMUA DUTY:",
+
+            semuaDuty
+
+        );
+
+
+        // =================================================
+        // 2. FILTER POS
+        // =================================================
+
+        const posCari =
+
+            bersihkanTeks(
+
+                posDipilih
+
+            );
+
+
+        const dataDuty =
+
+            semuaDuty.filter(
+
+                function (
+
+                    duty
+
+                ) {
+
+
+                    const posDuty =
+
+                        bersihkanTeks(
+
+                            duty.pos
+
+                        );
+
+
+                    const namaPosAsal =
+
+                        bersihkanTeks(
+
+                            duty.nama_pos_asal
+
+                        );
+
+
+                    return (
+
+                        posDuty === posCari
+
+                        ||
+
+                        namaPosAsal === posCari
+
+                    );
+
+                }
+
+            );
+
+
+        console.log(
+
+            "POS DIPILIH:",
+
+            posDipilih
+
+        );
+
+
+        console.log(
+
+            "DATA DUTY POS:",
+
+            dataDuty
+
+        );
 
 
         if (
@@ -3011,6 +3159,7 @@ async function janaLaporanAnggaran() {
             dataDuty.length === 0
 
         ) {
+
 
             tbody.innerHTML = `
 
@@ -3020,7 +3169,7 @@ async function janaLaporanAnggaran() {
 
                         Tiada data duty bagi Pos:
 
-                        ${pos}
+                        ${posDipilih}
 
                     </td>
 
@@ -3031,7 +3180,7 @@ async function janaLaporanAnggaran() {
 
             paparMesej(
 
-                "Tiada data duty bagi Pos: " + pos,
+                "Tiada data duty bagi Pos yang dipilih.",
 
                 "error"
 
@@ -3044,166 +3193,10 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 2. SENARAI NO SKB
+        // 3. KUMPUL MENGIKUT no_skb
         // =================================================
 
-        const senaraiNoSkb = [
-
-            ...
-
-            new Set(
-
-                dataDuty
-
-                    .map(
-
-                        function (
-
-                            duty
-
-                        ) {
-
-                            return duty.no_skb;
-
-                        }
-
-                    )
-
-                    .filter(
-
-                        function (
-
-                            no
-
-                        ) {
-
-                            return no !== null &&
-
-                                no !== undefined &&
-
-                                String(
-
-                                    no
-
-                                ).trim() !== "";
-
-                        }
-
-                    )
-
-            )
-
-        ];
-
-
-        // =================================================
-        // 3. AMBIL GAJI POKOK SAHAJA
-        // DARIPADA Data_Anggota
-        // =================================================
-
-        let dataGaji = [];
-
-
-        if (
-
-            senaraiNoSkb.length > 0
-
-        ) {
-
-
-            const gajiResult =
-
-                await supabaseClient
-
-                    .from(
-
-                        "Data_Anggota"
-
-                    )
-
-                    .select(`
-
-                        no_skb,
-
-                        gaji_pokok
-
-                    `)
-
-                    .in(
-
-                        "no_skb",
-
-                        senaraiNoSkb
-
-                    );
-
-
-            console.log(
-
-                "DATA GAJI:",
-
-                gajiResult
-
-            );
-
-
-            if (
-
-                gajiResult.error
-
-            ) {
-
-                throw gajiResult.error;
-
-            }
-
-
-            dataGaji =
-
-                gajiResult.data || [];
-
-        }
-
-
-        // =================================================
-        // 4. MAP GAJI
-        // =================================================
-
-        const mapGaji =
-
-            new Map();
-
-
-        dataGaji.forEach(
-
-            function (
-
-                anggota
-
-            ) {
-
-                mapGaji.set(
-
-                    String(
-
-                        anggota.no_skb
-
-                    ),
-
-                    anggota.gaji_pokok
-
-                );
-
-            }
-
-        );
-
-
-        // =================================================
-        // 5. KUMPUL DUTY IKUT NO SKB
-        // =================================================
-
-        const mapDuty =
+        const mapAnggota =
 
             new Map();
 
@@ -3216,6 +3209,7 @@ async function janaLaporanAnggaran() {
 
             ) {
 
+
                 const key =
 
                     String(
@@ -3227,7 +3221,7 @@ async function janaLaporanAnggaran() {
 
                 if (
 
-                    !mapDuty.has(
+                    !mapAnggota.has(
 
                         key
 
@@ -3235,24 +3229,43 @@ async function janaLaporanAnggaran() {
 
                 ) {
 
-                    mapDuty.set(
+
+                    mapAnggota.set(
 
                         key,
 
-                        []
+                        {
+
+                            noSkb:
+
+                                duty.no_skb,
+
+                            nama:
+
+                                duty.nama_anggota || "",
+
+                            noAnggota:
+
+                                duty.no_anggota || "",
+
+                            duty: []
+
+                        }
 
                     );
 
                 }
 
 
-                mapDuty
+                mapAnggota
 
                     .get(
 
                         key
 
                     )
+
+                    .duty
 
                     .push(
 
@@ -3266,16 +3279,103 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 6. JUMLAH KESELURUHAN
+        // 4. AMBIL GAJI DARIPADA Data_Anggota
+        // =================================================
+
+        const senaraiNoSkb =
+
+            Array.from(
+
+                mapAnggota.keys()
+
+            );
+
+
+        const anggotaResult =
+
+            await supabaseClient
+
+                .from(
+
+                    "Data_Anggota"
+
+                )
+
+                .select(
+
+                    "no_skb, gaji_pokok"
+
+                )
+
+                .in(
+
+                    "no_skb",
+
+                    senaraiNoSkb
+
+                );
+
+
+        if (
+
+            anggotaResult.error
+
+        ) {
+
+
+            throw anggotaResult.error;
+
+        }
+
+
+        const mapGaji =
+
+            new Map();
+
+
+        (anggotaResult.data || [])
+
+            .forEach(
+
+                function (
+
+                    anggota
+
+                ) {
+
+
+                    mapGaji.set(
+
+                        String(
+
+                            anggota.no_skb
+
+                        ),
+
+                        anggota.gaji_pokok
+
+                    );
+
+                }
+
+            );
+
+
+        // =================================================
+        // 5. JUMLAH KESELURUHAN
         // =================================================
 
         let jumlahJamBiasa = 0;
 
+
         let jumlahHariOff = 0;
+
 
         let jumlahJamOff = 0;
 
+
         let jumlahHariCutiAm = 0;
+
 
         let jumlahJamCutiAm = 0;
 
@@ -3287,54 +3387,25 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 7. PAPAR SETIAP ANGGOTA
+        // 6. PAPAR DATA ANGGOTA
         // =================================================
 
-        mapDuty.forEach(
+        mapAnggota.forEach(
 
             function (
 
-                dutyAnggota,
-
-                key
+                anggota
 
             ) {
 
 
-                const pertama =
+                const dutyAnggota =
 
-                    dutyAnggota[0];
-
-
-                // -----------------------------------------
-                // DATA DARIPADA jadual_duty
-                // -----------------------------------------
-
-                const noSkb =
-
-                    pertama.no_skb || "";
-
-
-                const nama =
-
-                    pertama.nama_anggota || "";
+                    anggota.duty;
 
 
                 // -----------------------------------------
-                // GAJI POKOK DARI Data_Anggota
-                // -----------------------------------------
-
-                const gajiPokok =
-
-                    mapGaji.get(
-
-                        key
-
-                    ) || 0;
-
-
-                // -----------------------------------------
-                // HARI BIASA
+                // JAM HARI BIASA
                 // jumlah jam_klm
                 // -----------------------------------------
 
@@ -3349,6 +3420,7 @@ async function janaLaporanAnggaran() {
                             duty
 
                         ) {
+
 
                             return jumlah +
 
@@ -3366,17 +3438,7 @@ async function janaLaporanAnggaran() {
 
 
                 // -----------------------------------------
-                // HARI OFF < 4 JAM
-                // KOSONG
-                // -----------------------------------------
-
-                const hariOffKurang4 =
-
-                    0;
-
-
-                // -----------------------------------------
-                // HARI OFF 4–8 JAM
+                // HARI OFF 4-8 JAM
                 // hari_offday_bertugas
                 // -----------------------------------------
 
@@ -3391,6 +3453,7 @@ async function janaLaporanAnggaran() {
                             duty
 
                         ) {
+
 
                             return jumlah +
 
@@ -3424,6 +3487,7 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
+
                             return jumlah +
 
                                 toNumber(
@@ -3456,6 +3520,7 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
+
                             return jumlah +
 
                                 toNumber(
@@ -3487,6 +3552,7 @@ async function janaLaporanAnggaran() {
                             duty
 
                         ) {
+
 
                             return jumlah +
 
@@ -3528,6 +3594,19 @@ async function janaLaporanAnggaran() {
                     jamCutiAm;
 
 
+                const gajiPokok =
+
+                    mapGaji.get(
+
+                        String(
+
+                            anggota.noSkb
+
+                        )
+
+                    );
+
+
                 const tr =
 
                     document.createElement(
@@ -3548,22 +3627,14 @@ async function janaLaporanAnggaran() {
 
                     <td>
 
-                        ${escapeHTML(
-
-                            noSkb
-
-                        )}
+                        ${anggota.noSkb || ""}
 
                     </td>
 
 
                     <td class="left">
 
-                        ${escapeHTML(
-
-                            nama
-
-                        )}
+                        ${anggota.nama || ""}
 
                     </td>
 
@@ -3714,7 +3785,7 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 8. JUMLAH KESELURUHAN
+        // 7. JUMLAH KESELURUHAN
         // =================================================
 
         tfoot.innerHTML = `
@@ -3845,13 +3916,6 @@ async function janaLaporanAnggaran() {
 
         );
 
-
-        console.log(
-
-            "LAPORAN BERJAYA DIJANA"
-
-        );
-
     }
 
 
@@ -3879,11 +3943,7 @@ async function janaLaporanAnggaran() {
 
                     RALAT:
 
-                    ${escapeHTML(
-
-                        error.message
-
-                    )}
+                    ${error.message}
 
                 </td>
 
@@ -3906,7 +3966,7 @@ async function janaLaporanAnggaran() {
 
 
 // =====================================================
-// TUKAR NILAI KEPADA NOMBOR
+// TUKAR KEPADA NOMBOR
 // =====================================================
 
 function toNumber(
@@ -3926,6 +3986,7 @@ function toNumber(
 
     ) {
 
+
         return 0;
 
     }
@@ -3943,7 +4004,7 @@ function toNumber(
 
                 .replace(
 
-                    /,/g,
+                    ",",
 
                     ""
 
@@ -4027,73 +4088,6 @@ function formatRM(
     );
 
 }
-
-
-// =====================================================
-// ELAK HTML ROSAK
-// =====================================================
-
-function escapeHTML(
-
-    nilai
-
-) {
-
-
-    return String(
-
-        nilai === null ||
-
-        nilai === undefined
-
-            ? ""
-
-            : nilai
-
-    )
-
-        .replace(
-
-            /&/g,
-
-            "&amp;"
-
-        )
-
-        .replace(
-
-            /</g,
-
-            "&lt;"
-
-        )
-
-        .replace(
-
-            />/g,
-
-            "&gt;"
-
-        )
-
-        .replace(
-
-            /"/g,
-
-            "&quot;"
-
-        )
-
-        .replace(
-
-            /'/g,
-
-            "&#039;"
-
-        );
-
-}
-
 
 </script>
 
