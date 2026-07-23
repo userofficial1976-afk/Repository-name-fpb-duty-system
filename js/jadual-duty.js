@@ -1766,6 +1766,7 @@ function pasangEventFilter() {
 }
 
 
+```javascript
 // =====================================================
 // SIMPAN DUTY
 // =====================================================
@@ -1774,59 +1775,51 @@ async function simpanDuty() {
 
     try {
 
-        const tarikh = getValue(
+        // =================================================
+        // AMBIL DATA BORANG
+        // =================================================
 
-            "tarikh"
+        const tarikh = getValue("tarikh");
 
-        );
+        const noSkb = getValue("noSkb");
 
-
-        const noSkb = getValue(
-
-            "noSkb"
-
-        );
-
-
-        const kodDuty = getValue(
-
-            "kodDuty"
-
-        );
-
+        const kodDuty = getValue("kodDuty");
 
         const kodTempatKerja = getValue(
-
             "kodTempatKerja"
-
         );
-
 
         const unitPilihan = getValue(
-
             "unitPilihan"
-
         );
 
+
+        // =================================================
+        // CARI ANGGOTA
+        // =================================================
 
         const anggota = semuaAnggota.find(
 
             function (a) {
 
-                return String(
+                return String(a.no_skb)
 
-                    a.no_skb
+                    .trim()
 
-                ) === String(
+                    ===
 
-                    noSkb
+                    String(noSkb)
 
-                );
+                        .trim();
 
             }
 
         );
 
+
+        // =================================================
+        // CARI KOD DUTY
+        // =================================================
 
         const duty = semuaKodDuty.find(
 
@@ -1838,7 +1831,9 @@ async function simpanDuty() {
 
                         .trim()
 
-                        .toLowerCase() ===
+                        .toLowerCase()
+
+                    ===
 
                     String(unitPilihan)
 
@@ -1846,13 +1841,17 @@ async function simpanDuty() {
 
                         .toLowerCase()
 
+
                     &&
+
 
                     String(item.kod)
 
                         .trim()
 
-                        .toLowerCase() ===
+                        .toLowerCase()
+
+                    ===
 
                     String(kodDuty)
 
@@ -1867,6 +1866,10 @@ async function simpanDuty() {
         );
 
 
+        // =================================================
+        // CARI TEMPAT KERJA
+        // =================================================
+
         const tempatKerja =
 
             semuaKodTempatKerja.find(
@@ -1879,7 +1882,9 @@ async function simpanDuty() {
 
                             .trim()
 
-                            .toLowerCase() ===
+                            .toLowerCase()
+
+                        ===
 
                         String(unitPilihan)
 
@@ -1887,7 +1892,9 @@ async function simpanDuty() {
 
                             .toLowerCase()
 
+
                         &&
+
 
                         String(
 
@@ -1897,7 +1904,9 @@ async function simpanDuty() {
 
                             .trim()
 
-                            .toLowerCase() ===
+                            .toLowerCase()
+
+                        ===
 
                         String(
 
@@ -1916,6 +1925,10 @@ async function simpanDuty() {
             );
 
 
+        // =================================================
+        // VALIDASI TARIKH
+        // =================================================
+
         if (!tarikh) {
 
             paparPopup(
@@ -1932,6 +1945,10 @@ async function simpanDuty() {
 
         }
 
+
+        // =================================================
+        // VALIDASI ANGGOTA
+        // =================================================
 
         if (!anggota) {
 
@@ -1950,6 +1967,10 @@ async function simpanDuty() {
         }
 
 
+        // =================================================
+        // VALIDASI KOD DUTY
+        // =================================================
+
         if (!duty) {
 
             paparPopup(
@@ -1967,6 +1988,10 @@ async function simpanDuty() {
         }
 
 
+        // =================================================
+        // VALIDASI TEMPAT KERJA
+        // =================================================
+
         if (!tempatKerja) {
 
             paparPopup(
@@ -1983,6 +2008,10 @@ async function simpanDuty() {
 
         }
 
+
+        // =================================================
+        // CHECKBOX OFFDAY / CUTIAM
+        // =================================================
 
         const hariOffdayElement =
 
@@ -2002,57 +2031,102 @@ async function simpanDuty() {
             );
 
 
+        // =================================================
+        // DATA UNTUK SUPABASE
+        // =================================================
+
         const dataDuty = {
 
-            tarikh: tarikh,
+            tarikh:
 
-            bulan: getValue(
+                tarikh,
 
-                "bulan"
 
-            ),
-
-            tahun: Number(
+            bulan:
 
                 getValue(
 
-                    "tahun"
+                    "bulan"
 
-                )
+                ),
 
-            ),
 
-            no_skb: anggota.no_skb,
+            tahun:
 
-            no_anggota: anggota.no_anggota,
+                Number(
 
-            nama_anggota: anggota.nama,
+                    getValue(
 
-            kawasan: anggota.kawasan,
+                        "tahun"
 
-            unit: anggota.unit,
+                    )
 
-            ketua_unit: anggota.ketua_unit,
+                ),
 
-            ketua_pos: anggota.ketua_pos,
 
-            pos: anggota.pos,
+            no_skb:
 
-            nama_pos_asal: anggota.pos,
+                anggota.no_skb,
 
-            hari: getValue(
 
-                "hari"
+            no_anggota:
 
-            ),
+                anggota.no_anggota,
+
+
+            nama_anggota:
+
+                anggota.nama,
+
+
+            kawasan:
+
+                anggota.kawasan,
+
+
+            unit:
+
+                anggota.unit,
+
+
+            ketua_unit:
+
+                anggota.ketua_unit,
+
+
+            ketua_pos:
+
+                anggota.ketua_pos,
+
+
+            pos:
+
+                anggota.pos,
+
+
+            nama_pos_asal:
+
+                anggota.pos,
+
+
+            hari:
+
+                getValue(
+
+                    "hari"
+
+                ),
+
 
             waktu_tugasan:
 
                 duty.waktu_tugasan,
 
+
             jam_kerja:
 
                 duty.jam_kerja,
+
 
             jam_klm:
 
@@ -2062,21 +2136,26 @@ async function simpanDuty() {
 
                 ),
 
+
             kod_duty:
 
                 duty.kod,
+
 
             kod_waktu_kerja:
 
                 duty.kod,
 
+
             kod_tempat_kerja:
 
                 tempatKerja.kod_tempat_kerja,
 
+
             tempat_kerja:
 
                 tempatKerja.nama_tempat_kerja,
+
 
             hari_offday_bertugas:
 
@@ -2087,6 +2166,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_offday_bertugas:
 
@@ -2100,6 +2180,7 @@ async function simpanDuty() {
 
                 ),
 
+
             hari_cutiam_bertugas:
 
                 hariCutiamElement &&
@@ -2109,6 +2190,7 @@ async function simpanDuty() {
                     ? 1
 
                     : 0,
+
 
             jam_cutiam_bertugas:
 
@@ -2122,15 +2204,511 @@ async function simpanDuty() {
 
                 ),
 
+
             dikemaskini_oleh:
 
                 "Sistem",
 
+
             dikemaskini_pada:
 
-                new Date().toISOString()
+                new Date()
+
+                    .toISOString()
 
         };
+
+
+        // =================================================
+        // DEBUG
+        // =================================================
+
+        console.log(
+
+            "DATA YANG AKAN DISIMPAN:"
+
+        );
+
+
+        console.table(
+
+            dataDuty
+
+        );
+
+
+        // =================================================
+        // SIMPAN STATUS EDIT
+        // =================================================
+
+        const sedangEdit =
+
+            dutySedangEdit !== null;
+
+
+        const idEdit =
+
+            dutySedangEdit;
+
+
+        let result;
+
+
+        // =================================================
+        // UPDATE
+        // =================================================
+
+        if (sedangEdit) {
+
+            result =
+
+                await supabaseClient
+
+                    .from(
+
+                        "jadual_duty"
+
+                    )
+
+                    .update(
+
+                        dataDuty
+
+                    )
+
+                    .eq(
+
+                        "id",
+
+                        idEdit
+
+                    )
+
+                    .select();
+
+        }
+
+
+        // =================================================
+        // INSERT
+        // =================================================
+
+        else {
+
+            result =
+
+                await supabaseClient
+
+                    .from(
+
+                        "jadual_duty"
+
+                    )
+
+                    .insert(
+
+                        [
+
+                            dataDuty
+
+                        ]
+
+                    )
+
+                    .select();
+
+        }
+
+
+        // =================================================
+        // SEMAK ERROR SUPABASE
+        // =================================================
+
+        if (
+
+            result.error
+
+        ) {
+
+            console.error(
+
+                "RALAT SUPABASE PENUH:",
+
+                result.error
+
+            );
+
+
+            const mesejError =
+
+                result.error.message
+
+                ||
+
+                result.error.details
+
+                ||
+
+                result.error.hint
+
+                ||
+
+                JSON.stringify(
+
+                    result.error
+
+                )
+
+                ||
+
+                "Gagal menyimpan data ke Supabase.";
+
+
+            paparPopup(
+
+                mesejError,
+
+                "error",
+
+                "Gagal Simpan Duty"
+
+            );
+
+
+            return;
+
+        }
+
+
+        // =================================================
+        // SEMAK DATA
+        // =================================================
+
+        console.log(
+
+            "DATA BERJAYA DISIMPAN:",
+
+            result.data
+
+        );
+
+
+        // =================================================
+        // RESET MODE EDIT
+        // =================================================
+
+        dutySedangEdit = null;
+
+
+        // =================================================
+        // RESET BORANG
+        // =================================================
+
+        kosongkanBorangDuty();
+
+
+        // =================================================
+        // POPUP BERJAYA
+        // =================================================
+
+        if (
+
+            sedangEdit
+
+        ) {
+
+            paparPopup(
+
+                "Rekod Duty berjaya dikemaskini.",
+
+                "success",
+
+                "Duty Dikemaskini"
+
+            );
+
+        }
+
+        else {
+
+            paparPopup(
+
+                "Rekod Duty berjaya disimpan.",
+
+                "success",
+
+                "Duty Berjaya Disimpan"
+
+            );
+
+        }
+
+
+        // =================================================
+        // PAPAR SEMULA DATA
+        // =================================================
+
+        await paparDuty();
+
+    }
+
+
+    catch (
+
+        error
+
+    ) {
+
+        console.error(
+
+            "RALAT SISTEM PENUH:",
+
+            error
+
+        );
+
+
+        const mesejError =
+
+            error.message
+
+            ||
+
+            error.details
+
+            ||
+
+            error.hint
+
+            ||
+
+            JSON.stringify(
+
+                error
+
+            )
+
+            ||
+
+            "Berlaku ralat tidak dijangka.";
+
+
+        paparPopup(
+
+            mesejError,
+
+            "error",
+
+            "Gagal Simpan Duty"
+
+        );
+
+    }
+
+}
+```
+
+Tambahkan fungsi ini juga dalam fail anda:
+
+```javascript
+// =====================================================
+// KOSONGKAN BORANG DUTY
+// =====================================================
+
+function kosongkanBorangDuty() {
+
+    setValue(
+
+        "tarikh",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "bulan",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "tahun",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "hari",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "unitPilihan",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "posAsal",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "anggota",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "kodDuty",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "kodTempatKerja",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "tempatKerja",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "waktuTugasan",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "jamKerja",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "jamKlm",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "jamOffday",
+
+        ""
+
+    );
+
+
+    setValue(
+
+        "jamCutiam",
+
+        ""
+
+    );
+
+
+    kosongkanPos();
+
+
+    kosongkanAnggota();
+
+
+    kosongkanMaklumatAnggota();
+
+
+    kosongkanKodDuty();
+
+
+    kosongkanKodTempatKerja();
+
+
+    const offday =
+
+        document.getElementById(
+
+            "hariOffday"
+
+        );
+
+
+    const cutiam =
+
+        document.getElementById(
+
+            "hariCutiam"
+
+        );
+
+
+    if (
+
+        offday
+
+    ) {
+
+        offday.checked = false;
+
+    }
+
+
+    if (
+
+        cutiam
+
+    ) {
+
+        cutiam.checked = false;
+
+    }
+
+}
+```
+
 
 
         // =================================================
