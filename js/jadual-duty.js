@@ -1481,17 +1481,13 @@ async function muatKodDuty() {
 // EVENT KOD DUTY
 // =====================================================
 
+// =====================================================
+// EVENT KOD DUTY
+// =====================================================
+
 function pasangEventKodDuty() {
 
-
-    const select =
-
-        document.getElementById(
-
-            "kodDuty"
-
-        );
-
+    const select = document.getElementById("kodDuty");
 
     if (!select)
 
@@ -1545,30 +1541,68 @@ function pasangEventKodDuty() {
 
             if (data) {
 
-    setValue(
-        "jamKlm",
-        data.jam_klm
-    );
 
-}
-else {
+                // AUTO ISI WAKTU TUGASAN
 
-    setValue(
-        "jamKlm",
-        0
+                setValue(
 
-    );
+                    "waktuTugasan",
 
-}
+                    data.waktu_tugasan
+
+                );
+
+
+                // AUTO ISI JAM KERJA
+
+                setValue(
+
+                    "jamKerja",
+
+                    data.jam_kerja
+
+                );
+
+
+                // AUTO ISI JAM KLM
+
+                setValue(
+
+                    "jamKlm",
+
+                    data.jam_klm
+
+                );
+
+
+            }
 
             else {
 
 
                 setValue(
 
+                    "waktuTugasan",
+
+                    ""
+
+                );
+
+
+                setValue(
+
+                    "jamKerja",
+
+                    ""
+
+                );
+
+
+                setValue(
+
                     "jamKlm",
 
-                    0
+                    ""
 
                 );
 
@@ -1579,7 +1613,6 @@ else {
     );
 
 }
-
 
 // =====================================================
 // ISI KOD DUTY
