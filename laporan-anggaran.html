@@ -67,24 +67,21 @@ document.addEventListener(
                     .toString();
 
 
-            const optionTahun =
+            const wujud =
 
                 Array.from(
 
                     tahunSelect.options
 
-                );
-
-
-            const wujud =
-
-                optionTahun.some(
+                ).some(
 
                     function (option) {
+
 
                         return option.value ===
 
                             tahunSekarang;
+
 
                     }
 
@@ -93,9 +90,11 @@ document.addEventListener(
 
             if (wujud) {
 
+
                 tahunSelect.value =
 
                     tahunSekarang;
+
 
             }
 
@@ -169,7 +168,7 @@ function paparMesej(
 
 // =====================================================
 // ISI DROPDOWN POS
-// AMBIL TERUS DARIPADA Data_Anggota
+// AMBIL DARIPADA Data_Anggota
 // =====================================================
 
 async function isiSenaraiPos() {
@@ -185,6 +184,7 @@ async function isiSenaraiPos() {
 
 
     if (!selectPos) {
+
 
         console.error(
 
@@ -245,27 +245,7 @@ async function isiSenaraiPos() {
             );
 
 
-            selectPos.innerHTML = `
-
-                <option value="">
-
-                    -- Gagal Ambil Pos --
-
-                </option>
-
-            `;
-
-
-            paparMesej(
-
-                result.error.message,
-
-                "error"
-
-            );
-
-
-            return;
+            throw result.error;
 
         }
 
@@ -289,7 +269,9 @@ async function isiSenaraiPos() {
 
                         function (row) {
 
+
                             return row.pos;
+
 
                         }
 
@@ -437,7 +419,7 @@ async function isiSenaraiPos() {
 
         console.error(
 
-            "RALAT SISTEM AMBIL POS:",
+            "RALAT AMBIL POS:",
 
             error
 
@@ -597,7 +579,7 @@ async function janaLaporanAnggaran() {
 
             <td colspan="15">
 
-                Sedang mengambil data anggota...
+                Sedang mengambil data...
 
             </td>
 
@@ -634,13 +616,9 @@ async function janaLaporanAnggaran() {
 
         SENARAI_BULAN[bulan]
 
-        +
+        + " "
 
-        " "
-
-        +
-
-        tahun;
+        + tahun;
 
 
     document
@@ -660,7 +638,7 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 1. AMBIL ANGGOTA MENGIKUT POS
+        // 1. AMBIL ANGGOTA BERDASARKAN POS
         // =================================================
 
         const anggotaResult =
@@ -760,11 +738,10 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 2. DAPATKAN NO SKB ANGGOTA
+        // 2. AMBIL NO SKB
         // =================================================
 
         const senaraiNoSkb =
-
 
             dataAnggota
 
@@ -778,6 +755,7 @@ async function janaLaporanAnggaran() {
 
 
                         return anggota.no_skb;
+
 
                     }
 
@@ -802,6 +780,7 @@ async function janaLaporanAnggaran() {
 
                             ).trim() !== "";
 
+
                     }
 
                 );
@@ -817,7 +796,7 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 3. AMBIL DATA DUTY
+        // 3. AMBIL DUTY MENGIKUT NO SKB
         // =================================================
 
         let dataDuty = [];
@@ -878,11 +857,11 @@ async function janaLaporanAnggaran() {
 
                     )
 
-                    .eq(
+                    .in(
 
-                        "pos",
+                        "no_skb",
 
-                        pos
+                        senaraiNoSkb
 
                     );
 
@@ -908,7 +887,7 @@ async function janaLaporanAnggaran() {
 
         console.log(
 
-            "DATA DUTY:",
+            "DATA DUTY MENGIKUT NO SKB:",
 
             dataDuty
 
@@ -916,7 +895,7 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 4. MAP DUTY MENGIKUT NO SKB
+        // 4. MAP DUTY
         // =================================================
 
         const mapDuty =
@@ -984,7 +963,7 @@ async function janaLaporanAnggaran() {
 
 
         // =================================================
-        // 5. PAPAR SETIAP ANGGOTA
+        // 5. PAPAR DATA ANGGOTA
         // =================================================
 
         tbody.innerHTML = "";
@@ -1026,10 +1005,6 @@ async function janaLaporanAnggaran() {
                     ) || [];
 
 
-                // =========================================
-                // JUMLAH JAM DUTY
-                // =========================================
-
                 const jam =
 
                     dutyAnggota.reduce(
@@ -1043,9 +1018,7 @@ async function janaLaporanAnggaran() {
                         ) {
 
 
-                            return total
-
-                                +
+                            return total +
 
                                 (
 
@@ -1053,13 +1026,10 @@ async function janaLaporanAnggaran() {
 
                                         duty.jam_kerja
 
-                                    )
-
-                                    ||
-
-                                    0
+                                    ) || 0
 
                                 );
+
 
                         },
 
@@ -1067,10 +1037,6 @@ async function janaLaporanAnggaran() {
 
                     );
 
-
-                // =========================================
-                // JUMLAH KLM
-                // =========================================
 
                 const klm =
 
@@ -1085,9 +1051,7 @@ async function janaLaporanAnggaran() {
                         ) {
 
 
-                            return total
-
-                                +
+                            return total +
 
                                 (
 
@@ -1095,13 +1059,10 @@ async function janaLaporanAnggaran() {
 
                                         duty.jam_klm
 
-                                    )
-
-                                    ||
-
-                                    0
+                                    ) || 0
 
                                 );
+
 
                         },
 
@@ -1131,13 +1092,11 @@ async function janaLaporanAnggaran() {
 
                 tr.innerHTML = `
 
-
                     <td>
 
                         ${bil}
 
                     </td>
-
 
                     <td>
 
@@ -1145,13 +1104,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="left">
 
                         ${anggota.nama || ""}
 
                     </td>
-
 
                     <td class="amount">
 
@@ -1163,7 +1120,6 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td>
 
                         ${jam.toFixed(
@@ -1174,13 +1130,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="amount">
 
                         RM 0.00
 
                     </td>
-
 
                     <td>
 
@@ -1188,13 +1142,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="amount">
 
                         RM 0.00
 
                     </td>
-
 
                     <td>
 
@@ -1202,13 +1154,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="amount">
 
                         RM 0.00
 
                     </td>
-
 
                     <td>
 
@@ -1216,13 +1166,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="amount">
 
                         RM 0.00
 
                     </td>
-
 
                     <td>
 
@@ -1230,13 +1178,11 @@ async function janaLaporanAnggaran() {
 
                     </td>
 
-
                     <td class="amount">
 
                         RM 0.00
 
                     </td>
-
 
                     <td>
 
@@ -1247,7 +1193,6 @@ async function janaLaporanAnggaran() {
                         )}
 
                     </td>
-
 
                 `;
 
@@ -1275,13 +1220,11 @@ async function janaLaporanAnggaran() {
 
             <tr class="total-row">
 
-
                 <td colspan="4">
 
                     JUMLAH KESELURUHAN
 
                 </td>
-
 
                 <td>
 
@@ -1293,20 +1236,17 @@ async function janaLaporanAnggaran() {
 
                 </td>
 
-
                 <td>
 
                     -
 
                 </td>
 
-
                 <td colspan="8">
 
                     -
 
                 </td>
-
 
                 <td>
 
@@ -1317,7 +1257,6 @@ async function janaLaporanAnggaran() {
                     )}
 
                 </td>
-
 
             </tr>
 
@@ -1333,7 +1272,7 @@ async function janaLaporanAnggaran() {
 
             paparMesej(
 
-                "Anggota dijumpai, tetapi tiada data duty bagi Bulan / Tahun / Pos yang dipilih.",
+                "Anggota dijumpai tetapi tiada duty bagi Bulan / Tahun yang dipilih.",
 
                 "error"
 
@@ -1353,7 +1292,6 @@ async function janaLaporanAnggaran() {
             );
 
         }
-
 
     }
 
@@ -1418,11 +1356,7 @@ function formatRM(
 
             nilai
 
-        )
-
-        ||
-
-        0;
+        ) || 0;
 
 
     return nombor.toLocaleString(
