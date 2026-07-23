@@ -805,7 +805,7 @@ body {
 
         repeat(
 
-            4,
+            2,
 
             1fr
 
@@ -1018,7 +1018,7 @@ select:focus {
 
     width: 100%;
 
-    min-width: 1500px;
+    min-width: 1300px;
 
     border-collapse: collapse;
 
@@ -1407,6 +1407,10 @@ select:focus {
 
         font-size: 11px;
 
+        margin-left: auto;
+
+        margin-right: auto;
+
     }
 
 
@@ -1445,10 +1449,6 @@ select:focus {
 
 }
 
-
-/* =====================================================
-   PRINT REPORT ONLY
-===================================================== */
 
 @media print {
 
@@ -1693,9 +1693,9 @@ ANGGARAN RK02
 
 <p>
 
-Anggaran tuntutan duty anggota mengikut unit,
+Anggaran tuntutan duty anggota
 
-pos dan bulan operasi.
+mengikut pos dan bulan operasi.
 
 </p>
 
@@ -1732,62 +1732,6 @@ Pilih maklumat laporan
 <div id="mesej" class="mesej"></div>
 
 <div class="form-grid">
-
-<div class="form-group">
-
-<label>
-
-Unit
-
-</label>
-
-<select id="unit">
-
-<option value="">
-
--- Pilih Unit --
-
-</option>
-
-<option value="Jerangau">
-
-Jerangau
-
-</option>
-
-<option value="Chador">
-
-Chador
-
-</option>
-
-<option value="Terengganu">
-
-Terengganu
-
-</option>
-
-<option value="Setiu">
-
-Setiu
-
-</option>
-
-<option value="Rantau Abang">
-
-Rantau Abang
-
-</option>
-
-<option value="Kerteh">
-
-Kerteh
-
-</option>
-
-</select>
-
-</div>
 
 <div class="form-group">
 
@@ -1831,28 +1775,6 @@ Bulan
 
 <label>
 
-Tahun
-
-</label>
-
-<input
-
-```
-type="number"
-
-id="tahun"
-
-value="2026"
-```
-
->
-
-</div>
-
-<div class="form-group">
-
-<label>
-
 Pos
 
 </label>
@@ -1861,7 +1783,7 @@ Pos
 
 <option value="">
 
--- Semua Pos --
+-- Pilih Pos --
 
 </option>
 
@@ -1956,12 +1878,6 @@ BIL
 <th rowspan="2">
 
 SKB / NO ANGGOTA
-
-</th>
-
-<th rowspan="2">
-
-PANGKAT
 
 </th>
 
@@ -2085,9 +2001,9 @@ RM
 
 <tr>
 
-<td colspan="16">
+<td colspan="15">
 
-Sila pilih Unit dan tekan JANA LAPORAN
+Sila pilih Pos dan Bulan kemudian tekan JANA LAPORAN
 
 </td>
 
@@ -2146,4 +2062,3 @@ src="js/laporan-anggaran.js"
 </body>
 
 </html>
-
