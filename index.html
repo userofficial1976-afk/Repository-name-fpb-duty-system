@@ -7,16 +7,17 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>
 Forecast Duty System — Wilayah Terengganu
 </title>
 
+
 <style>
+
 
 /* =====================================================
    GLOBAL
@@ -31,9 +32,13 @@ Forecast Duty System — Wilayah Terengganu
     padding: 0;
 
     font-family:
+
         "Segoe UI",
+
         Arial,
+
         Helvetica,
+
         sans-serif;
 
 }
@@ -41,9 +46,9 @@ Forecast Duty System — Wilayah Terengganu
 
 body {
 
-    background: #f3f3f3;
+    background: #f4f7f8;
 
-    color: #111;
+    color: #263238;
 
 }
 
@@ -69,9 +74,19 @@ body {
 
     width: 290px;
 
-    background: #080808;
+    background:
 
-    color: white;
+        linear-gradient(
+
+            180deg,
+
+            #e8f1f3 0%,
+
+            #dcecef 100%
+
+        );
+
+    color: #234047;
 
     padding: 24px 16px;
 
@@ -87,12 +102,12 @@ body {
 
     overflow-y: auto;
 
-    border-right: 1px solid #292929;
+    border-right: 1px solid #cbdde1;
 
 }
 
 
-/* CORAK BATIK HALUS */
+/* CORAK HALUS */
 
 .sidebar::after {
 
@@ -102,29 +117,41 @@ body {
 
     inset: 0;
 
-    opacity: 0.08;
+    opacity: 0.15;
 
     pointer-events: none;
 
     background-image:
 
         linear-gradient(
+
             45deg,
+
             transparent 45%,
-            white 46%,
-            white 54%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
             transparent 55%
+
         ),
 
         linear-gradient(
+
             -45deg,
+
             transparent 45%,
-            white 46%,
-            white 54%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
             transparent 55%
+
         );
 
-    background-size: 22px 22px;
+    background-size: 30px 30px;
 
 }
 
@@ -143,7 +170,7 @@ body {
 
     padding: 0 11px 25px;
 
-    border-bottom: 1px solid #303030;
+    border-bottom: 1px solid #cbdde1;
 
     position: relative;
 
@@ -164,23 +191,41 @@ body {
 
     padding: 5px;
 
-    border-radius: 10px;
+    border-radius: 12px;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.12
+
+        );
 
 }
 
 
 .brand-text h1 {
 
-    font-size: 18px;
+    font-size: 17px;
 
-    letter-spacing: 0.7px;
+    letter-spacing: 0.4px;
+
+    color: #234047;
 
 }
 
 
 .brand-text p {
 
-    color: #a3a3a3;
+    color: #6d858b;
 
     font-size: 12px;
 
@@ -190,7 +235,7 @@ body {
 
 
 /* =====================================================
-   TURTLE BRAND
+   HERITAGE MARK
 ===================================================== */
 
 .heritage-mark {
@@ -199,11 +244,23 @@ body {
 
     padding: 15px;
 
-    border: 1px solid #3b3b3b;
+    border: 1px solid #c6dadd;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    background: #111;
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.55
+
+        );
 
     position: relative;
 
@@ -218,7 +275,9 @@ body {
 
     font-size: 12px;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
+
+    color: #365b63;
 
 }
 
@@ -229,7 +288,7 @@ body {
 
     margin-top: 7px;
 
-    color: #999;
+    color: #769097;
 
     font-size: 11px;
 
@@ -242,7 +301,7 @@ body {
 
 .nav-title {
 
-    color: #777;
+    color: #789096;
 
     font-size: 11px;
 
@@ -284,37 +343,55 @@ body {
 
     gap: 14px;
 
-    color: #bdbdbd;
+    color: #577178;
 
     text-decoration: none;
 
     padding: 14px 15px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     font-size: 15px;
 
     font-weight: 600;
 
-    transition: 0.2s;
+    transition: all 0.2s ease;
 
 }
 
 
 .nav a:hover {
 
-    background: #1e1e1e;
+    background: #d1e4e8;
 
-    color: white;
+    color: #234047;
+
+    transform: translateX(2px);
 
 }
 
 
 .nav a.active {
 
-    background: white;
+    background: #ffffff;
 
-    color: #080808;
+    color: #247b83;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            50,
+
+            100,
+
+            110,
+
+            0.10
+
+        );
 
 }
 
@@ -338,7 +415,11 @@ body {
 
     margin-left: 290px;
 
-    width: calc(100% - 290px);
+    width: calc(
+
+        100% - 290px
+
+    );
 
 }
 
@@ -351,9 +432,21 @@ body {
 
     min-height: 82px;
 
-    background: white;
+    background:
 
-    border-bottom: 1px solid #dcdcdc;
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.92
+
+        );
+
+    border-bottom: 1px solid #dce7e9;
 
     display: flex;
 
@@ -372,6 +465,8 @@ body {
 
     letter-spacing: 0.3px;
 
+    color: #263f45;
+
 }
 
 
@@ -379,7 +474,7 @@ body {
 
     font-size: 14px;
 
-    color: #777;
+    color: #829398;
 
     margin-top: 5px;
 
@@ -394,9 +489,9 @@ body {
 
     gap: 9px;
 
-    background: #f1f1f1;
+    background: #e4f2ed;
 
-    color: #222;
+    color: #3d7662;
 
     padding: 10px 16px;
 
@@ -415,7 +510,7 @@ body {
 
     height: 9px;
 
-    background: #111;
+    background: #61a98d;
 
     border-radius: 50%;
 
@@ -441,11 +536,21 @@ body {
 
 .hero {
 
-    background: #0b0b0b;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
 
     color: white;
 
-    border-radius: 15px;
+    border-radius: 18px;
 
     padding: 35px 38px;
 
@@ -455,7 +560,23 @@ body {
 
     overflow: hidden;
 
-    border: 1px solid #262626;
+    border: 1px solid #77adb0;
+
+    box-shadow:
+
+        0 8px 22px
+
+        rgba(
+
+            57,
+
+            111,
+
+            118,
+
+            0.15
+
+        );
 
 }
 
@@ -474,7 +595,19 @@ body {
 
     height: 420px;
 
-    border: 1px solid #444;
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.25
+
+        );
 
     border-radius: 50%;
 
@@ -495,7 +628,19 @@ body {
 
     height: 400px;
 
-    border: 1px solid #333;
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
 
     border-radius: 50%;
 
@@ -524,7 +669,7 @@ body {
 
 .hero p {
 
-    color: #bdbdbd;
+    color: #e3f2f3;
 
     font-size: 15px;
 
@@ -541,7 +686,7 @@ body {
 
     height: 3px;
 
-    background: white;
+    background: #d8f1ef;
 
 }
 
@@ -562,7 +707,7 @@ body {
 
     height: 30px;
 
-    opacity: 0.25;
+    opacity: 0.20;
 
     background:
 
@@ -608,6 +753,8 @@ body {
 
     font-size: 21px;
 
+    color: #304c53;
+
 }
 
 
@@ -615,7 +762,7 @@ body {
 
     font-size: 14px;
 
-    color: #777;
+    color: #829398;
 
 }
 
@@ -629,7 +776,14 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+
+        repeat(
+
+            4,
+
+            1fr
+
+        );
 
     gap: 20px;
 
@@ -640,11 +794,11 @@ body {
 
 .stat-card {
 
-    background: white;
+    background: #ffffff;
 
-    border: 1px solid #dedede;
+    border: 1px solid #dce7e9;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
     padding: 23px;
 
@@ -654,8 +808,48 @@ body {
 
     box-shadow:
 
-        0 3px 10px
-        rgba(0,0,0,0.05);
+        0 4px 14px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.06
+
+        );
+
+    transition:
+
+        transform 0.2s ease,
+
+        box-shadow 0.2s ease;
+
+}
+
+
+.stat-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+
+        0 8px 20px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.12
+
+        );
 
 }
 
@@ -674,7 +868,7 @@ body {
 
     height: 120px;
 
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e0ecee;
 
     border-radius: 50%;
 
@@ -693,11 +887,11 @@ body {
 
     justify-content: center;
 
-    background: #111;
+    background: #e1f0f1;
 
-    color: white;
+    color: #3d7f86;
 
-    border-radius: 9px;
+    border-radius: 11px;
 
     font-size: 21px;
 
@@ -708,7 +902,7 @@ body {
 
     font-size: 14px;
 
-    color: #666;
+    color: #72858a;
 
     margin-top: 17px;
 
@@ -723,6 +917,8 @@ body {
 
     margin-top: 8px;
 
+    color: #2d4c53;
+
 }
 
 
@@ -735,6 +931,7 @@ body {
     display: grid;
 
     grid-template-columns:
+
         1.5fr 1fr;
 
     gap: 25px;
@@ -748,18 +945,29 @@ body {
 
 .card {
 
-    background: white;
+    background: #ffffff;
 
-    border: 1px solid #dedede;
+    border: 1px solid #dce7e9;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
     padding: 25px;
 
     box-shadow:
 
-        0 3px 10px
-        rgba(0,0,0,0.05);
+        0 4px 14px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.06
+
+        );
 
 }
 
@@ -781,6 +989,8 @@ body {
 
     font-size: 20px;
 
+    color: #304c53;
+
 }
 
 
@@ -788,7 +998,7 @@ body {
 
     font-size: 14px;
 
-    color: #777;
+    color: #829398;
 
 }
 
@@ -814,13 +1024,14 @@ table {
 
 
 th,
+
 td {
 
     padding: 15px 12px;
 
     text-align: left;
 
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #edf2f3;
 
     font-size: 15px;
 
@@ -829,7 +1040,7 @@ td {
 
 th {
 
-    color: #555;
+    color: #71858a;
 
     font-size: 12px;
 
@@ -837,21 +1048,21 @@ th {
 
     letter-spacing: 0.6px;
 
-    background: #f5f5f5;
+    background: #f2f7f8;
 
 }
 
 
 td {
 
-    color: #333;
+    color: #40575d;
 
 }
 
 
 tr:hover {
 
-    background: #f7f7f7;
+    background: #f6fafb;
 
 }
 
@@ -865,7 +1076,14 @@ tr:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+
+        repeat(
+
+            2,
+
+            1fr
+
+        );
 
     gap: 15px;
 
@@ -882,26 +1100,28 @@ tr:hover {
 
     padding: 17px;
 
-    border: 1px solid #dedede;
+    border: 1px solid #dce7e9;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     text-decoration: none;
 
-    color: #111;
+    color: #304c53;
 
-    transition: 0.2s;
+    transition: all 0.2s ease;
 
 }
 
 
 .quick-action:hover {
 
-    background: #111;
+    background: #edf6f7;
 
-    color: white;
+    color: #286c73;
 
-    border-color: #111;
+    border-color: #a9cdd0;
+
+    transform: translateY(-2px);
 
 }
 
@@ -918,23 +1138,13 @@ tr:hover {
 
     justify-content: center;
 
-    background: #111;
+    background: #e1f0f1;
 
-    color: white;
+    color: #3d7f86;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     font-size: 20px;
-
-}
-
-
-.quick-action:hover
-.quick-action-icon {
-
-    background: white;
-
-    color: #111;
 
 }
 
@@ -954,16 +1164,9 @@ tr:hover {
 
     font-size: 13px;
 
-    color: #777;
+    color: #829398;
 
     margin-top: 4px;
-
-}
-
-
-.quick-action:hover span {
-
-    color: #bbb;
 
 }
 
@@ -978,7 +1181,7 @@ tr:hover {
 
     padding: 30px;
 
-    color: #888;
+    color: #91a0a4;
 
     font-size: 13px;
 
@@ -994,7 +1197,14 @@ tr:hover {
     .stats {
 
         grid-template-columns:
-            repeat(2, 1fr);
+
+            repeat(
+
+                2,
+
+                1fr
+
+            );
 
     }
 
@@ -1061,7 +1271,13 @@ tr:hover {
 
         margin-left: 78px;
 
-        width: calc(100% - 78px);
+        width:
+
+            calc(
+
+                100% - 78px
+
+            );
 
     }
 
@@ -1141,48 +1357,84 @@ tr:hover {
 
 }
 
+
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="app">
+
 
 <!-- =====================================================
      SIDEBAR
 ===================================================== -->
 
+
 <aside class="sidebar">
+
 
 <div class="brand">
 
+
 <img
-src="logo.png"
-class="logo"
-alt="Logo FPB"
+
+    src="logo.png"
+
+    class="logo"
+
+    alt="Logo FPB"
 
 >
 
+
 <div class="brand-text">
 
-<h1>POLIS BANTUAN FGVSSSB</h1>
 
-<p>WILAYAH TERENGGANU</p>
+<h1>
+
+POLIS BANTUAN FGVSSSB
+
+</h1>
+
+
+<p>
+
+WILAYAH TERENGGANU
+
+</p>
+
 
 </div>
 
+
 </div>
+
 
 <div class="heritage-mark">
 
-<strong>La Ilaha Illallah (لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)</strong>
+
+<strong>
+
+La Ilaha Illallah
+
+(لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
+
+</strong>
+
 
 <span>
+
 • Terengganu Maju, Berkat Sejahtera •
+
 </span>
 
+
 </div>
+
 
 <div class="nav-title">
 
@@ -1190,51 +1442,131 @@ MAIN MENU
 
 </div>
 
+
 <nav class="nav">
 
+
 <a
-href="index.html"
-class="active"
+
+    href="index.html"
+
+    class="active"
 
 >
 
-<span class="nav-icon">⌂</span>
 
-<span>Dashboard</span>
+<span class="nav-icon">
 
-</a>
+⌂
 
-<a href="anggota.html">
+</span>
 
-<span class="nav-icon">♙</span>
 
-<span>Senarai Anggota</span>
+<span>
 
-</a>
+Dashboard
 
-<a href="jadual-duty.html">
+</span>
 
-<span class="nav-icon">▣</span>
-
-<span>Jadual Duty</span>
 
 </a>
 
-<a href="kod-duty.html">
 
-<span class="nav-icon">▤</span>
+<a
 
-<span>Kod Duty</span>
+    href="anggota.html"
+
+>
+
+
+<span class="nav-icon">
+
+♙
+
+</span>
+
+
+<span>
+
+Senarai Anggota
+
+</span>
+
 
 </a>
 
-<a href="tempat-kerja.html">
 
-<span class="nav-icon">▦</span>
+<a
 
-<span>Kod Tempat Kerja</span>
+    href="jadual-duty.html"
+
+>
+
+
+<span class="nav-icon">
+
+▣
+
+</span>
+
+
+<span>
+
+Jadual Duty
+
+</span>
+
 
 </a>
+
+
+<a
+
+    href="kod-duty.html"
+
+>
+
+
+<span class="nav-icon">
+
+▤
+
+</span>
+
+
+<span>
+
+Kod Duty
+
+</span>
+
+
+</a>
+
+
+<a
+
+    href="tempat-kerja.html"
+
+>
+
+
+<span class="nav-icon">
+
+▦
+
+</span>
+
+
+<span>
+
+Kod Tempat Kerja
+
+</span>
+
+
+</a>
+
 
 <div class="nav-title">
 
@@ -1242,139 +1574,266 @@ REPORTING
 
 </div>
 
-<a href="laporan.html">
 
-<span class="nav-icon">▥</span>
+<a
 
-<span>Laporan</span>
+    href="laporan.html"
+
+>
+
+
+<span class="nav-icon">
+
+▥
+
+</span>
+
+
+<span>
+
+Laporan
+
+</span>
+
 
 </a>
 
-<a href="laporan-anggaran.html">
 
-<span class="nav-icon">◫</span>
+<a
 
-<span>Anggaran Duty Bulanan</span>
+    href="laporan-anggaran.html"
+
+>
+
+
+<span class="nav-icon">
+
+◫
+
+</span>
+
+
+<span>
+
+Anggaran Duty Bulanan
+
+</span>
+
 
 </a>
-<a href="Laporan-Penuh.html">
 
-<span class="nav-icon">▤</span>
 
-<span>Laporan Penuh</span>
+<a
+
+    href="Laporan-Penuh.html"
+
+>
+
+
+<span class="nav-icon">
+
+▤
+
+</span>
+
+
+<span>
+
+Laporan Penuh
+
+</span>
+
 
 </a>
+
+
 <div class="nav-title">
 
 SYSTEM
 
 </div>
 
-<a href="#">
 
-<span class="nav-icon">⚙</span>
+<a
 
-<span>Tetapan</span>
+    href="#"
+
+>
+
+
+<span class="nav-icon">
+
+⚙
+
+</span>
+
+
+<span>
+
+Tetapan
+
+</span>
+
 
 </a>
 
+
 </nav>
 
+
 </aside>
+
 
 <!-- =====================================================
      MAIN
 ===================================================== -->
 
+
 <main class="main">
+
 
 <!-- TOPBAR -->
 
+
 <div class="topbar">
+
 
 <div class="page-title">
 
+
 <h2>
+
 Dashboard
+
 </h2>
 
+
 <p>
-Forecast Duty System / Wilayah Terengganu
+
+Forecast Duty System /
+
+Wilayah Terengganu
+
 </p>
 
+
 </div>
+
 
 <div class="system-status">
 
+
 <span class="status-dot"></span>
+
 
 System Online
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <!-- CONTENT -->
 
+
 <div class="content">
+
 
 <!-- HERO -->
 
+
 <div class="hero">
+
 
 <div class="hero-content">
 
+
 <h1>
-FORECAST DUTY SYSTEM — POLIS BANTUAN FGV WILAYAH TERENGGANU
+
+FORECAST DUTY SYSTEM —
+
+POLIS BANTUAN FGV
+
+WILAYAH TERENGGANU
+
 </h1>
+
 
 <p>
 
 Sistem pengurusan jadual duty anggota
+
 secara berpusat, sistematik dan profesional.
 
 </p>
 
+
 <div class="hero-line"></div>
 
+
 </div>
+
 
 <div class="wave"></div>
 
+
 </div>
+
 
 <!-- STATISTICS -->
 
+
 <div class="section-header">
+
 
 <div>
 
+
 <h2>
+
 Operational Overview
+
 </h2>
 
+
 <p>
+
 Ringkasan Operasi Semasa
+
 </p>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="stats">
 
+
 <div class="stat-card">
 
+
 <div class="stat-icon">
+
 ♙
+
 </div>
 
+
 <h3>
+
 JUMLAH ANGGOTA AKTIF
+
 </h3>
 
+
 <strong
-id="jumlahAnggota"
+
+    id="jumlahAnggota"
 
 >
 
@@ -1382,20 +1841,30 @@ id="jumlahAnggota"
 
 </strong>
 
+
 </div>
+
 
 <div class="stat-card">
 
+
 <div class="stat-icon">
+
 ▣
+
 </div>
 
+
 <h3>
+
 DUTY HARI INI
+
 </h3>
 
+
 <strong
-id="jumlahDutyHariIni"
+
+    id="jumlahDutyHariIni"
 
 >
 
@@ -1403,20 +1872,30 @@ id="jumlahDutyHariIni"
 
 </strong>
 
+
 </div>
+
 
 <div class="stat-card">
 
+
 <div class="stat-icon">
+
 ◷
+
 </div>
 
+
 <h3>
+
 JUMLAH JAM KERJA HARI INI
+
 </h3>
 
+
 <strong
-id="jumlahJamKerja"
+
+    id="jumlahJamKerja"
 
 >
 
@@ -1424,20 +1903,30 @@ id="jumlahJamKerja"
 
 </strong>
 
+
 </div>
+
 
 <div class="stat-card">
 
+
 <div class="stat-icon">
+
 ◈
+
 </div>
 
+
 <h3>
+
 JUMLAH JAM KLM HARI INI
+
 </h3>
 
+
 <strong
-id="jumlahJamKlm"
+
+    id="jumlahJamKlm"
 
 >
 
@@ -1445,222 +1934,357 @@ id="jumlahJamKlm"
 
 </strong>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <!-- DASHBOARD GRID -->
 
+
 <div class="dashboard-grid">
+
 
 <!-- DUTY MENGIKUT POS -->
 
+
 <div class="card">
+
 
 <div class="card-header">
 
+
 <h2>
+
 Duty Mengikut Pos
+
 </h2>
 
+
 <span>
+
 Hari Ini
+
 </span>
+
 
 </div>
 
+
 <div class="table-wrapper">
+
 
 <table>
 
+
 <thead>
+
 
 <tr>
 
-<th>
-Pos
-</th>
 
 <th>
-Jumlah Duty
+
+Pos
+
 </th>
+
+
+<th>
+
+Jumlah Duty
+
+</th>
+
 
 </tr>
 
+
 </thead>
 
+
 <tbody
-id="senaraiPos"
+
+    id="senaraiPos"
+
 >
+
 
 <tr>
 
+
 <td colspan="2">
+
 
 Memuatkan data...
 
 </td>
 
+
 </tr>
+
 
 </tbody>
 
+
 </table>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <!-- QUICK ACTIONS -->
 
+
 <div class="card">
+
 
 <div class="card-header">
 
+
 <h2>
+
 Quick Actions
+
 </h2>
 
+
 <span>
+
 Shortcuts
+
 </span>
 
+
 </div>
+
 
 <div class="quick-actions">
 
+
 <a
-href="jadual-duty.html"
-class="quick-action"
+
+    href="jadual-duty.html"
+
+    class="quick-action"
 
 >
 
+
 <div class="quick-action-icon">
+
 ▣
+
 </div>
+
 
 <div>
 
+
 <strong>
+
 Masukkan Duty
+
 </strong>
 
+
 <span>
+
 Tambah jadual duty anggota
+
 </span>
+
 
 </div>
 
+
 </a>
 
+
 <a
-href="anggota.html"
-class="quick-action"
+
+    href="anggota.html"
+
+    class="quick-action"
 
 >
 
+
 <div class="quick-action-icon">
+
 ♙
+
 </div>
+
 
 <div>
 
+
 <strong>
+
 Senarai Anggota
+
 </strong>
 
+
 <span>
+
 Lihat data anggota
+
 </span>
+
 
 </div>
 
+
 </a>
 
+
 <a
-href="laporan.html"
-class="quick-action"
+
+    href="laporan.html"
+
+    class="quick-action"
 
 >
 
+
 <div class="quick-action-icon">
+
 ▥
+
 </div>
+
 
 <div>
 
+
 <strong>
+
 Lihat Laporan
+
 </strong>
 
+
 <span>
+
 Analisis data duty
+
 </span>
+
 
 </div>
 
+
 </a>
 
+
 <a
-href="laporan-anggaran.html"
-class="quick-action"
+
+    href="laporan-anggaran.html"
+
+    class="quick-action"
 
 >
 
+
 <div class="quick-action-icon">
+
 ◫
+
 </div>
+
 
 <div>
 
+
 <strong>
+
 Anggaran Duty
+
 </strong>
 
+
 <span>
+
 Semak anggaran bulanan
+
 </span>
 
+
 </div>
+
 
 </a>
 
-</div>
 
 </div>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+</div>
+
 
 <footer class="footer">
 
-FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+FPB DUTY SYSTEM —
+
+WILAYAH TERENGGANU
+
 
 <br>
 
-© 2026 | Operational Duty Management System
+
+© 2026 |
+
+Operational Duty Management System
+
 
 </footer>
 
+
 </main>
+
 
 </div>
 
+
 <!-- SUPABASE -->
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
 
 <script
-src="supabase.js"
+
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
 ></script>
 
+
 <script
-src="js/dashboard.js"
+
+    src="supabase.js"
+
 ></script>
+
+
+<script
+
+    src="js/dashboard.js"
+
+></script>
+
 
 </body>
+
 
 </html>
