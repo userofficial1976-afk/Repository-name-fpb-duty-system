@@ -1,7 +1,7 @@
 // =====================================================
 // JADUAL-DUTY.JS
 // FPB DUTY SYSTEM
-// VERSI PENUH - FIX POPUP MESSAGE
+// VERSI PENUH - POS TAMPUNGAN DROPDOWN
 // =====================================================
 
 
@@ -53,6 +53,8 @@ document.addEventListener(
         pasangEventUnit();
 
         pasangEventPos();
+
+        pasangEventPosTampungan();
 
         pasangEventAnggota();
 
@@ -415,13 +417,6 @@ function paparPopup(
             }
 
 
-            /* =========================================
-
-               BUTANG TINDAKAN DUTY
-
-            ========================================= */
-
-
             .tindakan-duty {
 
                 display: flex;
@@ -732,6 +727,8 @@ function pasangEventUnit() {
 
             kosongkanPos();
 
+            kosongkanPosTampungan();
+
             kosongkanAnggota();
 
             kosongkanMaklumatAnggota();
@@ -790,6 +787,10 @@ function pasangEventUnit() {
                 .sort();
 
 
+            // =================================================
+            // POS ASAL
+            // =================================================
+
             const posSelect = document.getElementById(
 
                 "posAsal"
@@ -797,26 +798,39 @@ function pasangEventUnit() {
             );
 
 
-            if (!posSelect) return;
+            if (posSelect) {
+
+                posList.forEach(function (pos) {
+
+                    const option = document.createElement(
+
+                        "option"
+
+                    );
 
 
-            posList.forEach(function (pos) {
+                    option.value = pos;
 
-                const option = document.createElement(
-
-                    "option"
-
-                );
+                    option.textContent = pos;
 
 
-                option.value = pos;
+                    posSelect.appendChild(option);
 
-                option.textContent = pos;
+                });
+
+            }
 
 
-                posSelect.appendChild(option);
+            // =================================================
+            // POS TAMPUNGAN
+            // SEMUA POS DALAM UNIT YANG DIPILIH
+            // =================================================
 
-            });
+            isiSenaraiPosTampungan(
+
+                unit
+
+            );
 
         }
 
@@ -826,7 +840,164 @@ function pasangEventUnit() {
 
 
 // =====================================================
-// EVENT POS
+// POS TAMPUNGAN
+// =====================================================
+
+function isiSenaraiPosTampungan(
+
+    unit
+
+) {
+
+    const select = document.getElementById(
+
+        "posTampungan"
+
+    );
+
+
+    if (!select) return;
+
+
+    select.innerHTML = `
+
+        <option value="">
+
+            -- Pilih Pos Tampungan --
+
+        </option>
+
+    `;
+
+
+    if (!unit) return;
+
+
+    const posList = [
+
+        ...new Set(
+
+            semuaAnggota
+
+                .filter(function (anggota) {
+
+                    return (
+
+                        String(anggota.unit)
+
+                            .trim()
+
+                            .toLowerCase() ===
+
+                        String(unit)
+
+                            .trim()
+
+                            .toLowerCase()
+
+                    );
+
+                })
+
+                .map(function (anggota) {
+
+                    return anggota.pos;
+
+                })
+
+                .filter(function (pos) {
+
+                    return pos &&
+
+                        String(pos).trim() !== "";
+
+                })
+
+        )
+
+    ]
+
+        .sort(function (a, b) {
+
+            return String(a).localeCompare(
+
+                String(b),
+
+                undefined,
+
+                {
+
+                    numeric: true,
+
+                    sensitivity: "base"
+
+                }
+
+            );
+
+        });
+
+
+    posList.forEach(function (pos) {
+
+        const option = document.createElement(
+
+            "option"
+
+        );
+
+
+        option.value = pos;
+
+        option.textContent = pos;
+
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+// =====================================================
+// EVENT POS TAMPUNGAN
+// =====================================================
+
+function pasangEventPosTampungan() {
+
+    const select = document.getElementById(
+
+        "posTampungan"
+
+    );
+
+
+    if (!select) return;
+
+
+    select.addEventListener(
+
+        "change",
+
+        function () {
+
+            console.log(
+
+                "POS TAMPUNGAN DIPILIH:",
+
+                this.value
+
+            );
+
+        }
+
+    );
+
+}
+
+
+// =====================================================
+// EVENT POS ASAL
 // =====================================================
 
 function pasangEventPos() {
@@ -2297,26 +2468,8 @@ async function simpanDuty() {
         };
 
 
-        console.log(
-
-            "DATA YANG AKAN DISIMPAN:"
-
-        );
-
-
-        console.table(
-
-            dataDuty
-
-        );
-
-
         let result;
 
-
-        // =================================================
-        // UPDATE
-        // =================================================
 
         if (sedangEdit) {
 
@@ -2347,10 +2500,6 @@ async function simpanDuty() {
         }
 
 
-        // =================================================
-        // INSERT
-        // =================================================
-
         else {
 
             result = await supabaseClient
@@ -2371,10 +2520,6 @@ async function simpanDuty() {
 
         }
 
-
-        // =================================================
-        // SEMAK ERROR
-        // =================================================
 
         if (result.error) {
 
@@ -2412,15 +2557,6 @@ async function simpanDuty() {
             return;
 
         }
-
-
-        console.log(
-
-            "DATA BERJAYA DISIMPAN:",
-
-            result.data
-
-        );
 
 
         if (
@@ -2510,19 +2646,6 @@ async function simpanDuty() {
 
 // =====================================================
 // PAPAR DUTY
-// =====================================================
-// BAHAGIAN INI SAHAJA DIUBAH
-// PAPARAN:
-// Tarikh
-// Nama Anggota
-// Kod TK
-// Kod WK
-// KLM Hari Biasa
-// Offday (Hari)
-// Offday (Jam)
-// Cuti Am (Hari)
-// Cuti Am (Jam)
-// Tindakan
 // =====================================================
 
 async function paparDuty() {
@@ -2752,9 +2875,6 @@ async function paparDuty() {
 
                 <tr>
 
-
-                    <!-- TARIKH -->
-
                     <td>
 
                         ${formatTarikh(
@@ -2765,8 +2885,6 @@ async function paparDuty() {
 
                     </td>
 
-
-                    <!-- NAMA ANGGOTA -->
 
                     <td>
 
@@ -2779,16 +2897,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KOD TK -->
-
                     <td>
 
                         ${item.kod_tempat_kerja || ""}
 
                     </td>
 
-
-                    <!-- KOD WK -->
 
                     <td>
 
@@ -2805,16 +2919,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- KLM HARI BIASA -->
-
                     <td>
 
                         ${item.jam_klm || 0}
 
                     </td>
 
-
-                    <!-- OFFDAY HARI -->
 
                     <td>
 
@@ -2823,16 +2933,12 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- OFFDAY JAM -->
-
                     <td>
 
                         ${item.jam_offday_bertugas || 0}
 
                     </td>
 
-
-                    <!-- CUTI AM HARI -->
 
                     <td>
 
@@ -2841,8 +2947,6 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- CUTI AM JAM -->
-
                     <td>
 
                         ${item.jam_cutiam_bertugas || 0}
@@ -2850,14 +2954,9 @@ async function paparDuty() {
                     </td>
 
 
-                    <!-- TINDAKAN -->
-
                     <td>
 
                         <div class="tindakan-duty">
-
-
-                            <!-- DUPLICATE -->
 
                             <button
 
@@ -2880,8 +2979,6 @@ async function paparDuty() {
                             </button>
 
 
-                            <!-- EDIT -->
-
                             <button
 
                                 type="button"
@@ -2903,8 +3000,6 @@ async function paparDuty() {
                             </button>
 
 
-                            <!-- DELETE -->
-
                             <button
 
                                 type="button"
@@ -2925,11 +3020,9 @@ async function paparDuty() {
 
                             </button>
 
-
                         </div>
 
                     </td>
-
 
                 </tr>
 
@@ -3260,11 +3353,6 @@ async function duplicateDuty(
 
     if (!duty) return;
 
-
-    // PENTING:
-    // DUPLICATE BUKAN EDIT
-    // dutySedangEdit KEKAL NULL
-    // SUPAYA TEKAN SIMPAN = INSERT DATA BARU
 
     dutySedangEdit = null;
 
@@ -3891,7 +3979,7 @@ function kosongkanMaklumatAnggota() {
 
 
 // =====================================================
-// KOSONGKAN POS
+// KOSONGKAN POS ASAL
 // =====================================================
 
 function kosongkanPos() {
@@ -3911,6 +3999,35 @@ function kosongkanPos() {
         <option value="">
 
             -- Pilih Pos Asal --
+
+        </option>
+
+    `;
+
+}
+
+
+// =====================================================
+// KOSONGKAN POS TAMPUNGAN
+// =====================================================
+
+function kosongkanPosTampungan() {
+
+    const select = document.getElementById(
+
+        "posTampungan"
+
+    );
+
+
+    if (!select) return;
+
+
+    select.innerHTML = `
+
+        <option value="">
+
+            -- Pilih Pos Tampungan --
 
         </option>
 
