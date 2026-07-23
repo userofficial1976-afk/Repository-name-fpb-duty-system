@@ -91,8 +91,6 @@ function paparPopup(
 
 ) {
 
-    // BUANG POPUP LAMA JIKA ADA
-
     const popupLama = document.getElementById(
 
         "popupSystem"
@@ -159,8 +157,6 @@ function paparPopup(
 
     }
 
-
-    // PASTIKAN MESEJ TIDAK KOSONG
 
     let mesejPopup = mesej;
 
@@ -415,6 +411,75 @@ function paparPopup(
             #popupSystem .popup-ok-button:hover {
 
                 background: #1d4ed8;
+
+            }
+
+
+            /* =========================================
+
+               BUTANG TINDAKAN DUTY
+
+            ========================================= */
+
+
+            .tindakan-duty {
+
+                display: flex;
+
+                gap: 5px;
+
+                justify-content: center;
+
+                align-items: center;
+
+            }
+
+
+            .tindakan-duty button {
+
+                width: 30px;
+
+                height: 30px;
+
+                padding: 0;
+
+                border: none;
+
+                border-radius: 5px;
+
+                cursor: pointer;
+
+                font-size: 14px;
+
+                transition: 0.15s;
+
+            }
+
+
+            .tindakan-duty button:hover {
+
+                transform: scale(1.08);
+
+            }
+
+
+            .btn-duplicate {
+
+                background: #e0f2fe;
+
+            }
+
+
+            .btn-edit {
+
+                background: #fef3c7;
+
+            }
+
+
+            .btn-delete {
+
+                background: #fee2e2;
 
             }
 
@@ -2382,8 +2447,6 @@ async function simpanDuty() {
         }
 
 
-        // SIMPAN STATUS SEBELUM RESET
-
         const tajukBerjaya = sedangEdit
 
             ? "Duty Dikemaskini"
@@ -2398,12 +2461,8 @@ async function simpanDuty() {
             : "Rekod Duty berjaya disimpan.";
 
 
-        // RESET MODE EDIT
-
         dutySedangEdit = null;
 
-
-        // PAPAR POPUP
 
         paparPopup(
 
@@ -2415,8 +2474,6 @@ async function simpanDuty() {
 
         );
 
-
-        // PAPAR SEMULA DATA
 
         await paparDuty();
 
@@ -2453,6 +2510,19 @@ async function simpanDuty() {
 
 // =====================================================
 // PAPAR DUTY
+// =====================================================
+// BAHAGIAN INI SAHAJA DIUBAH
+// PAPARAN:
+// Tarikh
+// Nama Anggota
+// Kod TK
+// Kod WK
+// KLM Hari Biasa
+// Offday (Hari)
+// Offday (Jam)
+// Cuti Am (Hari)
+// Cuti Am (Jam)
+// Tindakan
 // =====================================================
 
 async function paparDuty() {
@@ -2682,6 +2752,7 @@ async function paparDuty() {
 
                 <tr>
 
+
                     <!-- TARIKH -->
 
                     <td>
@@ -2858,6 +2929,7 @@ async function paparDuty() {
                         </div>
 
                     </td>
+
 
                 </tr>
 
@@ -3155,6 +3227,302 @@ async function editDuty(
         "info",
 
         "Edit Duty"
+
+    );
+
+}
+
+
+// =====================================================
+// DUPLICATE DUTY
+// =====================================================
+
+async function duplicateDuty(
+
+    id
+
+) {
+
+    const duty = semuaDuty.find(
+
+        function (item) {
+
+            return String(
+
+                item.id
+
+            ) === String(id);
+
+        }
+
+    );
+
+
+    if (!duty) return;
+
+
+    // PENTING:
+    // DUPLICATE BUKAN EDIT
+    // dutySedangEdit KEKAL NULL
+    // SUPAYA TEKAN SIMPAN = INSERT DATA BARU
+
+    dutySedangEdit = null;
+
+
+    setValue(
+
+        "tarikh",
+
+        duty.tarikh
+
+    );
+
+
+    const tarikh = document.getElementById(
+
+        "tarikh"
+
+    );
+
+
+    if (tarikh) {
+
+        tarikh.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "unitPilihan",
+
+        duty.unit
+
+    );
+
+
+    const unitPilihan = document.getElementById(
+
+        "unitPilihan"
+
+    );
+
+
+    if (unitPilihan) {
+
+        unitPilihan.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "posAsal",
+
+        duty.pos
+
+    );
+
+
+    const posAsal = document.getElementById(
+
+        "posAsal"
+
+    );
+
+
+    if (posAsal) {
+
+        posAsal.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "anggota",
+
+        duty.no_skb
+
+    );
+
+
+    const anggota = document.getElementById(
+
+        "anggota"
+
+    );
+
+
+    if (anggota) {
+
+        anggota.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "kodDuty",
+
+        duty.kod_duty ||
+
+        duty.kod_waktu_kerja
+
+    );
+
+
+    const kodDuty = document.getElementById(
+
+        "kodDuty"
+
+    );
+
+
+    if (kodDuty) {
+
+        kodDuty.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "kodTempatKerja",
+
+        duty.kod_tempat_kerja
+
+    );
+
+
+    const kodTempatKerja = document.getElementById(
+
+        "kodTempatKerja"
+
+    );
+
+
+    if (kodTempatKerja) {
+
+        kodTempatKerja.dispatchEvent(
+
+            new Event(
+
+                "change"
+
+            )
+
+        );
+
+    }
+
+
+    setValue(
+
+        "jamOffday",
+
+        duty.jam_offday_bertugas
+
+    );
+
+
+    setValue(
+
+        "jamCutiam",
+
+        duty.jam_cutiam_bertugas
+
+    );
+
+
+    const offday = document.getElementById(
+
+        "hariOffday"
+
+    );
+
+
+    const cutiam = document.getElementById(
+
+        "hariCutiam"
+
+    );
+
+
+    if (offday) {
+
+        offday.checked =
+
+            duty.hari_offday_bertugas == 1;
+
+    }
+
+
+    if (cutiam) {
+
+        cutiam.checked =
+
+            duty.hari_cutiam_bertugas == 1;
+
+    }
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+
+    paparPopup(
+
+        "Data duty telah disalin ke dalam borang. Tekan Simpan Duty untuk menyimpan sebagai rekod baru.",
+
+        "success",
+
+        "Duplicate Duty"
 
     );
 
