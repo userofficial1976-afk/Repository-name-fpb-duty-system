@@ -1,8 +1,2017 @@
-<script>
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Anggaran Duty Bulanan — FPB Duty System
+
+</title>
+
+<style>
 
 /* =====================================================
-   SENARAI BULAN
+   GLOBAL
 ===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+
+        "Segoe UI",
+
+        Arial,
+
+        Helvetica,
+
+        sans-serif;
+
+}
+
+
+body {
+
+    background: #f4f7f8;
+
+    color: #263238;
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 290px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #e8f1f3 0%,
+
+            #dcecef 100%
+
+        );
+
+    color: #234047;
+
+    padding: 24px 16px;
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 100;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #cbdde1;
+
+}
+
+
+.sidebar::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.15;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+
+            45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        ),
+
+        linear-gradient(
+
+            -45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        );
+
+    background-size: 30px 30px;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 11px 25px;
+
+    border-bottom: 1px solid #cbdde1;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.logo {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 12px;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.12
+
+        );
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 17px;
+
+    letter-spacing: 0.4px;
+
+    color: #234047;
+
+}
+
+
+.brand-text p {
+
+    color: #6d858b;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+}
+
+
+.heritage-mark {
+
+    margin: 22px 10px;
+
+    padding: 15px;
+
+    border: 1px solid #c6dadd;
+
+    border-radius: 12px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.55
+
+        );
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.heritage-mark strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 0.6px;
+
+    color: #365b63;
+
+}
+
+
+.heritage-mark span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #769097;
+
+    font-size: 11px;
+
+}
+
+
+.nav-title {
+
+    color: #789096;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    font-weight: bold;
+
+    margin: 26px 13px 10px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: #577178;
+
+    text-decoration: none;
+
+    padding: 14px 15px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.nav a:hover {
+
+    background: #d1e4e8;
+
+    color: #234047;
+
+    transform: translateX(2px);
+
+}
+
+
+.nav a.active {
+
+    background: #ffffff;
+
+    color: #247b83;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            50,
+
+            100,
+
+            110,
+
+            0.10
+
+        );
+
+}
+
+
+.nav-icon {
+
+    width: 24px;
+
+    text-align: center;
+
+    font-size: 20px;
+
+}
+
+
+.main {
+
+    margin-left: 290px;
+
+    width: calc(
+
+        100% - 290px
+
+    );
+
+}
+
+
+.topbar {
+
+    min-height: 82px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.92
+
+        );
+
+    border-bottom: 1px solid #dce7e9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+}
+
+
+.page-title h2 {
+
+    font-size: 26px;
+
+    letter-spacing: 0.3px;
+
+    color: #263f45;
+
+}
+
+
+.page-title p {
+
+    font-size: 14px;
+
+    color: #829398;
+
+    margin-top: 5px;
+
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    background: #e4f2ed;
+
+    color: #3d7662;
+
+    padding: 10px 16px;
+
+    border-radius: 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    background: #61a98d;
+
+    border-radius: 50%;
+
+}
+
+
+.content {
+
+    padding: 32px;
+
+    max-width: 1900px;
+
+}
+
+
+.hero {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 35px 38px;
+
+    margin-bottom: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #77adb0;
+
+    box-shadow:
+
+        0 8px 22px
+
+        rgba(
+
+            57,
+
+            111,
+
+            118,
+
+            0.15
+
+        );
+
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -80px;
+
+    bottom: -140px;
+
+    width: 420px;
+
+    height: 420px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.25
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 80px;
+
+    bottom: -200px;
+
+    width: 400px;
+
+    height: 400px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.hero h1 {
+
+    font-size: 31px;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero p {
+
+    color: #e3f2f3;
+
+    font-size: 15px;
+
+    max-width: 800px;
+
+}
+
+
+.hero-line {
+
+    margin-top: 25px;
+
+    width: 160px;
+
+    height: 3px;
+
+    background: #d8f1ef;
+
+}
+
+
+.wave {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 30px;
+
+    opacity: 0.20;
+
+    background:
+
+        repeating-linear-gradient(
+
+            -45deg,
+
+            transparent 0px,
+
+            transparent 10px,
+
+            white 11px,
+
+            white 12px,
+
+            transparent 13px,
+
+            transparent 22px
+
+        );
+
+}
+
+
+.card {
+
+    background: #ffffff;
+
+    border: 1px solid #dce7e9;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+
+        0 4px 14px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.06
+
+        );
+
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.card-header h2 {
+
+    font-size: 20px;
+
+    color: #304c53;
+
+}
+
+
+.card-header span {
+
+    font-size: 14px;
+
+    color: #829398;
+
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            1fr
+
+        );
+
+    gap: 18px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+label {
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #61757a;
+
+    margin-bottom: 7px;
+
+}
+
+
+input,
+
+select,
+
+button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid #cbdde1;
+
+    font-size: 14px;
+
+}
+
+
+input:focus,
+
+select:focus {
+
+    outline: none;
+
+    border-color: #3d7f86;
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(
+
+            61,
+
+            127,
+
+            134,
+
+            0.12
+
+        );
+
+}
+
+
+.btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+
+.btn-primary {
+
+    background: #3d7f86;
+
+    color: white;
+
+}
+
+
+.btn-primary:hover {
+
+    background: #2f6970;
+
+}
+
+
+.btn-secondary {
+
+    background: #e4f0f1;
+
+    color: #315f65;
+
+}
+
+
+.btn-secondary:hover {
+
+    background: #d5e7e9;
+
+}
+
+
+.action-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+}
+
+
+.action-buttons button {
+
+    width: auto;
+
+    min-width: 150px;
+
+}
+
+
+.report-header {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    border-bottom: 2px solid #dce7e9;
+
+    padding-bottom: 18px;
+
+}
+
+
+.report-header h2 {
+
+    font-size: 24px;
+
+    color: #263f45;
+
+    text-transform: uppercase;
+
+}
+
+
+.report-header h3 {
+
+    margin-top: 7px;
+
+    font-size: 18px;
+
+    color: #3d7f86;
+
+}
+
+
+.report-header p {
+
+    margin-top: 6px;
+
+    font-size: 15px;
+
+    color: #71858a;
+
+}
+
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #dce7e9;
+
+    border-radius: 10px;
+
+}
+
+
+.report-table {
+
+    width: 100%;
+
+    min-width: 1400px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+
+}
+
+
+.report-table th,
+
+.report-table td {
+
+    border: 1px solid #d8e3e5;
+
+    padding: 11px 9px;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+}
+
+
+.report-table th {
+
+    background: #304c53;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.report-table .group-header {
+
+    background: #3d7f86;
+
+    color: white;
+
+    font-size: 13px;
+
+}
+
+
+.report-table td.left {
+
+    text-align: left;
+
+}
+
+
+.report-table tbody tr:hover {
+
+    background: #f1f7f8;
+
+}
+
+
+.report-table tfoot td {
+
+    background: #e6f0f1;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+}
+
+
+.amount {
+
+    text-align: right !important;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+
+.total-row {
+
+    background: #dcecef !important;
+
+}
+
+
+.mesej {
+
+    margin-bottom: 15px;
+
+}
+
+
+.success {
+
+    background: #e4f2ed;
+
+    color: #3d7662;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+}
+
+
+.error {
+
+    background: #f8e5e5;
+
+    color: #9a4d4d;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+}
+
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #91a0a4;
+
+    font-size: 13px;
+
+}
+
+
+@media(max-width:1200px) {
+
+    .form-grid {
+
+        grid-template-columns:
+
+            repeat(
+
+                2,
+
+                1fr
+
+            );
+
+    }
+
+}
+
+
+@media(max-width:800px) {
+
+    .sidebar {
+
+        width: 78px;
+
+        padding: 16px 8px;
+
+    }
+
+
+    .brand {
+
+        justify-content: center;
+
+        padding: 0 0 22px;
+
+    }
+
+
+    .brand-text,
+
+    .heritage-mark,
+
+    .nav-title,
+
+    .nav a span {
+
+        display: none;
+
+    }
+
+
+    .nav a {
+
+        justify-content: center;
+
+        padding: 15px 5px;
+
+    }
+
+
+    .nav-icon {
+
+        font-size: 22px;
+
+    }
+
+
+    .main {
+
+        margin-left: 78px;
+
+        width:
+
+            calc(
+
+                100% - 78px
+
+            );
+
+    }
+
+
+    .topbar {
+
+        padding: 0 20px;
+
+    }
+
+
+    .content {
+
+        padding: 20px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .system-status {
+
+        display: none;
+
+    }
+
+}
+
+
+@media print {
+
+
+    @page {
+
+        size: A3 landscape;
+
+        margin: 8mm;
+
+    }
+
+
+    * {
+
+        -webkit-print-color-adjust: exact !important;
+
+        print-color-adjust: exact !important;
+
+    }
+
+
+    body {
+
+        background: white;
+
+    }
+
+
+    .sidebar,
+
+    .topbar,
+
+    .hero,
+
+    .filter-card,
+
+    .footer,
+
+    .no-print {
+
+        display: none !important;
+
+    }
+
+
+    .main {
+
+        margin: 0;
+
+        width: 100%;
+
+    }
+
+
+    .content {
+
+        padding: 0;
+
+        max-width: none;
+
+    }
+
+
+    .card {
+
+        border: none;
+
+        box-shadow: none;
+
+        padding: 0;
+
+        margin: 0;
+
+    }
+
+
+    .report-header {
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .report-header h2 {
+
+        font-size: 20px;
+
+    }
+
+
+    .report-header h3 {
+
+        font-size: 16px;
+
+    }
+
+
+    .report-header p {
+
+        font-size: 12px;
+
+    }
+
+
+    .table-wrapper {
+
+        overflow: visible;
+
+        border: none;
+
+    }
+
+
+    .report-table {
+
+        width: 100%;
+
+        min-width: 0;
+
+        font-size: 11px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+    }
+
+
+    .report-table th,
+
+    .report-table td {
+
+        padding: 6px 5px;
+
+        font-size: 10px;
+
+    }
+
+
+    .report-table th {
+
+        font-size: 9px;
+
+    }
+
+
+    tr {
+
+        page-break-inside: avoid;
+
+        page-break-after: auto;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<div class="brand">
+
+<img
+
+src="logo.png"
+
+class="logo"
+
+alt="Logo FPB"
+
+>
+
+<div class="brand-text">
+
+<h1>
+
+POLIS BANTUAN FGVSSSB
+
+</h1>
+
+<p>
+
+WILAYAH TERENGGANU
+
+</p>
+
+</div>
+
+</div>
+
+<div class="heritage-mark">
+
+<strong>
+
+La Ilaha Illallah
+
+(لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
+
+</strong>
+
+<span>
+
+• Terengganu Maju, Berkat Sejahtera •
+
+</span>
+
+</div>
+
+<div class="nav-title">
+
+MAIN MENU
+
+</div>
+
+<nav class="nav">
+
+<a href="index.html">
+
+<span class="nav-icon">⌂</span>
+
+<span>Dashboard</span>
+
+</a>
+
+<a href="anggota.html">
+
+<span class="nav-icon">♙</span>
+
+<span>Senarai Anggota</span>
+
+</a>
+
+<a href="jadual-duty.html">
+
+<span class="nav-icon">▣</span>
+
+<span>Jadual Duty</span>
+
+</a>
+
+<a href="kod-duty.html">
+
+<span class="nav-icon">▤</span>
+
+<span>Kod Duty</span>
+
+</a>
+
+<a href="tempat-kerja.html">
+
+<span class="nav-icon">▦</span>
+
+<span>Kod Tempat Kerja</span>
+
+</a>
+
+<div class="nav-title">
+
+REPORTING
+
+</div>
+
+<a href="laporan.html">
+
+<span class="nav-icon">▥</span>
+
+<span>Laporan</span>
+
+</a>
+
+<a
+
+href="laporan-anggaran.html"
+
+class="active"
+
+>
+
+<span class="nav-icon">◫</span>
+
+<span>Anggaran Duty Bulanan</span>
+
+</a>
+
+<a href="Laporan-Penuh.html">
+
+<span class="nav-icon">▤</span>
+
+<span>Laporan Penuh</span>
+
+</a>
+
+<div class="nav-title">
+
+SYSTEM
+
+</div>
+
+<a href="#">
+
+<span class="nav-icon">⚙</span>
+
+<span>Tetapan</span>
+
+</a>
+
+</nav>
+
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+
+<div class="page-title">
+
+<h2>
+
+Anggaran Duty Bulanan
+
+</h2>
+
+<p>
+
+Forecast Duty System /
+
+Wilayah Terengganu
+
+</p>
+
+</div>
+
+<div class="system-status">
+
+<span class="status-dot"></span>
+
+System Online
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="hero">
+
+<div class="hero-content">
+
+<h1>
+
+ANGGARAN RK02
+
+</h1>
+
+<p>
+
+Anggaran tuntutan duty anggota
+
+mengikut pos dan bulan operasi.
+
+</p>
+
+<div class="hero-line"></div>
+
+</div>
+
+<div class="wave"></div>
+
+</div>
+
+<div class="card filter-card">
+
+<div class="card-header">
+
+<h2>
+
+Tetapan Laporan Anggaran
+
+</h2>
+
+<span>
+
+Pilih maklumat laporan
+
+</span>
+
+</div>
+
+<div id="mesej" class="mesej"></div>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>
+
+Bulan
+
+</label>
+
+<select id="bulan">
+
+<option value="1">
+
+Januari
+
+</option>
+
+<option value="2">
+
+Februari
+
+</option>
+
+<option value="3">
+
+Mac
+
+</option>
+
+<option value="4">
+
+April
+
+</option>
+
+<option value="5">
+
+Mei
+
+</option>
+
+<option value="6">
+
+Jun
+
+</option>
+
+<option value="7">
+
+Julai
+
+</option>
+
+<option value="8">
+
+Ogos
+
+</option>
+
+<option value="9">
+
+September
+
+</option>
+
+<option value="10">
+
+Oktober
+
+</option>
+
+<option value="11">
+
+November
+
+</option>
+
+<option value="12">
+
+Disember
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Tahun
+
+</label>
+
+<select id="tahun">
+
+<option value="2026">
+
+2026
+
+</option>
+
+<option value="2027">
+
+2027
+
+</option>
+
+<option value="2028">
+
+2028
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Pos
+
+</label>
+
+<select id="pos">
+
+<option value="">
+
+-- Pilih Pos --
+
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="action-buttons">
+
+<button
+
+class="btn btn-primary"
+
+onclick="janaLaporanAnggaran()"
+
+>
+
+📊 JANA LAPORAN
+
+</button>
+
+<button
+
+class="btn btn-secondary"
+
+onclick="window.print()"
+
+>
+
+🖨️ PRINT / VIEW PDF
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card report-card">
+
+<div class="report-header">
+
+<h2>
+
+Anggaran RK02
+
+</h2>
+
+<h3 id="tajukUnit">
+
+WILAYAH TERENGGANU
+
+</h3>
+
+<p id="tajukBulan">
+
+Bulan / Tahun
+
+</p>
+
+<p id="tajukPos">
+
+Pos
+
+</p>
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="report-table">
+
+<thead>
+
+<tr>
+
+<th rowspan="2">
+
+BIL
+
+</th>
+
+<th rowspan="2">
+
+SKB / NO ANGGOTA
+
+</th>
+
+<th rowspan="2">
+
+NAMA ANGGOTA
+
+</th>
+
+<th rowspan="2">
+
+GAJI POKOK<br>(RM)
+
+</th>
+
+<th colspan="2" class="group-header">
+
+HARI BIASA
+
+</th>
+
+<th colspan="6" class="group-header">
+
+HARI OFF
+
+</th>
+
+<th colspan="4" class="group-header">
+
+HARI CUTI AM
+
+</th>
+
+<th rowspan="2">
+
+JUMLAH<br>TUNTUTAN KLM
+
+</th>
+
+</tr>
+
+<tr>
+
+<th>
+
+JAM
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+<th>
+
+< 4 JAM<br>HARI
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+<th>
+
+4-8 JAM<br>HARI
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+<th>
+
+> 8 JAM<br>HARI
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+<th>
+
+< 8 JAM<br>JAM
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+<th>
+
+> 8 JAM<br>HARI
+
+</th>
+
+<th>
+
+RM
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="senaraiAnggaran">
+
+<tr>
+
+<td colspan="16">
+
+Sila pilih Pos dan Bulan / Tahun
+
+kemudian tekan JANA LAPORAN
+
+</td>
+
+</tr>
+
+</tbody>
+
+<tfoot id="jumlahAnggaran">
+
+</tfoot>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+FPB DUTY SYSTEM —
+
+WILAYAH TERENGGANU
+
+<br>
+
+© 2026 |
+
+Operational Duty Management System
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script>
+
+
+// =====================================================
+// SENARAI BULAN
+// =====================================================
 
 const SENARAI_BULAN = [
 
@@ -35,84 +2044,9 @@ const SENARAI_BULAN = [
 ];
 
 
-/* =====================================================
-   APABILA HALAMAN SIAP
-===================================================== */
-
-window.addEventListener(
-
-    "load",
-
-    async function () {
-
-        console.log(
-            "HALAMAN SIAP"
-        );
-
-
-        const tahun =
-
-            document.getElementById(
-                "tahun"
-            );
-
-
-        if (tahun) {
-
-            const tahunSekarang =
-
-                String(
-
-                    new Date()
-                        .getFullYear()
-
-                );
-
-
-            const wujud =
-
-                Array.from(
-
-                    tahun.options
-
-                ).some(
-
-                    function (option) {
-
-                        return (
-
-                            option.value ===
-
-                            tahunSekarang
-
-                        );
-
-                    }
-
-                );
-
-
-            if (wujud) {
-
-                tahun.value =
-
-                    tahunSekarang;
-
-            }
-
-        }
-
-
-        await isiSenaraiPos();
-
-    }
-
-);
-
-
-/* =====================================================
-   PAPAR MESEJ
-===================================================== */
+// =====================================================
+// PAPAR MESEJ
+// =====================================================
 
 function paparMesej(
 
@@ -122,20 +2056,32 @@ function paparMesej(
 
 ) {
 
+
     const elemen =
 
         document.getElementById(
+
             "mesej"
+
         );
 
 
-    if (!elemen) {
+    if (
+
+        !elemen
+
+    ) {
+
 
         console.log(
+
             mesej
+
         );
 
+
         return;
+
 
     }
 
@@ -156,10 +2102,16 @@ function paparMesej(
 
         function () {
 
-            elemen.textContent = "";
+
+            elemen.textContent =
+
+                "";
+
 
             elemen.className =
+
                 "mesej";
+
 
         },
 
@@ -167,29 +2119,127 @@ function paparMesej(
 
     );
 
+
 }
 
 
-/* =====================================================
-   ISI DROPDOWN POS
-   DARIPADA Data_Anggota
-===================================================== */
+// =====================================================
+// APABILA HALAMAN SIAP
+// =====================================================
+
+window.addEventListener(
+
+    "load",
+
+    async function () {
+
+
+        console.log(
+
+            "HALAMAN SIAP"
+
+        );
+
+
+        const tahun =
+
+            document.getElementById(
+
+                "tahun"
+
+            );
+
+
+        if (
+
+            tahun
+
+        ) {
+
+
+            const tahunSekarang =
+
+                String(
+
+                    new Date()
+
+                        .getFullYear()
+
+                );
+
+
+            const optionWujud =
+
+                Array.from(
+
+                    tahun.options
+
+                ).some(
+
+                    function (
+
+                        option
+
+                    ) {
+
+
+                        return option.value ===
+
+                            tahunSekarang;
+
+
+                    }
+
+                );
+
+
+            if (
+
+                optionWujud
+
+            ) {
+
+
+                tahun.value =
+
+                    tahunSekarang;
+
+
+            }
+
+        }
+
+
+        await isiSenaraiPos();
+
+
+    }
+
+);
+
+
+// =====================================================
+// ISI SENARAI POS
+// =====================================================
 
 async function isiSenaraiPos() {
-
-    console.log(
-        "MULA ISI SENARAI POS"
-    );
 
 
     const selectPos =
 
         document.getElementById(
+
             "pos"
+
         );
 
 
-    if (!selectPos) {
+    if (
+
+        !selectPos
+
+    ) {
+
 
         console.error(
 
@@ -197,7 +2247,9 @@ async function isiSenaraiPos() {
 
         );
 
+
         return;
+
 
     }
 
@@ -214,6 +2266,7 @@ async function isiSenaraiPos() {
 
 
     try {
+
 
         const result =
 
@@ -232,74 +2285,94 @@ async function isiSenaraiPos() {
                 );
 
 
-        console.log(
+        if (
 
-            "HASIL DATA POS:",
+            result.error
 
-            result
+        ) {
 
-        );
-
-
-        if (result.error) {
 
             throw result.error;
+
 
         }
 
 
-        const data =
+        const senaraiPos = [
 
-            result.data || [];
+            ...
 
+            new Set(
 
-        const setPos =
+                (
 
-            new Set();
+                    result.data || []
 
+                )
 
-        data.forEach(
+                    .map(
 
-            function (row) {
+                        function (
 
-                if (
+                            row
 
-                    row.pos !== null &&
-
-                    row.pos !== undefined &&
-
-                    String(
-
-                        row.pos
-
-                    ).trim() !== ""
-
-                ) {
-
-                    setPos.add(
-
-                        String(
-
-                            row.pos
-
-                        ).trim()
-
-                    );
-
-                }
-
-            }
-
-        );
+                        ) {
 
 
-        const senaraiPos =
+                            return row.pos;
 
-            Array.from(
 
-                setPos
+                        }
 
-            );
+                    )
+
+                    .filter(
+
+                        function (
+
+                            pos
+
+                        ) {
+
+
+                            return pos !== null &&
+
+                                pos !== undefined &&
+
+                                String(
+
+                                    pos
+
+                                ).trim() !== "";
+
+
+                        }
+
+                    )
+
+                    .map(
+
+                        function (
+
+                            pos
+
+                        ) {
+
+
+                            return String(
+
+                                pos
+
+                            ).trim();
+
+
+                        }
+
+                    )
+
+            )
+
+        ];
 
 
         senaraiPos.sort(
@@ -311,6 +2384,7 @@ async function isiSenaraiPos() {
                 b
 
             ) {
+
 
                 return a.localeCompare(
 
@@ -325,6 +2399,7 @@ async function isiSenaraiPos() {
                     }
 
                 );
+
 
             }
 
@@ -344,7 +2419,12 @@ async function isiSenaraiPos() {
 
         senaraiPos.forEach(
 
-            function (pos) {
+            function (
+
+                pos
+
+            ) {
+
 
                 const option =
 
@@ -371,16 +2451,8 @@ async function isiSenaraiPos() {
 
                 );
 
+
             }
-
-        );
-
-
-        console.log(
-
-            "JUMLAH POS:",
-
-            senaraiPos.length
 
         );
 
@@ -393,10 +2465,16 @@ async function isiSenaraiPos() {
 
         );
 
+
     }
 
 
-    catch (error) {
+    catch (
+
+        error
+
+    ) {
+
 
         console.error(
 
@@ -426,14 +2504,15 @@ async function isiSenaraiPos() {
 
         );
 
+
     }
 
 }
 
 
-/* =====================================================
-   JANA LAPORAN ANGGARAN
-===================================================== */
+// =====================================================
+// JANA LAPORAN ANGGARAN
+// =====================================================
 
 async function janaLaporanAnggaran() {
 
@@ -441,35 +2520,45 @@ async function janaLaporanAnggaran() {
     const bulanElement =
 
         document.getElementById(
+
             "bulan"
+
         );
 
 
     const tahunElement =
 
         document.getElementById(
+
             "tahun"
+
         );
 
 
     const posElement =
 
         document.getElementById(
+
             "pos"
+
         );
 
 
     const tbody =
 
         document.getElementById(
+
             "senaraiAnggaran"
+
         );
 
 
     const tfoot =
 
         document.getElementById(
+
             "jumlahAnggaran"
+
         );
 
 
@@ -487,13 +2576,16 @@ async function janaLaporanAnggaran() {
 
     ) {
 
+
         console.error(
 
-            "ELEMEN HTML LAPORAN TIDAK LENGKAP"
+            "ELEMEN LAPORAN TIDAK LENGKAP"
 
         );
 
+
         return;
+
 
     }
 
@@ -529,7 +2621,12 @@ async function janaLaporanAnggaran() {
         ).trim();
 
 
-    if (!pos) {
+    if (
+
+        !pos
+
+    ) {
+
 
         paparMesej(
 
@@ -539,7 +2636,9 @@ async function janaLaporanAnggaran() {
 
         );
 
+
         return;
+
 
     }
 
@@ -548,7 +2647,7 @@ async function janaLaporanAnggaran() {
 
         <tr>
 
-            <td colspan="15">
+            <td colspan="16">
 
                 Sedang mengambil data...
 
@@ -562,64 +2661,43 @@ async function janaLaporanAnggaran() {
     tfoot.innerHTML = "";
 
 
-    const tajukUnit =
+    document.getElementById(
 
-        document.getElementById(
-            "tajukUnit"
-        );
+        "tajukUnit"
 
+    ).textContent =
 
-    const tajukBulan =
-
-        document.getElementById(
-            "tajukBulan"
-        );
+        "WILAYAH TERENGGANU";
 
 
-    const tajukPos =
+    document.getElementById(
 
-        document.getElementById(
-            "tajukPos"
-        );
+        "tajukBulan"
 
+    ).textContent =
 
-    if (tajukUnit) {
+        SENARAI_BULAN[bulan]
 
-        tajukUnit.textContent =
+        + " "
 
-            "WILAYAH TERENGGANU";
-
-    }
+        + tahun;
 
 
-    if (tajukBulan) {
+    document.getElementById(
 
-        tajukBulan.textContent =
+        "tajukPos"
 
-            SENARAI_BULAN[bulan]
+    ).textContent =
 
-            + " "
-
-            + tahun;
-
-    }
-
-
-    if (tajukPos) {
-
-        tajukPos.textContent =
-
-            pos;
-
-    }
+        pos;
 
 
     try {
 
 
-        /* =============================================
-           1. AMBIL ANGGOTA MENGIKUT POS
-        ============================================= */
+        // =================================================
+        // 1. AMBIL ANGGOTA
+        // =================================================
 
         const anggotaResult =
 
@@ -660,18 +2738,15 @@ async function janaLaporanAnggaran() {
                 );
 
 
-        console.log(
+        if (
 
-            "DATA ANGGOTA:",
+            anggotaResult.error
 
-            anggotaResult
+        ) {
 
-        );
-
-
-        if (anggotaResult.error) {
 
             throw anggotaResult.error;
+
 
         }
 
@@ -687,11 +2762,12 @@ async function janaLaporanAnggaran() {
 
         ) {
 
+
             tbody.innerHTML = `
 
                 <tr>
 
-                    <td colspan="15">
+                    <td colspan="16">
 
                         Tiada anggota dijumpai bagi Pos:
 
@@ -704,23 +2780,15 @@ async function janaLaporanAnggaran() {
             `;
 
 
-            paparMesej(
-
-                "Tiada anggota dijumpai bagi Pos yang dipilih.",
-
-                "error"
-
-            );
-
-
             return;
+
 
         }
 
 
-        /* =============================================
-           2. DAPATKAN SENARAI NO SKB
-        ============================================= */
+        // =================================================
+        // 2. SENARAI NO SKB
+        // =================================================
 
         const senaraiNoSkb =
 
@@ -728,9 +2796,15 @@ async function janaLaporanAnggaran() {
 
                 .map(
 
-                    function (anggota) {
+                    function (
+
+                        anggota
+
+                    ) {
+
 
                         return anggota.no_skb;
+
 
                     }
 
@@ -738,11 +2812,14 @@ async function janaLaporanAnggaran() {
 
                 .filter(
 
-                    function (no) {
+                    function (
 
-                        return (
+                        no
 
-                            no !== null &&
+                    ) {
+
+
+                        return no !== null &&
 
                             no !== undefined &&
 
@@ -750,27 +2827,17 @@ async function janaLaporanAnggaran() {
 
                                 no
 
-                            ).trim() !== ""
+                            ).trim() !== "";
 
-                        );
 
                     }
 
                 );
 
 
-        console.log(
-
-            "SENARAI NO SKB:",
-
-            senaraiNoSkb
-
-        );
-
-
-        /* =============================================
-           3. AMBIL DATA DUTY
-        ============================================= */
+        // =================================================
+        // 3. AMBIL DATA DUTY
+        // =================================================
 
         let dataDuty = [];
 
@@ -780,6 +2847,7 @@ async function janaLaporanAnggaran() {
             senaraiNoSkb.length > 0
 
         ) {
+
 
             const dutyResult =
 
@@ -850,18 +2918,15 @@ async function janaLaporanAnggaran() {
                     );
 
 
-            console.log(
+            if (
 
-                "DATA DUTY:",
+                dutyResult.error
 
-                dutyResult
+            ) {
 
-            );
-
-
-            if (dutyResult.error) {
 
                 throw dutyResult.error;
+
 
             }
 
@@ -870,12 +2935,13 @@ async function janaLaporanAnggaran() {
 
                 dutyResult.data || [];
 
+
         }
 
 
-        /* =============================================
-           4. KUMPUL DUTY MENGIKUT NO SKB
-        ============================================= */
+        // =================================================
+        // 4. MAP DUTY
+        // =================================================
 
         const mapDuty =
 
@@ -884,7 +2950,12 @@ async function janaLaporanAnggaran() {
 
         dataDuty.forEach(
 
-            function (duty) {
+            function (
+
+                duty
+
+            ) {
+
 
                 const key =
 
@@ -901,9 +2972,8 @@ async function janaLaporanAnggaran() {
 
                         key
 
-                    )
+                    ) ) {
 
-                ) {
 
                     mapDuty.set(
 
@@ -912,6 +2982,7 @@ async function janaLaporanAnggaran() {
                         []
 
                     );
+
 
                 }
 
@@ -930,28 +3001,25 @@ async function janaLaporanAnggaran() {
 
                     );
 
+
             }
 
         );
 
 
-        /* =============================================
-           5. PEMBOLEHUBAH JUMLAH
-        ============================================= */
+        // =================================================
+        // 5. JUMLAH KESELURUHAN
+        // =================================================
 
         let jumlahJamBiasa = 0;
 
-        let jumlahHariOffKurang4 = 0;
-
         let jumlahHariOff4hingga8 = 0;
 
-        let jumlahHariOffLebih8 = 0;
+        let jumlahJamOffLebih8 = 0;
 
-        let jumlahCutiAmKurang8 = 0;
+        let jumlahHariCutiAmKurang8 = 0;
 
-        let jumlahCutiAmLebih8 = 0;
-
-        let jumlahKlm = 0;
+        let jumlahJamCutiAmLebih8 = 0;
 
 
         tbody.innerHTML = "";
@@ -960,13 +3028,17 @@ async function janaLaporanAnggaran() {
         let bil = 1;
 
 
-        /* =============================================
-           6. PAPAR SETIAP ANGGOTA
-        ============================================= */
+        // =================================================
+        // 6. PAPAR ANGGOTA
+        // =================================================
 
         dataAnggota.forEach(
 
-            function (anggota) {
+            function (
+
+                anggota
+
+            ) {
 
 
                 const key =
@@ -987,6 +3059,9 @@ async function janaLaporanAnggaran() {
                     ) || [];
 
 
+                // HARI BIASA
+                // jumlah jam_klm
+
                 const jamBiasa =
 
                     dutyAnggota.reduce(
@@ -999,48 +3074,15 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
-                            return (
 
-                                jumlah +
-
-                                toNumber(
-
-                                    duty.jam_kerja
-
-                                )
-
-                            );
-
-                        },
-
-                        0
-
-                    );
-
-
-                const jamKlm =
-
-                    dutyAnggota.reduce(
-
-                        function (
-
-                            jumlah,
-
-                            duty
-
-                        ) {
-
-                            return (
-
-                                jumlah +
+                            return jumlah +
 
                                 toNumber(
 
                                     duty.jam_klm
 
-                                )
+                                );
 
-                            );
 
                         },
 
@@ -1049,7 +3091,10 @@ async function janaLaporanAnggaran() {
                     );
 
 
-                const hariOff =
+                // HARI OFF 4–8 JAM
+                // jumlah hari_offday_bertugas
+
+                const hariOff4hingga8 =
 
                     dutyAnggota.reduce(
 
@@ -1061,17 +3106,15 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
-                            return (
 
-                                jumlah +
+                            return jumlah +
 
                                 toNumber(
 
                                     duty.hari_offday_bertugas
 
-                                )
+                                );
 
-                            );
 
                         },
 
@@ -1080,7 +3123,10 @@ async function janaLaporanAnggaran() {
                     );
 
 
-                const jamOff =
+                // HARI OFF > 8 JAM
+                // jumlah jam_offday_bertugas
+
+                const jamOffLebih8 =
 
                     dutyAnggota.reduce(
 
@@ -1092,17 +3138,15 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
-                            return (
 
-                                jumlah +
+                            return jumlah +
 
                                 toNumber(
 
                                     duty.jam_offday_bertugas
 
-                                )
+                                );
 
-                            );
 
                         },
 
@@ -1111,7 +3155,10 @@ async function janaLaporanAnggaran() {
                     );
 
 
-                const hariCutiAm =
+                // CUTI AM < 8 JAM
+                // jumlah hari_cutiam_bertugas
+
+                const hariCutiAmKurang8 =
 
                     dutyAnggota.reduce(
 
@@ -1123,17 +3170,15 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
-                            return (
 
-                                jumlah +
+                            return jumlah +
 
                                 toNumber(
 
                                     duty.hari_cutiam_bertugas
 
-                                )
+                                );
 
-                            );
 
                         },
 
@@ -1142,7 +3187,10 @@ async function janaLaporanAnggaran() {
                     );
 
 
-                const jamCutiAm =
+                // CUTI AM > 8 JAM
+                // jumlah jam_cutiam_bertugas
+
+                const jamCutiAmLebih8 =
 
                     dutyAnggota.reduce(
 
@@ -1154,17 +3202,15 @@ async function janaLaporanAnggaran() {
 
                         ) {
 
-                            return (
 
-                                jumlah +
+                            return jumlah +
 
                                 toNumber(
 
                                     duty.jam_cutiam_bertugas
 
-                                )
+                                );
 
-                            );
 
                         },
 
@@ -1180,27 +3226,22 @@ async function janaLaporanAnggaran() {
 
                 jumlahHariOff4hingga8 +=
 
-                    hariOff;
+                    hariOff4hingga8;
 
 
-                jumlahHariOffLebih8 +=
+                jumlahJamOffLebih8 +=
 
-                    jamOff;
-
-
-                jumlahCutiAmKurang8 +=
-
-                    hariCutiAm;
+                    jamOffLebih8;
 
 
-                jumlahCutiAmLebih8 +=
+                jumlahHariCutiAmKurang8 +=
 
-                    jamCutiAm;
+                    hariCutiAmKurang8;
 
 
-                jumlahKlm +=
+                jumlahJamCutiAmLebih8 +=
 
-                    jamKlm;
+                    jamCutiAmLebih8;
 
 
                 const tr =
@@ -1261,7 +3302,7 @@ async function janaLaporanAnggaran() {
 
                     <td class="amount">
 
-                        RM 0.00
+                        -
 
                     </td>
 
@@ -1270,29 +3311,25 @@ async function janaLaporanAnggaran() {
 
                     <td>
 
-                        ${formatNumber(
-
-                            jumlahHariOffKurang4
-
-                        )}
+                        -
 
                     </td>
 
 
                     <td class="amount">
 
-                        RM 0.00
+                        -
 
                     </td>
 
 
-                    <!-- HARI OFF 4-8 JAM -->
+                    <!-- HARI OFF 4–8 JAM -->
 
                     <td>
 
                         ${formatNumber(
 
-                            hariOff
+                            hariOff4hingga8
 
                         )}
 
@@ -1301,7 +3338,7 @@ async function janaLaporanAnggaran() {
 
                     <td class="amount">
 
-                        RM 0.00
+                        -
 
                     </td>
 
@@ -1312,7 +3349,7 @@ async function janaLaporanAnggaran() {
 
                         ${formatNumber(
 
-                            jamOff
+                            jamOffLebih8
 
                         )}
 
@@ -1321,7 +3358,7 @@ async function janaLaporanAnggaran() {
 
                     <td class="amount">
 
-                        RM 0.00
+                        -
 
                     </td>
 
@@ -1332,7 +3369,7 @@ async function janaLaporanAnggaran() {
 
                         ${formatNumber(
 
-                            hariCutiAm
+                            hariCutiAmKurang8
 
                         )}
 
@@ -1341,7 +3378,7 @@ async function janaLaporanAnggaran() {
 
                     <td class="amount">
 
-                        RM 0.00
+                        -
 
                     </td>
 
@@ -1352,20 +3389,18 @@ async function janaLaporanAnggaran() {
 
                         ${formatNumber(
 
-                            jamCutiAm
+                            jamCutiAmLebih8
 
                         )}
 
                     </td>
 
 
+                    <!-- JUMLAH TUNTUTAN KLM -->
+
                     <td>
 
-                        ${formatNumber(
-
-                            jamKlm
-
-                        )}
+                        -
 
                     </td>
 
@@ -1381,18 +3416,20 @@ async function janaLaporanAnggaran() {
 
                 bil++;
 
+
             }
 
         );
 
 
-        /* =============================================
-           7. JUMLAH KESELURUHAN
-        ============================================= */
+        // =================================================
+        // 7. JUMLAH KESELURUHAN
+        // =================================================
 
         tfoot.innerHTML = `
 
             <tr class="total-row">
+
 
                 <td colspan="4">
 
@@ -1421,11 +3458,7 @@ async function janaLaporanAnggaran() {
 
                 <td>
 
-                    ${formatNumber(
-
-                        jumlahHariOffKurang4
-
-                    )}
+                    -
 
                 </td>
 
@@ -1459,7 +3492,7 @@ async function janaLaporanAnggaran() {
 
                     ${formatNumber(
 
-                        jumlahHariOffLebih8
+                        jumlahJamOffLebih8
 
                     )}
 
@@ -1477,7 +3510,7 @@ async function janaLaporanAnggaran() {
 
                     ${formatNumber(
 
-                        jumlahCutiAmKurang8
+                        jumlahHariCutiAmKurang8
 
                     )}
 
@@ -1495,7 +3528,7 @@ async function janaLaporanAnggaran() {
 
                     ${formatNumber(
 
-                        jumlahCutiAmLebih8
+                        jumlahJamCutiAmLebih8
 
                     )}
 
@@ -1504,13 +3537,10 @@ async function janaLaporanAnggaran() {
 
                 <td>
 
-                    ${formatNumber(
-
-                        jumlahKlm
-
-                    )}
+                    -
 
                 </td>
+
 
             </tr>
 
@@ -1523,6 +3553,7 @@ async function janaLaporanAnggaran() {
 
         ) {
 
+
             paparMesej(
 
                 "Anggota dijumpai tetapi tiada duty bagi Bulan / Tahun yang dipilih.",
@@ -1531,9 +3562,11 @@ async function janaLaporanAnggaran() {
 
             );
 
+
         }
 
         else {
+
 
             paparMesej(
 
@@ -1543,12 +3576,19 @@ async function janaLaporanAnggaran() {
 
             );
 
+
         }
+
 
     }
 
 
-    catch (error) {
+    catch (
+
+        error
+
+    ) {
+
 
         console.error(
 
@@ -1584,20 +3624,22 @@ async function janaLaporanAnggaran() {
 
         );
 
+
     }
 
 }
 
 
-/* =====================================================
-   TUKAR KEPADA NOMBOR
-===================================================== */
+// =====================================================
+// TUKAR KEPADA NOMBOR
+// =====================================================
 
 function toNumber(
 
     nilai
 
 ) {
+
 
     if (
 
@@ -1609,7 +3651,9 @@ function toNumber(
 
     ) {
 
+
         return 0;
+
 
     }
 
@@ -1622,13 +3666,15 @@ function toNumber(
 
                 nilai
 
-            ).replace(
-
-                ",",
-
-                ""
-
             )
+
+                .replace(
+
+                    ",",
+
+                    ""
+
+                )
 
         );
 
@@ -1643,12 +3689,13 @@ function toNumber(
 
         : nombor;
 
+
 }
 
 
-/* =====================================================
-   FORMAT NOMBOR
-===================================================== */
+// =====================================================
+// FORMAT NOMBOR
+// =====================================================
 
 function formatNumber(
 
@@ -1656,6 +3703,7 @@ function formatNumber(
 
 ) {
 
+
     return toNumber(
 
         nilai
@@ -1674,12 +3722,13 @@ function formatNumber(
 
     );
 
+
 }
 
 
-/* =====================================================
-   FORMAT RM
-===================================================== */
+// =====================================================
+// FORMAT RM
+// =====================================================
 
 function formatRM(
 
@@ -1687,6 +3736,7 @@ function formatRM(
 
 ) {
 
+
     return toNumber(
 
         nilai
@@ -1705,6 +3755,11 @@ function formatRM(
 
     );
 
+
 }
 
 </script>
+
+</body>
+
+</html>
