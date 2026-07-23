@@ -1481,13 +1481,17 @@ async function muatKodDuty() {
 // EVENT KOD DUTY
 // =====================================================
 
-// =====================================================
-// EVENT KOD DUTY
-// =====================================================
-
 function pasangEventKodDuty() {
 
-    const select = document.getElementById("kodDuty");
+
+    const select =
+
+        document.getElementById(
+
+            "kodDuty"
+
+        );
+
 
     if (!select)
 
@@ -1542,30 +1546,6 @@ function pasangEventKodDuty() {
             if (data) {
 
 
-                // AUTO ISI WAKTU TUGASAN
-
-                setValue(
-
-                    "waktuTugasan",
-
-                    data.waktu_tugasan
-
-                );
-
-
-                // AUTO ISI JAM KERJA
-
-                setValue(
-
-                    "jamKerja",
-
-                    data.jam_kerja
-
-                );
-
-
-                // AUTO ISI JAM KLM
-
                 setValue(
 
                     "jamKlm",
@@ -1582,27 +1562,9 @@ function pasangEventKodDuty() {
 
                 setValue(
 
-                    "waktuTugasan",
-
-                    ""
-
-                );
-
-
-                setValue(
-
-                    "jamKerja",
-
-                    ""
-
-                );
-
-
-                setValue(
-
                     "jamKlm",
 
-                    ""
+                    0
 
                 );
 
@@ -1613,6 +1575,7 @@ function pasangEventKodDuty() {
     );
 
 }
+
 
 // =====================================================
 // ISI KOD DUTY
@@ -3999,3 +3962,5 @@ function formatTarikh(
     );
 
 }
+
+kenapa jam_klm tak papar
