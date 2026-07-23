@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 
 <html lang="ms">
@@ -7,11 +6,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 
@@ -1638,7 +1633,6 @@ SYSTEM
 
 </aside>
 
-
 <!-- =====================================================
      MAIN
 ===================================================== -->
@@ -1675,9 +1669,7 @@ System Online
 
 </div>
 
-
 <div class="content">
-
 
 <!-- =====================================================
      HERO
@@ -1709,7 +1701,6 @@ mengikut pos dan bulan operasi.
 
 </div>
 
-
 <!-- =====================================================
      FILTER
 ===================================================== -->
@@ -1732,16 +1723,11 @@ Pilih maklumat laporan
 
 </div>
 
-
 <div id="mesej" class="mesej"></div>
-
 
 <div class="form-grid">
 
-
-<!-- =========================
-     BULAN
-========================= -->
+<!-- BULAN -->
 
 <div class="form-group">
 
@@ -1829,10 +1815,7 @@ Disember
 
 </div>
 
-
-<!-- =========================
-     TAHUN
-========================= -->
+<!-- TAHUN -->
 
 <div class="form-group">
 
@@ -1862,26 +1845,11 @@ Tahun
 
 </option>
 
-<option value="2029">
-
-2029
-
-</option>
-
-<option value="2030">
-
-2030
-
-</option>
-
 </select>
 
 </div>
 
-
-<!-- =========================
-     POS
-========================= -->
+<!-- POS -->
 
 <div class="form-group">
 
@@ -1903,9 +1871,7 @@ Pos
 
 </div>
 
-
 </div>
-
 
 <div class="action-buttons">
 
@@ -1920,7 +1886,6 @@ onclick="janaLaporanAnggaran()"
 📊 JANA LAPORAN
 
 </button>
-
 
 <button
 
@@ -1938,7 +1903,6 @@ onclick="window.print()"
 
 </div>
 
-
 <!-- =====================================================
      REPORT
 ===================================================== -->
@@ -1955,13 +1919,13 @@ Anggaran RK02
 
 <h3 id="tajukUnit">
 
-Unit
+WILAYAH TERENGGANU
 
 </h3>
 
 <p id="tajukBulan">
 
-Bulan Tahun
+Bulan / Tahun
 
 </p>
 
@@ -1973,11 +1937,9 @@ Pos
 
 </div>
 
-
 <div class="table-wrapper">
 
 <table class="report-table">
-
 
 <thead>
 
@@ -2032,7 +1994,6 @@ JUMLAH<br>TUNTUTAN KLM
 </th>
 
 </tr>
-
 
 <tr>
 
@@ -2112,14 +2073,15 @@ RM
 
 </thead>
 
-
 <tbody id="senaraiAnggaran">
 
 <tr>
 
-<td colspan="17">
+<td colspan="15">
 
-Sila pilih Pos, Bulan dan Tahun kemudian tekan JANA LAPORAN
+Sila pilih Pos dan Bulan / Tahun
+
+kemudian tekan JANA LAPORAN
 
 </td>
 
@@ -2127,11 +2089,9 @@ Sila pilih Pos, Bulan dan Tahun kemudian tekan JANA LAPORAN
 
 </tbody>
 
-
 <tfoot id="jumlahAnggaran">
 
 </tfoot>
-
 
 </table>
 
@@ -2139,9 +2099,7 @@ Sila pilih Pos, Bulan dan Tahun kemudian tekan JANA LAPORAN
 
 </div>
 
-
 </div>
-
 
 <footer class="footer">
 
@@ -2157,11 +2115,13 @@ Operational Duty Management System
 
 </footer>
 
-
 </main>
 
 </div>
 
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script
 
@@ -2169,22 +2129,1458 @@ src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
 ></script>
 
-
 <script
 
 src="supabase.js"
 
 ></script>
 
+<script>
 
-<script
 
-src="js/laporan-anggaran.js"
+// =====================================================
+// SENARAI BULAN
+// =====================================================
 
-></script>
+const SENARAI_BULAN = [
 
+    "",
+
+    "Januari",
+
+    "Februari",
+
+    "Mac",
+
+    "April",
+
+    "Mei",
+
+    "Jun",
+
+    "Julai",
+
+    "Ogos",
+
+    "September",
+
+    "Oktober",
+
+    "November",
+
+    "Disember"
+
+];
+
+
+// =====================================================
+// APABILA HALAMAN DIBUKA
+// =====================================================
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    async function () {
+
+
+        const tahunSelect =
+
+            document.getElementById(
+
+                "tahun"
+
+            );
+
+
+        if (tahunSelect) {
+
+
+            tahunSelect.value =
+
+                new Date()
+
+                    .getFullYear()
+
+                    .toString();
+
+        }
+
+
+        await isiSenaraiPos();
+
+
+        const bulan =
+
+            document.getElementById(
+
+                "bulan"
+
+            );
+
+
+        const tahun =
+
+            document.getElementById(
+
+                "tahun"
+
+            );
+
+
+        if (bulan) {
+
+
+            bulan.addEventListener(
+
+                "change",
+
+                async function () {
+
+                    await isiSenaraiPos();
+
+                }
+
+            );
+
+        }
+
+
+        if (tahun) {
+
+
+            tahun.addEventListener(
+
+                "change",
+
+                async function () {
+
+                    await isiSenaraiPos();
+
+                }
+
+            );
+
+        }
+
+    }
+
+);
+
+
+// =====================================================
+// PAPAR MESEJ
+// =====================================================
+
+function paparMesej(
+
+    mesej,
+
+    jenis = "success"
+
+) {
+
+
+    const elemen =
+
+        document.getElementById(
+
+            "mesej"
+
+        );
+
+
+    if (!elemen) return;
+
+
+    elemen.className =
+
+        "mesej " + jenis;
+
+
+    elemen.textContent =
+
+        mesej;
+
+
+    setTimeout(
+
+        function () {
+
+
+            elemen.textContent = "";
+
+
+            elemen.className =
+
+                "mesej";
+
+        },
+
+        5000
+
+    );
+
+}
+
+
+// =====================================================
+// ISI DROPDOWN POS
+// =====================================================
+
+async function isiSenaraiPos() {
+
+
+    const selectPos =
+
+        document.getElementById(
+
+            "pos"
+
+        );
+
+
+    const selectBulan =
+
+        document.getElementById(
+
+            "bulan"
+
+        );
+
+
+    const selectTahun =
+
+        document.getElementById(
+
+            "tahun"
+
+        );
+
+
+    if (
+
+        !selectPos ||
+
+        !selectBulan ||
+
+        !selectTahun
+
+    ) {
+
+
+        console.error(
+
+            "Elemen bulan, tahun atau pos tidak dijumpai."
+
+        );
+
+
+        return;
+
+    }
+
+
+    const bulan =
+
+        parseInt(
+
+            selectBulan.value,
+
+            10
+
+        );
+
+
+    const tahun =
+
+        parseInt(
+
+            selectTahun.value,
+
+            10
+
+        );
+
+
+    selectPos.innerHTML = `
+
+        <option value="">
+
+            -- Pilih Pos --
+
+        </option>
+
+    `;
+
+
+    try {
+
+
+        const result =
+
+            await supabaseClient
+
+                .from(
+
+                    "jadual_duty"
+
+                )
+
+                .select(
+
+                    "pos"
+
+                )
+
+                .eq(
+
+                    "bulan",
+
+                    bulan
+
+                )
+
+                .eq(
+
+                    "tahun",
+
+                    tahun
+
+                );
+
+
+        if (
+
+            result.error
+
+        ) {
+
+
+            console.error(
+
+                "RALAT AMBIL POS:",
+
+                result.error
+
+            );
+
+
+            paparMesej(
+
+                result.error.message,
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        const data =
+
+            result.data || [];
+
+
+        const senaraiPos = [
+
+            ...
+
+            new Set(
+
+                data
+
+                    .map(
+
+                        row => row.pos
+
+                    )
+
+                    .filter(
+
+                        pos =>
+
+                            pos &&
+
+                            String(
+
+                                pos
+
+                            ).trim() !== ""
+
+                    )
+
+            )
+
+        ];
+
+
+        senaraiPos.sort(
+
+            function (
+
+                a,
+
+                b
+
+            ) {
+
+
+                return String(
+
+                    a
+
+                ).localeCompare(
+
+                    String(
+
+                        b
+
+                    ),
+
+                    "ms",
+
+                    {
+
+                        numeric: true
+
+                    }
+
+                );
+
+            }
+
+        );
+
+
+        senaraiPos.forEach(
+
+            function (
+
+                pos
+
+            ) {
+
+
+                const option =
+
+                    document.createElement(
+
+                        "option"
+
+                    );
+
+
+                option.value =
+
+                    pos;
+
+
+                option.textContent =
+
+                    pos;
+
+
+                selectPos.appendChild(
+
+                    option
+
+                );
+
+            }
+
+        );
+
+
+        console.log(
+
+            "POS DIJUMPAI:",
+
+            senaraiPos
+
+        );
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        console.error(
+
+            "RALAT SISTEM:",
+
+            error
+
+        );
+
+
+        paparMesej(
+
+            error.message,
+
+            "error"
+
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// JANA LAPORAN
+// =====================================================
+
+async function janaLaporanAnggaran() {
+
+
+    const bulan =
+
+        parseInt(
+
+            document
+
+                .getElementById(
+
+                    "bulan"
+
+                )
+
+                .value,
+
+            10
+
+        );
+
+
+    const tahun =
+
+        parseInt(
+
+            document
+
+                .getElementById(
+
+                    "tahun"
+
+                )
+
+                .value,
+
+            10
+
+        );
+
+
+    const pos =
+
+        document
+
+            .getElementById(
+
+                "pos"
+
+            )
+
+            .value;
+
+
+    const tbody =
+
+        document.getElementById(
+
+            "senaraiAnggaran"
+
+        );
+
+
+    const tfoot =
+
+        document.getElementById(
+
+            "jumlahAnggaran"
+
+        );
+
+
+    if (!pos) {
+
+
+        paparMesej(
+
+            "Sila pilih Pos terlebih dahulu.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    tbody.innerHTML = `
+
+        <tr>
+
+            <td colspan="15">
+
+                Sedang mengambil data...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    tfoot.innerHTML = "";
+
+
+    document
+
+        .getElementById(
+
+            "tajukUnit"
+
+        )
+
+        .textContent =
+
+        "WILAYAH TERENGGANU";
+
+
+    document
+
+        .getElementById(
+
+            "tajukBulan"
+
+        )
+
+        .textContent =
+
+        SENARAI_BULAN[bulan]
+
+        +
+
+        " "
+
+        +
+
+        tahun;
+
+
+    document
+
+        .getElementById(
+
+            "tajukPos"
+
+        )
+
+        .textContent =
+
+        pos;
+
+
+    try {
+
+
+        // =================================================
+        // AMBIL DATA DUTY
+        // =================================================
+
+        const dutyResult =
+
+            await supabaseClient
+
+                .from(
+
+                    "jadual_duty"
+
+                )
+
+                .select(`
+
+                    tarikh,
+
+                    bulan,
+
+                    tahun,
+
+                    no_skb,
+
+                    kod_duty,
+
+                    waktu_tugasan,
+
+                    jam_kerja,
+
+                    jam_klm,
+
+                    pos
+
+                `)
+
+                .eq(
+
+                    "bulan",
+
+                    bulan
+
+                )
+
+                .eq(
+
+                    "tahun",
+
+                    tahun
+
+                )
+
+                .eq(
+
+                    "pos",
+
+                    pos
+
+                )
+
+                .order(
+
+                    "tarikh",
+
+                    {
+
+                        ascending: true
+
+                    }
+
+                );
+
+
+        if (
+
+            dutyResult.error
+
+        ) {
+
+
+            throw dutyResult.error;
+
+        }
+
+
+        const dataDuty =
+
+            dutyResult.data || [];
+
+
+        if (
+
+            dataDuty.length === 0
+
+        ) {
+
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="15">
+
+                        Tiada data duty bagi
+
+                        ${pos}
+
+                        -
+
+                        ${SENARAI_BULAN[bulan]}
+
+                        ${tahun}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        // =================================================
+        // NO SKB UNIK
+        // =================================================
+
+        const senaraiNoSkb = [
+
+            ...
+
+            new Set(
+
+                dataDuty
+
+                    .map(
+
+                        row => row.no_skb
+
+                    )
+
+                    .filter(
+
+                        no =>
+
+                            no !== null &&
+
+                            no !== undefined
+
+                    )
+
+            )
+
+        ];
+
+
+        if (
+
+            senaraiNoSkb.length === 0
+
+        ) {
+
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="15">
+
+                        Tiada no_skb dalam jadual_duty.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        // =================================================
+        // AMBIL DATA ANGGOTA
+        // =================================================
+
+        const anggotaResult =
+
+            await supabaseClient
+
+                .from(
+
+                    "Data_Anggota"
+
+                )
+
+                .select(`
+
+                    no_skb,
+
+                    no_anggota,
+
+                    nama,
+
+                    gaji_pokok,
+
+                    pos,
+
+                    unit
+
+                `)
+
+                .in(
+
+                    "no_skb",
+
+                    senaraiNoSkb
+
+                );
+
+
+        if (
+
+            anggotaResult.error
+
+        ) {
+
+
+            throw anggotaResult.error;
+
+        }
+
+
+        const dataAnggota =
+
+            anggotaResult.data || [];
+
+
+        // =================================================
+        // MAP ANGGOTA
+        // =================================================
+
+        const mapAnggota =
+
+            new Map();
+
+
+        dataAnggota.forEach(
+
+            function (
+
+                anggota
+
+            ) {
+
+
+                mapAnggota.set(
+
+                    String(
+
+                        anggota.no_skb
+
+                    ),
+
+                    anggota
+
+                );
+
+            }
+
+        );
+
+
+        // =================================================
+        // KUMPUL DUTY MENGIKUT ANGGOTA
+        // =================================================
+
+        const kumpulan =
+
+            new Map();
+
+
+        dataDuty.forEach(
+
+            function (
+
+                duty
+
+            ) {
+
+
+                const key =
+
+                    String(
+
+                        duty.no_skb
+
+                    );
+
+
+                const anggota =
+
+                    mapAnggota.get(
+
+                        key
+
+                    );
+
+
+                if (!anggota) {
+
+
+                    console.warn(
+
+                        "Anggota tidak dijumpai:",
+
+                        duty.no_skb
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                if (
+
+                    !kumpulan.has(
+
+                        key
+
+                    )
+
+                ) {
+
+
+                    kumpulan.set(
+
+                        key,
+
+                        {
+
+                            anggota: anggota,
+
+                            duty: []
+
+                        }
+
+                    );
+
+                }
+
+
+                kumpulan
+
+                    .get(
+
+                        key
+
+                    )
+
+                    .duty
+
+                    .push(
+
+                        duty
+
+                    );
+
+            }
+
+        );
+
+
+        // =================================================
+        // PAPAR TABLE
+        // =================================================
+
+        tbody.innerHTML = "";
+
+
+        let bil = 1;
+
+
+        let jumlahJam = 0;
+
+
+        let jumlahKlm = 0;
+
+
+        kumpulan.forEach(
+
+            function (
+
+                item
+
+            ) {
+
+
+                const anggota =
+
+                    item.anggota;
+
+
+                const duty =
+
+                    item.duty;
+
+
+                const jam =
+
+                    duty.reduce(
+
+                        function (
+
+                            total,
+
+                            row
+
+                        ) {
+
+
+                            return total
+
+                                +
+
+                                (
+
+                                    parseFloat(
+
+                                        row.jam_kerja
+
+                                    )
+
+                                    || 0
+
+                                );
+
+                        },
+
+                        0
+
+                    );
+
+
+                const klm =
+
+                    duty.reduce(
+
+                        function (
+
+                            total,
+
+                            row
+
+                        ) {
+
+
+                            return total
+
+                                +
+
+                                (
+
+                                    parseFloat(
+
+                                        row.jam_klm
+
+                                    )
+
+                                    || 0
+
+                                );
+
+                        },
+
+                        0
+
+                    );
+
+
+                jumlahJam += jam;
+
+
+                jumlahKlm += klm;
+
+
+                const tr =
+
+                    document.createElement(
+
+                        "tr"
+
+                    );
+
+
+                tr.innerHTML = `
+
+                    <td>
+
+                        ${bil}
+
+                    </td>
+
+
+                    <td>
+
+                        ${anggota.no_skb || ""}
+
+                    </td>
+
+
+                    <td class="left">
+
+                        ${anggota.nama || ""}
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        ${formatRM(
+
+                            anggota.gaji_pokok
+
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${jam.toFixed(
+
+                            2
+
+                        )}
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        RM 0.00
+
+                    </td>
+
+
+                    <td>
+
+                        0
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        RM 0.00
+
+                    </td>
+
+
+                    <td>
+
+                        0
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        RM 0.00
+
+                    </td>
+
+
+                    <td>
+
+                        0
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        RM 0.00
+
+                    </td>
+
+
+                    <td>
+
+                        0
+
+                    </td>
+
+
+                    <td class="amount">
+
+                        RM 0.00
+
+                    </td>
+
+
+                    <td>
+
+                        ${klm.toFixed(
+
+                            2
+
+                        )}
+
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(
+
+                    tr
+
+                );
+
+
+                bil++;
+
+            }
+
+        );
+
+
+        // =================================================
+        // JUMLAH KESELURUHAN
+        // =================================================
+
+        tfoot.innerHTML = `
+
+            <tr class="total-row">
+
+
+                <td colspan="4">
+
+                    JUMLAH KESELURUHAN
+
+                </td>
+
+
+                <td>
+
+                    ${jumlahJam.toFixed(
+
+                        2
+
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    -
+
+                </td>
+
+
+                <td colspan="8">
+
+                    -
+
+                </td>
+
+
+                <td>
+
+                    ${jumlahKlm.toFixed(
+
+                        2
+
+                    )}
+
+                </td>
+
+
+            </tr>
+
+        `;
+
+
+        paparMesej(
+
+            "Laporan berjaya dijana.",
+
+            "success"
+
+        );
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        console.error(
+
+            "RALAT JANA LAPORAN:",
+
+            error
+
+        );
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="15">
+
+                    ${error.message}
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        paparMesej(
+
+            error.message,
+
+            "error"
+
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// FORMAT RM
+// =====================================================
+
+function formatRM(
+
+    nilai
+
+) {
+
+
+    const nombor =
+
+        parseFloat(
+
+            nilai
+
+        )
+
+        || 0;
+
+
+    return nombor.toLocaleString(
+
+        "ms-MY",
+
+        {
+
+            minimumFractionDigits: 2,
+
+            maximumFractionDigits: 2
+
+        }
+
+    );
+
+}
+
+</script>
 
 </body>
 
 </html>
-```
