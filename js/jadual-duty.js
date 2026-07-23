@@ -2487,7 +2487,7 @@ async function paparDuty() {
 
             <tr>
 
-                <td colspan="21">
+                <td colspan="10">
 
                     Sila pilih Bulan / Tahun
 
@@ -2658,7 +2658,7 @@ async function paparDuty() {
 
             <tr>
 
-                <td colspan="21">
+                <td colspan="10">
 
                     Tiada rekod duty ditemui
 
@@ -2682,6 +2682,8 @@ async function paparDuty() {
 
                 <tr>
 
+                    <!-- TARIKH -->
+
                     <td>
 
                         ${formatTarikh(
@@ -2693,26 +2695,7 @@ async function paparDuty() {
                     </td>
 
 
-                    <td>
-
-                        ${item.hari || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.no_skb || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.no_anggota || ""}
-
-                    </td>
-
+                    <!-- NAMA ANGGOTA -->
 
                     <td>
 
@@ -2725,68 +2708,7 @@ async function paparDuty() {
                     </td>
 
 
-                    <td>
-
-                        ${item.kawasan || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.unit || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.ketua_unit || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.ketua_pos || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.pos || item.nama_pos_asal || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.waktu_tugasan || ""}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.jam_kerja || 0}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.jam_klm || 0}
-
-                    </td>
-
-
-                    <td>
-
-                        ${item.kod_duty || item.kod_waktu_kerja || ""}
-
-                    </td>
-
+                    <!-- KOD TK -->
 
                     <td>
 
@@ -2795,23 +2717,42 @@ async function paparDuty() {
                     </td>
 
 
+                    <!-- KOD WK -->
+
                     <td>
 
-                        ${item.tempat_kerja || ""}
+                        ${
+
+                            item.kod_waktu_kerja ||
+
+                            item.kod_duty ||
+
+                            ""
+
+                        }
 
                     </td>
 
 
+                    <!-- KLM HARI BIASA -->
+
                     <td>
 
-                        ${item.hari_offday_bertugas == 1
-
-                            ? "Ya"
-
-                            : "Tidak"}
+                        ${item.jam_klm || 0}
 
                     </td>
 
+
+                    <!-- OFFDAY HARI -->
+
+                    <td>
+
+                        ${item.hari_offday_bertugas || 0}
+
+                    </td>
+
+
+                    <!-- OFFDAY JAM -->
 
                     <td>
 
@@ -2820,16 +2761,16 @@ async function paparDuty() {
                     </td>
 
 
+                    <!-- CUTI AM HARI -->
+
                     <td>
 
-                        ${item.hari_cutiam_bertugas == 1
-
-                            ? "Ya"
-
-                            : "Tidak"}
+                        ${item.hari_cutiam_bertugas || 0}
 
                     </td>
 
+
+                    <!-- CUTI AM JAM -->
 
                     <td>
 
@@ -2838,38 +2779,83 @@ async function paparDuty() {
                     </td>
 
 
+                    <!-- TINDAKAN -->
+
                     <td>
 
-                        <button
-
-                            onclick="editDuty('${
-
-                                item.id
-
-                            }')"
-
-                        >
-
-                            ✏️ Edit
-
-                        </button>
+                        <div class="tindakan-duty">
 
 
-                        <button
+                            <!-- DUPLICATE -->
 
-                            class="btn-danger"
+                            <button
 
-                            onclick="padamDuty('${
+                                type="button"
 
-                                item.id
+                                class="btn-duplicate"
 
-                            }')"
+                                title="Duplicate"
 
-                        >
+                                onclick="duplicateDuty('${
 
-                            🗑️ Padam
+                                    item.id
 
-                        </button>
+                                }')"
+
+                            >
+
+                                📋
+
+                            </button>
+
+
+                            <!-- EDIT -->
+
+                            <button
+
+                                type="button"
+
+                                class="btn-edit"
+
+                                title="Edit"
+
+                                onclick="editDuty('${
+
+                                    item.id
+
+                                }')"
+
+                            >
+
+                                ✏️
+
+                            </button>
+
+
+                            <!-- DELETE -->
+
+                            <button
+
+                                type="button"
+
+                                class="btn-delete"
+
+                                title="Delete"
+
+                                onclick="padamDuty('${
+
+                                    item.id
+
+                                }')"
+
+                            >
+
+                                🗑️
+
+                            </button>
+
+
+                        </div>
 
                     </td>
 
