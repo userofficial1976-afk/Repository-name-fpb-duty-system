@@ -6,19 +6,13 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-Senarai Anggota - Forecast Duty System
+Senarai Anggota — Forecast Duty System
 </title>
 
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -236,7 +230,7 @@ body {
 
 
 /* =====================================================
-   HERITAGE
+   HERITAGE MARK
 ===================================================== */
 
 .heritage-mark {
@@ -416,11 +410,15 @@ body {
 
     margin-left: 290px;
 
-    width: calc(
+    width:
 
-        100% - 290px
+        calc(
 
-    );
+            100% - 290px
+
+        );
+
+    min-height: 100vh;
 
 }
 
@@ -524,7 +522,7 @@ body {
 
 .content {
 
-    padding: 32px;
+    padding: 28px 32px 20px;
 
     max-width: 1800px;
 
@@ -553,9 +551,9 @@ body {
 
     border-radius: 18px;
 
-    padding: 30px 35px;
+    padding: 28px 34px;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
     position: relative;
 
@@ -582,18 +580,93 @@ body {
 }
 
 
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -80px;
+
+    bottom: -140px;
+
+    width: 420px;
+
+    height: 420px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.25
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 80px;
+
+    bottom: -200px;
+
+    width: 400px;
+
+    height: 400px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
 .hero h1 {
 
-    font-size: 27px;
+    font-size: 25px;
 
     letter-spacing: 0.5px;
+
+    margin-bottom: 8px;
 
 }
 
 
 .hero p {
-
-    margin-top: 8px;
 
     color: #e3f2f3;
 
@@ -616,6 +689,41 @@ body {
 
 
 /* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 21px;
+
+    color: #304c53;
+
+}
+
+
+.section-header p {
+
+    font-size: 14px;
+
+    color: #829398;
+
+}
+
+
+/* =====================================================
    CARD
 ===================================================== */
 
@@ -627,9 +735,7 @@ body {
 
     border-radius: 15px;
 
-    padding: 25px;
-
-    margin-bottom: 25px;
+    padding: 22px;
 
     box-shadow:
 
@@ -651,63 +757,32 @@ body {
 
 
 /* =====================================================
-   CARD HEADER
-===================================================== */
-
-.card-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 20px;
-
-}
-
-
-.card-header h2 {
-
-    font-size: 20px;
-
-    color: #304c53;
-
-}
-
-
-.card-header span {
-
-    font-size: 14px;
-
-    color: #829398;
-
-}
-
-
-/* =====================================================
    FILTER
 ===================================================== */
 
-.filter-grid {
+.filter-bar {
 
     display: grid;
 
     grid-template-columns:
 
-        2fr
+        minmax(
 
-        1fr
+            300px,
 
-        1fr
+            1fr
 
-        1fr
+        )
+
+        250px
 
         auto;
 
-    gap: 14px;
+    gap: 15px;
 
     align-items: end;
+
+    margin-bottom: 20px;
 
 }
 
@@ -722,9 +797,11 @@ body {
 
     color: #71858a;
 
-    margin-bottom: 7px;
-
     text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 7px;
 
 }
 
@@ -735,15 +812,13 @@ select {
 
     width: 100%;
 
-    height: 42px;
-
-    padding: 0 12px;
+    padding: 12px 14px;
 
     border: 1px solid #cbdde1;
 
     border-radius: 9px;
 
-    background: #ffffff;
+    background: #fbfdfd;
 
     color: #304c53;
 
@@ -781,21 +856,19 @@ select:focus {
 
 .btn {
 
-    height: 42px;
-
     border: none;
 
     border-radius: 9px;
 
-    padding: 0 18px;
+    padding: 12px 18px;
 
     cursor: pointer;
 
     font-weight: bold;
 
-    font-size: 13px;
+    font-size: 14px;
 
-    white-space: nowrap;
+    transition: 0.2s ease;
 
 }
 
@@ -811,80 +884,50 @@ select:focus {
 
 .btn-primary:hover {
 
-    background: #286c73;
+    background: #2f6970;
+
+    transform: translateY(-1px);
 
 }
 
 
-.btn-edit {
+.btn-warning {
 
-    background: #e7f2f3;
+    background: #e5a93d;
 
-    color: #286c73;
-
-}
-
-
-.btn-edit:hover {
-
-    background: #d4e9eb;
+    color: white;
 
 }
 
 
-.btn-delete {
+.btn-warning:hover {
 
-    background: #fbe7e7;
-
-    color: #b23b3b;
+    background: #c98e25;
 
 }
 
 
-.btn-delete:hover {
+.btn-danger {
 
-    background: #f7d4d4;
+    background: #c95f5f;
 
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-#mesej {
-
-    margin-bottom: 15px;
+    color: white;
 
 }
 
 
-.success {
+.btn-danger:hover {
 
-    background: #e4f2ed;
-
-    color: #3d7662;
-
-    padding: 12px 15px;
-
-    border-radius: 9px;
-
-    border: 1px solid #c7e2d7;
+    background: #ae4848;
 
 }
 
 
-.error {
+.btn-small {
 
-    background: #fbe7e7;
+    padding: 8px 11px;
 
-    color: #a53c3c;
-
-    padding: 12px 15px;
-
-    border-radius: 9px;
-
-    border: 1px solid #efcaca;
+    font-size: 12px;
 
 }
 
@@ -897,7 +940,19 @@ select:focus {
 
     width: 100%;
 
-    overflow: visible;
+    overflow-x: auto;
+
+    overflow-y: auto;
+
+    max-height: calc(
+
+        100vh - 390px
+
+    );
+
+    border: 1px solid #e1ebed;
+
+    border-radius: 10px;
 
 }
 
@@ -908,7 +963,7 @@ table {
 
     border-collapse: collapse;
 
-    table-layout: fixed;
+    min-width: 1050px;
 
 }
 
@@ -917,7 +972,7 @@ th,
 
 td {
 
-    padding: 12px 8px;
+    padding: 12px 10px;
 
     text-align: left;
 
@@ -925,16 +980,18 @@ td {
 
     font-size: 13px;
 
-    vertical-align: middle;
-
-    word-wrap: break-word;
-
-    overflow-wrap: break-word;
+    white-space: nowrap;
 
 }
 
 
 th {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 5;
 
     color: #71858a;
 
@@ -942,7 +999,7 @@ th {
 
     text-transform: uppercase;
 
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
 
     background: #f2f7f8;
 
@@ -963,125 +1020,6 @@ tr:hover {
 }
 
 
-/* WIDTH KOLOM */
-
-th:nth-child(1),
-
-td:nth-child(1) {
-
-    width: 6%;
-
-}
-
-
-th:nth-child(2),
-
-td:nth-child(2) {
-
-    width: 8%;
-
-}
-
-
-th:nth-child(3),
-
-td:nth-child(3) {
-
-    width: 15%;
-
-}
-
-
-th:nth-child(4),
-
-td:nth-child(4) {
-
-    width: 8%;
-
-}
-
-
-th:nth-child(5),
-
-td:nth-child(5) {
-
-    width: 8%;
-
-}
-
-
-th:nth-child(6),
-
-td:nth-child(6) {
-
-    width: 10%;
-
-}
-
-
-th:nth-child(7),
-
-td:nth-child(7) {
-
-    width: 11%;
-
-}
-
-
-th:nth-child(8),
-
-td:nth-child(8) {
-
-    width: 9%;
-
-}
-
-
-th:nth-child(9),
-
-td:nth-child(9) {
-
-    width: 9%;
-
-}
-
-
-th:nth-child(10),
-
-td:nth-child(10) {
-
-    width: 7%;
-
-}
-
-
-th:nth-child(11),
-
-td:nth-child(11) {
-
-    width: 7%;
-
-}
-
-
-th:nth-child(12),
-
-td:nth-child(12) {
-
-    width: 7%;
-
-}
-
-
-th:nth-child(13),
-
-td:nth-child(13) {
-
-    width: 10%;
-
-}
-
-
 /* =====================================================
    BADGE
 ===================================================== */
@@ -1090,7 +1028,7 @@ td:nth-child(13) {
 
     display: inline-block;
 
-    padding: 5px 8px;
+    padding: 5px 9px;
 
     border-radius: 7px;
 
@@ -1103,7 +1041,7 @@ td:nth-child(13) {
 
 .badge-aktif {
 
-    background: #e4f2ed;
+    background: #e1f0e8;
 
     color: #3d7662;
 
@@ -1112,39 +1050,67 @@ td:nth-child(13) {
 
 .badge-tidak {
 
-    background: #fbe7e7;
+    background: #f8e3e3;
 
-    color: #a53c3c;
+    color: #a54d4d;
 
 }
 
 
 /* =====================================================
-   BUTTON ACTION
+   ACTIONS
 ===================================================== */
 
 .action-buttons {
 
     display: flex;
 
-    gap: 5px;
+    gap: 6px;
 
 }
 
 
-.action-buttons button {
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-    padding: 6px 8px;
+.mesej {
 
-    border: none;
+    margin-bottom: 15px;
 
-    border-radius: 6px;
+    padding: 12px 15px;
 
-    cursor: pointer;
+    border-radius: 9px;
 
-    font-size: 11px;
+    font-size: 14px;
 
-    font-weight: bold;
+    display: none;
+
+}
+
+
+.mesej.success {
+
+    display: block;
+
+    background: #e1f0e8;
+
+    color: #3d7662;
+
+    border: 1px solid #c4dfd1;
+
+}
+
+
+.mesej.error {
+
+    display: block;
+
+    background: #f8e3e3;
+
+    color: #a54d4d;
+
+    border: 1px solid #ebc5c5;
 
 }
 
@@ -1159,9 +1125,9 @@ td:nth-child(13) {
 
     position: fixed;
 
-    inset: 0;
-
     z-index: 1000;
+
+    inset: 0;
 
     background:
 
@@ -1169,13 +1135,15 @@ td:nth-child(13) {
 
             30,
 
-            60,
+            55,
 
-            65,
+            60,
 
             0.45
 
         );
+
+    padding: 25px;
 
 }
 
@@ -1184,42 +1152,48 @@ td:nth-child(13) {
 
     background: white;
 
-    width: 95%;
+    width: 100%;
 
-    max-width: 950px;
+    max-width: 1000px;
 
-    max-height: 92vh;
+    max-height: 90vh;
 
     overflow-y: auto;
 
-    margin: 3vh auto;
+    margin: auto;
 
-    padding: 28px;
+    padding: 25px;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
-    box-shadow:
+    border: 1px solid #dce7e9;
 
-        0 15px 40px
+}
 
-        rgba(
 
-            0,
+.modal-header {
 
-            0,
+    display: flex;
 
-            0,
+    align-items: center;
 
-            0.18
+    justify-content: space-between;
 
-        );
+    margin-bottom: 22px;
+
+}
+
+
+.modal-header h2 {
+
+    color: #304c53;
+
+    font-size: 21px;
 
 }
 
 
 .close {
-
-    float: right;
 
     font-size: 28px;
 
@@ -1232,12 +1206,12 @@ td:nth-child(13) {
 
 .close:hover {
 
-    color: #b23b3b;
+    color: #c95f5f;
 
 }
 
 
-.modal-grid {
+.form-grid {
 
     display: grid;
 
@@ -1253,14 +1227,12 @@ td:nth-child(13) {
 
     gap: 15px;
 
-    margin-top: 20px;
-
 }
 
 
-.modal-grid .full {
+.form-group {
 
-    grid-column: 1 / -1;
+    margin-bottom: 3px;
 
 }
 
@@ -1269,6 +1241,8 @@ td:nth-child(13) {
 
     display: flex;
 
+    justify-content: flex-end;
+
     gap: 10px;
 
     margin-top: 25px;
@@ -1276,18 +1250,9 @@ td:nth-child(13) {
 }
 
 
-.modal-buttons button {
+.modal-buttons .btn {
 
-    flex: 1;
-
-}
-
-
-.btn-cancel {
-
-    background: #edf2f3;
-
-    color: #40575d;
+    min-width: 120px;
 
 }
 
@@ -1300,11 +1265,11 @@ td:nth-child(13) {
 
     text-align: center;
 
-    padding: 30px;
+    padding: 20px;
 
     color: #91a0a4;
 
-    font-size: 13px;
+    font-size: 12px;
 
 }
 
@@ -1313,34 +1278,37 @@ td:nth-child(13) {
    RESPONSIVE
 ===================================================== */
 
-@media(max-width:1400px) {
+@media(max-width:1200px) {
 
-    .filter-grid {
+    .filter-bar {
 
         grid-template-columns:
 
             1fr
 
-            1fr
-
-            1fr;
+            220px;
 
     }
 
-}
 
+    .filter-bar button {
 
-@media(max-width:1200px) {
-
-    .table-wrapper {
-
-        overflow-x: auto;
+        grid-column: 1 / -1;
 
     }
 
-    table {
 
-        min-width: 1100px;
+    .form-grid {
+
+        grid-template-columns:
+
+            repeat(
+
+                2,
+
+                1fr
+
+            );
 
     }
 
@@ -1432,48 +1400,34 @@ td:nth-child(13) {
     }
 
 
-    .filter-grid {
+    .filter-bar {
 
         grid-template-columns: 1fr;
 
     }
 
 
-    .modal-grid {
+    .filter-bar button {
+
+        grid-column: auto;
+
+    }
+
+
+    .form-grid {
 
         grid-template-columns: 1fr;
 
     }
 
-}
 
+    .table-wrapper {
 
-@media(max-width:500px) {
+        max-height: calc(
 
-    .page-title h2 {
+            100vh - 430px
 
-        font-size: 22px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 21px;
-
-    }
-
-
-    .content {
-
-        padding: 12px;
-
-    }
-
-
-    .card {
-
-        padding: 16px;
+        );
 
     }
 
@@ -1552,13 +1506,7 @@ MAIN MENU
 
 <nav class="nav">
 
-<a
-
-```
-href="index.html"
-```
-
->
+<a href="index.html">
 
 <span class="nav-icon">
 
@@ -1574,15 +1522,7 @@ Dashboard
 
 </a>
 
-<a
-
-```
-href="anggota.html"
-
-class="active"
-```
-
->
+<a href="anggota.html" class="active">
 
 <span class="nav-icon">
 
@@ -1598,13 +1538,7 @@ Senarai Anggota
 
 </a>
 
-<a
-
-```
-href="jadual-duty.html"
-```
-
->
+<a href="jadual-duty.html">
 
 <span class="nav-icon">
 
@@ -1620,13 +1554,7 @@ Jadual Duty
 
 </a>
 
-<a
-
-```
-href="kod-duty.html"
-```
-
->
+<a href="kod-duty.html">
 
 <span class="nav-icon">
 
@@ -1642,13 +1570,7 @@ Kod Duty
 
 </a>
 
-<a
-
-```
-href="tempat-kerja.html"
-```
-
->
+<a href="tempat-kerja.html">
 
 <span class="nav-icon">
 
@@ -1670,13 +1592,7 @@ REPORTING
 
 </div>
 
-<a
-
-```
-href="laporan.html"
-```
-
->
+<a href="laporan.html">
 
 <span class="nav-icon">
 
@@ -1692,13 +1608,7 @@ Laporan
 
 </a>
 
-<a
-
-```
-href="laporan-anggaran.html"
-```
-
->
+<a href="laporan-anggaran.html">
 
 <span class="nav-icon">
 
@@ -1714,13 +1624,7 @@ Anggaran Duty Bulanan
 
 </a>
 
-<a
-
-```
-href="Laporan-Penuh.html"
-```
-
->
+<a href="Laporan-Penuh.html">
 
 <span class="nav-icon">
 
@@ -1742,13 +1646,7 @@ SYSTEM
 
 </div>
 
-<a
-
-```
-href="#"
-```
-
->
+<a href="#">
 
 <span class="nav-icon">
 
@@ -1810,6 +1708,8 @@ System Online
 
 <div class="hero">
 
+<div class="hero-content">
+
 <h1>
 
 SENARAI ANGGOTA
@@ -1818,9 +1718,7 @@ SENARAI ANGGOTA
 
 <p>
 
-Pengurusan maklumat anggota Polis Bantuan FGVSSSB
-
-Wilayah Terengganu.
+Pengurusan data anggota Polis Bantuan FGVSSSB Wilayah Terengganu.
 
 </p>
 
@@ -1828,35 +1726,43 @@ Wilayah Terengganu.
 
 </div>
 
-<!-- FILTER -->
+</div>
 
-<div class="card">
+<!-- HEADER -->
 
-<div class="card-header">
+<div class="section-header">
+
+<div>
 
 <h2>
 
-Carian & Tapisan Anggota
+Data Anggota
 
 </h2>
 
-<span id="jumlahRekod">
+<p>
 
-0 Rekod
+Cari dan urus maklumat anggota yang berdaftar.
 
-</span>
+</p>
 
 </div>
 
-<div id="mesej"></div>
+</div>
 
-<div class="filter-grid">
+<div class="card">
+
+<div id="mesej" class="mesej"></div>
+
+<!-- FILTER -->
+
+<div class="filter-bar">
 
 <div class="form-group">
 
 <label>
 
-Cari Anggota
+Cari No. SKB / No. Anggota / Nama
 
 </label>
 
@@ -1867,7 +1773,9 @@ type="text"
 
 id="cari"
 
-placeholder="Nama, No. Anggota atau No. SKB..."
+placeholder="Taip No. SKB, No. Anggota atau Nama..."
+
+oninput="paparAnggota()"
 ```
 
 >
@@ -1886,6 +1794,8 @@ Filter Pos
 
 ```
 id="filterPos"
+
+onchange="paparAnggota()"
 ```
 
 >
@@ -1893,70 +1803,6 @@ id="filterPos"
 <option value="">
 
 Semua Pos
-
-</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>
-
-Filter Kawasan
-
-</label>
-
-<select
-
-```
-id="filterKawasan"
-```
-
->
-
-<option value="">
-
-Semua Kawasan
-
-</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>
-
-Status
-
-</label>
-
-<select
-
-```
-id="filterStatus"
-```
-
->
-
-<option value="">
-
-Semua Status
-
-</option>
-
-<option value="Aktif">
-
-Aktif
-
-</option>
-
-<option value="Tidak Aktif">
-
-Tidak Aktif
 
 </option>
 
@@ -1980,27 +1826,7 @@ onclick="bukaTambah()"
 
 </div>
 
-</div>
-
 <!-- TABLE -->
-
-<div class="card">
-
-<div class="card-header">
-
-<h2>
-
-Data Anggota
-
-</h2>
-
-<span>
-
-Senarai Keseluruhan
-
-</span>
-
-</div>
 
 <div class="table-wrapper">
 
@@ -2010,31 +1836,83 @@ Senarai Keseluruhan
 
 <tr>
 
-<th>No. SKB</th>
+<th>
 
-<th>No. Anggota</th>
+No. SKB
 
-<th>Nama</th>
+</th>
 
-<th>Pangkat</th>
+<th>
 
-<th>Wilayah</th>
+No. Anggota
 
-<th>Kawasan</th>
+</th>
 
-<th>Pos</th>
+<th>
 
-<th>Unit</th>
+Nama
 
-<th>Jawatan</th>
+</th>
 
-<th>Ketua Pos</th>
+<th>
 
-<th>Ketua Unit</th>
+Pangkat
 
-<th>Status</th>
+</th>
 
-<th>Tindakan</th>
+<th>
+
+Wilayah
+
+</th>
+
+<th>
+
+Kawasan
+
+</th>
+
+<th>
+
+Pos
+
+</th>
+
+<th>
+
+Unit
+
+</th>
+
+<th>
+
+Jawatan
+
+</th>
+
+<th>
+
+Ketua Pos
+
+</th>
+
+<th>
+
+Ketua Unit
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Tindakan
+
+</th>
 
 </tr>
 
@@ -2060,6 +1938,8 @@ Memuatkan data...
 
 </div>
 
+</div>
+
 <footer class="footer">
 
 FPB DUTY SYSTEM — WILAYAH TERENGGANU
@@ -2069,8 +1949,6 @@ FPB DUTY SYSTEM — WILAYAH TERENGGANU
 © 2026 | Operational Duty Management System
 
 </footer>
-
-</div>
 
 </main>
 
@@ -2092,6 +1970,14 @@ class="modal"
 
 <div class="modal-content">
 
+<div class="modal-header">
+
+<h2 id="tajukModal">
+
+Tambah Anggota
+
+</h2>
+
 <span
 
 ```
@@ -2106,11 +1992,7 @@ onclick="tutupModal()"
 
 </span>
 
-<h2 id="tajukModal">
-
-Tambah Anggota
-
-</h2>
+</div>
 
 <input
 
@@ -2122,7 +2004,7 @@ id="editNoSkb"
 
 >
 
-<div class="modal-grid">
+<div class="form-grid">
 
 <div class="form-group">
 
@@ -2192,13 +2074,7 @@ Pangkat
 
 </label>
 
-<select
-
-```
-id="pangkat"
-```
-
->
+<select id="pangkat">
 
 <option value="">
 
@@ -2242,17 +2118,23 @@ Kawasan
 
 </label>
 
-<select
-
-```
-id="kawasan"
-```
-
->
+<select id="kawasan">
 
 <option value="">
 
 -- Pilih Kawasan --
+
+</option>
+
+<option value="F102-Jerangau">
+
+F102-Jerangau
+
+</option>
+
+<option value="F105-Chalok">
+
+F105-Chalok
 
 </option>
 
@@ -2268,13 +2150,7 @@ Pos
 
 </label>
 
-<select
-
-```
-id="pos"
-```
-
->
+<select id="pos">
 
 <option value="">
 
@@ -2294,13 +2170,7 @@ Unit
 
 </label>
 
-<select
-
-```
-id="unit"
-```
-
->
+<select id="unit">
 
 <option value="">
 
@@ -2320,13 +2190,7 @@ Jawatan
 
 </label>
 
-<select
-
-```
-id="jawatan"
-```
-
->
+<select id="jawatan">
 
 <option value="">
 
@@ -2426,13 +2290,7 @@ Status
 
 </label>
 
-<select
-
-```
-id="status"
-```
-
->
+<select id="status">
 
 <option value="Aktif">
 
@@ -2471,7 +2329,7 @@ onclick="simpanAnggota()"
 <button
 
 ```
-class="btn btn-cancel"
+class="btn btn-danger"
 
 onclick="tutupModal()"
 ```
@@ -2530,75 +2388,15 @@ document.addEventListener(
 
     "DOMContentLoaded",
 
-    async function () {
-
-        document
-
-            .getElementById("cari")
-
-            .addEventListener(
-
-                "input",
-
-                paparAnggota
-
-            );
-
-
-        document
-
-            .getElementById("filterPos")
-
-            .addEventListener(
-
-                "change",
-
-                paparAnggota
-
-            );
-
-
-        document
-
-            .getElementById("filterKawasan")
-
-            .addEventListener(
-
-                "change",
-
-                paparAnggota
-
-            );
-
-
-        document
-
-            .getElementById("filterStatus")
-
-            .addEventListener(
-
-                "change",
-
-                paparAnggota
-
-            );
-
+    async function() {
 
         await muatAnggota();
-
 
         muatDropdownPangkat();
 
         muatDropdownPos();
 
         muatDropdownUnit();
-
-        muatDropdownKawasan();
-
-        muatFilterPos();
-
-        muatFilterKawasan();
-
 
         document
 
@@ -2612,7 +2410,6 @@ document.addEventListener(
 
             );
 
-
         document
 
             .getElementById("unit")
@@ -2625,7 +2422,6 @@ document.addEventListener(
 
             );
 
-
         document
 
             .getElementById("kawasan")
@@ -2634,7 +2430,7 @@ document.addEventListener(
 
                 "change",
 
-                function () {
+                function() {
 
                     paparKetua();
 
@@ -2650,7 +2446,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   MUAT ANGGOTA
+   MUAT DATA ANGGOTA
 ===================================================== */
 
 async function muatAnggota() {
@@ -2684,9 +2480,9 @@ async function muatAnggota() {
 
         paparMesej(
 
-            "Gagal ambil data: "
+            "Gagal ambil data anggota: " +
 
-            + result.error.message,
+            result.error.message,
 
             "error"
 
@@ -2697,9 +2493,7 @@ async function muatAnggota() {
     }
 
 
-    semuaAnggota =
-
-        result.data || [];
+    semuaAnggota = result.data || [];
 
 
     paparAnggota();
@@ -2723,25 +2517,25 @@ function senaraiUnik(namaKolum) {
 
                 .map(
 
-                    x => x[namaKolum]
+                    item => item[namaKolum]
 
                 )
 
                 .filter(
 
-                    x =>
+                    nilai =>
 
-                        x !== null &&
+                        nilai !== null &&
 
-                        x !== undefined &&
+                        nilai !== undefined &&
 
-                        String(x).trim() !== ""
+                        String(nilai).trim() !== ""
 
                 )
 
                 .map(
 
-                    x => String(x).trim()
+                    nilai => String(nilai).trim()
 
                 )
 
@@ -2884,21 +2678,6 @@ function muatDropdownUnit() {
 }
 
 
-function muatDropdownKawasan() {
-
-    isiDropdown(
-
-        "kawasan",
-
-        "kawasan",
-
-        "-- Pilih Kawasan --"
-
-    );
-
-}
-
-
 function muatFilterPos() {
 
     isiDropdown(
@@ -2908,21 +2687,6 @@ function muatFilterPos() {
         "pos",
 
         "Semua Pos"
-
-    );
-
-}
-
-
-function muatFilterKawasan() {
-
-    isiDropdown(
-
-        "filterKawasan",
-
-        "kawasan",
-
-        "Semua Kawasan"
 
     );
 
@@ -2953,6 +2717,22 @@ function paparKetua() {
             .value;
 
 
+    const input =
+
+        document
+
+            .getElementById("ketuaPos");
+
+
+    if (!kawasan || !pos) {
+
+        input.value = "";
+
+        return;
+
+    }
+
+
     const ketua =
 
         semuaAnggota.find(
@@ -2970,11 +2750,7 @@ function paparKetua() {
         );
 
 
-    document
-
-        .getElementById("ketuaPos")
-
-        .value =
+    input.value =
 
         ketua
 
@@ -3009,6 +2785,22 @@ function paparKetuaUnit() {
             .value;
 
 
+    const input =
+
+        document
+
+            .getElementById("ketuaUnit");
+
+
+    if (!kawasan || !unit) {
+
+        input.value = "";
+
+        return;
+
+    }
+
+
     const ketua =
 
         semuaAnggota.find(
@@ -3026,11 +2818,7 @@ function paparKetuaUnit() {
         );
 
 
-    document
-
-        .getElementById("ketuaUnit")
-
-        .value =
+    input.value =
 
         ketua
 
@@ -3055,7 +2843,9 @@ function paparAnggota() {
 
             .value
 
-            .toLowerCase();
+            .toLowerCase()
+
+            .trim();
 
 
     const filterPos =
@@ -3067,132 +2857,90 @@ function paparAnggota() {
             .value;
 
 
-    const filterKawasan =
-
-        document
-
-            .getElementById("filterKawasan")
-
-            .value;
-
-
-    const filterStatus =
-
-        document
-
-            .getElementById("filterStatus")
-
-            .value;
-
-
     const data =
 
         semuaAnggota.filter(
 
-            x => {
-
-                const teks = [
-
-                    x.no_skb,
-
-                    x.no_anggota,
-
-                    x.nama,
-
-                    x.pangkat,
-
-                    x.wilayah,
-
-                    x.kawasan,
-
-                    x.pos,
-
-                    x.unit,
-
-                    x.jawatan,
-
-                    x.ketua_pos,
-
-                    x.ketua_unit
-
-                ]
-
-                .join(" ")
-
-                .toLowerCase();
+            anggota => {
 
 
-                return
-
-                    teks.includes(cari)
-
-                    &&
+                const teksCari =
 
                     (
 
-                        !filterPos
+                        String(
 
-                        ||
+                            anggota.no_skb || ""
 
-                        x.pos === filterPos
+                        )
+
+                        + " " +
+
+                        String(
+
+                            anggota.no_anggota || ""
+
+                        )
+
+                        + " " +
+
+                        String(
+
+                            anggota.nama || ""
+
+                        )
 
                     )
 
-                    &&
+                    .toLowerCase();
 
-                    (
 
-                        !filterKawasan
+                const padanCari =
 
-                        ||
+                    teksCari.includes(cari);
 
-                        x.kawasan === filterKawasan
 
-                    )
+                const padanPos =
 
-                    &&
+                    !filterPos ||
 
-                    (
+                    anggota.pos === filterPos;
 
-                        !filterStatus
 
-                        ||
+                return (
 
-                        x.status === filterStatus
+                    padanCari &&
 
-                    );
+                    padanPos
+
+                );
 
             }
 
         );
 
 
-    document
-
-        .getElementById("jumlahRekod")
-
-        .textContent =
-
-        data.length
-
-        + " Rekod";
-
-
     const tbody =
 
         document
 
-            .getElementById("senaraiAnggota");
+            .getElementById(
+
+                "senaraiAnggota"
+
+            );
 
 
     tbody.innerHTML = "";
 
 
-    if (!data.length) {
+    if (data.length === 0) {
 
         tbody.innerHTML =
 
-            `<tr>
+            `
+
+            <tr>
 
                 <td colspan="13">
 
@@ -3200,8 +2948,9 @@ function paparAnggota() {
 
                 </td>
 
-            </tr>`;
+            </tr>
 
+            `;
 
         return;
 
@@ -3212,9 +2961,12 @@ function paparAnggota() {
 
         anggota => {
 
+
             const tr =
 
-                document.createElement("tr");
+                document
+
+                    .createElement("tr");
 
 
             const statusClass =
@@ -3226,39 +2978,139 @@ function paparAnggota() {
                     : "badge-tidak";
 
 
-            tr.innerHTML = `
+            tr.innerHTML =
 
-                <td>${escapeHTML(anggota.no_skb)}</td>
-
-                <td>${escapeHTML(anggota.no_anggota)}</td>
-
-                <td><strong>
-
-                    ${escapeHTML(anggota.nama)}
-
-                </strong></td>
-
-                <td>${escapeHTML(anggota.pangkat)}</td>
-
-                <td>${escapeHTML(anggota.wilayah)}</td>
-
-                <td>${escapeHTML(anggota.kawasan)}</td>
-
-                <td>${escapeHTML(anggota.pos)}</td>
-
-                <td>${escapeHTML(anggota.unit)}</td>
-
-                <td>${escapeHTML(anggota.jawatan)}</td>
-
-                <td>${escapeHTML(anggota.ketua_pos)}</td>
-
-                <td>${escapeHTML(anggota.ketua_unit)}</td>
+                `
 
                 <td>
 
-                    <span class="badge ${statusClass}">
+                    ${escapeHTML(
 
-                        ${escapeHTML(anggota.status)}
+                        anggota.no_skb
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.no_anggota
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    <strong>
+
+                        ${escapeHTML(
+
+                            anggota.nama
+
+                        )}
+
+                    </strong>
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.pangkat
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.wilayah
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.kawasan
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.pos
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.unit
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.jawatan
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.ketua_pos
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+
+                        anggota.ketua_unit
+
+                    )}
+
+                </td>
+
+                <td>
+
+                    <span
+
+                        class="badge
+
+                        ${statusClass}"
+
+                    >
+
+                        ${escapeHTML(
+
+                            anggota.status
+
+                        )}
 
                     </span>
 
@@ -3266,13 +3118,21 @@ function paparAnggota() {
 
                 <td>
 
-                    <div class="action-buttons">
+                    <div
+
+                        class="action-buttons"
+
+                    >
 
                         <button
 
-                            class="btn-edit"
+                            class="btn btn-warning btn-small"
 
-                            onclick="editAnggota('${escapeJS(anggota.no_skb)}')"
+                            onclick="editAnggota('${escapeJS(
+
+                                anggota.no_skb
+
+                            )}')"
 
                         >
 
@@ -3282,9 +3142,17 @@ function paparAnggota() {
 
                         <button
 
-                            class="btn-delete"
+                            class="btn btn-danger btn-small"
 
-                            onclick="padamAnggota('${escapeJS(anggota.no_skb)}')"
+                            onclick="padamAnggota('${escapeJS(
+
+                                anggota.no_skb
+
+                            )}', '${escapeJS(
+
+                                anggota.nama
+
+                            )}')"
 
                         >
 
@@ -3296,7 +3164,7 @@ function paparAnggota() {
 
                 </td>
 
-            `;
+                `;
 
 
             tbody.appendChild(tr);
@@ -3425,7 +3293,7 @@ function bukaTambah() {
 
         .getElementById("modalAnggota")
 
-        .style.display = "block";
+        .style.display = "flex";
 
 }
 
@@ -3442,9 +3310,7 @@ function editAnggota(noSkb) {
 
             x =>
 
-                String(x.no_skb)
-
-                ===
+                String(x.no_skb) ===
 
                 String(noSkb)
 
@@ -3591,7 +3457,7 @@ function editAnggota(noSkb) {
 
         .getElementById("modalAnggota")
 
-        .style.display = "block";
+        .style.display = "flex";
 
 }
 
@@ -3727,25 +3593,15 @@ async function simpanAnggota() {
 
     if (
 
-        !noSkb
+        !noSkb ||
 
-        ||
+        !nama ||
 
-        !nama
+        !kawasan ||
 
-        ||
+        !pos ||
 
-        !kawasan
-
-        ||
-
-        !pos
-
-        ||
-
-        !unit
-
-        ||
+        !unit ||
 
         !jawatan
 
@@ -3758,7 +3614,6 @@ async function simpanAnggota() {
             "error"
 
         );
-
 
         return;
 
@@ -3819,6 +3674,7 @@ async function simpanAnggota() {
 
     if (editNoSkb) {
 
+
         result =
 
             await supabaseClient
@@ -3839,6 +3695,7 @@ async function simpanAnggota() {
 
 
     else {
+
 
         result =
 
@@ -3863,14 +3720,13 @@ async function simpanAnggota() {
 
         paparMesej(
 
-            "Gagal simpan: "
+            "Gagal simpan: " +
 
-            + result.error.message,
+            result.error.message,
 
             "error"
 
         );
-
 
         return;
 
@@ -3898,11 +3754,7 @@ async function simpanAnggota() {
 
     muatDropdownUnit();
 
-    muatDropdownKawasan();
-
     muatFilterPos();
-
-    muatFilterKawasan();
 
 }
 
@@ -3911,58 +3763,35 @@ async function simpanAnggota() {
    PADAM ANGGOTA
 ===================================================== */
 
-async function padamAnggota(noSkb) {
+async function padamAnggota(
 
-    const anggota =
+    noSkb,
 
-        semuaAnggota.find(
+    nama
 
-            x =>
-
-                String(x.no_skb)
-
-                ===
-
-                String(noSkb)
-
-        );
-
-
-    if (!anggota) {
-
-        return;
-
-    }
+) {
 
 
     const sah =
 
         confirm(
 
-            "Adakah anda pasti mahu PADAM data anggota ini?\n\n"
+            "Adakah anda pasti mahu PADAM anggota ini?\n\n" +
 
-            + "No. SKB: "
+            "No. SKB: " +
 
-            + anggota.no_skb
+            noSkb +
 
-            + "\n"
+            "\nNama: " +
 
-            + "Nama: "
+            nama +
 
-            + anggota.nama
-
-            + "\n\n"
-
-            + "Tindakan ini tidak boleh dibatalkan."
+            "\n\nData yang dipadam tidak boleh dikembalikan."
 
         );
 
 
-    if (!sah) {
-
-        return;
-
-    }
+    if (!sah) return;
 
 
     const result =
@@ -3986,14 +3815,13 @@ async function padamAnggota(noSkb) {
 
         paparMesej(
 
-            "Gagal padam: "
+            "Gagal padam data: " +
 
-            + result.error.message,
+            result.error.message,
 
             "error"
 
         );
-
 
         return;
 
@@ -4018,11 +3846,7 @@ async function padamAnggota(noSkb) {
 
     muatDropdownUnit();
 
-    muatDropdownKawasan();
-
     muatFilterPos();
-
-    muatFilterKawasan();
 
 }
 
@@ -4061,7 +3885,11 @@ function paparMesej(
             .getElementById("mesej");
 
 
-    div.className = jenis;
+    div.className =
+
+        "mesej " +
+
+        jenis;
 
 
     div.textContent = mesej;
@@ -4069,11 +3897,11 @@ function paparMesej(
 
     setTimeout(
 
-        function () {
+        () => {
+
+            div.className = "mesej";
 
             div.textContent = "";
-
-            div.className = "";
 
         },
 
@@ -4092,9 +3920,7 @@ function escapeHTML(value) {
 
     if (
 
-        value === null
-
-        ||
+        value === null ||
 
         value === undefined
 
@@ -4156,7 +3982,11 @@ function escapeHTML(value) {
 
 function escapeJS(value) {
 
-    return String(value)
+    return String(
+
+        value || ""
+
+    )
 
         .replace(
 
@@ -4180,45 +4010,25 @@ function escapeJS(value) {
 
             '\\"'
 
+        )
+
+        .replace(
+
+            /\n/g,
+
+            "\\n"
+
+        )
+
+        .replace(
+
+            /\r/g,
+
+            "\\r"
+
         );
 
 }
-
-
-/* =====================================================
-   KLIK LUAR MODAL
-===================================================== */
-
-window.addEventListener(
-
-    "click",
-
-    function(event) {
-
-        const modal =
-
-            document
-
-                .getElementById(
-
-                    "modalAnggota"
-
-                );
-
-
-        if (
-
-            event.target === modal
-
-        ) {
-
-            tutupModal();
-
-        }
-
-    }
-
-);
 
 </script>
 
