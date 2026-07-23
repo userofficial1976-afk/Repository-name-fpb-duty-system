@@ -64,12 +64,65 @@ document.addEventListener(
 
         console.log(
 
+            "===================================="
+
+        );
+
+
+        console.log(
+
             "LAPORAN ANGGARAN DIMUATKAN"
 
         );
 
 
+        console.log(
+
+            "===================================="
+
+        );
+
+
+        // SEMAK SUPABASE
+
+        if (
+
+            typeof supabase ===
+
+            "undefined"
+
+        ) {
+
+
+            console.error(
+
+                "SUPABASE TIDAK DIJUMPAI"
+
+            );
+
+
+            paparMesej(
+
+                "Supabase tidak berjaya dimuatkan.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        // MUAT POS
+
         await muatSenaraiPos();
+
+
+        // MUAT TAHUN JIKA ADA DROPDOWN TAHUN
+
+        muatSenaraiTahun();
 
 
     }
@@ -79,10 +132,18 @@ document.addEventListener(
 
 // =====================================================
 // MUAT SENARAI POS
-// DARIPADA TABLE Data_Anggota
+// SUMBER: Data_Anggota
+// COLUMN: pos
 // =====================================================
 
 async function muatSenaraiPos() {
+
+
+    console.log(
+
+        "MULA AMBIL SENARAI POS..."
+
+    );
 
 
     const selectPos =
@@ -99,7 +160,7 @@ async function muatSenaraiPos() {
 
         console.error(
 
-            "Dropdown #pos tidak dijumpai."
+            "ERROR: ID pos TIDAK DIJUMPAI."
 
         );
 
@@ -109,15 +170,13 @@ async function muatSenaraiPos() {
     }
 
 
-    // =================================================
     // RESET DROPDOWN
-    // =================================================
 
     selectPos.innerHTML = `
 
         <option value="">
 
-            -- Pilih Pos --
+            -- Sedang Memuatkan Pos --
 
         </option>
 
@@ -127,38 +186,70 @@ async function muatSenaraiPos() {
     try {
 
 
-        // =================================================
-        // AMBIL POS DARIPADA Data_Anggota
-        // =================================================
+        // =============================================
+        // AMBIL DATA DARI DATA_ANGGOTA
+        // =============================================
 
-        const {
+        const result =
 
-            data,
+            await supabase
 
-            error
+                .from(
 
-        } = await supabase
+                    "Data_Anggota"
 
-            .from("Data_Anggota")
+                )
 
-            .select("pos");
+                .select(
+
+                    "pos"
+
+                );
 
 
-        if (error) {
+        console.log(
+
+            "HASIL QUERY POS:",
+
+            result
+
+        );
+
+
+        // =============================================
+        // SEMAK ERROR
+        // =============================================
+
+        if (
+
+            result.error
+
+        ) {
 
 
             console.error(
 
-                "RALAT AMBIL POS:",
+                "RALAT SUPABASE POS:",
 
-                error
+                result.error
 
             );
 
 
+            selectPos.innerHTML = `
+
+                <option value="">
+
+                    -- Ralat Ambil Pos --
+
+                </option>
+
+            `;
+
+
             paparMesej(
 
-                error.message,
+                result.error.message,
 
                 "error"
 
@@ -170,19 +261,54 @@ async function muatSenaraiPos() {
         }
 
 
-        if (!data || data.length === 0) {
+        const data =
+
+            result.data;
+
+
+        console.log(
+
+            "DATA POS DITERIMA:",
+
+            data
+
+        );
+
+
+        // =============================================
+        // SEMAK DATA KOSONG
+        // =============================================
+
+        if (
+
+            !data ||
+
+            data.length === 0
+
+        ) {
 
 
             console.warn(
 
-                "Tiada data POS dalam Data_Anggota."
+                "TIADA DATA DALAM Data_Anggota"
 
             );
 
 
+            selectPos.innerHTML = `
+
+                <option value="">
+
+                    -- Tiada Data Anggota --
+
+                </option>
+
+            `;
+
+
             paparMesej(
 
-                "Tiada data Pos dijumpai dalam Data_Anggota.",
+                "Tiada data dijumpai dalam table Data_Anggota.",
 
                 "error"
 
@@ -194,50 +320,118 @@ async function muatSenaraiPos() {
         }
 
 
-        // =================================================
-        // BUANG POS KOSONG DAN DUPLIKAT
-        // =================================================
+        // =============================================
+        // AMBIL POS UNIK
+        // =============================================
 
-        const posUnik = [
+        const senaraiPos = [];
 
-            ...new Set(
 
-                data
+        data.forEach(
 
-                    .map(
+            function (
 
-                        item =>
+                item
+
+            ) {
+
+
+                if (
+
+                    item.pos !== null &&
+
+                    item.pos !== undefined
+
+                ) {
+
+
+                    const pos =
+
+                        String(
 
                             item.pos
 
-                    )
-
-                    .filter(
-
-                        pos =>
-
-                            pos !== null &&
-
-                            pos !== undefined &&
-
-                            String(
-
-                                pos
-
-                            ).trim() !== ""
-
-                    )
-
-            )
-
-        ];
+                        ).trim();
 
 
-        // =================================================
-        // SUSUN SENARAI POS
-        // =================================================
+                    if (
 
-        posUnik.sort(
+                        pos !== "" &&
+
+                        !senaraiPos.includes(
+
+                            pos
+
+                        )
+
+                    ) {
+
+
+                        senaraiPos.push(
+
+                            pos
+
+                        );
+
+                    }
+
+                }
+
+            }
+
+        );
+
+
+        console.log(
+
+            "POS UNIK:",
+
+            senaraiPos
+
+        );
+
+
+        // =============================================
+        // JIKA TIADA POS
+        // =============================================
+
+        if (
+
+            senaraiPos.length === 0
+
+        ) {
+
+
+            selectPos.innerHTML = `
+
+                <option value="">
+
+                    -- Tiada Pos Dijumpai --
+
+                </option>
+
+            `;
+
+
+            paparMesej(
+
+                "Column pos dalam Data_Anggota tidak mempunyai data.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        // =============================================
+        // SUSUN POS
+        // =============================================
+
+        senaraiPos.sort(
 
             function (
 
@@ -276,14 +470,31 @@ async function muatSenaraiPos() {
         );
 
 
-        semuaPos = posUnik;
+        semuaPos =
+
+            senaraiPos;
 
 
-        // =================================================
-        // MASUKKAN KE DROPDOWN
-        // =================================================
+        // =============================================
+        // RESET DROPDOWN
+        // =============================================
 
-        posUnik.forEach(
+        selectPos.innerHTML = `
+
+            <option value="">
+
+                -- Pilih Pos --
+
+            </option>
+
+        `;
+
+
+        // =============================================
+        // MASUKKAN SEMUA POS
+        // =============================================
+
+        senaraiPos.forEach(
 
             function (
 
@@ -325,9 +536,16 @@ async function muatSenaraiPos() {
 
         console.log(
 
-            "SENARAI POS:",
+            "DROPDOWN POS BERJAYA DIISI"
 
-            semuaPos
+        );
+
+
+        console.log(
+
+            "JUMLAH POS:",
+
+            senaraiPos.length
 
         );
 
@@ -343,16 +561,29 @@ async function muatSenaraiPos() {
 
         console.error(
 
-            "RALAT SISTEM:",
+            "RALAT SISTEM POS:",
 
             error
 
         );
 
 
+        selectPos.innerHTML = `
+
+            <option value="">
+
+                -- Ralat Sistem --
+
+            </option>
+
+        `;
+
+
         paparMesej(
 
-            "Gagal memuatkan senarai Pos.",
+            error.message ||
+
+            "Gagal mengambil senarai Pos.",
 
             "error"
 
@@ -365,10 +596,122 @@ async function muatSenaraiPos() {
 
 
 // =====================================================
+// MUAT SENARAI TAHUN
+// JIKA ELEMENT #tahun WUJUD
+// =====================================================
+
+function muatSenaraiTahun() {
+
+
+    const selectTahun =
+
+        document.getElementById(
+
+            "tahun"
+
+        );
+
+
+    if (!selectTahun) {
+
+
+        console.warn(
+
+            "Dropdown tahun tidak wujud dalam HTML."
+
+        );
+
+
+        return;
+
+    }
+
+
+    const tahunSekarang =
+
+        new Date()
+
+            .getFullYear();
+
+
+    selectTahun.innerHTML = "";
+
+
+    for (
+
+        let tahun =
+
+            tahunSekarang - 2;
+
+
+        tahun <=
+
+            tahunSekarang + 2;
+
+
+        tahun++
+
+    ) {
+
+
+        const option =
+
+            document.createElement(
+
+                "option"
+
+            );
+
+
+        option.value =
+
+            tahun;
+
+
+        option.textContent =
+
+            tahun;
+
+
+        if (
+
+            tahun ===
+
+            tahunSekarang
+
+        ) {
+
+
+            option.selected =
+
+                true;
+
+        }
+
+
+        selectTahun.appendChild(
+
+            option
+
+        );
+
+    }
+
+}
+
+
+// =====================================================
 // JANA LAPORAN ANGGARAN
 // =====================================================
 
 async function janaLaporanAnggaran() {
+
+
+    console.log(
+
+        "MULA JANA LAPORAN"
+
+    );
 
 
     const bulanElement =
@@ -413,7 +756,9 @@ async function janaLaporanAnggaran() {
 
             ? tahunElement.value
 
-            : "";
+            : new Date()
+
+                .getFullYear();
 
 
     const pos =
@@ -427,26 +772,30 @@ async function janaLaporanAnggaran() {
 
     console.log(
 
-        "FILTER DIPILIH:",
+        "FILTER:",
 
         {
 
-            pos,
-
             bulan,
 
-            tahun
+            tahun,
+
+            pos
 
         }
 
     );
 
 
-    // =================================================
+    // =============================================
     // SEMAK POS
-    // =================================================
+    // =============================================
 
-    if (!pos) {
+    if (
+
+        !pos
+
+    ) {
 
 
         paparMesej(
@@ -463,11 +812,15 @@ async function janaLaporanAnggaran() {
     }
 
 
-    // =================================================
+    // =============================================
     // SEMAK BULAN
-    // =================================================
+    // =============================================
 
-    if (!bulan) {
+    if (
+
+        !bulan
+
+    ) {
 
 
         paparMesej(
@@ -484,134 +837,130 @@ async function janaLaporanAnggaran() {
     }
 
 
-    // =================================================
-    // SEMAK TAHUN
-    // =================================================
-
-    if (!tahun) {
-
-
-        paparMesej(
-
-            "Sila pilih Tahun terlebih dahulu.",
-
-            "error"
-
-        );
-
-
-        return;
-
-    }
-
-
     try {
 
 
         paparMesej(
 
-            "Sedang mengambil data laporan...",
+            "Sedang mengambil data duty...",
 
             "success"
 
         );
 
 
-        // =================================================
+        // =============================================
         // AMBIL DATA JADUAL DUTY
-        // FILTER:
-        //
-        // POS
-        // BULAN
-        // TAHUN
-        // =================================================
+        // FILTER POS + BULAN + TAHUN
+        // =============================================
 
-        const {
+        const resultDuty =
 
-            data: dataDuty,
+            await supabase
 
-            error: errorDuty
+                .from(
 
-        } = await supabase
-
-            .from("jadual_duty")
-
-            .select(`
-
-                tarikh,
-
-                bulan,
-
-                tahun,
-
-                no_skb,
-
-                kod_duty,
-
-                waktu_tugasan,
-
-                jam_kerja,
-
-                jam_klm,
-
-                pos,
-
-                dikemaskini_oleh,
-
-                dikemaskini_pada
-
-            `)
-
-            .eq(
-
-                "pos",
-
-                pos
-
-            )
-
-            .eq(
-
-                "bulan",
-
-                parseInt(
-
-                    bulan,
-
-                    10
+                    "jadual_duty"
 
                 )
 
-            )
+                .select(
 
-            .eq(
+                    `
 
-                "tahun",
+                    tarikh,
 
-                parseInt(
+                    bulan,
 
                     tahun,
 
-                    10
+                    no_skb,
 
-                ));
+                    kod_duty,
+
+                    waktu_tugasan,
+
+                    jam_kerja,
+
+                    jam_klm,
+
+                    pos,
+
+                    dikemaskini_oleh,
+
+                    dikemaskini_pada
+
+                    `
+
+                )
+
+                .eq(
+
+                    "pos",
+
+                    pos
+
+                )
+
+                .eq(
+
+                    "bulan",
+
+                    parseInt(
+
+                        bulan,
+
+                        10
+
+                    )
+
+                )
+
+                .eq(
+
+                    "tahun",
+
+                    parseInt(
+
+                        tahun,
+
+                        10
+
+                    ));
 
 
-        if (errorDuty) {
+        console.log(
+
+            "DATA JADUAL DUTY:",
+
+            resultDuty
+
+        );
+
+
+        // =============================================
+        // SEMAK ERROR
+        // =============================================
+
+        if (
+
+            resultDuty.error
+
+        ) {
 
 
             console.error(
 
                 "RALAT JADUAL DUTY:",
 
-                errorDuty
+                resultDuty.error
 
             );
 
 
             paparMesej(
 
-                errorDuty.message,
+                resultDuty.error.message,
 
                 "error"
 
@@ -623,9 +972,14 @@ async function janaLaporanAnggaran() {
         }
 
 
-        // =================================================
-        // TIADA DATA DUTY
-        // =================================================
+        const dataDuty =
+
+            resultDuty.data;
+
+
+        // =============================================
+        // SEMAK DATA KOSONG
+        // =============================================
 
         if (
 
@@ -636,16 +990,16 @@ async function janaLaporanAnggaran() {
         ) {
 
 
+            kosongkanLaporan();
+
+
             paparMesej(
 
-                "Tiada data duty untuk Pos, Bulan dan Tahun yang dipilih.",
+                `Tiada data duty untuk ${pos}, ${SENARAI_BULAN[parseInt(bulan)]} ${tahun}.`,
 
                 "error"
 
             );
-
-
-            kosongkanLaporan();
 
 
             return;
@@ -653,13 +1007,14 @@ async function janaLaporanAnggaran() {
         }
 
 
-        semuaDuty = dataDuty;
+        semuaDuty =
+
+            dataDuty;
 
 
-        // =================================================
+        // =============================================
         // AMBIL NO SKB
-        // DARIPADA JADUAL DUTY
-        // =================================================
+        // =============================================
 
         const senaraiNoSKB = [
 
@@ -669,31 +1024,60 @@ async function janaLaporanAnggaran() {
 
                     .map(
 
-                        duty =>
+                        function (
 
-                            duty.no_skb
+                            item
+
+                        ) {
+
+
+                            return item.no_skb;
+
+
+                        }
 
                     )
 
                     .filter(
 
-                        no =>
+                        function (
 
-                            no !== null &&
+                            no
 
-                            no !== undefined &&
+                        ) {
 
-                            String(
 
-                                no
+                            return (
 
-                            ).trim() !== ""
+                                no !== null &&
+
+                                no !== undefined &&
+
+                                String(
+
+                                    no
+
+                                ).trim() !== ""
+
+                            );
+
+
+                        }
 
                     )
 
             )
 
         ];
+
+
+        console.log(
+
+            "SENARAI NO SKB:",
+
+            senaraiNoSKB
+
+        );
 
 
         if (
@@ -703,16 +1087,16 @@ async function janaLaporanAnggaran() {
         ) {
 
 
+            kosongkanLaporan();
+
+
             paparMesej(
 
-                "Data duty dijumpai tetapi tiada no_skb.",
+                "Tiada no_skb dijumpai dalam jadual duty.",
 
                 "error"
 
             );
-
-
-            kosongkanLaporan();
 
 
             return;
@@ -720,60 +1104,81 @@ async function janaLaporanAnggaran() {
         }
 
 
-        // =================================================
+        // =============================================
         // AMBIL DATA ANGGOTA
-        // =================================================
+        // =============================================
 
-        const {
+        const resultAnggota =
 
-            data: dataAnggota,
+            await supabase
 
-            error: errorAnggota
+                .from(
 
-        } = await supabase
+                    "Data_Anggota"
 
-            .from("Data_Anggota")
+                )
 
-            .select(`
+                .select(
 
-                no_skb,
+                    `
 
-                no_anggota,
+                    no_skb,
 
-                nama,
+                    no_anggota,
 
-                pangkat,
+                    nama,
 
-                pos,
+                    pangkat,
 
-                unit
+                    pos,
 
-            `)
+                    unit
 
-            .in(
+                    `
 
-                "no_skb",
+                )
 
-                senaraiNoSKB
+                .in(
 
-            );
+                    "no_skb",
+
+                    senaraiNoSKB
+
+                );
 
 
-        if (errorAnggota) {
+        console.log(
+
+            "DATA ANGGOTA:",
+
+            resultAnggota
+
+        );
+
+
+        // =============================================
+        // SEMAK ERROR ANGGOTA
+        // =============================================
+
+        if (
+
+            resultAnggota.error
+
+        ) {
 
 
             console.error(
 
                 "RALAT DATA ANGGOTA:",
 
-                errorAnggota
+                resultAnggota.error
 
             );
 
 
             paparMesej(
 
-                errorAnggota.message,
+                resultAnggota.error.message,
 
                 "error"
 
@@ -783,6 +1188,11 @@ async function janaLaporanAnggaran() {
             return;
 
         }
+
+
+        const dataAnggota =
+
+            resultAnggota.data;
 
 
         if (
@@ -794,16 +1204,16 @@ async function janaLaporanAnggaran() {
         ) {
 
 
+            kosongkanLaporan();
+
+
             paparMesej(
 
-                "Data duty ada, tetapi data anggota tidak dijumpai.",
+                "Data anggota tidak dijumpai berdasarkan no_skb.",
 
                 "error"
 
             );
-
-
-            kosongkanLaporan();
 
 
             return;
@@ -811,12 +1221,14 @@ async function janaLaporanAnggaran() {
         }
 
 
-        semuaAnggota = dataAnggota;
+        semuaAnggota =
+
+            dataAnggota;
 
 
-        // =================================================
+        // =============================================
         // PAPAR TAJUK
-        // =================================================
+        // =============================================
 
         paparTajukLaporan(
 
@@ -826,18 +1238,18 @@ async function janaLaporanAnggaran() {
 
             tahun,
 
-            semuaAnggota
+            dataAnggota
 
         );
 
 
-        // =================================================
-        // GABUNG DATA ANGGOTA + DUTY
-        // =================================================
+        // =============================================
+        // GABUNGKAN DATA ANGGOTA + DUTY
+        // =============================================
 
         const laporan =
 
-            semuaAnggota.map(
+            dataAnggota.map(
 
                 function (
 
@@ -898,9 +1310,9 @@ async function janaLaporanAnggaran() {
             );
 
 
-        // =================================================
+        // =============================================
         // PAPAR JADUAL
-        // =================================================
+        // =============================================
 
         paparJadualAnggaran(
 
@@ -940,7 +1352,7 @@ async function janaLaporanAnggaran() {
 
             error.message ||
 
-            "Ralat tidak diketahui berlaku.",
+            "Ralat sistem berlaku.",
 
             "error"
 
@@ -996,10 +1408,6 @@ function paparTajukLaporan(
         );
 
 
-    // =================================================
-    // UNIT
-    // =================================================
-
     let unit =
 
         "Unit";
@@ -1024,7 +1432,11 @@ function paparTajukLaporan(
     }
 
 
-    if (tajukUnit) {
+    if (
+
+        tajukUnit
+
+    ) {
 
 
         tajukUnit.textContent =
@@ -1035,11 +1447,11 @@ function paparTajukLaporan(
     }
 
 
-    // =================================================
-    // BULAN + TAHUN
-    // =================================================
+    if (
 
-    if (tajukBulan) {
+        tajukBulan
+
+    ) {
 
 
         tajukBulan.textContent =
@@ -1064,11 +1476,11 @@ function paparTajukLaporan(
     }
 
 
-    // =================================================
-    // POS
-    // =================================================
+    if (
 
-    if (tajukPos) {
+        tajukPos
+
+    ) {
 
 
         tajukPos.textContent =
@@ -1077,7 +1489,6 @@ function paparTajukLaporan(
 
 
     }
-
 
 }
 
@@ -1111,12 +1522,16 @@ function paparJadualAnggaran(
         );
 
 
-    if (!tbody) {
+    if (
+
+        !tbody
+
+    ) {
 
 
         console.error(
 
-            "Element senaraiAnggaran tidak dijumpai."
+            "senaraiAnggaran tidak dijumpai."
 
         );
 
@@ -1144,7 +1559,7 @@ function paparJadualAnggaran(
 
                 <td colspan="15">
 
-                    Tiada data anggota dijumpai.
+                    Tiada data untuk dipaparkan.
 
                 </td>
 
@@ -1163,14 +1578,12 @@ function paparJadualAnggaran(
 
     let jumlahJamBiasa = 0;
 
+
     let jumlahRMBiasa = 0;
+
 
     let jumlahKLM = 0;
 
-
-    // =================================================
-    // SETIAP ANGGOTA
-    // =================================================
 
     laporan.forEach(
 
@@ -1191,18 +1604,24 @@ function paparJadualAnggaran(
                 rekod.duty;
 
 
-            let jamBiasa = 0;
+            let jamBiasa =
+
+                0;
 
 
-            let rmBiasa = 0;
+            let rmBiasa =
+
+                0;
 
 
-            let jumlahTuntutanKLM = 0;
+            let jumlahTuntutanKLM =
+
+                0;
 
 
-            // =================================================
-            // KIRA DATA DUTY
-            // =================================================
+            // =========================================
+            // KIRA DUTY
+            // =========================================
 
             duty.forEach(
 
@@ -1246,9 +1665,9 @@ function paparJadualAnggaran(
             );
 
 
-            // =================================================
+            // =========================================
             // BINA BARIS
-            // =================================================
+            // =========================================
 
             const tr =
 
@@ -1418,11 +1837,15 @@ function paparJadualAnggaran(
     );
 
 
-    // =================================================
-    // JUMLAH
-    // =================================================
+    // =============================================
+    // FOOTER JUMLAH
+    // =============================================
 
-    if (tfoot) {
+    if (
+
+        tfoot
+
+    ) {
 
 
         tfoot.innerHTML = `
@@ -1511,7 +1934,11 @@ function kosongkanLaporan() {
         );
 
 
-    if (tbody) {
+    if (
+
+        tbody
+
+    ) {
 
 
         tbody.innerHTML = `
@@ -1532,13 +1959,17 @@ function kosongkanLaporan() {
     }
 
 
-    if (tfoot) {
+    if (
+
+        tfoot
+
+    ) {
 
 
         tfoot.innerHTML = "";
 
-    }
 
+    }
 
 }
 
@@ -1565,7 +1996,18 @@ function paparMesej(
         );
 
 
-    if (!element) {
+    if (
+
+        !element
+
+    ) {
+
+
+        console.warn(
+
+            mesej
+
+        );
 
 
         return;
