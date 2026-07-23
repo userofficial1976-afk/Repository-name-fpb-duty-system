@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ms">
 
 <head>
@@ -17,440 +16,724 @@
 ===================================================== */
 
 * {
+
     box-sizing: border-box;
+
     margin: 0;
+
     padding: 0;
+
     font-family: "Segoe UI", Arial, sans-serif;
+
 }
 
 body {
+
     background: #f3f3f3;
+
     color: #111;
+
 }
+
 
 /* =====================================================
    SIDEBAR
 ===================================================== */
 
 .sidebar {
+
     width: 290px;
+
     background: #080808;
+
     color: white;
+
     padding: 24px 16px;
+
     position: fixed;
+
     top: 0;
+
     bottom: 0;
+
     left: 0;
+
     z-index: 100;
+
     overflow-y: auto;
+
 }
 
 .brand {
+
     display: flex;
+
     align-items: center;
+
     gap: 14px;
+
     padding: 0 11px 25px;
+
     border-bottom: 1px solid #303030;
+
 }
 
 .logo {
+
     width: 58px;
+
     height: 58px;
+
     object-fit: contain;
+
     background: white;
+
     padding: 5px;
+
     border-radius: 10px;
+
 }
 
 .brand-text h1 {
+
     font-size: 18px;
+
 }
 
 .brand-text p {
+
     color: #aaa;
+
     font-size: 12px;
+
     margin-top: 4px;
+
 }
 
 .heritage-mark {
+
     margin: 22px 10px;
+
     padding: 15px;
+
     border: 1px solid #3b3b3b;
+
     border-radius: 10px;
+
     background: #111;
+
 }
 
 .heritage-mark strong {
+
     display: block;
+
     font-size: 12px;
+
 }
 
 .heritage-mark span {
+
     display: block;
+
     margin-top: 7px;
+
     color: #999;
+
     font-size: 11px;
+
 }
 
 .nav-title {
+
     color: #777;
+
     font-size: 11px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
+
     font-weight: bold;
+
     margin: 26px 13px 10px;
+
 }
 
 .nav {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
+
 }
 
 .nav a {
+
     display: flex;
+
     align-items: center;
+
     gap: 14px;
+
     color: #bdbdbd;
+
     text-decoration: none;
+
     padding: 14px 15px;
+
     border-radius: 8px;
+
     font-size: 15px;
+
     font-weight: 600;
+
 }
 
 .nav a:hover {
+
     background: #1e1e1e;
+
     color: white;
+
 }
 
 .nav a.active {
+
     background: white;
+
     color: #080808;
+
 }
 
 .nav-icon {
+
     width: 24px;
+
     text-align: center;
+
     font-size: 20px;
+
 }
+
 
 /* =====================================================
    MAIN
 ===================================================== */
 
 .main {
+
     margin-left: 290px;
+
     min-height: 100vh;
+
 }
+
 
 /* =====================================================
    TOPBAR
 ===================================================== */
 
 .topbar {
+
     min-height: 82px;
+
     background: white;
+
     border-bottom: 1px solid #ddd;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     padding: 0 38px;
+
 }
 
 .page-title h2 {
+
     font-size: 26px;
+
 }
 
 .page-title p {
+
     color: #777;
+
     margin-top: 5px;
+
 }
 
 .system-status {
+
     background: #f1f1f1;
+
     padding: 10px 16px;
+
     border-radius: 22px;
+
     font-weight: 600;
+
 }
+
 
 /* =====================================================
    CONTENT
 ===================================================== */
 
 .content {
+
     padding: 32px;
+
 }
 
+
 /* =====================================================
-   FILTER CARD
+   FILTER
 ===================================================== */
 
 .filter-card {
+
     background: white;
+
     border: 1px solid #ddd;
+
     border-radius: 12px;
+
     padding: 24px;
+
     margin-bottom: 25px;
+
 }
 
 .filter-card h2 {
+
     margin-bottom: 20px;
+
 }
 
 .filter-grid {
+
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 15px;
+
 }
 
 .form-group {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
+
 }
 
 .form-group label {
+
     font-size: 13px;
+
     font-weight: bold;
+
     color: #555;
+
 }
 
 .form-group select {
+
     height: 43px;
+
     padding: 0 12px;
+
     border: 1px solid #ccc;
+
     border-radius: 7px;
+
     background: white;
+
 }
 
 .button-area {
+
     display: flex;
+
     gap: 10px;
+
     align-items: end;
+
 }
 
 button {
+
     border: none;
+
     border-radius: 7px;
+
     padding: 12px 18px;
+
     font-weight: bold;
+
     cursor: pointer;
+
 }
 
 .btn-cari {
+
     background: #111;
+
     color: white;
+
 }
 
 .btn-print {
+
     background: #2563eb;
+
     color: white;
+
 }
 
 .btn-csv {
+
     background: #16803c;
+
     color: white;
+
 }
 
 button:hover {
-    opacity: 0.85;
+
+    opacity: .85;
+
 }
+
 
 /* =====================================================
    REPORT HEADER
 ===================================================== */
 
 .report-header {
+
     background: white;
+
     border: 1px solid #ddd;
-    padding: 25px;
+
+    padding: 16px;
+
     text-align: center;
-    margin-bottom: 20px;
+
+    margin-bottom: 12px;
+
 }
 
 .report-header h1 {
-    font-size: 22px;
-    letter-spacing: 1px;
+
+    font-size: 18px;
+
+    letter-spacing: .8px;
+
 }
 
 .report-header h2 {
-    font-size: 17px;
-    margin-top: 6px;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+
 }
 
 .report-info {
-    margin-top: 20px;
+
+    margin-top: 10px;
+
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+
+    gap: 6px;
+
     text-align: left;
+
 }
 
 .report-info div {
+
     border: 1px solid #ddd;
-    padding: 10px;
+
+    padding: 6px 8px;
+
 }
 
 .report-info strong {
+
     display: block;
-    font-size: 11px;
+
+    font-size: 9px;
+
     color: #777;
+
     text-transform: uppercase;
+
 }
 
 .report-info span {
+
     display: block;
-    margin-top: 4px;
+
+    margin-top: 2px;
+
     font-weight: bold;
+
+    font-size: 11px;
+
 }
 
+
 /* =====================================================
-   MATRIX TABLE
+   TABLE
 ===================================================== */
 
 .report-wrapper {
+
     background: white;
+
     border: 1px solid #ddd;
-    padding: 20px;
+
+    padding: 8px;
+
     overflow-x: auto;
+
 }
 
 #laporanTable {
+
     border-collapse: collapse;
+
     width: 100%;
+
     table-layout: fixed;
+
 }
 
 #laporanTable th,
+
 #laporanTable td {
-    border: 1px solid #999;
+
+    border: 1px solid #888;
+
     text-align: center;
+
     vertical-align: middle;
-    padding: 5px;
+
+    padding: 3px;
+
+    word-wrap: break-word;
+
+    overflow-wrap: break-word;
+
 }
 
 #laporanTable th {
-    background: #e9e9e9;
-    font-size: 11px;
+
+    background: #e8e8e8;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
 }
 
 #laporanTable td {
-    font-size: 10px;
+
+    font-size: 8px;
+
 }
 
 .tarikh-cell {
-    width: 115px;
+
+    width: 70px;
+
+    min-width: 70px;
+
     font-weight: bold;
+
     background: #f5f5f5;
+
+    line-height: 1.15;
+
 }
 
 .anggota-header {
-    width: calc((100% - 115px) / 8);
-    height: 65px;
-    font-size: 11px;
+
+    width: 105px;
+
+    min-width: 105px;
+
+    height: 48px;
+
+    line-height: 1.1;
+
     white-space: normal;
-    overflow-wrap: anywhere;
+
     word-break: break-word;
+
 }
 
-.sub-header {
-    font-size: 10px;
-    font-weight: bold;
+.anggota-header small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 7px;
+
+    font-weight: normal;
+
 }
 
 .data-cell {
-    height: 32px;
-    font-size: 10px;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+
+    height: 22px;
+
+    line-height: 1.1;
+
 }
 
 .kod-cell {
-    width: 25%;
+
+    width: 28px;
+
 }
 
 .jam-cell {
-    width: 25%;
+
+    width: 28px;
+
 }
 
 .off-cell {
-    width: 25%;
+
+    width: 32px;
+
 }
 
 .am-cell {
-    width: 25%;
+
+    width: 32px;
+
 }
 
 .empty-message {
+
     padding: 40px;
+
     text-align: center;
+
     color: #777;
+
 }
+
 
 /* =====================================================
    RUMUSAN
 ===================================================== */
 
 .rumusan-wrapper {
+
     background: white;
+
     border: 1px solid #ddd;
-    margin-top: 25px;
-    padding: 20px;
-    overflow-x: auto;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
 }
 
-.rumusan-wrapper h2 {
-    margin-bottom: 15px;
-    font-size: 18px;
+.rumusan-title {
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    text-transform: uppercase;
+
 }
 
 #rumusanTable {
+
     width: 100%;
+
     border-collapse: collapse;
+
     table-layout: fixed;
+
 }
 
 #rumusanTable th,
+
 #rumusanTable td {
-    border: 1px solid #999;
-    padding: 9px;
+
+    border: 1px solid #888;
+
+    padding: 4px;
+
     text-align: center;
-    font-size: 12px;
+
+    font-size: 8px;
+
+    word-wrap: break-word;
+
 }
 
 #rumusanTable th {
-    background: #e9e9e9;
+
+    background: #e8e8e8;
+
 }
 
 #rumusanTable td:first-child,
+
 #rumusanTable th:first-child {
+
     text-align: left;
+
 }
 
-.rumusan-total {
-    margin-top: 15px;
-    display: flex;
-    justify-content: flex-end;
-    font-size: 16px;
+.total-row {
+
     font-weight: bold;
+
+    background: #eeeeee;
+
 }
 
-.rumusan-total span {
-    margin-left: 10px;
-}
 
 /* =====================================================
    FOOTER
 ===================================================== */
 
 .footer {
+
     text-align: center;
+
     padding: 30px;
+
     color: #888;
+
     font-size: 13px;
+
 }
+
 
 /* =====================================================
    RESPONSIVE
@@ -459,7 +742,9 @@ button:hover {
 @media(max-width:1200px) {
 
     .filter-grid {
+
         grid-template-columns: repeat(2, 1fr);
+
     }
 
 }
@@ -467,134 +752,251 @@ button:hover {
 @media(max-width:800px) {
 
     .sidebar {
+
         width: 78px;
+
         padding: 16px 8px;
+
     }
 
     .brand {
+
         justify-content: center;
+
     }
 
     .brand-text,
+
     .heritage-mark,
+
     .nav-title,
+
     .nav a span {
+
         display: none;
+
     }
 
     .nav a {
+
         justify-content: center;
+
     }
 
     .main {
+
         margin-left: 78px;
+
     }
 
     .filter-grid {
+
         grid-template-columns: 1fr;
+
     }
 
     .report-info {
+
         grid-template-columns: 1fr;
+
     }
 
 }
 
+
 /* =====================================================
-   PRINT
+   PRINT A4 LANDSCAPE
 ===================================================== */
 
 @media print {
 
     @page {
+
         size: A4 landscape;
-        margin: 8mm;
+
+        margin: 6mm;
+
     }
 
     body {
+
         background: white;
+
     }
 
     .sidebar,
+
     .topbar,
+
     .filter-card,
+
     .footer {
+
         display: none !important;
+
     }
 
     .main {
+
         margin-left: 0;
+
     }
 
     .content {
+
         padding: 0;
+
     }
 
     .report-header {
+
         border: none;
-        margin-bottom: 8px;
-        padding: 0 0 10px;
+
+        padding: 0 0 5px;
+
+        margin-bottom: 5px;
+
+    }
+
+    .report-header h1 {
+
+        font-size: 15px;
+
+    }
+
+    .report-header h2 {
+
+        font-size: 10px;
+
+    }
+
+    .report-info {
+
+        margin-top: 4px;
+
+    }
+
+    .report-info div {
+
+        padding: 3px 5px;
+
+    }
+
+    .report-info strong {
+
+        font-size: 7px;
+
+    }
+
+    .report-info span {
+
+        font-size: 8px;
+
     }
 
     .report-wrapper {
+
         border: none;
+
         padding: 0;
+
         overflow: visible;
+
     }
 
     #laporanTable {
+
         width: 100%;
+
         table-layout: fixed;
+
     }
 
     #laporanTable th,
+
     #laporanTable td {
-        font-size: 7px;
+
+        font-size: 6px;
+
         padding: 2px;
+
     }
 
     .tarikh-cell {
-        width: 95px;
+
+        width: 55px;
+
+        min-width: 55px;
+
     }
 
     .anggota-header {
-        height: 50px;
-        font-size: 7px;
+
+        width: auto;
+
+        min-width: 0;
+
+        height: 34px;
+
+        font-size: 6px;
+
+    }
+
+    .anggota-header small {
+
+        font-size: 5px;
+
     }
 
     .data-cell {
-        height: 24px;
-        font-size: 7px;
+
+        height: 17px;
+
     }
 
     .rumusan-wrapper {
-        border: none;
-        padding: 0;
-        margin-top: 12px;
+
+        margin-top: 5px;
+
+        padding: 4px;
+
+    }
+
+    .rumusan-title {
+
+        font-size: 8px;
+
+        margin-bottom: 3px;
+
     }
 
     #rumusanTable th,
-    #rumusanTable td {
-        font-size: 8px;
-        padding: 4px;
-    }
 
-    .rumusan-total {
-        font-size: 10px;
-        margin-top: 8px;
+    #rumusanTable td {
+
+        font-size: 6px;
+
+        padding: 2px;
+
     }
 
 }
 
+
 /* =====================================================
-   PRINT: PAKSA TABLE 8 ANGGOTA
+   PRINT 1 PAGE
 ===================================================== */
 
 @media print {
 
-    #laporanTable th:nth-child(n+2),
-    #laporanTable td:nth-child(n+2) {
-        width: calc((100% - 95px) / 8);
+    .report-header,
+
+    .report-wrapper,
+
+    .rumusan-wrapper {
+
+        page-break-inside: avoid;
+
     }
 
 }
@@ -603,7 +1005,9 @@ button:hover {
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      SIDEBAR
@@ -611,134 +1015,141 @@ button:hover {
 
 <aside class="sidebar">
 
-<div class="brand">
+    <div class="brand">
 
-<img
-src="logo.png"
-class="logo"
-alt="Logo FPB"
+        <img
+            src="logo.png"
+            class="logo"
+            alt="Logo FPB"
+        >
 
->
+        <div class="brand-text">
 
-<div class="brand-text">
+            <h1>POLIS BANTUAN FGVSSSB</h1>
 
-<h1>
-POLIS BANTUAN FGVSSSB
-</h1>
+            <p>WILAYAH TERENGGANU</p>
 
-<p>
-WILAYAH TERENGGANU
-</p>
+        </div>
 
-</div>
+    </div>
 
-</div>
 
-<div class="heritage-mark">
+    <div class="heritage-mark">
 
-<strong>
-La Ilaha Illallah
-</strong>
+        <strong>La Ilaha Illallah</strong>
 
-<span>
-• Terengganu Maju, Berkat Sejahtera •
-</span>
+        <span>• Terengganu Maju, Berkat Sejahtera •</span>
 
-</div>
+    </div>
 
-<div class="nav-title">
-MAIN MENU
-</div>
 
-<nav class="nav">
+    <div class="nav-title">
 
-<a href="index.html">
+        MAIN MENU
 
-<span class="nav-icon">⌂</span>
+    </div>
 
-<span>Dashboard</span>
 
-</a>
+    <nav class="nav">
 
-<a href="anggota.html">
+        <a href="index.html">
 
-<span class="nav-icon">♙</span>
+            <span class="nav-icon">⌂</span>
 
-<span>Senarai Anggota</span>
+            <span>Dashboard</span>
 
-</a>
+        </a>
 
-<a href="jadual-duty.html">
 
-<span class="nav-icon">▣</span>
+        <a href="anggota.html">
 
-<span>Jadual Duty</span>
+            <span class="nav-icon">♙</span>
 
-</a>
+            <span>Senarai Anggota</span>
 
-<a href="kod-duty.html">
+        </a>
 
-<span class="nav-icon">▤</span>
 
-<span>Kod Duty</span>
+        <a href="jadual-duty.html">
 
-</a>
+            <span class="nav-icon">▣</span>
 
-<a href="tempat-kerja.html">
+            <span>Jadual Duty</span>
 
-<span class="nav-icon">▦</span>
+        </a>
 
-<span>Kod Tempat Kerja</span>
 
-</a>
+        <a href="kod-duty.html">
 
-<div class="nav-title">
-REPORTING
-</div>
+            <span class="nav-icon">▤</span>
 
-<a href="laporan.html">
+            <span>Kod Duty</span>
 
-<span class="nav-icon">▥</span>
+        </a>
 
-<span>Laporan</span>
 
-</a>
+        <a href="tempat-kerja.html">
 
-<a href="laporan-anggaran.html">
+            <span class="nav-icon">▦</span>
 
-<span class="nav-icon">◫</span>
+            <span>Kod Tempat Kerja</span>
 
-<span>Anggaran Duty Bulanan</span>
+        </a>
 
-</a>
 
-<a
-href="Laporan-Penuh.html"
-class="active"
+        <div class="nav-title">
 
->
+            REPORTING
 
-<span class="nav-icon">▤</span>
+        </div>
 
-<span>Laporan Penuh</span>
 
-</a>
+        <a href="laporan.html">
 
-<div class="nav-title">
-SYSTEM
-</div>
+            <span class="nav-icon">▥</span>
 
-<a href="#">
+            <span>Laporan</span>
 
-<span class="nav-icon">⚙</span>
+        </a>
 
-<span>Tetapan</span>
 
-</a>
+        <a href="laporan-anggaran.html">
 
-</nav>
+            <span class="nav-icon">◫</span>
+
+            <span>Anggaran Duty Bulanan</span>
+
+        </a>
+
+
+        <a href="Laporan-Penuh.html" class="active">
+
+            <span class="nav-icon">▤</span>
+
+            <span>Laporan Penuh</span>
+
+        </a>
+
+
+        <div class="nav-title">
+
+            SYSTEM
+
+        </div>
+
+
+        <a href="#">
+
+            <span class="nav-icon">⚙</span>
+
+            <span>Tetapan</span>
+
+        </a>
+
+    </nav>
 
 </aside>
+
 
 <!-- =====================================================
      MAIN
@@ -746,304 +1157,333 @@ SYSTEM
 
 <main class="main">
 
-<div class="topbar">
 
-<div class="page-title">
+    <div class="topbar">
 
-<h2>
-Laporan Penuh
-</h2>
+        <div class="page-title">
 
-<p>
-Laporan Penuh Jadual Duty Anggota
-</p>
+            <h2>Laporan Penuh</h2>
 
-</div>
+            <p>Laporan Penuh Jadual Duty Anggota</p>
 
-<div class="system-status">
+        </div>
 
-● System Online
 
-</div>
+        <div class="system-status">
 
-</div>
+            ● System Online
 
-<div class="content">
+        </div>
 
-<!-- =====================================================
-     FILTER
-===================================================== -->
+    </div>
 
-<div class="filter-card">
 
-<h2>
-Tetapan Laporan
-</h2>
+    <div class="content">
 
-<div class="filter-grid">
 
-<div class="form-group">
+        <!-- =====================================================
+             FILTER
+        ===================================================== -->
 
-<label>
-Bulan / Tahun
-</label>
+        <div class="filter-card">
 
-<select id="filterBulan">
+            <h2>Tetapan Laporan</h2>
 
-<option value="">
--- Pilih Bulan / Tahun --
-</option>
 
-</select>
+            <div class="filter-grid">
 
-</div>
 
-<div class="form-group">
+                <div class="form-group">
 
-<label>
-Unit
-</label>
+                    <label>Bulan / Tahun</label>
 
-<select id="filterUnit">
+                    <select id="filterBulan">
 
-<option value="">
--- Semua Unit --
-</option>
+                        <option value="">
 
-</select>
+                            -- Pilih Bulan / Tahun --
 
-</div>
+                        </option>
 
-<div class="form-group">
+                    </select>
 
-<label>
-Pos
-</label>
+                </div>
 
-<select id="filterPos">
 
-<option value="">
--- Semua Pos --
-</option>
+                <div class="form-group">
 
-</select>
+                    <label>Unit</label>
 
-</div>
+                    <select id="filterUnit">
 
-<div class="button-area">
+                        <option value="">
 
-<button
-class="btn-cari"
-onclick="janaLaporan()"
+                            -- Semua Unit --
 
->
+                        </option>
 
-🔍 Jana Laporan
+                    </select>
 
-</button>
+                </div>
 
-<button
-class="btn-print"
-onclick="cetakPDF()"
 
->
+                <div class="form-group">
 
-🖨 Cetak / PDF
+                    <label>Pos</label>
 
-</button>
+                    <select id="filterPos">
 
-<button
-class="btn-csv"
-onclick="downloadCSV()"
+                        <option value="">
 
->
+                            -- Semua Pos --
 
-⬇ CSV
+                        </option>
 
-</button>
+                    </select>
 
-</div>
+                </div>
 
-</div>
 
-</div>
+                <div class="button-area">
 
-<!-- =====================================================
-     HEADER REPORT
-===================================================== -->
+                    <button
+                        class="btn-cari"
+                        onclick="janaLaporan()"
+                    >
 
-<div
-class="report-header"
-id="reportHeader"
->
+                        🔍 Jana Laporan
 
-<h1>
-LAPORAN PENUH JADUAL DUTY
-</h1>
+                    </button>
 
-<h2>
-WILAYAH TERENGGANU
-</h2>
 
-<div class="report-info">
+                    <button
+                        class="btn-print"
+                        onclick="cetakPDF()"
+                    >
 
-<div>
+                        🖨 Cetak / PDF
 
-<strong>
-Unit
-</strong>
+                    </button>
 
-<span id="reportUnit">
--
-</span>
 
-</div>
+                    <button
+                        class="btn-csv"
+                        onclick="downloadCSV()"
+                    >
 
-<div>
+                        ⬇ CSV
 
-<strong>
-Pos
-</strong>
+                    </button>
 
-<span id="reportPos">
--
-</span>
+                </div>
 
-</div>
+            </div>
 
-<div>
+        </div>
 
-<strong>
-Bulan
-</strong>
 
-<span id="reportBulan">
--
-</span>
+        <!-- =====================================================
+             REPORT HEADER
+        ===================================================== -->
 
-</div>
+        <div
+            class="report-header"
+            id="reportHeader"
+        >
 
-</div>
+            <h1>
 
-</div>
+                LAPORAN PENUH JADUAL DUTY
 
-<!-- =====================================================
-     MATRIX TABLE
-===================================================== -->
+            </h1>
 
-<div class="report-wrapper">
 
-<table id="laporanTable">
+            <h2>
 
-<tbody>
+                WILAYAH TERENGGANU
 
-<tr>
+            </h2>
 
-<td class="empty-message">
 
-Sila pilih Bulan / Tahun dan klik Jana Laporan
+            <div class="report-info">
 
-</td>
 
-</tr>
+                <div>
 
-</tbody>
+                    <strong>Unit</strong>
 
-</table>
+                    <span id="reportUnit">-</span>
 
-</div>
+                </div>
 
-<!-- =====================================================
-     RUMUSAN
-===================================================== -->
 
-<div class="rumusan-wrapper">
+                <div>
 
-<h2>
-RUMUSAN JUMLAH KLM MENGIKUT ANGGOTA
-</h2>
+                    <strong>Pos</strong>
 
-<table id="rumusanTable">
+                    <span id="reportPos">-</span>
 
-<thead>
+                </div>
 
-<tr>
 
-<th>
-BIL
-</th>
+                <div>
 
-<th>
-NAMA ANGGOTA
-</th>
+                    <strong>Bulan</strong>
 
-<th>
-NO. ANGGOTA
-</th>
+                    <span id="reportBulan">-</span>
 
-<th>
-JUMLAH KLM
-</th>
+                </div>
 
-</tr>
 
-</thead>
+            </div>
 
-<tbody>
+        </div>
 
-<tr>
 
-<td colspan="4">
+        <!-- =====================================================
+             MATRIX TABLE
+        ===================================================== -->
 
-Sila jana laporan terlebih dahulu.
+        <div class="report-wrapper">
 
-</td>
+            <table id="laporanTable">
 
-</tr>
+                <tbody>
 
-</tbody>
+                    <tr>
 
-</table>
+                        <td class="empty-message">
 
-<div class="rumusan-total">
+                            Sila pilih Bulan / Tahun dan klik Jana Laporan
 
-JUMLAH KESELURUHAN KLM:
+                        </td>
 
-<span id="jumlahKeseluruhanKLM">
-0
-</span>
+                    </tr>
 
-</div>
+                </tbody>
 
-</div>
+            </table>
 
-</div>
+        </div>
 
-<footer class="footer">
 
-FPB DUTY SYSTEM — WILAYAH TERENGGANU
+        <!-- =====================================================
+             RUMUSAN BY POS
+        ===================================================== -->
 
-<br>
+        <div class="rumusan-wrapper">
 
-© 2026 | Operational Duty Management System
 
-</footer>
+            <div class="rumusan-title">
+
+                RUMUSAN BY POS
+
+            </div>
+
+
+            <table id="rumusanTable">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th style="width: 20%;">
+
+                            ANGGOTA
+
+                        </th>
+
+
+                        <th>
+
+                            JUMLAH KLM
+
+                        </th>
+
+
+                        <th>
+
+                            OFF HARI
+
+                        </th>
+
+
+                        <th>
+
+                            OFF JAM
+
+                        </th>
+
+
+                        <th>
+
+                            CUTIAM HARI
+
+                        </th>
+
+
+                        <th>
+
+                            CUTIAM JAM
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td colspan="6">
+
+                            Sila jana laporan
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <footer class="footer">
+
+        FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+        <br>
+
+        © 2026 | Operational Duty Management System
+
+    </footer>
 
 </main>
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
 
-<script
-src="supabase.js"
-></script>
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
 
 <script>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
+
+// =====================================================
+// GLOBAL
+// =====================================================
 
 let semuaDuty = [];
 
@@ -1051,30 +1491,43 @@ let dataLaporan = [];
 
 let senaraiAnggota = [];
 
-/* =====================================================
-   SENARAI BULAN
-===================================================== */
+
+// =====================================================
+// SENARAI BULAN
+// =====================================================
 
 const SENARAI_BULAN = [
 
     "Januari",
+
     "Februari",
+
     "Mac",
+
     "April",
+
     "Mei",
+
     "Jun",
+
     "Julai",
+
     "Ogos",
+
     "September",
+
     "Oktober",
+
     "November",
+
     "Disember"
 
 ];
 
-/* =====================================================
-   DOM READY
-===================================================== */
+
+// =====================================================
+// DOM READY
+// =====================================================
 
 document.addEventListener(
 
@@ -1094,19 +1547,26 @@ document.addEventListener(
 
 );
 
-/* =====================================================
-   ISI BULAN
-===================================================== */
+
+// =====================================================
+// ISI BULAN
+// =====================================================
 
 function isiFilterBulan() {
 
     const select =
+
         document.getElementById(
+
             "filterBulan"
+
         );
 
+
     const tahunSekarang =
+
         new Date().getFullYear();
+
 
     for (
 
@@ -1118,6 +1578,7 @@ function isiFilterBulan() {
 
     ) {
 
+
         for (
 
             let bulan = 1;
@@ -1128,128 +1589,193 @@ function isiFilterBulan() {
 
         ) {
 
+
             const option =
+
                 document.createElement(
+
                     "option"
+
                 );
+
 
             const value =
+
                 tahun +
+
                 "-" +
+
                 String(
+
                     bulan
+
                 ).padStart(
+
                     2,
+
                     "0"
+
                 );
 
-            option.value =
-                value;
+
+            option.value = value;
+
 
             option.textContent =
+
                 SENARAI_BULAN[
+
                     bulan - 1
-                ] +
-                " " +
-                tahun;
+
+                ]
+
+                + " "
+
+                + tahun;
+
 
             select.appendChild(
+
                 option
+
             );
 
         }
 
     }
 
-    const sekarang =
-        new Date();
+
+    const sekarang = new Date();
+
 
     select.value =
-        sekarang.getFullYear() +
-        "-" +
-        String(
+
+        sekarang.getFullYear()
+
+        + "-"
+
+        + String(
+
             sekarang.getMonth() + 1
+
         ).padStart(
+
             2,
+
             "0"
+
         );
 
 }
 
-/* =====================================================
-   MUAT DATA DUTY
-===================================================== */
+
+// =====================================================
+// MUAT DATA DUTY
+// =====================================================
 
 async function muatDuty() {
 
     const {
+
         data,
+
         error
+
     } = await supabaseClient
 
         .from(
+
             "jadual_duty"
+
         )
 
         .select(`
 
             id,
+
             tarikh,
+
             bulan,
+
             tahun,
+
             no_skb,
+
             jam_klm,
+
             kod_tempat_kerja,
+
             nama_anggota,
+
             no_anggota,
+
             kawasan,
+
             unit,
+
             pos,
+
             kod_waktu_kerja,
+
             hari_offday_bertugas,
+
             jam_offday_bertugas,
+
             hari_cutiam_bertugas,
+
             jam_cutiam_bertugas
 
         `)
 
         .order(
+
             "tarikh",
+
             {
+
                 ascending: true
+
             }
+
         );
+
 
     if (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
-            "Gagal ambil data: " +
-            error.message
+
+            "Gagal ambil data: "
+
+            + error.message
+
         );
 
         return;
 
     }
 
-    semuaDuty =
-        data || [];
+
+    semuaDuty = data || [];
 
 }
 
-/* =====================================================
-   ISI UNIT
-===================================================== */
+
+// =====================================================
+// ISI UNIT
+// =====================================================
 
 function isiFilterUnit() {
 
     const select =
+
         document.getElementById(
+
             "filterUnit"
+
         );
+
 
     const units = [
 
@@ -1258,35 +1784,44 @@ function isiFilterUnit() {
             semuaDuty
 
                 .map(
-                    item =>
-                        item.unit
+
+                    item => item.unit
+
                 )
 
                 .filter(
+
                     Boolean
+
                 )
 
         )
 
     ].sort();
 
+
     units.forEach(
 
         unit => {
 
             const option =
+
                 document.createElement(
+
                     "option"
+
                 );
 
-            option.value =
-                unit;
 
-            option.textContent =
-                unit;
+            option.value = unit;
+
+            option.textContent = unit;
+
 
             select.appendChild(
+
                 option
+
             );
 
         }
@@ -1295,14 +1830,17 @@ function isiFilterUnit() {
 
 }
 
-/* =====================================================
-   FILTER UNIT → POS
-===================================================== */
+
+// =====================================================
+// FILTER UNIT → POS
+// =====================================================
 
 document
 
     .getElementById(
+
         "filterUnit"
+
     )
 
     .addEventListener(
@@ -1311,13 +1849,18 @@ document
 
         function () {
 
-            const unit =
-                this.value;
+
+            const unit = this.value;
+
 
             const posSelect =
+
                 document.getElementById(
+
                     "filterPos"
+
                 );
+
 
             posSelect.innerHTML = `
 
@@ -1329,6 +1872,7 @@ document
 
             `;
 
+
             const pos = [
 
                 ...new Set(
@@ -1339,47 +1883,54 @@ document
 
                             item =>
 
-                                !unit ||
+                                !unit
 
-                                item.unit ===
+                                ||
 
-                                unit
+                                item.unit === unit
 
                         )
 
                         .map(
 
-                            item =>
-
-                                item.pos
+                            item => item.pos
 
                         )
 
                         .filter(
+
                             Boolean
+
                         )
 
                 )
 
             ].sort();
 
+
             pos.forEach(
 
                 namaPos => {
 
+
                     const option =
+
                         document.createElement(
+
                             "option"
+
                         );
 
-                    option.value =
-                        namaPos;
 
-                    option.textContent =
-                        namaPos;
+                    option.value = namaPos;
+
+                    option.textContent = namaPos;
+
 
                     posSelect.appendChild(
+
                         option
+
                     );
 
                 }
@@ -1390,19 +1941,26 @@ document
 
     );
 
-/* =====================================================
-   NILAI
-===================================================== */
+
+// =====================================================
+// NILAI
+// =====================================================
 
 function nilai(item) {
 
     if (
 
-        item === null ||
+        item === null
 
-        item === undefined ||
+        ||
 
-        item === "" ||
+        item === undefined
+
+        ||
+
+        item === ""
+
+        ||
 
         Number(item) === 0
 
@@ -1412,176 +1970,138 @@ function nilai(item) {
 
     }
 
+
     return item;
 
 }
 
-/* =====================================================
-   FORMAT TARIKH
-===================================================== */
+
+// =====================================================
+// FORMAT TARIKH
+// =====================================================
 
 function formatTarikh(tarikh) {
 
-    if (!tarikh) {
+    if (!tarikh) return "";
 
-        return "";
 
-    }
+    const date = new Date(
 
-    const date =
-        new Date(
-            tarikh + "T00:00:00"
-        );
+        tarikh + "T00:00:00"
+
+    );
+
 
     const hari = [
 
         "Ahad",
+
         "Isnin",
+
         "Selasa",
+
         "Rabu",
+
         "Khamis",
+
         "Jumaat",
+
         "Sabtu"
 
     ];
 
+
     return (
 
         String(
+
             date.getDate()
+
         ).padStart(
+
             2,
+
             "0"
+
         )
 
-        +
+        + "/"
 
-        "/"
+        + String(
 
-        +
-
-        String(
             date.getMonth() + 1
+
         ).padStart(
+
             2,
+
             "0"
+
         )
 
-        +
+        + "/"
 
-        "/"
+        + date.getFullYear()
 
-        +
+        + "<br>"
 
-        date.getFullYear()
+        + hari[
 
-        +
-
-        "<br>"
-
-        +
-
-        hari[
             date.getDay()
+
         ]
 
     );
 
 }
 
-/* =====================================================
-   DAPATKAN SEMUA TARIKH DALAM BULAN
-===================================================== */
 
-function dapatkanSemuaTarikh(
-
-    tahun,
-
-    bulan
-
-) {
-
-    const tarikhList = [];
-
-    const jumlahHari =
-        new Date(
-            tahun,
-            bulan,
-            0
-        ).getDate();
-
-    for (
-
-        let hari = 1;
-
-        hari <= jumlahHari;
-
-        hari++
-
-    ) {
-
-        const tarikh =
-
-            tahun +
-
-            "-" +
-
-            String(
-                bulan
-            ).padStart(
-                2,
-                "0"
-            ) +
-
-            "-" +
-
-            String(
-                hari
-            ).padStart(
-                2,
-                "0"
-            );
-
-        tarikhList.push(
-            tarikh
-        );
-
-    }
-
-    return tarikhList;
-
-}
-
-/* =====================================================
-   JANA LAPORAN
-===================================================== */
+// =====================================================
+// JANA LAPORAN
+// =====================================================
 
 function janaLaporan() {
 
+
     const filterBulan =
+
         document.getElementById(
+
             "filterBulan"
+
         ).value;
+
 
     const filterUnit =
+
         document.getElementById(
+
             "filterUnit"
+
         ).value;
 
+
     const filterPos =
+
         document.getElementById(
+
             "filterPos"
+
         ).value;
+
 
     if (!filterBulan) {
 
         alert(
+
             "Sila pilih Bulan / Tahun."
+
         );
 
         return;
 
     }
+
 
     const [
 
@@ -1591,58 +2111,72 @@ function janaLaporan() {
 
     ] = filterBulan.split("-");
 
-    dataLaporan =
 
-        semuaDuty.filter(
+    dataLaporan = semuaDuty.filter(
 
-            item => {
+        item => {
 
-                return (
 
-                    Number(
-                        item.tahun
-                    ) ===
-                    Number(
-                        tahun
-                    )
+            const bulanBetul =
 
-                    &&
+                item.bulan ===
 
-                    item.bulan ===
+                SENARAI_BULAN[
 
-                    SENARAI_BULAN[
-                        Number(
-                            bulan
-                        ) - 1
-                    ]
+                    Number(bulan) - 1
 
-                    &&
+                ];
 
-                    (
 
-                        !filterUnit ||
+            const tahunBetul =
 
-                        item.unit ===
-                        filterUnit
+                Number(item.tahun)
 
-                    )
+                ===
 
-                    &&
+                Number(tahun);
 
-                    (
 
-                        !filterPos ||
+            const unitBetul =
 
-                        item.pos ===
-                        filterPos
+                !filterUnit
 
-                    )
+                ||
 
-                );
+                item.unit === filterUnit;
 
-            }
 
-        );
+            const posBetul =
+
+                !filterPos
+
+                ||
+
+                item.pos === filterPos;
+
+
+            return (
+
+                bulanBetul
+
+                &&
+
+                tahunBetul
+
+                &&
+
+                unitBetul
+
+                &&
+
+                posBetul
+
+            );
+
+        }
+
+    );
+
 
     paparHeader(
 
@@ -1654,6 +2188,7 @@ function janaLaporan() {
 
     );
 
+
     binaMatrix(
 
         dataLaporan,
@@ -1664,6 +2199,7 @@ function janaLaporan() {
 
     );
 
+
     binaRumusan(
 
         dataLaporan
@@ -1672,9 +2208,10 @@ function janaLaporan() {
 
 }
 
-/* =====================================================
-   PAPAR HEADER
-===================================================== */
+
+// =====================================================
+// PAPAR HEADER
+// =====================================================
 
 function paparHeader(
 
@@ -1686,71 +2223,89 @@ function paparHeader(
 
 ) {
 
+
     const unit =
+
         document.getElementById(
+
             "filterUnit"
+
         ).value;
+
 
     const pos =
+
         document.getElementById(
+
             "filterPos"
+
         ).value;
 
+
     document.getElementById(
+
         "reportUnit"
+
     ).textContent =
 
-        unit ||
+        unit
+
+        ||
 
         (
 
             data.length
 
-                ? data[0].unit
+            ? data[0].unit
 
-                : "SEMUA UNIT"
+            : "SEMUA UNIT"
 
         );
 
+
     document.getElementById(
+
         "reportPos"
+
     ).textContent =
 
-        pos ||
+        pos
+
+        ||
 
         (
 
             data.length
 
-                ? data[0].pos
+            ? data[0].pos
 
-                : "SEMUA POS"
+            : "SEMUA POS"
 
         );
 
+
     document.getElementById(
+
         "reportBulan"
+
     ).textContent =
 
         SENARAI_BULAN[
-            Number(
-                bulan
-            ) - 1
+
+            Number(bulan) - 1
+
         ]
 
-        +
+        + " "
 
-        " "
-
-        +
-
-        tahun;
+        + tahun;
 
 }
 
-/* =====================================================
-   BINA MATRIX 8 SLOT ANGGOTA
-===================================================== */
+
+// =====================================================
+// BINA MATRIX
+// =====================================================
 
 function binaMatrix(
 
@@ -1762,33 +2317,43 @@ function binaMatrix(
 
 ) {
 
+
     const table =
+
         document.getElementById(
+
             "laporanTable"
+
         );
 
-    const anggotaMap =
-        new Map();
+
+    const anggotaMap = new Map();
+
 
     data.forEach(
 
         item => {
 
+
             const key =
 
-                item.no_skb ||
+                item.no_skb
 
-                item.no_anggota ||
+                ||
+
+                item.no_anggota
+
+                ||
 
                 item.nama_anggota;
 
+
             if (
 
-                !anggotaMap.has(
-                    key
-                )
+                !anggotaMap.has(key)
 
             ) {
+
 
                 anggotaMap.set(
 
@@ -1797,13 +2362,22 @@ function binaMatrix(
                     {
 
                         nama:
-                            item.nama_anggota,
+
+                            item.nama_anggota
+
+                            ||
+
+                            "",
 
                         no:
-                            item.no_anggota,
 
-                        records:
-                            {}
+                            item.no_anggota
+
+                            ||
+
+                            "",
+
+                        records: {}
 
                     }
 
@@ -1811,35 +2385,66 @@ function binaMatrix(
 
             }
 
+
             anggotaMap
 
-                .get(
-                    key
-                )
+                .get(key)
 
                 .records[
+
                     item.tarikh
+
                 ] = item;
 
         }
 
     );
 
+
     senaraiAnggota =
 
         Array.from(
+
             anggotaMap.values()
+
         );
 
-    /* =================================================
+
+    /*
+
        WAJIB 8 SLOT
-    ================================================= */
+
+       Jika lebih 8 anggota,
+
+       ambil 8 dahulu.
+
+    */
+
+    senaraiAnggota =
+
+        senaraiAnggota.slice(
+
+            0,
+
+            8
+
+        );
+
+
+    /*
+
+       TAMBAH SLOT KOSONG
+
+       sehingga cukup 8 anggota
+
+    */
 
     while (
 
         senaraiAnggota.length < 8
 
     ) {
+
 
         senaraiAnggota.push(
 
@@ -1857,39 +2462,91 @@ function binaMatrix(
 
     }
 
-    /* Jika lebih 8 anggota,
-       papar 8 pertama sahaja */
 
-    senaraiAnggota =
+    const tahunNumber =
 
-        senaraiAnggota.slice(
-            0,
-            8
-        );
+        Number(tahun);
 
-    const tarikhList =
 
-        dapatkanSemuaTarikh(
+    const bulanNumber =
 
-            Number(
-                tahun
-            ),
+        Number(bulan);
 
-            Number(
-                bulan
+
+    const jumlahHari =
+
+        new Date(
+
+            tahunNumber,
+
+            bulanNumber,
+
+            0
+
+        ).getDate();
+
+
+    const tarikhList = [];
+
+
+    for (
+
+        let hari = 1;
+
+        hari <= jumlahHari;
+
+        hari++
+
+    ) {
+
+
+        tarikhList.push(
+
+            tahunNumber
+
+            + "-"
+
+            + String(
+
+                bulanNumber
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            )
+
+            + "-"
+
+            + String(
+
+                hari
+
+            ).padStart(
+
+                2,
+
+                "0"
+
             )
 
         );
 
-    let html =
-        "<thead>";
+    }
 
-    html +=
-        "<tr>";
+
+    let html = "<thead>";
+
+
+    html += "<tr>";
+
 
     html += `
 
         <th rowspan="2"
+
             class="tarikh-cell">
 
             TARIKH / HARI
@@ -1898,9 +2555,11 @@ function binaMatrix(
 
     `;
 
+
     senaraiAnggota.forEach(
 
         anggota => {
+
 
             html += `
 
@@ -1914,9 +2573,11 @@ function binaMatrix(
 
                     ${escapeHtml(
 
-                        anggota.nama ||
+                        anggota.nama
 
-                        "SLOT ANGGOTA"
+                        ||
+
+                        "SLOT KOSONG"
 
                     )}
 
@@ -1926,9 +2587,7 @@ function binaMatrix(
 
                         ${escapeHtml(
 
-                            anggota.no ||
-
-                            ""
+                            anggota.no
 
                         )}
 
@@ -1942,15 +2601,17 @@ function binaMatrix(
 
     );
 
-    html +=
-        "</tr>";
 
-    html +=
-        "<tr>";
+    html += "</tr>";
+
+
+    html += "<tr>";
+
 
     senaraiAnggota.forEach(
 
         () => {
+
 
             html += `
 
@@ -1968,45 +2629,53 @@ function binaMatrix(
 
     );
 
-    html +=
-        "</tr>";
 
-    html +=
-        "</thead>";
+    html += "</tr>";
 
-    html +=
-        "<tbody>";
+    html += "</thead>";
+
+    html += "<tbody>";
+
 
     tarikhList.forEach(
 
         tarikh => {
 
-            html +=
-                "<tr>";
+
+            html += "<tr>";
+
 
             html += `
 
                 <td class="tarikh-cell">
 
                     ${formatTarikh(
+
                         tarikh
+
                     )}
 
                 </td>
 
             `;
 
+
             senaraiAnggota.forEach(
 
                 anggota => {
 
+
                     const item =
 
                         anggota.records[
+
                             tarikh
+
                         ];
 
+
                     if (!item) {
+
 
                         html += `
 
@@ -2020,103 +2689,157 @@ function binaMatrix(
 
                         `;
 
+
                         return;
 
                     }
 
+
                     const kod = [
 
                         nilai(
+
                             item.kod_waktu_kerja
+
                         ),
 
                         nilai(
+
                             item.kod_tempat_kerja
+
                         )
 
                     ]
 
                     .filter(
+
                         Boolean
+
                     )
 
                     .join(
+
                         "<br>"
+
                     );
+
 
                     const jam =
 
                         nilai(
+
                             item.jam_klm
+
                         );
 
-                    const offHari =
-
-                        nilai(
-                            item.hari_offday_bertugas
-                        );
-
-                    const offJam =
-
-                        nilai(
-                            item.jam_offday_bertugas
-                        );
-
-                    const amHari =
-
-                        nilai(
-                            item.hari_cutiam_bertugas
-                        );
-
-                    const amJam =
-
-                        nilai(
-                            item.jam_cutiam_bertugas
-                        );
 
                     const off = [
 
-                        offHari
-                            ? offHari +
-                              " hari"
-                            : "",
+                        nilai(
 
-                        offJam
-                            ? offJam +
-                              " jam"
-                            : ""
+                            item.hari_offday_bertugas
+
+                        )
+
+                        ?
+
+                        nilai(
+
+                            item.hari_offday_bertugas
+
+                        )
+
+                        + " hari"
+
+                        : "",
+
+
+                        nilai(
+
+                            item.jam_offday_bertugas
+
+                        )
+
+                        ?
+
+                        nilai(
+
+                            item.jam_offday_bertugas
+
+                        )
+
+                        + " jam"
+
+                        : ""
 
                     ]
 
                     .filter(
+
                         Boolean
+
                     )
 
                     .join(
+
                         "<br>"
+
                     );
+
 
                     const am = [
 
-                        amHari
-                            ? amHari +
-                              " hari"
-                            : "",
+                        nilai(
 
-                        amJam
-                            ? amJam +
-                              " jam"
-                            : ""
+                            item.hari_cutiam_bertugas
+
+                        )
+
+                        ?
+
+                        nilai(
+
+                            item.hari_cutiam_bertugas
+
+                        )
+
+                        + " hari"
+
+                        : "",
+
+
+                        nilai(
+
+                            item.jam_cutiam_bertugas
+
+                        )
+
+                        ?
+
+                        nilai(
+
+                            item.jam_cutiam_bertugas
+
+                        )
+
+                        + " jam"
+
+                        : ""
 
                     ]
 
                     .filter(
+
                         Boolean
+
                     )
 
                     .join(
+
                         "<br>"
+
                     );
+
 
                     html += `
 
@@ -2126,17 +2849,20 @@ function binaMatrix(
 
                         </td>
 
+
                         <td class="data-cell jam-cell">
 
                             ${jam}
 
                         </td>
 
+
                         <td class="data-cell off-cell">
 
                             ${off}
 
                         </td>
+
 
                         <td class="data-cell am-cell">
 
@@ -2150,49 +2876,45 @@ function binaMatrix(
 
             );
 
-            html +=
-                "</tr>";
+
+            html += "</tr>";
 
         }
 
     );
 
-    html +=
-        "</tbody>";
 
-    table.innerHTML =
-        html;
+    html += "</tbody>";
+
+
+    table.innerHTML = html;
 
 }
 
-/* =====================================================
-   RUMUSAN SETIAP ANGGOTA
-===================================================== */
 
-function binaRumusan(
+// =====================================================
+// RUMUSAN BY POS
+// =====================================================
 
-    data
+function binaRumusan(data) {
 
-) {
 
     const table =
+
         document.getElementById(
+
             "rumusanTable"
+
         );
 
-    const tbody =
-        table.querySelector(
-            "tbody"
-        );
 
-    tbody.innerHTML = "";
+    const summaryMap = new Map();
 
-    let jumlahKeseluruhan =
-        0;
 
     senaraiAnggota.forEach(
 
-        (anggota, index) => {
+        anggota => {
+
 
             if (!anggota.nama) {
 
@@ -2200,126 +2922,306 @@ function binaRumusan(
 
             }
 
-            const rekodAnggota =
 
-                data.filter(
+            summaryMap.set(
 
-                    item =>
+                anggota.no
 
-                        (
+                ||
 
-                            item.no_anggota &&
+                anggota.nama,
 
-                            item.no_anggota ===
+                {
 
-                            anggota.no
+                    nama:
 
-                        )
+                        anggota.nama,
 
-                        ||
+                    klm: 0,
 
-                        (
+                    offHari: 0,
 
-                            item.nama_anggota &&
+                    offJam: 0,
 
-                            item.nama_anggota ===
+                    cutiHari: 0,
 
-                            anggota.nama
-
-                        )
-
-                );
-
-            let jumlahKLM = 0;
-
-            rekodAnggota.forEach(
-
-                item => {
-
-                    const nilaiKLM =
-
-                        Number(
-                            item.jam_klm
-                        ) || 0;
-
-                    jumlahKLM +=
-                        nilaiKLM;
+                    cutiJam: 0
 
                 }
 
-            );
-
-            jumlahKeseluruhan +=
-                jumlahKLM;
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-            row.innerHTML = `
-
-                <td>
-
-                    ${index + 1}
-
-                </td>
-
-                <td>
-
-                    ${escapeHtml(
-
-                        anggota.nama
-
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${escapeHtml(
-
-                        anggota.no || ""
-
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${jumlahKLM}
-
-                </td>
-
-            `;
-
-            tbody.appendChild(
-                row
             );
 
         }
 
     );
 
-    document.getElementById(
 
-        "jumlahKeseluruhanKLM"
+    data.forEach(
 
-    ).textContent =
+        item => {
 
-        jumlahKeseluruhan;
+
+            const key =
+
+                item.no_anggota
+
+                ||
+
+                item.nama_anggota;
+
+
+            if (
+
+                !summaryMap.has(key)
+
+            ) {
+
+
+                summaryMap.set(
+
+                    key,
+
+                    {
+
+                        nama:
+
+                            item.nama_anggota,
+
+                        klm: 0,
+
+                        offHari: 0,
+
+                        offJam: 0,
+
+                        cutiHari: 0,
+
+                        cutiJam: 0
+
+                    }
+
+                );
+
+            }
+
+
+            const row =
+
+                summaryMap.get(key);
+
+
+            row.klm +=
+
+                Number(
+
+                    item.jam_klm
+
+                )
+
+                || 0;
+
+
+            row.offHari +=
+
+                Number(
+
+                    item.hari_offday_bertugas
+
+                )
+
+                || 0;
+
+
+            row.offJam +=
+
+                Number(
+
+                    item.jam_offday_bertugas
+
+                )
+
+                || 0;
+
+
+            row.cutiHari +=
+
+                Number(
+
+                    item.hari_cutiam_bertugas
+
+                )
+
+                || 0;
+
+
+            row.cutiJam +=
+
+                Number(
+
+                    item.jam_cutiam_bertugas
+
+                )
+
+                || 0;
+
+        }
+
+    );
+
+
+    let totalKLM = 0;
+
+    let totalOffHari = 0;
+
+    let totalOffJam = 0;
+
+    let totalCutiHari = 0;
+
+    let totalCutiJam = 0;
+
+
+    let html = "";
+
+
+    summaryMap.forEach(
+
+        row => {
+
+
+            totalKLM += row.klm;
+
+            totalOffHari += row.offHari;
+
+            totalOffJam += row.offJam;
+
+            totalCutiHari += row.cutiHari;
+
+            totalCutiJam += row.cutiJam;
+
+
+            html += `
+
+                <tr>
+
+                    <td>
+
+                        ${escapeHtml(
+
+                            row.nama
+
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        ${row.klm}
+
+                    </td>
+
+
+                    <td>
+
+                        ${row.offHari}
+
+                    </td>
+
+
+                    <td>
+
+                        ${row.offJam}
+
+                    </td>
+
+
+                    <td>
+
+                        ${row.cutiHari}
+
+                    </td>
+
+
+                    <td>
+
+                        ${row.cutiJam}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+
+    html += `
+
+        <tr class="total-row">
+
+
+            <td>
+
+                JUMLAH KESELURUHAN
+
+            </td>
+
+
+            <td>
+
+                ${totalKLM}
+
+            </td>
+
+
+            <td>
+
+                ${totalOffHari}
+
+            </td>
+
+
+            <td>
+
+                ${totalOffJam}
+
+            </td>
+
+
+            <td>
+
+                ${totalCutiHari}
+
+            </td>
+
+
+            <td>
+
+                ${totalCutiJam}
+
+            </td>
+
+
+        </tr>
+
+    `;
+
+
+    table.querySelector(
+
+        "tbody"
+
+    ).innerHTML = html;
 
 }
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
 
-function escapeHtml(
+// =====================================================
+// ESCAPE HTML
+// =====================================================
 
-    value
-
-) {
+function escapeHtml(value) {
 
     return String(
 
@@ -2328,63 +3230,93 @@ function escapeHtml(
     )
 
     .replace(
+
         /&/g,
+
         "&amp;"
+
     )
 
     .replace(
+
         /</g,
+
         "&lt;"
+
     )
 
     .replace(
+
         />/g,
+
         "&gt;"
+
     )
 
     .replace(
+
         /"/g,
+
         "&quot;"
+
     )
 
     .replace(
+
         /'/g,
+
         "&#039;"
+
     );
 
 }
 
-/* =====================================================
-   CETAK PDF
-===================================================== */
+
+// =====================================================
+// CETAK PDF
+// =====================================================
 
 function cetakPDF() {
 
+
     if (
 
-        !document.querySelector(
-            "#laporanTable thead"
-        )
+        !document
+
+            .getElementById(
+
+                "filterBulan"
+
+            )
+
+            .value
 
     ) {
 
+
         alert(
-            "Sila jana laporan terlebih dahulu."
+
+            "Sila pilih bulan terlebih dahulu."
+
         );
+
 
         return;
 
     }
 
+
     window.print();
 
 }
 
-/* =====================================================
-   DOWNLOAD CSV
-===================================================== */
+
+// =====================================================
+// DOWNLOAD CSV
+// =====================================================
 
 function downloadCSV() {
+
 
     if (
 
@@ -2392,15 +3324,18 @@ function downloadCSV() {
 
     ) {
 
+
         alert(
 
-            "Tiada data duty untuk dimuat turun."
+            "Sila jana laporan terlebih dahulu."
 
         );
+
 
         return;
 
     }
+
 
     const rows = [
 
@@ -2436,9 +3371,11 @@ function downloadCSV() {
 
     ];
 
+
     dataLaporan.forEach(
 
         item => {
+
 
             rows.push(
 
@@ -2506,97 +3443,110 @@ function downloadCSV() {
 
     );
 
-    const csv =
 
-        rows
+    const csv = rows
 
-            .map(
+        .map(
 
-                row =>
+            row => row
 
-                    row
+                .map(
 
-                        .map(
+                    value =>
 
-                            value =>
+                        '"'
 
-                                '"' +
+                        +
 
-                                String(
+                        String(
 
-                                    value
-
-                                )
-
-                                .replace(
-
-                                    /"/g,
-
-                                    '""'
-
-                                )
-
-                                +
-
-                                '"'
+                            value
 
                         )
 
-                        .join(",")
+                        .replace(
 
-            )
+                            /"/g,
 
-            .join("\n");
+                            '""'
 
-    const blob =
+                        )
 
-        new Blob(
+                        +
 
-            [
+                        '"'
 
-                "\uFEFF" +
+                )
 
-                csv
+                .join(",")
 
-            ],
+        )
 
-            {
+        .join("\n");
 
-                type:
 
-                    "text/csv;charset=utf-8;"
+    const blob = new Blob(
 
-            }
+        [
 
-        );
+            "\uFEFF" + csv
+
+        ],
+
+        {
+
+            type:
+
+                "text/csv;charset=utf-8;"
+
+        }
+
+    );
+
 
     const url =
 
         URL.createObjectURL(
+
             blob
+
         );
+
 
     const link =
+
         document.createElement(
+
             "a"
+
         );
 
-    link.href =
-        url;
+
+    link.href = url;
+
 
     link.download =
+
         "Laporan-Penuh-Duty.csv";
 
+
     document.body.appendChild(
+
         link
+
     );
+
 
     link.click();
 
+
     link.remove();
 
+
     URL.revokeObjectURL(
+
         url
+
     );
 
 }
