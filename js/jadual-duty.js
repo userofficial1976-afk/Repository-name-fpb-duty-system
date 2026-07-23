@@ -1545,17 +1545,21 @@ function pasangEventKodDuty() {
 
             if (data) {
 
+    setValue(
+        "jamKlm",
+        data.jam_klm
+    );
 
-                setValue(
+}
+else {
 
-                    "jamKlm",
+    setValue(
+        "jamKlm",
+        0
 
-                    data.jam_klm
+    );
 
-                );
-
-
-            }
+}
 
             else {
 
