@@ -1394,7 +1394,10 @@ async function janaLaporanAnggaran() {
                     hari_cutiam_bertugas,
                     jam_cutiam_bertugas
                 `)
-                .eq("bulan", bulan)
+                .eq(
+                    "bulan",
+                    SENARAI_BULAN[bulan]
+                )
                 .eq("tahun", tahun)
                 .eq("pos", pos)
                 .order(
