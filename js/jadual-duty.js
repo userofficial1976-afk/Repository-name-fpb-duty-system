@@ -114,9 +114,7 @@ function isiSenaraiPosTampungan() {
     posList.forEach(function (pos) {
 
         const option = document.createElement(
-
             "option"
-
         );
 
 
@@ -206,9 +204,7 @@ function paparPopup(
 
 
     const popupLama = document.getElementById(
-
         "popupSystem"
-
     );
 
 
@@ -287,16 +283,13 @@ function paparPopup(
     ) {
 
         mesejPopup =
-
             "Tiada mesej diterima daripada sistem.";
 
     }
 
 
     const popup = document.createElement(
-
         "div"
-
     );
 
 
@@ -349,18 +342,14 @@ function paparPopup(
 
 
     const styleLama = document.getElementById(
-
         "popupSystemStyle"
-
     );
 
 
     if (!styleLama) {
 
         const style = document.createElement(
-
             "style"
-
         );
 
 
@@ -602,9 +591,7 @@ function paparPopup(
 
 
     const button = popup.querySelector(
-
         ".popup-ok-button"
-
     );
 
 
@@ -628,9 +615,7 @@ function paparPopup(
 function isiSenaraiUnit() {
 
     const select = document.getElementById(
-
         "unitPilihan"
-
     );
 
 
@@ -651,9 +636,7 @@ function isiSenaraiUnit() {
     SENARAI_UNIT.forEach(function (unit) {
 
         const option = document.createElement(
-
             "option"
-
         );
 
 
@@ -676,9 +659,7 @@ function isiSenaraiUnit() {
 function pasangEventTarikh() {
 
     const tarikh = document.getElementById(
-
         "tarikh"
-
     );
 
 
@@ -701,36 +682,23 @@ function pasangEventTarikh() {
 
 
             const date = new Date(
-
                 this.value + "T00:00:00"
-
             );
 
 
             const namaBulan = [
 
                 "Januari",
-
                 "Februari",
-
                 "Mac",
-
                 "April",
-
                 "Mei",
-
                 "Jun",
-
                 "Julai",
-
                 "Ogos",
-
                 "September",
-
                 "Oktober",
-
                 "November",
-
                 "Disember"
 
             ];
@@ -739,46 +707,31 @@ function pasangEventTarikh() {
             const namaHari = [
 
                 "Ahad",
-
                 "Isnin",
-
                 "Selasa",
-
                 "Rabu",
-
                 "Khamis",
-
                 "Jumaat",
-
                 "Sabtu"
 
             ];
 
 
             setValue(
-
                 "bulan",
-
                 namaBulan[date.getMonth()]
-
             );
 
 
             setValue(
-
                 "tahun",
-
                 date.getFullYear()
-
             );
 
 
             setValue(
-
                 "hari",
-
                 namaHari[date.getDay()]
-
             );
 
         }
@@ -793,9 +746,7 @@ function kosongkanTarikh() {
     [
 
         "bulan",
-
         "tahun",
-
         "hari"
 
     ]
@@ -803,11 +754,8 @@ function kosongkanTarikh() {
         .forEach(function (id) {
 
             setValue(
-
                 id,
-
                 ""
-
             );
 
         });
@@ -822,9 +770,7 @@ function kosongkanTarikh() {
 function pasangEventUnit() {
 
     const unitSelect = document.getElementById(
-
         "unitPilihan"
-
     );
 
 
@@ -906,9 +852,7 @@ function pasangEventUnit() {
 
 
             const posSelect = document.getElementById(
-
                 "posAsal"
-
             );
 
 
@@ -918,9 +862,7 @@ function pasangEventUnit() {
             posList.forEach(function (pos) {
 
                 const option = document.createElement(
-
                     "option"
-
                 );
 
 
@@ -947,9 +889,7 @@ function pasangEventUnit() {
 function pasangEventPos() {
 
     const posSelect = document.getElementById(
-
         "posAsal"
-
     );
 
 
@@ -963,9 +903,7 @@ function pasangEventPos() {
         function () {
 
             const unit = getValue(
-
                 "unitPilihan"
-
             );
 
 
@@ -988,29 +926,21 @@ function pasangEventPos() {
                     return (
 
                         String(a.unit)
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(unit)
-
                             .trim()
-
                             .toLowerCase()
 
                         &&
 
                         String(a.pos)
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(pos)
-
                             .trim()
-
                             .toLowerCase()
 
                     );
@@ -1021,16 +951,10 @@ function pasangEventPos() {
 
                     return (
 
-                        (
-
-                            a.nama || ""
-
-                        )
+                        (a.nama || "")
 
                             .localeCompare(
-
                                 b.nama || ""
-
                             )
 
                     );
@@ -1039,9 +963,7 @@ function pasangEventPos() {
 
 
             const anggotaSelect = document.getElementById(
-
                 "anggota"
-
             );
 
 
@@ -1051,9 +973,7 @@ function pasangEventPos() {
             anggotaList.forEach(function (anggota) {
 
                 const option = document.createElement(
-
                     "option"
-
                 );
 
 
@@ -1064,9 +984,7 @@ function pasangEventPos() {
 
 
                 option.dataset.data = JSON.stringify(
-
                     anggota
-
                 );
 
 
@@ -1088,9 +1006,7 @@ function pasangEventPos() {
 function pasangEventAnggota() {
 
     const select = document.getElementById(
-
         "anggota"
-
     );
 
 
@@ -1104,9 +1020,7 @@ function pasangEventAnggota() {
         function () {
 
             const option = this.options[
-
                 this.selectedIndex
-
             ];
 
 
@@ -1126,16 +1040,12 @@ function pasangEventAnggota() {
 
 
             const anggota = JSON.parse(
-
                 option.dataset.data
-
             );
 
 
             isiMaklumatAnggota(
-
                 anggota
-
             );
 
         }
@@ -1150,71 +1060,48 @@ function pasangEventAnggota() {
 // =====================================================
 
 function isiMaklumatAnggota(
-
     anggota
-
 ) {
 
     setValue(
-
         "noSkb",
-
         anggota.no_skb
-
     );
 
 
     setValue(
-
         "noAnggota",
-
         anggota.no_anggota
-
     );
 
 
     setValue(
-
         "kawasan",
-
         anggota.kawasan
-
     );
 
 
     setValue(
-
         "unit",
-
         anggota.unit
-
     );
 
 
     setValue(
-
         "ketuaUnit",
-
         anggota.ketua_unit
-
     );
 
 
     setValue(
-
         "ketuaPos",
-
         anggota.ketua_pos
-
     );
 
 
     setValue(
-
         "namaPosAsal",
-
         anggota.pos
-
     );
 
 }
@@ -1229,17 +1116,12 @@ async function muatAnggota() {
     try {
 
         const {
-
             data,
-
             error
-
         } = await supabaseClient
 
             .from(
-
                 "Data_Anggota"
-
             )
 
             .select(`
@@ -1265,15 +1147,10 @@ async function muatAnggota() {
             `)
 
             .order(
-
                 "nama",
-
                 {
-
                     ascending: true
-
                 }
-
             );
 
 
@@ -1288,11 +1165,8 @@ async function muatAnggota() {
 
 
         console.log(
-
             "ANGGOTA BERJAYA DIMUATKAN:",
-
             semuaAnggota
-
         );
 
     }
@@ -1301,11 +1175,8 @@ async function muatAnggota() {
     catch (error) {
 
         console.error(
-
             "ERROR ANGGOTA:",
-
             error
-
         );
 
 
@@ -1335,17 +1206,12 @@ async function muatKodDuty() {
     try {
 
         const {
-
             data,
-
             error
-
         } = await supabaseClient
 
             .from(
-
                 "kod_duty"
-
             )
 
             .select(`
@@ -1365,23 +1231,15 @@ async function muatKodDuty() {
             `)
 
             .eq(
-
                 "status",
-
                 "Aktif"
-
             )
 
             .order(
-
                 "kod",
-
                 {
-
                     ascending: true
-
                 }
-
             );
 
 
@@ -1396,11 +1254,8 @@ async function muatKodDuty() {
 
 
         console.log(
-
             "KOD DUTY BERJAYA DIMUATKAN:",
-
             semuaKodDuty
-
         );
 
     }
@@ -1409,11 +1264,8 @@ async function muatKodDuty() {
     catch (error) {
 
         console.error(
-
             "ERROR KOD DUTY:",
-
             error
-
         );
 
 
@@ -1441,9 +1293,7 @@ async function muatKodDuty() {
 function pasangEventKodDuty() {
 
     const select = document.getElementById(
-
         "kodDuty"
-
     );
 
 
@@ -1457,9 +1307,7 @@ function pasangEventKodDuty() {
         function () {
 
             const unit = getValue(
-
                 "unitPilihan"
-
             );
 
 
@@ -1473,29 +1321,21 @@ function pasangEventKodDuty() {
                     return (
 
                         String(item.unit)
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(unit)
-
                             .trim()
-
                             .toLowerCase()
 
                         &&
 
                         String(item.kod)
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(kod)
-
                             .trim()
-
                             .toLowerCase()
 
                     );
@@ -1508,43 +1348,26 @@ function pasangEventKodDuty() {
             if (data) {
 
                 setValue(
-
                     "waktuTugasan",
-
                     data.waktu_tugasan
-
                 );
 
 
                 setValue(
-
                     "jamKerja",
-
                     data.jam_kerja
-
                 );
 
 
                 setValue(
-
                     "jamKlm",
-
                     data.jam_klm
-
                 );
 
 
-                // =================================================
-                // TAMBAHAN BARU
-                // JAM TAMPUNGAN IKUT JAM KERJA KOD DUTY
-                // =================================================
-
                 setValue(
-
                     "jamTampungan",
-
                     data.jam_kerja
-
                 );
 
             }
@@ -1553,38 +1376,26 @@ function pasangEventKodDuty() {
             else {
 
                 setValue(
-
                     "waktuTugasan",
-
                     ""
-
                 );
 
 
                 setValue(
-
                     "jamKerja",
-
                     ""
-
                 );
 
 
                 setValue(
-
                     "jamKlm",
-
                     ""
-
                 );
 
 
                 setValue(
-
                     "jamTampungan",
-
                     ""
-
                 );
 
             }
@@ -1601,15 +1412,11 @@ function pasangEventKodDuty() {
 // =====================================================
 
 function isiKodDutyIkutUnit(
-
     unit
-
 ) {
 
     const select = document.getElementById(
-
         "kodDuty"
-
     );
 
 
@@ -1634,15 +1441,11 @@ function isiKodDutyIkutUnit(
             return (
 
                 String(item.unit)
-
                     .trim()
-
                     .toLowerCase() ===
 
                 String(unit)
-
                     .trim()
-
                     .toLowerCase()
 
             );
@@ -1652,9 +1455,7 @@ function isiKodDutyIkutUnit(
         .forEach(function (item) {
 
             const option = document.createElement(
-
                 "option"
-
             );
 
 
@@ -1671,9 +1472,7 @@ function isiKodDutyIkutUnit(
 
 
             option.dataset.data = JSON.stringify(
-
                 item
-
             );
 
 
@@ -1693,17 +1492,12 @@ async function muatKodTempatKerja() {
     try {
 
         const {
-
             data,
-
             error
-
         } = await supabaseClient
 
             .from(
-
                 "kod_tempat_kerja"
-
             )
 
             .select(`
@@ -1719,23 +1513,15 @@ async function muatKodTempatKerja() {
             `)
 
             .eq(
-
                 "status",
-
                 "Aktif"
-
             )
 
             .order(
-
                 "kod_tempat_kerja",
-
                 {
-
                     ascending: true
-
                 }
-
             );
 
 
@@ -1750,11 +1536,8 @@ async function muatKodTempatKerja() {
 
 
         console.log(
-
             "TEMPAT KERJA BERJAYA DIMUATKAN:",
-
             semuaKodTempatKerja
-
         );
 
     }
@@ -1763,11 +1546,8 @@ async function muatKodTempatKerja() {
     catch (error) {
 
         console.error(
-
             "ERROR TEMPAT KERJA:",
-
             error
-
         );
 
 
@@ -1793,15 +1573,11 @@ async function muatKodTempatKerja() {
 // =====================================================
 
 function isiKodTempatKerjaIkutUnit(
-
     unit
-
 ) {
 
     const select = document.getElementById(
-
         "kodTempatKerja"
-
     );
 
 
@@ -1826,15 +1602,11 @@ function isiKodTempatKerjaIkutUnit(
             return (
 
                 String(item.unit)
-
                     .trim()
-
                     .toLowerCase() ===
 
                 String(unit)
-
                     .trim()
-
                     .toLowerCase()
 
             );
@@ -1844,14 +1616,11 @@ function isiKodTempatKerjaIkutUnit(
         .forEach(function (item) {
 
             const option = document.createElement(
-
                 "option"
-
             );
 
 
             option.value =
-
                 item.kod_tempat_kerja;
 
 
@@ -1865,7 +1634,6 @@ function isiKodTempatKerjaIkutUnit(
 
 
             option.dataset.nama =
-
                 item.nama_tempat_kerja;
 
 
@@ -1883,9 +1651,7 @@ function isiKodTempatKerjaIkutUnit(
 function pasangEventKodTempatKerja() {
 
     const select = document.getElementById(
-
         "kodTempatKerja"
-
     );
 
 
@@ -1899,25 +1665,18 @@ function pasangEventKodTempatKerja() {
         function () {
 
             const option = this.options[
-
                 this.selectedIndex
-
             ];
 
 
             const nama = option
-
                 ? option.dataset.nama
-
                 : "";
 
 
             setValue(
-
                 "tempatKerja",
-
                 nama
-
             );
 
         }
@@ -1934,9 +1693,7 @@ function pasangEventKodTempatKerja() {
 function isiSenaraiFilterKetuaUnit() {
 
     const select = document.getElementById(
-
         "filterKetuaUnit"
-
     );
 
 
@@ -1978,9 +1735,7 @@ function isiSenaraiFilterKetuaUnit() {
     list.forEach(function (nama) {
 
         const option = document.createElement(
-
             "option"
-
         );
 
 
@@ -2003,34 +1758,25 @@ function isiSenaraiFilterKetuaUnit() {
 function pasangEventFilter() {
 
     const filterKetuaUnit = document.getElementById(
-
         "filterKetuaUnit"
-
     );
 
 
     const filterBulan = document.getElementById(
-
         "filterBulan"
-
     );
 
 
     const cariNama = document.getElementById(
-
         "cariNama"
-
     );
 
 
     if (filterKetuaUnit) {
 
         filterKetuaUnit.addEventListener(
-
             "change",
-
             paparDuty
-
         );
 
     }
@@ -2039,11 +1785,8 @@ function pasangEventFilter() {
     if (filterBulan) {
 
         filterBulan.addEventListener(
-
             "change",
-
             paparDuty
-
         );
 
     }
@@ -2052,11 +1795,8 @@ function pasangEventFilter() {
     if (cariNama) {
 
         cariNama.addEventListener(
-
             "input",
-
             paparDuty
-
         );
 
     }
@@ -2073,48 +1813,32 @@ async function simpanDuty() {
     try {
 
         const tarikh = getValue(
-
             "tarikh"
-
         );
 
 
         const noSkb = getValue(
-
             "noSkb"
-
         );
 
 
         const kodDuty = getValue(
-
             "kodDuty"
-
         );
 
 
         const kodTempatKerja = getValue(
-
             "kodTempatKerja"
-
         );
 
 
-        // =================================================
-        // POS TAMPUNGAN
-        // =================================================
-
         const posTampungan = getValue(
-
             "posTampungan"
-
         );
 
 
         const unitPilihan = getValue(
-
             "unitPilihan"
-
         );
 
 
@@ -2123,13 +1847,9 @@ async function simpanDuty() {
             function (a) {
 
                 return String(
-
                     a.no_skb
-
                 ) === String(
-
                     noSkb
-
                 );
 
             }
@@ -2144,29 +1864,21 @@ async function simpanDuty() {
                 return (
 
                     String(item.unit)
-
                         .trim()
-
                         .toLowerCase() ===
 
                     String(unitPilihan)
-
                         .trim()
-
                         .toLowerCase()
 
                     &&
 
                     String(item.kod)
-
                         .trim()
-
                         .toLowerCase() ===
 
                     String(kodDuty)
-
                         .trim()
-
                         .toLowerCase()
 
                 );
@@ -2177,7 +1889,6 @@ async function simpanDuty() {
 
 
         const tempatKerja =
-
             semuaKodTempatKerja.find(
 
                 function (item) {
@@ -2185,37 +1896,25 @@ async function simpanDuty() {
                     return (
 
                         String(item.unit)
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(unitPilihan)
-
                             .trim()
-
                             .toLowerCase()
 
                         &&
 
                         String(
-
                             item.kod_tempat_kerja
-
                         )
-
                             .trim()
-
                             .toLowerCase() ===
 
                         String(
-
                             kodTempatKerja
-
                         )
-
                             .trim()
-
                             .toLowerCase()
 
                     );
@@ -2228,13 +1927,9 @@ async function simpanDuty() {
         if (!tarikh) {
 
             paparPopup(
-
                 "Sila pilih tarikh duty.",
-
                 "warning",
-
                 "Tarikh Diperlukan"
-
             );
 
             return;
@@ -2245,13 +1940,9 @@ async function simpanDuty() {
         if (!anggota) {
 
             paparPopup(
-
                 "Sila pilih nama anggota.",
-
                 "warning",
-
                 "Anggota Diperlukan"
-
             );
 
             return;
@@ -2262,13 +1953,9 @@ async function simpanDuty() {
         if (!duty) {
 
             paparPopup(
-
                 "Sila pilih Kod Waktu Kerja.",
-
                 "warning",
-
                 "Kod Duty Diperlukan"
-
             );
 
             return;
@@ -2279,13 +1966,9 @@ async function simpanDuty() {
         if (!tempatKerja) {
 
             paparPopup(
-
                 "Sila pilih Kod Tempat Kerja.",
-
                 "warning",
-
                 "Tempat Kerja Diperlukan"
-
             );
 
             return;
@@ -2294,50 +1977,33 @@ async function simpanDuty() {
 
 
         const hariOffdayElement =
-
             document.getElementById(
-
                 "hariOffday"
-
             );
 
 
         const hariCutiamElement =
-
             document.getElementById(
-
                 "hariCutiam"
-
             );
 
 
         const sedangEdit =
-
             dutySedangEdit !== null;
 
-
-        // =================================================
-        // DATA DUTY
-        // =================================================
 
         const dataDuty = {
 
             tarikh: tarikh,
 
             bulan: getValue(
-
                 "bulan"
-
             ),
 
             tahun: Number(
-
                 getValue(
-
                     "tahun"
-
                 )
-
             ),
 
             no_skb: anggota.no_skb,
@@ -2357,73 +2023,50 @@ async function simpanDuty() {
             pos: anggota.pos,
 
 
-            // =================================================
-            // POS TAMPUNGAN
-            // =================================================
-
             pos_tampungan:
-
                 posTampungan,
 
 
             nama_pos_asal:
-
                 anggota.pos,
 
 
-            // =================================================
-            // JAM TAMPUNGAN
-            // DIAMBIL DARIPADA JAM KERJA KOD DUTY
-            // =================================================
-
             jam_tampungan:
-
                 duty.jam_kerja,
 
 
             hari: getValue(
-
                 "hari"
-
             ),
 
 
             waktu_tugasan:
-
                 duty.waktu_tugasan,
 
 
             jam_kerja:
-
                 duty.jam_kerja,
 
 
             jam_klm:
-
                 Number(
-
                     duty.jam_klm || 0
-
                 ),
 
 
             kod_duty:
-
                 duty.kod,
 
 
             kod_waktu_kerja:
-
                 duty.kod,
 
 
             kod_tempat_kerja:
-
                 tempatKerja.kod_tempat_kerja,
 
 
             tempat_kerja:
-
                 tempatKerja.nama_tempat_kerja,
 
 
@@ -2443,9 +2086,7 @@ async function simpanDuty() {
                 Number(
 
                     getValue(
-
                         "jamOffday"
-
                     ) || 0
 
                 ),
@@ -2467,37 +2108,29 @@ async function simpanDuty() {
                 Number(
 
                     getValue(
-
                         "jamCutiam"
-
                     ) || 0
 
                 ),
 
 
             dikemaskini_oleh:
-
                 "Sistem",
 
 
             dikemaskini_pada:
-
                 new Date().toISOString()
 
         };
 
 
         console.log(
-
             "DATA YANG AKAN DISIMPAN:"
-
         );
 
 
         console.table(
-
             dataDuty
-
         );
 
 
@@ -2509,23 +2142,16 @@ async function simpanDuty() {
             result = await supabaseClient
 
                 .from(
-
                     "jadual_duty"
-
                 )
 
                 .update(
-
                     dataDuty
-
                 )
 
                 .eq(
-
                     "id",
-
                     dutySedangEdit
-
                 )
 
                 .select();
@@ -2538,15 +2164,11 @@ async function simpanDuty() {
             result = await supabaseClient
 
                 .from(
-
                     "jadual_duty"
-
                 )
 
                 .insert([
-
                     dataDuty
-
                 ])
 
                 .select();
@@ -2557,11 +2179,8 @@ async function simpanDuty() {
         if (result.error) {
 
             console.error(
-
                 "RALAT SUPABASE:",
-
                 result.error
-
             );
 
 
@@ -2577,13 +2196,9 @@ async function simpanDuty() {
 
 
             paparPopup(
-
                 mesejRalat,
-
                 "error",
-
                 "Gagal Simpan Duty"
-
             );
 
 
@@ -2593,11 +2208,8 @@ async function simpanDuty() {
 
 
         console.log(
-
             "DATA BERJAYA DISIMPAN:",
-
             result.data
-
         );
 
 
@@ -2661,11 +2273,8 @@ async function simpanDuty() {
     catch (error) {
 
         console.error(
-
             "ERROR SISTEM:",
-
             error
-
         );
 
 
@@ -2693,9 +2302,7 @@ async function simpanDuty() {
 async function paparDuty() {
 
     const tbody = document.getElementById(
-
         "senaraiDuty"
-
     );
 
 
@@ -2703,16 +2310,12 @@ async function paparDuty() {
 
 
     const filterKetuaUnit = getValue(
-
         "filterKetuaUnit"
-
     );
 
 
     const filterBulan = getValue(
-
         "filterBulan"
-
     );
 
 
@@ -2739,91 +2342,62 @@ async function paparDuty() {
 
 
     const [
-
         tahun,
-
         bulan
-
     ] = filterBulan.split(
-
         "-"
-
     );
 
 
     let query = supabaseClient
 
         .from(
-
             "jadual_duty"
-
         )
 
         .select("*")
 
         .eq(
-
             "tahun",
-
             Number(tahun)
-
         )
 
         .eq(
-
             "bulan",
-
             getNamaBulan(
-
                 Number(bulan)
-
             )
-
         )
 
         .order(
-
             "tarikh",
-
             {
-
                 ascending: true
-
             }
-
         );
 
 
     if (filterKetuaUnit) {
 
         query = query.eq(
-
             "ketua_unit",
-
             filterKetuaUnit
-
         );
 
     }
 
 
     const {
-
         data,
-
         error
-
     } = await query;
 
 
     if (error) {
 
         console.error(
-
             "ERROR PAPAR DUTY:",
-
             error
-
         );
 
 
@@ -2849,11 +2423,8 @@ async function paparDuty() {
 
 
     const cariNama = getValue(
-
         "cariNama"
-
     )
-
         .toLowerCase();
 
 
@@ -2875,9 +2446,7 @@ async function paparDuty() {
                     .toLowerCase()
 
                     .includes(
-
                         cariNama
-
                     );
 
             }
@@ -2920,9 +2489,7 @@ async function paparDuty() {
                     <td>
 
                         ${formatTarikh(
-
                             item.tarikh
-
                         )}
 
                     </td>
@@ -3084,9 +2651,7 @@ async function paparDuty() {
 // =====================================================
 
 async function editDuty(
-
     id
-
 ) {
 
     const duty = semuaDuty.find(
@@ -3094,9 +2659,7 @@ async function editDuty(
         function (item) {
 
             return String(
-
                 item.id
-
             ) === String(id);
 
         }
@@ -3111,152 +2674,102 @@ async function editDuty(
 
 
     setValue(
-
         "tarikh",
-
         duty.tarikh
-
     );
 
 
     const tarikh = document.getElementById(
-
         "tarikh"
-
     );
 
 
     if (tarikh) {
 
         tarikh.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "unitPilihan",
-
         duty.unit
-
     );
 
 
     const unitPilihan = document.getElementById(
-
         "unitPilihan"
-
     );
 
 
     if (unitPilihan) {
 
         unitPilihan.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "posAsal",
-
         duty.pos
-
     );
 
 
     const posAsal = document.getElementById(
-
         "posAsal"
-
     );
 
 
     if (posAsal) {
 
         posAsal.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "anggota",
-
         duty.no_skb
-
     );
 
 
     const anggota = document.getElementById(
-
         "anggota"
-
     );
 
 
     if (anggota) {
 
         anggota.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
-    // =================================================
-    // POS TAMPUNGAN
-    // =================================================
-
     setValue(
-
         "posTampungan",
-
         duty.pos_tampungan
-
     );
 
 
-    // =================================================
-    // JAM TAMPUNGAN
-    // =================================================
-
     setValue(
-
         "jamTampungan",
-
         duty.jam_tampungan
-
     );
 
 
@@ -3272,94 +2785,71 @@ async function editDuty(
 
 
     const kodDuty = document.getElementById(
-
         "kodDuty"
-
     );
 
 
     if (kodDuty) {
 
         kodDuty.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "kodTempatKerja",
-
         duty.kod_tempat_kerja
-
     );
 
 
-    const kodTempatKerja = document.getElementById(
-
-        "kodTempatKerja"
-
-    );
+    const kodTempatKerja =
+        document.getElementById(
+            "kodTempatKerja"
+        );
 
 
     if (kodTempatKerja) {
 
         kodTempatKerja.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "jamOffday",
-
         duty.jam_offday_bertugas
-
     );
 
 
     setValue(
-
         "jamCutiam",
-
         duty.jam_cutiam_bertugas
-
     );
 
 
-    const offday = document.getElementById(
+    const offday =
+        document.getElementById(
+            "hariOffday"
+        );
 
-        "hariOffday"
 
-    );
-
-
-    const cutiam = document.getElementById(
-
-        "hariCutiam"
-
-    );
+    const cutiam =
+        document.getElementById(
+            "hariCutiam"
+        );
 
 
     if (offday) {
 
         offday.checked =
-
             duty.hari_offday_bertugas == 1;
 
     }
@@ -3368,7 +2858,6 @@ async function editDuty(
     if (cutiam) {
 
         cutiam.checked =
-
             duty.hari_cutiam_bertugas == 1;
 
     }
@@ -3401,9 +2890,7 @@ async function editDuty(
 // =====================================================
 
 async function duplicateDuty(
-
     id
-
 ) {
 
     const duty = semuaDuty.find(
@@ -3411,9 +2898,7 @@ async function duplicateDuty(
         function (item) {
 
             return String(
-
                 item.id
-
             ) === String(id);
 
         }
@@ -3428,152 +2913,102 @@ async function duplicateDuty(
 
 
     setValue(
-
         "tarikh",
-
         duty.tarikh
-
     );
 
 
     const tarikh = document.getElementById(
-
         "tarikh"
-
     );
 
 
     if (tarikh) {
 
         tarikh.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "unitPilihan",
-
         duty.unit
-
     );
 
 
     const unitPilihan = document.getElementById(
-
         "unitPilihan"
-
     );
 
 
     if (unitPilihan) {
 
         unitPilihan.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "posAsal",
-
         duty.pos
-
     );
 
 
     const posAsal = document.getElementById(
-
         "posAsal"
-
     );
 
 
     if (posAsal) {
 
         posAsal.dispatchEvent(
-
             new Event(
-
-            "change"
-
+                "change"
             )
-
         );
 
     }
 
 
     setValue(
-
         "anggota",
-
         duty.no_skb
-
     );
 
 
     const anggota = document.getElementById(
-
         "anggota"
-
     );
 
 
     if (anggota) {
 
         anggota.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
-    // =================================================
-    // POS TAMPUNGAN
-    // =================================================
-
     setValue(
-
         "posTampungan",
-
         duty.pos_tampungan
-
     );
 
 
-    // =================================================
-    // JAM TAMPUNGAN
-    // =================================================
-
     setValue(
-
         "jamTampungan",
-
         duty.jam_tampungan
-
     );
 
 
@@ -3589,94 +3024,71 @@ async function duplicateDuty(
 
 
     const kodDuty = document.getElementById(
-
         "kodDuty"
-
     );
 
 
     if (kodDuty) {
 
         kodDuty.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "kodTempatKerja",
-
         duty.kod_tempat_kerja
-
     );
 
 
-    const kodTempatKerja = document.getElementById(
-
-        "kodTempatKerja"
-
-    );
+    const kodTempatKerja =
+        document.getElementById(
+            "kodTempatKerja"
+        );
 
 
     if (kodTempatKerja) {
 
         kodTempatKerja.dispatchEvent(
-
             new Event(
-
                 "change"
-
             )
-
         );
 
     }
 
 
     setValue(
-
         "jamOffday",
-
         duty.jam_offday_bertugas
-
     );
 
 
     setValue(
-
         "jamCutiam",
-
         duty.jam_cutiam_bertugas
-
     );
 
 
-    const offday = document.getElementById(
+    const offday =
+        document.getElementById(
+            "hariOffday"
+        );
 
-        "hariOffday"
 
-    );
-
-
-    const cutiam = document.getElementById(
-
-        "hariCutiam"
-
-    );
+    const cutiam =
+        document.getElementById(
+            "hariCutiam"
+        );
 
 
     if (offday) {
 
         offday.checked =
-
             duty.hari_offday_bertugas == 1;
 
     }
@@ -3685,7 +3097,6 @@ async function duplicateDuty(
     if (cutiam) {
 
         cutiam.checked =
-
             duty.hari_cutiam_bertugas == 1;
 
     }
@@ -3718,9 +3129,7 @@ async function duplicateDuty(
 // =====================================================
 
 async function padamDuty(
-
     id
-
 ) {
 
     const yakin = await popupConfirm(
@@ -3734,25 +3143,18 @@ async function padamDuty(
 
 
     const {
-
         error
-
     } = await supabaseClient
 
         .from(
-
             "jadual_duty"
-
         )
 
         .delete()
 
         .eq(
-
             "id",
-
             id
-
         );
 
 
@@ -3797,23 +3199,21 @@ async function padamDuty(
 // =====================================================
 
 function popupConfirm(
-
     mesej
-
 ) {
 
     return new Promise(
 
         function (resolve) {
 
-            const popup = document.createElement(
+            const popup =
+                document.createElement(
+                    "div"
+                );
 
-                "div"
 
-            );
-
-
-            popup.id = "popupConfirm";
+            popup.id =
+                "popupConfirm";
 
 
             popup.style.cssText = `
@@ -3937,16 +3337,12 @@ function popupConfirm(
 
 
             document.body.appendChild(
-
                 popup
-
             );
 
 
             document.getElementById(
-
                 "btnYa"
-
             ).onclick = function () {
 
                 popup.remove();
@@ -3957,9 +3353,7 @@ function popupConfirm(
 
 
             document.getElementById(
-
                 "btnTidak"
-
             ).onclick = function () {
 
                 popup.remove();
@@ -3980,22 +3374,17 @@ function popupConfirm(
 // =====================================================
 
 function getValue(
-
     id
-
 ) {
 
-    const element = document.getElementById(
-
-        id
-
-    );
+    const element =
+        document.getElementById(
+            id
+        );
 
 
     return element
-
         ? element.value
-
         : "";
 
 }
@@ -4006,18 +3395,14 @@ function getValue(
 // =====================================================
 
 function setValue(
-
     id,
-
     value
-
 ) {
 
-    const element = document.getElementById(
-
-        id
-
-    );
+    const element =
+        document.getElementById(
+            id
+        );
 
 
     if (element) {
@@ -4044,17 +3429,11 @@ function kosongkanMaklumatAnggota() {
     [
 
         "noSkb",
-
         "noAnggota",
-
         "kawasan",
-
         "unit",
-
         "ketuaUnit",
-
         "ketuaPos",
-
         "namaPosAsal"
 
     ]
@@ -4062,11 +3441,8 @@ function kosongkanMaklumatAnggota() {
         .forEach(function (id) {
 
             setValue(
-
                 id,
-
                 ""
-
             );
 
         });
@@ -4080,11 +3456,10 @@ function kosongkanMaklumatAnggota() {
 
 function kosongkanPos() {
 
-    const select = document.getElementById(
-
-        "posAsal"
-
-    );
+    const select =
+        document.getElementById(
+            "posAsal"
+        );
 
 
     if (!select) return;
@@ -4109,11 +3484,10 @@ function kosongkanPos() {
 
 function kosongkanAnggota() {
 
-    const select = document.getElementById(
-
-        "anggota"
-
-    );
+    const select =
+        document.getElementById(
+            "anggota"
+        );
 
 
     if (!select) return;
@@ -4138,11 +3512,10 @@ function kosongkanAnggota() {
 
 function kosongkanKodDuty() {
 
-    const select = document.getElementById(
-
-        "kodDuty"
-
-    );
+    const select =
+        document.getElementById(
+            "kodDuty"
+        );
 
 
     if (select) {
@@ -4161,38 +3534,26 @@ function kosongkanKodDuty() {
 
 
     setValue(
-
         "waktuTugasan",
-
         ""
-
     );
 
 
     setValue(
-
         "jamKerja",
-
         ""
-
     );
 
 
     setValue(
-
         "jamKlm",
-
         ""
-
     );
 
 
     setValue(
-
         "jamTampungan",
-
         ""
-
     );
 
 }
@@ -4204,11 +3565,10 @@ function kosongkanKodDuty() {
 
 function kosongkanKodTempatKerja() {
 
-    const select = document.getElementById(
-
-        "kodTempatKerja"
-
-    );
+    const select =
+        document.getElementById(
+            "kodTempatKerja"
+        );
 
 
     if (select) {
@@ -4233,35 +3593,22 @@ function kosongkanKodTempatKerja() {
 // =====================================================
 
 function getNamaBulan(
-
     bulan
-
 ) {
 
     const nama = [
 
         "Januari",
-
         "Februari",
-
         "Mac",
-
         "April",
-
         "Mei",
-
         "Jun",
-
         "Julai",
-
         "Ogos",
-
         "September",
-
         "Oktober",
-
         "November",
-
         "Disember"
 
     ];
@@ -4277,19 +3624,16 @@ function getNamaBulan(
 // =====================================================
 
 function formatTarikh(
-
     tarikh
-
 ) {
 
     if (!tarikh) return "";
 
 
-    const parts = tarikh.split(
-
-        "-"
-
-    );
+    const parts =
+        tarikh.split(
+            "-"
+        );
 
 
     if (parts.length !== 3) {
@@ -4314,6 +3658,8 @@ function formatTarikh(
     );
 
 }
+
+
 // =====================================================
 // LOGOUT
 // =====================================================
@@ -4321,7 +3667,8 @@ function formatTarikh(
 async function logout() {
 
 
-    const result = await supabaseClient.auth.signOut();
+    const result =
+        await supabaseClient.auth.signOut();
 
 
     if (result.error) {
@@ -4342,7 +3689,6 @@ async function logout() {
 
 
     window.location.href =
-
         "login.html";
 
 }
