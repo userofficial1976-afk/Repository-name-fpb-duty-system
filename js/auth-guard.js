@@ -9,127 +9,139 @@
 // SEMAK LOGIN APABILA HALAMAN DIBUKA
 // =====================================================
 
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    async function () {
+(async function () {
 
 
-        // -------------------------------------------------
-        // PASTIKAN SUPABASE SUDAH ADA
-        // -------------------------------------------------
+    // -------------------------------------------------
+    // PASTIKAN SUPABASE SUDAH ADA
+    // -------------------------------------------------
 
-        if (
+    if (
 
-            typeof supabase === "undefined"
+        typeof supabaseClient === "undefined"
 
-        ) {
-
-            console.error(
-
-                "Supabase belum dimuatkan."
-
-            );
-
-            return;
-
-        }
+    ) {
 
 
-        // -------------------------------------------------
-        // DAPATKAN USER YANG SEDANG LOGIN
-        // -------------------------------------------------
+        console.error(
 
-        const {
+            "supabaseClient belum dimuatkan."
 
-            data,
-
-            error
-
-        } = await supabase.auth.getUser();
+        );
 
 
-        // -------------------------------------------------
-        // JIKA ADA ERROR
-        // -------------------------------------------------
+        return;
 
-        if (error) {
+    }
 
 
-            console.error(
+    // -------------------------------------------------
+    // DAPATKAN SESSION
+    // -------------------------------------------------
 
-                "Ralat semak login:",
+    const {
 
-                error.message
+        data,
 
-            );
+        error
 
-
-            window.location.href =
-
-                "login.html";
-
-
-            return;
-
-        }
+    } = await supabaseClient.auth.getSession();
 
 
-        // -------------------------------------------------
-        // JIKA TIADA USER
-        // MAKA HANTAR KE LOGIN
-        // -------------------------------------------------
+    // -------------------------------------------------
+    // JIKA ADA ERROR
+    // -------------------------------------------------
 
-        if (
+    if (
 
-            !data ||
+        error
 
-            !data.user
-
-        ) {
+    ) {
 
 
-            window.location.href =
+        console.error(
 
-                "login.html";
+            "Ralat semak login:",
+
+            error.message
+
+        );
 
 
-            return;
+        window.location.replace(
 
-        }
+            "login.html"
+
+        );
 
 
-        // -------------------------------------------------
-        // USER SUDAH LOGIN
-        // -------------------------------------------------
+        return;
 
-        const user = data.user;
+    }
+
+
+    // -------------------------------------------------
+    // JIKA TIADA SESSION
+    // -------------------------------------------------
+
+    if (
+
+        !data ||
+
+        !data.session
+
+    ) {
 
 
         console.log(
 
-            "Pengguna sedang login:",
-
-            user.email
+            "Pengguna belum login."
 
         );
 
 
-        // -------------------------------------------------
-        // PAPARKAN EMAIL PENGGUNA
-        // -------------------------------------------------
+        window.location.replace(
 
-        paparEmailPengguna(
-
-            user
+            "login.html"
 
         );
 
+
+        return;
 
     }
 
-);
+
+    // -------------------------------------------------
+    // USER SUDAH LOGIN
+    // -------------------------------------------------
+
+    const user =
+
+        data.session.user;
+
+
+    console.log(
+
+        "Pengguna sedang login:",
+
+        user.email
+
+    );
+
+
+    // -------------------------------------------------
+    // PAPAR EMAIL PENGGUNA
+    // -------------------------------------------------
+
+    paparEmailPengguna(
+
+        user
+
+    );
+
+
+})();
 
 
 // =====================================================
@@ -154,12 +166,11 @@ function paparEmailPengguna(
 
         user.email ||
 
-
         "Pengguna";
 
 
     // -------------------------------------------------
-    // CARI ELEMEN YANG BOLEH PAPAR EMAIL
+    // ID userEmail
     // -------------------------------------------------
 
     const elemenEmail =
@@ -187,7 +198,7 @@ function paparEmailPengguna(
 
 
     // -------------------------------------------------
-    // JIKA ADA ELEMEN NAMA user-email
+    // CLASS user-email
     // -------------------------------------------------
 
     const elemenEmailClass =
@@ -215,7 +226,7 @@ function paparEmailPengguna(
 
 
     // -------------------------------------------------
-    // JIKA ADA ELEMEN USER EMAIL
+    // DATA ATTRIBUTE
     // -------------------------------------------------
 
     const elemenUserEmail =
@@ -254,20 +265,12 @@ async function logout() {
     try {
 
 
-        // -------------------------------------------------
-        // LOGOUT DARI SUPABASE
-        // -------------------------------------------------
-
         const {
 
             error
 
-        } = await supabase.auth.signOut();
+        } = await supabaseClient.auth.signOut();
 
-
-        // -------------------------------------------------
-        // JIKA ADA ERROR
-        // -------------------------------------------------
 
         if (
 
@@ -287,7 +290,7 @@ async function logout() {
 
             alert(
 
-                "Gagal logout: " +
+                "Gagal logout:\n\n" +
 
                 error.message
 
@@ -303,9 +306,11 @@ async function logout() {
         // LOGOUT BERJAYA
         // -------------------------------------------------
 
-        window.location.href =
+        window.location.replace(
 
-            "login.html";
+            "login.html"
+
+        );
 
 
     }
@@ -341,80 +346,74 @@ async function logout() {
 // AUTO SEMAK PERUBAHAN SESSION
 // =====================================================
 
-if (
+supabaseClient.auth.onAuthStateChange(
 
-    typeof supabase !== "undefined"
+    function (
 
-) {
+        event,
+
+        session
+
+    ) {
 
 
-    supabase.auth.onAuthStateChange(
+        console.log(
 
-        function (
+            "AUTH EVENT:",
 
-            event,
+            event
 
-            session
+        );
+
+
+        // -------------------------------------------------
+        // JIKA LOGOUT
+        // -------------------------------------------------
+
+        if (
+
+            event ===
+
+            "SIGNED_OUT"
 
         ) {
 
 
-            console.log(
+            window.location.replace(
 
-                "Auth Event:",
-
-                event
+                "login.html"
 
             );
 
 
-            // -------------------------------------------------
-            // JIKA LOGOUT
-            // -------------------------------------------------
-
-            if (
-
-                event ===
-
-                "SIGNED_OUT"
-
-            ) {
-
-
-                window.location.href =
-
-                    "login.html";
-
-
-                return;
-
-            }
-
-
-            // -------------------------------------------------
-            // JIKA SESSION TAMAT
-            // -------------------------------------------------
-
-            if (
-
-                event ===
-
-                "TOKEN_REFRESHED" &&
-
-                !session
-
-            ) {
-
-
-                window.location.href =
-
-                    "login.html";
-
-
-            }
+            return;
 
         }
 
-    );
 
-}
+        // -------------------------------------------------
+        // JIKA SESSION HILANG
+        // -------------------------------------------------
+
+        if (
+
+            !session &&
+
+            event !==
+
+            "INITIAL_SESSION"
+
+        ) {
+
+
+            window.location.replace(
+
+                "login.html"
+
+            );
+
+        }
+
+    }
+
+);
