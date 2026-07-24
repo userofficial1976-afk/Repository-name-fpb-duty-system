@@ -1666,25 +1666,22 @@ async function janaLaporanAnggaran() {
                         }
 
                         // =================================
-                        // HARI OFF 4–8 JAM
-                        // =================================
+// HARI OFF 4–8 JAM
+// =================================
 
-                        if (hariOff > 0) {
+if (hariOff > 0) {
 
-                            const kadarOff4 =
-                                (
-                                    gaji /
-                                    26
-                                );
+    const kadarOff4 =
+        gaji / 26;
 
-                            hariOff4 +=
-                                hariOff;
+    hariOff4 +=
+        hariOff;
 
-                            jumlahRMOff4 +=
-                                kadarOff4 *
-                                hariOff;
+    jumlahRMOff4 +=
+        kadarOff4 *
+        hariOff;
 
-                        }
+}
 
                         // =================================
                         // HARI OFF > 8 JAM
