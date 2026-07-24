@@ -2164,7 +2164,7 @@ function formatRM(
 
                 maximumFractionDigits:
 
-                    2
+                    0
 
             }
 
