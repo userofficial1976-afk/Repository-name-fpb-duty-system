@@ -7,36 +7,18 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>
 Forecast Duty System — Wilayah Terengganu
 </title>
 
-
 <style>
 
-<div class="user-area">
 
-    <span id="userEmail">
-
-        Memuatkan...
-
-    </span>
-
-    <button
-
-        onclick="logout()"
-
-    >
-
-        Logout
-
-    </button>
-
-</div>
 /* =====================================================
    GLOBAL
 ===================================================== */
@@ -76,6 +58,60 @@ body {
     display: flex;
 
     min-height: 100vh;
+
+}
+
+
+/* =====================================================
+   USER AREA
+===================================================== */
+
+.user-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.user-area span {
+
+    color: #577178;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.user-area button {
+
+    border: none;
+
+    background: #3d7f86;
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.user-area button:hover {
+
+    background: #286c73;
 
 }
 
@@ -413,7 +449,6 @@ body {
 
 /* =====================================================
    BOTTOM NAVIGATION
-   TELEFON SAHAJA
 ===================================================== */
 
 .bottom-nav {
@@ -1237,16 +1272,12 @@ tr:hover {
 @media(max-width:800px) {
 
 
-    /* SIDEBAR HILANG */
-
     .sidebar {
 
         display: none;
 
     }
 
-
-    /* MAIN PENUH */
 
     .main {
 
@@ -1308,9 +1339,32 @@ tr:hover {
     }
 
 
-    /* =========================================
-       BOTTOM NAVIGATION BAR
-    ========================================= */
+    .user-area {
+
+        gap: 6px;
+
+    }
+
+
+    .user-area span {
+
+        max-width: 150px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
+
+    }
+
+
+    .user-area button {
+
+        padding: 8px 10px;
+
+    }
+
 
     .bottom-nav {
 
@@ -1454,10 +1508,6 @@ tr:hover {
 }
 
 
-/* =====================================================
-   TELEFON KECIL
-===================================================== */
-
 @media(max-width:500px) {
 
 
@@ -1516,37 +1566,27 @@ tr:hover {
 
 </head>
 
-
 <body>
-
 
 <div class="app">
 
-
-<!-- =====================================================
-     SIDEBAR DESKTOP
-===================================================== -->
-
-
 <aside class="sidebar">
-
 
 <div class="brand">
 
-
 <img
 
-    src="logo.png"
+```
+src="logo.png"
 
-    class="logo"
+class="logo"
 
-    alt="Logo FPB"
+alt="Logo FPB"
+```
 
 >
 
-
 <div class="brand-text">
-
 
 <h1>
 
@@ -1554,22 +1594,17 @@ POLIS BANTUAN FGVSSSB
 
 </h1>
 
-
 <p>
 
 WILAYAH TERENGGANU
 
 </p>
 
-
 </div>
 
-
 </div>
-
 
 <div class="heritage-mark">
-
 
 <strong>
 
@@ -1579,16 +1614,13 @@ La Ilaha Illallah
 
 </strong>
 
-
 <span>
 
 • Terengganu Maju, Berkat Sejahtera •
 
 </span>
 
-
 </div>
-
 
 <div class="nav-title">
 
@@ -1596,131 +1628,47 @@ MAIN MENU
 
 </div>
 
-
 <nav class="nav">
 
+<a href="index.html" class="active">
 
-<a
+<span class="nav-icon">⌂</span>
 
-    href="index.html"
-
-    class="active"
-
->
-
-
-<span class="nav-icon">
-
-⌂
-
-</span>
-
-
-<span>
-
-Dashboard
-
-</span>
-
+<span>Dashboard</span>
 
 </a>
 
+<a href="anggota.html">
 
-<a
+<span class="nav-icon">♙</span>
 
-    href="anggota.html"
-
->
-
-
-<span class="nav-icon">
-
-♙
-
-</span>
-
-
-<span>
-
-Senarai Anggota
-
-</span>
-
+<span>Senarai Anggota</span>
 
 </a>
 
+<a href="jadual-duty.html">
 
-<a
+<span class="nav-icon">▣</span>
 
-    href="jadual-duty.html"
-
->
-
-
-<span class="nav-icon">
-
-▣
-
-</span>
-
-
-<span>
-
-Jadual Duty
-
-</span>
-
+<span>Jadual Duty</span>
 
 </a>
 
+<a href="kod-duty.html">
 
-<a
+<span class="nav-icon">▤</span>
 
-    href="kod-duty.html"
-
->
-
-
-<span class="nav-icon">
-
-▤
-
-</span>
-
-
-<span>
-
-Kod Duty
-
-</span>
-
+<span>Kod Duty</span>
 
 </a>
 
+<a href="tempat-kerja.html">
 
-<a
+<span class="nav-icon">▦</span>
 
-    href="tempat-kerja.html"
-
->
-
-
-<span class="nav-icon">
-
-▦
-
-</span>
-
-
-<span>
-
-Kod Tempat Kerja
-
-</span>
-
+<span>Kod Tempat Kerja</span>
 
 </a>
-
 
 <div class="nav-title">
 
@@ -1728,78 +1676,29 @@ REPORTING
 
 </div>
 
+<a href="laporan.html">
 
-<a
+<span class="nav-icon">▥</span>
 
-    href="laporan.html"
-
->
-
-
-<span class="nav-icon">
-
-▥
-
-</span>
-
-
-<span>
-
-Laporan
-
-</span>
-
+<span>Laporan</span>
 
 </a>
 
+<a href="laporan-anggaran.html">
 
-<a
+<span class="nav-icon">◫</span>
 
-    href="laporan-anggaran.html"
-
->
-
-
-<span class="nav-icon">
-
-◫
-
-</span>
-
-
-<span>
-
-Anggaran Duty Bulanan
-
-</span>
-
+<span>Anggaran Duty Bulanan</span>
 
 </a>
 
+<a href="Laporan-Penuh.html">
 
-<a
+<span class="nav-icon">▤</span>
 
-    href="Laporan-Penuh.html"
-
->
-
-
-<span class="nav-icon">
-
-▤
-
-</span>
-
-
-<span>
-
-Laporan Penuh
-
-</span>
-
+<span>Laporan Penuh</span>
 
 </a>
-
 
 <div class="nav-title">
 
@@ -1807,190 +1706,73 @@ SYSTEM
 
 </div>
 
+<a href="#">
 
-<a
+<span class="nav-icon">⚙</span>
 
-    href="#"
-
->
-
-
-<span class="nav-icon">
-
-⚙
-
-</span>
-
-
-<span>
-
-Tetapan
-
-</span>
-
+<span>Tetapan</span>
 
 </a>
 
-
 </nav>
-
 
 </aside>
 
-
-<!-- =====================================================
-     BOTTOM NAVIGATION TELEFON
-===================================================== -->
-
-
 <nav class="bottom-nav">
 
+<a href="index.html" class="active">
 
-<a
+<span class="bottom-nav-icon">⌂</span>
 
-    href="index.html"
-
-    class="active"
-
->
-
-
-<span class="bottom-nav-icon">
-
-⌂
-
-</span>
-
-
-<span class="bottom-nav-label">
-
-Dashboard
-
-</span>
-
+<span class="bottom-nav-label">Dashboard</span>
 
 </a>
 
+<a href="anggota.html">
 
-<a
+<span class="bottom-nav-icon">♙</span>
 
-    href="anggota.html"
-
->
-
-
-<span class="bottom-nav-icon">
-
-♙
-
-</span>
-
-
-<span class="bottom-nav-label">
-
-Anggota
-
-</span>
-
+<span class="bottom-nav-label">Anggota</span>
 
 </a>
 
+<a href="jadual-duty.html">
 
-<a
+<span class="bottom-nav-icon">▣</span>
 
-    href="jadual-duty.html"
-
->
-
-
-<span class="bottom-nav-icon">
-
-▣
-
-</span>
-
-
-<span class="bottom-nav-label">
-
-Duty
-
-</span>
-
+<span class="bottom-nav-label">Duty</span>
 
 </a>
 
+<a href="laporan.html">
 
-<a
+<span class="bottom-nav-icon">▥</span>
 
-    href="laporan.html"
-
->
-
-
-<span class="bottom-nav-icon">
-
-▥
-
-</span>
-
-
-<span class="bottom-nav-label">
-
-Laporan
-
-</span>
-
+<span class="bottom-nav-label">Laporan</span>
 
 </a>
 
+<a href="laporan-anggaran.html">
 
-<a
+<span class="bottom-nav-icon">◫</span>
 
-    href="laporan-anggaran.html"
-
->
-
-
-<span class="bottom-nav-icon">
-
-◫
-
-</span>
-
-
-<span class="bottom-nav-label">
-
-Anggaran
-
-</span>
-
+<span class="bottom-nav-label">Anggaran</span>
 
 </a>
-
 
 </nav>
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-
 <main class="main">
-
 
 <div class="topbar">
 
-
 <div class="page-title">
-
 
 <h2>
 
 Dashboard
 
 </h2>
-
 
 <p>
 
@@ -2000,33 +1782,37 @@ Wilayah Terengganu
 
 </p>
 
+</div>
+
+<div class="user-area">
+
+<span id="userEmail">
+
+Memuatkan...
+
+</span>
+
+<button
+
+```
+onclick="logout()"
+```
+
+>
+
+Logout
+
+</button>
 
 </div>
 
-
-<div class="system-status">
-
-
-<span class="status-dot"></span>
-
-
-System Online
-
-
 </div>
-
-
-</div>
-
 
 <div class="content">
 
-
 <div class="hero">
 
-
 <div class="hero-content">
-
 
 <h1>
 
@@ -2038,7 +1824,6 @@ WILAYAH TERENGGANU
 
 </h1>
 
-
 <p>
 
 Sistem pengurusan jadual duty anggota
@@ -2047,24 +1832,17 @@ secara berpusat, sistematik dan profesional.
 
 </p>
 
-
 <div class="hero-line"></div>
 
-
 </div>
-
 
 <div class="wave"></div>
 
-
 </div>
-
 
 <div class="section-header">
 
-
 <div>
-
 
 <h2>
 
@@ -2072,32 +1850,25 @@ Operational Overview
 
 </h2>
 
-
 <p>
 
 Ringkasan Operasi Semasa
 
 </p>
 
-
 </div>
 
-
 </div>
-
 
 <div class="stats">
 
-
 <div class="stat-card">
-
 
 <div class="stat-icon">
 
 ♙
 
 </div>
-
 
 <h3>
 
@@ -2105,10 +1876,11 @@ JUMLAH ANGGOTA AKTIF
 
 </h3>
 
-
 <strong
 
-    id="jumlahAnggota"
+```
+id="jumlahAnggota"
+```
 
 >
 
@@ -2116,19 +1888,15 @@ JUMLAH ANGGOTA AKTIF
 
 </strong>
 
-
 </div>
 
-
 <div class="stat-card">
-
 
 <div class="stat-icon">
 
 ▣
 
 </div>
-
 
 <h3>
 
@@ -2136,10 +1904,11 @@ DUTY HARI INI
 
 </h3>
 
-
 <strong
 
-    id="jumlahDutyHariIni"
+```
+id="jumlahDutyHariIni"
+```
 
 >
 
@@ -2147,12 +1916,9 @@ DUTY HARI INI
 
 </strong>
 
-
 </div>
 
-
 <div class="stat-card">
-
 
 <div class="stat-icon">
 
@@ -2160,17 +1926,17 @@ DUTY HARI INI
 
 </div>
 
-
 <h3>
 
 JUMLAH JAM KERJA HARI INI
 
 </h3>
 
-
 <strong
 
-    id="jumlahJamKerja"
+```
+id="jumlahJamKerja"
+```
 
 >
 
@@ -2178,12 +1944,9 @@ JUMLAH JAM KERJA HARI INI
 
 </strong>
 
-
 </div>
 
-
 <div class="stat-card">
-
 
 <div class="stat-icon">
 
@@ -2191,17 +1954,17 @@ JUMLAH JAM KERJA HARI INI
 
 </div>
 
-
 <h3>
 
 JUMLAH JAM KLM HARI INI
 
 </h3>
 
-
 <strong
 
-    id="jumlahJamKlm"
+```
+id="jumlahJamKlm"
+```
 
 >
 
@@ -2209,21 +1972,15 @@ JUMLAH JAM KLM HARI INI
 
 </strong>
 
-
 </div>
 
-
 </div>
-
 
 <div class="dashboard-grid">
 
-
 <div class="card">
 
-
 <div class="card-header">
-
 
 <h2>
 
@@ -2231,28 +1988,21 @@ Duty Mengikut Pos
 
 </h2>
 
-
 <span>
 
 Hari Ini
 
 </span>
 
-
 </div>
-
 
 <div class="table-wrapper">
 
-
 <table>
-
 
 <thead>
 
-
 <tr>
-
 
 <th>
 
@@ -2260,58 +2010,45 @@ Pos
 
 </th>
 
-
 <th>
 
 Jumlah Duty
 
 </th>
 
-
 </tr>
-
 
 </thead>
 
-
 <tbody
 
-    id="senaraiPos"
+```
+id="senaraiPos"
+```
 
 >
 
-
 <tr>
 
-
 <td colspan="2">
-
 
 Memuatkan data...
 
 </td>
 
-
 </tr>
-
 
 </tbody>
 
-
 </table>
 
-
 </div>
 
-
 </div>
-
 
 <div class="card">
 
-
 <div class="card-header">
-
 
 <h2>
 
@@ -2319,28 +2056,17 @@ Quick Actions
 
 </h2>
 
-
 <span>
 
 Shortcuts
 
 </span>
 
-
 </div>
-
 
 <div class="quick-actions">
 
-
-<a
-
-    href="jadual-duty.html"
-
-    class="quick-action"
-
->
-
+<a href="jadual-duty.html" class="quick-action">
 
 <div class="quick-action-icon">
 
@@ -2348,9 +2074,7 @@ Shortcuts
 
 </div>
 
-
 <div>
-
 
 <strong>
 
@@ -2358,28 +2082,17 @@ Masukkan Duty
 
 </strong>
 
-
 <span>
 
 Tambah jadual duty anggota
 
 </span>
 
-
 </div>
-
 
 </a>
 
-
-<a
-
-    href="anggota.html"
-
-    class="quick-action"
-
->
-
+<a href="anggota.html" class="quick-action">
 
 <div class="quick-action-icon">
 
@@ -2387,9 +2100,7 @@ Tambah jadual duty anggota
 
 </div>
 
-
 <div>
-
 
 <strong>
 
@@ -2397,28 +2108,17 @@ Senarai Anggota
 
 </strong>
 
-
 <span>
 
 Lihat data anggota
 
 </span>
 
-
 </div>
-
 
 </a>
 
-
-<a
-
-    href="laporan.html"
-
-    class="quick-action"
-
->
-
+<a href="laporan.html" class="quick-action">
 
 <div class="quick-action-icon">
 
@@ -2426,9 +2126,7 @@ Lihat data anggota
 
 </div>
 
-
 <div>
-
 
 <strong>
 
@@ -2436,28 +2134,17 @@ Lihat Laporan
 
 </strong>
 
-
 <span>
 
 Analisis data duty
 
 </span>
 
-
 </div>
-
 
 </a>
 
-
-<a
-
-    href="laporan-anggaran.html"
-
-    class="quick-action"
-
->
-
+<a href="laporan-anggaran.html" class="quick-action">
 
 <div class="quick-action-icon">
 
@@ -2465,9 +2152,7 @@ Analisis data duty
 
 </div>
 
-
 <div>
-
 
 <strong>
 
@@ -2475,59 +2160,43 @@ Anggaran Duty
 
 </strong>
 
-
 <span>
 
 Semak anggaran bulanan
 
 </span>
 
-
 </div>
-
 
 </a>
 
+</div>
 
 </div>
 
-
 </div>
 
-
 </div>
-
-
-</div>
-
 
 <footer class="footer">
-
 
 FPB DUTY SYSTEM —
 
 WILAYAH TERENGGANU
 
-
 <br>
-
 
 © 2026 |
 
 Operational Duty Management System
 
-
 </footer>
-
 
 </main>
 
-
 </div>
 
-
 <!-- SUPABASE -->
-
 
 <script
 
@@ -2535,24 +2204,24 @@ Operational Duty Management System
 
 ></script>
 
-
 <script
 
     src="supabase.js"
 
 ></script>
 
-<script src="auth-guard.js">
+<script
+
+    src="auth-guard.js"
+
 ></script>
+
 <script
 
     src="js/dashboard.js"
 
-
-    
-</script>
+></script>
 
 </body>
-
 
 </html>
