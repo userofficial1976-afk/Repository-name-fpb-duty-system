@@ -1,110 +1,62 @@
 // =====================================================
 // AUTH GUARD
 // FPB DUTY SYSTEM
+// KUNCI SEMUA HALAMAN DALAMAN
 // =====================================================
 
+(async function () {
 
-// =====================================================
-// SEMAK LOGIN
-// =====================================================
-
-async function semakLogin() {
-
-
-    const result = await supabaseClient.auth.getSession();
-
-
-    if (result.error) {
-
+    // Pastikan Supabase sudah tersedia
+    if (!window.supabaseClient) {
 
         console.error(
-
-            "RALAT SEMAK LOGIN:",
-
-            result.error
-
+            "supabaseClient tidak dijumpai."
         );
 
+        window.location.href = "login.html";
 
-        window.location.href =
-
-            "login.html";
-
-
-        return null;
+        return;
 
     }
 
 
-    const session = result.data.session;
+    // Semak pengguna yang sedang login
+    const {
+
+        data: {
+
+            user
+
+        },
+
+        error
+
+    } = await supabaseClient.auth.getUser();
 
 
-    if (!session) {
+    // Jika ada ralat ATAU tiada user
+    if (
 
+        error ||
 
-        window.location.href =
-
-            "login.html";
-
-
-        return null;
-
-    }
-
-
-    return session;
-
-}
-
-
-// =====================================================
-// JALANKAN SEMAKAN
-// =====================================================
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    async function () {
-
-
-        await semakLogin();
-
-    }
-
-);
-
-
-// =====================================================
-// AUTO LOGOUT JIKA SESSION TAMAT
-// =====================================================
-
-supabaseClient.auth.onAuthStateChange(
-
-    function (
-
-        event,
-
-        session
+        !user
 
     ) {
 
+        window.location.href = "login.html";
 
-        if (
-
-            event === "SIGNED_OUT" ||
-
-            !session
-
-        ) {
-
-
-            window.location.href =
-
-                "login.html";
-
-        }
+        return;
 
     }
 
-);
+
+    // Pengguna sah
+    console.log(
+
+        "Pengguna telah login:",
+
+        user.email
+
+    );
+
+})();
