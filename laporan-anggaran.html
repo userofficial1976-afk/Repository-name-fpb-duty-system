@@ -1509,7 +1509,14 @@ async function janaLaporanAnggaran() {
 
         dataDuty.forEach(
             function (duty) {
-
+console.log({
+    no_skb: duty.no_skb,
+    tarikh: duty.tarikh,
+    hari_offday_bertugas: duty.hari_offday_bertugas,
+    jam_offday_bertugas: duty.jam_offday_bertugas,
+    hari_cutiam_bertugas: duty.hari_cutiam_bertugas,
+    jam_cutiam_bertugas: duty.jam_cutiam_bertugas
+});
                 const key =
                     String(duty.no_skb);
 
