@@ -1638,7 +1638,7 @@ jawatan:a.jawatan || "",
 
 gaji:
 Number(
-a.gaji_pokok || 0
+a.gaji_elaun || 0
 ),
 
 data:[]
@@ -2307,7 +2307,7 @@ async function kiraDanSimpanRK02() {
             await supabaseClient
                 .from("Data_Anggota")
                 .select(
-                    "no_skb,gaji_elaun,jawatan"
+                    "no_skb,gaji_pokok,jawatan"
                 )
                 .in(
                     "no_skb",
