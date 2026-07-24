@@ -2160,11 +2160,11 @@ function formatRM(
 
                 minimumFractionDigits:
 
-                    0,
+                    2,
 
                 maximumFractionDigits:
 
-                    0
+                    2
 
             }
 
@@ -2177,6 +2177,7 @@ function formatRM(
 
 // =====================================================
 // FORMAT NOMBOR
+// JAM / HARI TANPA PERPULUHAN
 // =====================================================
 
 function formatNombor(
