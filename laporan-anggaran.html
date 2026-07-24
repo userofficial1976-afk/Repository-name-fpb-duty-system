@@ -1019,6 +1019,13 @@ onclick="janaLaporanAnggaran()">
 </button>
 
 
+<button class="btn btn-secondary"
+onclick="kiraDanSimpanRK02()">
+
+🔄 REFRESH & SIMPAN RM
+
+</button>
+
 
 <button class="btn btn-secondary"
 onclick="window.print()">
@@ -2161,7 +2168,543 @@ paparMesej(
 // UTILITIES
 // ======================================
 
+// ======================================
+// REFRESH + KIRA SEMUA RM RK02
+// SIMPAN KE jadual_duty
+// ======================================
 
+async function kiraDanSimpanRK02() {
+
+    const bulan =
+        parseInt(
+            document.getElementById("bulan").value
+        );
+
+    const tahun =
+        parseInt(
+            document.getElementById("tahun").value
+        );
+
+    const pos =
+        String(
+            document.getElementById("pos").value
+        ).trim();
+
+    if (!pos) {
+
+        paparMesej(
+            "Sila pilih Pos dahulu.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    paparMesej(
+        "Sedang mengira semua RM dan menyimpan ke database...",
+        "success"
+    );
+
+    try {
+
+        // ================================
+        // AMBIL SEMUA DATA DUTY
+        // ================================
+
+        const dutyResult =
+            await supabaseClient
+                .from("jadual_duty")
+                .select("*")
+                .eq(
+                    "bulan",
+                    SENARAI_BULAN[bulan]
+                )
+                .eq(
+                    "tahun",
+                    tahun
+                )
+                .eq(
+                    "pos",
+                    pos
+                );
+
+        if (dutyResult.error) {
+
+            throw dutyResult.error;
+
+        }
+
+        const data =
+            dutyResult.data || [];
+
+        if (data.length === 0) {
+
+            paparMesej(
+                "Tiada data duty untuk dikira.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // ================================
+        // AMBIL DATA ANGGOTA
+        // ================================
+
+        const noSkb = [
+
+            ...new Set(
+
+                data
+                    .map(
+                        function (d) {
+
+                            return d.no_skb;
+
+                        }
+                    )
+                    .filter(
+                        function (x) {
+
+                            return x !== null &&
+                                x !== undefined &&
+                                String(x).trim() !== "";
+
+                        }
+                    )
+
+            )
+
+        ];
+
+
+        const anggotaResult =
+            await supabaseClient
+                .from("Data_Anggota")
+                .select(
+                    "no_skb,gaji_elaun,jawatan"
+                )
+                .in(
+                    "no_skb",
+                    noSkb
+                );
+
+
+        if (anggotaResult.error) {
+
+            throw anggotaResult.error;
+
+        }
+
+
+        const anggotaMap =
+            new Map();
+
+
+        (anggotaResult.data || [])
+            .forEach(
+                function (anggota) {
+
+                    anggotaMap.set(
+
+                        String(
+                            anggota.no_skb
+                        ),
+
+                        anggota
+
+                    );
+
+                }
+            );
+
+
+        // ================================
+        // KIRA DAN SIMPAN SATU-SATU
+        // ================================
+
+        for (
+            const duty of data
+        ) {
+
+
+            const anggota =
+                anggotaMap.get(
+                    String(
+                        duty.no_skb
+                    )
+                ) || {};
+
+
+            const gaji =
+                toNumber(
+                    anggota.gaji_elaun
+                );
+
+
+            const jawatan =
+                String(
+                    anggota.jawatan || ""
+                )
+                .toLowerCase();
+
+
+            const pelatih =
+                jawatan.includes(
+                    "pelatih polis bantuan"
+                );
+
+
+            // ============================
+            // NILAI JAM / HARI
+            // ============================
+
+            const jamBiasa =
+                toNumber(
+                    duty.jam_klm
+                );
+
+
+            const hariOff =
+                toNumber(
+                    duty.hari_offday_bertugas
+                );
+
+
+            const jamOff =
+                toNumber(
+                    duty.jam_offday_bertugas
+                );
+
+
+            const hariCuti =
+                toNumber(
+                    duty.hari_cutiam_bertugas
+                );
+
+
+            const jamCuti =
+                toNumber(
+                    duty.jam_cutiam_bertugas
+                );
+
+
+            // ============================
+            // RM HARI BIASA
+            // ============================
+
+            let rmHariBiasa =
+                0;
+
+
+            if (
+                jamBiasa > 0
+            ) {
+
+
+                let kadarBiasa;
+
+
+                if (pelatih) {
+
+                    kadarBiasa =
+                        (
+                            gaji /
+                            26 /
+                            7.5
+                        ) * 1.5;
+
+                }
+
+                else {
+
+                    kadarBiasa =
+                        (
+                            gaji /
+                            26 /
+                            7
+                        ) * 1.5;
+
+                }
+
+
+                rmHariBiasa =
+                    kadarBiasa *
+                    jamBiasa;
+
+            }
+
+
+            // ============================
+            // RM OFFDAY 4 - 8 JAM
+            // ============================
+
+            let rmOffday4_8 =
+                0;
+
+
+            if (
+                hariOff > 0
+            ) {
+
+                rmOffday4_8 =
+                    (
+                        gaji /
+                        26
+                    ) *
+                    hariOff;
+
+            }
+
+
+            // ============================
+            // RM OFFDAY LEBIH 8 JAM
+            // ============================
+
+            let rmOffdayLebih8 =
+                0;
+
+
+            if (
+                jamOff > 0
+            ) {
+
+
+                let kadarOffdayLebih8;
+
+
+                if (pelatih) {
+
+                    kadarOffdayLebih8 =
+                        (
+                            gaji /
+                            26 /
+                            7.5
+                        ) * 2;
+
+                }
+
+                else {
+
+                    kadarOffdayLebih8 =
+                        (
+                            gaji /
+                            26 /
+                            7
+                        ) * 2;
+
+                }
+
+
+                rmOffdayLebih8 =
+                    kadarOffdayLebih8 *
+                    jamOff;
+
+            }
+
+
+            // ============================
+            // RM CUTI AM KURANG 8 JAM
+            // ============================
+
+            let rmCutiAmKurang8 =
+                0;
+
+
+            if (
+                hariCuti > 0
+            ) {
+
+                rmCutiAmKurang8 =
+                    (
+                        gaji /
+                        26
+                    ) * 2 *
+                    hariCuti;
+
+            }
+
+
+            // ============================
+            // RM CUTI AM LEBIH 8 JAM
+            // ============================
+
+            let rmCutiAmLebih8 =
+                0;
+
+
+            if (
+                jamCuti > 0
+            ) {
+
+
+                let kadarCutiAmLebih8;
+
+
+                if (pelatih) {
+
+                    kadarCutiAmLebih8 =
+                        (
+                            gaji /
+                            26 /
+                            7.5
+                        ) * 3;
+
+                }
+
+                else {
+
+                    kadarCutiAmLebih8 =
+                        (
+                            gaji /
+                            26 /
+                            7
+                        ) * 3;
+
+                }
+
+
+                rmCutiAmLebih8 =
+                    kadarCutiAmLebih8 *
+                    jamCuti;
+
+            }
+
+
+            // ============================
+            // JUMLAH RK02
+            // ============================
+
+            const rmRK02 =
+
+                rmHariBiasa +
+
+                rmOffday4_8 +
+
+                rmOffdayLebih8 +
+
+                rmCutiAmKurang8 +
+
+                rmCutiAmLebih8;
+
+
+            // ============================
+            // SIMPAN SEMUA RM KE DATABASE
+            // ============================
+
+            const updateResult =
+
+                await supabaseClient
+
+                    .from("jadual_duty")
+
+                    .update({
+
+                        rm_hari_biasa:
+                            Number(
+                                rmHariBiasa
+                                    .toFixed(2)
+                            ),
+
+                        rm_offday_4_8:
+                            Number(
+                                rmOffday4_8
+                                    .toFixed(2)
+                            ),
+
+                        rm_offday_lebih_8:
+                            Number(
+                                rmOffdayLebih8
+                                    .toFixed(2)
+                            ),
+
+                        rm_cuti_am_kurang_8:
+                            Number(
+                                rmCutiAmKurang8
+                                    .toFixed(2)
+                            ),
+
+                        rm_cuti_am_lebih_8:
+                            Number(
+                                rmCutiAmLebih8
+                                    .toFixed(2)
+                            ),
+
+                        rm_rk02:
+                            Number(
+                                rmRK02
+                                    .toFixed(2)
+                            ),
+
+                        dikemaskini_pada:
+                            new Date()
+                                .toISOString()
+
+                    })
+
+                    .eq(
+                        "id",
+                        duty.id
+                    );
+
+
+            if (
+                updateResult.error
+            ) {
+
+                throw updateResult.error;
+
+            }
+
+        }
+
+
+        paparMesej(
+
+            "Semua RM RK02 berjaya dikira dan disimpan ke database.",
+
+            "success"
+
+        );
+
+
+        // refresh halaman
+
+        setTimeout(
+
+            function () {
+
+                location.reload();
+
+            },
+
+            1500
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "RALAT SIMPAN RK02:",
+            error
+        );
+
+        paparMesej(
+
+            error.message,
+
+            "error"
+
+        );
+
+    }
+
+}
 
 function formatRM(n){
 
