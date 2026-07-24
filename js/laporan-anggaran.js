@@ -2160,7 +2160,7 @@ function formatRM(
 
                 minimumFractionDigits:
 
-                    2,
+                    0,
 
                 maximumFractionDigits:
 
