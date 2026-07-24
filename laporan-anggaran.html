@@ -2081,17 +2081,16 @@ function formatNumber(nilai) {
 
 }
 
-function formatRM(nilai) {
+function formatNumber(nilai) {
 
-    return "RM " +
+    return Math.round(
         toNumber(nilai)
-            .toLocaleString(
-                "ms-MY",
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            );
+    ).toLocaleString(
+        "ms-MY",
+        {
+            maximumFractionDigits: 0
+        }
+    );
 
 }
 
