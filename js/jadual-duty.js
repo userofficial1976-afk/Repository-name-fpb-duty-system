@@ -1244,27 +1244,23 @@ async function muatAnggota() {
 
             .select(`
 
-            no_skb,
+                no_skb,
 
-            nama,
+                nama,
 
-            no_anggota,
+                no_anggota,
 
-            kawasan,
+                kawasan,
 
-            unit,
+                unit,
 
-            pos,
+                pos,
 
-            ketua_unit,
+                ketua_unit,
 
-            ketua_pos,
+                ketua_pos,
 
-            jawatan,
-
-            gaji_elaun,
-
-            status
+                status
 
             `)
 
@@ -2067,370 +2063,7 @@ function pasangEventFilter() {
 
 }
 
-// =====================================================
-// FUNGSI TO NUMBER
-// =====================================================
 
-function toNumber(
-
-    value
-
-) {
-
-    const number =
-
-        Number(
-
-            String(
-
-                value || 0
-
-            )
-
-                .replace(
-
-                    ",",
-
-                    ""
-
-                )
-
-        );
-
-
-    return isNaN(number)
-
-        ? 0
-
-        : number;
-
-}
-
-
-// =====================================================
-// KIRA RM DUTY
-// =====================================================
-
-function kiraRMDuty(
-
-    anggota,
-
-    jamKLM,
-
-    hariOff,
-
-    jamOff,
-
-    hariCuti,
-
-    jamCuti
-
-) {
-
-
-    const gaji =
-
-        toNumber(
-
-            anggota.gaji_elaun
-
-        );
-
-
-    const jawatan =
-
-        String(
-
-            anggota.jawatan || ""
-
-        )
-
-            .trim()
-
-            .toLowerCase();
-
-
-    const pelatih =
-
-        jawatan.includes(
-
-            "pelatih polis bantuan"
-
-        );
-
-
-    let jumlahRMBiasa = 0;
-
-    let jumlahRMOffday = 0;
-
-    let jumlahRMCutiam = 0;
-
-
-    // =================================================
-    // 1. HARI BIASA
-    // =================================================
-
-    if (
-
-        jamKLM > 0
-
-    ) {
-
-
-        const kadarBiasa =
-
-            (
-
-                gaji /
-
-                26 /
-
-                (
-
-                    pelatih
-
-                        ? 7.5
-
-                        : 7
-
-                )
-
-            )
-
-            *
-
-            1.5;
-
-
-        jumlahRMBiasa =
-
-            kadarBiasa *
-
-            jamKLM;
-
-    }
-
-
-    // =================================================
-    // 2. OFFDAY
-    // CHECKBOX = 1
-    // =================================================
-
-    if (
-
-        hariOff > 0
-
-    ) {
-
-
-        const kadarOffday =
-
-            gaji /
-
-            26;
-
-
-        jumlahRMOffday =
-
-            kadarOffday *
-
-            hariOff;
-
-    }
-
-
-    // =================================================
-    // 3. OFFDAY LEBIH 8 JAM
-    // =================================================
-
-    if (
-
-        jamOff > 0
-
-    ) {
-
-
-        const kadarOffdayJam =
-
-            (
-
-                gaji /
-
-                26 /
-
-                (
-
-                    pelatih
-
-                        ? 7.5
-
-                        : 7
-
-                )
-
-            )
-
-            *
-
-            2;
-
-
-        jumlahRMOffday +=
-
-            kadarOffdayJam *
-
-            jamOff;
-
-    }
-
-
-    // =================================================
-    // 4. CUTI AM
-    // CHECKBOX = 1
-    // =================================================
-
-    if (
-
-        hariCuti > 0
-
-    ) {
-
-
-        const kadarCutiam =
-
-            (
-
-                gaji /
-
-                26
-
-            )
-
-            *
-
-            2;
-
-
-        jumlahRMCutiam =
-
-            kadarCutiam *
-
-            hariCuti;
-
-    }
-
-
-    // =================================================
-    // 5. CUTI AM LEBIH 8 JAM
-    // =================================================
-
-    if (
-
-        jamCuti > 0
-
-    ) {
-
-
-        const kadarCutiamJam =
-
-            (
-
-                gaji /
-
-                26 /
-
-                (
-
-                    pelatih
-
-                        ? 7.5
-
-                        : 7
-
-                )
-
-            )
-
-            *
-
-            3;
-
-
-        jumlahRMCutiam +=
-
-            kadarCutiamJam *
-
-            jamCuti;
-
-    }
-
-
-    const jumlahRM =
-
-        jumlahRMBiasa +
-
-        jumlahRMOffday +
-
-        jumlahRMCutiam;
-
-
-    return {
-
-
-        rmHariBiasa:
-
-            Number(
-
-                jumlahRMBiasa.toFixed(
-
-                    2
-
-                )
-
-            ),
-
-
-        rmOffday:
-
-            Number(
-
-                jumlahRMOffday.toFixed(
-
-                    2
-
-                )
-
-            ),
-
-
-        rmCutiam:
-
-            Number(
-
-                jumlahRMCutiam.toFixed(
-
-                    2
-
-                )
-
-            ),
-
-
-        rmJumlah:
-
-            Number(
-
-                jumlahRM.toFixed(
-
-                    2
-
-                )
-
-            )
-
-    };
-
-}
 // =====================================================
 // SIMPAN DUTY
 // =====================================================
@@ -2658,110 +2291,7 @@ async function simpanDuty() {
             return;
 
         }
-// =================================================
-// DATA CHECKBOX
-// =================================================
 
-const hariOffdayElement =
-
-    document.getElementById(
-
-        "hariOffday"
-
-    );
-
-
-const hariCutiamElement =
-
-    document.getElementById(
-
-        "hariCutiam"
-
-    );
-
-
-const hariOff =
-
-    hariOffdayElement &&
-
-    hariOffdayElement.checked
-
-        ? 1
-
-        : 0;
-
-
-const jamOff =
-
-    toNumber(
-
-        getValue(
-
-            "jamOffday"
-
-        )
-
-    );
-
-
-const hariCuti =
-
-    hariCutiamElement &&
-
-    hariCutiamElement.checked
-
-        ? 1
-
-        : 0;
-
-
-const jamCuti =
-
-    toNumber(
-
-        getValue(
-
-            "jamCutiam"
-
-        )
-
-    );
-
-
-// =================================================
-// KIRA RM
-// =================================================
-
-const pengiraanRM =
-
-    kiraRMDuty(
-
-        anggota,
-
-        toNumber(
-
-            duty.jam_klm
-
-        ),
-
-        hariOff,
-
-        jamOff,
-
-        hariCuti,
-
-        jamCuti
-
-    );
-
-
-console.log(
-
-    "PENGIRAAN RM:",
-
-    pengiraanRM
-
-);
 
         const hariOffdayElement =
 
@@ -2791,29 +2321,7 @@ console.log(
         // =================================================
 
         const dataDuty = {
-            // =================================================
-            // PENGIRAAN RM
-            // =================================================
 
-            rm_hari_biasa:
-
-                pengiraanRM.rmHariBiasa,
-
-
-            rm_offday:
-
-                pengiraanRM.rmOffday,
-
-
-            rm_cutiam:
-
-                pengiraanRM.rmCutiam,
-
-
-            rm_jumlah:
-
-                pengiraanRM.rmJumlah,
-            
             tarikh: tarikh,
 
             bulan: getValue(
@@ -4806,4 +4314,35 @@ function formatTarikh(
     );
 
 }
+// =====================================================
+// LOGOUT
+// =====================================================
 
+async function logout() {
+
+
+    const result = await supabaseClient.auth.signOut();
+
+
+    if (result.error) {
+
+
+        console.error(
+
+            "RALAT LOGOUT:",
+
+            result.error
+
+        );
+
+
+        return;
+
+    }
+
+
+    window.location.href =
+
+        "login.html";
+
+}
