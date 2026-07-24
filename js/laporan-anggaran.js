@@ -2219,11 +2219,11 @@ function formatNombor(
 
             minimumFractionDigits:
 
-                2,
+                0,
 
             maximumFractionDigits:
 
-                2
+                0
 
         }
 
