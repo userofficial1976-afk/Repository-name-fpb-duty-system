@@ -1496,11 +1496,241 @@ tr:hover {
 }
 
 
-@media(max-width:500px) {
+/* =====================================================
+   TELEFON BOTTOM NAVIGATION
+===================================================== */
+
+@media(max-width:600px) {
+
+
+    body {
+
+        padding-bottom: 76px;
+
+    }
+
+
+    .sidebar {
+
+        position: fixed;
+
+        top: auto;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        width: 100%;
+
+        height: 70px;
+
+        padding: 5px;
+
+        background:
+
+            rgba(
+
+                255,
+
+                255,
+
+                255,
+
+                0.98
+
+            );
+
+        border-top: 1px solid #dce7e9;
+
+        border-right: none;
+
+        box-shadow:
+
+            0 -5px 18px
+
+            rgba(
+
+                50,
+
+                100,
+
+                110,
+
+                0.12
+
+            );
+
+        overflow: visible;
+
+        z-index: 5000;
+
+    }
+
+
+    .sidebar::after {
+
+        display: none;
+
+    }
+
+
+    .brand,
+
+    .heritage-mark,
+
+    .nav-title {
+
+        display: none;
+
+    }
+
+
+    .nav {
+
+        width: 100%;
+
+        height: 100%;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: stretch;
+
+        justify-content: space-around;
+
+        gap: 0;
+
+    }
+
+
+    .nav a {
+
+        flex: 1;
+
+        min-width: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 4px 2px;
+
+        border-radius: 9px;
+
+        color: #789096;
+
+        font-size: 8px;
+
+        font-weight: 600;
+
+        text-align: center;
+
+        transform: none !important;
+
+    }
+
+
+    .nav a:hover {
+
+        background: transparent;
+
+        color: #247b83;
+
+    }
+
+
+    .nav a.active {
+
+        background: #e8f4f5;
+
+        color: #247b83;
+
+        box-shadow: none;
+
+    }
+
+
+    .nav-icon {
+
+        display: block !important;
+
+        width: auto;
+
+        font-size: 20px;
+
+        line-height: 1;
+
+    }
+
+
+    .nav a span:last-child {
+
+        display: block !important;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        max-width: 100%;
+
+    }
+
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+    }
+
+
+    .topbar {
+
+        min-height: 70px;
+
+        padding: 0 16px;
+
+    }
+
 
     .page-title h2 {
 
-        font-size: 22px;
+        font-size: 21px;
+
+    }
+
+
+    .page-title p {
+
+        font-size: 12px;
+
+    }
+
+
+    .content {
+
+        padding: 15px;
+
+    }
+
+
+    .hero {
+
+        padding: 24px 22px;
+
+        border-radius: 15px;
 
     }
 
@@ -1508,6 +1738,160 @@ tr:hover {
     .hero h1 {
 
         font-size: 22px;
+
+        line-height: 1.25;
+
+    }
+
+
+    .hero p {
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .card {
+
+        padding: 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .card-header {
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+
+    .card-header h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .card-header span {
+
+        font-size: 12px;
+
+    }
+
+
+    .filter-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .table-wrapper {
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+
+    table {
+
+        min-width: 1050px;
+
+    }
+
+
+    .modal-content {
+
+        width: 94%;
+
+        max-height: 88vh;
+
+        padding: 20px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .modal-header h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .footer {
+
+        padding: 25px 15px 20px;
+
+        font-size: 11px;
+
+    }
+
+}
+
+
+/* =====================================================
+   TELEFON KECIL
+===================================================== */
+
+@media(max-width:400px) {
+
+    .nav a {
+
+        font-size: 7px;
+
+    }
+
+
+    .nav-icon {
+
+        font-size: 18px;
+
+    }
+
+
+    .page-title h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .content {
+
+        padding: 12px;
+
+    }
+
+
+    .card {
+
+        padding: 15px;
 
     }
 
@@ -2556,7 +2940,6 @@ OK
 ></script>
 
 <script>
-
 
 // =====================================================
 // DATA
