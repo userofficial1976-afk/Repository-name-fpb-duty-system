@@ -1680,7 +1680,16 @@ async function janaLaporanAnggaran() {
 // =================================
 
 if (hariOff > 0) {
-
+    console.log(
+    "SEMAK OFF 4-8 JAM:",
+    {
+        no_skb: anggota.no_skb,
+        gaji: gaji,
+        hariOff: hariOff,
+        kadar: gaji / 26,
+        jumlah: (gaji / 26) * hariOff
+    }
+);
     const kadarOff4 =
         gaji / 26;
 
