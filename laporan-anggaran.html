@@ -1090,7 +1090,7 @@ JAWATAN
 </th>
 
 <th rowspan="2">
-GAJI / ELAUN
+GAJI
 </th>
 
 
@@ -1186,7 +1186,7 @@ RM
 
 <tr>
 
-<td colspan="16">
+<td colspan="15">
 
 Sila pilih Pos dan tekan Jana Laporan
 
@@ -1486,7 +1486,7 @@ document.getElementById(
 tbody.innerHTML =
 `
 <tr>
-<td colspan="16">
+<td colspan="15">
 Sedang proses...
 </td>
 </tr>
@@ -1536,7 +1536,7 @@ if(!data.length){
 tbody.innerHTML =
 `
 <tr>
-<td colspan="16">
+<td colspan="15">
 Tiada Data
 </td>
 </tr>
@@ -1638,7 +1638,7 @@ jawatan:a.jawatan || "",
 
 gaji:
 Number(
-a.gaji_elaun || 0
+a.gaji_pokok || 0
 ),
 
 data:[]
@@ -1998,10 +1998,6 @@ ${escapeHTML(a.nama)}
 
 
 
-<td class="left">
-${escapeHTML(a.jawatan)}
-</td>
-
 
 
 <td class="amount">
@@ -2174,7 +2170,31 @@ paparMesej(
 // REFRESH + KIRA SEMUA RM RK02
 // SIMPAN KE jadual_duty
 // ======================================
+function toNumber(value) {
 
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return 0;
+
+    }
+
+    const number =
+        Number(
+            String(value)
+                .replace(/,/g, "")
+                .replace(/RM/gi, "")
+                .trim()
+        );
+
+    return isNaN(number)
+        ? 0
+        : number;
+
+}
 async function kiraDanSimpanRK02() {
 
     const bulan =
