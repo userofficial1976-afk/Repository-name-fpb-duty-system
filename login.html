@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>
+Login - FPB Duty System
+</title>
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #e8f1f3 0%,
+
+            #f4f7f8 50%,
+
+            #dcecef 100%
+
+        );
+
+    color: #263238;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    opacity: 0.12;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+
+            45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        ),
+
+        linear-gradient(
+
+            -45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        );
+
+    background-size: 30px 30px;
+
+}
+
+
+/* =====================================================
+   LOGIN CONTAINER
+===================================================== */
+
+.login-wrapper {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
+
+.login-card {
+
+    background: rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        0.96
+
+    );
+
+    border: 1px solid #dce7e9;
+
+    border-radius: 22px;
+
+    padding: 38px;
+
+    box-shadow:
+
+        0 20px 55px
+
+        rgba(
+
+            50,
+
+            100,
+
+            110,
+
+            0.15
+
+        );
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.logo {
+
+    width: 92px;
+
+    height: 92px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 7px;
+
+    border-radius: 18px;
+
+    box-shadow:
+
+        0 8px 20px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.14
+
+        );
+
+    margin-bottom: 16px;
+
+}
+
+
+.brand h1 {
+
+    color: #234047;
+
+    font-size: 21px;
+
+    letter-spacing: 0.5px;
+
+    line-height: 1.35;
+
+}
+
+
+.brand p {
+
+    color: #789096;
+
+    font-size: 13px;
+
+    margin-top: 7px;
+
+}
+
+
+/* =====================================================
+   HERITAGE
+===================================================== */
+
+.heritage {
+
+    text-align: center;
+
+    background: #f2f7f8;
+
+    border: 1px solid #dce7e9;
+
+    border-radius: 12px;
+
+    padding: 13px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.heritage strong {
+
+    display: block;
+
+    color: #365b63;
+
+    font-size: 13px;
+
+}
+
+
+.heritage span {
+
+    display: block;
+
+    color: #829398;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    color: #52696f;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+
+}
+
+
+.input-wrapper {
+
+    position: relative;
+
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding:
+
+        0
+
+        45px
+
+        0
+
+        14px;
+
+    border: 1px solid #cbdde1;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #40575d;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: #5b9da0;
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(
+
+            91,
+
+            157,
+
+            160,
+
+            0.12
+
+        );
+
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    right: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 20px;
+
+    color: #789096;
+
+}
+
+
+/* =====================================================
+   PASSWORD TOGGLE
+===================================================== */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #789096;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    padding: 3px;
+
+}
+
+
+.password-toggle:hover {
+
+    color: #3d7f86;
+
+}
+
+
+/* =====================================================
+   REMEMBER
+===================================================== */
+
+.login-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+
+    font-size: 13px;
+
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #71858a;
+
+}
+
+
+.remember input {
+
+    width: 15px;
+
+    height: 15px;
+
+    accent-color: #3d7f86;
+
+}
+
+
+.forgot {
+
+    color: #3d7f86;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+.forgot:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-login {
+
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.btn-login:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+
+        0 7px 18px
+
+        rgba(
+
+            61,
+
+            127,
+
+            134,
+
+            0.25
+
+        );
+
+}
+
+
+.btn-login:disabled {
+
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =====================================================
+   ERROR MESSAGE
+===================================================== */
+
+.mesej {
+
+    display: none;
+
+    margin-bottom: 18px;
+
+    padding: 12px 14px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.mesej.error {
+
+    display: block;
+
+    background: #f8e5e5;
+
+    color: #bd6262;
+
+    border: 1px solid #efcccc;
+
+}
+
+
+.mesej.success {
+
+    display: block;
+
+    background: #e1f0e8;
+
+    color: #4b9277;
+
+    border: 1px solid #cbe4d5;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: #91a0a4;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:500px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+
+    .login-card {
+
+        padding: 26px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .brand h1 {
+
+        font-size: 18px;
+
+    }
+
+
+    .logo {
+
+        width: 78px;
+
+        height: 78px;
+
+    }
+
+
+    .login-options {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+<div class="login-card">
+
+<!-- =====================================================
+     BRAND
+===================================================== -->
+
+<div class="brand">
+
+<img
+
+```
+src="logo.png"
+
+class="logo"
+
+alt="Logo FPB"
+```
+
+>
+
+<h1>
+
+POLIS BANTUAN FGVSSSB
+
+</h1>
+
+<p>
+
+FPB DUTY SYSTEM
+
+</p>
+
+</div>
+
+<!-- =====================================================
+     HERITAGE
+===================================================== -->
+
+<div class="heritage">
+
+<strong>
+
+La Ilaha Illallah
+
+(لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
+
+</strong>
+
+<span>
+
+• Terengganu Maju, Berkat Sejahtera •
+
+</span>
+
+</div>
+
+<!-- =====================================================
+     MESEJ
+===================================================== -->
+
+<div
+
+```
+id="mesej"
+
+class="mesej"
+```
+
+> </div>
+
+<!-- =====================================================
+     LOGIN FORM
+===================================================== -->
+
+<form
+
+```
+id="loginForm"
+```
+
+>
+
+<div class="form-group">
+
+<label
+
+```
+for="email"
+```
+
+>
+
+Email
+
+</label>
+
+<div class="input-wrapper">
+
+<input
+
+```
+type="email"
+
+id="email"
+
+placeholder="Masukkan email"
+
+autocomplete="email"
+
+required
+```
+
+>
+
+<span class="input-icon">
+
+✉
+
+</span>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label
+
+```
+for="password"
+```
+
+>
+
+Kata Laluan
+
+</label>
+
+<div class="input-wrapper">
+
+<input
+
+```
+type="password"
+
+id="password"
+
+placeholder="Masukkan kata laluan"
+
+autocomplete="current-password"
+
+required
+```
+
+>
+
+<button
+
+```
+type="button"
+
+class="password-toggle"
+
+onclick="tukarPassword()"
+
+aria-label="Tunjuk kata laluan"
+```
+
+>
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<div class="login-options">
+
+<label class="remember">
+
+<input
+
+```
+type="checkbox"
+
+id="ingatSaya"
+```
+
+>
+
+<span>
+
+Ingat saya
+
+</span>
+
+</label>
+
+<a
+
+```
+href="#"
+
+class="forgot"
+
+onclick="lupaPassword(event)"
+```
+
+>
+
+Lupa kata laluan?
+
+</a>
+
+</div>
+
+<button
+
+```
+type="submit"
+
+class="btn-login"
+
+id="btnLogin"
+```
+
+>
+
+🔐 Log Masuk
+
+</button>
+
+</form>
+
+</div>
+
+<div class="footer">
+
+FPB DUTY SYSTEM — WILAYAH TERENGGANU
+
+<br>
+
+© 2026 | Operational Duty Management System
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script
+
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+
+></script>
+
+<script
+
+    src="supabase.js"
+
+></script>
+
+<script>
+
+// =====================================================
+// LOGIN
+// =====================================================
+
+document
+
+    .getElementById("loginForm")
+
+    .addEventListener(
+
+        "submit",
+
+        async function (event) {
+
+
+            event.preventDefault();
+
+
+            const email = document
+
+                .getElementById("email")
+
+                .value
+
+                .trim();
+
+
+            const password = document
+
+                .getElementById("password")
+
+                .value;
+
+
+            const btnLogin = document
+
+                .getElementById("btnLogin");
+
+
+            if (!email || !password) {
+
+                paparMesej(
+
+                    "Sila masukkan email dan kata laluan.",
+
+                    "error"
+
+                );
+
+                return;
+
+            }
+
+
+            btnLogin.disabled = true;
+
+
+            btnLogin.textContent =
+
+                "⏳ Sedang Log Masuk...";
+
+
+            paparMesej("", "");
+
+
+            const result = await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+            if (result.error) {
+
+
+                console.error(
+
+                    "RALAT LOGIN:",
+
+                    result.error
+
+                );
+
+
+                paparMesej(
+
+                    terjemahRalatLogin(
+
+                        result.error.message
+
+                    ),
+
+                    "error"
+
+                );
+
+
+                btnLogin.disabled = false;
+
+
+                btnLogin.textContent =
+
+                    "🔐 Log Masuk";
+
+
+                return;
+
+            }
+
+
+            paparMesej(
+
+                "Log masuk berjaya. Membuka Dashboard...",
+
+                "success"
+
+            );
+
+
+            setTimeout(
+
+                function () {
+
+                    window.location.href =
+
+                        "index.html";
+
+                },
+
+                700
+
+            );
+
+        }
+
+    );
+
+
+// =====================================================
+// TUKAR PASSWORD
+// =====================================================
+
+function tukarPassword() {
+
+
+    const input = document
+
+        .getElementById("password");
+
+
+    const button = document
+
+        .querySelector(".password-toggle");
+
+
+    if (input.type === "password") {
+
+
+        input.type = "text";
+
+
+        button.textContent = "🙈";
+
+
+    }
+
+    else {
+
+
+        input.type = "password";
+
+
+        button.textContent = "👁";
+
+    }
+
+}
+
+
+// =====================================================
+// LUPA PASSWORD
+// =====================================================
+
+async function lupaPassword(event) {
+
+
+    event.preventDefault();
+
+
+    const email = document
+
+        .getElementById("email")
+
+        .value
+
+        .trim();
+
+
+    if (!email) {
+
+
+        paparMesej(
+
+            "Masukkan email dahulu untuk menerima pautan reset kata laluan.",
+
+            "error"
+
+        );
+
+
+        document
+
+            .getElementById("email")
+
+            .focus();
+
+
+        return;
+
+    }
+
+
+    const result = await supabaseClient.auth.resetPasswordForEmail(
+
+        email,
+
+        {
+
+            redirectTo:
+
+                window.location.origin +
+
+                "/reset-password.html"
+
+        }
+
+    );
+
+
+    if (result.error) {
+
+
+        paparMesej(
+
+            result.error.message ||
+
+            "Gagal menghantar pautan reset kata laluan.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    paparMesej(
+
+        "Pautan reset kata laluan telah dihantar ke email anda.",
+
+        "success"
+
+    );
+
+}
+
+
+// =====================================================
+// PAPAR MESEJ
+// =====================================================
+
+function paparMesej(
+
+    mesej,
+
+    jenis
+
+) {
+
+
+    const element = document
+
+        .getElementById("mesej");
+
+
+    if (!mesej) {
+
+
+        element.textContent = "";
+
+        element.className = "mesej";
+
+
+        return;
+
+    }
+
+
+    element.textContent = mesej;
+
+
+    element.className =
+
+        "mesej " + jenis;
+
+}
+
+
+// =====================================================
+// TERJEMAH RALAT LOGIN
+// =====================================================
+
+function terjemahRalatLogin(
+
+    mesej
+
+) {
+
+
+    const text = String(
+
+        mesej || ""
+
+    ).toLowerCase();
+
+
+    if (
+
+        text.includes(
+
+            "invalid login credentials"
+
+        )
+
+    ) {
+
+
+        return "Email atau kata laluan tidak betul.";
+
+    }
+
+
+    if (
+
+        text.includes(
+
+            "email not confirmed"
+
+        )
+
+    ) {
+
+
+        return "Email belum disahkan. Sila semak email anda.";
+
+    }
+
+
+    if (
+
+        text.includes(
+
+            "too many requests"
+
+        )
+
+    ) {
+
+
+        return "Terlalu banyak percubaan. Sila cuba semula kemudian.";
+
+    }
+
+
+    return mesej ||
+
+        "Gagal log masuk. Sila cuba semula.";
+
+}
+
+</script>
+
+</body>
+
+</html>
