@@ -2073,14 +2073,11 @@ function toNumber(nilai) {
 
 function formatNumber(nilai) {
 
-    return toNumber(nilai)
-        .toLocaleString(
-            "ms-MY",
-            {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }
-        );
+    return Math.round(
+        toNumber(nilai)
+    ).toLocaleString(
+        "ms-MY"
+    );
 
 }
 
