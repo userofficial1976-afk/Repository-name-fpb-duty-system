@@ -4314,3 +4314,35 @@ function formatTarikh(
     );
 
 }
+// =====================================================
+// LOGOUT
+// =====================================================
+
+async function logout() {
+
+
+    const result = await supabaseClient.auth.signOut();
+
+
+    if (result.error) {
+
+
+        console.error(
+
+            "RALAT LOGOUT:",
+
+            result.error
+
+        );
+
+
+        return;
+
+    }
+
+
+    window.location.href =
+
+        "login.html";
+
+}
