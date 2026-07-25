@@ -1,207 +1,1453 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Laporan Duty - FPB Duty System</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>
+Laporan Duty — Forecast Duty System
+</title>
 
 <style>
 
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
+
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+
+        "Segoe UI",
+
+        Arial,
+
+        Helvetica,
+
+        sans-serif;
+
 }
+
 
 body {
-    margin: 0;
-    background: #f1f5f9;
-    color: #1e293b;
+
+    background: #f4f7f8;
+
+    color: #263238;
+
 }
 
-header {
-    background: #0f172a;
-    color: white;
-    padding: 20px 25px;
+
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
 }
 
-header h1 {
-    margin: 0;
-    font-size: 25px;
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 290px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #e8f1f3 0%,
+
+            #dcecef 100%
+
+        );
+
+    color: #234047;
+
+    padding: 24px 16px;
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 100;
+
+    overflow-y: auto;
+
+    border-right: 1px solid #cbdde1;
+
 }
 
-header p {
-    margin: 6px 0 0;
-    color: #cbd5e1;
+
+.sidebar::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.15;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+
+            45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        ),
+
+        linear-gradient(
+
+            -45deg,
+
+            transparent 45%,
+
+            #7fa9b1 46%,
+
+            #7fa9b1 54%,
+
+            transparent 55%
+
+        );
+
+    background-size: 30px 30px;
+
 }
 
-.container {
-    max-width: 1700px;
-    margin: auto;
-    padding: 20px;
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 11px 25px;
+
+    border-bottom: 1px solid #cbdde1;
+
+    position: relative;
+
+    z-index: 2;
+
 }
 
-.btn-dashboard {
-    display: inline-block;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 7px;
+
+.logo {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 12px;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.12
+
+        );
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 17px;
+
+    letter-spacing: 0.4px;
+
+    color: #234047;
+
+}
+
+
+.brand-text p {
+
+    color: #6d858b;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+}
+
+
+.heritage-mark {
+
+    margin: 22px 10px;
+
+    padding: 15px;
+
+    border: 1px solid #c6dadd;
+
+    border-radius: 12px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.55
+
+        );
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.heritage-mark strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 0.6px;
+
+    color: #365b63;
+
+}
+
+
+.heritage-mark span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #769097;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav-title {
+
+    color: #789096;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
     font-weight: bold;
-    margin-top: 15px;
+
+    margin: 26px 13px 10px;
+
+    position: relative;
+
+    z-index: 2;
+
 }
+
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: #577178;
+
+    text-decoration: none;
+
+    padding: 14px 15px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.nav a:hover {
+
+    background: #d1e4e8;
+
+    color: #234047;
+
+    transform: translateX(2px);
+
+}
+
+
+.nav a.active {
+
+    background: #ffffff;
+
+    color: #247b83;
+
+    box-shadow:
+
+        0 4px 12px
+
+        rgba(
+
+            50,
+
+            100,
+
+            110,
+
+            0.10
+
+        );
+
+}
+
+
+.nav-icon {
+
+    width: 24px;
+
+    text-align: center;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-nav {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 290px;
+
+    width: calc(
+
+        100% - 290px
+
+    );
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    min-height: 82px;
+
+    background:
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.92
+
+        );
+
+    border-bottom: 1px solid #dce7e9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+}
+
+
+.page-title h2 {
+
+    font-size: 26px;
+
+    letter-spacing: 0.3px;
+
+    color: #263f45;
+
+}
+
+
+.page-title p {
+
+    font-size: 14px;
+
+    color: #829398;
+
+    margin-top: 5px;
+
+}
+
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    background: #e4f2ed;
+
+    color: #3d7662;
+
+    padding: 10px 16px;
+
+    border-radius: 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    background: #61a98d;
+
+    border-radius: 50%;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    padding: 32px;
+
+    max-width: 1800px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #3d7f86,
+
+            #5b9da0
+
+        );
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 35px 38px;
+
+    margin-bottom: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #77adb0;
+
+    box-shadow:
+
+        0 8px 22px
+
+        rgba(
+
+            57,
+
+            111,
+
+            118,
+
+            0.15
+
+        );
+
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -80px;
+
+    bottom: -140px;
+
+    width: 420px;
+
+    height: 420px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.25
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 80px;
+
+    bottom: -200px;
+
+    width: 400px;
+
+    height: 400px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.hero h1 {
+
+    font-size: 31px;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero p {
+
+    color: #e3f2f3;
+
+    font-size: 15px;
+
+    max-width: 700px;
+
+}
+
+
+.hero-line {
+
+    margin-top: 25px;
+
+    width: 160px;
+
+    height: 3px;
+
+    background: #d8f1ef;
+
+}
+
+
+.wave {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 30px;
+
+    opacity: 0.20;
+
+    background:
+
+        repeating-linear-gradient(
+
+            -45deg,
+
+            transparent 0px,
+
+            transparent 10px,
+
+            white 11px,
+
+            white 12px,
+
+            transparent 13px,
+
+            transparent 22px
+
+        );
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    background: #ffffff;
+
+    border: 1px solid #dce7e9;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+
+        0 4px 14px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.06
+
+        );
+
 }
 
-h2 {
-    margin-top: 0;
-    color: #0f172a;
+
+.card h2 {
+
+    font-size: 20px;
+
+    color: #304c53;
+
+    margin-bottom: 20px;
+
 }
+
+
+/* =====================================================
+   FILTER
+===================================================== */
 
 .grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            1fr
+
+        );
+
+    gap: 20px;
+
 }
+
 
 label {
+
     display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #587178;
+
+    margin-bottom: 7px;
+
 }
+
 
 input,
+
 select,
-button {
-    width: 100%;
-    padding: 11px;
-    border-radius: 7px;
-    border: 1px solid #cbd5e1;
-    font-size: 14px;
-}
 
 button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border-radius: 9px;
+
+    border: 1px solid #cbdde1;
+
+    font-size: 14px;
+
+    color: #40575d;
+
+    background: #ffffff;
+
+    outline: none;
+
 }
+
+
+input:focus,
+
+select:focus {
+
+    border-color: #77adb0;
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(
+
+            61,
+
+            127,
+
+            134,
+
+            0.10
+
+        );
+
+}
+
+
+button {
+
+    background: #3d7f86;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+
+}
+
 
 button:hover {
-    background: #1d4ed8;
+
+    background: #286c73;
+
+    transform: translateY(-1px);
+
 }
+
 
 .btn-print {
-    background: #16a34a;
+
+    background: #61a98d;
+
 }
+
 
 .btn-print:hover {
-    background: #15803d;
+
+    background: #478a72;
+
 }
 
-.table-wrapper {
-    overflow-x: auto;
-}
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 1600px;
-}
-
-th,
-td {
-    border-bottom: 1px solid #e2e8f0;
-    padding: 10px;
-    text-align: left;
-    white-space: nowrap;
-}
-
-th {
-    background: #0f172a;
-    color: white;
-}
-
-tr:hover {
-    background: #f8fafc;
-}
-
-.badge {
-    display: inline-block;
-    background: #dbeafe;
-    color: #1d4ed8;
-    padding: 5px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-}
+/* =====================================================
+   SUMMARY
+===================================================== */
 
 .summary {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            1fr
+
+        );
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
 }
+
 
 .summary-box {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    padding: 18px;
-    border-radius: 10px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce7e9;
+
+    padding: 23px;
+
+    border-radius: 15px;
+
+    box-shadow:
+
+        0 4px 14px
+
+        rgba(
+
+            60,
+
+            100,
+
+            110,
+
+            0.06
+
+        );
+
 }
+
 
 .summary-box small {
+
     display: block;
-    color: #64748b;
+
+    color: #72858a;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
 }
 
+
 .summary-box strong {
+
     display: block;
-    font-size: 25px;
-    margin-top: 5px;
-    color: #1d4ed8;
+
+    font-size: 36px;
+
+    margin-top: 8px;
+
+    color: #2d4c53;
+
 }
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1600px;
+
+}
+
+
+th,
+
+td {
+
+    padding: 15px 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #edf2f3;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+}
+
+
+th {
+
+    color: #71858a;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+    background: #f2f7f8;
+
+}
+
+
+td {
+
+    color: #40575d;
+
+}
+
+
+tr:hover {
+
+    background: #f6fafb;
+
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    background: #e1f0f1;
+
+    color: #3d7f86;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #91a0a4;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
 
 @media print {
 
-    header,
+    .sidebar,
+
+    .topbar,
+
+    .hero,
+
     .filter-card,
-    .btn-dashboard,
-    .btn-print {
+
+    .footer,
+
+    .bottom-nav {
+
         display: none !important;
+
     }
+
 
     body {
+
         background: white;
+
     }
 
-    .container {
-        max-width: none;
-        padding: 0;
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+
     }
+
+
+    .content {
+
+        padding: 0;
+
+        max-width: none;
+
+    }
+
 
     .card {
+
         box-shadow: none;
+
+        border: none;
+
         padding: 0;
+
     }
+
+
+    .summary {
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .summary-box {
+
+        box-shadow: none;
+
+        padding: 10px;
+
+    }
+
 
     table {
+
         min-width: 0;
+
         font-size: 10px;
+
     }
 
+
     th,
+
     td {
+
         padding: 5px;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE TABLET
+===================================================== */
+
+@media(max-width:1200px) {
+
+    .grid {
+
+        grid-template-columns:
+
+            repeat(
+
+                2,
+
+                1fr
+
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   TELEFON
+===================================================== */
+
+@media(max-width:800px) {
+
+    .sidebar {
+
+        display: none;
+
+    }
+
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding-bottom: 82px;
+
+    }
+
+
+    .topbar {
+
+        padding: 0 20px;
+
+    }
+
+
+    .content {
+
+        padding: 20px;
+
+    }
+
+
+    .hero {
+
+        padding: 27px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .summary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .system-status {
+
+        display: none;
+
+    }
+
+
+    .page-title h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .bottom-nav {
+
+        position: fixed;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-around;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        height: 72px;
+
+        background:
+
+            rgba(
+
+                255,
+
+                255,
+
+                255,
+
+                0.97
+
+            );
+
+        border-top: 1px solid #cbdde1;
+
+        box-shadow:
+
+            0 -4px 18px
+
+            rgba(
+
+                50,
+
+                100,
+
+                110,
+
+                0.12
+
+            );
+
+        z-index: 999;
+
+        padding: 5px 4px;
+
+    }
+
+
+    .bottom-nav a {
+
+        flex: 1;
+
+        min-width: 0;
+
+        height: 62px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 4px;
+
+        text-decoration: none;
+
+        color: #789096;
+
+        border-radius: 10px;
+
+        font-size: 10px;
+
+        font-weight: 600;
+
+    }
+
+
+    .bottom-nav a:hover,
+
+    .bottom-nav a.active {
+
+        background: #e8f3f4;
+
+        color: #247b83;
+
+    }
+
+
+    .bottom-nav-icon {
+
+        font-size: 21px;
+
+        line-height: 1;
+
+    }
+
+
+    .bottom-nav-label {
+
+        font-size: 10px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        max-width: 100%;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media(max-width:500px) {
+
+    .hero h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .summary-box strong {
+
+        font-size: 32px;
+
+    }
+
+
+    .bottom-nav {
+
+        height: 68px;
+
+    }
+
+
+    .bottom-nav a {
+
+        height: 58px;
+
+    }
+
+
+    .bottom-nav-icon {
+
+        font-size: 19px;
+
+    }
+
+
+    .bottom-nav-label {
+
+        font-size: 9px;
+
     }
 
 }
@@ -212,139 +1458,436 @@ tr:hover {
 
 <body>
 
-<header>
+<div class="app">
 
-<h1>📊 LAPORAN DUTY</h1>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-<p>Laporan Pengurusan Jadual Duty Anggota</p>
+<aside class="sidebar">
 
-<a
-href="index.html"
-class="btn-dashboard"
+<div class="brand">
+
+<img
+
+src="logo.png"
+
+class="logo"
+
+alt="Logo FPB"
+
 >
-🏠 Kembali ke Dashboard
+
+<div class="brand-text">
+
+<h1>
+
+POLIS BANTUAN FGVSSSB
+
+</h1>
+
+<p>
+
+WILAYAH TERENGGANU
+
+</p>
+
+</div>
+
+</div>
+
+<div class="heritage-mark">
+
+<strong>
+
+La Ilaha Illallah
+
+(لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
+
+</strong>
+
+<span>
+
+• Terengganu Maju, Berkat Sejahtera •
+
+</span>
+
+</div>
+
+<div class="nav-title">
+
+MAIN MENU
+
+</div>
+
+<nav class="nav">
+
+<a href="index.html">
+
+<span class="nav-icon">⌂</span>
+
+<span>Dashboard</span>
+
 </a>
 
-</header>
+<a href="anggota.html">
 
+<span class="nav-icon">♙</span>
 
-<div class="container">
+<span>Senarai Anggota</span>
 
+</a>
+
+<a href="jadual-duty.html">
+
+<span class="nav-icon">▣</span>
+
+<span>Pengisian Duty Anggota</span>
+
+</a>
+
+<a href="kod-duty.html">
+
+<span class="nav-icon">▤</span>
+
+<span>Pengisian Kod Duty</span>
+
+</a>
+
+<a href="tempat-kerja.html">
+
+<span class="nav-icon">▦</span>
+
+<span>Pengisisan Kod Tempat Kerja</span>
+
+</a>
+
+<div class="nav-title">
+
+REPORTING
+
+</div>
+
+<a href="laporan.html" class="active">
+
+<span class="nav-icon">▥</span>
+
+<span>Laporan Wilayah</span>
+
+</a>
+
+<a href="laporan-anggaran.html">
+
+<span class="nav-icon">◫</span>
+
+<span>Anggaran RK02</span>
+
+</a>
+
+<a href="Laporan-Penuh.html">
+
+<span class="nav-icon">▤</span>
+
+<span>Laporan RK01 Pos Sebulan</span>
+
+</a>
+
+<div class="nav-title">
+
+SYSTEM
+
+</div>
+
+<a href="#">
+
+<span class="nav-icon">⚙</span>
+
+<span>Tetapan</span>
+
+</a>
+
+</nav>
+
+</aside>
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+<a href="index.html">
+
+<span class="bottom-nav-icon">⌂</span>
+
+<span class="bottom-nav-label">Dashboard</span>
+
+</a>
+
+<a href="anggota.html">
+
+<span class="bottom-nav-icon">♙</span>
+
+<span class="bottom-nav-label">Anggota</span>
+
+</a>
+
+<a href="jadual-duty.html">
+
+<span class="bottom-nav-icon">▣</span>
+
+<span class="bottom-nav-label">Duty</span>
+
+</a>
+
+<a href="laporan.html" class="active">
+
+<span class="bottom-nav-icon">▥</span>
+
+<span class="bottom-nav-label">Laporan</span>
+
+</a>
+
+<a href="laporan-anggaran.html">
+
+<span class="bottom-nav-icon">◫</span>
+
+<span class="bottom-nav-label">Anggaran</span>
+
+</a>
+
+</nav>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="topbar">
+
+<div class="page-title">
+
+<h2>
+
+Laporan Duty
+
+</h2>
+
+<p>
+
+Forecast Duty System /
+
+Wilayah Terengganu
+
+</p>
+
+</div>
+
+<div class="system-status">
+
+<span class="status-dot"></span>
+
+System Online
+
+</div>
+
+</div>
+
+<div class="content">
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<div class="hero">
+
+<div class="hero-content">
+
+<h1>
+
+LAPORAN DUTY —
+
+WILAYAH TERENGGANU
+
+</h1>
+
+<p>
+
+Laporan pengurusan jadual duty anggota secara berpusat, sistematik dan profesional.
+
+</p>
+
+<div class="hero-line"></div>
+
+</div>
+
+<div class="wave"></div>
+
+</div>
+
+<!-- =====================================================
+     FILTER
+===================================================== -->
 
 <div class="card filter-card">
 
-<h2>🔍 Tapisan Laporan</h2>
+<h2>
+
+🔍 Tapisan Laporan
+
+</h2>
 
 <div class="grid">
 
-
 <div>
 
-<label>Tarikh Mula</label>
+<label>
+
+Tarikh Mula
+
+</label>
 
 <input
+
 type="date"
+
 id="tarikhMula"
+
 >
 
 </div>
 
-
 <div>
 
-<label>Tarikh Akhir</label>
+<label>
+
+Tarikh Akhir
+
+</label>
 
 <input
+
 type="date"
+
 id="tarikhAkhir"
+
 >
 
 </div>
 
-
 <div>
 
-<label>Pos Asal</label>
+<label>
+
+Pos Asal
+
+</label>
 
 <select id="filterPos">
 
 <option value="">
+
 Semua Pos
+
 </option>
 
 </select>
 
 </div>
 
-
 <div>
 
-<label>Tempat Bertugas</label>
+<label>
+
+Tempat Bertugas
+
+</label>
 
 <select id="filterTempatKerja">
 
-    <option value="">
-        Semua Tempat Bertugas
-    </option>
+<option value="">
+
+Semua Tempat Bertugas
+
+</option>
 
 </select>
 
 </div>
 
-
 <div>
 
-<label>Kod Duty</label>
+<label>
+
+Kod Duty
+
+</label>
 
 <select id="filterKodDuty">
 
 <option value="">
+
 Semua Kod Duty
+
 </option>
 
 </select>
 
 </div>
 
-
 <div>
 
-<label>Cari Nama</label>
+<label>
+
+Cari Nama
+
+</label>
 
 <input
+
 type="text"
+
 id="cariNama"
+
 placeholder="Cari nama anggota..."
+
 >
 
 </div>
 
 </div>
 
-
 <br>
-
 
 <div class="grid">
 
 <div>
 
 <button
+
 onclick="paparLaporan()"
+
 >
+
 🔍 CARI LAPORAN
+
 </button>
 
 </div>
-
 
 <div>
 
 <button
+
 class="btn-print"
+
 onclick="window.print()"
+
 >
+
 🖨️ CETAK LAPORAN
+
 </button>
 
 </div>
@@ -353,42 +1896,73 @@ onclick="window.print()"
 
 </div>
 
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
 
 <div class="summary">
 
 <div class="summary-box">
 
-<small>Jumlah Duty</small>
+<small>
 
-<strong id="jumlahDuty">0</strong>
+Jumlah Duty
+
+</small>
+
+<strong id="jumlahDuty">
+
+0
+
+</strong>
 
 </div>
-
 
 <div class="summary-box">
 
-<small>Jumlah Jam Kerja</small>
+<small>
 
-<strong id="jumlahJamKerja">0</strong>
+Jumlah Jam Kerja
+
+</small>
+
+<strong id="jumlahJamKerja">
+
+0
+
+</strong>
 
 </div>
-
 
 <div class="summary-box">
 
-<small>Jumlah Jam KLM</small>
+<small>
 
-<strong id="jumlahJamKlm">0</strong>
+Jumlah Jam KLM
+
+</small>
+
+<strong id="jumlahJamKlm">
+
+0
+
+</strong>
 
 </div>
 
 </div>
 
+<!-- =====================================================
+     TABLE
+===================================================== -->
 
 <div class="card">
 
-<h2>📋 Senarai Laporan Duty</h2>
+<h2>
 
+📋 Senarai Laporan Duty
+
+</h2>
 
 <div class="table-wrapper">
 
@@ -430,7 +2004,6 @@ onclick="window.print()"
 
 </thead>
 
-
 <tbody id="senaraiLaporan">
 
 <tr>
@@ -453,6 +2026,23 @@ Sila buat carian laporan.
 
 </div>
 
+<footer class="footer">
+
+FPB DUTY SYSTEM —
+
+WILAYAH TERENGGANU
+
+<br>
+
+© 2026 |
+
+Operational Duty Management System
+
+</footer>
+
+</main>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -460,8 +2050,6 @@ Sila buat carian laporan.
 
 <script src="js/laporan.js"></script>
 
-    
-</script>
 </body>
 
 </html>
