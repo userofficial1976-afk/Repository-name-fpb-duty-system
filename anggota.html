@@ -9,11 +9,10 @@
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
-
 >
 
 <title>
-Senarai Anggota - Forecast Duty System
+Senarai Anggota — Forecast Duty System
 </title>
 
 <style>
@@ -31,9 +30,13 @@ Senarai Anggota - Forecast Duty System
     padding: 0;
 
     font-family:
+
         "Segoe UI",
+
         Arial,
+
         Helvetica,
+
         sans-serif;
 
 }
@@ -224,7 +227,7 @@ body {
 
 
 /* =====================================================
-   HERITAGE
+   HERITAGE MARK
 ===================================================== */
 
 .heritage-mark {
@@ -541,9 +544,9 @@ body {
 
     border-radius: 18px;
 
-    padding: 30px 38px;
+    padding: 35px 38px;
 
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 
     position: relative;
 
@@ -603,6 +606,39 @@ body {
 }
 
 
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 80px;
+
+    bottom: -200px;
+
+    width: 400px;
+
+    height: 400px;
+
+    border: 1px solid
+
+        rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            0.18
+
+        );
+
+    border-radius: 50%;
+
+}
+
+
 .hero-content {
 
     position: relative;
@@ -614,11 +650,11 @@ body {
 
 .hero h1 {
 
-    font-size: 28px;
+    font-size: 31px;
 
     letter-spacing: 0.6px;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
 }
 
@@ -629,14 +665,16 @@ body {
 
     font-size: 15px;
 
+    max-width: 700px;
+
 }
 
 
 .hero-line {
 
-    margin-top: 20px;
+    margin-top: 25px;
 
-    width: 130px;
+    width: 160px;
 
     height: 3px;
 
@@ -862,13 +900,13 @@ th,
 
 td {
 
-    padding: 13px 12px;
+    padding: 15px 12px;
 
     text-align: left;
 
     border-bottom: 1px solid #edf2f3;
 
-    font-size: 14px;
+    font-size: 15px;
 
 }
 
@@ -877,7 +915,7 @@ th {
 
     color: #71858a;
 
-    font-size: 11px;
+    font-size: 12px;
 
     text-transform: uppercase;
 
@@ -1377,7 +1415,7 @@ tr:hover {
 
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE TABLET
 ===================================================== */
 
 @media(max-width:1200px) {
@@ -1395,66 +1433,26 @@ tr:hover {
 }
 
 
+/* =====================================================
+   TELEFON
+===================================================== */
+
 @media(max-width:800px) {
 
     .sidebar {
-
-        width: 78px;
-
-        padding: 16px 8px;
-
-    }
-
-
-    .brand {
-
-        justify-content: center;
-
-        padding: 0 0 22px;
-
-    }
-
-
-    .brand-text,
-
-    .heritage-mark,
-
-    .nav-title,
-
-    .nav a span {
 
         display: none;
 
     }
 
 
-    .nav a {
-
-        justify-content: center;
-
-        padding: 15px 5px;
-
-    }
-
-
-    .nav-icon {
-
-        font-size: 22px;
-
-    }
-
-
     .main {
 
-        margin-left: 78px;
+        margin-left: 0;
 
-        width:
+        width: 100%;
 
-            calc(
-
-                100% - 78px
-
-            );
+        padding-bottom: 82px;
 
     }
 
@@ -1469,6 +1467,20 @@ tr:hover {
     .content {
 
         padding: 20px;
+
+    }
+
+
+    .hero {
+
+        padding: 27px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 24px;
 
     }
 
@@ -1493,28 +1505,16 @@ tr:hover {
 
     }
 
-}
 
-
-/* =====================================================
-   TELEFON BOTTOM NAVIGATION
-===================================================== */
-
-@media(max-width:600px) {
-
-
-    body {
-
-        padding-bottom: 76px;
-
-    }
-
-
-    .sidebar {
+    .bottom-nav {
 
         position: fixed;
 
-        top: auto;
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-around;
 
         left: 0;
 
@@ -1522,33 +1522,25 @@ tr:hover {
 
         bottom: 0;
 
-        width: 100%;
+        height: 72px;
 
-        height: 70px;
+        background: rgba(
 
-        padding: 5px;
+            255,
 
-        background:
+            255,
 
-            rgba(
+            255,
 
-                255,
+            0.97
 
-                255,
+        );
 
-                255,
-
-                0.98
-
-            );
-
-        border-top: 1px solid #dce7e9;
-
-        border-right: none;
+        border-top: 1px solid #cbdde1;
 
         box-shadow:
 
-            0 -5px 18px
+            0 -4px 18px
 
             rgba(
 
@@ -1562,55 +1554,36 @@ tr:hover {
 
             );
 
-        overflow: visible;
+        z-index: 999;
 
-        z-index: 5000;
+        padding:
 
-    }
+            5px
 
+            4px
 
-    .sidebar::after {
+            calc(
 
-        display: none;
+                5px +
 
-    }
+                env(
 
+                    safe-area-inset-bottom
 
-    .brand,
+                )
 
-    .heritage-mark,
-
-    .nav-title {
-
-        display: none;
+            );
 
     }
 
 
-    .nav {
-
-        width: 100%;
-
-        height: 100%;
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: stretch;
-
-        justify-content: space-around;
-
-        gap: 0;
-
-    }
-
-
-    .nav a {
+    .bottom-nav a {
 
         flex: 1;
 
         min-width: 0;
+
+        height: 62px;
 
         display: flex;
 
@@ -1620,61 +1593,46 @@ tr:hover {
 
         justify-content: center;
 
-        gap: 3px;
+        gap: 4px;
 
-        padding: 4px 2px;
-
-        border-radius: 9px;
+        text-decoration: none;
 
         color: #789096;
 
-        font-size: 8px;
+        border-radius: 10px;
+
+        font-size: 10px;
 
         font-weight: 600;
 
-        text-align: center;
-
-        transform: none !important;
+        transition: all 0.2s ease;
 
     }
 
 
-    .nav a:hover {
+    .bottom-nav a:hover,
 
-        background: transparent;
+    .bottom-nav a.active {
+
+        background: #e8f3f4;
 
         color: #247b83;
 
     }
 
 
-    .nav a.active {
+    .bottom-nav-icon {
 
-        background: #e8f4f5;
-
-        color: #247b83;
-
-        box-shadow: none;
-
-    }
-
-
-    .nav-icon {
-
-        display: block !important;
-
-        width: auto;
-
-        font-size: 20px;
+        font-size: 21px;
 
         line-height: 1;
 
     }
 
 
-    .nav a span:last-child {
+    .bottom-nav-label {
 
-        display: block !important;
+        font-size: 10px;
 
         white-space: nowrap;
 
@@ -1683,136 +1641,6 @@ tr:hover {
         text-overflow: ellipsis;
 
         max-width: 100%;
-
-    }
-
-
-    .main {
-
-        margin-left: 0;
-
-        width: 100%;
-
-    }
-
-
-    .topbar {
-
-        min-height: 70px;
-
-        padding: 0 16px;
-
-    }
-
-
-    .page-title h2 {
-
-        font-size: 21px;
-
-    }
-
-
-    .page-title p {
-
-        font-size: 12px;
-
-    }
-
-
-    .content {
-
-        padding: 15px;
-
-    }
-
-
-    .hero {
-
-        padding: 24px 22px;
-
-        border-radius: 15px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 22px;
-
-        line-height: 1.25;
-
-    }
-
-
-    .hero p {
-
-        font-size: 13px;
-
-        line-height: 1.5;
-
-    }
-
-
-    .card {
-
-        padding: 18px;
-
-        border-radius: 14px;
-
-    }
-
-
-    .card-header {
-
-        align-items: flex-start;
-
-        gap: 8px;
-
-    }
-
-
-    .card-header h2 {
-
-        font-size: 18px;
-
-    }
-
-
-    .card-header span {
-
-        font-size: 12px;
-
-    }
-
-
-    .filter-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 13px;
-
-    }
-
-
-    .form-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .table-wrapper {
-
-        overflow-x: auto;
-
-        -webkit-overflow-scrolling: touch;
-
-    }
-
-
-    table {
-
-        min-width: 1050px;
 
     }
 
@@ -1852,46 +1680,92 @@ tr:hover {
    TELEFON KECIL
 ===================================================== */
 
-@media(max-width:400px) {
-
-    .nav a {
-
-        font-size: 7px;
-
-    }
-
-
-    .nav-icon {
-
-        font-size: 18px;
-
-    }
-
+@media(max-width:500px) {
 
     .page-title h2 {
 
-        font-size: 19px;
+        font-size: 22px;
 
     }
 
 
     .hero h1 {
 
-        font-size: 20px;
-
-    }
-
-
-    .content {
-
-        padding: 12px;
+        font-size: 21px;
 
     }
 
 
     .card {
 
-        padding: 15px;
+        padding: 18px;
+
+    }
+
+
+    .card-header {
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+
+    .card-header h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .card-header span {
+
+        font-size: 12px;
+
+    }
+
+
+    .table-wrapper {
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+
+    table {
+
+        min-width: 1050px;
+
+    }
+
+
+    .bottom-nav {
+
+        height: 68px;
+
+    }
+
+
+    .bottom-nav a {
+
+        height: 58px;
+
+    }
+
+
+    .bottom-nav-icon {
+
+        font-size: 19px;
+
+    }
+
+
+    .bottom-nav-label {
+
+        font-size: 9px;
 
     }
 
@@ -1899,7 +1773,7 @@ tr:hover {
 
 
 /* =====================================================
-   LOADING
+   LOADING & EMPTY
 ===================================================== */
 
 .loading {
@@ -1932,7 +1806,7 @@ tr:hover {
 <div class="app">
 
 <!-- =====================================================
-     SIDEBAR
+     SIDEBAR MASTER
 ===================================================== -->
 
 <aside class="sidebar">
@@ -1941,13 +1815,11 @@ tr:hover {
 
 <img
 
-```
 src="logo.png"
 
 class="logo"
 
 alt="Logo FPB"
-```
 
 >
 
@@ -1969,6 +1841,7 @@ WILAYAH TERENGGANU
 
 </div>
 
+
 <div class="heritage-mark">
 
 <strong>
@@ -1987,93 +1860,60 @@ La Ilaha Illallah
 
 </div>
 
+
 <div class="nav-title">
 
 MAIN MENU
 
 </div>
 
+
 <nav class="nav">
 
 <a href="index.html">
 
-<span class="nav-icon">
+<span class="nav-icon">⌂</span>
 
-⌂
-
-</span>
-
-<span>
-
-Dashboard
-
-</span>
+<span>Dashboard</span>
 
 </a>
+
 
 <a href="anggota.html" class="active">
 
-<span class="nav-icon">
+<span class="nav-icon">♙</span>
 
-♙
-
-</span>
-
-<span>
-
-Senarai Anggota
-
-</span>
+<span>Senarai Anggota</span>
 
 </a>
+
 
 <a href="jadual-duty.html">
 
-<span class="nav-icon">
+<span class="nav-icon">▣</span>
 
-▣
-
-</span>
-
-<span>
-
-Jadual Duty
-
-</span>
+<span>Pengisian Duty Anggota</span>
 
 </a>
+
 
 <a href="kod-duty.html">
 
-<span class="nav-icon">
+<span class="nav-icon">▤</span>
 
-▤
-
-</span>
-
-<span>
-
-Kod Duty
-
-</span>
+<span>Pengisian Kod Duty</span>
 
 </a>
+
 
 <a href="tempat-kerja.html">
 
-<span class="nav-icon">
+<span class="nav-icon">▦</span>
 
-▦
-
-</span>
-
-<span>
-
-Kod Tempat Kerja
-
-</span>
+<span>Pengisisan Kod Tempat Kerja</span>
 
 </a>
+
 
 <div class="nav-title">
 
@@ -2081,53 +1921,33 @@ REPORTING
 
 </div>
 
+
 <a href="laporan.html">
 
-<span class="nav-icon">
+<span class="nav-icon">▥</span>
 
-▥
-
-</span>
-
-<span>
-
-Laporan
-
-</span>
+<span>Laporan Wilayah</span>
 
 </a>
+
 
 <a href="laporan-anggaran.html">
 
-<span class="nav-icon">
+<span class="nav-icon">◫</span>
 
-◫
-
-</span>
-
-<span>
-
-Anggaran Duty Bulanan
-
-</span>
+<span>Anggaran RK02</span>
 
 </a>
+
 
 <a href="Laporan-Penuh.html">
 
-<span class="nav-icon">
+<span class="nav-icon">▤</span>
 
-▤
-
-</span>
-
-<span>
-
-Laporan Penuh
-
-</span>
+<span>Laporan RK01 Pos Sebulan</span>
 
 </a>
+
 
 <div class="nav-title">
 
@@ -2135,19 +1955,12 @@ SYSTEM
 
 </div>
 
+
 <a href="#">
 
-<span class="nav-icon">
+<span class="nav-icon">⚙</span>
 
-⚙
-
-</span>
-
-<span>
-
-Tetapan
-
-</span>
+<span>Tetapan</span>
 
 </a>
 
@@ -2155,11 +1968,66 @@ Tetapan
 
 </aside>
 
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+<a href="index.html">
+
+<span class="bottom-nav-icon">⌂</span>
+
+<span class="bottom-nav-label">Dashboard</span>
+
+</a>
+
+
+<a href="anggota.html" class="active">
+
+<span class="bottom-nav-icon">♙</span>
+
+<span class="bottom-nav-label">Anggota</span>
+
+</a>
+
+
+<a href="jadual-duty.html">
+
+<span class="bottom-nav-icon">▣</span>
+
+<span class="bottom-nav-label">Duty</span>
+
+</a>
+
+
+<a href="laporan.html">
+
+<span class="bottom-nav-icon">▥</span>
+
+<span class="bottom-nav-label">Laporan</span>
+
+</a>
+
+
+<a href="laporan-anggaran.html">
+
+<span class="bottom-nav-icon">◫</span>
+
+<span class="bottom-nav-label">Anggaran</span>
+
+</a>
+
+</nav>
+
+
 <!-- =====================================================
      MAIN
 ===================================================== -->
 
 <main class="main">
+
 
 <div class="topbar">
 
@@ -2181,6 +2049,7 @@ Wilayah Terengganu
 
 </div>
 
+
 <div class="system-status">
 
 <span class="status-dot"></span>
@@ -2191,7 +2060,9 @@ System Online
 
 </div>
 
+
 <div class="content">
+
 
 <!-- =====================================================
      HERO
@@ -2219,6 +2090,7 @@ Pengurusan data anggota Polis Bantuan FGVSSSB Wilayah Terengganu.
 
 </div>
 
+
 <!-- =====================================================
      FILTER
 ===================================================== -->
@@ -2241,6 +2113,7 @@ Carian & Filter Anggota
 
 </div>
 
+
 <div class="filter-grid">
 
 <div class="form-group">
@@ -2253,7 +2126,6 @@ Cari No. SKB atau Nama
 
 <input
 
-```
 type="text"
 
 id="cari"
@@ -2261,11 +2133,11 @@ id="cari"
 placeholder="Masukkan No. SKB atau Nama..."
 
 oninput="paparAnggota()"
-```
 
 >
 
 </div>
+
 
 <div class="form-group">
 
@@ -2277,11 +2149,9 @@ Filter Pos
 
 <select
 
-```
 id="filterPos"
 
 onchange="paparAnggota()"
-```
 
 >
 
@@ -2295,13 +2165,12 @@ Memuatkan Pos...
 
 </div>
 
+
 <button
 
-```
 class="btn btn-primary"
 
 onclick="bukaTambah()"
-```
 
 >
 
@@ -2312,6 +2181,7 @@ onclick="bukaTambah()"
 </div>
 
 </div>
+
 
 <!-- =====================================================
      TABLE
@@ -2335,6 +2205,7 @@ Data Semasa
 
 </div>
 
+
 <div class="table-wrapper">
 
 <table>
@@ -2343,81 +2214,34 @@ Data Semasa
 
 <tr>
 
-<th>
+<th>No. SKB</th>
 
-No. SKB
+<th>No. Anggota</th>
 
-</th>
+<th>Nama</th>
 
-<th>
+<th>Pangkat</th>
 
-No. Anggota
+<th>Kawasan</th>
 
-</th>
+<th>Pos</th>
 
-<th>
+<th>Unit</th>
 
-Nama
+<th>Jawatan</th>
 
-</th>
+<th>Ketua Pos</th>
 
-<th>
+<th>Ketua Unit</th>
 
-Pangkat
+<th>Status</th>
 
-</th>
-
-<th>
-
-Kawasan
-
-</th>
-
-<th>
-
-Pos
-
-</th>
-
-<th>
-
-Unit
-
-</th>
-
-<th>
-
-Jawatan
-
-</th>
-
-<th>
-
-Ketua Pos
-
-</th>
-
-<th>
-
-Ketua Unit
-
-</th>
-
-<th>
-
-Status
-
-</th>
-
-<th>
-
-Tindakan
-
-</th>
+<th>Tindakan</th>
 
 </tr>
 
 </thead>
+
 
 <tbody id="senaraiAnggota">
 
@@ -2425,11 +2249,9 @@ Tindakan
 
 <td
 
-```
 colspan="12"
 
 class="loading"
-```
 
 >
 
@@ -2447,6 +2269,7 @@ Memuatkan data...
 
 </div>
 
+
 <footer class="footer">
 
 FPB DUTY SYSTEM —
@@ -2461,11 +2284,13 @@ Operational Duty Management System
 
 </footer>
 
+
 </div>
 
 </main>
 
 </div>
+
 
 <!-- =====================================================
      MODAL ANGGOTA
@@ -2473,15 +2298,14 @@ Operational Duty Management System
 
 <div
 
-```
 id="modalAnggota"
 
 class="modal"
-```
 
 >
 
 <div class="modal-content">
+
 
 <div class="modal-header">
 
@@ -2491,13 +2315,12 @@ Tambah Anggota
 
 </h2>
 
+
 <button
 
-```
 class="close"
 
 onclick="tutupModal()"
-```
 
 >
 
@@ -2507,23 +2330,25 @@ onclick="tutupModal()"
 
 </div>
 
+
 <input
 
-```
 type="hidden"
 
 id="editNoSkb"
-```
 
 >
 
+
 <div class="form-grid">
+
 
 <div class="form-section">
 
 MAKLUMAT ANGGOTA
 
 </div>
+
 
 <div class="form-field">
 
@@ -2535,15 +2360,14 @@ No. SKB
 
 <input
 
-```
 type="text"
 
 id="noSkb"
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2555,15 +2379,14 @@ No. Anggota
 
 <input
 
-```
 type="text"
 
 id="noAnggota"
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2575,15 +2398,14 @@ Nama
 
 <input
 
-```
 type="text"
 
 id="nama"
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2605,6 +2427,7 @@ Pangkat
 
 </div>
 
+
 <div class="form-field">
 
 <label>
@@ -2615,7 +2438,6 @@ Wilayah
 
 <input
 
-```
 type="text"
 
 id="wilayah"
@@ -2623,11 +2445,11 @@ id="wilayah"
 value="Terengganu"
 
 readonly
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2661,6 +2483,7 @@ F105-Chalok
 
 </div>
 
+
 <div class="form-field">
 
 <label>
@@ -2681,6 +2504,7 @@ Pos
 
 </div>
 
+
 <div class="form-field">
 
 <label>
@@ -2700,6 +2524,7 @@ Unit
 </select>
 
 </div>
+
 
 <div class="form-field">
 
@@ -2757,6 +2582,7 @@ POW
 
 </div>
 
+
 <div class="form-field">
 
 <label>
@@ -2767,17 +2593,16 @@ Ketua Pos
 
 <input
 
-```
 type="text"
 
 id="ketuaPos"
 
 readonly
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2789,17 +2614,16 @@ Ketua Unit
 
 <input
 
-```
 type="text"
 
 id="ketuaUnit"
 
 readonly
-```
 
 >
 
 </div>
+
 
 <div class="form-field">
 
@@ -2829,15 +2653,14 @@ Tidak Aktif
 
 </div>
 
+
 <div class="modal-actions">
 
 <button
 
-```
 class="btn btn-primary"
 
 onclick="simpanAnggota()"
-```
 
 >
 
@@ -2845,13 +2668,12 @@ onclick="simpanAnggota()"
 
 </button>
 
+
 <button
 
-```
 class="btn btn-cancel"
 
 onclick="tutupModal()"
-```
 
 >
 
@@ -2865,29 +2687,27 @@ Batal
 
 </div>
 
+
 <!-- =====================================================
      POPUP
 ===================================================== -->
 
 <div
 
-```
 id="popupMesej"
 
 class="popup"
-```
 
 >
 
 <div class="popup-box">
 
+
 <div
 
-```
 id="popupIcon"
 
 class="popup-icon"
-```
 
 >
 
@@ -2895,11 +2715,13 @@ class="popup-icon"
 
 </div>
 
+
 <h3 id="popupTajuk">
 
 Makluman
 
 </h3>
+
 
 <p id="popupText">
 
@@ -2907,11 +2729,10 @@ Makluman
 
 </p>
 
+
 <button
 
-```
 onclick="tutupPopup()"
-```
 
 >
 
@@ -2923,21 +2744,24 @@ OK
 
 </div>
 
+
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
 
 <script
 
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
 ></script>
+
 
 <script
 
-    src="supabase.js"
+src="supabase.js"
 
 ></script>
+
 
 <script>
 
@@ -4149,6 +3973,7 @@ async function simpanAnggota() {
 
     }
 
+
     else {
 
 
@@ -4418,11 +4243,13 @@ function paparPopup(
 
     }
 
+
     else if (jenis === "error") {
 
         icon.textContent = "✕";
 
     }
+
 
     else {
 
