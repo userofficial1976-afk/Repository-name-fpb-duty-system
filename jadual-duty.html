@@ -2824,138 +2824,225 @@ placeholder="Masukkan Jam Tampung"
 
 <div class="card">
 
+    <div class="card-title">
 
-<div class="card-title">
+        <div class="section-number">
+            4
+        </div>
 
-<div class="section-number">
+        <h2>
+            Hari Khas Bertugas
+        </h2>
 
-4
+    </div>
+
+
+    <div class="special-duty-grid">
+
+
+        <!-- =========================================
+             OFFDAY
+        ========================================== -->
+
+        <div class="special-box offday-box">
+
+            <h3>
+                🟠 OFFDAY BERTUGAS
+            </h3>
+
+
+            <div class="special-row">
+
+                <label class="checkbox-label">
+
+                    <input
+                        type="checkbox"
+                        id="hariOffday"
+                    >
+
+                    Hari Offday Bertugas
+
+                </label>
+
+
+                <div class="form-group">
+
+                    <label>
+                        RM HARI
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rmHariOffday"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="special-calculation">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Jam KLM Offday
+                    </label>
+
+                    <input
+                        type="number"
+                        id="jamoffday"
+                        min="0"
+                        step="0.5"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        RM JAM
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rmJamOffday"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        JUMLAH
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jumlahOffday"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             CUTI AM
+        ========================================== -->
+
+        <div class="special-box cutiam-box">
+
+            <h3>
+                🔴 CUTI AM BERTUGAS
+            </h3>
+
+
+            <div class="special-row">
+
+                <label class="checkbox-label">
+
+                    <input
+                        type="checkbox"
+                        id="hariCutiam"
+                    >
+
+                    Hari Cuti Am Bertugas
+
+                </label>
+
+
+                <div class="form-group">
+
+                    <label>
+                        RM HARI
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rmHariCutiam"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="special-calculation">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Jam KLM Cuti Am
+                    </label>
+
+                    <input
+                        type="number"
+                        id="jamCutiam"
+                        min="0"
+                        step="0.5"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        RM JAM
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rmJamCutiam"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        JUMLAH
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jumlahCutiam"
+                        readonly
+                        value="RM 0.00"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
 
 </div>
-
-
-<h2>
-
-Hari Khas Bertugas
-
-</h2>
-
-</div>
-
-
-<div class="special-duty-grid">
-
-
-<div class="special-box offday-box">
-
-
-<h3>
-
-🟠 Offday Bertugas
-
-</h3>
-
-
-<label class="checkbox-label">
-
-<input
-
-type="checkbox"
-
-id="hariOffday"
-
->
-
-Hari Offday Bertugas
-
-</label>
-<div class="form-group">
-
-
-<label>
-
-Jam KLM Offday
-
-</label>
-
-
-<input
-
-type="number"
-
-id="jamoffday"
-
-min="0"
-
-step="0.5"
-
-value="0"
-
->
-
-</div>
-
-</div>
-
-
-<div class="special-box cutiam-box">
-
-
-<h3>
-
-🔴 Cuti Am Bertugas
-
-</h3>
-
-
-<label class="checkbox-label">
-
-<input
-
-type="checkbox"
-
-id="hariCutiam"
-
->
-
-Hari Cuti Am Bertugas
-
-</label>
-
-
-<div class="form-group">
-
-
-<label>
-
-Jam KLM Cuti Am
-
-</label>
-
-
-<input
-
-type="number"
-
-id="jamCutiam"
-
-min="0"
-
-step="0.5"
-
-value="0"
-
->
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
 
 <!-- =====================================================
      SIMPAN
