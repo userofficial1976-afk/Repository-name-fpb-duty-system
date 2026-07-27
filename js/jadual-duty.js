@@ -3801,7 +3801,106 @@ async function padamDuty(
 
 }
 
+/* =====================================================
+   SPECIAL DUTY ROW
+===================================================== */
 
+.special-row {
+
+    display: grid;
+
+    grid-template-columns:
+
+        1fr
+
+        150px;
+
+    gap: 18px;
+
+    align-items: end;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =====================================================
+   SPECIAL CALCULATION
+===================================================== */
+
+.special-calculation {
+
+    display: grid;
+
+    grid-template-columns:
+
+        1fr
+
+        150px
+
+        150px;
+
+    gap: 15px;
+
+}
+
+
+/* =====================================================
+   SPECIAL MONEY
+===================================================== */
+
+#rmHariOffday,
+
+#rmJamOffday,
+
+#jumlahOffday,
+
+#rmHariCutiam,
+
+#rmJamCutiam,
+
+#jumlahCutiam {
+
+    background: #f2f7f8;
+
+    font-weight: 700;
+
+}
+
+
+/* JUMLAH OFFDAY */
+
+#jumlahOffday {
+
+    color: #c47b20;
+
+}
+
+
+/* JUMLAH CUTI AM */
+
+#jumlahCutiam {
+
+    color: #c45f5f;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px) {
+
+    .special-row,
+
+    .special-calculation {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
 // =====================================================
 // CONFIRM POPUP
 // =====================================================
