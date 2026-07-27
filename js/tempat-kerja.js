@@ -1,7 +1,30 @@
 /* =====================================================
    FPB DUTY SYSTEM
    KOD TEMPAT KERJA
+   VERSI PENUH — MULTI POS
 ===================================================== */
+
+
+/* =====================================================
+   TABLE DATABASE
+===================================================== */
+
+const TABLE_TEMPAT_KERJA =
+    "kod_tempat_kerja";
+
+const TABLE_ANGGOTA =
+    "Data_Anggota";
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let posDipilih = [];
+
+let dataTempatKerja = [];
+
+let idSedangEdit = null;
 
 
 /* =====================================================
@@ -16,25 +39,49 @@ document.addEventListener(
 
         muatkanTempatKerja();
 
+
+        const unit =
+            document.getElementById(
+                "unit"
+            );
+
+
+        if (unit) {
+
+            unit.addEventListener(
+                "change",
+                function () {
+
+                    posDipilih = [];
+
+                    paparPosDipilih();
+
+                    muatkanPos();
+
+                }
+            );
+
+        }
+
     }
 );
 
 
 /* =====================================================
-   LOAD POS DARIPADA Data_Anggota
+   LOAD SENARAI POS
+   SUMBER: Data_Anggota.pos
 ===================================================== */
 
 async function muatkanPos() {
 
+
     const dropdown =
-        document.getElementById("pos");
+        document.getElementById(
+            "pos"
+        );
 
 
     if (!dropdown) {
-
-        console.error(
-            "Element #pos tidak dijumpai"
-        );
 
         return;
 
@@ -54,6 +101,7 @@ async function muatkanPos() {
 
     try {
 
+
         const {
 
             data,
@@ -62,63 +110,113 @@ async function muatkanPos() {
 
         } = await supabaseClient
 
-            .from("Data_Anggota")
+            .from(
 
-            .select("pos");
+                TABLE_ANGGOTA
+
+            )
+
+            .select(
+
+                "pos"
+
+            );
 
 
-        if (error) {
+        if (
+
+            error
+
+        ) {
 
             throw error;
 
         }
 
 
-        const senaraiPos = [
+        const senaraiPos =
 
-            ...new Set(
+            [
 
-                data
+                ...new Set(
 
-                    .map(
+                    (data || [])
 
-                        item => item.pos
+                        .map(
 
-                    )
+                            row =>
 
-                    .filter(
+                                row.pos
 
-                        pos =>
+                        )
 
-                            pos !== null &&
+                        .filter(
 
-                            pos !== undefined &&
+                            pos =>
 
-                            String(pos).trim() !== ""
+                                pos !== null &&
 
-                    )
+                                pos !== undefined &&
 
-                    .map(
+                                String(
 
-                        pos =>
+                                    pos
 
-                            String(pos).trim()
+                                )
 
-                    )
+                                .trim()
 
-            )
+                                !== ""
 
-        ];
+                        )
+
+                        .map(
+
+                            pos =>
+
+                                String(
+
+                                    pos
+
+                                )
+
+                                .trim()
+
+                        )
+
+                )
+
+            ];
 
 
-        senaraiPos.sort();
+        senaraiPos.sort(
+
+            function (
+
+                a,
+
+                b
+
+            ) {
+
+                return a.localeCompare(
+
+                    b,
+
+                    "ms"
+
+                );
+
+            }
+
+        );
 
 
         dropdown.innerHTML = `
 
             <option value="">
 
-                -- Pilih Pos (Tempat Kerja) --
+                -- Pilih Pos --
 
             </option>
 
@@ -127,7 +225,12 @@ async function muatkanPos() {
 
         senaraiPos.forEach(
 
-            function (pos) {
+            function (
+
+                pos
+
+            ) {
+
 
                 const option =
 
@@ -138,10 +241,14 @@ async function muatkanPos() {
                     );
 
 
-                option.value = pos;
+                option.value =
+
+                    pos;
 
 
-                option.textContent = pos;
+                option.textContent =
+
+                    pos;
 
 
                 dropdown.appendChild(
@@ -150,6 +257,7 @@ async function muatkanPos() {
 
                 );
 
+
             }
 
         );
@@ -157,11 +265,16 @@ async function muatkanPos() {
 
     }
 
-    catch (error) {
+    catch (
+
+        error
+
+    ) {
+
 
         console.error(
 
-            "Gagal ambil Data_Anggota:",
+            "Gagal memuatkan Pos:",
 
             error
 
@@ -181,9 +294,9 @@ async function muatkanPos() {
 
         paparkanMesej(
 
-            "Gagal ambil Pos: "
+            "Gagal memuatkan Pos: " +
 
-            + error.message,
+            error.message,
 
             "error"
 
@@ -195,7 +308,230 @@ async function muatkanPos() {
 
 
 /* =====================================================
-   SIMPAN DATA
+   TAMBAH POS
+===================================================== */
+
+function tambahPos() {
+
+
+    const dropdown =
+
+        document.getElementById(
+
+            "pos"
+
+        );
+
+
+    if (!dropdown) {
+
+        return;
+
+    }
+
+
+    const pos =
+
+        dropdown.value.trim();
+
+
+    if (!pos) {
+
+
+        paparkanMesej(
+
+            "Sila pilih Pos dahulu.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+
+        posDipilih.includes(
+
+            pos
+
+        )
+
+    ) {
+
+
+        paparkanMesej(
+
+            "Pos tersebut telah dipilih.",
+
+            "error"
+
+        );
+
+
+        return;
+
+    }
+
+
+    posDipilih.push(
+
+        pos
+
+    );
+
+
+    paparPosDipilih();
+
+
+    dropdown.value = "";
+
+
+    paparkanMesej(
+
+        "Pos berjaya ditambah.",
+
+        "success"
+
+    );
+
+}
+
+
+/* =====================================================
+   BUANG POS
+===================================================== */
+
+function buangPos(
+
+    index
+
+) {
+
+
+    posDipilih.splice(
+
+        index,
+
+        1
+
+    );
+
+
+    paparPosDipilih();
+
+}
+
+
+/* =====================================================
+   PAPAR POS DIPILIH
+===================================================== */
+
+function paparPosDipilih() {
+
+
+    const container =
+
+        document.getElementById(
+
+            "posDipilih"
+
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    if (
+
+        posDipilih.length === 0
+
+    ) {
+
+
+        container.innerHTML = `
+
+            <span class="empty-pos">
+
+                Belum ada Pos dipilih
+
+            </span>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        posDipilih
+
+            .map(
+
+                function (
+
+                    pos,
+
+                    index
+
+                ) {
+
+
+                    return `
+
+                        <span
+
+                            class="pos-tag"
+
+                        >
+
+                            ${escapeHTML(
+
+                                pos
+
+                            )}
+
+
+                            <button
+
+                                type="button"
+
+                                onclick="buangPos(${index})"
+
+                                title="Buang Pos"
+
+                            >
+
+                                ×
+
+                            </button>
+
+
+                        </span>
+
+                    `;
+
+                }
+
+            )
+
+            .join("");
+
+}
+
+
+/* =====================================================
+   SIMPAN
 ===================================================== */
 
 async function simpanTempatKerja() {
@@ -205,7 +541,11 @@ async function simpanTempatKerja() {
 
         document
 
-            .getElementById("unit")
+            .getElementById(
+
+                "unit"
+
+            )
 
             .value
 
@@ -216,7 +556,11 @@ async function simpanTempatKerja() {
 
         document
 
-            .getElementById("kodTempatKerja")
+            .getElementById(
+
+                "kodTempatKerja"
+
+            )
 
             .value
 
@@ -225,18 +569,8 @@ async function simpanTempatKerja() {
             .toUpperCase();
 
 
-    const namaTempatKerja =
-
-        document
-
-            .getElementById("pos")
-
-            .value
-
-            .trim();
-
-
     if (!unit) {
+
 
         paparkanMesej(
 
@@ -246,12 +580,14 @@ async function simpanTempatKerja() {
 
         );
 
+
         return;
 
     }
 
 
     if (!kodTK) {
+
 
         paparkanMesej(
 
@@ -261,30 +597,122 @@ async function simpanTempatKerja() {
 
         );
 
+
         return;
 
     }
 
 
-    if (!namaTempatKerja) {
+    if (
+
+        posDipilih.length === 0
+
+    ) {
+
 
         paparkanMesej(
 
-            "Sila pilih Pos.",
+            "Sila pilih sekurang-kurangnya satu Pos.",
 
             "error"
 
         );
 
+
         return;
 
     }
 
 
+    /*
+        CONTOH:
+
+        posDipilih:
+
+        [
+            "Pos A",
+            "Pos B"
+        ]
+
+        AKAN DISIMPAN SEBAGAI:
+
+        "Pos A & Pos B"
+
+        DALAM COLUMN:
+
+        nama_tempat_kerja
+    */
+
+
+    const namaTempatKerja =
+
+        posDipilih.join(
+
+            " & "
+
+        );
+
+
     try {
 
 
-        /* SEMAK DUPLIKAT */
+        /* =============================================
+           SEMAK KOD TK BERGANDA
+        ============================================= */
+
+
+        let querySemak =
+
+            supabaseClient
+
+                .from(
+
+                    TABLE_TEMPAT_KERJA
+
+                )
+
+                .select(
+
+                    "id"
+
+                )
+
+                .eq(
+
+                    "unit",
+
+                    unit
+
+                )
+
+                .eq(
+
+                    "kod_tempat_kerja",
+
+                    kodTK
+
+                );
+
+
+        if (
+
+            idSedangEdit
+
+        ) {
+
+
+            querySemak =
+
+                querySemak.neq(
+
+                    "id",
+
+                    idSedangEdit
+
+                );
+
+        }
+
 
         const {
 
@@ -292,38 +720,14 @@ async function simpanTempatKerja() {
 
             error: errorSemakan
 
-        } = await supabaseClient
-
-            .from(
-
-                "kod_tempat_kerja"
-
-            )
-
-            .select(
-
-                "id"
-
-            )
-
-            .eq(
-
-                "unit",
-
-                unit
-
-            )
-
-            .eq(
-
-                "kod_tempat_kerja",
-
-                kodTK
-
-            );
+        } = await querySemak;
 
 
-        if (errorSemakan) {
+        if (
+
+            errorSemakan
+
+        ) {
 
             throw errorSemakan;
 
@@ -338,6 +742,7 @@ async function simpanTempatKerja() {
 
         ) {
 
+
             paparkanMesej(
 
                 "Kod TK tersebut sudah wujud untuk Unit ini.",
@@ -346,98 +751,145 @@ async function simpanTempatKerja() {
 
             );
 
+
             return;
 
         }
 
 
-        /* =================================================
-           PENTING:
-           SIMPAN nama_tempat_kerja
-           BUKAN pos
-        ================================================= */
+        /* =============================================
+           DATA DATABASE ASAL
+        ============================================= */
 
 
-        const {
-
-            error
-
-        } = await supabaseClient
-
-            .from(
-
-                "kod_tempat_kerja"
-
-            )
-
-            .insert([
-
-                {
-
-                    unit:
-
-                        unit,
-
-                    kod_tempat_kerja:
-
-                        kodTK,
-
-                    nama_tempat_kerja:
-
-                        namaTempatKerja,
-
-                    status:
-
-                        "Aktif"
-
-                }
-
-            ]);
+        const rekod = {
 
 
-        if (error) {
+            unit:
 
-            throw error;
+                unit,
+
+
+            kod_tempat_kerja:
+
+                kodTK,
+
+
+            nama_tempat_kerja:
+
+                namaTempatKerja,
+
+
+            status:
+
+                "Aktif"
+
+        };
+
+
+        let response;
+
+
+        if (
+
+            idSedangEdit
+
+        ) {
+
+
+            response =
+
+                await supabaseClient
+
+                    .from(
+
+                        TABLE_TEMPAT_KERJA
+
+                    )
+
+                    .update(
+
+                        rekod
+
+                    )
+
+                    .eq(
+
+                        "id",
+
+                        idSedangEdit
+
+                    );
+
+        }
+
+        else {
+
+
+            response =
+
+                await supabaseClient
+
+                    .from(
+
+                        TABLE_TEMPAT_KERJA
+
+                    )
+
+                    .insert(
+
+                        [
+
+                            rekod
+
+                        ]
+
+                    );
+
+        }
+
+
+        if (
+
+            response.error
+
+        ) {
+
+            throw response.error;
 
         }
 
 
         paparkanMesej(
 
-            "Kod Tempat Kerja berjaya disimpan.",
+            idSedangEdit
+
+                ?
+
+                "Kod Tempat Kerja berjaya dikemaskini."
+
+                :
+
+                "Kod Tempat Kerja berjaya disimpan.",
 
             "success"
 
         );
 
 
-        document
-
-            .getElementById("unit")
-
-            .value = "";
+        resetBorang();
 
 
-        document
-
-            .getElementById("kodTempatKerja")
-
-            .value = "";
-
-
-        document
-
-            .getElementById("pos")
-
-            .value = "";
-
-
-        muatkanTempatKerja();
+        await muatkanTempatKerja();
 
 
     }
 
-    catch (error) {
+    catch (
+
+        error
+
+    ) {
 
 
         console.error(
@@ -451,9 +903,9 @@ async function simpanTempatKerja() {
 
         paparkanMesej(
 
-            "Gagal simpan data: "
+            "Gagal simpan data: " +
 
-            + error.message,
+            error.message,
 
             "error"
 
@@ -465,7 +917,7 @@ async function simpanTempatKerja() {
 
 
 /* =====================================================
-   PAPAR SENARAI
+   LOAD DATA KOD TEMPAT KERJA
 ===================================================== */
 
 async function muatkanTempatKerja() {
@@ -473,13 +925,11 @@ async function muatkanTempatKerja() {
 
     const tbody =
 
-        document
+        document.getElementById(
 
-            .getElementById(
+            "senaraiTempatKerja"
 
-                "senaraiTempatKerja"
-
-            );
+        );
 
 
     if (!tbody) {
@@ -487,6 +937,21 @@ async function muatkanTempatKerja() {
         return;
 
     }
+
+
+    tbody.innerHTML = `
+
+        <tr>
+
+            <td colspan="6">
+
+                Sedang memuatkan data...
+
+            </td>
+
+        </tr>
+
+    `;
 
 
     try {
@@ -502,13 +967,25 @@ async function muatkanTempatKerja() {
 
             .from(
 
-                "kod_tempat_kerja"
+                TABLE_TEMPAT_KERJA
 
             )
 
             .select(
 
-                "id, unit, kod_tempat_kerja, nama_tempat_kerja, status"
+                `
+
+                id,
+
+                unit,
+
+                kod_tempat_kerja,
+
+                nama_tempat_kerja,
+
+                status
+
+                `
 
             )
 
@@ -527,156 +1004,32 @@ async function muatkanTempatKerja() {
             );
 
 
-        if (error) {
+        if (
+
+            error
+
+        ) {
 
             throw error;
 
         }
 
 
-        tbody.innerHTML = "";
+        dataTempatKerja =
 
+            data || [];
 
-        if (
 
-            !data ||
+        paparSenaraiTempatKerja();
 
-            data.length === 0
-
-        ) {
-
-            tbody.innerHTML = `
-
-                <tr>
-
-                    <td colspan="6">
-
-                        Tiada data.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-            return;
-
-        }
-
-
-        data.forEach(
-
-            function (
-
-                item,
-
-                index
-
-            ) {
-
-
-                const tr =
-
-                    document
-
-                        .createElement(
-
-                            "tr"
-
-                        );
-
-
-                tr.innerHTML = `
-
-                    <td>
-
-                        ${index + 1}
-
-                    </td>
-
-
-                    <td>
-
-                        ${escapeHTML(
-
-                            item.unit
-
-                        )}
-
-                    </td>
-
-
-                    <td>
-
-                        <strong>
-
-                            ${escapeHTML(
-
-                                item.kod_tempat_kerja
-
-                            )}
-
-                        </strong>
-
-                    </td>
-
-
-                    <td>
-
-                        ${escapeHTML(
-
-                            item.nama_tempat_kerja
-
-                        )}
-
-                    </td>
-
-
-                    <td>
-
-                        ${escapeHTML(
-
-                            item.status
-
-                        )}
-
-                    </td>
-
-
-                    <td>
-
-                        <button
-
-                            class="btn-danger"
-
-                            onclick=
-
-                            "padamTempatKerja('${item.id}')"
-
-                        >
-
-                            🗑 Padam
-
-                        </button>
-
-                    </td>
-
-                `;
-
-
-                tbody.appendChild(
-
-                    tr
-
-                );
-
-            }
-
-        );
 
     }
 
-    catch (error) {
+    catch (
+
+        error
+
+    ) {
 
 
         console.error(
@@ -688,11 +1041,551 @@ async function muatkanTempatKerja() {
         );
 
 
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="6">
+
+                    Gagal memuatkan data:
+
+                    ${escapeHTML(
+
+                        error.message
+
+                    )}
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   PAPAR TABLE
+===================================================== */
+
+function paparSenaraiTempatKerja() {
+
+
+    const tbody =
+
+        document.getElementById(
+
+            "senaraiTempatKerja"
+
+        );
+
+
+    if (!tbody) {
+
+        return;
+
+    }
+
+
+    if (
+
+        dataTempatKerja.length === 0
+
+    ) {
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="6">
+
+                    Tiada data.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+
+        dataTempatKerja
+
+            .map(
+
+                function (
+
+                    item,
+
+                    index
+
+                ) {
+
+
+                    const status =
+
+                        item.status ||
+
+                        "Aktif";
+
+
+                    const kelasStatus =
+
+                        String(
+
+                            status
+
+                        )
+
+                        .toLowerCase()
+
+                        ===
+
+                        "aktif"
+
+                            ?
+
+                            "badge-aktif"
+
+                            :
+
+                            "badge-tidak-aktif";
+
+
+                    return `
+
+                        <tr>
+
+
+                            <td>
+
+                                ${index + 1}
+
+                            </td>
+
+
+                            <td>
+
+                                ${escapeHTML(
+
+                                    item.unit
+
+                                )}
+
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+
+                                    ${escapeHTML(
+
+                                        item.kod_tempat_kerja
+
+                                    )}
+
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+
+                                ${escapeHTML(
+
+                                    item.nama_tempat_kerja
+
+                                )}
+
+                            </td>
+
+
+                            <td>
+
+                                <span
+
+                                    class="badge ${kelasStatus}"
+
+                                >
+
+                                    ${escapeHTML(
+
+                                        status
+
+                                    )}
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+
+                                <button
+
+                                    class="btn-edit"
+
+                                    onclick="editTempatKerja('${escapeJS(
+
+                                        item.id
+
+                                    )}')"
+
+                                >
+
+                                    ✏️ Edit
+
+                                </button>
+
+
+                                <button
+
+                                    class="btn-danger"
+
+                                    onclick="padamTempatKerja('${escapeJS(
+
+                                        item.id
+
+                                    )}')"
+
+                                >
+
+                                    🗑 Padam
+
+                                </button>
+
+
+                            </td>
+
+
+                        </tr>
+
+                    `;
+
+                }
+
+            )
+
+            .join("");
+
+}
+
+
+/* =====================================================
+   EDIT
+===================================================== */
+
+function editTempatKerja(
+
+    id
+
+) {
+
+
+    const item =
+
+        dataTempatKerja.find(
+
+            function (
+
+                row
+
+            ) {
+
+
+                return String(
+
+                    row.id
+
+                )
+
+                ===
+
+                String(
+
+                    id
+
+                );
+
+            }
+
+        );
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+
+    idSedangEdit =
+
+        item.id;
+
+
+    document
+
+        .getElementById(
+
+            "unit"
+
+        )
+
+        .value =
+
+            item.unit ||
+
+            "";
+
+
+    document
+
+        .getElementById(
+
+            "kodTempatKerja"
+
+        )
+
+        .value =
+
+            item.kod_tempat_kerja ||
+
+            "";
+
+
+    /*
+        CONTOH DATABASE:
+
+        Pos A & Pos B
+
+        AKAN DIBACA SEMULA MENJADI:
+
+        [
+            "Pos A",
+            "Pos B"
+        ]
+    */
+
+
+    posDipilih =
+
+        String(
+
+            item.nama_tempat_kerja ||
+
+            ""
+
+        )
+
+        .split(
+
+            "&"
+
+        )
+
+        .map(
+
+            function (
+
+                pos
+
+            ) {
+
+
+                return pos.trim();
+
+            }
+
+        )
+
+        .filter(
+
+            Boolean
+
+        );
+
+
+    paparPosDipilih();
+
+
+    muatkanPos();
+
+
+    paparkanMesej(
+
+        "Mod edit aktif. Ubah data dan klik SIMPAN.",
+
+        "success"
+
+    );
+
+
+    window.scrollTo(
+
+        {
+
+            top:
+
+                0,
+
+            behavior:
+
+                "smooth"
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   PADAM
+===================================================== */
+
+async function padamTempatKerja(
+
+    id
+
+) {
+
+
+    const item =
+
+        dataTempatKerja.find(
+
+            function (
+
+                row
+
+            ) {
+
+
+                return String(
+
+                    row.id
+
+                )
+
+                ===
+
+                String(
+
+                    id
+
+                );
+
+            }
+
+        );
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+
+    const sah =
+
+        confirm(
+
+            "Padam Kod TK " +
+
+            item.kod_tempat_kerja +
+
+            " untuk Unit " +
+
+            item.unit +
+
+            "?"
+
+        );
+
+
+    if (!sah) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const {
+
+            error
+
+        } = await supabaseClient
+
+            .from(
+
+                TABLE_TEMPAT_KERJA
+
+            )
+
+            .delete()
+
+            .eq(
+
+                "id",
+
+                id
+
+            );
+
+
+        if (
+
+            error
+
+        ) {
+
+            throw error;
+
+        }
+
+
         paparkanMesej(
 
-            "Gagal memuatkan senarai: "
+            "Data berjaya dipadam.",
 
-            + error.message,
+            "success"
+
+        );
+
+
+        await muatkanTempatKerja();
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        paparkanMesej(
+
+            "Gagal padam data: " +
+
+            error.message,
 
             "error"
 
@@ -704,77 +1597,71 @@ async function muatkanTempatKerja() {
 
 
 /* =====================================================
-   PADAM DATA
+   RESET
 ===================================================== */
 
-async function padamTempatKerja(id) {
+function resetBorang() {
 
 
-    if (
+    idSedangEdit =
 
-        !confirm(
-
-            "Adakah anda pasti mahu memadam data ini?"
-
-        )
-
-    ) {
-
-        return;
-
-    }
+        null;
 
 
-    const {
+    posDipilih =
 
-        error
+        [];
 
-    } = await supabaseClient
 
-        .from(
+    const unit =
 
-            "kod_tempat_kerja"
+        document.getElementById(
 
-        )
-
-        .delete()
-
-        .eq(
-
-            "id",
-
-            id
+            "unit"
 
         );
 
 
-    if (error) {
+    const kod =
 
-        paparkanMesej(
+        document.getElementById(
 
-            "Gagal padam data: "
-
-            + error.message,
-
-            "error"
+            "kodTempatKerja"
 
         );
 
-        return;
+
+    const pos =
+
+        document.getElementById(
+
+            "pos"
+
+        );
+
+
+    if (unit) {
+
+        unit.value = "";
 
     }
 
 
-    paparkanMesej(
+    if (kod) {
 
-        "Data berjaya dipadam.",
+        kod.value = "";
 
-        "success"
-
-    );
+    }
 
 
-    muatkanTempatKerja();
+    if (pos) {
+
+        pos.value = "";
+
+    }
+
+
+    paparPosDipilih();
 
 }
 
@@ -794,13 +1681,11 @@ function paparkanMesej(
 
     const div =
 
-        document
+        document.getElementById(
 
-            .getElementById(
+            "mesej"
 
-                "mesej"
-
-            );
+        );
 
 
     if (!div) {
@@ -810,10 +1695,19 @@ function paparkanMesej(
     }
 
 
-    div.className = jenis;
+    div.className =
+
+        jenis;
 
 
-    div.textContent = mesej;
+    div.textContent =
+
+        mesej;
+
+
+    div.style.display =
+
+        "block";
 
 }
 
@@ -822,7 +1716,11 @@ function paparkanMesej(
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value) {
+function escapeHTML(
+
+    value
+
+) {
 
 
     if (
@@ -838,7 +1736,11 @@ function escapeHTML(value) {
     }
 
 
-    return String(value)
+    return String(
+
+        value
+
+    )
 
         .replace(
 
@@ -877,6 +1779,42 @@ function escapeHTML(value) {
             /'/g,
 
             "&#039;"
+
+        );
+
+}
+
+
+/* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
+
+function escapeJS(
+
+    value
+
+) {
+
+
+    return String(
+
+        value
+
+    )
+
+        .replace(
+
+            /\\/g,
+
+            "\\\\"
+
+        )
+
+        .replace(
+
+            /'/g,
+
+            "\\'"
 
         );
 
