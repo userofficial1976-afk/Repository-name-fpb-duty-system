@@ -2474,7 +2474,17 @@ async function simpanDuty() {
 
                 ),
 
+            jam_offday_bertugas:
 
+                Number(
+
+                    getValue(
+
+                        "jamoffday"
+
+                    ) || 0
+
+                ),
             dikemaskini_oleh:
 
                 "Sistem",
