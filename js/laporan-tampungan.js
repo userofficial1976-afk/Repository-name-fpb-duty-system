@@ -235,7 +235,130 @@ async function paparLaporanTampungan(){
 
 }
 
+/* =====================================================
+   ISI DROPDOWN BULAN
+===================================================== */
 
+function isiBulanTahun(){
+
+
+    let bulan =
+    document.getElementById("filterBulan");
+
+
+    let tahun =
+    document.getElementById("filterTahun");
+
+
+
+    if(bulan){
+
+
+        let namaBulan = [
+
+            "Januari",
+            "Februari",
+            "Mac",
+            "April",
+            "Mei",
+            "Jun",
+            "Julai",
+            "Ogos",
+            "September",
+            "Oktober",
+            "November",
+            "Disember"
+
+        ];
+
+
+
+        bulan.innerHTML = `
+
+        <option value="">
+        -- Pilih Bulan --
+        </option>
+
+        `;
+
+
+
+        namaBulan.forEach((nama,index)=>{
+
+
+            bulan.innerHTML += `
+
+            <option value="${index+1}">
+                ${nama}
+            </option>
+
+            `;
+
+
+        });
+
+
+    }
+
+
+
+    if(tahun){
+
+
+        tahun.innerHTML = `
+
+        <option value="">
+        -- Pilih Tahun --
+        </option>
+
+        `;
+
+
+
+        let tahunSekarang =
+        new Date().getFullYear();
+
+
+
+        for(
+            let i=tahunSekarang-2;
+            i<=tahunSekarang+1;
+            i++
+        ){
+
+
+            tahun.innerHTML += `
+
+            <option value="${i}">
+                ${i}
+            </option>
+
+            `;
+
+
+        }
+
+
+    }
+
+
+}
+
+
+
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    isiBulanTahun();
+
+
+});
 
 /* =====================================================
    AUTO REFRESH FILTER
