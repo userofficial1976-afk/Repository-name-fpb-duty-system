@@ -88,11 +88,18 @@ let { data, error } = await supabaseClient
 
 if(error){
 
-    console.error("DETAIL ERROR:");
-    console.log(error.message);
-    console.log(error.details);
-    console.log(error.hint);
-    console.log(error.code);
+    console.log("=== SUPABASE ERROR DETAIL ===");
+
+    console.log("MESSAGE :", error.message);
+
+    console.log("DETAILS :", error.details);
+
+    console.log("HINT :", error.hint);
+
+    console.log("CODE :", error.code);
+
+    console.log("FULL :", JSON.stringify(error));
+
 
     return;
 
