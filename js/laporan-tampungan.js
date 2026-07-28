@@ -54,7 +54,7 @@ async function paparLaporanTampungan(){
 
 
 
-    let {data,error}=await supabase
+    let {data,error}=await supabaseClient
 
 
     .from("jadual_duty")
