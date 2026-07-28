@@ -98,14 +98,6 @@ async function paparLaporanTampungan(){
     .neq(
         "pos_tampungan",
         ""
-    )
-
-
-    .order(
-        "pos_tampungan",
-        {
-            ascending:true
-        }
     );
 
 
