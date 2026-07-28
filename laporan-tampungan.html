@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Laporan Pos Tampungan — FPB Duty System
+</title>
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:"Segoe UI",Arial,sans-serif;
+
+}
+
+
+body{
+
+background:#f4f7f8;
+color:#263238;
+
+}
+
+
+.app{
+
+display:flex;
+min-height:100vh;
+
+}
+
+
+
+/* =====================================================
+ SIDEBAR
+===================================================== */
+
+
+.sidebar{
+
+width:290px;
+background:linear-gradient(180deg,#e8f1f3,#dcecef);
+position:fixed;
+top:0;
+bottom:0;
+left:0;
+padding:24px 16px;
+border-right:1px solid #cbdde1;
+
+}
+
+
+.brand{
+
+display:flex;
+align-items:center;
+gap:14px;
+padding-bottom:25px;
+border-bottom:1px solid #cbdde1;
+
+}
+
+
+.logo{
+
+width:58px;
+height:58px;
+background:white;
+padding:5px;
+border-radius:12px;
+
+}
+
+
+.brand h1{
+
+font-size:17px;
+
+}
+
+
+.brand p{
+
+font-size:12px;
+color:#6d858b;
+
+}
+
+
+
+.heritage-mark{
+
+margin:22px 10px;
+padding:15px;
+border:1px solid #c6dadd;
+border-radius:12px;
+background:white;
+
+}
+
+
+.heritage-mark strong{
+
+font-size:12px;
+
+}
+
+
+.heritage-mark span{
+
+font-size:11px;
+color:#769097;
+
+}
+
+
+
+.nav-title{
+
+font-size:11px;
+font-weight:bold;
+color:#789096;
+margin:25px 10px 10px;
+
+}
+
+
+
+.nav a{
+
+display:flex;
+gap:14px;
+align-items:center;
+padding:14px;
+border-radius:10px;
+text-decoration:none;
+color:#577178;
+font-weight:600;
+
+}
+
+
+
+.nav a:hover,
+.nav a.active{
+
+background:white;
+color:#247b83;
+
+}
+
+
+
+.nav-icon{
+
+font-size:20px;
+width:25px;
+
+}
+
+
+
+/* =====================================================
+ MAIN
+===================================================== */
+
+
+.main{
+
+margin-left:290px;
+width:calc(100% - 290px);
+
+}
+
+
+
+.topbar{
+
+height:82px;
+background:white;
+border-bottom:1px solid #dce7e9;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 38px;
+
+}
+
+
+
+.page-title h2{
+
+font-size:26px;
+
+}
+
+
+.page-title p{
+
+color:#829398;
+font-size:14px;
+
+}
+
+
+
+.system-status{
+
+background:#e4f2ed;
+color:#3d7662;
+padding:10px 16px;
+border-radius:22px;
+
+}
+
+
+
+/* =====================================================
+ CONTENT
+===================================================== */
+
+
+.content{
+
+padding:32px;
+
+}
+
+
+
+.hero{
+
+background:linear-gradient(135deg,#3d7f86,#5b9da0);
+color:white;
+border-radius:18px;
+padding:35px;
+margin-bottom:30px;
+
+}
+
+
+.hero h1{
+
+font-size:31px;
+
+}
+
+
+
+.card{
+
+background:white;
+border:1px solid #dce7e9;
+border-radius:15px;
+padding:25px;
+margin-bottom:25px;
+
+}
+
+
+
+.card-title{
+
+display:flex;
+align-items:center;
+gap:13px;
+border-bottom:1px solid #edf2f3;
+padding-bottom:15px;
+margin-bottom:20px;
+
+}
+
+
+.section-number{
+
+width:35px;
+height:35px;
+border-radius:10px;
+background:#e1f0f1;
+color:#3d7f86;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+
+}
+
+
+
+/* =====================================================
+ FILTER
+===================================================== */
+
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+
+}
+
+
+.form-group{
+
+display:flex;
+flex-direction:column;
+
+}
+
+
+label{
+
+font-size:13px;
+font-weight:bold;
+color:#71858a;
+margin-bottom:7px;
+
+}
+
+
+select,
+input{
+
+height:44px;
+border:1px solid #cbdde1;
+border-radius:9px;
+padding:0 13px;
+
+}
+
+
+
+.btn{
+
+height:44px;
+border:none;
+border-radius:9px;
+background:linear-gradient(135deg,#3d7f86,#5b9da0);
+color:white;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+
+
+/* =====================================================
+ TABLE
+===================================================== */
+
+
+.table-wrapper{
+
+overflow-x:auto;
+border:1px solid #dce7e9;
+border-radius:12px;
+
+}
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+min-width:1200px;
+
+}
+
+
+th,
+td{
+
+padding:14px;
+border-bottom:1px solid #edf2f3;
+font-size:13px;
+white-space:nowrap;
+
+}
+
+
+th{
+
+background:#f2f7f8;
+color:#71858a;
+
+}
+
+
+
+/* =====================================================
+ MOBILE
+===================================================== */
+
+
+@media(max-width:800px){
+
+.sidebar{
+
+display:none;
+
+}
+
+
+.main{
+
+margin-left:0;
+width:100%;
+
+}
+
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.content{
+
+padding:20px;
+
+}
+
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<aside class="sidebar">
+
+
+<div class="brand">
+
+<img src="logo.png" class="logo">
+
+<div>
+
+<h1>
+POLIS BANTUAN FGVSSSB
+</h1>
+
+<p>
+WILAYAH TERENGGANU
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="heritage-mark">
+
+<strong>
+La Ilaha Illallah
+</strong>
+
+<span>
+• Terengganu Maju, Berkat Sejahtera •
+</span>
+
+</div>
+
+
+
+<div class="nav-title">
+REPORTING
+</div>
+
+
+<nav class="nav">
+
+
+<a href="laporan.html">
+
+<span class="nav-icon">▥</span>
+Laporan
+
+</a>
+
+
+<a href="laporan-anggaran.html">
+
+<span class="nav-icon">◫</span>
+Anggaran Duty Bulanan
+
+</a>
+
+
+<a href="laporan-tampungan.html" class="active">
+
+<span class="nav-icon">▣</span>
+Laporan Pos Tampungan
+
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+<main class="main">
+
+
+
+<div class="topbar">
+
+
+<div class="page-title">
+
+<h2>
+Laporan Pos Tampungan
+</h2>
+
+<p>
+Forecast Duty System / Wilayah Terengganu
+</p>
+
+</div>
+
+
+<div class="system-status">
+● System Online
+</div>
+
+
+</div>
+
+
+
+<div class="content">
+
+
+
+<div class="hero">
+
+<h1>
+📋 LAPORAN POS TAMPUNGAN
+</h1>
+
+<p>
+Paparan rekod tampungan anggota mengikut bulan dan tahun.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<div class="card-title">
+
+<div class="section-number">
+1
+</div>
+
+
+<h2>
+Filter Laporan
+</h2>
+
+
+</div>
+
+
+
+<div class="grid">
+
+
+<div class="form-group">
+
+<label>
+Bulan
+</label>
+
+<select id="bulan">
+
+<option value="">
+-- Pilih Bulan --
+</option>
+
+</select>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Tahun
+</label>
+
+<select id="tahun">
+
+<option value="">
+-- Pilih Tahun --
+</option>
+
+</select>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Tindakan
+</label>
+
+<button class="btn" onclick="paparLaporan()">
+
+🔍 PAPAR LAPORAN
+
+</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<div class="card-title">
+
+<div class="section-number">
+2
+</div>
+
+
+<h2>
+Senarai Pos Tampungan
+</h2>
+
+
+</div>
+
+
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Bil
+</th>
+
+<th>
+Pos Tampungan
+</th>
+
+<th>
+No SKB
+</th>
+
+<th>
+Nama Anggota
+</th>
+
+<th>
+Pos Asal
+</th>
+
+<th>
+Basic Gaji
+</th>
+
+<th>
+Jumlah Jam Tampung
+</th>
+
+<th>
+Jumlah KLM (RM)
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody id="senaraiLaporan">
+
+
+<tr>
+
+<td colspan="8">
+Sila pilih Bulan dan Tahun
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</main>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="js/laporan-tampungan.js"></script>
+
+
+</body>
+
+</html>
