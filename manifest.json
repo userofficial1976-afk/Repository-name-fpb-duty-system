@@ -1,6 +1,6 @@
 {
     "name": "Forecast Duty System — Wilayah Terengganu",
-    "short_name": "FPB Duty",
+    "short_name": "FPS Duty",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#f4f7f8",
