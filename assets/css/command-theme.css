@@ -1,0 +1,41 @@
+:root {
+    --navy:#0B1F33;
+    --blue:#164A7A;
+    --teal:#267F86;
+    --gold:#C9A227;
+    --bg:#F4F7FA;
+}
+
+
+body {
+    background:var(--bg);
+    font-family:"Segoe UI", Arial, sans-serif;
+}
+
+
+.sidebar {
+
+    background:
+    linear-gradient(
+    180deg,
+    #081A2B,
+    #164A7A
+    );
+
+    color:white;
+
+}
+
+
+.hero {
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--navy),
+    var(--teal)
+    );
+
+    color:white;
+
+}
