@@ -4,6 +4,11 @@
 ===================================================== */
 
 
+/* =====================================================
+   PAPAR LAPORAN
+===================================================== */
+
+
 async function paparLaporanTampungan(){
 
 
@@ -19,11 +24,13 @@ async function paparLaporanTampungan(){
     if(!bulan || !tahun){
 
 
-        document.getElementById("senaraiTampungan").innerHTML = `
+        document.getElementById(
+            "senaraiTampungan"
+        ).innerHTML = `
 
         <tr>
             <td colspan="8">
-                Sila pilih bulan dan tahun
+            Sila pilih bulan dan tahun
             </td>
         </tr>
 
@@ -36,7 +43,18 @@ async function paparLaporanTampungan(){
 
 
 
-    let { data, error } = await supabase
+
+    console.log(
+        "FILTER:",
+        bulan,
+        tahun
+    );
+
+
+
+
+
+    let {data,error}=await supabase
 
 
     .from("jadual_duty")
@@ -56,6 +74,7 @@ async function paparLaporanTampungan(){
 
         rm_tampung,
 
+
         Data_Anggota!no_skb
         (
             gaji_pokok
@@ -64,25 +83,22 @@ async function paparLaporanTampungan(){
     `)
 
 
-
     .eq(
         "bulan",
-        Number(bulan)
+        bulan
     )
 
 
     .eq(
         "tahun",
-        Number(tahun)
+        tahun
     )
 
 
-    .not(
+    .neq(
         "pos_tampungan",
-        "is",
-        null
+        ""
     )
-
 
 
     .order(
@@ -95,10 +111,14 @@ async function paparLaporanTampungan(){
 
 
 
+
     if(error){
 
 
-        console.error(error);
+        console.error(
+            "ERROR:",
+            error
+        );
 
 
         alert(
@@ -115,6 +135,15 @@ async function paparLaporanTampungan(){
 
 
 
+    console.log(
+        "DATA:",
+        data
+    );
+
+
+
+
+
     let html="";
 
 
@@ -122,16 +151,21 @@ async function paparLaporanTampungan(){
 
 
 
+
+
     if(!data || data.length===0){
+
 
 
         html=`
 
         <tr>
 
-        <td colspan="8">
-        Tiada rekod Pos Tampungan
-        </td>
+            <td colspan="8">
+
+            Tiada rekod Pos Tampungan
+
+            </td>
 
         </tr>
 
@@ -140,8 +174,6 @@ async function paparLaporanTampungan(){
 
     }
 
-
-
     else {
 
 
@@ -149,62 +181,78 @@ async function paparLaporanTampungan(){
         data.forEach(row=>{
 
 
-            let gaji = 
+
+            let gaji =
             row.Data_Anggota?.gaji_pokok ?? 0;
 
 
 
             html += `
 
+
             <tr>
 
 
-            <td>
-            ${bil++}
-            </td>
+                <td>
+                ${bil++}
+                </td>
 
 
-            <td>
-            ${row.pos_tampungan ?? "-"}
-            </td>
+
+                <td>
+                ${row.pos_tampungan ?? "-"}
+                </td>
 
 
-            <td>
-            ${row.no_skb ?? "-"}
-            </td>
+
+                <td>
+                ${row.no_skb ?? "-"}
+                </td>
 
 
-            <td>
-            ${row.nama_anggota ?? "-"}
-            </td>
+
+                <td>
+                ${row.nama_anggota ?? "-"}
+                </td>
 
 
-            <td>
-            ${row.nama_pos_asal ?? "-"}
-            </td>
+
+                <td>
+                ${row.nama_pos_asal ?? "-"}
+                </td>
 
 
-            <td>
-            RM ${Number(gaji).toFixed(2)}
-            </td>
+
+                <td>
+                RM ${Number(gaji)
+                .toFixed(2)}
+                </td>
 
 
-            <td>
-            ${row.jam_tampungan ?? 0}
-            </td>
+
+                <td>
+                ${row.jam_tampungan ?? 0}
+                </td>
 
 
-            <td>
-            RM ${Number(row.rm_tampung ?? 0).toFixed(2)}
-            </td>
+
+                <td>
+                RM ${Number(
+                    row.rm_tampung ?? 0
+                ).toFixed(2)}
+                </td>
+
 
 
             </tr>
 
+
             `;
 
 
+
         });
+
 
 
     }
@@ -235,12 +283,19 @@ async function paparLaporanTampungan(){
 function isiBulanTahun(){
 
 
+
     let bulan =
-    document.getElementById("filterBulan");
+    document.getElementById(
+        "filterBulan"
+    );
+
 
 
     let tahun =
-    document.getElementById("filterTahun");
+    document.getElementById(
+        "filterTahun"
+    );
+
 
 
 
@@ -248,43 +303,52 @@ function isiBulanTahun(){
     if(bulan){
 
 
-        let bulanNama=[
 
-        "Januari",
-        "Februari",
-        "Mac",
-        "April",
-        "Mei",
-        "Jun",
-        "Julai",
-        "Ogos",
-        "September",
-        "Oktober",
-        "November",
-        "Disember"
+        let senaraiBulan=[
+
+
+            "Januari",
+            "Februari",
+            "Mac",
+            "April",
+            "Mei",
+            "Jun",
+            "Julai",
+            "Ogos",
+            "September",
+            "Oktober",
+            "November",
+            "Disember"
+
 
         ];
 
 
 
+
         bulan.innerHTML=`
+
 
         <option value="">
         -- Pilih Bulan --
         </option>
 
+
         `;
 
 
 
-        bulanNama.forEach((b,i)=>{
+
+        senaraiBulan.forEach(nama=>{
 
 
             bulan.innerHTML +=`
 
-            <option value="${i+1}">
-            ${b}
+
+            <option value="${nama}">
+            ${nama}
             </option>
+
 
             `;
 
@@ -299,16 +363,22 @@ function isiBulanTahun(){
 
 
 
+
     if(tahun){
 
 
+
         tahun.innerHTML=`
+
 
         <option value="">
         -- Pilih Tahun --
         </option>
 
+
         `;
+
+
 
 
 
@@ -317,23 +387,29 @@ function isiBulanTahun(){
 
 
 
+
+
         for(
-            let t=tahunSekarang-2;
-            t<=tahunSekarang+1;
-            t++
+            let i=tahunSekarang-2;
+            i<=tahunSekarang+1;
+            i++
         ){
+
 
 
             tahun.innerHTML +=`
 
-            <option value="${t}">
-            ${t}
+
+            <option value="${i}">
+            ${i}
             </option>
+
 
             `;
 
 
         }
+
 
 
     }
@@ -348,12 +424,79 @@ function isiBulanTahun(){
 
 
 
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
 
     isiBulanTahun();
+
+
+
+});
+
+
+
+
+
+
+
+/* =====================================================
+   BUTTON FILTER
+===================================================== */
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    let bulan =
+    document.getElementById(
+        "filterBulan"
+    );
+
+
+    let tahun =
+    document.getElementById(
+        "filterTahun"
+    );
+
+
+
+
+    if(bulan){
+
+
+        bulan.addEventListener(
+            "change",
+            paparLaporanTampungan
+        );
+
+
+    }
+
+
+
+
+
+    if(tahun){
+
+
+        tahun.addEventListener(
+            "change",
+            paparLaporanTampungan
+        );
+
+
+    }
+
+
 
 
 });
