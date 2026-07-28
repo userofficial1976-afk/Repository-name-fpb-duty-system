@@ -1,41 +1,341 @@
-:root {
-    --navy:#0B1F33;
-    --blue:#164A7A;
-    --teal:#267F86;
-    --gold:#C9A227;
-    --bg:#F4F7FA;
+/* =====================================================
+   FPB DUTY COMMAND CENTER V2
+   MASTER DESIGN SYSTEM
+===================================================== */
+
+
+/* =========================
+   GLOBAL RESET
+========================= */
+
+*{
+
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
 }
 
 
-body {
-    background:var(--bg);
-    font-family:"Segoe UI", Arial, sans-serif;
+body{
+
+    background:#F4F8F8;
+    color:#263238;
+
 }
 
 
-.sidebar {
 
-    background:
-    linear-gradient(
-    180deg,
-    #081A2B,
-    #164A7A
-    );
+/* =========================
+   COLOR SYSTEM
+========================= */
+
+:root{
+
+    --fpb-primary:#247B83;
+
+    --fpb-secondary:#5B9DA0;
+
+    --fpb-light:#E8F1F3;
+
+    --fpb-bg:#F4F8F8;
+
+    --fpb-card:#FFFFFF;
+
+    --fpb-success:#2E8B57;
+
+    --fpb-warning:#D9A441;
+
+    --fpb-danger:#C94C4C;
+
+    --fpb-text:#263238;
+
+}
+
+
+
+/* =========================
+   CARD SYSTEM
+========================= */
+
+.fpb-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:1px solid #e5eeee;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+
+/* =========================
+   BUTTON SYSTEM
+========================= */
+
+
+.fpb-btn{
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+.fpb-btn-primary{
+
+    background:var(--fpb-primary);
 
     color:white;
 
 }
 
 
-.hero {
+
+.fpb-btn-primary:hover{
+
+    opacity:.9;
+
+}
+
+
+
+/* =========================
+   STATUS BADGE
+========================= */
+
+
+.status-online{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#e8f6ee;
+
+    color:var(--fpb-success);
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    font-size:13px;
+
+}
+
+
+
+.status-online::before{
+
+    content:"";
+
+    width:9px;
+
+    height:9px;
+
+    background:var(--fpb-success);
+
+    border-radius:50%;
+
+}
+
+
+
+/* =========================
+   COMMAND HEADER
+========================= */
+
+
+.command-header{
 
     background:
+
     linear-gradient(
     135deg,
-    var(--navy),
-    var(--teal)
+    var(--fpb-primary),
+    var(--fpb-secondary)
     );
 
     color:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+}
+
+
+
+.command-header h1{
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.command-header p{
+
+    opacity:.9;
+
+}
+
+
+
+/* =========================
+   KPI CARD
+========================= */
+
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.kpi-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid #e5eeee;
+
+}
+
+
+
+.kpi-title{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#6b7c83;
+
+}
+
+
+
+.kpi-value{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:var(--fpb-primary);
+
+    margin:15px 0;
+
+}
+
+
+
+.kpi-info{
+
+    font-size:14px;
+
+    color:#5f6f75;
+
+}
+
+
+
+/* =========================
+   GRID LAYOUT
+========================= */
+
+
+.command-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr;
+
+    gap:25px;
+
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+
+@media(max-width:1200px){
+
+
+.kpi-grid{
+
+grid-template-columns:
+repeat(3,1fr);
+
+}
+
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.kpi-grid{
+
+grid-template-columns:
+1fr;
+
+}
+
+
+.command-grid{
+
+grid-template-columns:
+1fr;
+
+}
+
+
+.command-header h1{
+
+font-size:24px;
+
+}
+
 
 }
