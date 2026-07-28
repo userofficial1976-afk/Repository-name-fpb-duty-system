@@ -1,0 +1,281 @@
+/* =====================================================
+   LAPORAN POS TAMPUNGAN
+   FPB DUTY SYSTEM
+===================================================== */
+
+
+async function paparLaporanTampungan(){
+
+
+    let bulan =
+        document.getElementById("filterBulan").value;
+
+
+    let tahun =
+        document.getElementById("filterTahun").value;
+
+
+
+    if(!bulan || !tahun){
+
+        document.getElementById("senaraiTampungan").innerHTML = `
+
+        <tr>
+            <td colspan="8">
+                Sila pilih bulan dan tahun
+            </td>
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    let { data, error } = await supabase
+
+    .from("jadual_duty")
+
+    .select(`
+
+        pos_tampungan,
+
+        no_skb,
+
+        nama_anggota,
+
+        nama_pos_asal,
+
+        jam_tampungan,
+
+        rm_tampung,
+
+        Data_Anggota(
+
+            gaji_pokok
+
+        )
+
+    `)
+
+    .eq("bulan", bulan)
+
+    .eq("tahun", tahun)
+
+    .not(
+        "pos_tampungan",
+        "is",
+        null
+    )
+
+    .order(
+        "pos_tampungan",
+        {
+            ascending:true
+        }
+    )
+
+    .order(
+        "nama_anggota",
+        {
+            ascending:true
+        }
+    );
+
+
+
+
+    if(error){
+
+        console.error(
+            "Ralat laporan tampungan:",
+            error
+        );
+
+        popup(
+            "Ralat",
+            error.message
+        );
+
+        return;
+
+    }
+
+
+
+
+    let html = "";
+
+    let bil = 1;
+
+
+
+    if(!data || data.length === 0){
+
+
+        html = `
+
+        <tr>
+
+            <td colspan="8">
+
+            Tiada rekod Pos Tampungan
+
+            </td>
+
+        </tr>
+
+        `;
+
+
+    }
+
+
+
+    else {
+
+
+
+        data.forEach(row => {
+
+
+
+            let gaji =
+
+            row.Data_Anggota?.gaji_pokok ?? 0;
+
+
+
+            html += `
+
+            <tr>
+
+
+                <td>
+                    ${bil++}
+                </td>
+
+
+
+                <td>
+                    ${row.pos_tampungan ?? "-"}
+                </td>
+
+
+
+                <td>
+                    ${row.no_skb ?? "-"}
+                </td>
+
+
+
+                <td>
+                    ${row.nama_anggota ?? "-"}
+                </td>
+
+
+
+                <td>
+                    ${row.nama_pos_asal ?? "-"}
+                </td>
+
+
+
+                <td>
+
+                    RM ${Number(gaji)
+                    .toFixed(2)}
+
+                </td>
+
+
+
+                <td>
+
+                    ${row.jam_tampungan ?? 0}
+
+                </td>
+
+
+
+                <td>
+
+                    RM ${Number(
+                        row.rm_tampung ?? 0
+                    ).toFixed(2)}
+
+                </td>
+
+
+            </tr>
+
+
+            `;
+
+
+        });
+
+
+    }
+
+
+
+
+    document
+
+    .getElementById(
+        "senaraiTampungan"
+    )
+
+    .innerHTML = html;
+
+
+
+}
+
+
+
+/* =====================================================
+   AUTO REFRESH FILTER
+===================================================== */
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    let bulan =
+    document.getElementById("filterBulan");
+
+
+    let tahun =
+    document.getElementById("filterTahun");
+
+
+
+    if(bulan){
+
+        bulan.addEventListener(
+            "change",
+            paparLaporanTampungan
+        );
+
+    }
+
+
+
+    if(tahun){
+
+        tahun.addEventListener(
+            "change",
+            paparLaporanTampungan
+        );
+
+    }
+
+
+
+});
