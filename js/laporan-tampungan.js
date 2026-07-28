@@ -54,51 +54,33 @@ async function paparLaporanTampungan(){
 
 
 
-    let {data,error}=await supabaseClient
+let { data, error } = await supabaseClient
 
+.from("jadual_duty")
 
-    .from("jadual_duty")
+.select(`
 
+    pos_tampungan,
+    no_skb,
+    nama_anggota,
+    nama_pos_asal,
+    jam_tampungan,
+    rm_tampung,
 
-    .select(`
-
-        pos_tampungan,
-
-        no_skb,
-
-        nama_anggota,
-
-        nama_pos_asal,
-
-        jam_tampungan,
-
-        rm_tampung,
-
-
-        Data_Anggota!no_skb
-        (
-            gaji_pokok
-        )
-
-    `)
-
-
-    .eq(
-        "bulan",
-        bulan
+    Data_Anggota(
+        gaji_pokok
     )
 
+`)
 
-    .eq(
-        "tahun",
-        tahun
-    )
+.eq("bulan", bulan)
 
+.eq("tahun", tahun)
 
-    .neq(
-        "pos_tampungan",
-        ""
-    );
+.neq(
+    "pos_tampungan",
+    ""
+);
 
 
 
