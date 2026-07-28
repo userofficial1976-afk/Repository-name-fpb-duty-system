@@ -67,7 +67,7 @@ let { data, error } = await supabaseClient
     jam_tampungan,
     rm_tampung,
 
-    Data_Anggota(
+    Data_Anggota!jadual_duty_no_skb_fkey(
         gaji_pokok
     )
 
