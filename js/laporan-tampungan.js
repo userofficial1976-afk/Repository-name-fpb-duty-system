@@ -8,15 +8,16 @@ async function paparLaporanTampungan(){
 
 
     let bulan =
-        document.getElementById("filterBulan").value;
+    document.getElementById("filterBulan").value;
 
 
     let tahun =
-        document.getElementById("filterTahun").value;
+    document.getElementById("filterTahun").value;
 
 
 
     if(!bulan || !tahun){
+
 
         document.getElementById("senaraiTampungan").innerHTML = `
 
@@ -28,6 +29,7 @@ async function paparLaporanTampungan(){
 
         `;
 
+
         return;
 
     }
@@ -36,7 +38,9 @@ async function paparLaporanTampungan(){
 
     let { data, error } = await supabase
 
+
     .from("jadual_duty")
+
 
     .select(`
 
@@ -52,17 +56,26 @@ async function paparLaporanTampungan(){
 
         rm_tampung,
 
-        Data_Anggota(
-
+        Data_Anggota!no_skb
+        (
             gaji_pokok
-
         )
 
     `)
 
-    .eq("bulan", bulan)
 
-    .eq("tahun", tahun)
+
+    .eq(
+        "bulan",
+        Number(bulan)
+    )
+
+
+    .eq(
+        "tahun",
+        Number(tahun)
+    )
+
 
     .not(
         "pos_tampungan",
@@ -70,15 +83,10 @@ async function paparLaporanTampungan(){
         null
     )
 
-    .order(
-        "pos_tampungan",
-        {
-            ascending:true
-        }
-    )
+
 
     .order(
-        "nama_anggota",
+        "pos_tampungan",
         {
             ascending:true
         }
@@ -89,41 +97,41 @@ async function paparLaporanTampungan(){
 
     if(error){
 
-        console.error(
-            "Ralat laporan tampungan:",
-            error
-        );
 
-        popup(
-            "Ralat",
+        console.error(error);
+
+
+        alert(
             error.message
         );
 
+
         return;
+
 
     }
 
 
 
 
-    let html = "";
 
-    let bil = 1;
-
+    let html="";
 
 
-    if(!data || data.length === 0){
+    let bil=1;
 
 
-        html = `
+
+    if(!data || data.length===0){
+
+
+        html=`
 
         <tr>
 
-            <td colspan="8">
-
-            Tiada rekod Pos Tampungan
-
-            </td>
+        <td colspan="8">
+        Tiada rekod Pos Tampungan
+        </td>
 
         </tr>
 
@@ -138,12 +146,10 @@ async function paparLaporanTampungan(){
 
 
 
-        data.forEach(row => {
+        data.forEach(row=>{
 
 
-
-            let gaji =
-
+            let gaji = 
             row.Data_Anggota?.gaji_pokok ?? 0;
 
 
@@ -153,64 +159,47 @@ async function paparLaporanTampungan(){
             <tr>
 
 
-                <td>
-                    ${bil++}
-                </td>
+            <td>
+            ${bil++}
+            </td>
 
 
-
-                <td>
-                    ${row.pos_tampungan ?? "-"}
-                </td>
-
+            <td>
+            ${row.pos_tampungan ?? "-"}
+            </td>
 
 
-                <td>
-                    ${row.no_skb ?? "-"}
-                </td>
+            <td>
+            ${row.no_skb ?? "-"}
+            </td>
 
 
-
-                <td>
-                    ${row.nama_anggota ?? "-"}
-                </td>
-
+            <td>
+            ${row.nama_anggota ?? "-"}
+            </td>
 
 
-                <td>
-                    ${row.nama_pos_asal ?? "-"}
-                </td>
+            <td>
+            ${row.nama_pos_asal ?? "-"}
+            </td>
 
 
-
-                <td>
-
-                    RM ${Number(gaji)
-                    .toFixed(2)}
-
-                </td>
+            <td>
+            RM ${Number(gaji).toFixed(2)}
+            </td>
 
 
-
-                <td>
-
-                    ${row.jam_tampungan ?? 0}
-
-                </td>
+            <td>
+            ${row.jam_tampungan ?? 0}
+            </td>
 
 
-
-                <td>
-
-                    RM ${Number(
-                        row.rm_tampung ?? 0
-                    ).toFixed(2)}
-
-                </td>
+            <td>
+            RM ${Number(row.rm_tampung ?? 0).toFixed(2)}
+            </td>
 
 
             </tr>
-
 
             `;
 
@@ -223,21 +212,25 @@ async function paparLaporanTampungan(){
 
 
 
-    document
 
-    .getElementById(
+    document.getElementById(
         "senaraiTampungan"
-    )
-
-    .innerHTML = html;
+    ).innerHTML = html;
 
 
 
 }
 
+
+
+
+
+
+
 /* =====================================================
-   ISI DROPDOWN BULAN
+   DROPDOWN BULAN & TAHUN
 ===================================================== */
+
 
 function isiBulanTahun(){
 
@@ -251,29 +244,30 @@ function isiBulanTahun(){
 
 
 
+
     if(bulan){
 
 
-        let namaBulan = [
+        let bulanNama=[
 
-            "Januari",
-            "Februari",
-            "Mac",
-            "April",
-            "Mei",
-            "Jun",
-            "Julai",
-            "Ogos",
-            "September",
-            "Oktober",
-            "November",
-            "Disember"
+        "Januari",
+        "Februari",
+        "Mac",
+        "April",
+        "Mei",
+        "Jun",
+        "Julai",
+        "Ogos",
+        "September",
+        "Oktober",
+        "November",
+        "Disember"
 
         ];
 
 
 
-        bulan.innerHTML = `
+        bulan.innerHTML=`
 
         <option value="">
         -- Pilih Bulan --
@@ -283,13 +277,13 @@ function isiBulanTahun(){
 
 
 
-        namaBulan.forEach((nama,index)=>{
+        bulanNama.forEach((b,i)=>{
 
 
-            bulan.innerHTML += `
+            bulan.innerHTML +=`
 
-            <option value="${index+1}">
-                ${nama}
+            <option value="${i+1}">
+            ${b}
             </option>
 
             `;
@@ -298,14 +292,17 @@ function isiBulanTahun(){
         });
 
 
+
     }
+
+
 
 
 
     if(tahun){
 
 
-        tahun.innerHTML = `
+        tahun.innerHTML=`
 
         <option value="">
         -- Pilih Tahun --
@@ -321,16 +318,16 @@ function isiBulanTahun(){
 
 
         for(
-            let i=tahunSekarang-2;
-            i<=tahunSekarang+1;
-            i++
+            let t=tahunSekarang-2;
+            t<=tahunSekarang+1;
+            t++
         ){
 
 
-            tahun.innerHTML += `
+            tahun.innerHTML +=`
 
-            <option value="${i}">
-                ${i}
+            <option value="${t}">
+            ${t}
             </option>
 
             `;
@@ -342,13 +339,14 @@ function isiBulanTahun(){
     }
 
 
+
 }
 
 
 
-/* =====================================================
-   LOAD AWAL
-===================================================== */
+
+
+
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -356,49 +354,6 @@ document.addEventListener(
 
 
     isiBulanTahun();
-
-
-});
-
-/* =====================================================
-   AUTO REFRESH FILTER
-===================================================== */
-
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
-    let bulan =
-    document.getElementById("filterBulan");
-
-
-    let tahun =
-    document.getElementById("filterTahun");
-
-
-
-    if(bulan){
-
-        bulan.addEventListener(
-            "change",
-            paparLaporanTampungan
-        );
-
-    }
-
-
-
-    if(tahun){
-
-        tahun.addEventListener(
-            "change",
-            paparLaporanTampungan
-        );
-
-    }
-
 
 
 });
