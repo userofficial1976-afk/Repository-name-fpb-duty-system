@@ -47,6 +47,7 @@ select {
     min-height: 100vh;
 }
 
+
 /* =====================================================
    SIDEBAR
 ===================================================== */
@@ -158,4 +159,1012 @@ select {
     color: #42616a;
     padding: 13px 14px;
     margin: 5px 0;
-   
+    border-radius: 10px;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: rgba(255,255,255,.8);
+    color: #247b83;
+}
+
+.nav-icon {
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+    margin-left: 290px;
+    width: calc(100% - 290px);
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 82px;
+    background: white;
+    border-bottom: 1px solid #e2ebed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 34px;
+}
+
+.topbar-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #29464d;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8f5ef;
+    color: #3d7662;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ca778;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+    padding: 30px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #3d7f86,
+            #5b9da0
+        );
+    color: white;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 180px;
+    right: -100px;
+    bottom: -100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+}
+
+.hero h2 {
+    position: relative;
+    z-index: 2;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    position: relative;
+    z-index: 2;
+    opacity: .9;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+    background: white;
+    border: 1px solid #dce7e9;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 14px rgba(60,100,110,.05);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #29464d;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label,
+.pos-area > label {
+    color: #71858a;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    border: 1px solid #dce7e9;
+    background: #f8fbfb;
+    color: #263238;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #5b9da0;
+    background: white;
+}
+
+
+/* =====================================================
+   MULTI POS
+===================================================== */
+
+.pos-area {
+    margin-top: 22px;
+}
+
+.pos-input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.pos-input-row select {
+    flex: 1;
+}
+
+.btn-add-pos {
+    border: none;
+    padding: 0 18px;
+    border-radius: 9px;
+    background: #e9f1f2;
+    color: #286c73;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-add-pos:hover {
+    background: #d1e4e8;
+}
+
+.selected-title {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #71858a;
+}
+
+.selected-positions {
+    min-height: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: 10px;
+    border: 1px dashed #cbdde1;
+    border-radius: 9px;
+    background: #f8fbfb;
+}
+
+.pos-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #e4f2ed;
+    color: #3d7662;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.pos-tag button {
+    border: none;
+    background: transparent;
+    color: #9b5555;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.empty-pos {
+    color: #91a0a4;
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-save {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 22px;
+    border: none;
+    border-radius: 9px;
+    background: #3d7f86;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: #286c73;
+}
+
+.btn-reset {
+    width: 100%;
+    min-height: 42px;
+    margin-top: 10px;
+    border: 1px solid #dce7e9;
+    border-radius: 9px;
+    background: #f2f7f8;
+    color: #577178;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-reset:hover {
+    background: #e9f1f2;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+#mesej {
+    display: none;
+    margin-top: 15px;
+    padding: 13px;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+#mesej.success {
+    display: block;
+    background: #e4f2ed;
+    color: #3d7662;
+}
+
+#mesej.error {
+    display: block;
+    background: #f9e8e8;
+    color: #9b5555;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+thead {
+    background: #edf5f6;
+}
+
+th {
+    text-align: left;
+    padding: 14px;
+    color: #527078;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #edf1f2;
+    font-size: 13px;
+    color: #455a60;
+}
+
+tbody tr:hover {
+    background: #fafcfc;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.badge-aktif {
+    background: #e4f2ed;
+    color: #3d7662;
+}
+
+.badge-tidak-aktif {
+    background: #f9e8e8;
+    color: #9b5555;
+}
+
+.btn-edit,
+.btn-danger {
+    border: none;
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.btn-edit {
+    background: #e8f1f3;
+    color: #286c73;
+}
+
+.btn-danger {
+    background: #f9e8e8;
+    color: #9b5555;
+}
+
+
+/* =====================================================
+   MOBILE NAV
+===================================================== */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding-bottom: 80px;
+    }
+
+    .topbar {
+        height: 70px;
+        padding: 0 18px;
+    }
+
+    .topbar-title {
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-nav {
+        position: fixed;
+        display: flex;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 68px;
+        z-index: 200;
+        background: white;
+        border-top: 1px solid #dce7e9;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .mobile-nav a {
+        text-decoration: none;
+        color: #71858a;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .mobile-nav a.active {
+        color: #247b83;
+        font-weight: 700;
+    }
+
+    .mobile-nav span {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 22px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .pos-input-row {
+        flex-direction: column;
+    }
+
+    .btn-add-pos {
+        min-height: 44px;
+    }
+
+    .system-status {
+        padding: 7px 9px;
+        font-size: 10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="brand">
+
+<img
+    class="logo"
+    src="assets/logo.png"
+    alt="Logo"
+>
+
+<div class="brand-text">
+
+<h1>
+POLIS BANTUAN FGVSSSB
+</h1>
+
+<p>
+WILAYAH TERENGGANU
+</p>
+
+</div>
+
+</div>
+
+
+<div class="heritage-mark">
+
+<strong>
+لَا إِلَٰهَ إِلَّا ٱللَّٰهُ
+</strong>
+
+<span>
+• Terengganu Maju, Berkat Sejahtera •
+</span>
+
+</div>
+
+
+<nav class="nav">
+
+<a href="index.html">
+
+<span class="nav-icon">🏠</span>
+
+Dashboard
+
+</a>
+
+<a href="anggota.html">
+
+<span class="nav-icon">👥</span>
+
+Senarai Anggota
+
+</a>
+
+<a href="jadual_duty.html">
+
+<span class="nav-icon">📅</span>
+
+Jadual Duty
+
+</a>
+
+<a
+    href="kod-duty.html"
+>
+
+<span class="nav-icon">🔑</span>
+
+Kod Duty
+
+</a>
+
+<a
+    href="tempat-kerja.html"
+    class="active"
+>
+
+<span class="nav-icon">📍</span>
+
+Kod Tempat Kerja
+
+</a>
+
+<a href="laporan.html">
+
+<span class="nav-icon">📊</span>
+
+Laporan
+
+</a>
+
+<a href="tetapan.html">
+
+<span class="nav-icon">⚙️</span>
+
+Tetapan
+
+</a>
+
+</nav>
+
+
+</aside>
+
+
+<!-- =================================================
+     MAIN
+================================================== -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+<div class="page-title">
+
+    <h2>
+        Kod Tempat Kerja
+    </h2>
+
+    <p>
+        Forecast Duty System /
+        Wilayah Terengganu
+    </p>
+
+</div>
+
+
+<div class="system-status">
+
+<span class="status-dot"></span>
+
+System Online
+
+</div>
+
+</header>
+
+
+<section class="content">
+
+
+<div class="hero">
+
+<h2>
+KOD TEMPAT KERJA
+</h2>
+
+<p>
+Tetapkan kod tempat kerja kepada satu atau beberapa Pos.
+</p>
+
+</div>
+
+
+<!-- =================================================
+     FORM
+================================================== -->
+
+<div class="card">
+
+
+<div class="card-title">
+
+➕ Tambah Kod Tempat Kerja
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Unit
+</label>
+
+<select
+    id="unit"
+>
+
+<option value="">
+-- Pilih Unit --
+</option>
+
+<option value="Jerangau">
+Jerangau
+</option>
+
+<option value="Terengganu">
+Terengganu
+</option>
+
+<option value="Setiu">
+Setiu
+</option>
+
+<option value="Chador">
+Chador
+</option>
+
+<option value="Kerteh">
+Kerteh
+</option>
+
+<option value="Rantau Abang">
+Rantau Abang
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Kod TK
+</label>
+
+<input
+    type="text"
+    id="kodTempatKerja"
+    placeholder="Contoh: W atau W/X"
+    maxlength="20"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="pos-area">
+
+
+<label>
+Pos (Tempat Kerja)
+</label>
+
+
+<div class="pos-input-row">
+
+
+<select
+    id="pos"
+>
+
+<option value="">
+-- Pilih Pos --
+</option>
+
+</select>
+
+
+<button
+    type="button"
+    class="btn-add-pos"
+    onclick="tambahPos()"
+>
+
+＋ Tambah Pos
+
+</button>
+
+
+</div>
+
+
+<div class="selected-title">
+
+POS DIPILIH
+
+</div>
+
+
+<div
+    id="posDipilih"
+    class="selected-positions"
+>
+
+<span class="empty-pos">
+
+Belum ada Pos dipilih
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<button
+    class="btn-save"
+    onclick="simpanTempatKerja()"
+>
+
+💾 SIMPAN KOD TEMPAT KERJA
+
+</button>
+
+
+<button
+    type="button"
+    class="btn-reset"
+    onclick="resetBorang()"
+>
+
+↺ BATAL / RESET
+
+</button>
+
+
+<div
+    id="mesej"
+>
+</div>
+
+
+</div>
+
+
+<!-- =================================================
+     SENARAI
+================================================== -->
+
+<div class="card">
+
+
+<div class="card-title">
+
+📋 Senarai Kod Tempat Kerja
+
+</div>
+
+
+<div class="table-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Bil
+</th>
+
+<th>
+Unit
+</th>
+
+<th>
+Kod TK
+</th>
+
+<th>
+Nama Tempat Kerja
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Tindakan
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+    id="senaraiTempatKerja"
+>
+
+<tr>
+
+<td
+    colspan="6"
+>
+
+Sedang memuatkan data...
+
+</td>
+
+</tr>
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+</div>
+
+
+<!-- =================================================
+     MOBILE NAV
+================================================== -->
+
+<nav class="mobile-nav">
+
+
+<a href="index.html">
+
+<span>🏠</span>
+
+Dashboard
+
+</a>
+
+
+<a href="anggota.html">
+
+<span>👥</span>
+
+Anggota
+
+</a>
+
+
+<a
+    href="jadual_duty.html"
+>
+
+<span>📅</span>
+
+Duty
+
+</a>
+
+
+<a
+    href="tempat-kerja.html"
+    class="active"
+>
+
+<span>📍</span>
+
+Tempat Kerja
+
+</a>
+
+
+<a href="tetapan.html">
+
+<span>⚙️</span>
+
+Tetapan
+
+</a>
+
+
+</nav>
+
+
+<!-- =================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+
+<script src="supabase.js"></script>
+
+<script src="js/tempat-kerja.js"></script>
+
+
+</body>
+
+</html>
