@@ -1,7 +1,7 @@
 // =====================================================
 // DASHBOARD FPB DUTY SYSTEM
 // =====================================================
-document.addEventListener(
+let dataDutyHariIni = [];
 document.addEventListener(
     "DOMContentLoaded",
     async function () {
