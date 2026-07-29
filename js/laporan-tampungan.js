@@ -59,23 +59,26 @@ let { data, error } = await supabaseClient
 .from("jadual_duty")
 
 .select(`
-
     pos_tampungan,
     no_skb,
     nama_anggota,
     nama_pos_asal,
     jam_tampungan,
     rm_tampung,
-
-    Data_Anggota!jadual_duty_no_skb_fkey(
+    Data_Anggota(
         gaji_pokok
     )
-
 `)
 
 .eq("bulan", bulan)
 
 .eq("tahun", tahun)
+
+.not(
+    "pos_tampungan",
+    "is",
+    null
+)
 
 .neq(
     "pos_tampungan",
@@ -100,7 +103,9 @@ if(error){
 
     console.log("FULL :", JSON.stringify(error));
 
+   console.log("DATA:", data);
 
+   console.log("ERROR:", error);
     return;
 
 }
