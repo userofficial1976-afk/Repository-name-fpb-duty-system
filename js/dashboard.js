@@ -74,16 +74,16 @@ async function statistikDutyHariIni() {
             .toISOString()
             .split("T")[0];
 
-
     const { data, error } =
         await supabaseClient
             .from("jadual_duty")
-            .select("jam_kerja, jam_klm")
+            .select(
+                "jam_kerja, jam_klm, rm_klm_seluruh"
+            )
             .eq(
                 "tarikh",
                 hariIni
             );
-
 
     if (error) {
 
@@ -95,54 +95,78 @@ async function statistikDutyHariIni() {
         return;
     }
 
-
     const jumlahDuty =
         data.length;
-
 
     const jumlahJamKerja =
         data.reduce(
             function (jumlah, row) {
 
                 return jumlah
-                    + Number(row.jam_kerja || 0);
+                    + Number(
+                        row.jam_kerja || 0
+                    );
 
             },
             0
         );
-
 
     const jumlahJamKlm =
         data.reduce(
             function (jumlah, row) {
 
                 return jumlah
-                    + Number(row.jam_klm || 0);
+                    + Number(
+                        row.jam_klm || 0
+                    );
 
             },
             0
         );
 
+    const jumlahRmKlm =
+        data.reduce(
+            function (jumlah, row) {
+
+                return jumlah
+                    + Number(
+                        row.rm_klm_seluruh || 0
+                    );
+
+            },
+            0
+        );
 
     document
-        .getElementById("jumlahDutyHariIni")
+        .getElementById(
+            "jumlahDutyHariIni"
+        )
         .textContent =
         jumlahDuty;
 
-
     document
-        .getElementById("jumlahJamKerja")
+        .getElementById(
+            "jumlahJamKerja"
+        )
         .textContent =
         jumlahJamKerja;
 
-
     document
-        .getElementById("jumlahJamKlm")
+        .getElementById(
+            "jumlahJamKlm"
+        )
         .textContent =
         jumlahJamKlm;
 
+    document
+        .getElementById(
+            "jumlahRmKlm"
+        )
+        .textContent =
+        "RM " +
+        jumlahRmKlm.toFixed(2);
 }
-
+``
 
 // =====================================================
 // JUMLAH JAM KESELURUHAN
