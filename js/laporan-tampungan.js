@@ -85,7 +85,8 @@ let { data, error } = await supabaseClient
     ""
 );
 
-
+console.log("DATA:", data);
+console.log("ERROR:", error);
 
 
 
