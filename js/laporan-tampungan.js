@@ -1,3 +1,7 @@
+console.log(
+    "laporan-tampungan.js berjaya dimuatkan"
+);
+
 /* =====================================================
    PAPAR LAPORAN POS TAMPUNGAN
 ===================================================== */
