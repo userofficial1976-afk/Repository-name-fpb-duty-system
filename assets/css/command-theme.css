@@ -344,11 +344,17 @@ font-size:24px;
     display:grid !important;
     grid-template-columns:repeat(5,1fr) !important;
     gap:20px !important;
-    margin-bottom:32px;
+    align-items:stretch;
 }
 
 .stat-card{
-    min-width:0;
+    width:100% !important;
+    min-height:180px !important;
+    height:auto !important;
+}
+
+.stat-card strong{
+    font-size:32px;
 }
 
 @media(max-width:1200px){
