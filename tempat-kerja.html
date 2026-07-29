@@ -931,7 +931,70 @@ select:focus {
 
 }
 
+.pos-area{
+    margin-top:22px;
+}
 
+.pos-input-row{
+    display:flex;
+    gap:10px;
+}
+
+.pos-input-row select{
+    flex:1;
+}
+
+.btn-add-pos{
+    border:none;
+    padding:0 18px;
+    border-radius:9px;
+    background:#e9f1f2;
+    color:#286c73;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.selected-title{
+    margin-top:18px;
+    margin-bottom:8px;
+    font-size:12px;
+    font-weight:700;
+    color:#71858a;
+}
+
+.selected-positions{
+    min-height:48px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:10px;
+    border:1px dashed #cbdde1;
+    border-radius:9px;
+    background:#f8fbfb;
+}
+
+.pos-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:20px;
+    background:#e4f2ed;
+    color:#3d7662;
+    font-size:13px;
+    font-weight:700;
+}
+
+.pos-tag button{
+    border:none;
+    background:transparent;
+    color:#9b5555;
+    cursor:pointer;
+}
+
+.empty-pos{
+    color:#91a0a4;
+}
 /* =====================================================
    BUTTON
 ===================================================== */
@@ -1826,29 +1889,46 @@ maxlength="10"
 
 </div>
 
-<div class="form-group">
+<div class="pos-area">
 
-<label>
+    <label>
+        Pos (Tempat Kerja)
+    </label>
 
-POS (TEMPAT KERJA)
+    <div class="pos-input-row">
 
-</label>
+        <select id="pos">
 
-<select
+            <option value="">
+                -- Pilih Pos --
+            </option>
 
-```
-id="pos"
-```
+        </select>
 
->
+        <button
+            type="button"
+            class="btn-add-pos"
+            onclick="tambahPos()"
+        >
+            ＋ Tambah Pos
+        </button>
 
-<option value="">
+    </div>
 
--- Memuatkan Pos --
+    <div class="selected-title">
+        POS DIPILIH
+    </div>
 
-</option>
+    <div
+        id="posDipilih"
+        class="selected-positions"
+    >
 
-</select>
+        <span class="empty-pos">
+            Belum ada Pos dipilih
+        </span>
+
+    </div>
 
 </div>
 
