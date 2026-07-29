@@ -957,51 +957,43 @@ async function muatkanTempatKerja() {
     try {
 
 
-        const {
+const filterUnit =
+    document.getElementById(
+        "filterUnit"
+    )?.value || "";
 
-            data,
+let query =
+    supabaseClient
+        .from(
+            TABLE_TEMPAT_KERJA
+        )
+        .select(`
+            id,
+            unit,
+            kod_tempat_kerja,
+            nama_tempat_kerja,
+            status
+        `);
 
-            error
+if (filterUnit) {
 
-        } = await supabaseClient
+    query = query.eq(
+        "unit",
+        filterUnit
+    );
 
-            .from(
+}
 
-                TABLE_TEMPAT_KERJA
+const {
+    data,
+    error
+} = await query.order(
+    "unit",
+    {
+        ascending: true
+    }
+);
 
-            )
-
-            .select(
-
-                `
-
-                id,
-
-                unit,
-
-                kod_tempat_kerja,
-
-                nama_tempat_kerja,
-
-                status
-
-                `
-
-            )
-
-            .order(
-
-                "unit",
-
-                {
-
-                    ascending:
-
-                        true
-
-                }
-
-            );
 
 
         if (
