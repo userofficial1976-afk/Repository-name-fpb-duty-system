@@ -2,16 +2,21 @@
 // DASHBOARD FPB DUTY SYSTEM
 // =====================================================
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
 
-    console.log("DASHBOARD JS BERJAYA DIMUAT");
+        console.log(
+            "DASHBOARD JS BERJAYA DIMUAT"
+        );
 
-    await muatDashboard();
-});
+        await muatDashboard();
 
+    }
+);
 
 // =====================================================
-// MUAT SEMUA DATA DASHBOARD
+// MUAT DASHBOARD
 // =====================================================
 
 async function muatDashboard() {
@@ -20,11 +25,9 @@ async function muatDashboard() {
 
     await statistikDutyHariIni();
 
-    await statistikJumlahJam();
+    await statusTidakBertugasHariIni();
 
-    await dutyMengikutPos();
 }
-
 
 // =====================================================
 // JUMLAH ANGGOTA AKTIF
@@ -32,34 +35,42 @@ async function muatDashboard() {
 
 async function jumlahAnggotaAktif() {
 
-    const { count, error } =
-        await supabaseClient
-            .from("Data_Anggota")
-            .select("*", {
-                count: "exact",
-                head: true
-            })
-            .eq("status", "Aktif");
+    const {
+        count,
+        error
+    } =
+    await supabaseClient
+        .from("Data_Anggota")
+        .select("*", {
+            count: "exact",
+            head: true
+        })
+        .eq(
+            "status",
+            "Aktif"
+        );
 
     if (error) {
 
         console.error(
-            "RALAT JUMLAH ANGGOTA:",
             error
         );
 
         return;
+
     }
 
     document
-        .getElementById("jumlahAnggota")
+        .getElementById(
+            "jumlahAnggota"
+        )
         .textContent =
         count || 0;
+
 }
 
-
 // =====================================================
-// DUTY HARI INI
+// STATISTIK DUTY HARI INI
 // =====================================================
 
 async function statistikDutyHariIni() {
@@ -69,126 +80,243 @@ async function statistikDutyHariIni() {
             .toISOString()
             .split("T")[0];
 
-    const { data, error } =
-        await supabaseClient
-            .from("jadual_duty")
-            .select(
-                "jam_kerja, jam_klm, rm_klm_seluruh"
-            )
-            .eq(
-                "tarikh",
-                hariIni
-            );
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("jadual_duty")
+        .select(`
+            jam_kerja,
+            jam_klm,
+            rm_klm_seluruh
+        `)
+        .eq(
+            "tarikh",
+            hariIni
+        );
 
     if (error) {
 
         console.error(
-            "RALAT DUTY HARI INI:",
             error
         );
 
         return;
+
     }
 
-    const jumlahDuty = data.length;
+    const jumlahDuty =
+        data.length;
 
     const jumlahJamKerja =
         data.reduce(
-            (jumlah, row) =>
-                jumlah + Number(row.jam_kerja || 0),
+            (
+                total,
+                row
+            ) =>
+                total +
+                Number(
+                    row.jam_kerja || 0
+                ),
             0
         );
 
     const jumlahJamKlm =
         data.reduce(
-            (jumlah, row) =>
-                jumlah + Number(row.jam_klm || 0),
+            (
+                total,
+                row
+            ) =>
+                total +
+                Number(
+                    row.jam_klm || 0
+                ),
             0
         );
 
     const jumlahRmKlm =
         data.reduce(
-            (jumlah, row) =>
-                jumlah + Number(row.rm_klm_seluruh || 0),
+            (
+                total,
+                row
+            ) =>
+                total +
+                Number(
+                    row.rm_klm_seluruh || 0
+                ),
             0
         );
 
     document.getElementById(
         "jumlahDutyHariIni"
-    ).textContent = jumlahDuty;
+    ).textContent =
+        jumlahDuty;
 
     document.getElementById(
         "jumlahJamKerja"
-    ).textContent = jumlahJamKerja;
+    ).textContent =
+        jumlahJamKerja;
 
     document.getElementById(
         "jumlahJamKlm"
-    ).textContent = jumlahJamKlm;
+    ).textContent =
+        jumlahJamKlm;
 
     document.getElementById(
         "jumlahRmKlm"
     ).textContent =
         "RM " +
         jumlahRmKlm.toFixed(2);
+
 }
 
-
 // =====================================================
-// JUMLAH JAM KESELURUHAN
+// STATUS TIDAK BERTUGAS HARI INI
 // =====================================================
 
-async function statistikJumlahJam() {
+async function statusTidakBertugasHariIni() {
 
-    const { data, error } =
-        await supabaseClient
-            .from("jadual_duty")
-            .select(
-                "jam_kerja, jam_klm"
-            );
+    const hariIni =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("jadual_duty")
+        .select(
+            "kod_waktu_kerja"
+        )
+        .eq(
+            "tarikh",
+            hariIni
+        );
 
     if (error) {
 
         console.error(
-            "RALAT JUMLAH JAM:",
             error
         );
 
         return;
+
     }
 
-    const jumlahJamKerja =
-        data.reduce(
-            function (jumlah, row) {
+    const OFF =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                    "OFF" ||
+                x.kod_waktu_kerja ===
+                    "GOFF"
+        ).length;
 
-                return jumlah
-                    + Number(row.jam_kerja || 0);
+    const CT =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "CT"
+        ).length;
 
-            },
-            0
-        );
+    const MC =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "MC"
+        ).length;
 
-    const jumlahJamKlm =
-        data.reduce(
-            function (jumlah, row) {
+    const KUR =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "KUR"
+        ).length;
 
-                return jumlah
-                    + Number(row.jam_klm || 0);
+    const CA =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "CA"
+        ).length;
 
-            },
-            0
-        );
+    const CG =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "CG"
+        ).length;
 
-    console.log(
-        "Jumlah semua jam kerja:",
-        jumlahJamKerja
-    );
+    const CE =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "CE"
+        ).length;
 
-    console.log(
-        "Jumlah semua jam KLM:",
-        jumlahJamKlm
-    );
+    const CTR =
+        data.filter(
+            x =>
+                x.kod_waktu_kerja ===
+                "CTR"
+        ).length;
+
+    document.getElementById(
+        "jumlahOffday"
+    ).textContent =
+        OFF;
+
+    document.getElementById(
+        "jumlahCT"
+    ).textContent =
+        CT;
+
+    document.getElementById(
+        "jumlahMC"
+    ).textContent =
+        MC;
+
+    document.getElementById(
+        "jumlahKUR"
+    ).textContent =
+        KUR;
+
+    document.getElementById(
+        "jumlahCA"
+    ).textContent =
+        CA;
+
+    document.getElementById(
+        "jumlahCG"
+    ).textContent =
+        CG;
+
+    document.getElementById(
+        "jumlahCE"
+    ).textContent =
+        CE;
+
+    document.getElementById(
+        "jumlahCTR"
+    ).textContent =
+        CTR;
+
+    document.getElementById(
+        "jumlahTidakBertugas"
+    ).textContent =
+        OFF +
+        CT +
+        MC +
+        KUR +
+        CA +
+        CG +
+        CE +
+        CTR;
+
 }
-
 
 // =====================================================
 // LOGOUT
@@ -197,99 +325,21 @@ async function statistikJumlahJam() {
 async function logout() {
 
     const result =
-        await supabaseClient.auth.signOut();
+        await supabaseClient
+            .auth
+            .signOut();
 
     if (result.error) {
 
         console.error(
-            "RALAT LOGOUT:",
             result.error
         );
 
         return;
+
     }
 
     window.location.href =
         "login.html";
-}
 
-
-// =====================================================
-// DUTY MENGIKUT POS
-// =====================================================
-
-async function dutyMengikutPos() {
-
-    const { data, error } =
-        await supabaseClient
-            .from("jadual_duty")
-            .select("pos");
-
-    if (error) {
-
-        console.error(
-            "RALAT DUTY MENGIKUT POS:",
-            error
-        );
-
-        return;
-    }
-
-    const kiraanPos = {};
-
-    data.forEach(function (row) {
-
-        const pos =
-            row.pos || "Tidak Diketahui";
-
-        if (!kiraanPos[pos]) {
-
-            kiraanPos[pos] = 0;
-        }
-
-        kiraanPos[pos]++;
-    });
-
-    const tbody =
-        document.getElementById(
-            "senaraiPos"
-        );
-
-    tbody.innerHTML = "";
-
-    const semuaPos =
-        Object.keys(kiraanPos)
-            .sort();
-
-    if (semuaPos.length === 0) {
-
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="2">
-                    Tiada data duty
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
-
-    semuaPos.forEach(function (pos) {
-
-        const tr =
-            document.createElement("tr");
-
-        tr.innerHTML = `
-            <td>
-                ${pos}
-            </td>
-            <td>
-                <strong>
-                    ${kiraanPos[pos]}
-                </strong>
-            </td>
-        `;
-
-        tbody.appendChild(tr);
-    });
 }
