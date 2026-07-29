@@ -13,7 +13,40 @@ Anggaran RK02 Bulanan
 </title>
 
 <style>
+.hero-content{
 
+    position:relative;
+
+    z-index:2;
+
+}
+
+.wave{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:30px;
+
+    opacity:.20;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0px,
+            transparent 10px,
+            white 11px,
+            white 12px,
+            transparent 13px,
+            transparent 22px
+        );
+
+}
 /* ===============================
    RESET
 ================================ */
@@ -350,7 +383,9 @@ body {
     padding: 35px 38px;
 
     margin-bottom: 30px;
+      position:relative;
 
+      overflow:hidden;
 }
 
 
@@ -1021,19 +1056,21 @@ System Online
 
 <div class="hero">
 
+    <div class="hero-content">
 
-<h1>
-ANGGARAN RK02
-</h1>
+        <h1>
+            LAPORAN ANGGARAN DUTY
+        </h1>
 
+        <p>
+            Penjanaan laporan RK02 mengikut Pos, Bulan dan Tahun.
+        </p>
 
-<p>
-Anggaran tuntutan duty anggota mengikut pos dan bulan operasi.
-</p>
+        <div class="hero-line"></div>
 
+    </div>
 
-<div class="hero-line"></div>
-
+    <div class="wave"></div>
 
 </div>
 
