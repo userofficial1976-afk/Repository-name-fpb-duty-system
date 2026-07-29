@@ -1263,7 +1263,132 @@ tr:hover {
     font-size: 13px;
 
 }
+/* =====================================================
+   STATUS TIDAK BERTUGAS
+===================================================== */
 
+.status-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 12px;
+
+}
+
+.status-box {
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    color: white;
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.08
+        );
+
+}
+
+.status-box span {
+
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+    font-weight: 600;
+
+}
+
+.status-box strong {
+
+    display: block;
+
+    font-size: 34px;
+
+}
+
+.offday {
+
+    background: #ea580c;
+
+}
+
+.ct {
+
+    background: #16a34a;
+
+}
+
+.mc {
+
+    background: #dc2626;
+
+}
+
+.kur {
+
+    background: #2563eb;
+
+}
+
+.ca {
+
+    background: #ca8a04;
+
+}
+
+.cg {
+
+    background: #9333ea;
+
+}
+
+.ce {
+
+    background: #0891b2;
+
+}
+
+.ctr {
+
+    background: #475569;
+
+}
+
+.total {
+
+    background: #0f172a;
+
+}
+
+@media(max-width:800px) {
+
+    .status-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+}
 
 /* =====================================================
    RESPONSIVE TABLET
