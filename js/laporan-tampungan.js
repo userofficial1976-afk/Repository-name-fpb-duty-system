@@ -1,47 +1,37 @@
 /* =====================================================
-   LAPORAN POS TAMPUNGAN
-   FPB DUTY SYSTEM
+   PAPAR LAPORAN POS TAMPUNGAN
 ===================================================== */
-
-
-/* =====================================================
-   PAPAR LAPORAN
-===================================================== */
-
 
 async function paparLaporanTampungan(){
 
+    const bulan =
+        document.getElementById(
+            "filterBulan"
+        ).value;
 
-    let bulan =
-    document.getElementById("filterBulan").value;
-
-
-    let tahun =
-    document.getElementById("filterTahun").value;
-
+    const tahun =
+        document.getElementById(
+            "filterTahun"
+        ).value;
 
 
     if(!bulan || !tahun){
-
 
         document.getElementById(
             "senaraiTampungan"
         ).innerHTML = `
 
-        <tr>
-            <td colspan="8">
-            Sila pilih bulan dan tahun
-            </td>
-        </tr>
+            <tr>
+                <td colspan="8">
+                    Sila pilih bulan dan tahun
+                </td>
+            </tr>
 
         `;
-
 
         return;
 
     }
-
-
 
 
     console.log(
@@ -51,68 +41,46 @@ async function paparLaporanTampungan(){
     );
 
 
+    /* =========================
+       AMBIL DATA TAMPUNGAN
+    ========================= */
 
+    const {
+        data,
+        error
+    } = await supabaseClient
 
+        .from("jadual_duty")
 
-let { data, error } = await supabaseClient
+        .select(`
+            pos_tampungan,
+            no_skb,
+            nama_anggota,
+            nama_pos_asal,
+            jam_tampungan,
+            rm_tampung
+        `)
 
-.from("jadual_duty")
+        .eq(
+            "bulan",
+            bulan
+        )
 
-.select(`
-    pos_tampungan,
-    no_skb,
-    nama_anggota,
-    nama_pos_asal,
-    jam_tampungan,
-    rm_tampung,
-    Data_Anggota(
-        gaji_pokok
-    )
-`)
+        .eq(
+            "tahun",
+            tahun
+        )
 
-.eq("bulan", bulan)
+        .not(
+            "pos_tampungan",
+            "is",
+            null
+        )
 
-.eq("tahun", tahun)
-
-.not(
-    "pos_tampungan",
-    "is",
-    null
-)
-
-.neq(
-    "pos_tampungan",
-    ""
-);
-
-console.log("DATA:", data);
-console.log("ERROR:", error);
-
-
-
-if(error){
-
-    console.log("=== SUPABASE ERROR DETAIL ===");
-
-    console.log("MESSAGE :", error.message);
-
-    console.log("DETAILS :", error.details);
-
-    console.log("HINT :", error.hint);
-
-    console.log("CODE :", error.code);
-
-    console.log("FULL :", JSON.stringify(error));
-
-   console.log("DATA:", data);
-
-   console.log("ERROR:", error);
-    return;
-
-}
-
-
-
+        .neq(
+            "pos_tampungan",
+            ""
+        );
 
 
     console.log(
@@ -120,363 +88,192 @@ if(error){
         data
     );
 
+    console.log(
+        "ERROR:",
+        error
+    );
 
 
+    if(error){
 
+        console.log(
+            "=== SUPABASE ERROR ==="
+        );
 
-    let html="";
+        console.log(error);
 
+        document.getElementById(
+            "senaraiTampungan"
+        ).innerHTML = `
 
-    let bil=1;
+            <tr>
+                <td colspan="8">
+                    ${error.message}
+                </td>
+            </tr>
 
+        `;
 
+        return;
 
+    }
 
 
     if(!data || data.length===0){
 
+        document.getElementById(
+            "senaraiTampungan"
+        ).innerHTML = `
 
-
-        html=`
-
-        <tr>
-
-            <td colspan="8">
-
-            Tiada rekod Pos Tampungan
-
-            </td>
-
-        </tr>
+            <tr>
+                <td colspan="8">
+                    Tiada rekod Pos Tampungan
+                </td>
+            </tr>
 
         `;
 
+        return;
 
     }
 
-    else {
+
+    /* =========================
+       AMBIL DATA ANGGOTA
+    ========================= */
+
+    const noSkbList = [
+
+        ...new Set(
+
+            data
+            .map(
+                x => x.no_skb
+            )
+            .filter(Boolean)
+
+        )
+
+    ];
 
 
+    const {
+        data: anggotaData,
+        error: anggotaError
+    } = await supabaseClient
 
-        data.forEach(row=>{
+        .from("Data_Anggota")
 
+        .select(`
+            no_skb,
+            gaji_pokok
+        `)
 
-
-            let gaji =
-            row.Data_Anggota?.gaji_pokok ?? 0;
-
-
-
-            html += `
-
-
-            <tr>
-
-
-                <td>
-                ${bil++}
-                </td>
+        .in(
+            "no_skb",
+            noSkbList
+        );
 
 
+    if(anggotaError){
 
-                <td>
-                ${row.pos_tampungan ?? "-"}
-                </td>
+        console.log(
+            anggotaError
+        );
 
-
-
-                <td>
-                ${row.no_skb ?? "-"}
-                </td>
+    }
 
 
-
-                <td>
-                ${row.nama_anggota ?? "-"}
-                </td>
+    const anggotaMap =
+        new Map();
 
 
+    (anggotaData || [])
+        .forEach(a => {
 
-                <td>
-                ${row.nama_pos_asal ?? "-"}
-                </td>
+            anggotaMap.set(
 
+                String(
+                    a.no_skb
+                ),
 
+                a
 
-                <td>
-                RM ${Number(gaji)
-                .toFixed(2)}
-                </td>
-
-
-
-                <td>
-                ${row.jam_tampungan ?? 0}
-                </td>
-
-
-
-                <td>
-                RM ${Number(
-                    row.rm_tampung ?? 0
-                ).toFixed(2)}
-                </td>
-
-
-
-            </tr>
-
-
-            `;
-
-
+            );
 
         });
 
 
+    /* =========================
+       PAPAR DATA
+    ========================= */
 
-    }
+    let html = "";
+
+    let bil = 1;
 
 
+    data.forEach(row => {
 
+        const gaji =
+
+            anggotaMap.get(
+                String(
+                    row.no_skb
+                )
+            )
+
+            ?.gaji_pokok ?? 0;
+
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${bil++}
+                </td>
+
+                <td>
+                    ${row.pos_tampungan ?? "-"}
+                </td>
+
+                <td>
+                    ${row.no_skb ?? "-"}
+                </td>
+
+                <td>
+                    ${row.nama_anggota ?? "-"}
+                </td>
+
+                <td>
+                    ${row.nama_pos_asal ?? "-"}
+                </td>
+
+                <td>
+                    RM ${Number(gaji)
+                        .toFixed(2)}
+                </td>
+
+                <td>
+                    ${row.jam_tampungan ?? 0}
+                </td>
+
+                <td>
+                    RM ${Number(
+                        row.rm_tampung ?? 0
+                    ).toFixed(2)}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
 
 
     document.getElementById(
         "senaraiTampungan"
     ).innerHTML = html;
 
-
-
 }
-
-
-
-
-
-
-
-/* =====================================================
-   DROPDOWN BULAN & TAHUN
-===================================================== */
-
-
-function isiBulanTahun(){
-
-
-
-    let bulan =
-    document.getElementById(
-        "filterBulan"
-    );
-
-
-
-    let tahun =
-    document.getElementById(
-        "filterTahun"
-    );
-
-
-
-
-
-    if(bulan){
-
-
-
-        let senaraiBulan=[
-
-
-            "Januari",
-            "Februari",
-            "Mac",
-            "April",
-            "Mei",
-            "Jun",
-            "Julai",
-            "Ogos",
-            "September",
-            "Oktober",
-            "November",
-            "Disember"
-
-
-        ];
-
-
-
-
-        bulan.innerHTML=`
-
-
-        <option value="">
-        -- Pilih Bulan --
-        </option>
-
-
-        `;
-
-
-
-
-        senaraiBulan.forEach(nama=>{
-
-
-            bulan.innerHTML +=`
-
-
-            <option value="${nama}">
-            ${nama}
-            </option>
-
-
-            `;
-
-
-        });
-
-
-
-    }
-
-
-
-
-
-
-    if(tahun){
-
-
-
-        tahun.innerHTML=`
-
-
-        <option value="">
-        -- Pilih Tahun --
-        </option>
-
-
-        `;
-
-
-
-
-
-        let tahunSekarang =
-        new Date().getFullYear();
-
-
-
-
-
-        for(
-            let i=tahunSekarang-2;
-            i<=tahunSekarang+1;
-            i++
-        ){
-
-
-
-            tahun.innerHTML +=`
-
-
-            <option value="${i}">
-            ${i}
-            </option>
-
-
-            `;
-
-
-        }
-
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   LOAD AWAL
-===================================================== */
-
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
-    isiBulanTahun();
-
-
-
-});
-
-
-
-
-
-
-
-/* =====================================================
-   BUTTON FILTER
-===================================================== */
-
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
-    let bulan =
-    document.getElementById(
-        "filterBulan"
-    );
-
-
-    let tahun =
-    document.getElementById(
-        "filterTahun"
-    );
-
-
-
-
-    if(bulan){
-
-
-        bulan.addEventListener(
-            "change",
-            paparLaporanTampungan
-        );
-
-
-    }
-
-
-
-
-
-    if(tahun){
-
-
-        tahun.addEventListener(
-            "change",
-            paparLaporanTampungan
-        );
-
-
-    }
-
-
-
-
-});
