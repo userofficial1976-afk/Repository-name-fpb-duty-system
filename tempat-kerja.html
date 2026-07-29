@@ -1915,39 +1915,63 @@ maxlength="10"
 
     </div>
 
-    <div class="selected-title">
-        POS DIPILIH
-    </div>
+<div class="pos-area">
 
-    <div
-        id="posDipilih"
-        class="selected-positions"
-    >
+    <label>
+        POS (TEMPAT KERJA)
+    </label>
 
-        <span class="empty-pos">
-            Belum ada Pos dipilih
-        </span>
+    <div class="pos-input-row">
+
+        <select id="pos">
+
+            <option value="">
+                -- Pilih Pos --
+            </option>
+
+        </select>
+
+        <button
+            type="button"
+            class="btn-add-pos"
+            onclick="tambahPos()"
+        >
+            ＋ Tambah Pos
+        </button>
 
     </div>
 
 </div>
+
+</div>
+
+</div>
+
+<div class="selected-title">
+
+    POS DIPILIH
+
+</div>
+
+<div
+    id="posDipilih"
+    class="selected-positions"
+>
+
+    <span class="empty-pos">
+
+        Belum ada Pos dipilih
+
+    </span>
 
 </div>
 
 <button
-
-```
-class="btn-save"
-
-onclick="simpanTempatKerja()"
-```
-
+    class="btn-save"
+    onclick="simpanTempatKerja()"
 >
-
-💾 SIMPAN KOD TEMPAT KERJA
-
+    💾 SIMPAN KOD TEMPAT KERJA
 </button>
-
 </div>
 
 <!-- SENARAI -->
