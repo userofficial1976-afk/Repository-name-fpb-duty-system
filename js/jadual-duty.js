@@ -2456,7 +2456,15 @@ async function simpanDuty() {
             rmHariCutiam +
 
             rmJamCutiam;
+        const rmKlmHariBiasa =
+            Number(
+                getValue("rmKlmHariBiasa") || 0
+            );
 
+        const rmKlmTampungan =
+            Number(
+                getValue("rmTampung") || 0
+            );
 
         const dataDuty = {
 
@@ -2648,7 +2656,19 @@ dikemaskini_oleh:
 
         };
 
-
+        console.log({
+            rmKlmHariBiasa,
+            rmHariCutiam,
+            rmJamCutiam,
+            rmHariOffday,
+            rmJamOffday,
+            jumlah:
+                rmKlmHariBiasa +
+                rmHariCutiam +
+                rmJamCutiam +
+                rmHariOffday +
+                rmJamOffday
+        });
         let result;
 
 
