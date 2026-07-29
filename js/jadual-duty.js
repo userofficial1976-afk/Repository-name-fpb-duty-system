@@ -2632,16 +2632,11 @@ rm_klm_tampungan:
     ),
 
 rm_klm_seluruh:
-    Number(
-        getValue(
-            "rmKlmHariBiasa"
-        ) || 0
-    ) +
-    Number(
-        getValue(
-            "rmTampung"
-        ) || 0
-    ),
+    Number(rmKlmHariBiasa || 0) +
+    Number(rmHariCutiam || 0) +
+    Number(rmJamCutiam || 0) +
+    Number(rmHariOffday || 0) +
+    Number(rmJamOffday || 0),
 
 dikemaskini_oleh:
     "Sistem",
