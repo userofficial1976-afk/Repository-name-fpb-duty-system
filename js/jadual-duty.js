@@ -1367,7 +1367,7 @@ function pasangEventKodDuty() {
 
                 setValue(
 
-                    "jamTampungan",
+                    "jamTampung",
 
                     ""
 
@@ -3823,6 +3823,10 @@ function kosongkanPengiraanRM() {
 
         "jumlahCutiam"
 
+        "rmKlmHariBiasa",
+        
+        "rmTampung"
+
     ]
 
         .forEach(
@@ -4025,7 +4029,7 @@ function kosongkanKodDuty() {
 
     setValue(
 
-        "jamTampungan",
+        "jamTampung",
 
         ""
 
