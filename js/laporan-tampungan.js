@@ -130,7 +130,7 @@ async function paparLaporanTampungan(){
             nama_anggota,
             nama_pos_asal,
             jam_tampungan,
-            rm_tampung
+            rm_klm_tampungan
         `)
 
         .eq("bulan", bulan)
@@ -270,7 +270,7 @@ async function paparLaporanTampungan(){
         );
 
         jumlahRm += Number(
-            row.rm_tampung || 0
+            row.rm_klm_tampungan || 0
         );
 
         html += `
@@ -306,7 +306,7 @@ async function paparLaporanTampungan(){
 
                 <td>
                     RM ${Number(
-                        row.rm_tampung ?? 0
+                        row.rm_klm_tampungan ?? 0
                     ).toFixed(2)}
                 </td>
 
