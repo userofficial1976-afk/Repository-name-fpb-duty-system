@@ -3325,7 +3325,11 @@ async function editDuty(
         duty.jam_cutiam_bertugas
 
     );
-
+    
+    setValue(
+    "jamTampung",
+    duty.jam_tampungan || 0
+    );
 
     const offday = document.getElementById(
 
@@ -3821,7 +3825,7 @@ function kosongkanPengiraanRM() {
 
         "rmJamCutiam",
 
-        "jumlahCutiam"
+        "jumlahCutiam",
 
         "rmKlmHariBiasa",
         
