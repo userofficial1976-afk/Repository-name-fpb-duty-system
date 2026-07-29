@@ -320,6 +320,34 @@ async function statusTidakBertugasHariIni() {
 }
 function paparSenarai(kategori) {
 
+    const tajukKategori = {
+
+        OFFDAY:
+            "Senarai Anggota Offday / Ganti Offday",
+
+        CT:
+            "Senarai Anggota Cuti Tahunan",
+
+        MC:
+            "Senarai Anggota Cuti Sakit",
+
+        KUR:
+            "Senarai Anggota Menghadiri Kursus",
+
+        CA:
+            "Senarai Anggota Cuti Am",
+
+        CG:
+            "Senarai Anggota Cuti Ganti",
+
+        CE:
+            "Senarai Anggota Cuti Ehsan",
+
+        CTR:
+            "Senarai Anggota Cuti Tanpa Rekod"
+
+    };
+
     let senarai = [];
 
     switch (kategori) {
@@ -408,81 +436,139 @@ function paparSenarai(kategori) {
     }
 
     const namaList =
-        senarai.length
-            ? senarai
-                .map(
-                    (x, index) =>
-                        `
-                        <li>
-                            ${index + 1}.
-                            ${x.nama_anggota}
-                        </li>
-                        `
-                )
-                .join("")
-            : `
+        senarai.length > 0
+
+            ? senarai.map(
+                (x, index) =>
+
+                `
                 <li>
-                    Tiada rekod
+                    ${index + 1}. ${x.nama_anggota}
                 </li>
+                `
+            ).join("")
+
+            :
+
+            `
+            <li>
+                Tiada rekod dijumpai
+            </li>
             `;
 
     const popup =
-    document.createElement("div");
+        document.createElement("div");
 
     popup.innerHTML = `
+
         <div
+            data-popup
+            onclick="this.remove()"
             style="
                 position:fixed;
                 inset:0;
-                background:rgba(0,0,0,.45);
+                background:rgba(0,0,0,.50);
                 display:flex;
-                align-items:center;
                 justify-content:center;
+                align-items:center;
                 z-index:99999;
             "
         >
 
             <div
+                onclick="event.stopPropagation()"
                 style="
-                    background:white;
-                    width:450px;
-                    max-width:90%;
-                    border-radius:15px;
+                    background:#ffffff;
+                    width:600px;
+                    max-width:95%;
+                    border-radius:16px;
                     padding:25px;
+                    box-shadow:
+                        0 10px 30px
+                        rgba(0,0,0,.20);
                 "
             >
 
-                <h3>
-                    ${kategori}
-                </h3>
-
-                <hr>
-
-                <ol>
-                    ${namaList}
-                </ol>
-
-                <br>
-
-                <strong>
-                    Jumlah :
-                    ${senarai.length}
-                    Anggota
-                </strong>
-
-                <br><br>
-
-                <button
-                    onclick="
-                        this.closest('div').parentElement.remove()
+                <h3
+                    style="
+                        color:#1e3a5f;
+                        margin-bottom:10px;
+                        font-size:20px;
                     "
                 >
-                    Tutup
-                </button>
+                    ${tajukKategori[kategori]}
+                </h3>
+
+                <hr
+                    style="
+                        margin-bottom:15px;
+                    "
+                >
+
+                <div
+                    style="
+                        max-height:300px;
+                        overflow-y:auto;
+                        border:1px solid #e5e7eb;
+                        border-radius:8px;
+                        padding:12px;
+                        background:#fafafa;
+                    "
+                >
+
+                    <ol
+                        style="
+                            margin-left:20px;
+                            line-height:1.8;
+                        "
+                    >
+                        ${namaList}
+                    </ol>
+
+                </div>
+
+                <div
+                    style="
+                        margin-top:15px;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                    "
+                >
+
+                    <strong
+                        style="
+                            color:#1e3a5f;
+                        "
+                    >
+                        Jumlah :
+                        ${senarai.length}
+                        Anggota
+                    </strong>
+
+                    <button
+                        onclick="
+                            this.closest('[data-popup]').remove()
+                        "
+                        style="
+                            background:#dc2626;
+                            color:white;
+                            border:none;
+                            padding:10px 18px;
+                            border-radius:8px;
+                            cursor:pointer;
+                            font-weight:600;
+                        "
+                    >
+                        Tutup
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
+
     `;
 
     document.body.appendChild(
