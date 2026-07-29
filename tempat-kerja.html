@@ -932,7 +932,8 @@ select:focus {
 }
 
 .pos-area{
-    margin-top:22px;
+    display:flex;
+    flex-direction:column;
 }
 
 .pos-input-row{
@@ -1803,100 +1804,20 @@ New Workplace Code
 
 <div class="form-grid">
 
-<div class="form-group">
-
-<label>
-
-UNIT
-
-</label>
-
-<select
-
-```
-id="unit"
-```
-
->
-
-<option value="">
-
--- Pilih Unit --
-
-</option>
-
-<option value="Jerangau">
-
-Jerangau
-
-</option>
-
-<option value="Terengganu">
-
-Terengganu
-
-</option>
-
-<option value="Setiu">
-
-Setiu
-
-</option>
-
-<option value="Chador">
-
-Chador
-
-</option>
-
-<option value="Kerteh">
-
-Kerteh
-
-</option>
-
-<option value="Rantau Abang">
-
-Rantau Abang
-
-</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>
-
-KOD TK
-
-</label>
-
-<input
-
-```
-type="text"
-
-id="kodTempatKerja"
-
-placeholder="Contoh: W"
-
-maxlength="10"
-```
-
->
-
-</div>
-
-<div class="form-grid">
-
     <div class="form-group">
 
         <label>UNIT</label>
 
         <select id="unit">
-            ...
+
+            <option value="">-- Pilih Unit --</option>
+            <option value="Jerangau">Jerangau</option>
+            <option value="Terengganu">Terengganu</option>
+            <option value="Setiu">Setiu</option>
+            <option value="Chador">Chador</option>
+            <option value="Kerteh">Kerteh</option>
+            <option value="Rantau Abang">Rantau Abang</option>
+
         </select>
 
     </div>
@@ -1916,9 +1837,7 @@ maxlength="10"
 
     <div class="pos-area">
 
-        <label>
-            POS (TEMPAT KERJA)
-        </label>
+        <label>POS (TEMPAT KERJA)</label>
 
         <div class="pos-input-row">
 
@@ -1969,8 +1888,6 @@ maxlength="10"
 >
     💾 SIMPAN KOD TEMPAT KERJA
 </button>
-
-</div>
 
 <!-- SENARAI -->
 
