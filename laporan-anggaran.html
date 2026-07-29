@@ -114,9 +114,42 @@ body {
 
     border-right: 1px solid #cbdde1;
 
+    z-index: 100;
 }
 
+.sidebar::after {
 
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.15;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+            45deg,
+            transparent 45%,
+            #7fa9b1 46%,
+            #7fa9b1 54%,
+            transparent 55%
+        ),
+
+        linear-gradient(
+            -45deg,
+            transparent 45%,
+            #7fa9b1 46%,
+            #7fa9b1 54%,
+            transparent 55%
+        );
+
+    background-size: 30px 30px;
+
+}
 .brand {
 
     display: flex;
@@ -330,7 +363,17 @@ body {
     font-weight: 600;
 
 }
+.user-area {
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-left: 18px;
+
+}
 
 .status-dot {
 
@@ -792,6 +835,79 @@ button {
 
 @media(max-width:800px) {
 
+    .bottom-nav {
+
+    position: fixed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 72px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.97
+    );
+
+    border-top: 1px solid #cbdde1;
+
+    z-index: 999;
+
+}
+
+.bottom-nav a {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    color: #789096;
+
+    font-size: 10px;
+
+}
+
+.bottom-nav a.active {
+
+    color: #247b83;
+
+}
+
+.bottom-nav-icon {
+
+    font-size: 20px;
+
+}
+
+.bottom-nav-label {
+
+    font-size: 10px;
+
+}
+    .bottom-nav {
+
+    display: none;
+
+    }
     .sidebar {
 
         display: none;
@@ -1013,7 +1129,60 @@ Tetapan
 
 </aside>
 
+<nav class="bottom-nav">
 
+    ">
+
+        <span class="bottom-nav-icon">⌂</span>
+
+        <span class="bottom-nav-label">
+            Dashboard
+        </span>
+
+    </a>
+
+    <a href="anggota.html">
+
+        <span class="bottom-nav-icon">♙</span>
+
+        <span class="bottom-nav-label">
+            Anggota
+        </span>
+
+    </a>
+
+    -duty.html">
+
+        <span class="bottom-nav-icon">▣</span>
+
+        <span class="bottom-nav-label">
+            Duty
+        </span>
+
+    </a>
+
+    ">
+
+        <span class="bottom-nav-icon">▥</span>
+
+        <span class="bottom-nav-label">
+            Laporan
+        </span>
+
+    </a>
+
+    .html" class="active">
+
+        <span class="bottom-nav-icon">◫</span>
+
+        <span class="bottom-nav-label">
+            Anggaran
+        </span>
+
+    </a>
+
+</nav>
+``
 
 
 <main class="main">
@@ -1021,30 +1190,30 @@ Tetapan
 
 <div class="topbar">
 
+    <div class="page-title">
 
-<div class="page-title">
+        <h2>
+            Laporan Anggaran Duty
+        </h2>
 
-<h2>
-Anggaran RK02
-</h2>
+        <p>
+            Forecast Duty System /
+            Anggaran RK02
+        </p>
 
+    </div>
 
-<p>
-Forecast Duty System / Wilayah Terengganu
-</p>
+    <div class="user-area">
 
+        <div class="system-status">
 
-</div>
+            <span class="status-dot"></span>
 
+            System Online
 
-<div class="system-status">
+        </div>
 
-<span class="status-dot"></span>
-
-System Online
-
-</div>
-
+    </div>
 
 </div>
 
