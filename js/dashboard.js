@@ -90,66 +90,46 @@ async function statistikDutyHariIni() {
         return;
     }
 
-    const jumlahDuty =
-        data.length;
+    const jumlahDuty = data.length;
 
     const jumlahJamKerja =
         data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
-                    + Number(row.jam_kerja || 0);
-
-            },
+            (jumlah, row) =>
+                jumlah + Number(row.jam_kerja || 0),
             0
         );
 
     const jumlahJamKlm =
         data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
-                    + Number(row.jam_klm || 0);
-
-            },
+            (jumlah, row) =>
+                jumlah + Number(row.jam_klm || 0),
             0
         );
 
     const jumlahRmKlm =
         data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
-                    + Number(row.rm_klm_seluruh || 0);
-
-            },
+            (jumlah, row) =>
+                jumlah + Number(row.rm_klm_seluruh || 0),
             0
         );
 
-    document
-        .getElementById("jumlahDutyHariIni")
-        .textContent =
-        jumlahDuty;
+    document.getElementById(
+        "jumlahDutyHariIni"
+    ).textContent = jumlahDuty;
 
-    document
-        .getElementById("jumlahJamKerja")
-        .textContent =
-        jumlahJamKerja;
+    document.getElementById(
+        "jumlahJamKerja"
+    ).textContent = jumlahJamKerja;
 
-    document
-        .getElementById("jumlahJamKlm")
-        .textContent =
-        jumlahJamKlm;
+    document.getElementById(
+        "jumlahJamKlm"
+    ).textContent = jumlahJamKlm;
 
-    const rmKlmElement =
-        document.getElementById("jumlahRmKlm");
-
-    if (rmKlmElement) {
-
-        rmKlmElement.textContent =
-            "RM " +
-            jumlahRmKlm.toFixed(2);
-    }
+    document.getElementById(
+        "jumlahRmKlm"
+    ).textContent =
+        "RM " +
+        jumlahRmKlm.toFixed(2);
 }
 
 
