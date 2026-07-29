@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,170 +14,148 @@
 Kod Tempat Kerja — Forecast Duty System
 </title>
 
-<link
-    rel="stylesheet"
-    /head>
-
-<body>
-
-<div class="app">
-
-    <!-- SIDEBAR -->
-    <!-- COPY SIDEBAR YANG SAMA DARI index.html -->
-
-    <main class="main">
-
-        <div class="topbar">
-
-            <div class="page-title">
-
-                <h2>
-                    Kod Tempat Kerja
-                </h2>
-
-                <p>
-                    Forecast Duty System /
-                    Wilayah Terengganu
-                </p>
-
-            </div>
-
-            <div class="user-area">
-
-                <div class="system-status">
-
-                    <span class="status-dot"></span>
-
-                    System Online
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="content">
-
-            <div class="hero">
-
-                <div class="hero-content">
-
-                    <h1>
-                        PENGURUSAN KOD TEMPAT KERJA
-                    </h1>
-
-                    <p>
-                        Tetapkan dan urus Kod Tempat Kerja
-                        mengikut Pos Operasi secara
-                        sistematik dan berpusat.
-                    </p>
-
-                    <div class="hero-line"></div>
-
-                </div>
-
-                <div class="wave"></div>
-
-            </div>
-
-            <div class="stats">
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">📍</div>
-
-                    <h3>JUMLAH KOD TK</h3>
-
-                    <strong id="jumlahKodTK">0</strong>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">🏢</div>
-
-                    <h3>JUMLAH POS</h3>
-
-                    <strong id="jumlahPos">0</strong>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">✅</div>
-
-                    <h3>KOD AKTIF</h3>
-
-                    <strong id="jumlahAktif">0</strong>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Tambah Kod Tempat Kerja
-                    </h2>
-
-                    <span>
-                        Konfigurasi Pos Operasi
-                    </span>
-
-                </div>
-
-                <!-- FORM SEDIA ADA TUAN LETAK DI SINI -->
-
-            </div>
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>
-                        Senarai Kod Tempat Kerja
-                    </h2>
-
-                    <span>
-                        Rekod Semasa
-                    </span>
-
-                </div>
-
-                <input
-                    type="text"
-                    id="carianTempatKerja"
-                    placeholder="Cari Kod TK, Unit atau Nama Tempat Kerja..."
-                    style="margin-bottom:15px;"
-                >
-
-                <!-- TABLE SEDIA ADA TUAN LETAK DI SINI -->
-
-            </div>
-
-        </div>
-
-        <footer class="footer">
-
-            FPB DUTY SYSTEM —
-            WILAYAH TERENGGANU
-
-            <br>
-
-            © 2026 |
-            Operational Duty Management System
-
-        </footer>
-
-    </main>
-
-</div>
-
-https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2
-supabase.js</script>
-js/tempat-kerja.js</script>
-
-</body>
-</html>
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+body {
+    background: #f4f7f8;
+    color: #263238;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 290px;
+    background:
+        linear-gradient(
+            180deg,
+            #e8f1f3 0%,
+            #dcecef 100%
+        );
+    color: #234047;
+    padding: 24px 16px;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+    overflow-y: auto;
+    border-right: 1px solid #cbdde1;
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 45%,
+            #7fa9b1 46%,
+            #7fa9b1 54%,
+            transparent 55%
+        ),
+        linear-gradient(
+            -45deg,
+            transparent 45%,
+            #7fa9b1 46%,
+            #7fa9b1 54%,
+            transparent 55%
+        );
+    background-size: 30px 30px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 11px 25px;
+    border-bottom: 1px solid #cbdde1;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(60,100,110,.12);
+}
+
+.brand-text h1 {
+    font-size: 17px;
+    letter-spacing: .4px;
+}
+
+.brand-text p {
+    color: #6d858b;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.heritage-mark {
+    position: relative;
+    z-index: 2;
+    margin: 22px 0;
+    padding: 16px;
+    text-align: center;
+    border-radius: 12px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+.heritage-mark strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.heritage-mark span {
+    font-size: 11px;
+    color: #6d858b;
+}
+
+.nav {
+    position: relative;
+    z-index: 2;
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #42616a;
+    padding: 13px 14px;
+    margin: 5px 0;
+   
