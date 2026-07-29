@@ -2513,9 +2513,9 @@ async function simpanDuty() {
                 anggota.pos,
 
 
-            jam_tampungan:9        
-                Number(10            
-                       getValue("jamTampung") || 011        
+            jam_tampungan:        
+                Number(            
+                       getValue("jamTampung") || 0        
                 ),
 
             waktu_tugasan:
