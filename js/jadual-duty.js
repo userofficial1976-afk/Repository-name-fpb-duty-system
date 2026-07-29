@@ -2498,7 +2498,8 @@ async function simpanDuty() {
             ketua_unit: anggota.ketua_unit,
 
             ketua_pos: anggota.ketua_pos,
-
+            nama_ketua_pos:   
+                anggota.ketua_pos,
             pos: anggota.pos,
 
 
@@ -2512,10 +2513,10 @@ async function simpanDuty() {
                 anggota.pos,
 
 
-            jam_tampungan:
-
-                duty.jam_tampungan,
-
+            jam_tampungan:9        
+                Number(10            
+                       getValue("jamTampung") || 011        
+                ),
 
             waktu_tugasan:
 
