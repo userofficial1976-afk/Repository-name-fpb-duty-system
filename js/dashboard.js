@@ -1,7 +1,7 @@
 // =====================================================
 // DASHBOARD FPB DUTY SYSTEM
 // =====================================================
-
+document.addEventListener(
 document.addEventListener(
     "DOMContentLoaded",
     async function () {
@@ -188,9 +188,10 @@ async function statusTidakBertugasHariIni() {
     } =
     await supabaseClient
         .from("jadual_duty")
-        .select(
-            "kod_waktu_kerja"
-        )
+        .select(`
+            nama_anggota,
+            kod_waktu_kerja
+        `)
         .eq(
             "tarikh",
             hariIni
@@ -205,7 +206,7 @@ async function statusTidakBertugasHariIni() {
         return;
 
     }
-
+    dataDutyHariIni = data || [];
     const OFF =
         data.filter(
             x =>
@@ -317,7 +318,178 @@ async function statusTidakBertugasHariIni() {
         CTR;
 
 }
+function paparSenarai(kategori) {
 
+    let senarai = [];
+
+    switch (kategori) {
+
+        case "OFFDAY":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "OFF" ||
+                        x.kod_waktu_kerja === "GOFF"
+                );
+
+            break;
+
+        case "CT":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "CT"
+                );
+
+            break;
+
+        case "MC":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "MC"
+                );
+
+            break;
+
+        case "KUR":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "KUR"
+                );
+
+            break;
+
+        case "CA":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "CA"
+                );
+
+            break;
+
+        case "CG":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "CG"
+                );
+
+            break;
+
+        case "CE":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "CE"
+                );
+
+            break;
+
+        case "CTR":
+
+            senarai =
+                dataDutyHariIni.filter(
+                    x =>
+                        x.kod_waktu_kerja === "CTR"
+                );
+
+            break;
+
+    }
+
+    const namaList =
+        senarai.length
+            ? senarai
+                .map(
+                    (x, index) =>
+                        `
+                        <li>
+                            ${index + 1}.
+                            ${x.nama_anggota}
+                        </li>
+                        `
+                )
+                .join("")
+            : `
+                <li>
+                    Tiada rekod
+                </li>
+            `;
+
+    const popup =
+    document.createElement("div");
+
+    popup.innerHTML = `
+        <div
+            style="
+                position:fixed;
+                inset:0;
+                background:rgba(0,0,0,.45);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                z-index:99999;
+            "
+        >
+
+            <div
+                style="
+                    background:white;
+                    width:450px;
+                    max-width:90%;
+                    border-radius:15px;
+                    padding:25px;
+                "
+            >
+
+                <h3>
+                    ${kategori}
+                </h3>
+
+                <hr>
+
+                <ol>
+                    ${namaList}
+                </ol>
+
+                <br>
+
+                <strong>
+                    Jumlah :
+                    ${senarai.length}
+                    Anggota
+                </strong>
+
+                <br><br>
+
+                <button
+                    onclick="
+                        this.closest('div').parentElement.remove()
+                    "
+                >
+                    Tutup
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(
+        popup
+    );
+
+}
 // =====================================================
 // LOGOUT
 // =====================================================
