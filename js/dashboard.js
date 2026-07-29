@@ -305,17 +305,32 @@ async function statusTidakBertugasHariIni() {
     ).textContent =
         CTR;
 
-    document.getElementById(
-        "jumlahTidakBertugas"
-    ).textContent =
-        OFF +
-        CT +
-        MC +
-        KUR +
-        CA +
-        CG +
-        CE +
-        CTR;
+    const jumlahTidakBertugas =
+    OFF +
+    CT +
+    MC +
+    KUR +
+    CA +
+    CG +
+    CE +
+    CTR;
+
+document.getElementById(
+    "jumlahTidakBertugas"
+).textContent =
+    jumlahTidakBertugas;
+
+const jumlahBertugasHariIni =
+    dataDutyHariIni.length;
+
+document.getElementById(
+    "jumlahDutyHariIni"
+).textContent =
+    Math.max(
+        0,
+        jumlahBertugasHariIni -
+        jumlahTidakBertugas
+    );
 
 }
 function paparSenarai(kategori) {
