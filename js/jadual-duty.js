@@ -2492,7 +2492,7 @@ async function simpanDuty() {
 
             jam_tampungan:
 
-                duty.jam_kerja,
+                duty.jam_tampungan,
 
 
             waktu_tugasan:
@@ -2591,24 +2591,37 @@ async function simpanDuty() {
                 rmJamCutiam,
 
 
-            jumlah_cutiam:
+jumlah_cutiam:
+    jumlahCutiam,
 
-                jumlahCutiam,
+rm_klm_hari_biasa:
+    Number(
+        getValue(
+            "rmKlmHariBiasa"
+        ) || 0
+    ),
 
+rm_klm_tampungan:
+    Number(
+        getValue(
+            "rmTampung"
+        ) || 0
+    ),
 
-            rm_hari_biasa:
+rm_klm_seluruh:
+    Number(
+        getValue(
+            "rmKlmHariBiasa"
+        ) || 0
+    ) +
+    Number(
+        getValue(
+            "rmTampung"
+        ) || 0
+    ),
 
-                0,
-
-
-            rm_tampung:
-
-                0,
-
-
-            dikemaskini_oleh:
-
-                "Sistem",
+dikemaskini_oleh:
+    "Sistem",
 
 
             dikemaskini_pada:
