@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("DASHBOARD JS BERJAYA DIMUAT");
 
     await muatDashboard();
-
 });
 
 
@@ -24,7 +23,6 @@ async function muatDashboard() {
     await statistikJumlahJam();
 
     await dutyMengikutPos();
-
 }
 
 
@@ -43,7 +41,6 @@ async function jumlahAnggotaAktif() {
             })
             .eq("status", "Aktif");
 
-
     if (error) {
 
         console.error(
@@ -54,12 +51,10 @@ async function jumlahAnggotaAktif() {
         return;
     }
 
-
     document
         .getElementById("jumlahAnggota")
         .textContent =
         count || 0;
-
 }
 
 
@@ -103,105 +98,11 @@ async function statistikDutyHariIni() {
             function (jumlah, row) {
 
                 return jumlah
-                    + Number(
-                        row.jam_kerja || 0
-                    );
-
-            },
-            0
-        );
-
-    const jumlahJamKlm =
-        data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
-                    + Number(
-                        row.jam_klm || 0
-                    );
-
-            },
-            0
-        );
-
-    const jumlahRmKlm =
-        data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
-                    + Number(
-                        row.rm_klm_seluruh || 0
-                    );
-
-            },
-            0
-        );
-
-    document
-        .getElementById(
-            "jumlahDutyHariIni"
-        )
-        .textContent =
-        jumlahDuty;
-
-    document
-        .getElementById(
-            "jumlahJamKerja"
-        )
-        .textContent =
-        jumlahJamKerja;
-
-    document
-        .getElementById(
-            "jumlahJamKlm"
-        )
-        .textContent =
-        jumlahJamKlm;
-
-    document
-        .getElementById(
-            "jumlahRmKlm"
-        )
-        .textContent =
-        "RM " +
-        jumlahRmKlm.toFixed(2);
-}
-``
-
-// =====================================================
-// JUMLAH JAM KESELURUHAN
-// =====================================================
-
-async function statistikJumlahJam() {
-
-    const { data, error } =
-        await supabaseClient
-            .from("jadual_duty")
-            .select("jam_kerja, jam_klm");
-
-
-    if (error) {
-
-        console.error(
-            "RALAT JUMLAH JAM:",
-            error
-        );
-
-        return;
-    }
-
-
-    const jumlahJamKerja =
-        data.reduce(
-            function (jumlah, row) {
-
-                return jumlah
                     + Number(row.jam_kerja || 0);
 
             },
             0
         );
-
 
     const jumlahJamKlm =
         data.reduce(
@@ -214,19 +115,100 @@ async function statistikJumlahJam() {
             0
         );
 
+    const jumlahRmKlm =
+        data.reduce(
+            function (jumlah, row) {
+
+                return jumlah
+                    + Number(row.rm_klm_seluruh || 0);
+
+            },
+            0
+        );
+
+    document
+        .getElementById("jumlahDutyHariIni")
+        .textContent =
+        jumlahDuty;
+
+    document
+        .getElementById("jumlahJamKerja")
+        .textContent =
+        jumlahJamKerja;
+
+    document
+        .getElementById("jumlahJamKlm")
+        .textContent =
+        jumlahJamKlm;
+
+    const rmKlmElement =
+        document.getElementById("jumlahRmKlm");
+
+    if (rmKlmElement) {
+
+        rmKlmElement.textContent =
+            "RM " +
+            jumlahRmKlm.toFixed(2);
+    }
+}
+
+
+// =====================================================
+// JUMLAH JAM KESELURUHAN
+// =====================================================
+
+async function statistikJumlahJam() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("jadual_duty")
+            .select(
+                "jam_kerja, jam_klm"
+            );
+
+    if (error) {
+
+        console.error(
+            "RALAT JUMLAH JAM:",
+            error
+        );
+
+        return;
+    }
+
+    const jumlahJamKerja =
+        data.reduce(
+            function (jumlah, row) {
+
+                return jumlah
+                    + Number(row.jam_kerja || 0);
+
+            },
+            0
+        );
+
+    const jumlahJamKlm =
+        data.reduce(
+            function (jumlah, row) {
+
+                return jumlah
+                    + Number(row.jam_klm || 0);
+
+            },
+            0
+        );
 
     console.log(
         "Jumlah semua jam kerja:",
         jumlahJamKerja
     );
 
-
     console.log(
         "Jumlah semua jam KLM:",
         jumlahJamKlm
     );
-
 }
+
 
 // =====================================================
 // LOGOUT
@@ -234,32 +216,24 @@ async function statistikJumlahJam() {
 
 async function logout() {
 
-
-    const result = await supabaseClient.auth.signOut();
-
+    const result =
+        await supabaseClient.auth.signOut();
 
     if (result.error) {
 
-
         console.error(
-
             "RALAT LOGOUT:",
-
             result.error
-
         );
 
-
         return;
-
     }
 
-
     window.location.href =
-
         "login.html";
-
 }
+
+
 // =====================================================
 // DUTY MENGIKUT POS
 // =====================================================
@@ -271,7 +245,6 @@ async function dutyMengikutPos() {
             .from("jadual_duty")
             .select("pos");
 
-
     if (error) {
 
         console.error(
@@ -282,40 +255,31 @@ async function dutyMengikutPos() {
         return;
     }
 
-
     const kiraanPos = {};
-
 
     data.forEach(function (row) {
 
         const pos =
             row.pos || "Tidak Diketahui";
 
-
         if (!kiraanPos[pos]) {
 
             kiraanPos[pos] = 0;
-
         }
 
-
         kiraanPos[pos]++;
-
     });
 
-
     const tbody =
-        document
-            .getElementById("senaraiPos");
-
+        document.getElementById(
+            "senaraiPos"
+        );
 
     tbody.innerHTML = "";
-
 
     const semuaPos =
         Object.keys(kiraanPos)
             .sort();
-
 
     if (semuaPos.length === 0) {
 
@@ -330,30 +294,22 @@ async function dutyMengikutPos() {
         return;
     }
 
-
     semuaPos.forEach(function (pos) {
 
         const tr =
             document.createElement("tr");
 
-
         tr.innerHTML = `
-
             <td>
                 ${pos}
             </td>
-
             <td>
                 <strong>
                     ${kiraanPos[pos]}
                 </strong>
             </td>
-
         `;
 
-
         tbody.appendChild(tr);
-
     });
-
 }
