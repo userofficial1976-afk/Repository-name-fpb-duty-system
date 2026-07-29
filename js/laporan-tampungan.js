@@ -1,3 +1,5 @@
+alert("laporan-tampungan.js berjaya load");
+
 async function paparLaporanTampungan(){
 
     const bulan =
