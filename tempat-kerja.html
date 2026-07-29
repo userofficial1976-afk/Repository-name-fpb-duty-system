@@ -1889,61 +1889,58 @@ maxlength="10"
 
 </div>
 
-<div class="pos-area">
+<div class="form-grid">
 
-    <label>
-        Pos (Tempat Kerja)
-    </label>
+    <div class="form-group">
 
-    <div class="pos-input-row">
+        <label>UNIT</label>
 
-        <select id="pos">
-
-            <option value="">
-                -- Pilih Pos --
-            </option>
-
+        <select id="unit">
+            ...
         </select>
-
-        <button
-            type="button"
-            class="btn-add-pos"
-            onclick="tambahPos()"
-        >
-            ＋ Tambah Pos
-        </button>
 
     </div>
 
-<div class="pos-area">
+    <div class="form-group">
 
-    <label>
-        POS (TEMPAT KERJA)
-    </label>
+        <label>KOD TK</label>
 
-    <div class="pos-input-row">
-
-        <select id="pos">
-
-            <option value="">
-                -- Pilih Pos --
-            </option>
-
-        </select>
-
-        <button
-            type="button"
-            class="btn-add-pos"
-            onclick="tambahPos()"
+        <input
+            type="text"
+            id="kodTempatKerja"
+            placeholder="Contoh: W"
+            maxlength="10"
         >
-            ＋ Tambah Pos
-        </button>
 
     </div>
 
-</div>
+    <div class="pos-area">
 
-</div>
+        <label>
+            POS (TEMPAT KERJA)
+        </label>
+
+        <div class="pos-input-row">
+
+            <select id="pos">
+
+                <option value="">
+                    -- Pilih Pos --
+                </option>
+
+            </select>
+
+            <button
+                type="button"
+                class="btn-add-pos"
+                onclick="tambahPos()"
+            >
+                ＋ Tambah Pos
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -1972,6 +1969,7 @@ maxlength="10"
 >
     💾 SIMPAN KOD TEMPAT KERJA
 </button>
+
 </div>
 
 <!-- SENARAI -->
