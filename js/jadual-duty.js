@@ -1397,23 +1397,17 @@ function pasangEventKodDuty() {
             );
 
 
-            setValue(
+setValue(
+    "jamKlm",
+    data.jam_klm
+);
 
-                "jamKlm",
+setValue(
+    "jamTampung",
+    data.jam_kerja
+);
 
-                data.jam_klm
-
-            );
-
-
-            setValue(
-
-                "jamTampungan",
-
-                data.jam_kerja
-
-            );
-
+kiraSemuaRM();
         }
 
     );
@@ -1848,7 +1842,7 @@ function pasangEventPengiraanRM() {
 
         "jamTampung",
 
-        "rmTampung",
+        "jamKlm",
 
         "anggota"
 
@@ -1985,7 +1979,23 @@ function kiraSemuaRM() {
         ) || 0
 
     );
+    const jamKlm = Number(
+    getValue("jamKlm") || 0
+);
 
+const jamTampung = Number(
+    getValue("jamTampung") || 0
+);
+
+const kadarKlm = Number(
+    anggota.rm_pehariklmbiasa || 0
+);
+
+const rmKlmHariBiasa =
+    jamKlm * kadarKlm;
+
+const rmTampung =
+    jamTampung * kadarKlm;
 
     const rmHariOffday =
 
@@ -2127,9 +2137,21 @@ function kiraSemuaRM() {
             jumlahCutiam
 
         )
-
+        
     );
+    setValue(
+    "rmKlmHariBiasa",
+    formatRM(
+        rmKlmHariBiasa
+    )
+);
 
+setValue(
+    "rmTampung",
+    formatRM(
+        rmTampung
+    )
+);
 }
 
 
