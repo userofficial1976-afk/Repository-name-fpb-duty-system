@@ -1846,6 +1846,10 @@ function pasangEventPengiraanRM() {
 
         "jamCutiam",
 
+        "jamTampung",
+
+        "rmTampung",
+
         "anggota"
 
     ];
