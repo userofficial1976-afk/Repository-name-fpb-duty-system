@@ -23,13 +23,7 @@ Jadual Duty — FPB Duty Command Center V2
 @media(max-width:800px){
 
 
-.table-wrapper{
 
-    overflow-x:auto;
-
-    width:100%;
-
-}
 
 
 .table-wrapper table{
@@ -340,15 +334,13 @@ Jadual Duty — FPB Duty Command Center V2
 
 .table-wrapper{
 
-    border-radius:18px;
-
+    width:100%;
     overflow:auto;
-
     max-height:600px;
-
+    border-radius:18px;
     border:1px solid #d8e7e9;
-
     background:white;
+    margin-top:20px;
 
 }
 
@@ -589,104 +581,65 @@ Jadual Duty — FPB Duty Command Center V2
 
 }
 
-
-
-
-
 /* =====================================================
-   MOBILE CARD VIEW
+   SECTION 5 MOBILE TABLE VIEW
 ===================================================== */
-
 
 @media(max-width:800px){
 
-
 .table-wrapper{
 
-    border:none;
-
-    overflow:visible;
-
-    max-height:none;
-
-    background:transparent;
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    border-radius:15px;
 
 }
 
 
+.table-wrapper table{
 
-.table-wrapper table,
-.table-wrapper thead,
-.table-wrapper tbody,
-.table-wrapper th,
-.table-wrapper td,
-.table-wrapper tr{
-
-    display:block;
+    display:table;
+    min-width:1000px;
 
 }
-
 
 
 .table-wrapper thead{
 
-    display:none;
+    display:table-header-group;
+
+}
+
+
+.table-wrapper tbody{
+
+    display:table-row-group;
+
+}
+
+
+.table-wrapper tr{
+
+    display:table-row;
+
+}
+
+
+.table-wrapper th,
+.table-wrapper td{
+
+    display:table-cell;
+    white-space:nowrap;
+
+}
+
 
 }
 
 
 
-#senaraiDuty tr{
 
-    background:white;
-
-    border-radius:16px;
-
-    padding:15px;
-
-    margin-bottom:15px;
-
-    box-shadow:
-
-    0 5px 15px
-
-    rgba(0,0,0,.08);
-
-}
-
-
-
-#senaraiDuty td{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:10px 5px;
-
-    border:none;
-
-    font-size:13px;
-
-}
-
-
-
-#senaraiDuty td::before{
-
-    content:attr(data-label);
-
-    font-weight:800;
-
-    color:#567077;
-
-}
-
-
-
-}
 
 @media(max-width:800px){
 
@@ -1098,15 +1051,7 @@ Jadual Duty — FPB Duty Command Center V2
 ===================================================== */
 
 
-.table-wrapper{
 
-    width:100%;
-
-    overflow-x:auto;
-
-    margin-top:20px;
-
-}
 
 
 
