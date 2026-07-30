@@ -19,7 +19,74 @@ Kod Tempat Kerja — Forecast Duty System
 </title>
 
 <style>
+/* =====================================================
+   MOBILE BOTTOM NAV
+===================================================== */
 
+.bottom-nav{
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+        padding-bottom:82px;
+    }
+
+    .bottom-nav{
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+
+        height:72px;
+
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+
+        background:#ffffff;
+
+        border-top:
+        1px solid #cbdde1;
+
+        z-index:9999;
+    }
+
+    .bottom-nav a{
+        flex:1;
+        height:100%;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+
+        text-decoration:none;
+
+        color:#789096;
+
+        font-size:10px;
+        font-weight:600;
+    }
+
+    .bottom-nav a.active{
+        background:#e8f3f4;
+        color:#247b83;
+    }
+
+    .bottom-nav-icon{
+        font-size:20px;
+        margin-bottom:4px;
+    }
+
+}
 
 /* =====================================================
    GLOBAL
@@ -1786,7 +1853,80 @@ Tetapan
 </nav>
 
 </aside>
+<!-- =====================================================
+     MOBILE BOTTOM NAV
+===================================================== -->
 
+<nav class="bottom-nav">
+
+    <a href="index.html">
+
+        <span class="bottom-nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <a href="kod-duty.html">
+
+        <span class="bottom-nav-icon">
+            ▤
+        </span>
+
+        <span>
+            Kod Duty
+        </span>
+
+    </a>
+
+
+    <a
+    href="tempat-kerja.html"
+    class="active"
+    >
+
+        <span class="bottom-nav-icon">
+            ▦
+        </span>
+
+        <span>
+            Kod TK
+        </span>
+
+    </a>
+
+
+    <a href="jadual-duty.html">
+
+        <span class="bottom-nav-icon">
+            ▣
+        </span>
+
+        <span>
+            Duty
+        </span>
+
+    </a>
+
+
+    <a href="laporan-anggaran.html">
+
+        <span class="bottom-nav-icon">
+            ◫
+        </span>
+
+        <span>
+            RK02
+        </span>
+
+    </a>
+
+</nav>
 <!-- =====================================================
      MAIN
 ===================================================== -->
