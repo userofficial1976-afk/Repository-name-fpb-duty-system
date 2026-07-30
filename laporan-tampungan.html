@@ -12,6 +12,50 @@
 Laporan Pos Tampungan — FPB Duty System
 </title>
 
+.bottom-nav{
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .bottom-nav{
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        height:70px;
+        display:flex;
+        background:#fff;
+        border-top:1px solid #dce7e9;
+        z-index:9999;
+    }
+
+    .bottom-nav a{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-decoration:none;
+        color:#789096;
+        font-size:10px;
+        font-weight:600;
+    }
+
+    .bottom-nav a.active{
+        color:#247b83;
+        background:#e8f3f4;
+    }
+
+    .bottom-nav-icon{
+        font-size:20px;
+        margin-bottom:4px;
+    }
+
+    .main{
+        padding-bottom:80px;
+    }
+}
 
 <style>
 
@@ -499,7 +543,7 @@ REPORTING
 
 <a href="index.html">
 
-<span class="nav-icon">▥</span>
+<span class="nav-icon">⌂</span>
 Ke Dashboard
 
 </a>
@@ -509,9 +553,27 @@ Ke Dashboard
 
 </aside>
 
+<nav class="bottom-nav">
 
+    <a href="index.html">
+        <span class="bottom-nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="laporan.html">
+        <span class="bottom-nav-icon">▥</span>
+        <span>Laporan</span>
+    </a>
+
+    <a href="laporan-tampungan.html" class="active">
+        <span class="bottom-nav-icon">📋</span>
+        <span>Tampungan</span>
+    </a>
+
+</nav>
 
 <main class="main">
+
 
 
 
