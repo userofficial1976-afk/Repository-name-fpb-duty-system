@@ -578,7 +578,15 @@ function cetakLaporanPDF(){
         "a4"
 
     });
+   if(typeof pdf.autoTable !== "function"){
 
+    alert(
+        "Plugin PDF Table tidak berjaya load"
+    );
+
+    return;
+
+}
 
     pdf.setFontSize(
         16
@@ -633,14 +641,11 @@ function cetakLaporanPDF(){
     );
 
 
-    pdf.autoTable({
+   pdf.autoTable({
 
-        html:
-        table,
+       html: table,
 
-
-        startY:
-        28,
+       startY: 28,
 
 
         theme:
