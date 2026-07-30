@@ -350,3 +350,367 @@ document.addEventListener(
 
     }
 );
+/* ==========================================
+   MUAT TURUN CSV
+========================================== */
+
+function muatTurunCSV(){
+
+    const bulan =
+
+    document.getElementById(
+        "filterBulan"
+    ).value;
+
+
+    const tahun =
+
+    document.getElementById(
+        "filterTahun"
+    ).value;
+
+
+    if(!bulan || !tahun){
+
+        alert(
+            "Sila pilih Bulan dan Tahun dahulu."
+        );
+
+        return;
+
+    }
+
+
+    const table =
+
+    document.querySelector(
+        ".table-wrapper table"
+    );
+
+
+    if(!table){
+
+        alert(
+            "Jadual laporan tidak dijumpai."
+        );
+
+        return;
+
+    }
+
+
+    const rows =
+
+    table.querySelectorAll(
+        "tr"
+    );
+
+
+    let csv = "";
+
+
+    rows.forEach(row => {
+
+
+        const cells =
+
+        row.querySelectorAll(
+            "th, td"
+        );
+
+
+        const rowData = [];
+
+
+        cells.forEach(cell => {
+
+
+            let text =
+
+            cell.innerText
+
+            .replace(
+                /\n/g,
+                " "
+            )
+
+            .replace(
+                /"/g,
+                '""'
+            )
+
+            .trim();
+
+
+            rowData.push(
+
+                `"${text}"`
+
+            );
+
+        });
+
+
+        if(rowData.length > 0){
+
+            csv +=
+
+            rowData.join(",")
+
+            + "\n";
+
+        }
+
+    });
+
+
+    const blob =
+
+    new Blob(
+
+        [
+
+            "\uFEFF" + csv
+
+        ],
+
+        {
+
+            type:
+
+            "text/csv;charset=utf-8;"
+
+        }
+
+    );
+
+
+    const url =
+
+    URL.createObjectURL(
+        blob
+    );
+
+
+    const link =
+
+    document.createElement(
+        "a"
+    );
+
+
+    link.href = url;
+
+
+    link.download =
+
+    `Laporan_Pos_Tampungan_${bulan}_${tahun}.csv`;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+/* ==========================================
+   CETAK / MUAT TURUN PDF
+========================================== */
+
+function cetakLaporanPDF(){
+
+    const bulan =
+
+    document.getElementById(
+        "filterBulan"
+    ).value;
+
+
+    const tahun =
+
+    document.getElementById(
+        "filterTahun"
+    ).value;
+
+
+    if(!bulan || !tahun){
+
+        alert(
+            "Sila pilih Bulan dan Tahun dahulu."
+        );
+
+        return;
+
+    }
+
+
+    const {
+
+        jsPDF
+
+    } = window.jspdf;
+
+
+    const pdf =
+
+    new jsPDF({
+
+        orientation:
+        "landscape",
+
+        unit:
+        "mm",
+
+        format:
+        "a4"
+
+    });
+
+
+    pdf.setFontSize(
+        16
+    );
+
+
+    pdf.text(
+
+        "LAPORAN POS TAMPUNGAN",
+
+        148,
+
+        15,
+
+        {
+
+            align:
+            "center"
+
+        }
+
+    );
+
+
+    pdf.setFontSize(
+        10
+    );
+
+
+    pdf.text(
+
+        `Bulan: ${bulan} ${tahun}`,
+
+        148,
+
+        22,
+
+        {
+
+            align:
+            "center"
+
+        }
+
+    );
+
+
+    const table =
+
+    document.querySelector(
+        ".table-wrapper table"
+    );
+
+
+    pdf.autoTable({
+
+        html:
+        table,
+
+
+        startY:
+        28,
+
+
+        theme:
+        "grid",
+
+
+        styles:{
+
+            fontSize:
+            7,
+
+            cellPadding:
+            2
+
+        },
+
+
+        headStyles:{
+
+            fillColor:
+
+            [
+                61,
+                127,
+                134
+            ]
+
+        },
+
+
+        margin:{
+
+            left:
+            8,
+
+            right:
+            8
+
+        }
+
+    });
+
+
+    pdf.setFontSize(
+        8
+    );
+
+
+    pdf.text(
+
+        "FPB DUTY SYSTEM — WILAYAH TERENGGANU",
+
+        148,
+
+        202,
+
+        {
+
+            align:
+            "center"
+
+        }
+
+    );
+
+
+    pdf.save(
+
+        `Laporan_Pos_Tampungan_${bulan}_${tahun}.pdf`
+
+    );
+
+}
