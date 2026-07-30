@@ -18,7 +18,336 @@ Jadual Duty — FPB Duty Command Center V2
 
 
 <style>
+/* =====================================================
+   BUTTON SIMPAN DUTY
+===================================================== */
 
+
+.btn-save{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #247b83,
+        #3d9da3
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    letter-spacing:.5px;
+
+    box-shadow:
+    0 8px 18px
+    rgba(36,123,131,.25);
+
+    transition:.25s;
+
+}
+
+
+
+.btn-save:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.9;
+
+}
+
+
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    margin-top:20px;
+
+}
+
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+    background:white;
+
+}
+
+
+
+thead{
+
+    background:#164951;
+
+    color:white;
+
+}
+
+
+
+th{
+
+    padding:14px 10px;
+
+    font-size:12px;
+
+    text-align:center;
+
+    white-space:nowrap;
+
+}
+
+
+
+td{
+
+    padding:12px 10px;
+
+    border-bottom:
+
+    1px solid #e1ebed;
+
+    font-size:13px;
+
+    text-align:center;
+
+}
+
+
+
+tbody tr:hover{
+
+    background:#f1f8f9;
+
+}
+
+
+
+tbody td:first-child{
+
+    font-weight:700;
+
+    color:#247b83;
+
+}
+
+
+
+
+
+/* =====================================================
+   FILTER PANEL
+===================================================== */
+
+
+.filter-panel{
+
+    border-left:
+
+    5px solid #247b83;
+
+}
+
+
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+
+.footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#71858b;
+
+    font-size:12px;
+
+}
+
+
+
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+
+.popup-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    rgba(0,0,0,.45);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:3000;
+
+}
+
+
+
+.popup-box{
+
+    width:350px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 20px 50px
+
+    rgba(0,0,0,.2);
+
+}
+
+
+
+.popup-icon{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.popup-title{
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:#164951;
+
+}
+
+
+
+.popup-message{
+
+    margin:15px 0;
+
+    color:#65777c;
+
+}
+
+
+
+.popup-button{
+
+    width:100%;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#247b83;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* =====================================================
+   SPECIAL DUTY BOX
+===================================================== */
+
+
+.card h3{
+
+    color:#40575d;
+
+    margin-bottom:15px;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+/* =====================================================
+   MOBILE TABLE
+===================================================== */
+
+
+@media(max-width:800px){
+
+
+.btn-save{
+
+    height:50px;
+
+}
+
+
+
+.popup-box{
+
+    width:90%;
+
+}
+
+
+}
 /* =====================================================
    FPB DUTY COMMAND CENTER V2
    STANDALONE INTERFACE
