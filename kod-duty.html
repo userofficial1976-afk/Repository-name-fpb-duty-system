@@ -17,7 +17,51 @@ Kod Duty — Forecast Duty System
 </title>
 
 <style>
+/* =====================================================
+   MOBILE FIX — INPUT & DROPDOWN DALAM CARD
+===================================================== */
 
+@media (max-width:800px){
+
+    /* Card tidak melebihi skrin */
+    .card{
+        width:100%;
+        max-width:100%;
+        overflow:hidden;
+        padding:18px;
+    }
+
+    /* Semua grid jadi satu kolum */
+    .form-grid,
+    .filter-grid{
+        display:grid;
+        grid-template-columns:minmax(0, 1fr);
+        width:100%;
+        max-width:100%;
+        gap:15px;
+    }
+
+    /* Form group ikut lebar card */
+    .form-group,
+    .filter-group{
+        width:100%;
+        min-width:0;
+        max-width:100%;
+    }
+
+    /* Input dan dropdown tidak keluar card */
+    .form-group input,
+    .form-group select,
+    .filter-group input,
+    .filter-group select{
+        display:block;
+        width:100%;
+        min-width:0;
+        max-width:100%;
+        box-sizing:border-box;
+    }
+
+}
 .bottom-nav{
     display:none;
 }
