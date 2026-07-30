@@ -6,1780 +6,199 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>
-Jadual Duty — Forecast Duty System
+Jadual Duty — FPB Duty Command Center V2
 </title>
 
+
+<!-- MASTER THEME -->
+
+<link rel="stylesheet" href="assets/css/command-theme.css">
+
+
+<!-- ICON / PWA -->
+
+<link rel="icon" type="image/png" href="logo.png">
+
+<link rel="apple-touch-icon" href="logo.png">
+
+
 <style>
+
 /* =====================================================
-   SPECIAL DUTY - COMPACT
+   PAGE SPECIFIC : JADUAL DUTY
+   (Design tidak mengubah master theme)
 ===================================================== */
+
+
+/* ===============================
+   SPECIAL DUTY
+================================ */
+
 
 .special-row {
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
-        1fr
-        130px;
+        1fr 130px;
 
-    gap: 15px;
+    gap:15px;
 
-    align-items: end;
+    align-items:end;
 
 }
 
 
 .special-calculation {
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+        repeat(3,1fr);
 
-    gap: 12px;
+    gap:12px;
 
-    margin-top: 15px;
+    margin-top:15px;
 
 }
 
 
-.special-box {
+/* ===============================
+   SPECIAL BOX
+================================ */
 
-    min-width: 0;
-
-}
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-* {
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 0;
-
-    font-family:
-
-        "Segoe UI",
-
-        Arial,
-
-        Helvetica,
-
-        sans-serif;
-
-}
-
-
-body {
-
-    background: #f4f7f8;
-
-    color: #263238;
-
-}
-
-
-.app {
-
-    display: flex;
-
-    min-height: 100vh;
-
-}
-
-
-/* =====================================================
-   SIDEBAR MASTER
-===================================================== */
-
-.sidebar {
-
-    width: 270px;
-
-    background:
-
-        linear-gradient(
-
-            180deg,
-
-            #e8f1f3 0%,
-
-            #dcecef 100%
-
-        );
-
-    color: #234047;
-
-    padding: 24px 16px;
-
-    position: fixed;
-
-    top: 0;
-
-    bottom: 0;
-
-    left: 0;
-
-    z-index: 100;
-
-    overflow-y: auto;
-
-    border-right: 1px solid #cbdde1;
-
-}
-
-
-.sidebar::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    opacity: 0.15;
-
-    pointer-events: none;
-
-    background-image:
-
-        linear-gradient(
-
-            45deg,
-
-            transparent 45%,
-
-            #7fa9b1 46%,
-
-            #7fa9b1 54%,
-
-            transparent 55%
-
-        ),
-
-        linear-gradient(
-
-            -45deg,
-
-            transparent 45%,
-
-            #7fa9b1 46%,
-
-            #7fa9b1 54%,
-
-            transparent 55%
-
-        );
-
-    background-size: 30px 30px;
-
-}
-
-
-/* =====================================================
-   BRAND
-===================================================== */
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    padding: 0 11px 25px;
-
-    border-bottom: 1px solid #cbdde1;
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.logo {
-
-    width: 58px;
-
-    height: 58px;
-
-    object-fit: contain;
-
-    background: white;
-
-    padding: 5px;
-
-    border-radius: 12px;
-
-    box-shadow:
-
-        0 4px 12px
-
-        rgba(
-
-            60,
-
-            100,
-
-            110,
-
-            0.12
-
-        );
-
-}
-
-
-.brand-text h1 {
-
-    font-size: 17px;
-
-    letter-spacing: 0.4px;
-
-    color: #234047;
-
-}
-
-
-.brand-text p {
-
-    color: #6d858b;
-
-    font-size: 12px;
-
-    margin-top: 4px;
-
-}
-
-
-/* =====================================================
-   HERITAGE MARK
-===================================================== */
-
-.heritage-mark {
-
-    margin: 22px 10px;
-
-    padding: 15px;
-
-    border: 1px solid #c6dadd;
-
-    border-radius: 12px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.55
-
-        );
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.heritage-mark strong {
-
-    display: block;
-
-    font-size: 12px;
-
-    letter-spacing: 0.6px;
-
-    color: #365b63;
-
-}
-
-
-.heritage-mark span {
-
-    display: block;
-
-    margin-top: 7px;
-
-    color: #769097;
-
-    font-size: 11px;
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-.nav-title {
-
-    color: #789096;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1.5px;
-
-    font-weight: bold;
-
-    margin: 26px 13px 10px;
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.nav {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.nav a {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    color: #577178;
-
-    text-decoration: none;
-
-    padding: 14px 15px;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    transition: all 0.2s ease;
-
-}
-
-
-.nav a:hover {
-
-    background: #d1e4e8;
-
-    color: #234047;
-
-    transform: translateX(2px);
-
-}
-
-
-.nav a.active {
-
-    background: #ffffff;
-
-    color: #247b83;
-
-    box-shadow:
-
-        0 4px 12px
-
-        rgba(
-
-            50,
-
-            100,
-
-            110,
-
-            0.10
-
-        );
-
-}
-
-
-.nav-icon {
-
-    width: 24px;
-
-    text-align: center;
-
-    font-size: 20px;
-
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.main {
-
-    margin-left: 270px;
-
-    width:
-
-        calc(
-
-            100% - 270px
-
-        );
-
-}
-
-
-/* =====================================================
-   TOPBAR
-===================================================== */
-
-.topbar {
-
-    min-height: 82px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.92
-
-        );
-
-    border-bottom: 1px solid #dce7e9;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 38px;
-
-}
-
-
-.page-title h2 {
-
-    font-size: 26px;
-
-    letter-spacing: 0.3px;
-
-    color: #263f45;
-
-}
-
-
-.page-title p {
-
-    font-size: 14px;
-
-    color: #829398;
-
-    margin-top: 5px;
-
-}
-
-
-.system-status {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    background: #e4f2ed;
-
-    color: #3d7662;
-
-    padding: 10px 16px;
-
-    border-radius: 22px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-}
-
-
-.status-dot {
-
-    width: 9px;
-
-    height: 9px;
-
-    background: #61a98d;
-
-    border-radius: 50%;
-
-}
-
-
-/* =====================================================
-   CONTENT
-===================================================== */
-
-.content {
-
-    padding: 16px;
-
-    max-width: none;
-
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #3d7f86,
-
-            #5b9da0
-
-        );
-
-    color: white;
-
-    border-radius: 18px;
-
-    padding: 25px 31px;
-
-    margin-bottom: 30px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid #77adb0;
-
-    box-shadow:
-
-        0 8px 22px
-
-        rgba(
-
-            57,
-
-            111,
-
-            118,
-
-            0.15
-
-        );
-
-}
-
-
-.hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    right: -80px;
-
-    bottom: -140px;
-
-    width: 420px;
-
-    height: 420px;
-
-    border: 1px solid
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.25
-
-        );
-
-    border-radius: 50%;
-
-}
-
-
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 80px;
-
-    bottom: -200px;
-
-    width: 400px;
-
-    height: 400px;
-
-    border: 1px solid
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.18
-
-        );
-
-    border-radius: 50%;
-
-}
-
-
-.hero-content {
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-.hero h1 {
-
-    font-size: 26px;
-
-    letter-spacing: 0.6px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.hero p {
-
-    color: #e3f2f3;
-
-    font-size: 15px;
-
-    max-width: 700px;
-
-}
-
-
-.hero-line {
-
-    margin-top: 25px;
-
-    width: 160px;
-
-    height: 3px;
-
-    background: #d8f1ef;
-
-}
-
-
-/* =====================================================
-   CARD
-===================================================== */
-
-.card {
-
-    background: #ffffff;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 15px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    box-shadow:
-
-        0 4px 14px
-
-        rgba(
-
-            60,
-
-            100,
-
-            110,
-
-            0.06
-
-        );
-
-}
-
-
-/* =====================================================
-   CARD HEADER
-===================================================== */
-
-.card-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    border-bottom: 1px solid #edf2f3;
-
-    padding-bottom: 17px;
-
-    margin-bottom: 20px;
-
-}
-
-
-.card-title h2 {
-
-    color: #304c53;
-
-    font-size: 20px;
-
-}
-
-
-.section-number {
-
-    width: 35px;
-
-    height: 35px;
-
-    border-radius: 10px;
-
-    background: #e1f0f1;
-
-    color: #3d7f86;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: bold;
-
-    font-size: 16px;
-
-}
-
-
-/* =====================================================
-   GRID
-===================================================== */
-
-.grid {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            4,
-
-            minmax(
-
-                180px,
-
-                1fr
-
-            )
-
-        );
-
-    gap: 18px;
-
-}
-
-
-.grid-3 {
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            3,
-
-            minmax(
-
-                200px,
-
-                1fr
-
-            )
-
-        );
-
-    gap: 18px;
-
-}
-
-
-/* =====================================================
-   FORM
-===================================================== */
-
-.form-group {
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-
-label {
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    color: #71858a;
-
-    margin-bottom: 7px;
-
-}
-
-
-input,
-
-select {
-
-    width: 100%;
-
-    height: 44px;
-
-    padding: 0 13px;
-
-    border-radius: 9px;
-
-    border: 1px solid #cbdde1;
-
-    background: white;
-
-    font-size: 14px;
-
-    color: #40575d;
-
-}
-
-
-input:focus,
-
-select:focus {
-
-    outline: none;
-
-    border-color: #5b9da0;
-
-    box-shadow:
-
-        0 0 0 3px
-
-        rgba(
-
-            91,
-
-            157,
-
-            160,
-
-            0.12
-
-        );
-
-}
-
-
-input[readonly] {
-
-    background: #f2f7f8;
-
-    color: #62777c;
-
-    font-weight: 600;
-
-}
-
-
-/* =====================================================
-   INFO BOX
-===================================================== */
-
-.info-box,
-
-.duty-code-box {
-
-    background: #f6fafb;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 12px;
-
-    padding: 20px;
-
-}
-
-
-.duty-code-box {
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #edf6f7,
-
-            #f8fbfb
-
-        );
-
-    border-color: #c3dfe1;
-
-}
-
-
-/* =====================================================
-   SPECIAL DUTY
-===================================================== */
 
 .special-duty-grid {
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
-
         1fr 1fr;
 
-    gap: 18px;
+    gap:18px;
 
 }
 
 
 .special-box {
 
-    border-radius: 12px;
+    border-radius:12px;
 
-    padding: 18px;
+    padding:18px;
 
-    border: 1px solid;
+    border:1px solid;
 
 }
 
 
 .offday-box {
 
-    background: #fff8ee;
+    background:#fff8ee;
 
-    border-color: #f1d4a8;
+    border-color:#f1d4a8;
 
 }
 
 
 .cutiam-box {
 
-    background: #fff3f3;
+    background:#fff3f3;
 
-    border-color: #efc6c6;
+    border-color:#efc6c6;
 
 }
 
 
 .special-box h3 {
 
-    margin: 0 0 15px;
+    margin-bottom:15px;
 
-    font-size: 15px;
+    font-size:15px;
 
-    color: #40575d;
+    color:#40575d;
 
 }
 
 
 .checkbox-label {
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 8px;
+    gap:8px;
 
-    font-size: 13px;
+    font-size:13px;
 
-    font-weight: 700;
+    font-weight:700;
 
 }
 
 
 .checkbox-label input {
 
-    width: auto;
+    width:auto;
 
 }
 
 
-/* =====================================================
-   BUTTON SIMPAN
-===================================================== */
+/* ===============================
+   MOBILE FIX
+================================ */
 
-.btn-save {
 
-    width: 100%;
+@media(max-width:800px){
 
-    height: 44px;
 
-    padding: 0 18px;
+.main {
 
-    border: none;
+    margin-left:0;
 
-    border-radius: 9px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #3d7f86,
-
-            #5b9da0
-
-        );
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: 0.2s;
+    width:100%;
 
 }
 
 
-.btn-save:hover {
+.grid,
+.grid-3,
+.special-duty-grid {
 
-    transform: translateY(-2px);
-
-    box-shadow:
-
-        0 6px 15px
-
-        rgba(
-
-            61,
-
-            127,
-
-            134,
-
-            0.25
-
-        );
+    grid-template-columns:1fr;
 
 }
 
 
-/* =====================================================
-   FILTER
-===================================================== */
+.special-row {
 
-.filter-panel {
-
-    background: #f6fafb;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 12px;
-
-    padding: 18px;
-
-    margin-bottom: 20px;
+    grid-template-columns:1fr;
 
 }
 
 
-/* =====================================================
-   TABLE
-===================================================== */
+.special-calculation {
 
-.table-wrapper {
-
-    width: 100%;
-
-    overflow-x: auto;
-
-    border: 1px solid #dce7e9;
-
-    border-radius: 12px;
+    grid-template-columns:1fr;
 
 }
 
 
-table {
-
-    width: 100%;
-
-    border-collapse: collapse;
-
-    min-width: 1200px;
-
-    background: white;
-
 }
 
-
-th,
-
-td {
-
-    padding: 15px 12px;
-
-    text-align: left;
-
-    border-bottom: 1px solid #edf2f3;
-
-    white-space: nowrap;
-
-    font-size: 13px;
-
-}
-
-
-th {
-
-    background: #f2f7f8;
-
-    color: #71858a;
-
-    font-size: 12px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.6px;
-
-}
-
-
-td {
-
-    color: #40575d;
-
-}
-
-
-tr:hover {
-
-    background: #f6fafb;
-
-}
-
-
-/* =====================================================
-   BADGE
-===================================================== */
-
-.badge {
-
-    display: inline-block;
-
-    background: #e1f0f1;
-
-    color: #3d7f86;
-
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-}
-
-
-/* =====================================================
-   BUTTON DANGER
-===================================================== */
-
-.btn-danger {
-
-    background: #c96f6f;
-
-    color: white;
-
-    border: none;
-
-    padding: 8px 12px;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-}
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-.popup-overlay {
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-
-        rgba(
-
-            35,
-
-            64,
-
-            71,
-
-            0.35
-
-        );
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 9999;
-
-}
-
-
-.popup-box {
-
-    width: 390px;
-
-    max-width: 90%;
-
-    background: white;
-
-    border-radius: 18px;
-
-    padding: 30px;
-
-    text-align: center;
-
-    box-shadow:
-
-        0 15px 40px
-
-        rgba(
-
-            40,
-
-            80,
-
-            90,
-
-            0.25
-
-        );
-
-}
-
-
-.popup-icon {
-
-    width: 60px;
-
-    height: 60px;
-
-    margin: auto auto 15px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 32px;
-
-    font-weight: bold;
-
-    background: #e1f0f1;
-
-    color: #3d7f86;
-
-}
-
-
-.popup-title {
-
-    color: #304c53;
-
-    font-size: 20px;
-
-    margin-bottom: 10px;
-
-}
-
-
-.popup-message {
-
-    color: #71858a;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-}
-
-
-.popup-button {
-
-    width: 100%;
-
-    margin-top: 20px;
-
-    border: none;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    background: #3d7f86;
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-
-    text-align: center;
-
-    padding: 30px;
-
-    color: #91a0a4;
-
-    font-size: 13px;
-
-}
-
-
-/* =====================================================
-   RESPONSIVE TABLET
-===================================================== */
-
-@media(max-width:1200px) {
-
-    .grid {
-
-        grid-template-columns:
-
-            repeat(
-
-                2,
-
-                1fr
-
-            );
-
-    }
-
-
-    .grid-3 {
-
-        grid-template-columns:
-
-            repeat(
-
-                2,
-
-                1fr
-
-            );
-
-    }
-
-}
-
-
-/* =====================================================
-   TELEFON
-===================================================== */
-
-@media(max-width:800px) {
-
-    .sidebar {
-
-        display: none;
-
-    }
-
-
-    .main {
-
-        margin-left: 270px;
-
-        width: calc(100%-270px;
-
-        padding-bottom: 82px;
-
-    }
-
-
-    .topbar {
-
-        padding: 0 24px;
-
-    }
-
-
-    .content {
-
-        padding: 16px;
-
-    }
-
-
-    .hero {
-
-        padding: 27px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 24px;
-
-    }
-
-
-    .system-status {
-
-        display: none;
-
-    }
-
-
-    .grid,
-
-    .grid-3,
-
-    .special-duty-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .bottom-nav {
-
-        position: fixed;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-around;
-
-        left: 0;
-
-        right: 0;
-
-        bottom: 0;
-
-        height: 72px;
-
-        background: rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.97
-
-        );
-
-        border-top: 1px solid #cbdde1;
-
-        box-shadow:
-
-            0 -4px 18px
-
-            rgba(
-
-                50,
-
-                100,
-
-                110,
-
-                0.12
-
-            );
-
-        z-index: 999;
-
-        padding:
-
-            5px
-
-            4px
-
-            calc(
-
-                5px +
-
-                env(
-
-                    safe-area-inset-bottom
-
-                )
-
-            );
-
-    }
-
-
-    .bottom-nav a {
-
-        flex: 1;
-
-        min-width: 0;
-
-        height: 62px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 4px;
-
-        text-decoration: none;
-
-        color: #789096;
-
-        border-radius: 10px;
-
-        font-size: 10px;
-
-        font-weight: 600;
-
-        transition: all 0.2s ease;
-
-    }
-
-
-    .bottom-nav a:hover,
-
-    .bottom-nav a.active {
-
-        background: #e8f3f4;
-
-        color: #247b83;
-
-    }
-
-
-    .bottom-nav-icon {
-
-        font-size: 21px;
-
-        line-height: 1;
-
-    }
-
-
-    .bottom-nav-label {
-
-        font-size: 10px;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        max-width: 100%;
-
-    }
-
-
-    .footer {
-
-        padding: 25px 15px 20px;
-
-        font-size: 11px;
-
-    }
-
-}
-
-
-/* =====================================================
-   TELEFON KECIL
-===================================================== */
-
-@media(max-width:500px) {
-
-    .page-title h2 {
-
-        font-size: 22px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 21px;
-
-    }
-
-
-    .card {
-
-        padding: 18px;
-
-    }
-
-
-    .card-title h2 {
-
-        font-size: 18px;
-
-    }
-
-
-    .table-wrapper {
-
-        overflow-x: auto;
-
-        -webkit-overflow-scrolling: touch;
-
-    }
-
-
-    table {
-
-        min-width: 2500px;
-
-    }
-
-
-    .bottom-nav {
-
-        height: 68px;
-
-    }
-
-
-    .bottom-nav a {
-
-        height: 58px;
-
-    }
-
-
-    .bottom-nav-icon {
-
-        font-size: 19px;
-
-    }
-
-
-    .bottom-nav-label {
-
-        font-size: 9px;
-
-    }
-
-}
 
 </style>
 
+
 </head>
+
 
 <body>
 
-<div class="app">
 
+<div class="app">
 
 <!-- =====================================================
      SIDEBAR MASTER
@@ -1804,20 +223,19 @@ alt="Logo FPB"
 <div class="brand-text">
 
 <h1>
-
 POLIS BANTUAN FGVSSSB
-
 </h1>
 
+
 <p>
-
 WILAYAH TERENGGANU
-
 </p>
 
+
 </div>
 
 </div>
+
 
 
 <div class="heritage-mark">
@@ -1830,13 +248,17 @@ La Ilaha Illallah
 
 </strong>
 
+
 <span>
 
 • Terengganu Maju, Berkat Sejahtera •
 
 </span>
 
+
 </div>
+
+
 
 
 <div class="nav-title">
@@ -1846,114 +268,79 @@ MAIN MENU
 </div>
 
 
+
 <nav class="nav">
 
 
-<a
 
-href="index.html"
-
->
+<a href="index.html">
 
 <span class="nav-icon">
-
 ⌂
-
 </span>
 
 <span>
-
 Dashboard
-
 </span>
 
 </a>
 
 
-<a
 
-href="anggota.html"
-
->
+<a href="anggota.html">
 
 <span class="nav-icon">
-
 ♙
-
 </span>
 
 <span>
-
 Senarai Anggota
-
 </span>
 
 </a>
 
 
-<a
 
-href="jadual-duty.html"
-
-class="active"
-
->
+<a href="jadual-duty.html" class="active">
 
 <span class="nav-icon">
-
 ▣
-
 </span>
 
 <span>
-
-Pengisisan Duty Anggota
-
+Pengisian Duty Anggota
 </span>
 
 </a>
 
 
-<a
 
-href="kod-duty.html"
-
->
+<a href="kod-duty.html">
 
 <span class="nav-icon">
-
 ▤
-
 </span>
 
 <span>
-
 Pengisian Kod Duty
-
 </span>
 
 </a>
 
 
-<a
 
-href="tempat-kerja.html"
-
->
+<a href="tempat-kerja.html">
 
 <span class="nav-icon">
-
 ▦
-
 </span>
 
 <span>
-
-Pengisisan Kod Tempat Kerja
-
+Pengisian Kod Tempat Kerja
 </span>
 
 </a>
+
 
 
 <div class="nav-title">
@@ -1963,67 +350,49 @@ REPORTING
 </div>
 
 
-<a
 
-href="laporan.html"
 
->
+<a href="laporan.html">
 
 <span class="nav-icon">
-
 ▥
-
 </span>
 
 <span>
-
 Laporan Wilayah
-
 </span>
 
 </a>
 
 
-<a
 
-href="laporan-anggaran.html"
-
->
+<a href="laporan-anggaran.html">
 
 <span class="nav-icon">
-
 ◫
-
 </span>
 
 <span>
-
 Anggaran RK02
-
 </span>
 
 </a>
 
 
-<a
 
-href="Laporan-Penuh.html"
-
->
+<a href="Laporan-Penuh.html">
 
 <span class="nav-icon">
-
 ▤
-
 </span>
 
 <span>
-
 Laporan RK01 Pos Sebulan
-
 </span>
 
 </a>
+
+
 
 
 <div class="nav-title">
@@ -2033,187 +402,166 @@ SYSTEM
 </div>
 
 
-<a
 
-href="#"
-
->
+<a href="#">
 
 <span class="nav-icon">
-
 ⚙
-
 </span>
 
 <span>
-
 Tetapan
-
 </span>
 
 </a>
 
 
-<a
 
-href="#"
 
-onclick="logout()"
-
->
+<a href="#" onclick="logout()">
 
 <span class="nav-icon">
-
 🚪
-
 </span>
 
 <span>
-
 Logout
-
 </span>
 
 </a>
+
 
 
 </nav>
 
+
 </aside>
+
+
+
 
 
 <!-- =====================================================
      MOBILE BOTTOM NAVIGATION
 ===================================================== -->
 
+
 <nav class="bottom-nav">
 
 
-<a
+<a href="index.html">
 
-href="index.html"
-
->
 
 <span class="bottom-nav-icon">
-
 ⌂
-
 </span>
 
-<span class="bottom-nav-label">
 
+<span class="bottom-nav-label">
 Dashboard
-
 </span>
+
 
 </a>
 
 
-<a
 
-href="anggota.html"
+<a href="anggota.html">
 
->
 
 <span class="bottom-nav-icon">
-
 ♙
-
 </span>
 
-<span class="bottom-nav-label">
 
+<span class="bottom-nav-label">
 Anggota
-
 </span>
+
 
 </a>
 
 
-<a
 
-href="jadual-duty.html"
+<a href="jadual-duty.html" class="active">
 
-class="active"
-
->
 
 <span class="bottom-nav-icon">
-
 ▣
-
 </span>
 
-<span class="bottom-nav-label">
 
+<span class="bottom-nav-label">
 Duty
-
 </span>
+
 
 </a>
 
 
-<a
 
-href="laporan.html"
 
->
+<a href="laporan.html">
+
 
 <span class="bottom-nav-icon">
-
 ▥
-
 </span>
+
 
 <span class="bottom-nav-label">
-
 Laporan
-
 </span>
+
 
 </a>
 
 
-<a
 
-href="laporan-anggaran.html"
+<a href="laporan-anggaran.html">
 
->
 
 <span class="bottom-nav-icon">
-
 ◫
-
 </span>
+
 
 <span class="bottom-nav-label">
-
 Anggaran
-
 </span>
 
+
 </a>
+
 
 
 </nav>
+
+
+
 
 
 <!-- =====================================================
      MAIN
 ===================================================== -->
 
+
 <main class="main">
+
+
+
 
 
 <!-- =====================================================
      TOPBAR
 ===================================================== -->
 
+
 <div class="topbar">
 
 
 <div class="page-title">
+
 
 <h2>
 
@@ -2221,50 +569,67 @@ Jadual Duty
 
 </h2>
 
+
 <p>
 
-Forecast Duty System /
+FPB Duty Command Center V2 /
 
 Wilayah Terengganu
 
 </p>
 
+
 </div>
+
+
 
 
 <div class="system-status">
 
+
 <span class="status-dot"></span>
+
 
 System Online
 
+
 </div>
 
 
 </div>
+
+
+
 
 
 <!-- =====================================================
      CONTENT
 ===================================================== -->
 
+
 <div class="content">
+
+
+
 
 
 <!-- =====================================================
      HERO
 ===================================================== -->
 
+
 <div class="hero">
 
 
 <div class="hero-content">
+
 
 <h1>
 
 📅 PENGURUSAN JADUAL DUTY
 
 </h1>
+
 
 
 <p>
@@ -2274,47 +639,55 @@ Sistem pengurusan dan penyusunan jadual duty anggota secara berpusat dan sistema
 </p>
 
 
+
 <div class="hero-line"></div>
 
-</div>
+
 
 </div>
 
+
+</div>
 
 <!-- =====================================================
      BORANG DUTY
 ===================================================== -->
+
+
+<!-- ===============================
+     SECTION 1
+================================ -->
+
 
 <div class="card">
 
 
 <div class="card-title">
 
+
 <div class="section-number">
-
 1
-
 </div>
 
 
 <h2>
-
 Maklumat Tarikh & Tugas
-
 </h2>
 
+
 </div>
+
+
 
 
 <div class="grid">
 
 
+
 <div class="form-group">
 
 <label>
-
 Tarikh
-
 </label>
 
 
@@ -2329,12 +702,12 @@ id="tarikh"
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Bulan
-
 </label>
 
 
@@ -2351,12 +724,12 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Tahun
-
 </label>
 
 
@@ -2373,12 +746,12 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Hari
-
 </label>
 
 
@@ -2395,86 +768,86 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Unit
-
 </label>
 
 
-<select
+<select id="unitPilihan">
 
-id="unitPilihan"
-
->
 
 <option value="">
-
 -- Pilih Unit --
-
 </option>
+
 
 </select>
 
+
 </div>
+
+
 
 
 <div class="form-group">
 
 <label>
-
 Pos Asal
-
 </label>
 
 
-<select
+<select id="posAsal">
 
-id="posAsal"
-
->
 
 <option value="">
-
 -- Pilih Pos Asal --
-
 </option>
+
 
 </select>
 
+
+</div>
+
+
+
 </div>
 
 
 </div>
 
-</div>
 
 
-<!-- =====================================================
-     MAKLUMAT ANGGOTA
-===================================================== -->
+
+
+<!-- ===============================
+     SECTION 2
+================================ -->
+
 
 <div class="card">
 
 
 <div class="card-title">
 
+
 <div class="section-number">
-
 2
-
 </div>
 
 
 <h2>
-
 Maklumat Anggota
-
 </h2>
 
+
 </div>
+
+
 
 
 <div class="info-box">
@@ -2483,44 +856,39 @@ Maklumat Anggota
 <div class="grid">
 
 
+
 <div class="form-group">
 
 <label>
-
 Nama Anggota
-
 </label>
 
 
-<select
+<select id="anggota">
 
-id="anggota"
-
->
 
 <option value="">
-
 -- Pilih Nama Anggota --
-
 </option>
 
+
 </select>
+
 
 </div>
 
 
+
+
+
 <div class="form-group">
 
 <label>
-
 No. SKB
-
 </label>
 
 
 <input
-
-type="text"
 
 id="noSkb"
 
@@ -2531,18 +899,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 No. Anggota
-
 </label>
 
 
 <input
-
-type="text"
 
 id="noAnggota"
 
@@ -2553,18 +919,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Kawasan
-
 </label>
 
 
 <input
-
-type="text"
 
 id="kawasan"
 
@@ -2575,18 +939,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Unit
-
 </label>
 
 
 <input
-
-type="text"
 
 id="unit"
 
@@ -2597,18 +959,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Ketua Unit
-
 </label>
 
 
 <input
-
-type="text"
 
 id="ketuaUnit"
 
@@ -2619,18 +979,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Ketua Pos
-
 </label>
 
 
 <input
-
-type="text"
 
 id="ketuaPos"
 
@@ -2641,18 +999,16 @@ readonly
 </div>
 
 
+
+
 <div class="form-group">
 
 <label>
-
 Nama Pos Asal
-
 </label>
 
 
 <input
-
-type="text"
 
 id="namaPosAsal"
 
@@ -2663,36 +1019,44 @@ readonly
 </div>
 
 
-</div>
 
 </div>
 
+
 </div>
 
 
-<!-- =====================================================
-     KOD DUTY
-===================================================== -->
+</div>
+
+
+
+
+
+<!-- ===============================
+     SECTION 3
+================================ -->
+
 
 <div class="card">
 
 
 <div class="card-title">
 
+
 <div class="section-number">
-
 3
-
 </div>
 
 
 <h2>
-
 Kod Waktu & Tempat Kerja
-
 </h2>
 
+
 </div>
+
+
+
 
 
 <div class="duty-code-box">
@@ -2700,367 +1064,557 @@ Kod Waktu & Tempat Kerja
 
 <div class="grid">
 
-    <div class="form-group">
-
-        <label>
-            Kod Duty
-        </label>
-
-        <select id="kodDuty">
-
-            <option value="">
-                -- Pilih Kod Duty --
-            </option>
-
-        </select>
-
-    </div>
 
 
-    <div class="form-group">
+<div class="form-group">
 
-        <label>
-            Jam Kerja
-        </label>
-
-        <input
-            type="number"
-            id="jamKerja"
-            readonly
-        >
-
-    </div>
+<label>
+Kod Duty
+</label>
 
 
-    <div class="form-group">
-
-        <label>
-            Jam KLM Hari Biasa
-        </label>
-
-        <input
-            type="number"
-            id="jamKlm"
-            readonly
-        >
-
-    </div>
+<select id="kodDuty">
 
 
-    <div class="form-group">
-
-        <label>
-            RM KLM Hari Biasa
-        </label>
-
-        <input
-            type="number"
-            id="rmKlmHariBiasa"
-            readonly
-            value="0"
-        >
-
-    </div>
+<option value="">
+-- Pilih Kod Duty --
+</option>
 
 
-    <div class="form-group">
+</select>
 
-        <label>
-            Kod Tempat Kerja
-        </label>
-
-        <select id="kodTempatKerja">
-
-            <option value="">
-                -- Pilih Kod Tempat Kerja --
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            Pos Tampungan
-        </label>
-
-        <select id="posTampungan">
-
-            <option value="">
-                -- Pilih Pos Tampungan --
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            Jam Tampung
-        </label>
-
-        <input
-            type="number"
-            id="jamTampung"
-            min="0"
-            step="0.5"
-            value="0"
-            placeholder="Masukkan Jam Tampung"
-        >
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-            RM KLM Tampungan
-        </label>
-
-        <input
-            type="number"
-            id="rmTampung"
-            readonly
-            value="0"
-        >
-
-    </div>
 
 </div>
 
-<!-- =====================================================
-     HARI KHAS
-===================================================== -->
+
+
+
+<div class="form-group">
+
+<label>
+Jam Kerja
+</label>
+
+
+<input
+
+type="number"
+
+id="jamKerja"
+
+readonly
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Jam KLM Hari Biasa
+</label>
+
+
+<input
+
+type="number"
+
+id="jamKlm"
+
+readonly
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM KLM Hari Biasa
+</label>
+
+
+<input
+
+type="number"
+
+id="rmKlmHariBiasa"
+
+readonly
+
+value="0"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Kod Tempat Kerja
+</label>
+
+
+<select id="kodTempatKerja">
+
+
+<option value="">
+-- Pilih Kod Tempat Kerja --
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Pos Tampungan
+</label>
+
+
+<select id="posTampungan">
+
+
+<option value="">
+-- Pilih Pos Tampungan --
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Jam Tampung
+</label>
+
+
+<input
+
+type="number"
+
+id="jamTampung"
+
+min="0"
+
+step="0.5"
+
+value="0"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM KLM Tampungan
+</label>
+
+
+<input
+
+type="number"
+
+id="rmTampung"
+
+readonly
+
+value="0"
+
+>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- ===============================
+     SECTION 4
+================================ -->
+
 
 <div class="card">
 
-    <div class="card-title">
 
-        <div class="section-number">
-            4
-        </div>
+<div class="card-title">
 
-        <h2>
-            Hari Khas Bertugas
-        </h2>
 
-    </div>
+<div class="section-number">
+4
+</div>
 
 
-    <div class="special-duty-grid">
+<h2>
+Hari Khas Bertugas
+</h2>
 
-
-        <!-- =========================================
-             OFFDAY
-        ========================================== -->
-
-        <div class="special-box offday-box">
-
-            <h3>
-                🟠 OFFDAY BERTUGAS
-            </h3>
-
-
-            <div class="special-row">
-
-                <label class="checkbox-label">
-
-                    <input
-                        type="checkbox"
-                        id="hariOffday"
-                    >
-
-                    Hari Offday Bertugas
-
-                </label>
-
-
-                <div class="form-group">
-
-                    <label>
-                        RM HARI
-                    </label>
-
-                    <input
-                        type="text"
-                        id="rmHariOffday"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="special-calculation">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Jam KLM Offday
-                    </label>
-
-                    <input
-                        type="number"
-                        id="jamOffday"
-                        min="0"
-                        step="0.5"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        RM JAM
-                    </label>
-
-                    <input
-                        type="text"
-                        id="rmJamOffday"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        JUMLAH
-                    </label>
-
-                    <input
-                        type="text"
-                        id="jumlahOffday"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================================
-             CUTI AM
-        ========================================== -->
-
-        <div class="special-box cutiam-box">
-
-            <h3>
-                🔴 CUTI AM BERTUGAS
-            </h3>
-
-
-            <div class="special-row">
-
-                <label class="checkbox-label">
-
-                    <input
-                        type="checkbox"
-                        id="hariCutiam"
-                    >
-
-                    Hari Cuti Am Bertugas
-
-                </label>
-
-
-                <div class="form-group">
-
-                    <label>
-                        RM HARI
-                    </label>
-
-                    <input
-                        type="text"
-                        id="rmHariCutiam"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="special-calculation">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Jam KLM Cuti Am
-                    </label>
-
-                    <input
-                        type="number"
-                        id="jamCutiam"
-                        min="0"
-                        step="0.5"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        RM JAM
-                    </label>
-
-                    <input
-                        type="text"
-                        id="rmJamCutiam"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        JUMLAH
-                    </label>
-
-                    <input
-                        type="text"
-                        id="jumlahCutiam"
-                        readonly
-                        value="RM 0.00"
-                    >
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-    </div>
 
 </div>
 
+
+
+
+
+<div class="special-duty-grid">
+
+
+
+<!-- OFFDAY -->
+
+
+<div class="special-box offday-box">
+
+
+<h3>
+🟠 OFFDAY BERTUGAS
+</h3>
+
+
+
+
+<div class="special-row">
+
+
+<label class="checkbox-label">
+
+
+<input
+
+type="checkbox"
+
+id="hariOffday"
+
+>
+
+
+Hari Offday Bertugas
+
+
+</label>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM HARI
+</label>
+
+
+<input
+
+type="text"
+
+id="rmHariOffday"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="special-calculation">
+
+
+<div class="form-group">
+
+<label>
+Jam KLM Offday
+</label>
+
+
+<input
+
+type="number"
+
+id="jamOffday"
+
+min="0"
+
+step="0.5"
+
+value="0"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM JAM
+</label>
+
+
+<input
+
+type="text"
+
+id="rmJamOffday"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+JUMLAH
+</label>
+
+
+<input
+
+type="text"
+
+id="jumlahOffday"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- CUTI AM -->
+
+
+<div class="special-box cutiam-box">
+
+
+<h3>
+🔴 CUTI AM BERTUGAS
+</h3>
+
+
+
+
+<div class="special-row">
+
+
+<label class="checkbox-label">
+
+
+<input
+
+type="checkbox"
+
+id="hariCutiam"
+
+>
+
+
+Hari Cuti Am Bertugas
+
+
+</label>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM HARI
+</label>
+
+
+<input
+
+type="text"
+
+id="rmHariCutiam"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="special-calculation">
+
+
+<div class="form-group">
+
+<label>
+Jam KLM Cuti Am
+</label>
+
+
+<input
+
+type="number"
+
+id="jamCutiam"
+
+min="0"
+
+step="0.5"
+
+value="0"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+RM JAM
+</label>
+
+
+<input
+
+type="text"
+
+id="rmJamCutiam"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+JUMLAH
+</label>
+
+
+<input
+
+type="text"
+
+id="jumlahCutiam"
+
+readonly
+
+value="RM 0.00"
+
+>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
 <!-- =====================================================
-     SIMPAN
+     SIMPAN DUTY
 ===================================================== -->
+
 
 <div class="card">
 
@@ -3081,14 +1635,20 @@ onclick="simpanDuty()"
 </div>
 
 
+
+
+
 <!-- =====================================================
+     SECTION 5
      SENARAI DUTY
 ===================================================== -->
+
 
 <div class="card">
 
 
 <div class="card-title">
+
 
 <div class="section-number">
 
@@ -3097,16 +1657,22 @@ onclick="simpanDuty()"
 </div>
 
 
+
 <h2>
 
 Senarai Semak Duty By Unit
 
 </h2>
 
+
 </div>
 
 
+
+
+
 <!-- FILTER -->
+
 
 <div class="filter-panel">
 
@@ -3114,13 +1680,16 @@ Senarai Semak Duty By Unit
 <div class="grid-3">
 
 
+
 <div class="form-group">
+
 
 <label>
 
 Nama Ketua Unit
 
 </label>
+
 
 
 <select
@@ -3131,24 +1700,32 @@ onchange="paparDuty()"
 
 >
 
+
 <option value="">
 
 -- Semua Ketua Unit --
 
 </option>
 
+
 </select>
+
 
 </div>
 
 
+
+
+
 <div class="form-group">
+
 
 <label>
 
 Bulan / Tahun
 
 </label>
+
 
 
 <input
@@ -3161,16 +1738,22 @@ onchange="paparDuty()"
 
 >
 
+
 </div>
 
 
+
+
+
 <div class="form-group">
+
 
 <label>
 
 Cari Nama Anggota
 
 </label>
+
 
 
 <input
@@ -3185,15 +1768,23 @@ onkeyup="paparDuty()"
 
 >
 
+
+</div>
+
+
+
 </div>
 
 
 </div>
 
-</div>
 
 
-<!-- JADUAL RINGKAS -->
+
+
+
+<!-- TABLE -->
+
 
 <div class="table-wrapper">
 
@@ -3283,23 +1874,20 @@ Tindakan
 </thead>
 
 
-<tbody
 
-id="senaraiDuty"
 
->
+
+<tbody id="senaraiDuty">
 
 
 <tr>
 
 
-<td
+<td colspan="10">
 
-colspan="10"
-
->
 
 Sila pilih Ketua Unit dan Bulan/Tahun
+
 
 </td>
 
@@ -3316,7 +1904,17 @@ Sila pilih Ketua Unit dan Bulan/Tahun
 </div>
 
 
+
 </div>
+
+
+
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 
 <footer class="footer">
@@ -3336,18 +1934,28 @@ Operational Duty Management System
 </footer>
 
 
+
+
 </div>
 
+<!-- END CONTENT -->
 
 </main>
 
+<!-- END MAIN -->
 
 </div>
+
+<!-- END APP -->
+
+
+
 
 
 <!-- =====================================================
      POPUP
 ===================================================== -->
+
 
 <div
 
@@ -3359,6 +1967,7 @@ class="popup-overlay"
 
 
 <div class="popup-box">
+
 
 
 <div
@@ -3374,6 +1983,8 @@ class="popup-icon"
 </div>
 
 
+
+
 <div
 
 id="popupTitle"
@@ -3385,6 +1996,8 @@ class="popup-title"
 Berjaya
 
 </div>
+
+
 
 
 <div
@@ -3400,6 +2013,8 @@ Mesej
 </div>
 
 
+
+
 <button
 
 class="popup-button"
@@ -3413,21 +2028,28 @@ OK
 </button>
 
 
+
 </div>
 
 
 </div>
+
+
+
+
 
 
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
 
+
 <script
 
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
 ></script>
+
 
 
 <script
@@ -3437,6 +2059,8 @@ src="supabase.js"
 ></script>
 
 
+
+
 <script
 
 src="js/jadual-duty.js"
@@ -3444,6 +2068,10 @@ src="js/jadual-duty.js"
 ></script>
 
 
+
+
+
 </body>
+
 
 </html>
