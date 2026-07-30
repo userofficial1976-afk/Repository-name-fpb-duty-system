@@ -817,14 +817,7 @@ button {
 
 }
 
-<button
-    type="button"
-    class="btn btn-primary"
-    onclick="exportRK02Excel()">
 
-    📁 EXPORT RK02 EXCEL
-
-</button>
 /* ===============================
    RESPONSIVE
 ================================ */
@@ -1363,6 +1356,14 @@ Tetapan Laporan Anggaran
 
     </button>
 
+    <button
+    type="button"
+    class="btn btn-primary"
+    onclick="exportRK02Excel()">
+
+    📁 EXPORT RK02 EXCEL
+
+    </button>
 </div>
 
 
@@ -3121,7 +3122,8 @@ return String(str ?? "")
 
 
 }
-
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script>
 function exportRK02Excel(){
 
     const table =
@@ -3155,7 +3157,7 @@ function exportRK02Excel(){
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
 </body>
 
 </html>
