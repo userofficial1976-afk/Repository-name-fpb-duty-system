@@ -14,123 +14,324 @@ Jadual Duty — FPB Duty Command Center V2
 </title>
 
 
-<!-- MASTER THEME -->
-
-<link rel="stylesheet" href="assets/css/command-theme.css">
-
-
-<!-- ICON / PWA -->
-
 <link rel="icon" type="image/png" href="logo.png">
-
-<link rel="apple-touch-icon" href="logo.png">
 
 
 <style>
 
 /* =====================================================
-   PAGE SPECIFIC : JADUAL DUTY
-   (Design tidak mengubah master theme)
+   FPB DUTY COMMAND CENTER V2
+   STANDALONE INTERFACE
 ===================================================== */
 
 
-/* ===============================
-   SPECIAL DUTY
-================================ */
+*{
 
+    margin:0;
 
-.special-row {
+    padding:0;
 
-    display:grid;
+    box-sizing:border-box;
 
-    grid-template-columns:
-        1fr 130px;
-
-    gap:15px;
-
-    align-items:end;
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
 }
 
 
-.special-calculation {
 
-    display:grid;
+body{
 
-    grid-template-columns:
-        repeat(3,1fr);
+    background:#eef5f6;
 
-    gap:12px;
-
-    margin-top:15px;
+    color:#24343a;
 
 }
 
 
-/* ===============================
-   SPECIAL BOX
-================================ */
+
+/* =====================================================
+   APP LAYOUT
+===================================================== */
 
 
-.special-duty-grid {
+.app{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:18px;
+    min-height:100vh;
 
 }
 
 
-.special-box {
 
-    border-radius:12px;
-
-    padding:18px;
-
-    border:1px solid;
-
-}
+/* =====================================================
+   SIDEBAR DESKTOP
+===================================================== */
 
 
-.offday-box {
+.sidebar{
 
-    background:#fff8ee;
+    width:280px;
 
-    border-color:#f1d4a8;
+    background:
+    linear-gradient(
+        180deg,
+        #123f46,
+        #0b292e
+    );
 
-}
+    color:white;
 
+    position:fixed;
 
-.cutiam-box {
+    top:0;
 
-    background:#fff3f3;
+    left:0;
 
-    border-color:#efc6c6;
+    bottom:0;
 
-}
+    padding:20px;
 
+    overflow-y:auto;
 
-.special-box h3 {
-
-    margin-bottom:15px;
-
-    font-size:15px;
-
-    color:#40575d;
+    z-index:1000;
 
 }
 
 
-.checkbox-label {
+
+
+.brand{
 
     display:flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.logo{
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+
+}
+
+
+
+.brand-text h1{
+
+    font-size:15px;
+
+    line-height:1.3;
+
+}
+
+
+
+.brand-text p{
+
+    font-size:11px;
+
+    opacity:.8;
+
+}
+
+
+
+/* Heritage */
+
+
+.heritage-mark{
+
+    background:
+    rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    padding:15px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.heritage-mark strong{
+
+    display:block;
+
+    font-size:14px;
+
+}
+
+
+
+.heritage-mark span{
+
+    font-size:11px;
+
+    opacity:.8;
+
+}
+
+
+
+
+/* MENU */
+
+
+.nav-title{
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+    color:#9fc5ca;
+
+    margin:20px 0 10px;
+
+}
+
+
+
+.nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#d7e9eb;
+
+    text-decoration:none;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    margin-bottom:6px;
+
+    font-size:14px;
+
+    transition:.2s;
+
+}
+
+
+
+.nav a:hover,
+.nav a.active{
+
+    background:#247b83;
+
+    color:white;
+
+}
+
+
+
+.nav-icon{
+
+    width:25px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+
+.main{
+
+    margin-left:280px;
+
+    width:calc(100% - 280px);
+
+    padding:20px;
+
+}
+
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+
+.topbar{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:18px 25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.06);
+
+    margin-bottom:20px;
+
+}
+
+
+
+.page-title h2{
+
+    font-size:24px;
+
+    color:#164951;
+
+}
+
+
+
+.page-title p{
+
+    font-size:13px;
+
+    color:#71858b;
+
+}
+
+
+
+.system-status{
+
+    background:#e5f5ec;
+
+    color:#167340;
+
+    padding:10px 15px;
+
+    border-radius:30px;
 
     font-size:13px;
 
@@ -139,55 +340,405 @@ Jadual Duty — FPB Duty Command Center V2
 }
 
 
-.checkbox-label input {
 
-    width:auto;
+.status-dot{
+
+    display:inline-block;
+
+    width:10px;
+
+    height:10px;
+
+    background:#19a85b;
+
+    border-radius:50%;
+
+    margin-right:7px;
 
 }
 
 
-/* ===============================
-   MOBILE FIX
-================================ */
+
+/* =====================================================
+   HERO
+===================================================== */
+
+
+.hero{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #247b83,
+        #4fa0a4
+    );
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.hero h1{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.hero p{
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+
+
+.hero-line{
+
+    margin-top:20px;
+
+    height:3px;
+
+    width:100px;
+
+    background:white;
+
+    border-radius:10px;
+
+}
+
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+
+    0 5px 20px
+    rgba(0,0,0,.06);
+
+}
+
+
+
+.card-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.section-number{
+
+    width:35px;
+
+    height:35px;
+
+    background:#247b83;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+
+
+.card-title h2{
+
+    font-size:18px;
+
+    color:#164951;
+
+}
+
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+
+
+.form-group label{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#52666b;
+
+}
+
+
+
+input,
+select{
+
+    height:42px;
+
+    border:
+
+    1px solid #cbdadd;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    font-size:14px;
+
+    background:#fff;
+
+}
+
+
+
+input:focus,
+select:focus{
+
+    outline:none;
+
+    border-color:#247b83;
+
+}
+
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+
+.info-box,
+.duty-code-box,
+.filter-panel{
+
+    background:#f6fafb;
+
+    border-radius:15px;
+
+    padding:18px;
+
+}
+
+
+
+/* =====================================================
+   MOBILE BOTTOM NAV
+===================================================== */
+
+
+.bottom-nav{
+
+    display:none;
+
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 
 @media(max-width:800px){
 
 
-.main {
+.sidebar{
+
+    display:none;
+
+}
+
+
+
+.main{
 
     margin-left:0;
 
     width:100%;
 
+    padding:15px;
+
+    padding-bottom:90px;
+
 }
+
+
+
+.topbar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+
+
+.hero h1{
+
+    font-size:22px;
+
+}
+
 
 
 .grid,
-.grid-3,
-.special-duty-grid {
+.grid-3{
 
     grid-template-columns:1fr;
 
 }
 
 
-.special-row {
 
-    grid-template-columns:1fr;
+.bottom-nav{
+
+    display:flex;
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    height:75px;
+
+    background:white;
+
+    border-top:1px solid #d7e4e7;
+
+    z-index:2000;
+
+    justify-content:space-around;
+
+    align-items:center;
 
 }
 
 
-.special-calculation {
 
-    grid-template-columns:1fr;
+.bottom-nav a{
+
+    text-decoration:none;
+
+    color:#6b8085;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    font-size:11px;
+
+    gap:4px;
 
 }
 
 
+
+.bottom-nav a.active{
+
+    color:#247b83;
+
+    font-weight:bold;
+
 }
 
+
+
+.bottom-nav-icon{
+
+    font-size:22px;
+
+}
+
+
+
+}
 
 </style>
 
@@ -200,24 +751,16 @@ Jadual Duty — FPB Duty Command Center V2
 
 <div class="app">
 
-<!-- =====================================================
-     SIDEBAR MASTER
-===================================================== -->
+
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
 
 <div class="brand">
 
-<img
 
-src="logo.png"
-
-class="logo"
-
-alt="Logo FPB"
-
->
+<img src="logo.png" class="logo">
 
 
 <div class="brand-text">
@@ -234,6 +777,7 @@ WILAYAH TERENGGANU
 
 </div>
 
+
 </div>
 
 
@@ -241,18 +785,14 @@ WILAYAH TERENGGANU
 <div class="heritage-mark">
 
 <strong>
-
 La Ilaha Illallah
-
+<br>
 (لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)
-
 </strong>
 
 
 <span>
-
-• Terengganu Maju, Berkat Sejahtera •
-
+Terengganu Maju, Berkat Sejahtera
 </span>
 
 
@@ -260,11 +800,8 @@ La Ilaha Illallah
 
 
 
-
 <div class="nav-title">
-
 MAIN MENU
-
 </div>
 
 
@@ -272,164 +809,70 @@ MAIN MENU
 <nav class="nav">
 
 
-
 <a href="index.html">
-
-<span class="nav-icon">
-⌂
-</span>
-
-<span>
+<span class="nav-icon">⌂</span>
 Dashboard
-</span>
-
 </a>
-
 
 
 <a href="anggota.html">
-
-<span class="nav-icon">
-♙
-</span>
-
-<span>
+<span class="nav-icon">♙</span>
 Senarai Anggota
-</span>
-
 </a>
-
 
 
 <a href="jadual-duty.html" class="active">
-
-<span class="nav-icon">
-▣
-</span>
-
-<span>
+<span class="nav-icon">▣</span>
 Pengisian Duty Anggota
-</span>
-
 </a>
-
 
 
 <a href="kod-duty.html">
-
-<span class="nav-icon">
-▤
-</span>
-
-<span>
-Pengisian Kod Duty
-</span>
-
+<span class="nav-icon">▤</span>
+Kod Duty
 </a>
-
 
 
 <a href="tempat-kerja.html">
-
-<span class="nav-icon">
-▦
-</span>
-
-<span>
-Pengisian Kod Tempat Kerja
-</span>
-
+<span class="nav-icon">▦</span>
+Tempat Kerja
 </a>
 
 
 
 <div class="nav-title">
-
 REPORTING
-
 </div>
-
-
 
 
 <a href="laporan.html">
-
-<span class="nav-icon">
-▥
-</span>
-
-<span>
-Laporan Wilayah
-</span>
-
+<span class="nav-icon">▥</span>
+Laporan
 </a>
-
 
 
 <a href="laporan-anggaran.html">
-
-<span class="nav-icon">
-◫
-</span>
-
-<span>
+<span class="nav-icon">◫</span>
 Anggaran RK02
-</span>
-
 </a>
-
-
-
-<a href="Laporan-Penuh.html">
-
-<span class="nav-icon">
-▤
-</span>
-
-<span>
-Laporan RK01 Pos Sebulan
-</span>
-
-</a>
-
 
 
 
 <div class="nav-title">
-
 SYSTEM
-
 </div>
 
 
-
 <a href="#">
-
-<span class="nav-icon">
-⚙
-</span>
-
-<span>
+<span class="nav-icon">⚙</span>
 Tetapan
-</span>
-
 </a>
-
-
 
 
 <a href="#" onclick="logout()">
-
-<span class="nav-icon">
-🚪
-</span>
-
-<span>
+<span class="nav-icon">🚪</span>
 Logout
-</span>
-
 </a>
-
 
 
 </nav>
@@ -438,12 +881,7 @@ Logout
 </aside>
 
 
-
-
-
-<!-- =====================================================
-     MOBILE BOTTOM NAVIGATION
-===================================================== -->
+<!-- MOBILE NAV -->
 
 
 <nav class="bottom-nav">
@@ -451,110 +889,56 @@ Logout
 
 <a href="index.html">
 
+<span class="bottom-nav-icon">⌂</span>
 
-<span class="bottom-nav-icon">
-⌂
-</span>
-
-
-<span class="bottom-nav-label">
 Dashboard
-</span>
-
 
 </a>
-
 
 
 <a href="anggota.html">
 
+<span class="bottom-nav-icon">♙</span>
 
-<span class="bottom-nav-icon">
-♙
-</span>
-
-
-<span class="bottom-nav-label">
 Anggota
-</span>
-
 
 </a>
-
 
 
 <a href="jadual-duty.html" class="active">
 
+<span class="bottom-nav-icon">▣</span>
 
-<span class="bottom-nav-icon">
-▣
-</span>
-
-
-<span class="bottom-nav-label">
 Duty
-</span>
-
 
 </a>
-
-
 
 
 <a href="laporan.html">
 
+<span class="bottom-nav-icon">▥</span>
 
-<span class="bottom-nav-icon">
-▥
-</span>
-
-
-<span class="bottom-nav-label">
 Laporan
-</span>
-
 
 </a>
-
 
 
 <a href="laporan-anggaran.html">
 
+<span class="bottom-nav-icon">◫</span>
 
-<span class="bottom-nav-icon">
-◫
-</span>
-
-
-<span class="bottom-nav-label">
-Anggaran
-</span>
-
+RK02
 
 </a>
-
 
 
 </nav>
 
 
 
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
+<!-- MAIN START -->
 
 <main class="main">
-
-
-
-
-
-<!-- =====================================================
-     TOPBAR
-===================================================== -->
 
 
 <div class="topbar">
@@ -562,108 +946,60 @@ Anggaran
 
 <div class="page-title">
 
-
 <h2>
-
 Jadual Duty
-
 </h2>
 
 
 <p>
-
-FPB Duty Command Center V2 /
-
-Wilayah Terengganu
-
+FPB Duty Command Center V2 / Wilayah Terengganu
 </p>
 
 
 </div>
-
 
 
 
 <div class="system-status">
 
-
 <span class="status-dot"></span>
-
 
 System Online
 
-
 </div>
 
 
 </div>
 
-
-
-
-
-<!-- =====================================================
-     CONTENT
-===================================================== -->
-
-
-<div class="content">
-
-
-
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 
 <div class="hero">
 
 
-<div class="hero-content">
-
-
 <h1>
-
 📅 PENGURUSAN JADUAL DUTY
-
 </h1>
 
 
-
 <p>
-
 Sistem pengurusan dan penyusunan jadual duty anggota secara berpusat dan sistematik.
-
 </p>
-
 
 
 <div class="hero-line"></div>
 
 
-
-</div>
-
-
 </div>
 
 <!-- =====================================================
-     BORANG DUTY
-===================================================== -->
-
-
-<!-- ===============================
      SECTION 1
-================================ -->
+===================================================== -->
 
 
 <div class="card">
 
 
 <div class="card-title">
-
 
 <div class="section-number">
 1
@@ -674,7 +1010,6 @@ Sistem pengurusan dan penyusunan jadual duty anggota secara berpusat dan sistema
 Maklumat Tarikh & Tugas
 </h2>
 
-
 </div>
 
 
@@ -683,20 +1018,15 @@ Maklumat Tarikh & Tugas
 <div class="grid">
 
 
-
 <div class="form-group">
 
 <label>
 Tarikh
 </label>
 
-
 <input
-
 type="date"
-
 id="tarikh"
-
 >
 
 </div>
@@ -710,15 +1040,10 @@ id="tarikh"
 Bulan
 </label>
 
-
 <input
-
 type="text"
-
 id="bulan"
-
 readonly
-
 >
 
 </div>
@@ -732,15 +1057,10 @@ readonly
 Tahun
 </label>
 
-
 <input
-
 type="text"
-
 id="tahun"
-
 readonly
-
 >
 
 </div>
@@ -754,15 +1074,10 @@ readonly
 Hari
 </label>
 
-
 <input
-
 type="text"
-
 id="hari"
-
 readonly
-
 >
 
 </div>
@@ -779,11 +1094,9 @@ Unit
 
 <select id="unitPilihan">
 
-
 <option value="">
 -- Pilih Unit --
 </option>
-
 
 </select>
 
@@ -802,11 +1115,9 @@ Pos Asal
 
 <select id="posAsal">
 
-
 <option value="">
 -- Pilih Pos Asal --
 </option>
-
 
 </select>
 
@@ -814,7 +1125,6 @@ Pos Asal
 </div>
 
 
-
 </div>
 
 
@@ -824,9 +1134,9 @@ Pos Asal
 
 
 
-<!-- ===============================
+<!-- =====================================================
      SECTION 2
-================================ -->
+===================================================== -->
 
 
 <div class="card">
@@ -889,14 +1199,13 @@ No. SKB
 
 
 <input
-
 id="noSkb"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -909,14 +1218,13 @@ No. Anggota
 
 
 <input
-
 id="noAnggota"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -929,14 +1237,13 @@ Kawasan
 
 
 <input
-
 id="kawasan"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -949,14 +1256,13 @@ Unit
 
 
 <input
-
 id="unit"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -969,14 +1275,13 @@ Ketua Unit
 
 
 <input
-
 id="ketuaUnit"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -989,14 +1294,13 @@ Ketua Pos
 
 
 <input
-
 id="ketuaPos"
-
 readonly
-
 >
 
+
 </div>
+
 
 
 
@@ -1009,32 +1313,30 @@ Nama Pos Asal
 
 
 <input
-
 id="namaPosAsal"
-
 readonly
-
 >
 
-</div>
-
-
-
-</div>
-
-
-</div>
-
 
 </div>
 
 
 
+</div>
 
 
-<!-- ===============================
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- =====================================================
      SECTION 3
-================================ -->
+===================================================== -->
 
 
 <div class="card">
@@ -1089,6 +1391,7 @@ Kod Duty
 
 
 
+
 <div class="form-group">
 
 <label>
@@ -1097,17 +1400,14 @@ Jam Kerja
 
 
 <input
-
 type="number"
-
 id="jamKerja"
-
 readonly
-
 >
 
 
 </div>
+
 
 
 
@@ -1120,17 +1420,14 @@ Jam KLM Hari Biasa
 
 
 <input
-
 type="number"
-
 id="jamKlm"
-
 readonly
-
 >
 
 
 </div>
+
 
 
 
@@ -1143,19 +1440,15 @@ RM KLM Hari Biasa
 
 
 <input
-
 type="number"
-
 id="rmKlmHariBiasa"
-
 readonly
-
 value="0"
-
 >
 
 
 </div>
+
 
 
 
@@ -1183,6 +1476,7 @@ Kod Tempat Kerja
 
 
 
+
 <div class="form-group">
 
 <label>
@@ -1206,6 +1500,7 @@ Pos Tampungan
 
 
 
+
 <div class="form-group">
 
 <label>
@@ -1214,21 +1509,16 @@ Jam Tampung
 
 
 <input
-
 type="number"
-
 id="jamTampung"
-
 min="0"
-
 step="0.5"
-
 value="0"
-
 >
 
 
 </div>
+
 
 
 
@@ -1241,15 +1531,10 @@ RM KLM Tampungan
 
 
 <input
-
 type="number"
-
 id="rmTampung"
-
 readonly
-
 value="0"
-
 >
 
 
@@ -1269,9 +1554,9 @@ value="0"
 
 
 
-<!-- ===============================
+<!-- =====================================================
      SECTION 4
-================================ -->
+===================================================== -->
 
 
 <div class="card">
@@ -1296,14 +1581,13 @@ Hari Khas Bertugas
 
 
 
-<div class="special-duty-grid">
-
+<div class="grid">
 
 
 <!-- OFFDAY -->
 
 
-<div class="special-box offday-box">
+<div class="card" style="background:#fff8ee;">
 
 
 <h3>
@@ -1312,27 +1596,27 @@ Hari Khas Bertugas
 
 
 
+<div class="form-group">
 
-<div class="special-row">
 
-
-<label class="checkbox-label">
-
+<label>
 
 <input
-
 type="checkbox"
-
 id="hariOffday"
-
 >
-
 
 Hari Offday Bertugas
 
-
 </label>
 
+
+</div>
+
+
+
+
+<div class="grid">
 
 
 
@@ -1344,28 +1628,17 @@ RM HARI
 
 
 <input
-
 type="text"
-
 id="rmHariOffday"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
 </div>
 
 
-</div>
 
-
-
-
-
-<div class="special-calculation">
 
 
 <div class="form-group">
@@ -1376,21 +1649,16 @@ Jam KLM Offday
 
 
 <input
-
 type="number"
-
 id="jamOffday"
-
 min="0"
-
 step="0.5"
-
 value="0"
-
 >
 
 
 </div>
+
 
 
 
@@ -1403,15 +1671,10 @@ RM JAM
 
 
 <input
-
 type="text"
-
 id="rmJamOffday"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
@@ -1428,15 +1691,10 @@ JUMLAH
 
 
 <input
-
 type="text"
-
 id="jumlahOffday"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
@@ -1456,7 +1714,7 @@ value="RM 0.00"
 <!-- CUTI AM -->
 
 
-<div class="special-box cutiam-box">
+<div class="card" style="background:#fff3f3;">
 
 
 <h3>
@@ -1466,26 +1724,28 @@ value="RM 0.00"
 
 
 
-<div class="special-row">
+<div class="form-group">
 
 
-<label class="checkbox-label">
-
+<label>
 
 <input
-
 type="checkbox"
-
 id="hariCutiam"
-
 >
-
 
 Hari Cuti Am Bertugas
 
-
 </label>
 
+
+</div>
+
+
+
+
+
+<div class="grid">
 
 
 
@@ -1497,28 +1757,17 @@ RM HARI
 
 
 <input
-
 type="text"
-
 id="rmHariCutiam"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
 </div>
 
 
-</div>
 
-
-
-
-
-<div class="special-calculation">
 
 
 <div class="form-group">
@@ -1529,21 +1778,16 @@ Jam KLM Cuti Am
 
 
 <input
-
 type="number"
-
 id="jamCutiam"
-
 min="0"
-
 step="0.5"
-
 value="0"
-
 >
 
 
 </div>
+
 
 
 
@@ -1556,19 +1800,15 @@ RM JAM
 
 
 <input
-
 type="text"
-
 id="rmJamCutiam"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
 </div>
+
 
 
 
@@ -1581,15 +1821,10 @@ JUMLAH
 
 
 <input
-
 type="text"
-
 id="jumlahCutiam"
-
 readonly
-
 value="RM 0.00"
-
 >
 
 
@@ -1603,12 +1838,14 @@ value="RM 0.00"
 </div>
 
 
-</div>
-
 
 </div>
 
+
 </div>
+
+
+
 
 
 <!-- =====================================================
@@ -1640,7 +1877,6 @@ onclick="simpanDuty()"
 
 <!-- =====================================================
      SECTION 5
-     SENARAI DUTY
 ===================================================== -->
 
 
@@ -1651,27 +1887,18 @@ onclick="simpanDuty()"
 
 
 <div class="section-number">
-
 5
-
 </div>
 
 
-
 <h2>
-
 Senarai Semak Duty By Unit
-
 </h2>
 
 
 </div>
 
 
-
-
-
-<!-- FILTER -->
 
 
 <div class="filter-panel">
@@ -1685,26 +1912,19 @@ Senarai Semak Duty By Unit
 
 
 <label>
-
 Nama Ketua Unit
-
 </label>
 
 
 
 <select
-
 id="filterKetuaUnit"
-
 onchange="paparDuty()"
-
 >
 
 
 <option value="">
-
 -- Semua Ketua Unit --
-
 </option>
 
 
@@ -1721,21 +1941,14 @@ onchange="paparDuty()"
 
 
 <label>
-
 Bulan / Tahun
-
 </label>
 
 
-
 <input
-
 type="month"
-
 id="filterBulan"
-
 onchange="paparDuty()"
-
 >
 
 
@@ -1749,23 +1962,15 @@ onchange="paparDuty()"
 
 
 <label>
-
 Cari Nama Anggota
-
 </label>
 
 
-
 <input
-
 type="text"
-
 id="cariNama"
-
 placeholder="Cari nama anggota..."
-
 onkeyup="paparDuty()"
-
 >
 
 
@@ -1778,12 +1983,9 @@ onkeyup="paparDuty()"
 
 </div>
 
-
-
-
-
-
-<!-- TABLE -->
+<!-- =====================================================
+     TABLE SENARAI DUTY
+===================================================== -->
 
 
 <div class="table-wrapper">
@@ -1797,74 +1999,53 @@ onkeyup="paparDuty()"
 
 <tr>
 
-
 <th>
-
 Tarikh
-
 </th>
 
 
 <th>
-
 Nama Anggota
-
 </th>
 
 
 <th>
-
 Kod TK
-
 </th>
 
 
 <th>
-
 Kod WK
-
 </th>
 
 
 <th>
-
 KLM Hari Biasa
-
 </th>
 
 
 <th>
-
 Offday (Hari)
-
 </th>
 
 
 <th>
-
 Offday (Jam)
-
 </th>
 
 
 <th>
-
 Cuti Am (Hari)
-
 </th>
 
 
 <th>
-
 Cuti Am (Jam)
-
 </th>
 
 
 <th>
-
 Tindakan
-
 </th>
 
 
@@ -1911,7 +2092,6 @@ Sila pilih Ketua Unit dan Bulan/Tahun
 
 
 
-
 <!-- =====================================================
      FOOTER
 ===================================================== -->
@@ -1935,16 +2115,17 @@ Operational Duty Management System
 
 
 
-
 </div>
 
-<!-- END CONTENT -->
-
-</main>
 
 <!-- END MAIN -->
 
+
+</main>
+
+
 </div>
+
 
 <!-- END APP -->
 
@@ -1952,8 +2133,10 @@ Operational Duty Management System
 
 
 
+
+
 <!-- =====================================================
-     POPUP
+     POPUP SYSTEM
 ===================================================== -->
 
 
@@ -1964,6 +2147,7 @@ id="popupOverlay"
 class="popup-overlay"
 
 >
+
 
 
 <div class="popup-box">
@@ -1985,6 +2169,7 @@ class="popup-icon"
 
 
 
+
 <div
 
 id="popupTitle"
@@ -2000,6 +2185,7 @@ Berjaya
 
 
 
+
 <div
 
 id="popupMessage"
@@ -2011,6 +2197,7 @@ class="popup-message"
 Mesej
 
 </div>
+
 
 
 
@@ -2039,6 +2226,7 @@ OK
 
 
 
+
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
@@ -2046,26 +2234,33 @@ OK
 
 <script
 
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
 
-></script>
-
-
-
-<script
-
-src="supabase.js"
-
-></script>
-
+</script>
 
 
 
 <script
 
-src="js/jadual-duty.js"
+src="supabase.js">
 
-></script>
+</script>
+
+
+
+
+
+<!-- =====================================================
+     JADUAL DUTY FUNCTION
+===================================================== -->
+
+
+<script
+
+src="js/jadual-duty.js">
+
+</script>
+
 
 
 
