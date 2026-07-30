@@ -1588,25 +1588,28 @@ body{
 ===================================================== */
 
 
-.topbar{
+.topbar {
 
-    background:white;
+    min-height:82px;
 
-    border-radius:18px;
+    background:
+    rgba(
+        255,
+        255,
+        255,
+        0.92
+    );
 
-    padding:18px 25px;
+    border-bottom:
+    1px solid #dce7e9;
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    box-shadow:
-    0 5px 20px
-    rgba(0,0,0,.06);
+    justify-content:space-between;
 
-    margin-bottom:20px;
+    padding:0 38px;
 
 }
 
@@ -1614,9 +1617,11 @@ body{
 
 .page-title h2{
 
-    font-size:24px;
+    font-size:26px;
 
-    color:#164951;
+    letter-spacing:.3px;
+
+    color:#263f45;
 
 }
 
@@ -1624,9 +1629,11 @@ body{
 
 .page-title p{
 
-    font-size:13px;
+    font-size:14px;
 
-    color:#71858b;
+    color:#829398;
+
+    margin-top:5px;
 
 }
 
@@ -1634,17 +1641,23 @@ body{
 
 .system-status{
 
-    background:#e5f5ec;
+    display:flex;
 
-    color:#167340;
+    align-items:center;
 
-    padding:10px 15px;
+    gap:9px;
 
-    border-radius:30px;
+    background:#e4f2ed;
 
-    font-size:13px;
+    color:#3d7662;
 
-    font-weight:700;
+    padding:10px 16px;
+
+    border-radius:22px;
+
+    font-size:14px;
+
+    font-weight:600;
 
 }
 
@@ -1679,17 +1692,34 @@ body{
 
     linear-gradient(
         135deg,
-        #247b83,
-        #4fa0a4
+        #3d7f86,
+        #5b9da0
     );
 
     color:white;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:30px;
+    padding:35px 38px;
 
-    margin-bottom:20px;
+    margin-bottom:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:1px solid #77adb0;
+
+    box-shadow:
+
+    0 8px 22px
+
+    rgba(
+        57,
+        111,
+        118,
+        .15
+    );
 
 }
 
@@ -1697,7 +1727,9 @@ body{
 
 .hero h1{
 
-    font-size:28px;
+    font-size:31px;
+
+    letter-spacing:.6px;
 
     margin-bottom:10px;
 
