@@ -622,11 +622,36 @@ Tahun
 Tindakan
 </label>
 
-<button class="btn" onclick="paparLaporanTampungan()">
+<div class="report-actions">
+
+<button
+    class="btn btn-view"
+    onclick="paparLaporanTampungan()"
+>
 
 🔍 PAPAR LAPORAN
 
 </button>
+
+<button
+    class="btn btn-pdf"
+    onclick="cetakLaporanPDF()"
+>
+
+📄 LAPORAN PDF
+
+</button>
+
+<button
+    class="btn btn-csv"
+    onclick="muatTurunCSV()"
+>
+
+📊 MUAT TURUN CSV
+
+</button>
+
+</div>
 
 </div>
 
