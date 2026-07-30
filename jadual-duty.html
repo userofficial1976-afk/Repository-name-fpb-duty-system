@@ -18,6 +18,199 @@ Jadual Duty — FPB Duty Command Center V2
 
 
 <style>
+
+
+/* =====================================================
+   SECTION 4 - HARI KHAS BERTUGAS
+===================================================== */
+
+
+.card > .grid > .card{
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin:0;
+
+    box-shadow:none;
+
+}
+
+
+
+/* OFFDAY PANEL */
+
+
+.card > .grid > .card[style*="fff8ee"]{
+
+    background:
+    linear-gradient(
+        145deg,
+        #fffaf2,
+        #fff3dd
+    ) !important;
+
+    border:
+
+    1px solid #f0d39b;
+
+}
+
+
+
+/* CUTI AM PANEL */
+
+
+.card > .grid > .card[style*="fff3f3"]{
+
+    background:
+    linear-gradient(
+        145deg,
+        #fff8f8,
+        #ffecec
+    ) !important;
+
+    border:
+
+    1px solid #efc4c4;
+
+}
+
+
+
+
+/* TAJUK PANEL */
+
+
+.card > .grid > .card h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:16px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+/* CHECKBOX */
+
+
+.card input[type="checkbox"]{
+
+    width:18px;
+
+    height:18px;
+
+    accent-color:#247b83;
+
+}
+
+
+
+
+
+.card label:has(input[type="checkbox"]){
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:700;
+
+    color:#40575d;
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+/* NILAI RM */
+
+
+#rmHariOffday,
+#rmJamOffday,
+#jumlahOffday{
+
+    background:#fffdf8;
+
+    color:#b06b00;
+
+    font-weight:800;
+
+}
+
+
+
+
+
+#rmHariCutiam,
+#rmJamCutiam,
+#jumlahCutiam{
+
+    background:#fffafa;
+
+    color:#b52d2d;
+
+    font-weight:800;
+
+}
+
+
+
+
+
+/* JUMLAH AKHIR */
+
+
+#jumlahOffday,
+#jumlahCutiam{
+
+    border:
+
+    2px solid #247b83;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:800px){
+
+
+.card > .grid > .card{
+
+    padding:15px;
+
+}
+
+
+}
 /* =====================================================
    BUTTON SIMPAN DUTY
 ===================================================== */
