@@ -336,7 +336,86 @@ cursor:pointer;
 
 }
 
+/* =====================================================
+   REPORT ACTION BUTTONS
+===================================================== */
 
+.report-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+
+.report-actions .btn{
+
+    width:100%;
+
+}
+
+
+.btn-view{
+
+    background:
+        linear-gradient(
+            135deg,
+            #3d7f86,
+            #5b9da0
+        );
+
+}
+
+
+.btn-pdf{
+
+    background:
+        linear-gradient(
+            135deg,
+            #b94b4b,
+            #d16b6b
+        );
+
+}
+
+
+.btn-csv{
+
+    background:
+        linear-gradient(
+            135deg,
+            #397a59,
+            #58a477
+        );
+
+}
+
+
+.btn-pdf:hover,
+.btn-csv:hover{
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .report-actions{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
 
 /* =====================================================
  TABLE
@@ -783,7 +862,11 @@ Sila pilih Bulan dan Tahun
 </main>
 
 </div>
+<!-- PDF LIBRARY -->
 
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 <script src="js/laporan-tampungan.js"></script>
