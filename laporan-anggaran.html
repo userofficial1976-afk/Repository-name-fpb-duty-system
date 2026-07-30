@@ -1560,7 +1560,7 @@ FORECAST DUTY SYSTEM — WILAYAH TERENGGANU
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 
 <script>
@@ -3122,11 +3122,40 @@ return String(str ?? "")
 
 }
 
+function exportRK02Excel(){
 
+    const table =
+    document.querySelector(".report-table");
+
+
+    if(!table){
+
+        alert("Sila jana laporan dahulu.");
+
+        return;
+
+    }
+
+
+    const wb =
+    XLSX.utils.table_to_book(
+        table,
+        {
+            sheet:"RK02"
+        }
+    );
+
+
+    XLSX.writeFile(
+        wb,
+        "Laporan_RK02.xlsx"
+    );
+
+}
 
 </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </body>
 
 </html>
