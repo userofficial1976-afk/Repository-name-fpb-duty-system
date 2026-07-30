@@ -1402,10 +1402,7 @@ setValue(
     data.jam_klm
 );
 
-setValue(
-    "jamTampung",
-    data.jam_kerja
-);
+
 
 kiraSemuaRM();
         }
