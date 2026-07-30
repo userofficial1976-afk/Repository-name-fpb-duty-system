@@ -19,6 +19,124 @@ Jadual Duty — FPB Duty Command Center V2
 
 <style>
 
+/* =====================================================
+   SECTION 3 - DUTY CONTROL PANEL
+===================================================== */
+
+
+.duty-code-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        #f4fbfc,
+        #eaf5f6
+    );
+
+    border:
+
+    1px solid #c8dfe2;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.duty-code-box::before{
+
+    content:"DUTY CONTROL PANEL";
+
+    position:absolute;
+
+    top:10px;
+
+    right:15px;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    color:#247b83;
+
+    letter-spacing:1px;
+
+}
+
+
+
+.duty-code-box select{
+
+    border:2px solid #247b83;
+
+    font-weight:700;
+
+}
+
+
+
+.duty-code-box input[readonly]{
+
+
+    background:#edf7f8;
+
+    color:#164951;
+
+    font-weight:800;
+
+
+}
+
+
+
+#kodDuty{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #247b83,
+        #3f9ca3
+    );
+
+    color:white;
+
+}
+
+
+
+#kodDuty option{
+
+    color:#24343a;
+
+    background:white;
+
+}
+
+
+
+
+#jamKerja,
+#jamKlm,
+#rmKlmHariBiasa,
+#rmTampung{
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+
+
+#jamKerja{
+
+    border-color:#247b83;
+
+}
 
 /* =====================================================
    SECTION 4 - HARI KHAS BERTUGAS
