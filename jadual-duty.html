@@ -1395,56 +1395,22 @@ body{
 
     color:#234047;
 
+    padding:24px 16px;
+
     position:fixed;
 
     top:0;
     bottom:0;
     left:0;
 
-    padding:24px 16px;
+    border-right:1px solid #cbdde1;
 
-    overflow:hidden;
+    overflow-y:auto;
 
     z-index:1000;
 
-    border-right:1px solid #cbdde1;
-
 }
 
-
-.sidebar::after {
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    opacity:.15;
-
-    pointer-events:none;
-
-    background-image:
-
-    linear-gradient(
-        45deg,
-        transparent 45%,
-        #7fa9b1 46%,
-        #7fa9b1 54%,
-        transparent 55%
-    ),
-
-    linear-gradient(
-        -45deg,
-        transparent 45%,
-        #7fa9b1 46%,
-        #7fa9b1 54%,
-        transparent 55%
-    );
-
-    background-size:30px 30px;
-
-}
 
 
 .brand {
@@ -1459,11 +1425,8 @@ body{
 
     border-bottom:1px solid #cbdde1;
 
-    position:relative;
-
-    z-index:2;
-
 }
+
 
 
 .logo {
@@ -1483,7 +1446,8 @@ body{
 }
 
 
-.brand-text h1 {
+
+.brand-text h1{
 
     font-size:17px;
 
@@ -1492,118 +1456,13 @@ body{
 }
 
 
-.brand-text p {
-
-    color:#6d858b;
+.brand-text p{
 
     font-size:12px;
 
-}
-
-
-.heritage-mark{
-
-    background:
-    rgba(255,255,255,.08);
-
-    border-radius:12px;
-
-    padding:15px;
-
-    text-align:center;
-
-    margin-bottom:25px;
+    color:#6d858b;
 
 }
-
-
-
-.heritage-mark strong{
-
-    display:block;
-
-    font-size:14px;
-
-}
-
-
-
-.heritage-mark span{
-
-    font-size:11px;
-
-    opacity:.8;
-
-}
-
-
-
-
-/* MENU */
-
-
-.nav-title{
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    color:#9fc5ca;
-
-    margin:20px 0 10px;
-
-}
-
-
-
-.nav a {
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    color:#577178;
-
-    text-decoration:none;
-
-    padding:14px 15px;
-
-    border-radius:10px;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    transition:.2s;
-
-}
-
-
-.nav a:hover {
-
-    background:#d1e4e8;
-
-    color:#234047;
-
-}
-
-
-.nav a.active {
-
-    background:white;
-
-    color:#247b83;
-
-    box-shadow:
-
-    0 4px 12px
-
-    rgba(50,100,110,.10);
-
-}
-
 
 
 /* =====================================================
@@ -2226,71 +2085,6 @@ MAIN MENU
 
 
 <nav class="nav">
-
-
-<a href="index.html">
-<span class="nav-icon">⌂</span>
-Dashboard
-</a>
-
-
-<a href="anggota.html">
-<span class="nav-icon">♙</span>
-Senarai Anggota
-</a>
-
-
-<a href="jadual-duty.html" class="active">
-<span class="nav-icon">▣</span>
-Pengisian Duty Anggota
-</a>
-
-
-<a href="kod-duty.html">
-<span class="nav-icon">▤</span>
-Kod Duty
-</a>
-
-
-<a href="tempat-kerja.html">
-<span class="nav-icon">▦</span>
-Tempat Kerja
-</a>
-
-
-
-<div class="nav-title">
-REPORTING
-</div>
-
-
-<a href="laporan.html">
-<span class="nav-icon">▥</span>
-Laporan
-</a>
-
-
-<a href="laporan-anggaran.html">
-<span class="nav-icon">◫</span>
-Anggaran RK02
-</a>
-
-
-
-<div class="nav-title">
-SYSTEM
-</div>
-
-
-<a href="#">
-<span class="nav-icon">⚙</span>
-Tetapan
-</a>
-
-
-
-
-</nav>
 
 
 </aside>
