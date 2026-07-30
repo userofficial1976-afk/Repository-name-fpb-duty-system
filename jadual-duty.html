@@ -18,7 +18,264 @@ Jadual Duty — FPB Duty Command Center V2
 
 
 <style>
+/* =====================================================
+   SECTION 2 - PERSONNEL INFORMATION PANEL
+===================================================== */
 
+
+.card:has(#anggota){
+
+    border-top:
+
+    5px solid #3d9da3;
+
+}
+
+
+
+
+
+.card:has(#anggota)::before{
+
+    content:"PERSONNEL INFORMATION PANEL";
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    color:#247b83;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+/* Anggota utama */
+
+
+#anggota{
+
+    border:
+
+    2px solid #247b83;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #f5fcfc,
+        #ffffff
+    );
+
+    font-weight:800;
+
+}
+
+
+
+
+
+/* Auto info */
+
+
+#noSkb,
+#noAnggota,
+#kawasan,
+#unit,
+#ketuaUnit,
+#ketuaPos,
+#namaPosAsal{
+
+
+    background:#f3f7f8;
+
+    border:
+
+    1px solid #d4e3e6;
+
+    color:#40575d;
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* Highlight No SKB */
+
+
+#noSkb{
+
+    color:#247b83;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+/* Info box */
+
+.info-box{
+
+    position:relative;
+
+}
+
+
+
+.info-box::after{
+
+    content:"AUTO INFORMATION";
+
+    position:absolute;
+
+    top:10px;
+
+    right:15px;
+
+    font-size:10px;
+
+    color:#789096;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+
+
+/* =====================================================
+   SECTION 1 - DUTY PLANNING CONTROL
+===================================================== */
+
+
+.card:has(#tarikh){
+
+    border-top:
+
+    5px solid #247b83;
+
+}
+
+
+
+.card:has(#tarikh)::before{
+
+    content:"DUTY PLANNING CONTROL";
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    color:#247b83;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+/* Tarikh utama */
+
+#tarikh{
+
+    border:
+
+    2px solid #247b83;
+
+    background:#f3fbfc;
+
+    font-weight:800;
+
+}
+
+
+
+#bulan,
+#tahun,
+#hari{
+
+    background:#edf5f6;
+
+    color:#164951;
+
+    font-weight:800;
+
+    text-align:center;
+
+}
+
+
+
+/* Dropdown */
+
+
+#unitPilihan,
+#posAsal{
+
+    border:
+
+    2px solid #d0e1e4;
+
+}
+
+
+
+#unitPilihan:focus,
+#posAsal:focus{
+
+    border-color:#247b83;
+
+}
+
+
+
+/* Label */
+
+
+.card:has(#tarikh) .form-group label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+
+
+.card:has(#tarikh) .form-group label::before{
+
+    content:"•";
+
+    color:#247b83;
+
+    font-size:18px;
+
+}
+   
+   
 /* =====================================================
    SECTION 5 - OPERATIONAL MONITORING VIEW
 ===================================================== */
