@@ -1397,7 +1397,108 @@ tr:hover {
 
 }
 
+/* =====================================================
+   MOBILE FIX — KOD TEMPAT KERJA
+===================================================== */
 
+@media (max-width:800px){
+
+    /* Hilangkan sidebar pada mobile */
+    .sidebar{
+        display:none;
+    }
+
+    /* Main guna keseluruhan lebar skrin */
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    /* Ruang kandungan */
+    .content{
+        width:100%;
+        max-width:100%;
+        padding:15px;
+    }
+
+    /* Card kekal dalam skrin */
+    .card{
+        width:100%;
+        max-width:100%;
+        padding:16px;
+        overflow:hidden;
+    }
+
+    /* Semua grid satu kolum */
+    .form-grid{
+        grid-template-columns:minmax(0, 1fr);
+        width:100%;
+        max-width:100%;
+        gap:15px;
+    }
+
+    /* Form tidak melebihi card */
+    .form-group,
+    .pos-area{
+        width:100%;
+        min-width:0;
+        max-width:100%;
+    }
+
+    /* Input dan dropdown */
+    input,
+    select{
+        width:100%;
+        min-width:0;
+        max-width:100%;
+        box-sizing:border-box;
+    }
+
+    /* Dropdown Pos + butang jadi atas bawah */
+    .pos-input-row{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        gap:10px;
+    }
+
+    .pos-input-row select{
+        width:100%;
+        min-width:0;
+        flex:none;
+    }
+
+    .btn-add-pos{
+        width:100%;
+        min-height:44px;
+        padding:12px;
+    }
+
+    /* Senarai Pos tidak keluar card */
+    .selected-positions{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow:hidden;
+    }
+
+    .pos-tag{
+        max-width:100%;
+        overflow-wrap:anywhere;
+    }
+
+    /* Jadual boleh scroll ke kanan */
+    .table-wrapper{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+    }
+
+    .table-wrapper table{
+        min-width:750px;
+    }
+
+}
 </style>
 
 </head>
