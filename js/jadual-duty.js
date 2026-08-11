@@ -2666,68 +2666,167 @@ dikemaskini_oleh:
                 rmHariOffday +
                 rmJamOffday
         });
-        let result;
+ let result;
+
+if (dutySedangEdit !== null) {
+
+    // =================================================
+    // UPDATE DUTY SEDIA ADA
+    // =================================================
+
+    result = await supabaseClient
+
+        .from("jadual_duty")
+
+        .update(dataDuty)
+
+        .eq("id", dutySedangEdit)
+
+        .select("id");
+
+}
+
+else {
+
+    // =================================================
+    // SIMPAN DUTY BARU
+    // =================================================
+
+    result = await supabaseClient
+
+        .from("jadual_duty")
+
+        .insert([dataDuty])
+
+        .select("id");
+
+}
 
 
-        if (
+if (result.error) {
 
-            dutySedangEdit !== null
+    throw result.error;
 
-        ) {
-
-            result = await supabaseClient
-
-                .from(
-
-                    "jadual_duty"
-
-                )
-
-                .update(
-
-                    dataDuty
-
-                )
-
-                .eq(
-
-                    "id",
-
-                    dutySedangEdit
-
-                )
-
-                .select();
-
-        }
+}
 
 
-        else {
+// =====================================================
+// DAPATKAN ID DUTY
+// =====================================================
 
-            result = await supabaseClient
+const idDutySimpan =
 
-                .from(
+    result.data && result.data.length
 
-                    "jadual_duty"
+        ? result.data[0].id
 
-                )
-
-                .insert([
-
-                    dataDuty
-
-                ])
-
-                .select();
-
-        }
+        : dutySedangEdit;
 
 
-        if (result.error) {
+// =====================================================
+// SIMPAN SECTION 5
+// HANYA 8 FIELD SECTION 5
+// =====================================================
 
-            throw result.error;
+const dataKLMSection5 = {
 
-        }
+    jam_klm_off:
+
+        Number(
+
+            getValue("klmOffday") || 0
+
+        ),
+
+    jam_klm_wajib:
+
+        Number(
+
+            getValue("klmWajib") || 0
+
+        ),
+
+    jam_klm_mc:
+
+        Number(
+
+            getValue("klmMc") || 0
+
+        ),
+
+    jam_klm_cuti_tahun:
+
+        Number(
+
+            getValue("klmCutiTahun") || 0
+
+        ),
+
+    jam_klm_cuti_ehsan:
+
+        Number(
+
+            getValue("klmCutiEhsan") || 0
+
+        ),
+
+    jam_klm_kursus:
+
+        Number(
+
+            getValue("klmKursus") || 0
+
+        ),
+
+    jam_klm_cuti_ganti:
+
+        Number(
+
+            getValue("klmCutiGanti") || 0
+
+        ),
+
+    jam_klm_tambahan:
+
+        Number(
+
+            getValue("klmKawalanTambahan") || 0
+
+        ),
+
+    dikemaskini_oleh:
+
+        "Sistem",
+
+    dikemaskini_pada:
+
+        new Date().toISOString()
+
+};
+
+
+// =====================================================
+// UPDATE SECTION 5 SAHAJA
+// =====================================================
+
+if (idDutySimpan) {
+
+    const resultKLM = await supabaseClient
+
+        .from("jadual_duty")
+
+        .update(dataKLMSection5)
+
+        .eq("id", idDutySimpan);
+
+
+    if (resultKLM.error) {
+
+        throw resultKLM.error;
+
+    }
+
+}
 
 
         dutySedangEdit = null;
