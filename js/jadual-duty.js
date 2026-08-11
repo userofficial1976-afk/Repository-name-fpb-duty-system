@@ -3486,7 +3486,49 @@ async function editDuty(
     "jamTampung",
     duty.jam_tampungan || 0
     );
+    // =====================================================
+// PAPAR SEMULA SECTION 5
+// =====================================================
 
+setValue(
+    "klmOffday",
+    duty.jam_klm_off || 0
+);
+
+setValue(
+    "klmWajib",
+    duty.jam_klm_wajib || 0
+);
+
+setValue(
+    "klmMc",
+    duty.jam_klm_mc || 0
+);
+
+setValue(
+    "klmCutiTahun",
+    duty.jam_klm_cuti_tahun || 0
+);
+
+setValue(
+    "klmCutiEhsan",
+    duty.jam_klm_cuti_ehsan || 0
+);
+
+setValue(
+    "klmKursus",
+    duty.jam_klm_kursus || 0
+);
+
+setValue(
+    "klmCutiGanti",
+    duty.jam_klm_cuti_ganti || 0
+);
+
+setValue(
+    "klmKawalanTambahan",
+    duty.jam_klm_tambahan || 0
+);
     const offday = document.getElementById(
 
         "hariOffday"
