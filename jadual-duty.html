@@ -3888,7 +3888,103 @@ src="js/jadual-duty.js">
 
 </script>
 
+<script>
 
+let menuTerkunci = "";
+const PASSWORD_MENU = "admin1";
+
+
+function bukaMenuTerkunci(url){
+
+    menuTerkunci = url;
+
+    const overlay = document.getElementById("passwordOverlay");
+    const input = document.getElementById("passwordMenu");
+    const error = document.getElementById("passwordError");
+
+    if(!overlay){
+        console.error("passwordOverlay tidak dijumpai");
+        return;
+    }
+
+    if(input){
+        input.value = "";
+    }
+
+    if(error){
+        error.style.display = "none";
+    }
+
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+
+        if(input){
+            input.focus();
+        }
+
+    },100);
+
+}
+
+
+function semakPasswordMenu(){
+
+    const input = document.getElementById("passwordMenu");
+    const error = document.getElementById("passwordError");
+
+    if(!input){
+        return;
+    }
+
+    const password = input.value.trim();
+
+    if(password === PASSWORD_MENU){
+
+        tutupPasswordMenu();
+
+        if(menuTerkunci){
+
+            window.location.href = menuTerkunci;
+
+        }
+
+    }else{
+
+        if(error){
+            error.style.display = "block";
+        }
+
+        input.value = "";
+        input.focus();
+
+    }
+
+}
+
+
+function tutupPasswordMenu(){
+
+    const overlay = document.getElementById("passwordOverlay");
+
+    if(overlay){
+        overlay.style.display = "none";
+    }
+
+}
+
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        tutupPasswordMenu();
+
+    }
+
+});
+
+</script>
 
 
 
