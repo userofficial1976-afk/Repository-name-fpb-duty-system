@@ -2294,6 +2294,30 @@ Operational Duty Management System
 
 <script src="js/dashboard.js"></script>
 
+
+<script>
+
+function bukaMenuTerkunci(url){
+
+    const password = prompt("🔐 MENU TERKUNCI\n\nMasukkan password:");
+
+    if(password === null){
+        return;
+    }
+
+    if(password === "admin1"){
+
+        window.location.href = url;
+
+    }else{
+
+        alert("❌ Password salah!");
+
+    }
+
+}
+
+</script>
 </body>
 
 </html>
