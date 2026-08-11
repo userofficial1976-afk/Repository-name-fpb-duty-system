@@ -2287,7 +2287,86 @@ Operational Duty Management System
 </main>
 
 </div>
+<!-- =====================================================
+     POPUP PASSWORD MENU TERKUNCI
+===================================================== -->
 
+<div
+    id="passwordOverlay"
+    class="popup-overlay"
+>
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            🔐
+        </div>
+
+        <div class="popup-title">
+            Menu Terkunci
+        </div>
+
+        <div class="popup-message">
+            Masukkan password untuk meneruskan.
+        </div>
+
+        <input
+            type="password"
+            id="passwordMenu"
+            placeholder="Masukkan password"
+            autocomplete="off"
+            style="
+                width:100%;
+                height:45px;
+                margin-bottom:12px;
+                text-align:center;
+                border:1px solid #cbdde1;
+                border-radius:12px;
+                font-size:15px;
+            "
+            onkeydown="if(event.key==='Enter') semakPasswordMenu()"
+        >
+
+        <div
+            id="passwordError"
+            style="
+                display:none;
+                color:#d84a4a;
+                font-size:12px;
+                font-weight:700;
+                margin-bottom:12px;
+            "
+        >
+            ❌ Password salah.
+        </div>
+
+        <button
+            class="popup-button"
+            onclick="semakPasswordMenu()"
+        >
+            🔓 BUKA MENU
+        </button>
+
+        <button
+            onclick="tutupPasswordMenu()"
+            style="
+                width:100%;
+                height:40px;
+                margin-top:8px;
+                border:none;
+                border-radius:12px;
+                background:#edf3f4;
+                color:#52666b;
+                font-weight:700;
+                cursor:pointer;
+            "
+        >
+            BATAL
+        </button>
+
+    </div>
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase.js"></script>
