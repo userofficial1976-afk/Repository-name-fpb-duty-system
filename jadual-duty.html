@@ -2768,221 +2768,186 @@ readonly
      SECTION 3
 ===================================================== -->
 
-
 <div class="card">
 
+    <div class="card-title">
 
-<div class="card-title">
+        <div class="section-number">
+            3
+        </div>
 
+        <h2>
+            Kod Waktu & Tempat Kerja
+        </h2>
 
-<div class="section-number">
-3
-</div>
+    </div>
 
 
-<h2>
-Kod Waktu & Tempat Kerja
-</h2>
+    <div class="duty-code-box">
 
 
-</div>
+        <!-- BARIS 1
+             Kod Duty | Jam Kerja | Jam KLM Hari Biasa
+        -->
 
+        <div class="grid">
 
+            <div class="form-group">
 
+                <label>
+                    Kod Duty
+                </label>
 
+                <select id="kodDuty">
 
-<div class="duty-code-box">
+                    <option value="">
+                        -- Pilih Kod Duty --
+                    </option>
 
+                </select>
 
-<div class="grid">
+            </div>
 
 
+            <div class="form-group">
 
-<div class="form-group">
+                <label>
+                    Jam Kerja
+                </label>
 
-<label>
-Kod Duty
-</label>
+                <input
+                    type="number"
+                    id="jamKerja"
+                    readonly
+                >
 
+            </div>
 
-<select id="kodDuty">
 
+            <div class="form-group">
 
-<option value="">
--- Pilih Kod Duty --
-</option>
+                <label>
+                    Jam KLM Hari Biasa
+                </label>
 
+                <input
+                    type="number"
+                    id="jamKlm"
+                    readonly
+                >
 
-</select>
+            </div>
 
+        </div>
 
-</div>
 
+        <!-- BARIS 2
+             RM KLM Hari Biasa | Kod Tempat Kerja
+        -->
 
+        <div class="grid">
 
+            <div class="form-group">
 
+                <label>
+                    RM KLM Hari Biasa
+                </label>
 
-<div class="form-group">
+                <input
+                    type="number"
+                    id="rmKlmHariBiasa"
+                    readonly
+                    value="0"
+                >
 
-<label>
-Jam Kerja
-</label>
+            </div>
 
 
-<input
-type="number"
-id="jamKerja"
-readonly
->
+            <div class="form-group">
 
+                <label>
+                    Kod Tempat Kerja
+                </label>
 
-</div>
+                <select id="kodTempatKerja">
 
+                    <option value="">
+                        -- Pilih Kod Tempat Kerja --
+                    </option>
 
+                </select>
 
+            </div>
 
 
-<div class="form-group">
+            <!-- Ruang kosong supaya baris tidak penuh -->
 
-<label>
-Jam KLM Hari Biasa
-</label>
+            <div></div>
 
+        </div>
 
-<input
-type="number"
-id="jamKlm"
-readonly
->
 
+        <!-- BARIS 3
+             Pos Tampungan | Jam Tampung | RM Tampungan
+        -->
 
-</div>
+        <div class="grid">
 
+            <div class="form-group">
 
+                <label>
+                    Pos Tampungan
+                </label>
 
+                <select id="posTampungan">
 
+                    <option value="">
+                        -- Pilih Pos Tampungan --
+                    </option>
 
-<div class="form-group">
+                </select>
 
-<label>
-RM KLM Hari Biasa
-</label>
+            </div>
 
 
-<input
-type="number"
-id="rmKlmHariBiasa"
-readonly
-value="0"
->
+            <div class="form-group">
 
+                <label>
+                    Jam Tampungan
+                </label>
 
-</div>
+                <input
+                    type="number"
+                    id="jamTampung"
+                    min="0"
+                    step="0.5"
+                    value="0"
+                >
 
+            </div>
 
 
+            <div class="form-group">
 
+                <label>
+                    RM Tampungan
+                </label>
 
-<div class="form-group">
+                <input
+                    type="number"
+                    id="rmTampung"
+                    readonly
+                    value="0"
+                >
 
-<label>
-Kod Tempat Kerja
-</label>
+            </div>
 
+        </div>
 
-<select id="kodTempatKerja">
 
-
-<option value="">
--- Pilih Kod Tempat Kerja --
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-<div class="form-group">
-
-<label>
-Pos Tampungan
-</label>
-
-
-<select id="posTampungan">
-
-
-<option value="">
--- Pilih Pos Tampungan --
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-<div class="form-group">
-
-<label>
-Jam Tampung
-</label>
-
-
-<input
-type="number"
-id="jamTampung"
-min="0"
-step="0.5"
-value="0"
->
-
-
-</div>
-
-
-
-
-
-<div class="form-group">
-
-<label>
-RM KLM Tampungan
-</label>
-
-
-<input
-type="number"
-id="rmTampung"
-readonly
-value="0"
->
-
+    </div>
 
 </div>
-
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
 
 <!-- =====================================================
      SECTION 4
