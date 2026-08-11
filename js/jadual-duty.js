@@ -4265,3 +4265,199 @@ async function logout() {
         "login.html";
 
 }
+
+// =====================================================
+// SECTION 5
+// SIMPAN KLM KATEGORI KHAS SAHAJA
+// TABLE : jadual_duty
+// =====================================================
+
+async function simpanKLMSection5() {
+
+    try {
+
+        // =================================================
+        // AMBIL ID DUTY YANG SEDANG DIPILIH / DIKEMASKINI
+        // =================================================
+
+        if (!dutySedangEdit) {
+
+            paparPopup(
+                "Sila pilih / simpan Duty dahulu sebelum menyimpan KLM.",
+                "warning",
+                "Rekod Duty Diperlukan"
+            );
+
+            return;
+
+        }
+
+
+        // =================================================
+        // FUNGSI AMBIL NILAI JAM
+        // =================================================
+
+        function ambilJam(id) {
+
+            const element =
+                document.getElementById(id);
+
+            if (!element) {
+                return 0;
+            }
+
+            const nilai =
+                Number(element.value);
+
+            return Number.isFinite(nilai)
+                ? nilai
+                : 0;
+
+        }
+
+
+        // =================================================
+        // AMBIL NILAI SECTION 5
+        // =================================================
+
+        const jamOff =
+            ambilJam("klmOffday");
+
+        const jamWajib =
+            ambilJam("klmWajib");
+
+        const jamMc =
+            ambilJam("klmMc");
+
+        const jamCutiTahun =
+            ambilJam("klmCutiTahun");
+
+        const jamCutiEhsan =
+            ambilJam("klmCutiEhsan");
+
+        const jamKursus =
+            ambilJam("klmKursus");
+
+        const jamCutiGanti =
+            ambilJam("klmCutiGanti");
+
+        const jamTambahan =
+            ambilJam("klmKawalanTambahan");
+
+
+        // =================================================
+        // DATA YANG DISIMPAN
+        // SECTION 5 SAHAJA
+        // =================================================
+
+        const dataKLM = {
+
+            jam_klm_off:
+                jamOff,
+
+            jam_klm_wajib:
+                jamWajib,
+
+            jam_klm_mc:
+                jamMc,
+
+            jam_klm_cuti_tahun:
+                jamCutiTahun,
+
+            jam_klm_cuti_ehsan:
+                jamCutiEhsan,
+
+            jam_klm_kursus:
+                jamKursus,
+
+            jam_klm_cuti_ganti:
+                jamCutiGanti,
+
+            jam_klm_tambahan:
+                jamTambahan,
+
+            dikemaskini_oleh:
+                "Sistem",
+
+            dikemaskini_pada:
+                new Date().toISOString()
+
+        };
+
+
+        // =================================================
+        // SIMPAN KE JADUAL_DUTY
+        // HANYA REKOD SECTION 5
+        // =================================================
+
+        const {
+            error
+        } = await supabaseClient
+
+            .from("jadual_duty")
+
+            .update(dataKLM)
+
+            .eq(
+                "id",
+                dutySedangEdit
+            );
+
+
+        // =================================================
+        // RALAT
+        // =================================================
+
+        if (error) {
+
+            console.error(
+                "RALAT SIMPAN SECTION 5:",
+                error
+            );
+
+            paparPopup(
+                error.message,
+                "error",
+                "Gagal Simpan KLM"
+            );
+
+            return;
+
+        }
+
+
+        // =================================================
+        // BERJAYA
+        // =================================================
+
+        paparPopup(
+            "Data KLM Section 5 berjaya disimpan.",
+            "success",
+            "KLM Berjaya Disimpan"
+        );
+
+
+        console.log(
+            "SECTION 5 KLM DISIMPAN:",
+            dataKLM
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "RALAT SECTION 5:",
+            error
+        );
+
+        paparPopup(
+            error.message,
+            "error",
+            "Gagal Simpan KLM"
+        );
+
+    }
+
+}
