@@ -2295,27 +2295,262 @@ Operational Duty Management System
 <script src="js/dashboard.js"></script>
 
 
+<!-- POPUP PASSWORD MENU TERKUNCI -->
+<div id="lockPopup" class="lock-popup">
+
+    <div class="lock-box">
+
+        <div class="lock-icon">🔐</div>
+
+        <h3>Menu Terkunci</h3>
+
+        <p>Masukkan password untuk meneruskan</p>
+
+        <input
+            type="password"
+            id="lockPassword"
+            placeholder="Masukkan password"
+            autocomplete="off"
+        >
+
+        <div class="lock-actions">
+
+            <button
+                type="button"
+                onclick="semakPassword()"
+            >
+                BUKA
+            </button>
+
+            <button
+                type="button"
+                onclick="tutupLockPopup()"
+            >
+                BATAL
+            </button>
+
+        </div>
+
+        <div
+            id="lockError"
+            class="lock-error"
+        ></div>
+
+    </div>
+
+</div>
+
+<style>
+
+.lock-popup{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:99999;
+
+}
+
+.lock-box{
+
+    width:360px;
+
+    max-width:90%;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.30);
+
+}
+
+.lock-icon{
+
+    font-size:45px;
+
+    margin-bottom:10px;
+
+}
+
+.lock-box h3{
+
+    margin:0 0 8px;
+
+    color:#164951;
+
+}
+
+.lock-box p{
+
+    color:#71858b;
+
+    font-size:13px;
+
+    margin-bottom:20px;
+
+}
+
+.lock-box input{
+
+    width:100%;
+
+    height:45px;
+
+    border:2px solid #cbdde1;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    font-size:15px;
+
+    box-sizing:border-box;
+
+}
+
+.lock-box input:focus{
+
+    outline:none;
+
+    border-color:#247b83;
+
+}
+
+.lock-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+.lock-actions button{
+
+    flex:1;
+
+    height:43px;
+
+    border:0;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.lock-actions button:first-child{
+
+    background:#247b83;
+
+    color:white;
+
+}
+
+.lock-actions button:last-child{
+
+    background:#e8eef0;
+
+    color:#40575d;
+
+}
+
+.lock-error{
+
+    min-height:20px;
+
+    margin-top:12px;
+
+    color:#d84a4a;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+</style>
+
 <script>
+
+let menuTerkunciUrl = "";
 
 function bukaMenuTerkunci(url){
 
-    const password = prompt("🔐 MENU TERKUNCI\n\nMasukkan password:");
+    menuTerkunciUrl = url;
 
-    if(password === null){
-        return;
-    }
+    document.getElementById("lockPassword").value = "";
+
+    document.getElementById("lockError").textContent = "";
+
+    document.getElementById("lockPopup").style.display = "flex";
+
+    setTimeout(function(){
+
+        document.getElementById("lockPassword").focus();
+
+    },100);
+
+}
+
+
+function tutupLockPopup(){
+
+    document.getElementById("lockPopup").style.display = "none";
+
+    menuTerkunciUrl = "";
+
+}
+
+
+function semakPassword(){
+
+    const password =
+        document.getElementById("lockPassword").value;
 
     if(password === "admin1"){
 
-        window.location.href = url;
+        window.location.href = menuTerkunciUrl;
 
     }else{
 
-        alert("❌ Password salah!");
+        document.getElementById("lockError").textContent =
+            "❌ Password salah.";
+
+        document.getElementById("lockPassword").value = "";
+
+        document.getElementById("lockPassword").focus();
 
     }
 
 }
+
+
+document.getElementById("lockPassword")
+.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        semakPassword();
+
+    }
+
+});
 
 </script>
 </body>
