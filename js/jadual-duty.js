@@ -2636,6 +2636,50 @@ rm_klm_tampungan:
         ) || 0
     ),
 
+// =================================================
+// SECTION 5 - KLM KATEGORI KHAS
+// =================================================
+
+jam_klm_off:
+    Number(
+        getValue("klmOffday") || 0
+    ),
+
+jam_klm_wajib:
+    Number(
+        getValue("klmWajib") || 0
+    ),
+
+jam_klm_mc:
+    Number(
+        getValue("klmMc") || 0
+    ),
+
+jam_klm_cuti_tahun:
+    Number(
+        getValue("klmCutiTahun") || 0
+    ),
+
+jam_klm_cuti_ehsan:
+    Number(
+        getValue("klmCutiEhsan") || 0
+    ),
+
+jam_klm_kursus:
+    Number(
+        getValue("klmKursus") || 0
+    ),
+
+jam_klm_cuti_ganti:
+    Number(
+        getValue("klmCutiGanti") || 0
+    ),
+
+jam_klm_tambahan:
+    Number(
+        getValue("klmKawalanTambahan") || 0
+    ),
+
 rm_klm_seluruh:
     Number(rmKlmHariBiasa || 0) +
     Number(rmHariCutiam || 0) +
